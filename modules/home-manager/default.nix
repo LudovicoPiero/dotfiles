@@ -8,4 +8,5 @@
   gtk = import ./gtk.nix;
   fish = import ./fish.nix;
   gpg = import ./gpg.nix;
+  chromium = import ./chromium.nix;
 }
