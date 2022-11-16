@@ -8,6 +8,7 @@
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.git
     outputs.homeManagerModules.gtk
+    outputs.homeManagerModules.fish
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default

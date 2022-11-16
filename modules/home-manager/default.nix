@@ -6,4 +6,5 @@
   hyprland = import ./hyprland;
   git = import ./git.nix;
   gtk = import ./gtk.nix;
+  fish = import ./fish.nix;
 }
