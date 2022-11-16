@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    fish
+    exa
     fzf
     fd
     bat
