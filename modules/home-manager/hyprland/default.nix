@@ -13,11 +13,15 @@
     foot
 
     # Utils
+    grim
+    slurp
     wl-clipboard
     brightnessctl
     playerctl
     yad
     viewnior
+    xdg-user-dirs
+    xdg-utils
     #hyprland (using flakes version)
   ];
   home.file = {
