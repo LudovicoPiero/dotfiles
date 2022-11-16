@@ -7,4 +7,5 @@
   git = import ./git.nix;
   gtk = import ./gtk.nix;
   fish = import ./fish.nix;
+  gpg = import ./gpg.nix;
 }
