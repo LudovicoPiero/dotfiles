@@ -5,4 +5,5 @@
   # List your module files here
   hyprland = import ./hyprland;
   git = import ./git.nix;
+  gtk = import ./gtk.nix;
 }
