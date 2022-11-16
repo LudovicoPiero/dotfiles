@@ -14,11 +14,6 @@
       {
         id = "aleakchihdccplidncghkekgioiakgal"; # h264ify
       }
-      {
-        id = "aaaaaaaaaabbbbbbbbbbcccccccccccc"; # FastForward
-        crxPath = "/FastForward.crx";
-        version = "1.0";
-      }
     ];
   };
 }
