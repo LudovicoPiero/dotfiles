@@ -1,0 +1,52 @@
+# Wofi Config
+
+## Files (absolute path)
+#style=/home/USER/.config/wayfire/wofi/style.css
+#color=/home/USER/.config/wayfire/wofi/colors
+
+## General
+show=drun
+prompt=Search Applications
+normal_window=false
+layer=top
+term=foot
+
+## Geometry
+width=500px
+height=415px
+location=0
+#xoffset=10
+#yoffset=10
+#lines=8
+#columns=1
+orientation=vertical
+halign=fill
+#valign=center
+#content_halign=fill
+line_wrap=off
+dynamic_lines=false
+
+## Images
+allow_markup=true
+allow_images=true
+image_size=24
+
+## Search
+#search=STRING
+exec_search=false
+hide_search=false
+parse_search=false
+matching=fuzzy
+insensitive=false
+
+## Other
+hide_scroll=true
+no_actions=false
+sort_order=default
+gtk_dark=true
+filter_rate=100
+#cache_file=/dev/null
+
+## Keys
+key_expand=Tab
+key_exit=Escape

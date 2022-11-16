@@ -1,0 +1,109 @@
+{
+  "position": "top",
+  "layer": "bottom",
+  "height": 30,
+  "modules-center": [
+    "wlr/workspaces",
+    "tray",
+    "network",
+    "pulseaudio",
+    "battery",
+    "custom/date",
+    "clock"
+  ],
+  "wlr/workspaces": {
+    "on-click": "activate",
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "default": "●",
+      "active": "●"
+    }
+  },
+  "hyprland/window": {
+    "format": "{}",
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "{usage1}% ",
+    "max-length": 10
+  },
+  "memory": {
+    "interval": 10,
+    "format": "{percentage}% ",
+    "max-length": 10
+  },
+  "disk": {
+    "interval": 30,
+    "format": "ROOT {percentage_used}%",
+    "path": "/"
+  },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 60,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+    "max-length": 25
+  },
+  "tray": {
+    "show-passive-items": true,
+    "icon-size": 13,
+    "spacing": 10
+  },
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "$HOME/.config/hypr/scripts/menu",
+    "tooltip": false
+  },
+  "custom/date": {
+    "format": " {}",
+    "interval": 3600,
+    "exec": "$HOME/.config/hypr/waybar/waybar-date.sh"
+  },
+  "clock": {
+    "format": " {:%I:%M %p} ",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "network": {
+    "interface": "wlp3s0",
+    "format-wifi": " Connected",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "睊",
+    "tooltip-format-wifi": "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 Muted",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  }
+}
