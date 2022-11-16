@@ -5,14 +5,19 @@
     hyprpaper # For Wallpaper
     mako # Notification
     bemenu # Menu 
-    wofi
+    wofi # Menu
+    waybar # Bar
+
+    # Terminal
     kitty
+    foot
+
+    # Utils
     wl-clipboard
     brightnessctl
     playerctl
-    foot
     yad
-    viewnior # image viewer
+    viewnior
     #hyprland (using flakes version)
   ];
   home.file = {
