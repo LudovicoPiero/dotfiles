@@ -5,7 +5,10 @@
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
+    outputs.nixosModules.bootloader
+    outputs.nixosModules.doas
+    outputs.nixosModules.fonts
+    outputs.nixosModules.user
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
@@ -15,8 +18,7 @@
     { programs.hyprland.enable = true; }
 
     # You can also split up your configuration and import pieces of it here:
-    ./fonts.nix
-    ./user.nix
+    # ./nvim.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -64,25 +66,6 @@
       # Cachix
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-    };
-  };
-
-  # Bootloader.
-  boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
-    supportedFilesystems = [ "ntfs" ];
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
-      grub = {
-        enable = true;
-        efiSupport = true;
-        version = 2;
-        device = "nodev";
-        useOSProber = true;
-      };
     };
   };
 

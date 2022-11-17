@@ -3,5 +3,8 @@
 
 {
   # List your module files here
-  # my-module = import ./my-module.nix;
+  fonts = import ./fonts.nix;
+  user = import ./user.nix;
+  doas = import ./doas.nix;
+  bootloader = import ./bootloader.nix;
 }
