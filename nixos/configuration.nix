@@ -9,6 +9,7 @@
     outputs.nixosModules.doas
     outputs.nixosModules.fonts
     outputs.nixosModules.user
+    outputs.nixosModules.file-manager
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
@@ -79,9 +80,10 @@
   i18n.defaultLocale = "en_AU.utf8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
-  # Enable GDM
+  # Enable Gnome Keyring & GDM
+  services.gnome.gnome-keyring.enable = true;
   services.xserver.displayManager.gdm.enable = true;
 
   # Configure keymap in X11
@@ -108,6 +110,11 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     wget
+
+    # Keyring
+    gnome.gnome-keyring
+    libgnome-keyring
+    libsecret
   ];
 
   # Hostname

@@ -7,4 +7,5 @@
   user = import ./user.nix;
   doas = import ./doas.nix;
   bootloader = import ./bootloader.nix;
+  file-manager = import ./file-manager.nix;
 }
