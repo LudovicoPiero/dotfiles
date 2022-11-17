@@ -6,21 +6,17 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     outputs.homeManagerModules.hyprland
-    # outputs.homeManagerModules.git
-    # outputs.homeManagerModules.gtk
-    # outputs.homeManagerModules.fish
-    # outputs.homeManagerModules.gpg
-    # outputs.homeManagerModules.chromium
+    outputs.homeManagerModules.git
+    outputs.homeManagerModules.gtk
+    outputs.homeManagerModules.fish
+    outputs.homeManagerModules.gpg
+    outputs.homeManagerModules.chromium
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-    ./chromium.nix
-    ./fish.nix
-    ./git.nix
-    ./gtk.nix
-    ./gpg.nix
+    # ./chromium.nix
   ];
 
   nixpkgs = {
