@@ -10,7 +10,7 @@
     outputs.homeManagerModules.gtk
     outputs.homeManagerModules.fish
     outputs.homeManagerModules.gpg
-    outputs.homeManagerModules.chromium
+    # outputs.homeManagerModules.chromium
     outputs.homeManagerModules.firefox
 
     # Or modules exported from other flakes (such as nix-colors):
