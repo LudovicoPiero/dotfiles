@@ -73,12 +73,28 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1668693329,
+        "narHash": "sha256-Vo9bKWr9QioM52jDRynHYw/kElAcMa89iufFQ3ZJSvI=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "bb1f7e0be1e69ddd933814533560ba76ade284b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "hardware": "hardware",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nur": "nur"
       }
     },
     "utils": {

@@ -11,6 +11,9 @@
 
     hardware.url = "github:nixos/nixos-hardware";
 
+    # Nix User Repository
+    nur.url = github:nix-community/NUR;
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       # build with your own instance of nixpkgs

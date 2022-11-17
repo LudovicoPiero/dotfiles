@@ -11,6 +11,7 @@
     outputs.homeManagerModules.fish
     outputs.homeManagerModules.gpg
     outputs.homeManagerModules.chromium
+    outputs.homeManagerModules.firefox
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -27,7 +28,7 @@
       # outputs.overlays.additions
 
       # Or overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
+      inputs.nur.overlay
 
       # Or define it inline, for example:
       # (final: prev: {

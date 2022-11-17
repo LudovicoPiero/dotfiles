@@ -9,4 +9,5 @@
   fish = import ./fish.nix;
   gpg = import ./gpg.nix;
   chromium = import ./chromium.nix;
+  firefox = import ./firefox.nix;
 }
