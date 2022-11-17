@@ -9,11 +9,7 @@
       noto-fonts-emoji
       noto-fonts-cjk-sans
       liberation_ttf
-      dina-font
-      mplus-outline-fonts.githubRelease
-      proggyfonts
-      roboto
-      openmoji-color
+
       (nerdfonts.override {
         fonts = [ "UbuntuMono" "JetBrainsMono" "FiraCode" ];
       })
