@@ -80,7 +80,7 @@
   i18n.defaultLocale = "en_AU.utf8";
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # Enable Gnome Keyring & GDM
   services.gnome.gnome-keyring.enable = true;
