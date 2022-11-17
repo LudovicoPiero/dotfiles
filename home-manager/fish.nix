@@ -12,8 +12,6 @@
       gitignore = "curl -sL https://www.gitignore.io/api/$argv";
     };
     shellAliases = {
-      "bb" = "doas nixos-rebuild boot --flake ~/.config/nixos";
-      "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
       "config" = "cd ~/.config/nixos";
       "ls" = "exa --icons";
       "l" = "exa -lbF --git --icons";
