@@ -79,18 +79,15 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.utf8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable Gnome Keyring & GDM
-  services.gnome.gnome-keyring.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-
-  # Configure keymap in X11
+  # Enable xserver & gdm
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    enable = true;
+    displayManager.gdm.enable = true;
+    layout = "us"; # Configure keymap
   };
+
+  # Enable Gnome Keyring
+  services.gnome.gnome-keyring.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -107,7 +104,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     git
     wget
 
