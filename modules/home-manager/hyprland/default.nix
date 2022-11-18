@@ -7,6 +7,7 @@
     bemenu # Menu 
     wofi # Menu
     waybar # Bar
+    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
 
     # Terminal
     kitty
