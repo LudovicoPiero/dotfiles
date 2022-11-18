@@ -8,11 +8,13 @@
         id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; # Ublock Origin
       }
       {
-        id =
-          "nngceckbapebfimnlniiiahkandclblb"; # bitwarden - password manager
+        id = "nngceckbapebfimnlniiiahkandclblb"; # bitwarden - password manager
       }
       {
         id = "aleakchihdccplidncghkekgioiakgal"; # h264ify
+      }
+      {
+        id = "knegaeodgehajemjpfbhlgjdcloklkal"; # Myanimelist Redesign
       }
     ];
   };
