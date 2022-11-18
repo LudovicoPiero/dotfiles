@@ -9,13 +9,14 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
-      grub = {
-        enable = true;
-        efiSupport = true;
-        version = 2;
-        device = "nodev";
-        useOSProber = true;
-      };
+      systemd-boot.enable = true;
+      # grub = {
+      #   enable = true;
+      #   efiSupport = true;
+      #   version = 2;
+      #   device = "nodev";
+      #   useOSProber = true;
+      # };
     };
   };
 }
