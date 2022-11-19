@@ -12,6 +12,7 @@
     outputs.homeManagerModules.gpg
     outputs.homeManagerModules.chromium
     outputs.homeManagerModules.firefox
+    outputs.homeManagerModules.direnv
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default

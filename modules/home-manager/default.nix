@@ -10,4 +10,5 @@
   gpg = import ./gpg.nix;
   chromium = import ./chromium.nix;
   firefox = import ./firefox.nix;
+  direnv = import ./direnv.nix;
 }
