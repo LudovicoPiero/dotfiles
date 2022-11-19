@@ -13,6 +13,8 @@
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd-sea-islands
 
     # Enable Hyprland
     inputs.hyprland.nixosModules.default
@@ -118,9 +120,6 @@
     vim
     git
     wget
-
-    # NodeJS
-    nodejs
 
     # Rust toolchain
     (fenix.complete.withComponents [
