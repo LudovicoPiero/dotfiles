@@ -33,7 +33,7 @@
       # outputs.overlays.additions
 
       # Or overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
+      inputs.fenix.overlays.default
 
       # Or define it inline, for example:
       # (final: prev: {
@@ -58,6 +58,11 @@
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
@@ -65,8 +70,14 @@
       auto-optimise-store = true;
 
       # Cachix
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      substituters = [
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
   };
 
@@ -107,6 +118,19 @@
     vim
     git
     wget
+
+    # NodeJS
+    nodejs
+
+    # Rust toolchain
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer-nightly
 
     # Keyring
     gnome.gnome-keyring
