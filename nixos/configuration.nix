@@ -121,6 +121,9 @@
     git
     wget
 
+    # Webcord
+    inputs.webcord.packages.${pkgs.system}.default
+
     # Rust toolchain
     (fenix.complete.withComponents [
       "cargo"
