@@ -1,3 +1,3 @@
 .direnv
 result
-modules/home-manager/hyprland/scripts/notifications.token
+modules/home-manager/hyprland/waybar/notifications.token

@@ -31,7 +31,7 @@
     "format": "{} ",
     "return-type": "json",
     "interval": 60,
-    "exec": "$HOME/.config/hypr/scripts/github",
+    "exec": "$HOME/.config/hypr/waybar/github",
     "on-click": "xdg-open https://github.com/notifications"
   },
   "hyprland/window": {

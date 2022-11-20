@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-token=`cat ${HOME}/.config/hypr/scripts/notifications.token`
+token=`cat ${HOME}/.config/hypr/waybar/notifications.token`
 count=`curl -u ludovicosforza:${token} https://api.github.com/notifications | jq '. | length'`
 
 if [[ "$count" != "0" ]]; then
