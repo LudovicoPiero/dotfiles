@@ -7,9 +7,10 @@
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.bootloader
     outputs.nixosModules.doas
+    outputs.nixosModules.file-manager
     outputs.nixosModules.fonts
     outputs.nixosModules.user
-    outputs.nixosModules.file-manager
+    outputs.nixosModules.webcord
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
@@ -75,10 +76,12 @@
       substituters = [
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
+        "https://webcord.cachix.org"
       ];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "webcord.cachix.org-1:l555jqOZGHd2C9+vS8ccdh8FhqnGe8L78QrHNn+EFEs="
       ];
     };
   };
@@ -120,9 +123,6 @@
     vim
     git
     wget
-
-    # Webcord
-    inputs.webcord.packages.${pkgs.system}.default
 
     # Rust toolchain
     (fenix.complete.withComponents [

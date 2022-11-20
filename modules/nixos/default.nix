@@ -4,6 +4,7 @@
 {
   # List your module files here
   fonts = import ./fonts.nix;
+  webcord = import ./webcord.nix;
   user = import ./user.nix;
   doas = import ./doas.nix;
   bootloader = import ./bootloader.nix;
