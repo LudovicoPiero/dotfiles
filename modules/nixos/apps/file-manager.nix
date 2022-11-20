@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs;[ at-spi2-atk];
   programs = {
     thunar = {
       enable = true;
