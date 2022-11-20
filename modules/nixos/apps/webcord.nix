@@ -1,5 +1,8 @@
-{ pkgs, inputs, ... }:
-let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   catppuccin = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "discord";
@@ -8,11 +11,10 @@ let
   };
 
   theme = "${catppuccin}/themes/mocha.theme.css";
-in
-{
+in {
   environment.systemPackages = [
     (inputs.webcord.packages.${pkgs.system}.default.override {
-      flags = [ "--add-css-theme=${theme}" ];
+      flags = ["--add-css-theme=${theme}"];
     })
   ];
 }

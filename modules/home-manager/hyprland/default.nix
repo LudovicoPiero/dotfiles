@@ -1,10 +1,14 @@
-{ inputs, pkgs, config, lib, ... }:
-
 {
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   home.packages = with pkgs; [
     hyprpaper # For Wallpaper
     mako # Notification
-    bemenu # Menu 
+    bemenu # Menu
     wofi # Menu
     waybar # Bar
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast

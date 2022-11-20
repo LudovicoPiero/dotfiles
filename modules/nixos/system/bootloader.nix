@@ -1,9 +1,8 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Bootloader.
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
     loader = {
       efi = {
         canTouchEfiVariables = true;
