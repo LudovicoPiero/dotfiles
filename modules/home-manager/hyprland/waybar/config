@@ -5,6 +5,7 @@
   "modules-center": [
     "wlr/workspaces",
     "tray",
+    "custom/github",
     "network",
     "pulseaudio",
     "battery",
@@ -26,8 +27,15 @@
       "active": "●"
     }
   },
+  "custom/github": {
+    "format": "{} ",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "$HOME/.config/hypr/scripts/github",
+    "on-click": "xdg-open https://github.com/notifications"
+  },
   "hyprland/window": {
-    "format": "{}",
+    "format": "{}"
   },
   "cpu": {
     "interval": 10,

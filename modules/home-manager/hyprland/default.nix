@@ -16,6 +16,7 @@
     # Utils
     grim
     slurp
+    jq
     wl-clipboard
     brightnessctl
     playerctl

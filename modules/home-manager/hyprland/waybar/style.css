@@ -60,6 +60,7 @@ tooltip {
 }
 
 #custom-date,
+#custom-github,
 #custom-notification,
 #clock,
 #battery,
@@ -95,6 +96,10 @@ tooltip {
 
 #custom-date {
   color: #89dceb;
+}
+
+#custom-github {
+  color: #f9e2af;
 }
 
 #clock {
