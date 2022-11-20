@@ -25,6 +25,11 @@
     xdg-utils
     #hyprland (using flakes version)
   ];
+
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   home.file = {
     hyprland = {
       source = ../hyprland;
