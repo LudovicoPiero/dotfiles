@@ -4,11 +4,15 @@
 {
   # List your module files here
   hyprland = import ./hyprland;
-  git = import ./git.nix;
-  gtk = import ./gtk.nix;
   fish = import ./fish.nix;
-  gpg = import ./gpg.nix;
-  chromium = import ./chromium.nix;
-  firefox = import ./firefox.nix;
-  direnv = import ./direnv.nix;
+  gtk = import ./gtk.nix;
+
+  # Development
+  git = import ./development/git.nix;
+  gpg = import ./development/gpg.nix;
+  direnv = import ./development/direnv.nix;
+
+  # Browser
+  chromium = import ./browser/chromium.nix;
+  firefox = import ./browser/firefox.nix;
 }

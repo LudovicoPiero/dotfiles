@@ -3,10 +3,12 @@
 
 {
   # List your module files here
-  fonts = import ./fonts.nix;
-  webcord = import ./webcord.nix;
-  user = import ./user.nix;
-  doas = import ./doas.nix;
-  bootloader = import ./bootloader.nix;
-  file-manager = import ./file-manager.nix;
+  webcord = import ./apps/webcord.nix;
+  file-manager = import ./apps/file-manager.nix;
+
+  # System
+  bootloader = import ./system/bootloader.nix;
+  user = import ./system/user.nix;
+  doas = import ./system/doas.nix;
+  fonts = import ./system/fonts.nix;
 }
