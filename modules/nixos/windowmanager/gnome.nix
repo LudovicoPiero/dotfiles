@@ -1,19 +1,11 @@
-{pkgs, ...}: {
-  services.xserver = {
-    desktopManager.gnome.enable = true;
-  };
+{ pkgs, ... }: {
+  services.xserver = { desktopManager.gnome.enable = true; };
 
   services.gnome.gnome-keyring.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
-  ];
+  environment.systemPackages = with pkgs; [ gnome.gnome-tweaks ];
   # Enable Gnome Keyring
-  environment.gnome.excludePackages =
-    (with pkgs; [
-      gnome-photos
-      gnome-tour
-    ])
+  environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
     ++ (with pkgs.gnome; [
       cheese # webcam tool
       gnome-music

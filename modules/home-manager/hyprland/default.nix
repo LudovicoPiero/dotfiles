@@ -1,10 +1,4 @@
-{
-  inputs,
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{ inputs, pkgs, config, lib, ... }: {
   home.packages = with pkgs; [
     hyprpaper # For Wallpaper
     mako # Notification
@@ -31,9 +25,7 @@
     #hyprland (using flakes version)
   ];
 
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
+  home.sessionVariables = { NIXOS_OZONE_WL = "1"; };
 
   home.file = {
     hyprland = {

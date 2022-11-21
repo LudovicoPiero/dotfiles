@@ -2,7 +2,7 @@
   programs.chromium = {
     enable = true;
     #package = pkgs.ungoogled-chromium;
-    commandLineArgs = ["--force-dark-mode"];
+    commandLineArgs = [ "--force-dark-mode" ];
     extensions = [
       {
         id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; # Ublock Origin
