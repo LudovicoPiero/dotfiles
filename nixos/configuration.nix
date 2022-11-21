@@ -106,7 +106,7 @@
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
-    displayManager.defaultSession = "none+hyprland";
+    displayManager.defaultSession = "hyprland";
     layout = "us"; # Configure keymap
   };
 
