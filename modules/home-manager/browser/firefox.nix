@@ -1,13 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      auto-tab-discard
       buster-captcha-solver
       decentraleyes
       ublock-origin
       sponsorblock
-      df-youtube
       bitwarden
       fastforward
     ];
@@ -23,6 +21,10 @@
             {
               name = "KICKASSANIME";
               url = "https://kickassanime.ro";
+            }
+            {
+              name = "ANIMIXPLAY";
+              url = "https://animixplay.to";
             }
           ];
         }
@@ -44,6 +46,67 @@
           ];
         }
       ];
+      search = {
+        default = "DuckDuckGo";
+        engines = {
+          "Nix Packages" = {
+            urls = [{
+              template = "https://search.nixos.org/packages";
+              params = [
+                {
+                  name = "channel";
+                  value = "unstable";
+                }
+                {
+                  name = "type";
+                  value = "packages";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }];
+
+            icon =
+              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@np" ];
+          };
+
+          "NixOS Options" = {
+            urls = [{
+              template = "https://search.nixos.org/options";
+              params = [
+                {
+                  name = "channel";
+                  value = "unstable";
+                }
+                {
+                  name = "type";
+                  value = "packages";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }];
+
+            icon =
+              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@no" ];
+          };
+
+          "NixOS Wiki" = {
+            urls = [{
+              template = "https://nixos.wiki/index.php?search={searchTerms}";
+            }];
+            iconUpdateURL = "https://nixos.wiki/favicon.png";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            definedAliases = [ "@nw" ];
+          };
+        };
+      };
       settings = {
         # Country
         "browser.search.region" = "AU";
@@ -84,8 +147,7 @@
         "toolkit.telemetry.firstShutdownPing.enabled" = false;
 
         # Disable Pocket
-        "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" =
-          false;
+        "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" = false;
         "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
         "browser.newtabpage.activity-stream.section.highlights.includePocket" =
           false;
@@ -127,7 +189,8 @@
         "privacy.firstparty.isolate" = true;
         "network.http.sendRefererHeader" = 0;
       };
-      userChrome = "\n                    * { \n                        box-shadow: none !important;\n                        border: 0px solid !important;\n                    }\n                    #tabbrowser-tabs {\n                        --user-tab-rounding: 8px;\n                    }\n                    .tab-background {\n                        border-radius: var(--user-tab-rounding) var(--user-tab-rounding) 0px 0px !important; /* Connected */\n                        margin-block: 1px 0 !important; /* Connected */\n                    }\n                    #scrollbutton-up, #scrollbutton-down { /* 6/10/2021 */\n                        border-top-width: 1px !important;\n                        border-bottom-width: 0 !important;\n                    }\n                    .tab-background:is([selected], [multiselected]):-moz-lwtheme {\n                        --lwt-tabs-border-color: rgba(0, 0, 0, 0.5) !important;\n                        border-bottom-color: transparent !important;\n                    }\n                    [brighttext='true'] .tab-background:is([selected], [multiselected]):-moz-lwtheme {\n                        --lwt-tabs-border-color: rgba(255, 255, 255, 0.5) !important;\n                        border-bottom-color: transparent !important;\n                    }\n                    /* Container color bar visibility */\n                    .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {\n                        margin: 0px max(calc(var(--user-tab-rounding) - 3px), 0px) !important;\n                    }\n                    #TabsToolbar, #tabbrowser-tabs {\n                        --tab-min-height: 29px !important;\n                    }\n                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar, \n                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar #tabbrowser-tabs {\n                        --tab-min-height: 30px !important;\n                    }\n                    #scrollbutton-up,\n                    #scrollbutton-down {\n                        border-top-width: 0 !important;\n                        border-bottom-width: 0 !important;\n                    }\n                    #TabsToolbar, #TabsToolbar > hbox, #TabsToolbar-customization-target, #tabbrowser-arrowscrollbox  {\n                        max-height: calc(var(--tab-min-height) + 1px) !important;\n                    }\n                    #TabsToolbar-customization-target toolbarbutton > .toolbarbutton-icon, \n                    #TabsToolbar-customization-target .toolbarbutton-text, \n                    #TabsToolbar-customization-target .toolbarbutton-badge-stack,\n                    #scrollbutton-up,#scrollbutton-down {\n                        padding-top: 7px !important;\n                        padding-bottom: 6px !important;\n                    }\n                ";
+      userChrome =
+        "\n                    * { \n                        box-shadow: none !important;\n                        border: 0px solid !important;\n                    }\n                    #tabbrowser-tabs {\n                        --user-tab-rounding: 8px;\n                    }\n                    .tab-background {\n                        border-radius: var(--user-tab-rounding) var(--user-tab-rounding) 0px 0px !important; /* Connected */\n                        margin-block: 1px 0 !important; /* Connected */\n                    }\n                    #scrollbutton-up, #scrollbutton-down { /* 6/10/2021 */\n                        border-top-width: 1px !important;\n                        border-bottom-width: 0 !important;\n                    }\n                    .tab-background:is([selected], [multiselected]):-moz-lwtheme {\n                        --lwt-tabs-border-color: rgba(0, 0, 0, 0.5) !important;\n                        border-bottom-color: transparent !important;\n                    }\n                    [brighttext='true'] .tab-background:is([selected], [multiselected]):-moz-lwtheme {\n                        --lwt-tabs-border-color: rgba(255, 255, 255, 0.5) !important;\n                        border-bottom-color: transparent !important;\n                    }\n                    /* Container color bar visibility */\n                    .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {\n                        margin: 0px max(calc(var(--user-tab-rounding) - 3px), 0px) !important;\n                    }\n                    #TabsToolbar, #tabbrowser-tabs {\n                        --tab-min-height: 29px !important;\n                    }\n                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar, \n                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar #tabbrowser-tabs {\n                        --tab-min-height: 30px !important;\n                    }\n                    #scrollbutton-up,\n                    #scrollbutton-down {\n                        border-top-width: 0 !important;\n                        border-bottom-width: 0 !important;\n                    }\n                    #TabsToolbar, #TabsToolbar > hbox, #TabsToolbar-customization-target, #tabbrowser-arrowscrollbox  {\n                        max-height: calc(var(--tab-min-height) + 1px) !important;\n                    }\n                    #TabsToolbar-customization-target toolbarbutton > .toolbarbutton-icon, \n                    #TabsToolbar-customization-target .toolbarbutton-text, \n                    #TabsToolbar-customization-target .toolbarbutton-badge-stack,\n                    #scrollbutton-up,#scrollbutton-down {\n                        padding-top: 7px !important;\n                        padding-bottom: 6px !important;\n                    }\n                ";
     };
   };
 }
