@@ -1,20 +1,19 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ exa fzf fd bat ];
+  home.packages = with pkgs; [ exa fzf fd bat ripgrep ];
   programs.fish = {
     enable = true;
     functions = { gitignore = "curl -sL https://www.gitignore.io/api/$argv"; };
     shellAliases = {
       "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
+      "bb" = "doas nixos-rebuild boot --flake ~/.config/nixos";
       "hs" = "home-manager switch --flake ~/.config/nixos";
       "config" = "cd ~/.config/nixos";
       "ls" = "exa --icons";
       "l" = "exa -lbF --git --icons";
       "ll" = "exa -lbGF --git --icons";
       "llm" = "exa -lbGF --git --sort=modified --icons";
-      "la" =
-        "exa -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
-      "lx" =
-        "exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
+      "la" = "exa -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
+      "lx" = "exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
       "g" = "git";
       "gcl" = "git clone";
       "gcm" = "cz c";

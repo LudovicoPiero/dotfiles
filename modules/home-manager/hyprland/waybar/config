@@ -26,9 +26,6 @@
       "active": "●"
     }
   },
-  "hyprland/window": {
-    "format": "{}"
-  },
   "cpu": {
     "interval": 10,
     "format": "{usage1}% ",
@@ -67,11 +64,6 @@
     "show-passive-items": true,
     "icon-size": 13,
     "spacing": 10
-  },
-  "custom/launcher": {
-    "format": " ",
-    "on-click": "$HOME/.config/hypr/scripts/menu",
-    "tooltip": false
   },
   "custom/date": {
     "format": " {}",
