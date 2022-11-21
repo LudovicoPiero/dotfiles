@@ -128,7 +128,7 @@
         "app.shield.optoutstudies.enabled" = false;
         "dom.security.https_only_mode_ever_enabled" = true;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "browser.toolbars.bookmarks.visibility" = "never";
+        "browser.bookmarks.defaultLocation" = "toolbar";
         "geo.enabled" = false;
 
         # Disable telemetry
@@ -183,6 +183,7 @@
         "network.proxy.socks_remote_dns" = true;
         "permissions.delegation.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
+        "dom.security.https_first" = true;
 
         "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";
 
@@ -190,7 +191,55 @@
         "network.http.sendRefererHeader" = 0;
       };
       userChrome =
-        "\n                    * { \n                        box-shadow: none !important;\n                        border: 0px solid !important;\n                    }\n                    #tabbrowser-tabs {\n                        --user-tab-rounding: 8px;\n                    }\n                    .tab-background {\n                        border-radius: var(--user-tab-rounding) var(--user-tab-rounding) 0px 0px !important; /* Connected */\n                        margin-block: 1px 0 !important; /* Connected */\n                    }\n                    #scrollbutton-up, #scrollbutton-down { /* 6/10/2021 */\n                        border-top-width: 1px !important;\n                        border-bottom-width: 0 !important;\n                    }\n                    .tab-background:is([selected], [multiselected]):-moz-lwtheme {\n                        --lwt-tabs-border-color: rgba(0, 0, 0, 0.5) !important;\n                        border-bottom-color: transparent !important;\n                    }\n                    [brighttext='true'] .tab-background:is([selected], [multiselected]):-moz-lwtheme {\n                        --lwt-tabs-border-color: rgba(255, 255, 255, 0.5) !important;\n                        border-bottom-color: transparent !important;\n                    }\n                    /* Container color bar visibility */\n                    .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {\n                        margin: 0px max(calc(var(--user-tab-rounding) - 3px), 0px) !important;\n                    }\n                    #TabsToolbar, #tabbrowser-tabs {\n                        --tab-min-height: 29px !important;\n                    }\n                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar, \n                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar #tabbrowser-tabs {\n                        --tab-min-height: 30px !important;\n                    }\n                    #scrollbutton-up,\n                    #scrollbutton-down {\n                        border-top-width: 0 !important;\n                        border-bottom-width: 0 !important;\n                    }\n                    #TabsToolbar, #TabsToolbar > hbox, #TabsToolbar-customization-target, #tabbrowser-arrowscrollbox  {\n                        max-height: calc(var(--tab-min-height) + 1px) !important;\n                    }\n                    #TabsToolbar-customization-target toolbarbutton > .toolbarbutton-icon, \n                    #TabsToolbar-customization-target .toolbarbutton-text, \n                    #TabsToolbar-customization-target .toolbarbutton-badge-stack,\n                    #scrollbutton-up,#scrollbutton-down {\n                        padding-top: 7px !important;\n                        padding-bottom: 6px !important;\n                    }\n                ";
+        ''* { 
+                        box-shadow: none !important;
+                        border: 0px solid !important;
+                    }
+                    #tabbrowser-tabs {
+                        --user-tab-rounding: 8px;
+                    }
+                    .tab-background {
+                        border-radius: var(--user-tab-rounding) var(--user-tab-rounding) 0px 0px !important; /* Connected */
+                        margin-block: 1px 0 !important; /* Connected */
+                    }
+                    #scrollbutton-up, #scrollbutton-down { /* 6/10/2021 */
+                        border-top-width: 1px !important;
+                        border-bottom-width: 0 !important;
+                    }
+                    .tab-background:is([selected], [multiselected]):-moz-lwtheme {
+                        --lwt-tabs-border-color: rgba(0, 0, 0, 0.5) !important;
+                        border-bottom-color: transparent !important;
+                    }
+                    [brighttext='true'] .tab-background:is([selected], [multiselected]):-moz-lwtheme {
+                        --lwt-tabs-border-color: rgba(255, 255, 255, 0.5) !important;
+                        border-bottom-color: transparent !important;
+                    }
+                    /* Container color bar visibility */
+                    .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+                        margin: 0px max(calc(var(--user-tab-rounding) - 3px), 0px) !important;
+                    }
+                    #TabsToolbar, #tabbrowser-tabs {
+                        --tab-min-height: 29px !important;
+                    }
+                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar, 
+                    #main-window[sizemode='true'] #toolbar-menubar[autohide='true'] + #TabsToolbar #tabbrowser-tabs {
+                        --tab-min-height: 30px !important;
+                    }
+                    #scrollbutton-up,
+                    #scrollbutton-down {
+                        border-top-width: 0 !important;
+                        border-bottom-width: 0 !important;
+                    }
+                    #TabsToolbar, #TabsToolbar > hbox, #TabsToolbar-customization-target, #tabbrowser-arrowscrollbox  {
+                        max-height: calc(var(--tab-min-height) + 1px) !important;
+                    }
+                    #TabsToolbar-customization-target toolbarbutton > .toolbarbutton-icon, 
+                    #TabsToolbar-customization-target .toolbarbutton-text, 
+                    #TabsToolbar-customization-target .toolbarbutton-badge-stack,
+                    #scrollbutton-up,#scrollbutton-down {
+                        padding-top: 7px !important;
+                        padding-bottom: 6px !important;
+                    }'';
     };
   };
 }
