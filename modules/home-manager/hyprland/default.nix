@@ -31,6 +31,7 @@
     hyprland = {
       source = ../hyprland;
       target = ".config/hypr";
+      onChange = "hyprctl reload";
       recursive = true;
     };
   };
