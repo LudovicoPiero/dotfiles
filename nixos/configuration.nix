@@ -17,6 +17,7 @@
     outputs.nixosModules.fonts
     outputs.nixosModules.user
     outputs.nixosModules.webcord
+    outputs.nixosModules.gnome
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
@@ -92,7 +93,7 @@
     };
   };
 
-  # Enable networking
+  # Enable NetworkManager
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -101,15 +102,13 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.utf8";
 
-  # Enable xserver & gdm
+  # Enable xserver & GNOME + GDM
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
+    displayManager.defaultSession = "none+hyprland";
     layout = "us"; # Configure keymap
   };
-
-  # Enable Gnome Keyring
-  services.gnome.gnome-keyring.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;

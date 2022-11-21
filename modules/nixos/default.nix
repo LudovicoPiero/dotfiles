@@ -6,6 +6,7 @@
   file-manager = import ./apps/file-manager.nix;
 
   # System
+  gnome = import ./windowmanager/gnome.nix;
   bootloader = import ./system/bootloader.nix;
   user = import ./system/user.nix;
   doas = import ./system/doas.nix;
