@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-token=`cat ${HOME}/.config/hypr/waybar/notifications.token`
-count=`curl -u ludovicosforza:${token} https://api.github.com/notifications | jq '. | length'`
-
-if [[ "$count" != "0" ]]; then
-    echo '{"text":'$count',"tooltip":"$tooltip","class":"$class"}'
-fi
