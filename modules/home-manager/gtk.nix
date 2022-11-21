@@ -1,22 +1,25 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   gtk = {
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    };
     enable = true;
     font = {
-      name = "JetBrainsMono Nerd Font";
+      name = "Monospace";
       size = 10;
+    };
+    theme = {
+      package = pkgs.mojave-gtk-theme;
+      name = "Mojave-Dark-alt";
     };
     cursorTheme = {
       package = pkgs.capitaine-cursors;
       name = "capitaine-cursors-white";
       size = 24;
     };
-    theme = {
-      package = pkgs.catppuccin-gtk;
-      name = "Catppuccin-Dark";
-    };
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+      package = pkgs.whitesur-icon-theme;
+      name = "WhiteSur";
     };
   };
 }
