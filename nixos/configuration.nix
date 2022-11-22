@@ -10,7 +10,7 @@
     outputs.nixosModules.fonts
     outputs.nixosModules.user
     outputs.nixosModules.webcord
-    # outputs.nixosModules.gnome
+    outputs.nixosModules.hyprland
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
@@ -19,10 +19,6 @@
 
     # Enable Hyprland
     inputs.hyprland.nixosModules.default
-    { programs.hyprland.enable = true; }
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -39,22 +35,6 @@
       inputs.fenix.overlays.default
 
       # Or define it inline, for example:
-      # TODO: Remove this overlay once the package is updated in nixpkgs
-      (final: prev: {
-        gnome = prev.gnome // {
-          gnome-keyring = (prev.gnome.gnome-keyring.override {
-            glib = prev.glib.overrideAttrs (a: rec {
-              patches = a.patches ++ [
-                (final.fetchpatch {
-                  url =
-                    "https://gitlab.gnome.org/GNOME/glib/-/commit/2a36bb4b7e46f9ac043561c61f9a790786a5440c.patch";
-                  sha256 = "b77Hxt6WiLxIGqgAj9ZubzPWrWmorcUOEe/dp01BcXA=";
-                })
-              ];
-            });
-          });
-        };
-      })
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
       #     patches = [ ./change-hello-to-hi.patch ];
@@ -82,6 +62,13 @@
       keep-outputs = true
       keep-derivations = true
     '';
+
+    # Auto Garbage Collection
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 2d";
+    };
 
     settings = {
       # Enable flakes and new 'nix' command

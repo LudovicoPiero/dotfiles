@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }: {
+{ inputs, pkgs, ... }: {
   home.packages = with pkgs; [
     hyprpaper # For Wallpaper
     mako # Notification
@@ -17,13 +17,13 @@
     jq
     playerctl
     slurp
+
     # swayidle
     viewnior
     wl-clipboard
     xdg-user-dirs
     xdg-utils
     yad
-    #hyprland (using flakes version)
   ];
 
   home.sessionVariables = {

@@ -7,6 +7,7 @@
 
   # System
   gnome = import ./windowmanager/gnome.nix;
+  hyprland = import ./windowmanager/hyprland.nix;
   bootloader = import ./system/bootloader.nix;
   user = import ./system/user.nix;
   doas = import ./system/doas.nix;
