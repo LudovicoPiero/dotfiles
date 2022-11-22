@@ -10,7 +10,7 @@
     outputs.nixosModules.fonts
     outputs.nixosModules.user
     outputs.nixosModules.webcord
-    outputs.nixosModules.gnome
+    # outputs.nixosModules.gnome
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
@@ -19,9 +19,7 @@
 
     # Enable Hyprland
     inputs.hyprland.nixosModules.default
-    {
-      programs.hyprland.enable = true;
-    }
+    { programs.hyprland.enable = true; }
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -115,10 +113,10 @@
   i18n.defaultLocale = "en_AU.utf8";
 
   # Enable xserver & GNOME + GDM
+  services.gnome.gnome-keyring.enable = true; # Keyring 
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
-    displayManager.defaultSession = "hyprland";
     layout = "us"; # Configure keymap
   };
 

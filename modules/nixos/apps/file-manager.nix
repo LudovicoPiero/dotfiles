@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  environment.systemPackages = [pkgs.udisks];
   programs = {
     thunar = {
       enable = true;

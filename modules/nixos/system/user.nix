@@ -3,7 +3,7 @@
     isNormalUser = true;
     description = "ludovico";
     extraGroups =
-      [ "input" "wheel" "video" "audio" "seat" "libvirtd" "networkmanager" ];
+      [ "storage" "input" "wheel" "video" "audio" "seat" "libvirtd" "networkmanager" ];
     shell = pkgs.fish;
   };
 
