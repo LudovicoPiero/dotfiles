@@ -10,7 +10,10 @@
     waybar = prev.waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     });
-    discord-canary = prev.discord-canary.override { withOpenASAR = true; };
+    discord-canary = prev.discord-canary.override {
+      withOpenASAR = true;
+      nss = pkgs.nss_latest;
+    };
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
