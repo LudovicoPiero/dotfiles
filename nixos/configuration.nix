@@ -6,7 +6,7 @@
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.bootloader
     outputs.nixosModules.doas
-    outputs.nixosModules.file-manager
+    outputs.nixosModules.thunar
     outputs.nixosModules.fonts
     outputs.nixosModules.user
     outputs.nixosModules.webcord

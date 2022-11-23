@@ -3,7 +3,7 @@
 {
   # List your module files here
   webcord = import ./apps/webcord.nix;
-  file-manager = import ./apps/file-manager.nix;
+  thunar = import ./apps/thunar.nix;
 
   # System
   gnome = import ./windowmanager/gnome.nix;
