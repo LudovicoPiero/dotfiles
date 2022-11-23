@@ -36,21 +36,21 @@
 
       # Or define it inline, for example:
       # TODO: Remove this overlay once the package is updated in nixpkgs
-      (final: prev: {
-        gnome = prev.gnome // {
-          gnome-keyring = (prev.gnome.gnome-keyring.override {
-            glib = prev.glib.overrideAttrs (a: rec {
-              patches = a.patches ++ [
-                (final.fetchpatch {
-                  url =
-                    "https://gitlab.gnome.org/GNOME/glib/-/commit/2a36bb4b7e46f9ac043561c61f9a790786a5440c.patch";
-                  sha256 = "b77Hxt6WiLxIGqgAj9ZubzPWrWmorcUOEe/dp01BcXA=";
-                })
-              ];
-            });
-          });
-        };
-      })
+      # (final: prev: {
+      #   gnome = prev.gnome // {
+      #     gnome-keyring = (prev.gnome.gnome-keyring.override {
+      #       glib = prev.glib.overrideAttrs (a: rec {
+      #         patches = a.patches ++ [
+      #           (final.fetchpatch {
+      #             url =
+      #               "https://gitlab.gnome.org/GNOME/glib/-/commit/2a36bb4b7e46f9ac043561c61f9a790786a5440c.patch";
+      #             sha256 = "b77Hxt6WiLxIGqgAj9ZubzPWrWmorcUOEe/dp01BcXA=";
+      #           })
+      #         ];
+      #       });
+      #     });
+      #   };
+      # })
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
       #     patches = [ ./change-hello-to-hi.patch ];
@@ -134,6 +134,15 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
+
+  # Enable XDG 
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
+    };
+  };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
