@@ -123,6 +123,9 @@
     layout = "us"; # Configure keymap
   };
 
+  # Hopefully this will fix the issue with polkit
+  services.dbus.packages = [ pkgs.gcr ];
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;

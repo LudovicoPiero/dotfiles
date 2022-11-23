@@ -21,6 +21,7 @@
     hardware.url = "github:nixos/nixos-hardware";
 
     # Nix User Repository
+    # I use this for firefox extensions
     nur.url = github:nix-community/NUR;
 
     hyprland.url = "github:hyprwm/Hyprland";
