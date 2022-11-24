@@ -9,7 +9,7 @@
     extraConfig = {
       init = {defaultBranch = "main";};
       core = {excludesfile = "$NIXOS_CONFIG_DIR/scripts/gitignore";};
-      pull.rebase = false;
+      #   pull.rebase = false;
       credential.helper = "${
         pkgs.git.override {withLibsecret = true;}
       }/bin/git-credential-libsecret";
