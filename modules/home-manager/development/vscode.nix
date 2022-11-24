@@ -30,7 +30,7 @@
       "editor.fontFamily" = "'FiraCode Nerd Font', monospace";
       "editor.letterSpacing" = 1.1;
       "editor.lineHeight" = 22;
-      "editor.fontLigatures" = "'cv01'; 'cv02'; 'cv12'; 'ss05'; 'ss04'; 'ss03'; 'cv31'; 'cv29'; 'cv24'; 'cv25'; 'cv26'; 'ss07'; 'zero'; 'onum'";
+      "editor.fontLigatures" = "'cv01', 'cv02', 'cv12', 'ss05', 'ss04', 'ss03', 'cv31', 'cv29', 'cv24', 'cv25', 'cv26', 'ss07', 'zero', 'onum'";
       "editor.codeActionsOnSave" = {"source.nix" = true;};
       "editor.minimap.enabled" = false;
       "material-icon-theme.folders.theme" = "specific";
