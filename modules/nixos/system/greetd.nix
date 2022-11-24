@@ -1,10 +1,12 @@
 {pkgs, ...}: {
   services.greetd = {
     enable = true;
-    settings = {
-      default_session = {
+    settings = rec {
+      initial_session = {
         command = "Hyprland";
+        user = "ludovico";
       };
+      default_session = initial_session;
     };
   };
 
