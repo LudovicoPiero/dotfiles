@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ exa fzf fd bat ripgrep ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [exa fzf fd bat ripgrep];
   programs.fish = {
     enable = true;
-    functions = { gitignore = "curl -sL https://www.gitignore.io/api/$argv"; };
+    functions = {gitignore = "curl -sL https://www.gitignore.io/api/$argv";};
     shellAliases = {
       "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
       "bb" = "doas nixos-rebuild boot --flake ~/.config/nixos";

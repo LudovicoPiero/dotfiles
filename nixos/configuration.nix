@@ -1,10 +1,19 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.bootloader
+    outputs.nixosModules.desktop
+    outputs.nixosModules.greetd
     outputs.nixosModules.doas
     outputs.nixosModules.thunar
     outputs.nixosModules.fonts
@@ -36,21 +45,6 @@
 
       # Or define it inline, for example:
       # TODO: Remove this overlay once the package is updated in nixpkgs
-      (final: prev: {
-        gnome = prev.gnome // {
-          gnome-keyring = (prev.gnome.gnome-keyring.override {
-            glib = prev.glib.overrideAttrs (a: rec {
-              patches = a.patches ++ [
-                (final.fetchpatch {
-                  url =
-                    "https://gitlab.gnome.org/GNOME/glib/-/commit/2a36bb4b7e46f9ac043561c61f9a790786a5440c.patch";
-                  sha256 = "b77Hxt6WiLxIGqgAj9ZubzPWrWmorcUOEe/dp01BcXA=";
-                })
-              ];
-            });
-          });
-        };
-      })
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
       #     patches = [ ./change-hello-to-hi.patch ];
@@ -67,11 +61,12 @@
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
+    nixPath =
+      lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
       config.nix.registry;
 
     extraOptions = ''
@@ -114,29 +109,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.utf8";
-
-  # Enable xserver & GNOME + GDM
-  services.gnome.gnome-keyring.enable = true; # Keyring 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    layout = "us"; # Configure keymap
-  };
-
-  # Hopefully this will fix the issue with polkit
-  services.dbus.packages = [ pkgs.gcr ];
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

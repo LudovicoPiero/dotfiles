@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Bootloader.
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
     loader = {
       efi = {
         canTouchEfiVariables = true;

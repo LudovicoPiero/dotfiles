@@ -1,14 +1,17 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs;[
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
     udisks
-    gnome.gvfs # for gvfs-mount
-    xfce.tumbler # for thumbnails
+    # gnome.gvfs # for gvfs-mount
+    # xfce.tumbler # for thumbnails
   ];
 
   programs = {
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+      plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
     };
   };
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
 }

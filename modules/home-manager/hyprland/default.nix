@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     hyprpaper # For Wallpaper
     mako # Notification
@@ -29,7 +33,7 @@
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
-    _JAVA_AWT_WM_NONREPARENTING= "1";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
   home.file = {

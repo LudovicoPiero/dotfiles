@@ -1,9 +1,9 @@
 {
-  programs.gpg = { enable = true; };
+  programs.gpg = {enable = true;};
 
   # Fix pass
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "gnome3";
   };
 }
