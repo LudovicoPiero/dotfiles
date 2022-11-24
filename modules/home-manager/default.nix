@@ -10,6 +10,7 @@
   git = import ./development/git.nix;
   gpg = import ./development/gpg.nix;
   direnv = import ./development/direnv.nix;
+  vscode = import ./development/vscode.nix;
 
   # Browser
   chromium = import ./browser/chromium.nix;

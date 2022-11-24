@@ -19,6 +19,7 @@
     outputs.homeManagerModules.chromium
     outputs.homeManagerModules.firefox
     outputs.homeManagerModules.direnv
+    outputs.homeManagerModules.vscode
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.hyprland.homeManagerModules.default
