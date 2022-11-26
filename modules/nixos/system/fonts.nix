@@ -3,6 +3,8 @@
     fontconfig.enable = true;
     fontDir.enable = true;
     fonts = with pkgs; [
+      dejavu_fonts
+      symbola
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji

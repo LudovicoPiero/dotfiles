@@ -3,4 +3,7 @@
     enable = true;
     doomPrivateDir = ./doom.d;
   };
+  services.emacs = {
+    enable = true;
+  };
 }
