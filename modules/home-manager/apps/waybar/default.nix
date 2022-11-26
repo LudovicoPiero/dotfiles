@@ -1,0 +1,202 @@
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar = {
+        position = "top";
+        monitor = "eDP-1";
+        layer = "bottom";
+        height = 30;
+
+        modules-center = [
+          "wlr/workspaces"
+          "tray"
+          "network"
+          "pulseaudio"
+          "battery"
+          "custom/date"
+          "clock"
+        ];
+        "wlr/workspaces" = {
+          on-click = "activate";
+          disable-scroll = true;
+          all-outputs = true;
+          format = "{icon}";
+          format-icons = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+          };
+        };
+        "network" = {
+          interface = "wlp3s0";
+          format-wifi = " Connected";
+          format-disconnected = " Disconnected";
+        };
+        "pulseaudio" = {
+          format = "{icon} {volume}%";
+          format-muted = "󰖁 Muted";
+          format-icons = {
+            "headphone" = "";
+            "default" = "";
+          };
+        };
+        "battery" = {
+          bat = "BAT1";
+          interval = 60;
+          format = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          states = {
+            "good" = 95;
+            "warning" = 20;
+            "critical" = 10;
+          };
+          format-icons = [
+            " "
+            " "
+            " "
+            " "
+            " "
+          ];
+        };
+        "custom/date" = {
+          format = " {}";
+          interval = 3600;
+          exec = pkgs.writeShellScript "waybar-date" ''
+            date + "%a %d %b %Y"
+          '';
+        };
+        "clock" = {
+          format = " {:%I:%M %p}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+        };
+      };
+    };
+
+    style = ''
+      	* {
+        border: none;
+        border-radius: 0;
+        font-family: JetBrainsMono Nerd Font;
+        font-size: 13px;
+        min-height: 0;
+      }
+
+      /* Fix Coloring issue */
+      button,
+      label {
+        all: unset;
+      }
+
+      #memory {
+        color: #f5e0dc;
+      }
+
+      #cpu {
+        border-radius: 15px 0px 0px 15px;
+        color: #cba6f7;
+        padding: 5px 10px;
+        margin: 5px 0px;
+      }
+
+      window#waybar {
+        background: transparent;
+        color: white;
+      }
+
+      tooltip {
+        background: #0f0f0f;
+        border-radius: 15px;
+        border-width: 2px;
+        border-style: none;
+        border-color: #262626;
+      }
+
+      #workspaces button {
+        padding: 2px 5px;
+        color: #cba6f7;
+      }
+
+      #workspaces button.focused {
+        color: #0f0f0f;
+        background-color: #c49ec4;
+        border-radius: 15px;
+      }
+
+      #workspaces button.urgent {
+        color: #0f0f0f;
+        background-color: #9ec3c4;
+        border-radius: 15px;
+      }
+
+      #workspaces button:hover {
+        background-color: #c49ec4;
+        color: #0f0f0f;
+        border-radius: 15px;
+      }
+
+      #custom-date,
+      #custom-notification,
+      #clock,
+      #battery,
+      #pulseaudio,
+      #network,
+      #cpu,
+      #disk,
+      #tray,
+      #memory,
+      #workspaces {
+        background-color: #181825;
+        padding: 5px 10px;
+        margin: 5px 0px;
+      }
+
+      #custom-launcher {
+        padding: 5px 10px;
+        margin: 5px 0px;
+        background-color: #1e1e2e;
+        color: #1793d1;
+        border-radius: 0px 15px 15px 0px;
+      }
+
+      /* #tray {
+        background-color: #1e1e2e;
+        border-radius: 0px 15px 15px 0px;
+      } */
+
+      #workspaces {
+        background-color: #1e1e2e;
+        border-radius: 15px 0px 0px 15px;
+      }
+
+      #custom-date {
+        color: #89dceb;
+      }
+
+      #clock {
+        color: #cba6f7;
+        border-radius: 0px 15px 15px 0px;
+      }
+
+      #battery {
+        color: #f38ba8;
+      }
+
+      #network {
+        color: #fab387;
+        border-radius: 0px 0px 0px 0px;
+      }
+
+      #pulseaudio {
+        color: #a6e3a1;
+      }
+    '';
+  };
+}

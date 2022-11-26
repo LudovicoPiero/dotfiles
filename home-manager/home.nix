@@ -24,6 +24,7 @@
 
     # Or modules exported from other flakes (such as nix-colors):
     inputs.nix-doom-emacs.hmModule
+    inputs.hyprland.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./chromium.nix
@@ -38,6 +39,7 @@
 
       # Or overlays exported from other flakes:
       inputs.nur.overlay
+      inputs.nixpkgs-wayland.overlay
 
       # Or define it inline, for example:
       # (final: prev: {

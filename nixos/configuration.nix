@@ -19,15 +19,11 @@
     outputs.nixosModules.fonts
     outputs.nixosModules.user
     outputs.nixosModules.webcord
-    outputs.nixosModules.hyprland
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-gpu-amd-sea-islands
-
-    # Enable Hyprland
-    inputs.hyprland.nixosModules.default
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix

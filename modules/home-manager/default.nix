@@ -6,6 +6,13 @@
   fish = import ./fish.nix;
   gtk = import ./gtk.nix;
 
+  # Apps
+  foot = import ./apps/foot.nix;
+  kitty = import ./apps/kitty.nix;
+  mako = import ./apps/mako.nix;
+  waybar = import ./apps/waybar.nix;
+  wofi = import ./apps/wofi.nix;
+
   # Development
   git = import ./development/git.nix;
   gpg = import ./development/gpg.nix;

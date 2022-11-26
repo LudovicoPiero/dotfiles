@@ -7,7 +7,6 @@
 
   # System
   gnome = import ./windowmanager/gnome.nix;
-  hyprland = import ./windowmanager/hyprland.nix;
 
   # System
   bootloader = import ./system/bootloader.nix;
