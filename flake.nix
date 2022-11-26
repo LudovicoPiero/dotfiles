@@ -24,6 +24,8 @@
     # I use this for firefox extensions
     nur.url = github:nix-community/NUR;
 
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";

@@ -20,9 +20,10 @@
     outputs.homeManagerModules.firefox
     outputs.homeManagerModules.direnv
     outputs.homeManagerModules.vscode
+    outputs.homeManagerModules.emacs
 
     # Or modules exported from other flakes (such as nix-colors):
-    # inputs.hyprland.homeManagerModules.default
+    inputs.nix-doom-emacs.hmModule
 
     # You can also split up your configuration and import pieces of it here:
     # ./chromium.nix

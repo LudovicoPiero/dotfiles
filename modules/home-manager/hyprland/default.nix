@@ -8,8 +8,7 @@
     mako # Notification
     bemenu # Menu
     wofi # Menu
-    # waybar # Bar
-    inputs.hyprland.waybar-hyprland
+    waybar # Bar
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
 
     # Terminal
