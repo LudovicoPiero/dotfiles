@@ -33,12 +33,16 @@
             "3" = "3";
             "4" = "4";
             "5" = "5";
+            "active" = "";
+            "default" = "";
           };
         };
         "network" = {
           interface = "wlp3s0";
           format-wifi = " Connected";
+          format-linked = "{ifname} (No IP)";
           format-disconnected = " Disconnected";
+          tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
         };
         "pulseaudio" = {
           format = "{icon} {volume}%";
@@ -70,7 +74,7 @@
           format = " {}";
           interval = 3600;
           exec = pkgs.writeShellScript "waybar-date" ''
-            date + "%a %d %b %Y"
+            date "+%a %d %b %Y"
           '';
         };
         "clock" = {
