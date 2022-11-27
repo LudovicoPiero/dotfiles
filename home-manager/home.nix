@@ -11,6 +11,7 @@
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
+    # outputs.homeManagerModules.eww
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.git
     outputs.homeManagerModules.gtk
@@ -20,11 +21,9 @@
     outputs.homeManagerModules.firefox
     outputs.homeManagerModules.direnv
     outputs.homeManagerModules.vscode
-    outputs.homeManagerModules.emacs
     outputs.homeManagerModules.spicetify
 
     # Or modules exported from other flakes (such as nix-colors):
-    inputs.nix-doom-emacs.hmModule
     inputs.hyprland.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModule
 
