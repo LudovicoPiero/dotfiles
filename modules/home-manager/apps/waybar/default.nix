@@ -24,6 +24,7 @@
         ];
         "wlr/workspaces" = {
           on-click = "activate";
+          active-only = false;
           disable-scroll = true;
           all-outputs = true;
           format = "{icon}";
@@ -33,7 +34,7 @@
             "3" = "3";
             "4" = "4";
             "5" = "5";
-            "active" = "";
+            "active" = "";
             "default" = "";
           };
         };
@@ -143,7 +144,7 @@
       #workspaces button:hover {
         background-color: #c49ec4;
         color: #0f0f0f;
-        border-radius: 15px;
+        border-radius: 20px;
       }
 
       #custom-date,
