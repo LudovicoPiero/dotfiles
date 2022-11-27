@@ -41,7 +41,7 @@
     enable = true;
     extraConfig = ''
       #        name,resolution,offset,scale
-      monitor = , 1366x768@60 , 0x0 , 1
+      monitor = eDP-1, 1366x768@60 , 0x0 , 1
 
       $HYPR_FOLDER = /home/$(whoami)/.config/hypr
 
@@ -234,6 +234,7 @@
       text = ''
         preload = /home/ludovico/.config/hypr/Wallpaper/wall.png
         wallpaper = eDP-1,/home/ludovico/.config/hypr/Wallpaper/wall.png
+        ipc = off
       '';
     };
   };

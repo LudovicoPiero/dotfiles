@@ -30,8 +30,9 @@
     gnome.gnome-keyring.enable = true; # Keyring daemon
 
     xserver = {
-      enable = false;
+      enable = true;
       layout = "us"; # Configure keymap
+      displayManager.lightdm.enable = false;
     };
 
     # Pipewire

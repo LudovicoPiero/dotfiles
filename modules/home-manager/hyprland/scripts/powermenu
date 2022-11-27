@@ -13,7 +13,7 @@ wofi_command="wofi --show dmenu \
 			--hide-scroll --no-actions \
 			--define=matching=fuzzy"
 
-uptime=$(uptime -p | sed -e 's/up //g')
+# uptime=$(uptime -p | sed -e 's/up //g')
 
 shutdown=" Shutdown"
 reboot=" Restart"
@@ -28,7 +28,7 @@ cdialog () {
 open_menu () {
 	options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
 
-	chosen="$(echo -e "$options" | $wofi_command --prompt "UP - $uptime")"
+	chosen="$(echo -e "$options" | $wofi_command --prompt "Powermenu")"
 	case $chosen in
 		$shutdown)
 			cdialog
