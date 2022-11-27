@@ -141,7 +141,7 @@
           :orientation "v"
           :vexpand "false"
           (label
-            :text "cpu"
+            :text "Cpu"
             :halign "start"
           :class "sys-text-cpu")
           (label
@@ -168,7 +168,7 @@
         (box
           :orientation "v"
           (label
-            :text "memory"
+            :text "Memory"
             :halign "start"
           :class "sys-text-mem")
           (label
