@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  home.packages = [pkgs.libnotify];
   programs.mako = {
     enable = true;
     anchor = "top-right";
