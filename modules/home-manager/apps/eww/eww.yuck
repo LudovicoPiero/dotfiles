@@ -13,7 +13,7 @@
 
 (include "./windows/calendar.yuck")
 (include "./windows/music.yuck")
-(include "./windows/notifications.yuck")
+; (include "./windows/notifications.yuck")
 (include "./windows/system-menu.yuck")
 
 (defwidget sep []
@@ -23,7 +23,7 @@
   (button
     :class "notif-toggle module"
     :onclick "${EWW_CMD} open --toggle notifications";
-    {notif_icons.icon}))
+  {notif_icons.icon}))
 
 ; clipboard 󰅌 󰅍 󰄷
 
@@ -47,8 +47,7 @@
     (mem)
     (bat)
     (sep)
-    (clock_module)
-    (notif-toggle)))
+    (clock_module)))
 
 (defwidget center []
   (box
@@ -64,14 +63,14 @@
     (right)))
 
 (defwindow bar
-    :monitor 0
-    :geometry (geometry :x "0%"
-      :y "0%"
-      :width "100%"
-      :height "32px"
-      :anchor "top center")
-    :stacking "fg"
-    :windowtype "dock"
-    :exclusive true
-    :wm-ignore false
+  :monitor 0
+  :geometry (geometry :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "32px"
+  :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  :exclusive true
+  :wm-ignore false
   (bar))
