@@ -1,0 +1,10 @@
+(defwidget bat []
+  (circular-progress
+    :value "${EWW_BATTERY["BAT1"].capacity}"
+    :class "batbar module"
+    :style "color: ${battery.color};"
+    :thickness 3
+    (button
+      :tooltip "battery on ${EWW_BATTERY["BAT1"].capacity}%"
+      :onclick "${EWW_CMD} open --toggle system-menu"
+      (label :class "icon-text" :text ""))))

@@ -1,0 +1,25 @@
+(defvar date_rev false)
+
+(defwidget clock_module []
+  (eventbox
+    :onhover "${EWW_CMD} update date_rev=true"
+    :onhoverlost "${EWW_CMD} update date_rev=false"
+    (overlay
+      :class "module"
+      (box
+        :space-evenly "false"
+        (label
+          :text {time.hour}
+          :class "clock hour")
+        (label
+          :text ":"
+          :class "clock")
+        (label
+          :text {time.minute}
+          :class "clock minute"))
+      (revealer
+        :reveal date_rev
+        (button
+          :class "date clock"
+          :onclick "${EWW_CMD} open --toggle calendar"
+          {time.date})))))

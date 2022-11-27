@@ -24,6 +24,19 @@
     # Nix User Repository
     # I use this for firefox extensions
     nur.url = github:nix-community/NUR;
+    fu.url = "github:numtide/flake-utils";
+
+    eww = {
+      url = "github:elkowar/eww";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "fu";
+    };
 
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 

@@ -3,10 +3,15 @@
     fontconfig.enable = true;
     fontDir.enable = true;
     fonts = with pkgs; [
+      # Icons
+      material-icons
+      material-design-icons
+
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
       noto-fonts-cjk-sans
+      roboto
       liberation_ttf
 
       (nerdfonts.override {

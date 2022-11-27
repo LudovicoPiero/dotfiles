@@ -1,0 +1,77 @@
+(include "./modules/bat.yuck")
+(include "./modules/bluetooth.yuck")
+(include "./modules/bright.yuck")
+(include "./modules/clock.yuck")
+(include "./modules/cpu.yuck")
+(include "./modules/launcher.yuck")
+(include "./modules/mem.yuck")
+(include "./modules/music.yuck")
+(include "./modules/net.yuck")
+(include "./modules/variables.yuck")
+(include "./modules/volume.yuck")
+(include "./modules/workspaces.yuck")
+
+(include "./windows/calendar.yuck")
+(include "./windows/music.yuck")
+(include "./windows/notifications.yuck")
+(include "./windows/system-menu.yuck")
+
+(defwidget sep []
+  (label :class "separ module" :text "|"))
+
+(defwidget notif-toggle []
+  (button
+    :class "notif-toggle module"
+    :onclick "${EWW_CMD} open --toggle notifications";
+    {notif_icons.icon}))
+
+; clipboard 󰅌 󰅍 󰄷
+
+(defwidget left []
+  (box
+    :space-evenly false
+    :halign "start"
+    (launcher)
+    (workspaces)))
+
+(defwidget right []
+  (box
+    :space-evenly false
+    :halign "end"
+    (bright)
+    (volume-module)
+    (net)
+    (bluetooth)
+    (sep)
+    (cpu)
+    (mem)
+    (bat)
+    (sep)
+    (clock_module)
+    (notif-toggle)))
+
+(defwidget center []
+  (box
+    :space-evenly false
+    :halign "center"
+    (music-module)))
+
+(defwidget bar []
+  (centerbox
+    :class "bar"
+    (left)
+    (center)
+    (right)))
+
+(defwindow bar
+    :monitor 0
+    :geometry (geometry :x "0%"
+      :y "0%"
+      :width "100%"
+      :height "32px"
+      :anchor "top center")
+    :stacking "fg"
+    :windowtype "dock"
+    :exclusive true
+    :wm-ignore false
+  (bar))
