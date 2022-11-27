@@ -128,6 +128,9 @@
     ])
     rust-analyzer-nightly
 
+    # Mail Client
+    mailspring
+
     # Keyring
     gnome.gnome-keyring
     libgnome-keyring
