@@ -12,6 +12,7 @@
   mako = import ./apps/mako.nix;
   waybar = import ./apps/waybar.nix;
   wofi = import ./apps/wofi.nix;
+  spicetify = import ./apps/spicetify;
 
   # Development
   git = import ./development/git.nix;
