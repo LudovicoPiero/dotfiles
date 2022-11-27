@@ -7,12 +7,13 @@
   gtk = import ./gtk.nix;
 
   # Apps
-  foot = import ./apps/foot.nix;
-  kitty = import ./apps/kitty.nix;
-  mako = import ./apps/mako.nix;
-  waybar = import ./apps/waybar.nix;
-  wofi = import ./apps/wofi.nix;
+  foot = import ./apps/foot;
+  kitty = import ./apps/kitty;
+  mako = import ./apps/mako;
+  waybar = import ./apps/waybar;
+  wofi = import ./apps/wofi;
   spicetify = import ./apps/spicetify;
+  eww = import ./apps/eww;
 
   # Development
   git = import ./development/git.nix;
