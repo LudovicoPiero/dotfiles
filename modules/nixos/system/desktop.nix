@@ -8,6 +8,12 @@
   # make HM-managed GTK stuff work
   programs.dconf.enable = true;
 
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true; # For wine, etc.
+  };
+
   services = {
     # needed for GNOME services outside of GNOME Desktop
     dbus.packages = [pkgs.gcr];
