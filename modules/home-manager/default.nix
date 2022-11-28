@@ -6,7 +6,6 @@
   gtk = import ./gtk.nix;
 
   # Wayland / Window Manager
-  wayfire = import ./wayland/wayfire;
   hyprland = import ./wayland/hyprland;
 
   # Apps

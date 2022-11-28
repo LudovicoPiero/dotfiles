@@ -13,7 +13,6 @@
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.eww
     outputs.homeManagerModules.hyprland
-    outputs.homeManagerModules.wayfire
     outputs.homeManagerModules.git
     outputs.homeManagerModules.gtk
     outputs.homeManagerModules.fish
