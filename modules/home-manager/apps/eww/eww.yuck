@@ -13,7 +13,7 @@
 
 (include "./windows/calendar.yuck")
 (include "./windows/music.yuck")
-; (include "./windows/notifications.yuck")
+(include "./windows/notifications.yuck")
 (include "./windows/system-menu.yuck")
 
 (defwidget sep []
@@ -47,7 +47,8 @@
     (mem)
     (bat)
     (sep)
-    (clock_module)))
+    (clock_module)
+    (notif-toggle)))
 
 (defwidget center []
   (box
