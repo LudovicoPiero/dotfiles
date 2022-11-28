@@ -6,11 +6,11 @@
   home.packages = [pkgs.libnotify];
   services.dunst = {
     enable = true;
-    # iconTheme = {
-    #   name = "WhiteSur";
-    #   package = pkgs.whitesur-icon-theme;
-    #   size = "32x32";
-    # };
+    iconTheme = {
+      name = "WhiteSur";
+      package = pkgs.whitesur-icon-theme;
+      size = "32x32";
+    };
     settings = {
       global = {
         width = 300;
@@ -25,13 +25,6 @@
         browser = "${pkgs.xdg-utils}/bin/xdg-open";
         corner_radius = 6;
       };
-      global.icon_path = "~/.config/dunst/icons";
-    };
-  };
-
-  xdg.configFile = {
-    dunst = {
-      source = ./icons;
     };
   };
 }

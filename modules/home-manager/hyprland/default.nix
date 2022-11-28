@@ -229,9 +229,9 @@
          bind = , XF86MonBrightnessUp , exec , brightnessctl set +5%
          bind = , XF86MonBrightnessDown , exec , brightnessctl set 5%-
 
-         exec-once = ${pkgs.mako}/bin/mako
-         exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
+        #  exec-once = ${pkgs.mako}/bin/mako
         #  exec-once = ${pkgs.waybar}/bin/waybar
+         exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
          exec-once = eww daemon
          exec-once = eww open bar
     '';
