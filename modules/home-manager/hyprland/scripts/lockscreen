@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-IMAGE="$HOME/Pictures/Wallpaper/Colorful.png"
+#!/usr/bin/env sh
 
 bg='232837'		bgl='424854'		fg='D8DEE9'
 red='BF616A'	green='A3BE8C'		yellow='EBCB8B'

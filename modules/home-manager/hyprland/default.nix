@@ -17,7 +17,7 @@
     playerctl
     slurp
 
-    # swayidle
+    swaylock
     viewnior
     wl-clipboard
     xdg-user-dirs
@@ -27,8 +27,8 @@
 
   imports = [
     # ../apps/mako
-    ../apps/waybar
     # ../apps/eww
+    ../apps/waybar
     ../apps/foot
     ../apps/kitty
     ../apps/dunst
@@ -182,8 +182,7 @@
          # Variables
          $discord = discordcanary --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
          $menu = $HYPR_FOLDER/scripts/bemenu
-         $terminal = $HYPR_FOLDER/scripts/terminal
-         $powermenu = $HYPR_FOLDER/scripts/powermenu
+      	 $powermenu = $HYPR_FOLDER/scripts/powermenu
 
          # Binds Keyboard
          bind = SUPERSHIFT , Return , exec , foot

@@ -2,9 +2,9 @@
 
 ## Wofi Powermenu
 
-CONFIG="$HOME/.config/hypr/wofi/config"
-STYLE="$HOME/.config/hypr/wofi/power.css"
-COLORS="$HOME/.config/hypr/wofi/colors"
+CONFIG="$HOME/.config/wofi/config"
+STYLE="$HOME/.config/wofi/power.css"
+COLORS="$HOME/.config/wofi/colors"
 
 wofi_command="wofi --show dmenu \
 			--conf ${CONFIG} --style ${STYLE} --color ${COLORS} \
