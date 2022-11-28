@@ -33,6 +33,7 @@
     ../apps/kitty
     ../apps/dunst
     ../apps/wofi
+    ../apps/tmux
   ];
 
   home.sessionVariables = {
@@ -185,7 +186,7 @@
       	 $powermenu = $HYPR_FOLDER/scripts/powermenu
 
          # Binds Keyboard
-         bind = SUPERSHIFT , Return , exec , foot
+         bind = SUPERSHIFT , Return , exec , foot -L tmux
          bind = SUPERSHIFT , G , exec , chromium
          bind = SUPER , C , exit ,
          bind = SUPER , D , exec , $discord
