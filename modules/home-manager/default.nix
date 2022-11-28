@@ -14,6 +14,7 @@
   wofi = import ./apps/wofi;
   spicetify = import ./apps/spicetify;
   eww = import ./apps/eww;
+  obs = import ./apps/obs;
 
   # Development
   git = import ./development/git.nix;
