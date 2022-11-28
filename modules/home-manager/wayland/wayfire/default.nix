@@ -33,8 +33,8 @@
     disable_touchpad_while_typing = true
     disable_touchpad_while_mouse  = false
     natural_scroll = true
-    mouse_cursor_speed = 0.6
-    touchpad_cursor_speed = 0.6
+    mouse_cursor_speed = 0.5
+    touchpad_cursor_speed = 0.5
     mouse_scroll_speed = 1.0
     touchpad_scroll_speed = 1.0
     cursor_theme = capitaine-cursors-white
@@ -96,7 +96,7 @@
     background_color = 0.1 0.1 0.1 1.0
 
     # Close focused window.
-    close_top_view = <super> KEY_C | <super> KEY_Q | <alt> KEY_F4
+    close_top_view = <super> KEY_W | <super> KEY_Q | <alt> KEY_F4
 
     # Workspaces arranged into a grid: 3 × 3.
     vwidth = 3
@@ -142,6 +142,8 @@
     # Startup commands ─────────────────────────────────────────────────────────────
 
     [autostart]
+    0_environment = dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XAUTHORITY
+    1_hm = systemctl --user start graphical-session.target
 
     # Set wallpaper
     set_wallpaper = swaybg --output '*' --mode fill --image ~/.config/wayfire/Wallpaper/wall.png &
@@ -411,8 +413,9 @@
 
     # Example configuration:
     #
-    # [window-rules]
-    # maximize_alacritty = on created if app_id is "Alacritty" then maximize
+    [window-rules]
+    firefox_rules = on created if app_id is "firefox" then assign_workspace 1 2
+    discord_rules = on created if app_id is "Discord" then assign_workspace 1 3
     #
     # You can get the properties of your applications with the following command:
     # $ WAYLAND_DEBUG=1 alacritty 2>&1 | kak

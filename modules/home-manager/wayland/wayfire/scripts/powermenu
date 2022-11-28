@@ -47,14 +47,14 @@ open_menu () {
 			fi
 			;;
 		$lock)
-			~/.config/hypr/scripts/lockscreen
+			~/.config/wayfire/scripts/lockscreen
 			;;
 		$suspend)
 			cdialog
 			if [[ "$?" == 0 ]]; then
 				mpc -q pause
 				amixer set Master mute
-				~/.config/hypr/scripts/lockscreen
+				~/.config/wayfire/scripts/lockscreen
 				systemctl suspend
 			else
 				exit
@@ -63,7 +63,7 @@ open_menu () {
 		$logout)
 			cdialog
 			if [[ "$?" == 0 ]]; then
-				hyprctl exit
+				pkill wayfire
 			else
 				exit
 			fi
