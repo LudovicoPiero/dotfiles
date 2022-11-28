@@ -104,6 +104,14 @@
 
   # Enable NetworkManager
   networking.networkmanager.enable = true;
+  networking.wireless.iwd = {
+    enable = true;
+    settings = {
+      Settings = {
+        AutoConnect = true;
+      };
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Australia/Brisbane";
