@@ -27,8 +27,8 @@
     ../apps/foot
     ../apps/kitty
     ../apps/mako
-    ../apps/waybar
     ../apps/wofi
+    # ../apps/waybar
     # ../apps/eww
   ];
 
@@ -230,8 +230,9 @@
 
          exec-once = ${pkgs.mako}/bin/mako
          exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
-         exec-once = ${pkgs.waybar}/bin/waybar
-        #  exec-once = eww open bar
+        #  exec-once = ${pkgs.waybar}/bin/waybar
+         exec-once = eww daemon
+         exec-once = eww open bar
     '';
   };
 

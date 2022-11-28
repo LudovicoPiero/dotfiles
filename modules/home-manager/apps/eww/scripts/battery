@@ -44,8 +44,8 @@ wattage() {
 }
 
 gettime() {
-	FULL=$(cat /sys/class/power_supply/BAT1/energy_full)
-	NOW=$(cat /sys/class/power_supply/BAT1/energy_now)
+	FULL=$(cat /sys/class/power_supply/BAT1/charge_full)
+	NOW=$(cat /sys/class/power_supply/BAT1/charge_now)
 
 	if [ "$RATE" -gt 0 ]; then
 		if [ "$STATE" = "Discharging" ]; then
@@ -58,7 +58,7 @@ gettime() {
 }
 
 while true; do
-	RATE=$(cat /sys/class/power_supply/BAT1/power_now)
+	RATE=$(cat /sys/class/power_supply/BAT1/charge_now)
 	CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity)
 	STATE=$(cat /sys/class/power_supply/BAT1/status)
 

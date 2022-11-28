@@ -4,4 +4,4 @@
     :onclick "blueberry"
     :tooltip "${bluetooth.text} ${bluetooth.batt_icon}"
     :style "color: ${bluetooth.color};"
-    {bluetooth.icon}))
+  {bluetooth.icon}))
