@@ -2,8 +2,11 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+    pam.services.swaylock.text = "auth include login";
+  };
 
   # make HM-managed GTK stuff work
   programs.dconf.enable = true;
