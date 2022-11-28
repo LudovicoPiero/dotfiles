@@ -10,6 +10,7 @@
   foot = import ./apps/foot;
   kitty = import ./apps/kitty;
   mako = import ./apps/mako;
+  dunst = import ./apps/dunst;
   waybar = import ./apps/waybar;
   wofi = import ./apps/wofi;
   spicetify = import ./apps/spicetify;

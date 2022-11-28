@@ -24,12 +24,13 @@
   ];
 
   imports = [
-    ../apps/foot
-    ../apps/kitty
-    ../apps/mako
-    ../apps/wofi
+    # ../apps/mako
     # ../apps/waybar
     # ../apps/eww
+    ../apps/foot
+    ../apps/kitty
+    ../apps/dunst
+    ../apps/wofi
   ];
 
   home.sessionVariables = {
