@@ -1,12 +1,18 @@
 {pkgs, ...}: {
   services.greetd = {
     enable = true;
-    settings = rec {
-      initial_session = {
-        command = "Hyprland";
+    settings = {
+      terminal = {
+        vt = 2;
+      };
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
         user = "ludovico";
       };
-      default_session = initial_session;
+      #   initial_session = {
+      #     command = "Hyprland";
+      #     user = "ludovico";
+      #   };
     };
   };
 
