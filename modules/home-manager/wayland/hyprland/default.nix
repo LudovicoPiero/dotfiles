@@ -28,12 +28,12 @@
   imports = [
     # ../apps/mako
     # ../apps/eww
-    ../apps/waybar
-    ../apps/foot
-    ../apps/kitty
-    ../apps/dunst
-    ../apps/wofi
-    ../apps/tmux
+    ../../apps/waybar
+    ../../apps/foot
+    ../../apps/kitty
+    ../../apps/dunst
+    ../../apps/wofi
+    ../../apps/tmux
   ];
 
   home.sessionVariables = {

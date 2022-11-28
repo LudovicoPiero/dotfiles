@@ -2,9 +2,12 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {
   # List your module files here
-  hyprland = import ./hyprland;
   fish = import ./fish.nix;
   gtk = import ./gtk.nix;
+
+  # Wayland / Window Manager
+  wayfire = import ./wayland/wayfire;
+  hyprland = import ./wayland/hyprland;
 
   # Apps
   foot = import ./apps/foot;
