@@ -4,9 +4,9 @@
     enable = true;
     functions = {gitignore = "curl -sL https://www.gitignore.io/api/$argv";};
     shellAliases = {
-      "bs" = "git add .; doas nixos-rebuild switch --flake ~/.config/nixos";
-      "bb" = "git add .; doas nixos-rebuild boot --flake ~/.config/nixos";
-      "hs" = "git add .; home-manager switch --flake ~/.config/nixos";
+      "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
+      "bb" = "doas nixos-rebuild boot --flake ~/.config/nixos";
+      "hs" = "home-manager switch --flake ~/.config/nixos";
       "config" = "cd ~/.config/nixos";
       "ls" = "exa --icons";
       "l" = "exa -lbF --git --icons";
