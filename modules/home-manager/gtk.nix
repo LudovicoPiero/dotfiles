@@ -13,8 +13,8 @@
       size = 10;
     };
     theme = {
-      package = pkgs.mojave-gtk-theme;
-      name = "Mojave-Dark-alt";
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur-Dark";
     };
     cursorTheme = {
       package = pkgs.capitaine-cursors;
