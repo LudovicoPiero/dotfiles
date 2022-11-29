@@ -18,8 +18,10 @@ stdenv.mkDerivation {
   };
 
   phases = ["installPhase"];
+  #TODO: FIX THIS!!
+
   installPhase = ''
-    install -Dm644 $src/GoogleSans-*.ttf -t $out/share/fonts/TTF
+    install -Dm644 $src/GoogleSans-*.ttf -t $out/share/fonts/ttf
   '';
 
   meta = with lib; {
