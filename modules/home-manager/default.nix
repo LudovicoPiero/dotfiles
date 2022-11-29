@@ -24,6 +24,7 @@
   gpg = import ./development/gpg.nix;
   direnv = import ./development/direnv.nix;
   vscode = import ./development/vscode.nix;
+  neovim = import ./development/neovim;
 
   # Browser
   chromium = import ./browser/chromium.nix;

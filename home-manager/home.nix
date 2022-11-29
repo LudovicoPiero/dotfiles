@@ -23,6 +23,7 @@
     outputs.homeManagerModules.vscode
     outputs.homeManagerModules.spicetify
     outputs.homeManagerModules.obs
+    outputs.homeManagerModules.neovim
 
     # Or modules exported from other flakes (such as nix-colors):
     inputs.hyprland.homeManagerModules.default

@@ -2,7 +2,7 @@
 
 # Reference: https://github.com/x0rzavi
 # Description: Command launcher with bemenu-run
-# Dependencies: bemenu, Lucide icons
+# Dependencies: bemenu
 # Theme: Catppuccin
 
 killall -q bemenu-run 
