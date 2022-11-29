@@ -120,6 +120,7 @@
         "browser.search.isUS" = false;
         "distribution.searchplugins.defaultLocale" = "en-AU";
         "general.useragent.locale" = "en-AU";
+        "general.smoothScroll" = true;
 
         "browser.send_pings" = false;
         "browser.urlbar.speculativeConnect.enabled" = false;
