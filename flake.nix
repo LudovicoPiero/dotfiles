@@ -11,6 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-colors.url = "github:misterio77/nix-colors";
+
     # Webcord
     webcord.url = "github:fufexan/webcord-flake";
 

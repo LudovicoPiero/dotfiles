@@ -27,6 +27,7 @@
     # Or modules exported from other flakes (such as nix-colors):
     inputs.hyprland.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModule
+    inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
     # ./chromium.nix
@@ -58,6 +59,9 @@
       allowUnfreePredicate = _: true;
     };
   };
+
+  # Set nix-colors Colorscheme
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin;
 
   home = {
     username = "ludovico";
