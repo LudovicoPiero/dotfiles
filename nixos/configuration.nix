@@ -40,7 +40,6 @@
       inputs.fenix.overlays.default
 
       # Or define it inline, for example:
-      # TODO: Remove this overlay once the package is updated in nixpkgs
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
       #     patches = [ ./change-hello-to-hi.patch ];
