@@ -19,7 +19,7 @@ in {
       tab_bar_min_tabs = 2;
       tab_powerline_style = "slanted";
       tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''\}";
-      #   background_opacity = "0.88";
+      background_opacity = "0.88";
 
       # Theme
       foreground = "#${colors.base05}";
