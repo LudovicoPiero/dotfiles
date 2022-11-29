@@ -39,7 +39,6 @@ in {
     plugins = with pkgs.vimPlugins; [
       vim-nix
       plenary-nvim
-      nvim-tree-lua
       dashboard-nvim
       copilot-vim
       lualine-nvim

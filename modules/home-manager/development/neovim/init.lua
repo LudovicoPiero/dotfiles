@@ -41,28 +41,28 @@ db.custom_center = {
 	shortcut = 'SPC f w'},
 }
 db.custom_footer = {
-	'', 'Ludovico Sforza'
+	'', 'Ludovico Sforza 🚀'
 }
 
--- Nvim-Tree
-local tree = require('nvim-tree')
-tree.setup({
-  sort_by = "case_sensitive",
-  view = {
-    adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
+-- -- Nvim-Tree
+-- local tree = require('nvim-tree')
+-- tree.setup({
+--   sort_by = "case_sensitive",
+--   view = {
+--     adaptive_size = true,
+--     mappings = {
+--       list = {
+--         { key = "u", action = "dir_up" },
+--       },
+--     },
+--   },
+--   renderer = {
+--     group_empty = true,
+--   },
+--   filters = {
+--     dotfiles = true,
+--   },
+-- })
 
 -- Lualine
 local lualine = require('lualine')
