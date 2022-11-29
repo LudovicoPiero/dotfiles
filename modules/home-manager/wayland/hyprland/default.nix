@@ -48,11 +48,11 @@
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
+        command = "${pkgs.swaylock-effects}/bin/swaylock -fF -c 000000";
       }
       {
         event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
+        command = "${pkgs.swaylock-effects}/bin/swaylock -fF -c 000000";
       }
     ];
     timeouts = [
@@ -88,7 +88,7 @@
          }
 
          general {
-             sensitivity = 1.0
+             sensitivity = 0.8
              main_mod = SUPER
              gaps_in = 3
              gaps_out = 3
@@ -106,7 +106,7 @@
          }
 
          decoration {
-             rounding = 2
+             rounding = 4
              blur = 1
              blur_size = 8
              blur_passes = 2
@@ -133,7 +133,7 @@
          misc {
              disable_hyprland_logo = 1
              disable_splash_rendering = 1
-             no_vfr = 1
+             no_vfr = 0
              disable_autoreload = false
              enable_swallow = 1
              swallow_regex = ^(kitty)$
