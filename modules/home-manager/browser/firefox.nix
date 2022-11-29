@@ -10,7 +10,7 @@
       fastforward
     ];
     profiles.ludovico = {
-      id = 1;
+      id = 0;
       isDefault = true;
       name = "Ludovico";
       bookmarks = [
