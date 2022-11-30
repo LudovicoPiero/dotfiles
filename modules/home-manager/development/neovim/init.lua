@@ -44,32 +44,12 @@ db.custom_footer = {
 	'', 'Ludovico Sforza 🚀'
 }
 
--- -- Nvim-Tree
--- local tree = require('nvim-tree')
--- tree.setup({
---   sort_by = "case_sensitive",
---   view = {
---     adaptive_size = true,
---     mappings = {
---       list = {
---         { key = "u", action = "dir_up" },
---       },
---     },
---   },
---   renderer = {
---     group_empty = true,
---   },
---   filters = {
---     dotfiles = true,
---   },
--- })
-
 -- Lualine
 local lualine = require('lualine')
 lualine.setup({
   options = {
     icons_enabled = true,
-    theme = 'dracula',
+    theme = 'palenight',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {

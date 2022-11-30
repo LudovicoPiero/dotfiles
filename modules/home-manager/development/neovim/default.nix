@@ -13,21 +13,13 @@
       sha256 = "0mb3qhg5aaxvkc8h95sbwg5nm89w719l9apymc5rpmis4r0mr5zg";
     };
   };
-  jabuti-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "jabuti-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "jabuti-theme";
-      repo = "jabuti-nvim";
-      rev = "17f1b94cbf1871a89cdc264e4a8a2b3b4f7c76d2";
-      sha256 = "sha256-iPjwx/rTd98LUPK1MUfqKXZhQ5NmKx/rN8RX1PIuDFA=";
-    };
-  };
 in {
   home.file.".config/nvim/settings.lua".source = ./init.lua;
 
   home.packages = with pkgs; [
     rnix-lsp
     nixfmt # Nix
+    nixpkgs-fmt
     sumneko-lua-language-server
     stylua # Lua
   ];
