@@ -7,6 +7,7 @@
 
   # Wayland / Window Manager
   hyprland = import ./wayland/hyprland;
+  herbstluftwm = import ./x11/herbsluftwm;
 
   # Apps
   foot = import ./apps/foot;
