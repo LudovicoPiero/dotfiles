@@ -43,6 +43,9 @@
             "default" = "";
           };
         };
+        "tray" = {
+          spacing = 5;
+        };
         "network" = {
           interface = "wlp3s0";
           format-wifi = " Connected";
