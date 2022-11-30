@@ -14,5 +14,6 @@
 
   environment.etc."greetd/environments".text = ''
     Hyprland
+    herbsluftwm
   '';
 }
