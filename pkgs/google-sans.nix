@@ -14,11 +14,10 @@ stdenv.mkDerivation {
     repo = "Google-Sans-Fonts";
     rev = "b1826355d8212378e5fd6094bbe504268fa6f85d";
     fetchSubmodules = false;
-    sha256 = "sha256-KJsLM0NkhxGtJ2GGTzIUjh3lWIdQFZQoD5c3AG2ApTg=";
+    sha256 = "KJsLM0NkhxGtJ2GGTzIUjh3lWIdQFZQoD5c3AG2ApTg=";
   };
 
   phases = ["installPhase"];
-  #TODO: FIX THIS!!
 
   installPhase = ''
     install -Dm644 $src/GoogleSans-*.ttf -t $out/share/fonts/ttf
