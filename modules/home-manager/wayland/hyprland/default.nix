@@ -42,34 +42,8 @@
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  # https://github.com/fufexan/dotfiles/blob/main/home/wayland/hyprland/default.nix#L36
-  services.swayidle = {
-    enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -fF -c 000000";
-      }
-      {
-        event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -fF -c 000000";
-      }
-    ];
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
-        resumeCommand = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
-      }
-      {
-        timeout = 310;
-        command = "${pkgs.systemd}/bin/loginctl lock-session";
-      }
-    ];
-  };
-
   # start swayidle as part of hyprland, not sway
-  systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
+  #systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
 
   wayland.windowManager.hyprland = {
     enable = true;
