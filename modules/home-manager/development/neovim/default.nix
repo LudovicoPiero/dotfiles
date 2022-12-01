@@ -27,6 +27,9 @@ in {
   programs.neovim = {
     enable = true;
     withNodeJs = true;
+    vimAlias = true;
+    viAlias = true;
+    vimdiffAlias = true;
 
     plugins = with pkgs.vimPlugins; [
       vim-nix
