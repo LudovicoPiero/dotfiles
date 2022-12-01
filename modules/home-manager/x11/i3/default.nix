@@ -6,12 +6,12 @@
   inherit (config.colorscheme) colors;
 in {
   imports = [
-      ../../apps/i3status
+    ../../apps/i3status
   ];
 
   xsession = {
     enable = true;
-    scriptPath = ".xsession-hm";
+    scriptPath = ".xsession-i3";
     windowManager = {
       i3 = {
         enable = true;

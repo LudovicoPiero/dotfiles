@@ -54,9 +54,9 @@
       displayManager.session = [
         {
           manage = "window";
-          name = "home-manager";
+          name = "i3";
           start = ''
-            exec $HOME/.xsession-hm
+            exec $HOME/.xsession-i3r
           '';
         }
       ];
