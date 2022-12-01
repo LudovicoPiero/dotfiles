@@ -14,7 +14,7 @@
     };
   };
 in {
-  home.file.".config/nvim/settings.lua".source = ./init.lua;
+  #   home.file.".config/nvim/settings.lua".source = ./init.lua;
 
   home.packages = with pkgs; [
     rnix-lsp
@@ -46,61 +46,45 @@ in {
       vim-vsnip
       nvim-cmp
       nvim-lspconfig
-      {
-        plugin = bufferline-nvim;
-        config = "lua require('bufferline').setup()";
-      }
-      {
-        plugin = zk-nvim;
-        config = "lua require('zk').setup()";
-      }
-      {
-        plugin = nvim-colorizer-lua;
-        config = "lua require('colorizer').setup()";
-      }
-      {
-        plugin = impatient-nvim;
-        config = "lua require('impatient')";
-      }
-      {
-        plugin = telescope-nvim;
-        config = "lua require('telescope').setup()";
-      }
-      {
-        plugin = indent-blankline-nvim;
-        config = "lua require('indent_blankline').setup()";
-      }
-      {
-        plugin = catppuccin-nvim;
-        config = ''
-          lua << EOF
-          require('catppuccin').setup {
-          	flavour = 'mocha',
-          }
-          EOF
-        '';
-      }
-      {
-        plugin = catppuccin-nvim;
-        config = "colorscheme catppuccin";
-      }
-      {
-        plugin = nvim-treesitter;
-        config = ''
-          lua << EOF
-          require('nvim-treesitter.configs').setup {
-              highlight = {
-                  enable = true,
-                  additional_vim_regex_highlighting = false,
-              },
-          }
-          EOF
-        '';
-      }
+      bufferline-nvim
+      zk-nvim
+      nvim-colorizer-lua
+      impatient-nvim
+      telescope-nvim
+      indent-blankline-nvim
+      catppuccin-nvim
+      nvim-treesitter
     ];
 
-    extraConfig = ''
-      luafile ~/.config/nvim/settings.lua
+    extraPackages = with pkgs; [gcc ripgrep fd];
+
+    # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
+    extraConfig = let
+      luaRequire = module:
+        builtins.readFile (builtins.toString
+          ./config
+          + "/${module}.lua");
+      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
+        "init"
+        "bufferline"
+        "cmp"
+        "colorizer"
+        "dashboard"
+        "impatient"
+        "indent-blankline"
+        "lualine"
+        "telescope"
+        "theme"
+        "treesiter"
+        "zk"
+      ]);
+    in ''
+      lua <<
+      ${luaConfig}
     '';
+
+    # extraConfig = ''
+    #   luafile ~/.config/nvim/settings.lua
+    # '';
   };
 }

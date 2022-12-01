@@ -29,11 +29,6 @@
     # ../apps/mako
     # ../apps/eww
     ../../apps/waybar
-    ../../apps/foot
-    ../../apps/kitty
-    ../../apps/dunst
-    ../../apps/wofi
-    ../../apps/tmux
   ];
 
   home.sessionVariables = {
@@ -59,7 +54,7 @@
          }
 
          general {
-             sensitivity = 0.8
+             sensitivity = 1
              main_mod = SUPER
              gaps_in = 3
              gaps_out = 3

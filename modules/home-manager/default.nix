@@ -10,16 +10,18 @@
   i3 = import ./x11/i3;
 
   # Apps
+  dunst = import ./apps/dunst;
+  eww = import ./apps/eww;
   foot = import ./apps/foot;
+  i3status = import ./apps/i3status;
   kitty = import ./apps/kitty;
   mako = import ./apps/mako;
-  dunst = import ./apps/dunst;
-  waybar = import ./apps/waybar;
-  wofi = import ./apps/wofi;
-  spicetify = import ./apps/spicetify;
-  eww = import ./apps/eww;
   obs = import ./apps/obs;
   picom = import ./apps/picom;
+  spicetify = import ./apps/spicetify;
+  tmux = import ./apps/tmux;
+  waybar = import ./apps/waybar;
+  wofi = import ./apps/wofi;
 
   # Development
   git = import ./development/git.nix;
@@ -27,6 +29,7 @@
   direnv = import ./development/direnv.nix;
   vscode = import ./development/vscode.nix;
   neovim = import ./development/neovim;
+  helix = import ./development/helix;
 
   # Browser
   chromium = import ./browser/chromium.nix;

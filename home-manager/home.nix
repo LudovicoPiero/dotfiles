@@ -25,6 +25,7 @@
     outputs.homeManagerModules.spicetify
     outputs.homeManagerModules.obs
     outputs.homeManagerModules.neovim
+    outputs.homeManagerModules.helix
 
     # Or modules exported from other flakes (such as nix-colors):
     inputs.hyprland.homeManagerModules.default

@@ -13,6 +13,15 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "fu";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
+
+    helix.url = "github:SoraTenshi/helix/experimental";
+
     # Webcord
     webcord.url = "github:fufexan/webcord-flake";
 
