@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
@@ -46,7 +50,20 @@
       enable = true;
       layout = "us"; # Configure keymap
       displayManager.lightdm.enable = false;
+      displayManager.gdm.enable = true;
+      displayManager.sessions = [
+        {
+          manage = "window";
+          name = "home-manager";
+          start = ''
+            exec $HOME/.xsession-hm
+          '';
+        }
+      ];
     };
+
+    # add hyprland to display manager sessions
+    xserver.displayManager.sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
 
     # Pipewire
     pipewire = {

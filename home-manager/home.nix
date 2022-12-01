@@ -14,7 +14,6 @@
     # outputs.homeManagerModules.eww
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.i3
-    outputs.homeManagerModules.picom
     outputs.homeManagerModules.git
     outputs.homeManagerModules.gtk
     outputs.homeManagerModules.fish
