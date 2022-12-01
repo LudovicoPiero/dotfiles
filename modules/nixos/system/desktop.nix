@@ -56,7 +56,7 @@
           manage = "window";
           name = "i3";
           start = ''
-            exec $HOME/.xsession-i3r
+            exec $HOME/.xsession-i3
           '';
         }
       ];

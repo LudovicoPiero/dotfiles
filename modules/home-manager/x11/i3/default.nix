@@ -7,7 +7,9 @@
 in {
   imports = [
     ../../apps/i3status
-  ];
+];
+
+home.packages = with pkgs;[feh];
 
   xsession = {
     enable = true;
@@ -101,12 +103,15 @@ in {
           modifier = "Mod4";
           terminal = "kitty";
           startup = [
+              {
+                  command = "${pkgs.feh}/bin/feh --bg-fill $HOME/Pictures/tdark.png";
+                  always = true;
+              }
             {
               command = "${pkgs.picom}/bin/picom --experimental-backends";
             }
             {
               command = "${pkgs.dunst}/bin/dunst";
-              always = true;
             }
           ];
         };
