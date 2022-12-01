@@ -7,6 +7,7 @@
 
   # Wayland / Window Manager
   hyprland = import ./wayland/hyprland;
+  i3 = import ./x11/i3;
 
   # Apps
   foot = import ./apps/foot;
@@ -18,6 +19,7 @@
   spicetify = import ./apps/spicetify;
   eww = import ./apps/eww;
   obs = import ./apps/obs;
+  picom = import ./apps/picom;
 
   # Development
   git = import ./development/git.nix;
