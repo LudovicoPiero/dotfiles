@@ -14,6 +14,5 @@
 
   environment.etc."greetd/environments".text = ''
     Hyprland
-    i3
   '';
 }
