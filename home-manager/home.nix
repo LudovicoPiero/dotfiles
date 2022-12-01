@@ -24,6 +24,7 @@
     outputs.homeManagerModules.gtk
     #outputs.homeManagerModules.fish
     outputs.homeManagerModules.zsh
+    outputs.homeManagerModules.starship
     outputs.homeManagerModules.direnv
     outputs.homeManagerModules.vscode
     outputs.homeManagerModules.spicetify

@@ -2,8 +2,9 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {
   # List your module files here
-  fish = import ./fish.nix;
-  zsh = import ./zsh.nix;
+  fish = import ./shell/fish.nix;
+  zsh = import ./shell/zsh.nix;
+  starship = import ./shell/starship.nix;
   gtk = import ./gtk.nix;
 
   # Wayland / Window Manager
