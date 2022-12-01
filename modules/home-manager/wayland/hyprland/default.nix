@@ -42,9 +42,6 @@
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  # start swayidle as part of hyprland, not sway
-  #systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
-
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
