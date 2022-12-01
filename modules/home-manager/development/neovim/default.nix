@@ -35,6 +35,14 @@ in {
       copilot-vim
       lualine-nvim
       nerdtree
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp-vsnip
+      vim-vsnip
+      nvim-cmp
+      nvim-lspconfig
       {
         plugin = bufferline-nvim;
         config = "lua require('bufferline').setup()";
@@ -72,17 +80,6 @@ in {
       {
         plugin = catppuccin-nvim;
         config = "colorscheme catppuccin";
-      }
-      {
-        plugin = nvim-lspconfig;
-        config = ''
-          lua << EOF
-          require('lspconfig').rust_analyzer.setup{}
-          require('lspconfig').sumneko_lua.setup{}
-          require('lspconfig').rnix.setup{}
-          require('lspconfig').zk.setup{}
-          EOF
-        '';
       }
       {
         plugin = nvim-treesitter;
