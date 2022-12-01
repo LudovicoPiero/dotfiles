@@ -45,7 +45,13 @@
     xserver = {
       enable = true;
       layout = "us"; # Configure keymap
-      displayManager.lightdm.enable = false;
+      displayManager.gdm.enable = true;
+      displayManager.gdm.wayland = true;
+
+      # TODO: REMOVE THIS
+      desktopManager = {
+        xterm.enable = false;
+      };
     };
 
     # Pipewire

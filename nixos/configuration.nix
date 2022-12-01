@@ -13,7 +13,8 @@
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.bootloader
     outputs.nixosModules.desktop
-    outputs.nixosModules.greetd
+    #TODO remove
+    # outputs.nixosModules.greetd
     outputs.nixosModules.doas
     outputs.nixosModules.thunar
     outputs.nixosModules.fonts
