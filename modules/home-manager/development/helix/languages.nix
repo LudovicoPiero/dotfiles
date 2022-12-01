@@ -9,7 +9,7 @@ with pkgs; [
     name = "typescript";
     auto-format = true;
     language-server = {
-      command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+      command = "${nodePackages.typescript-language-server}/bin/typescript-language-server";
       args = ["--stdio"];
     };
   }
@@ -17,7 +17,7 @@ with pkgs; [
     name = "cpp";
     auto-format = true;
     language-server = {
-      command = "${pkgs.clang-tools}/bin/clangd";
+      command = "${clang-tools}/bin/clangd";
     };
   }
   {
@@ -28,14 +28,14 @@ with pkgs; [
     name = "go";
     auto-format = true;
     language-server = {
-      command = "${pkgs.gopls}/bin/gopls";
+      command = "${gopls}/bin/gopls";
     };
   }
   {
     name = "javascript";
     auto-format = true;
     language-server = {
-      command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+      command = "${nodePackages.typescript-language-server}/bin/typescript-language-server";
       args = ["--stdio"];
     };
   }
@@ -44,6 +44,7 @@ with pkgs; [
     auto-format = true;
     language-server = {
       command = lib.getExe inputs.nil.packages.${pkgs.system}.default;
+      config.nil.formatting.command = ["alejandra" "-q"];
     };
   }
 ]

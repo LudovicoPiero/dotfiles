@@ -5,6 +5,7 @@
 }: {
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  environment.pathsToLink = [ "/share/zsh" ];
 
   security = {
     rtkit.enable = true;

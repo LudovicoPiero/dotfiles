@@ -3,6 +3,7 @@
 {
   # List your module files here
   fish = import ./fish.nix;
+  zsh = import ./zsh.nix;
   gtk = import ./gtk.nix;
 
   # Wayland / Window Manager

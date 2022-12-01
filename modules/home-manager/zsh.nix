@@ -1,13 +1,22 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [exa fzf fd bat ripgrep lazygit];
-  programs.fish = {
+  programs.zsh = {
     enable = true;
-    functions = {gitignore = "curl -sL https://www.gitignore.io/api/$argv";};
+    enableAutoSuggestions = true;
+    enableSyntaxHighlighting = true;
+    defaultKeymap = "vicmd";
+    dirHashes = {
+      config = "$HOME/.config/nixos";
+      dl     = "$HOME/Downloads";
+      gdl    = "$HOME/gallery-dl";
+    };
+    history = {
+      ignorePatterns = ["rm *" "pkill *"];
+    };
     shellAliases = {
       "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
       "bb" = "doas nixos-rebuild boot --flake ~/.config/nixos";
       "hs" = "home-manager switch --flake ~/.config/nixos";
-      "config" = "cd ~/.config/nixos";
       #"hx" = "helix";
       "lg" = "lazygit";
       "ls" = "exa --icons";
@@ -28,33 +37,25 @@
     };
     plugins = [
       {
-        name = "z";
-        src = pkgs.fetchFromGitHub {
-          owner = "jethrokuan";
-          repo = "z";
-          rev = "85f863f20f24faf675827fb00f3a4e15c7838d76";
-          sha256 = "1kaa0k9d535jnvy8vnyxd869jgs0ky6yg55ac1mxcxm8n0rh2mgq";
-        };
-      }
-      {
-        name = "fzf";
-        src = pkgs.fetchFromGitHub {
-          owner = "PatrickF1";
-          repo = "fzf.fish";
-          rev = "096dc8fff16cfbf54333fb7a9910758e818e239d";
-          sha256 = "183z8f7y8629nc78bc3gm5xgwyn813qvjrws4bx8vda2jchxzlb5";
-        };
-      }
-      {
-        name = "pure";
-        src = pkgs.fetchFromGitHub {
-          owner = "rafaelrinaldi";
-          repo = "pure";
-          rev = "8c1f69d7f499469979cbecc7b7eaefb97cd6f509";
-          sha256 = "1bnp6124cgf4zb1wngb671d7lc4sapizk9jnaa8mdk594z0xzvf9";
-        };
-      }
+    # will source zsh-autosuggestions.plugin.zsh
+    name = "zsh-autosuggestions";
+    src = pkgs.fetchFromGitHub {
+      owner = "zsh-users";
+      repo = "zsh-autosuggestions";
+      rev = "v0.4.0";
+      sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+    };
+  }
+  {
+    name = "enhancd";
+    file = "init.sh";
+    src = pkgs.fetchFromGitHub {
+      owner = "b4b4r07";
+      repo = "enhancd";
+      rev = "v2.2.1";
+      sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+    };
+  }
     ];
   };
-  programs.man.generateCaches = true; # For fish completions
 }

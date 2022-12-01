@@ -11,19 +11,30 @@
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.eww
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.i3
+
+    # Apps
     outputs.homeManagerModules.git
+    outputs.homeManagerModules.kitty
+    outputs.homeManagerModules.foot
+    outputs.homeManagerModules.dunst
+    outputs.homeManagerModules.wofi
+    outputs.homeManagerModules.tmux
     outputs.homeManagerModules.gtk
-    outputs.homeManagerModules.fish
-    outputs.homeManagerModules.gpg
-    outputs.homeManagerModules.chromium
-    outputs.homeManagerModules.firefox
+    #outputs.homeManagerModules.fish
+    outputs.homeManagerModules.zsh
     outputs.homeManagerModules.direnv
     outputs.homeManagerModules.vscode
     outputs.homeManagerModules.spicetify
     outputs.homeManagerModules.obs
+    outputs.homeManagerModules.gpg
+
+    # Browser
+    outputs.homeManagerModules.chromium
+    outputs.homeManagerModules.firefox
+
+    # Development
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.helix
 
