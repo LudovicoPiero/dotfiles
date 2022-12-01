@@ -1,14 +1,8 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [picom-jonaburg];
+  home.packages = with pkgs; [picom];
   xdg.configFile = {
     "picom.conf".text = ''
-      transition-length = 300
-      transition-pow-x = 0.1
-      transition-pow-y = 0.1
-      transition-pow-w = 0.1
-      transition-pow-h = 0.1
-      size-transition = true
-      corner-radius = 10.0;
+      corner-radius = 0;
       rounded-corners-exclude = [
         #"window_type = 'normal'",
         "class_g = 'awesome'",
@@ -39,7 +33,7 @@
         "class_g = 'Polybar'",
         "_GTK_FRAME_EXTENTS@:c"
       ];
-      fading = true;
+      fading = false;
       fade-in-step = 0.03;
       fade-out-step = 0.03;
       fade-exclude = [
@@ -96,7 +90,7 @@
       ];
       experimental-backends = true;
       backend = "glx";
-      vsync = true
+      vsync = false
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;
       detect-rounded-corners = true;

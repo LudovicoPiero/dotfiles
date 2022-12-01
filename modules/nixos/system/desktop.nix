@@ -51,7 +51,7 @@
       layout = "us"; # Configure keymap
       displayManager.lightdm.enable = false;
       displayManager.gdm.enable = true;
-      displayManager.sessions = [
+      displayManager.session = [
         {
           manage = "window";
           name = "home-manager";
