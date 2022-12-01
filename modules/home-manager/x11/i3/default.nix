@@ -1,12 +1,7 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
-  inherit (config.colorscheme) colors;
-in {
+{pkgs, ...}: {
   imports = [
     ../../apps/i3status
+    ../../apps/picom
   ];
 
   home.packages = with pkgs; [feh];
