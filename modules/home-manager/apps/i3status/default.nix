@@ -8,12 +8,12 @@
     bars = {
       bottom = {
         blocks = [
-            {
-                block = "battery";
-                format = " $icon BAT: $percentage";
-                device = "BAT1";
-                missing_format = "";
-            }
+          {
+            block = "battery";
+            format = " $icon BAT: $percentage";
+            device = "BAT1";
+            missing_format = "";
+          }
           {
             block = "cpu";
             format = " $icon CPU: $utilization ";
@@ -34,12 +34,12 @@
             format_alt = " $icon_swap $swap_used_percents.eng(2) ";
           }
           {
-              block = "sound";
+            block = "sound";
           }
           {
             block = "time";
             interval = 60;
-            format = "%a %d/%m %k:%M %p";
+            format = " %a %d/%m %k:%M %p ";
           }
         ];
         settings = {

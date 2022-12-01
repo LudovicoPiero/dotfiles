@@ -7,9 +7,9 @@
 in {
   imports = [
     ../../apps/i3status
-];
+  ];
 
-home.packages = with pkgs;[feh];
+  home.packages = with pkgs; [feh];
 
   xsession = {
     enable = true;
@@ -103,10 +103,10 @@ home.packages = with pkgs;[feh];
           modifier = "Mod4";
           terminal = "kitty";
           startup = [
-              {
-                  command = "${pkgs.feh}/bin/feh --bg-fill $HOME/Pictures/tdark.png";
-                  always = true;
-              }
+            {
+              command = "${pkgs.feh}/bin/feh --bg-fill $HOME/Pictures/tdark.png";
+              always = true;
+            }
             {
               command = "${pkgs.picom}/bin/picom --experimental-backends";
             }
