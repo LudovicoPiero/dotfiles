@@ -89,7 +89,7 @@
     );
 
     # Add formatter
-    formatter = pkgs.alejandra;
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays;
