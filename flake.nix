@@ -1,5 +1,5 @@
 {
-  description = "Ludovico's NixOS configuration";
+  description = "Ludovico's NixOS and Home-Manager configuration";
 
   inputs = {
     # Nixpkgs
@@ -66,7 +66,7 @@
     hyprland,
     ...
   } @ inputs: let
-    inherit (self) outputs;
+    inherit (self) outputs pkgs;
     forAllSystems = nixpkgs.lib.genAttrs [
       "x86_64-linux"
     ];
@@ -87,6 +87,9 @@
       in
         import ./shell.nix {inherit pkgs;}
     );
+
+    # Add formatter
+    formatter = pkgs.alejandra;
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays;
