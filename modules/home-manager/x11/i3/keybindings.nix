@@ -1,0 +1,67 @@
+{
+  pkgs,
+  config,
+  ...
+}: let
+  modifier = config.xsession.windowManager.i3.config.modifier;
+in {
+  "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+  "${modifier}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
+
+  # Discord
+  "${modifier}+d" = "exec ${pkgs.discord-canary}/bin/discordcanary --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy";
+
+  # Enter resize mode
+  "${modifier}+r" = "mode \"resize\"";
+
+  # Kill apps
+  "${modifier}+w" = "kill";
+
+  # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+  "${modifier}+Shift+r" = "restart";
+
+  # reload config
+  "${modifier}+Shift+c" = "reload";
+
+  # Toggle tiling / floating
+  "${modifier}+space" = "floating toggle";
+
+  # Toggle fullscreen
+  "${modifier}+f" = "fullscreen toggle";
+
+  # Split
+  "${modifier}+g" = "split h";
+  "${modifier}+v" = "split v";
+
+  # Change focus
+  "${modifier}+j" = "focus down";
+  "${modifier}+k" = "focus up";
+  "${modifier}+l" = "focus right";
+  "${modifier}+h" = "focus left";
+  "${modifier}+Tab" = "focus parent";
+  "${modifier}+q" = "focus child";
+
+  # Workspace
+  "${modifier}+1" = "workspace 1";
+  "${modifier}+2" = "workspace 2";
+  "${modifier}+3" = "workspace 3";
+  "${modifier}+4" = "workspace 4";
+  "${modifier}+5" = "workspace 5";
+  "${modifier}+6" = "workspace 6";
+  "${modifier}+7" = "workspace 7";
+  "${modifier}+8" = "workspace 8";
+  "${modifier}+9" = "workspace 9";
+  "${modifier}+0" = "workspace 10";
+
+  # Move focused container to workspace
+  "${modifier}+Shift+1" = "move container to workspace 1";
+  "${modifier}+Shift+2" = "move container to workspace 2";
+  "${modifier}+Shift+3" = "move container to workspace 3";
+  "${modifier}+Shift+4" = "move container to workspace 4";
+  "${modifier}+Shift+5" = "move container to workspace 5";
+  "${modifier}+Shift+6" = "move container to workspace 6";
+  "${modifier}+Shift+7" = "move container to workspace 7";
+  "${modifier}+Shift+8" = "move container to workspace 8";
+  "${modifier}+Shift+9" = "move container to workspace 9";
+  "${modifier}+Shift+0" = "move container to workspace 10";
+}
