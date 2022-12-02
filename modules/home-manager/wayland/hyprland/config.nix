@@ -113,7 +113,7 @@ in {
        windowrulev2 = rounding 0 , class:^(Code)$ # VSCODE
 
        # Variables
-       $discord = discordcanary  --enable-features=UseOzonePlatform --ozone-platform=wayland --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
+       $discord = discordcanary  --disable-features=UseOzonePlatform --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
        $menu = $HYPR_FOLDER/scripts/bemenu
     	 $powermenu = $HYPR_FOLDER/scripts/powermenu
 
