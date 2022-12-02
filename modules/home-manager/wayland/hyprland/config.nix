@@ -22,13 +22,11 @@ in {
        general {
            sensitivity = 1
            main_mod = SUPER
-           gaps_in = 3
-           gaps_out = 3
+           gaps_in = 2
+           gaps_out = 2
            border_size = 2
-       	col.active_border = rgb(cba6f7)
-       	col.inactive_border = rgb(6c7086)
-           # col.active_border = 0xffeebebe
-           # col.inactive_border = 0xff303446
+       	   col.active_border = rgb(${colors.base0D})
+       	   col.inactive_border = rgb(${colors.base00})
            layout = dwindle
        }
 
@@ -72,6 +70,8 @@ in {
        }
 
        dwindle {
+            col.group_border_active = rgb(${colors.base0B})
+            col.group_border = rgb(${colors.base00})
            pseudotile = 0 # enable pseudotiling on dwindle
        }
 
