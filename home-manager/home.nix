@@ -22,7 +22,7 @@
     outputs.homeManagerModules.wofi
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.gtk
-    #outputs.homeManagerModules.fish
+    outputs.homeManagerModules.fish
     outputs.homeManagerModules.zsh
     outputs.homeManagerModules.starship
     outputs.homeManagerModules.direnv
