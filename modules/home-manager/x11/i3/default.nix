@@ -1,6 +1,9 @@
-{pkgs,config,...}:
-let
- inherit (config.colorscheme) colors;
+{
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.colorscheme) colors;
 in {
   imports = [
     ../../apps/i3status
@@ -89,15 +92,17 @@ in {
             names = ["UbuntuMono Nerd Font" "Monospace"];
             size = 11.0;
           };
-          #keybindings = let
-          #  modifier = config.xsession.windowManager.i3.config.modifier;
-          #in {
-          #  "${modifier}+Return" = "exec kitty";
-          #  "${modifier}+Shift+q" = "kill";
-          #  "${modifier}+Shift+c" = "reload";
-          #  "${modifier}+Shift+r" = "restart";
-          #  "${modifier}+d" = "exec ${pkgs.dmenu}/bin/dmenu_run";
-          #};
+          keybindings = let
+            modifier = config.xsession.windowManager.i3.config.modifier;
+          in {
+            "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+            "${modifier}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
+            "${modifier}+d" = "exec ${pkgs.discord-canary}/bin/discordcanary";
+            #"${modifier}+e" = "exec ${pkgs.thunar}/bin/thunar";
+            "${modifier}+Shift+q" = "kill";
+            "${modifier}+Shift+r" = "restart";
+            "${modifier}+Shift+c" = "reload";
+          };
           modifier = "Mod4";
           terminal = "kitty";
           startup = [
