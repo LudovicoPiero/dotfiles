@@ -9,7 +9,7 @@
     };
     enable = true;
     font = {
-      name = "Monospace";
+      name = "Google Sans";
       size = 10;
     };
     theme = {
