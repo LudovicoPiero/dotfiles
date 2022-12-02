@@ -7,7 +7,7 @@
 in {
   background = "#${colors.base00}";
   focused = {
-    #<colorclass> <border> <background> <text> <indicator> <child_border>
+    # <colorclass> <border> <background> <text> <indicator> <child_border>
     background = "#${colors.base0D}";
     border = "#${colors.base05}";
     text = "#${colors.base00}";

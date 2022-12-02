@@ -16,11 +16,11 @@
     initExtraFirst = ''
       eval "$(starship init zsh)"
     '';
-    initExtra = '' 
-## case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' menu select
-'';
+    initExtra = ''
+      ## case insensitive path-completion
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+      zstyle ':completion:*' menu select
+    '';
     shellAliases = {
       "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
       "bb" = "doas nixos-rebuild boot --flake ~/.config/nixos";

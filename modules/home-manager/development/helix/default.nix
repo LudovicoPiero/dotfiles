@@ -16,6 +16,12 @@
         color-modes = true;
       };
       editor.indent-guides = {render = true;};
+      editor.statusline = {
+        left = ["mode" "spinner" "diagnostics"];
+        center = ["file-name"];
+        right = ["selections" "position" "file-encoding" "file-line-ending" "file-type"];
+        separator = "|";
+      };
       keys.normal = {
         space.space = "file_picker";
         space.w = ":w";

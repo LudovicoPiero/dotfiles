@@ -77,7 +77,7 @@
 
   # Set nix-colors Colorscheme
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin;
-  
+
   home = {
     username = "ludovico";
     homeDirectory = "/home/ludovico";

@@ -4,7 +4,7 @@
     enable = true;
     functions = {gitignore = "curl -sL https://www.gitignore.io/api/$argv";};
     shellInit = ''
-    starship init fish | source
+      starship init fish | source
     '';
     shellAliases = {
       "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
