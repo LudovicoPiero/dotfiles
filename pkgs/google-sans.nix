@@ -14,7 +14,7 @@ fetchFromGitHub {
 
   postFetch = ''
     mkdir -p $out/share/fonts/Google-Sans
-    cp -r $out/*.ttf $out/share/fonts/Google-Sans
+    cp -r $out/* $out/share/fonts/Google-Sans
   '';
 
   meta = with lib; {
