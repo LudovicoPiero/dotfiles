@@ -3,7 +3,7 @@
     isNormalUser = true;
     description = "ludovico";
     extraGroups = ["storage" "input" "wheel" "video" "audio" "seat" "libvirtd" "networkmanager"];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 
   # Enable Gnome Polkit
