@@ -51,7 +51,7 @@
       enable = true;
       layout = "us"; # Configure keymap
       displayManager.lightdm.enable = false;
-      displayManager.gdm.enable = true;
+      displayManager.sddm.enable = true;
       displayManager.session = [
         {
           manage = "window";
