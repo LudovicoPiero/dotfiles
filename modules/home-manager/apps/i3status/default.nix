@@ -10,7 +10,7 @@
         blocks = [
           {
             block = "battery";
-            format = " $icon BAT: $percentage";
+            format = " $icon  BAT: $percentage";
             device = "BAT1";
             missing_format = "";
           }
