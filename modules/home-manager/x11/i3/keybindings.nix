@@ -17,6 +17,9 @@ in {
   # Kill apps
   "${modifier}+w" = "kill";
 
+  # Exit i3
+  "${modifier}+Shift+e" = "exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'";
+
   # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
   "${modifier}+Shift+r" = "restart";
 
