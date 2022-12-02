@@ -99,6 +99,7 @@ in {
             "${modifier}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
             "${modifier}+d" = "exec ${pkgs.discord-canary}/bin/discordcanary";
             #"${modifier}+e" = "exec ${pkgs.thunar}/bin/thunar";
+            "${modifier}+r" = "mode 'resize'";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+r" = "restart";
             "${modifier}+Shift+c" = "reload";
