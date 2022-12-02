@@ -7,6 +7,7 @@
       material-icons
       material-design-icons
 
+      google-sans
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
