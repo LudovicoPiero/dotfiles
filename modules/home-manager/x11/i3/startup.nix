@@ -8,7 +8,7 @@
     always = true;
   }
   {
-    command = "${pkgs.picom}/bin/picom --experimental-backend";
+    command = "${pkgs.picom}/bin/picom";
   }
   {
     command = "${pkgs.dunst}/bin/dunst";
