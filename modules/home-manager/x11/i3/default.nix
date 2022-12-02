@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs,config,...}:
+let
+ inherit (config.colorscheme) colors;
+in {
   imports = [
     ../../apps/i3status
     ../../apps/picom
@@ -22,10 +25,10 @@
               }
             ];
           };
-          window.border = 1;
+          window.border = 2;
           window.commands = [
             {
-              command = "border pixel 1";
+              command = "border pixel 2";
               criteria = {class = "^.*";};
             }
           ];
@@ -37,42 +40,42 @@
             }
           ];
           colors = {
-            background = "#1E1E2E";
+            background = "#${colors.base00}";
             focused = {
               #<colorclass> <border> <background> <text> <indicator> <child_border>
-              background = "#1E1E2E";
-              border = "#B4BEFE";
-              text = "#CDD6F4";
-              indicator = "#2E9EF4";
-              childBorder = "#285577";
+              background = "#${colors.base0D}";
+              border = "#${colors.base05}";
+              text = "#${colors.base00}";
+              indicator = "#${colors.base0D}";
+              childBorder = "#${colors.base0D}";
             };
             focusedInactive = {
-              background = "#1E1E2E";
-              border = "#6C7086";
-              text = "#BAC2DE";
-              childBorder = "#5f676a";
-              indicator = "#484e50";
+              background = "#${colors.base0D}";
+              border = "#${colors.base01}";
+              text = "#${colors.base05}";
+              childBorder = "#${colors.base01}";
+              indicator = "#${colors.base03}";
             };
             placeholder = {
-              background = "#900000";
-              border = "#2F343A";
-              text = "#ffffff";
-              childBorder = "#0c0c0c";
-              indicator = "#000000";
+              background = "#${colors.base0D}";
+              border = "#${colors.base00}";
+              text = "#${colors.base05}";
+              childBorder = "#${colors.base00}";
+              indicator = "#${colors.base00}";
             };
             unfocused = {
-              background = "#181825";
-              border = "#6C7086";
-              text = "#BAC2DE";
-              childBorder = "#222222";
-              indicator = "#292d2e";
+              background = "#${colors.base00}";
+              border = "#${colors.base01}";
+              text = "#${colors.base05}";
+              childBorder = "#${colors.base01}";
+              indicator = "#${colors.base01}";
             };
             urgent = {
-              background = "#900000";
-              border = "#2F343A";
-              text = "#ffffff";
-              childBorder = "#900000";
-              indicator = "#900000";
+              background = "#${colors.base08}";
+              border = "#${colors.base08}";
+              text = "#${colors.base00}";
+              childBorder = "#${colors.base08}";
+              indicator = "#${colors.base08}";
             };
           };
           defaultWorkspace = "workspace number 1";
