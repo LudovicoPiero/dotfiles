@@ -13,8 +13,8 @@ fetchFromGitHub {
   sha256 = "KJsLM0NkhxGtJ2GGTzIUjh3lWIdQFZQoD5c3AG2ApTg=";
 
   postFetch = ''
-    install -Dm644 $src/GoogleSans-*.ttf -t $out/share/fonts/ttf
-    echo "Installing fonts to $out/share/fonts/ttf"
+    mkdir -p $out/share/fonts/Google-Sans
+    cp -r $out/*.ttf $out/share/fonts/Google-Sans
   '';
 
   meta = with lib; {
