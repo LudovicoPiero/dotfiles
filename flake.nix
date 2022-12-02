@@ -37,7 +37,7 @@
 
     # Nix User Repository
     # I use this for firefox extensions
-    nur.url = github:nix-community/NUR;
+    nur.url = "github:nix-community/NUR";
     fu.url = "github:numtide/flake-utils";
 
     eww = {
@@ -66,11 +66,11 @@
     hyprland,
     ...
   } @ inputs: let
-    inherit (self) outputs pkgs;
+    inherit (self) outputs;
     forAllSystems = nixpkgs.lib.genAttrs [
       "x86_64-linux"
     ];
-  in rec {
+  in {
     # Your custom packages
     # Acessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (
