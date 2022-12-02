@@ -3,6 +3,9 @@
   programs.fish = {
     enable = true;
     functions = {gitignore = "curl -sL https://www.gitignore.io/api/$argv";};
+    shellInit = ''
+    starship init fish | source
+    '';
     shellAliases = {
       "bs" = "doas nixos-rebuild switch --flake ~/.config/nixos";
       "bb" = "doas nixos-rebuild boot --flake ~/.config/nixos";
@@ -45,15 +48,15 @@
           sha256 = "183z8f7y8629nc78bc3gm5xgwyn813qvjrws4bx8vda2jchxzlb5";
         };
       }
-      {
-        name = "pure";
-        src = pkgs.fetchFromGitHub {
-          owner = "rafaelrinaldi";
-          repo = "pure";
-          rev = "8c1f69d7f499469979cbecc7b7eaefb97cd6f509";
-          sha256 = "1bnp6124cgf4zb1wngb671d7lc4sapizk9jnaa8mdk594z0xzvf9";
-        };
-      }
+      #{
+      #  name = "pure";
+      #  src = pkgs.fetchFromGitHub {
+      #    owner = "rafaelrinaldi";
+      #    repo = "pure";
+      #    rev = "8c1f69d7f499469979cbecc7b7eaefb97cd6f509";
+      #    sha256 = "1bnp6124cgf4zb1wngb671d7lc4sapizk9jnaa8mdk594z0xzvf9";
+      #  };
+      #}
     ];
   };
   programs.man.generateCaches = true; # For fish completions

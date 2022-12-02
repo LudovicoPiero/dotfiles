@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [exa fzf fd bat ripgrep lazygit];
+  home.packages = with pkgs; [commitizen exa fzf fd bat ripgrep lazygit];
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
