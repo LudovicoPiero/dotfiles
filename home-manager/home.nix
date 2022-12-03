@@ -53,7 +53,7 @@
     overlays = [
       # If you want to use overlays your own flake exports (from overlays dir):
       outputs.overlays.modifications
-      # outputs.overlays.additions
+      outputs.overlays.additions
 
       # Or overlays exported from other flakes:
       inputs.nur.overlay
@@ -85,7 +85,9 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [discord-canary];
+  home.packages = with pkgs; [
+    discord-canary
+  ];
 
   # Enable home-manager and git
   programs.git.enable = true;

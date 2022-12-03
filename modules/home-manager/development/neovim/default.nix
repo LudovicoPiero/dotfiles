@@ -14,8 +14,6 @@
     };
   };
 in {
-  #   home.file.".config/nvim/settings.lua".source = ./init.lua;
-
   home.packages = with pkgs; [
     rnix-lsp
     nixfmt # Nix
@@ -32,6 +30,7 @@ in {
     vimdiffAlias = true;
 
     plugins = with pkgs.vimPlugins; [
+      catppuccin-nvim
       vim-nix
       plenary-nvim
       dashboard-nvim
@@ -52,39 +51,12 @@ in {
       impatient-nvim
       telescope-nvim
       indent-blankline-nvim
-      catppuccin-nvim
       nvim-treesitter
     ];
-
-    extraPackages = with pkgs; [gcc ripgrep fd];
-
-    # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
-    extraConfig = let
-      luaRequire = module:
-        builtins.readFile (builtins.toString
-          ./config
-          + "/${module}.lua");
-      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-        "init"
-        "bufferline"
-        "cmp"
-        "colorizer"
-        "dashboard"
-        "impatient"
-        "indent-blankline"
-        "lualine"
-        "telescope"
-        "theme"
-        "treesiter"
-        "zk"
-      ]);
-    in ''
-      lua <<
-      ${luaConfig}
-    '';
-
-    # extraConfig = ''
-    #   luafile ~/.config/nvim/settings.lua
-    # '';
   };
+  xdg.configFile."nvim".source = ./.;
+  # home.file.".config/nvim/settings.lua".source = ./init.lua;
+  # extraConfig = ''
+  #   luafile ~/.config/nvim/settings.lua
+  # '';
 }
