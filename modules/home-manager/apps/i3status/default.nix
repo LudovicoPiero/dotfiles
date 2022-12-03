@@ -10,13 +10,24 @@
         blocks = [
           {
             block = "battery";
-            format = " $icon  BAT: $percentage";
+            format = " $icon  BAT: $percentage ";
             device = "BAT1";
-            missing_format = "";
+            missing_format = " $icon  ";
+            full_format = " $icon  FULL "; 
           }
           {
             block = "cpu";
             format = " $icon CPU: $utilization ";
+          }
+          {
+            block = "memory";
+            format = " $icon MEM: $mem_total_used_percents.eng(2) ";
+            format_alt = " $icon_swap $swap_used_percents.eng(2) ";
+          }
+          {
+            block = "net";
+            device = "wlp3s0";           
+            format = " $icon  LEAKED IP: $ip ";
           }
           {
             block = "disk_space";
@@ -27,11 +38,6 @@
             warning = 20.0;
             alert = 10.0;
             format = " $icon PORN FOLDER (DON'T LEAK): $available.eng(2) ";
-          }
-          {
-            block = "memory";
-            format = " $icon MEM: $mem_total_used_percents.eng(2) ";
-            format_alt = " $icon_swap $swap_used_percents.eng(2) ";
           }
           {
             block = "sound";
