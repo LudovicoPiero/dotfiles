@@ -32,14 +32,6 @@ in {
       copilot-vim
       lualine-nvim
       nvim-tree-lua
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      cmp-vsnip
-      vim-vsnip
-      nvim-cmp
-      nvim-lspconfig
       bufferline-nvim
       nvim-colorizer-lua
       impatient-nvim
@@ -50,6 +42,16 @@ in {
       comment-nvim
       vim-fugitive
       nvim-web-devicons
+
+      # Cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp-vsnip
+      vim-vsnip
+      nvim-cmp
+      nvim-lspconfig
     ];
 
     extraPackages = with pkgs; [
