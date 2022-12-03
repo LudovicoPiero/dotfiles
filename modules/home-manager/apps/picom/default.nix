@@ -36,7 +36,7 @@
           "class_g = 'Polybar'",
           "_GTK_FRAME_EXTENTS@:c"
         ];
-        fading = true;
+        fading = false;
         fade-in-step = 0.03;
         fade-out-step = 0.03;
         fade-exclude = [
