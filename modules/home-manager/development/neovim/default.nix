@@ -48,6 +48,7 @@ in {
       nvim-treesitter
       presence-nvim
       comment-nvim
+      vim-fugitive
       nvim-web-devicons
     ];
 
