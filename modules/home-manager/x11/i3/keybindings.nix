@@ -44,6 +44,19 @@ in {
   "${modifier}+Tab" = "focus parent";
   "${modifier}+q" = "focus child";
 
+  # Audio controls
+  "XF86AudioRaiseVolume" = "exec ${pkgs.alsa-utils}/bin/amixer -q set Master 5%+";
+  "XF86AudioLowerVolume" = "exec ${pkgs.alsa-utils}/bin/amixer -q set Master 5%-";
+  "XF86AudioMute" = "exec ${pkgs.alsa-utils}/bin/amixer -q set Master toggle";
+  "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+  "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+  "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+  "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
+
+  # Brightness controls
+  "XF86MonBrightnessUp" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -inc 10";
+  "XF86MonBrightnessDown" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -dec 10";
+
   # Workspace
   "${modifier}+1" = "workspace 1";
   "${modifier}+2" = "workspace 2";
