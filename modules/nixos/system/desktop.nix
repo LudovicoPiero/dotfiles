@@ -50,6 +50,9 @@
     xserver = {
       enable = true;
       layout = "us"; # Configure keymap
+      deviceSection = ''
+        Option "TearFree" "true"
+      '';
       displayManager.lightdm.enable = false;
       displayManager.sddm.enable = true;
       displayManager.session = [
