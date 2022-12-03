@@ -20,6 +20,7 @@
     outputs.homeManagerModules.foot
     outputs.homeManagerModules.dunst
     outputs.homeManagerModules.wofi
+    outputs.homeManagerModules.lf
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.gtk
     outputs.homeManagerModules.fish
