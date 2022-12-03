@@ -18,7 +18,7 @@ in {
       tab_bar_style = "powerline";
       tab_bar_min_tabs = 1;
       tab_powerline_style = "slanted";
-      tab_title_template = "{title}";
+      tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
       background_opacity = "0.88";
       enable_audio_bell = "no";
 
@@ -29,6 +29,7 @@ in {
       selection_foreground = "#${colors.base00}";
       cursor = "#${colors.base05}";
       inactive_border_color = "#${colors.base01}";
+      active_border_color = "#${colors.base03}";
       active_tab_background = "#${colors.base00}";
       active_tab_foreground = "#${colors.base05}";
       inactive_tab_background = "#${colors.base01}";
