@@ -37,7 +37,7 @@
       outputs.overlays.additions
 
       # Or overlays exported from other flakes:
-      inputs.fenix.overlays.default
+      inputs.rust-overlay.overlays.default
 
       # Or define it inline, for example:
       # (final: prev: {
@@ -117,15 +117,9 @@
     git
     wget
 
-    # Rust toolchain
-    (fenix.complete.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])
-    rust-analyzer-nightly
+    # Rust from inputs.rust-overlay
+    # Install 2022-11-15 Version
+    rust-bin.nightly."2022-11-15".minimal
 
     # Mail Client
     mailspring
