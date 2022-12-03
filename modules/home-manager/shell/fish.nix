@@ -25,6 +25,7 @@
       "gcm" = "cz c";
       "gpl" = "git pull";
       "gpsh" = "git push -u origin";
+      "gs" = "git status";
       "sudo" = "doas";
       "..." = "cd ../..";
       ".." = "cd ..";
