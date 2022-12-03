@@ -21,8 +21,8 @@ map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 map("n", "<C-g>", ":Telescope live_grep <CR>", opts)
 map("n", "<C-w>", ":Telescope find_files <CR>", opts)
-map("n", "<C-b>", ":NERDTree <CR>", opts)
-map("n", "<C-t>", ":NERDTreeToggle <CR>", opts)
+map("n", "<C-b>", ":NvimTreeFocus <CR>", opts)
+map("n", "<C-t>", ":NvimTreeToggle <CR>", opts)
 map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)
 map("n", ";", ":", {noremap = true})
@@ -83,4 +83,4 @@ o.laststatus = 3
 o.pumheight = 6
 o.splitright = true
 o.splitbelow = true
-o.completeopt = "menuone,noselect"
+o.completeopt = "menu,menuone,noselect"

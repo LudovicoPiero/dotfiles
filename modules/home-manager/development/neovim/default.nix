@@ -24,6 +24,7 @@ in {
 
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-unwrapped;
     withNodeJs = true;
     vimAlias = true;
     viAlias = true;
@@ -36,7 +37,8 @@ in {
       dashboard-nvim
       copilot-vim
       lualine-nvim
-      nerdtree
+      #   nerdtree
+      nvim-tree-lua
       cmp-nvim-lsp
       cmp-buffer
       cmp-path
