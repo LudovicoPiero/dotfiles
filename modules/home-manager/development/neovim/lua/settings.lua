@@ -1,3 +1,6 @@
+-- Impatient
+require("impatient")
+
 -- Autocmds
 vim.cmd [[
 	augroup CursorLine
@@ -10,22 +13,6 @@ vim.cmd [[
 
 autocmd FileType nix setlocal shiftwidth=4
 ]]
-
--- Keybinds
-local map = vim.api.nvim_set_keymap
-local opts = {silent = true, noremap = true}
-
-map("n", "<C-h>", "<C-w>h", opts)
-map("n", "<C-j>", "<C-w>j", opts)
-map("n", "<C-k>", "<C-w>k", opts)
-map("n", "<C-l>", "<C-w>l", opts)
-map("n", "<C-g>", ":Telescope live_grep <CR>", opts)
-map("n", "<C-w>", ":Telescope find_files <CR>", opts)
-map("n", "<C-b>", ":NvimTreeFocus <CR>", opts)
-map("n", "<C-t>", ":NvimTreeToggle <CR>", opts)
-map("n", "j", "gj", opts)
-map("n", "k", "gk", opts)
-map("n", ";", ":", {noremap = true})
 
 local o = vim.opt
 local g = vim.g

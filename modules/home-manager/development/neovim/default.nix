@@ -15,16 +15,10 @@
   };
 in {
   home.packages = with pkgs; [
-    rnix-lsp
-    nixfmt # Nix
-    nixpkgs-fmt
-    sumneko-lua-language-server
-    stylua # Lua
   ];
 
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-unwrapped;
     withNodeJs = true;
     vimAlias = true;
     viAlias = true;
@@ -47,15 +41,29 @@ in {
       nvim-cmp
       nvim-lspconfig
       bufferline-nvim
-      zk-nvim
       nvim-colorizer-lua
       impatient-nvim
       telescope-nvim
       indent-blankline-nvim
       nvim-treesitter
+      presence-nvim
+      comment-nvim
+      nvim-web-devicons
     ];
-    extraPackages = with pkgs; [gcc ripgrep fd];
 
+    extraPackages = with pkgs; [
+      rnix-lsp
+      nixfmt # Nix
+      nixpkgs-fmt
+      sumneko-lua-language-server
+      stylua # Lua
+      rust-analyzer
+      gcc
+      ripgrep
+      fd
+    ];
+
+    # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
     extraConfig = let
       luaRequire = module:
         builtins.readFile (builtins.toString
@@ -64,16 +72,10 @@ in {
       luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
         "cmp"
         "colorizer"
-        "dashboard"
-        "impatient"
-        "indent-blankline"
-        "lualine"
-        "nvim-tree"
+        "keybind"
         "settings"
-        "telescope"
         "theme"
-        "treesiter"
-        "zk"
+        "ui"
       ]);
     in ''
       lua << EOF
