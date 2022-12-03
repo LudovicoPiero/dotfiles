@@ -23,6 +23,7 @@
         "$python"
         "$character"
       ];
+      right_format = "$all";
       directory = {
         style = "blue";
       };
@@ -52,6 +53,7 @@
       cmd_duration = {
         format = "[$duration]($style) ";
         style = "yellow";
+        min_time = 5000;
       };
       python = {
         format = "[$virtualenv]($style) ";
