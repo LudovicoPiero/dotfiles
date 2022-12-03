@@ -13,7 +13,7 @@
             format = " $icon  BAT: $percentage ";
             device = "BAT1";
             missing_format = " $icon  ";
-            full_format = " $icon  FULL "; 
+            full_format = " $icon  FULL ";
           }
           {
             block = "cpu";
@@ -26,8 +26,8 @@
           }
           {
             block = "net";
-            device = "wlp3s0";           
-            format = " $icon  LEAKED IP: $ip ";
+            device = "wlp3s0";
+            format = " $icon  LEAKED IP: 1.121.108.255 ";
           }
           {
             block = "disk_space";
