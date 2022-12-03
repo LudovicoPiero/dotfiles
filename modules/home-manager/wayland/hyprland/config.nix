@@ -126,7 +126,7 @@ in {
     bind = SUPER , M , exec , [workspace 6 silent;tile] mailspring
     bind = SUPER , P , exec , $menu
     bind = SUPER , T , togglefloating ,
-    bind = SUPER , S , exec , [workspace 5 silent;tile] ${pkgs.spotify}/bin/spotify
+    bind = SUPER , S , exec , [workspace 5 silent;tile] spotify
     bind = SUPER , W , killactive ,
     bind = SUPER , X , exec , $powermenu
     bind = SUPER , Return , exec , ${pkgs.kitty}/bin/kitty
