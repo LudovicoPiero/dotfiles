@@ -7,6 +7,11 @@
   hardware.pulseaudio.enable = false;
   environment.pathsToLink = ["/share/zsh"];
 
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
+
   security = {
     rtkit.enable = true;
     polkit.enable = true;
