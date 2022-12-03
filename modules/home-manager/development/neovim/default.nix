@@ -24,7 +24,7 @@ in {
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped;
+    # package = pkgs.neovim-unwrapped;
     withNodeJs = true;
     vimAlias = true;
     viAlias = true;
@@ -37,7 +37,6 @@ in {
       dashboard-nvim
       copilot-vim
       lualine-nvim
-      #   nerdtree
       nvim-tree-lua
       cmp-nvim-lsp
       cmp-buffer
@@ -55,8 +54,33 @@ in {
       indent-blankline-nvim
       nvim-treesitter
     ];
+    extraPackages = with pkgs; [gcc ripgrep fd];
+
+    extraConfig = let
+      luaRequire = module:
+        builtins.readFile (builtins.toString
+          ./lua
+          + "/${module}.lua");
+      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
+        "cmp"
+        "colorizer"
+        "dashboard"
+        "impatient"
+        "indent-blankline"
+        "lualine"
+        "nvim-tree"
+        "settings"
+        "telescope"
+        "theme"
+        "treesiter"
+        "zk"
+      ]);
+    in ''
+      lua << EOF
+      ${luaConfig}
+      EOF
+    '';
   };
-  xdg.configFile."nvim".source = ./.;
   # home.file.".config/nvim/settings.lua".source = ./init.lua;
   # extraConfig = ''
   #   luafile ~/.config/nvim/settings.lua
