@@ -44,7 +44,7 @@
         ];
 
         ## OPACITY
-        inactive-opacity = 0.8;
+        inactive-opacity = 1.0;
         active-opacity = 1.0;
         frame-opacity = 0.7;
         popup_menu = { opacity = 0.8; }
