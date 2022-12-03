@@ -23,6 +23,7 @@
         "$python"
         "$character"
       ];
+      command_timeout = 1000;
       right_format = "$all";
       directory = {
         style = "blue";
