@@ -3,9 +3,9 @@
   programs.fish = {
     enable = true;
     functions = {
-        gitignore = "curl -sL https://www.gitignore.io/api/$argv";
-        fish_title = "echo (fish_prompt_pwd_dir_length=10 prompt_pwd);";
-        fish_greeting = ""; # disable welcome text
+      gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+      fish_title = "echo (fish_prompt_pwd_dir_length=10 prompt_pwd);";
+      fish_greeting = ""; # disable welcome text
     };
     shellInit = ''
       starship init fish | source

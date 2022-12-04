@@ -23,7 +23,7 @@ in {
       enable_audio_bell = "no";
 
       # Layout
-      enabled_layouts = "fat,stack"; 
+      enabled_layouts = "fat,stack";
 
       # Theme
       foreground = "#${colors.base05}";

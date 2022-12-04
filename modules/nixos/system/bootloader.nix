@@ -1,7 +1,14 @@
-{inputs,pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   # Bootloader.
   boot = {
-      kernelPackages = pkgs.linuxPackages_xanmod;
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback # Virtual Camera for OBS-Studio
+    ];
+    kernelPackages = pkgs.linuxPackages_xanmod;
     supportedFilesystems = ["ntfs"];
     loader = {
       efi = {
@@ -19,16 +26,16 @@
     };
   };
   kernel.sysctl = {
-      "vm.swappiness" = 10;
+    "vm.swappiness" = 10;
   };
 
-    console = {
+  console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
 
-    colors =
-      let colorscheme = inputs.nix-colors.colorSchemes.material-darker;
-      in
+    colors = let
+      colorscheme = inputs.nix-colors.colorSchemes.material-darker;
+    in
       with colorscheme.colors; [
         base01
         base08
