@@ -9,7 +9,10 @@
 
   xdg.portal = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+      extraPortals = with pkgs; [
+          # xdg-desktop-portal-hyprland # TODO: Remove Comment soonTM
+          xdg-desktop-portal-wlr
+      ];
   };
 
   environment.variables = {
