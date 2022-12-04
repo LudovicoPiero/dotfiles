@@ -1,0 +1,6 @@
+doas nix-collect-garbage -d
+doas nix store verify --all
+doas nix store repair --all
+cd $NIXOS_CONFIG_DIR 
+nix flake update
+doas nixos-rebuild boot --flake .# --upgrade

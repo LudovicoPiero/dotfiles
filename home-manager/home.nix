@@ -36,6 +36,9 @@
     outputs.homeManagerModules.chromium
     outputs.homeManagerModules.firefox
 
+    # Scripts
+    outputs.homeManagerModules.scripts
+
     # Development
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.helix

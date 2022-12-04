@@ -26,6 +26,9 @@
   waybar = import ./apps/waybar;
   wofi = import ./apps/wofi;
 
+  # Scripts
+  scripts = import ./scripts;
+
   # Development
   git = import ./development/git.nix;
   gpg = import ./development/gpg.nix;
