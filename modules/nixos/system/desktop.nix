@@ -8,11 +8,11 @@
   environment.pathsToLink = ["/share/fish"];
 
   xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-          # xdg-desktop-portal-hyprland # TODO: Remove Comment soonTM
-          xdg-desktop-portal-wlr
-      ];
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      #   xdg-desktop-portal-wlr
+    ];
   };
 
   environment.variables = {

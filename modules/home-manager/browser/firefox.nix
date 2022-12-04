@@ -82,9 +82,8 @@
                 template = "https://rycee.gitlab.io/home-manager/options.html";
               }
             ];
-
             definedAliases = ["@hm"];
-        };
+          };
           "NixOS Options" = {
             urls = [
               {
