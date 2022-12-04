@@ -15,10 +15,7 @@ This is my NixOS dotfiles based on [nixos-starter-config](https://github.com/Mis
 | File Manager         	| Thunar             	|
 
 ## Screenshots
-![NixOS Screenshots](assets/screenshot.png)
+![NixOS Screenshots](assets/ss.png)
 
 ## Credits
-- [NixOS](https://nixos.org/)
-- [Misterio77](https://github.com/Misterio77/) for the nix-starter-configs 
-- [Archcraft](https://archcraft.io/) for the scripts
-- [pupbrained](https://github.com/pupbrained/nix-config) for the waybar config
+### Fufexan - Misterio77 - Archcraft - pupbrained - NixOS
