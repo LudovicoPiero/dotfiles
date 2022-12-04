@@ -2,8 +2,6 @@
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      buster-captcha-solver
-      decentraleyes
       ublock-origin
       sponsorblock
       bitwarden
@@ -78,6 +76,15 @@
             definedAliases = ["@np"];
           };
 
+          "Home-Manager" = {
+            urls = [
+              {
+                template = "https://rycee.gitlab.io/home-manager/options.html";
+              }
+            ];
+
+            definedAliases = ["@hm"];
+        };
           "NixOS Options" = {
             urls = [
               {
@@ -127,6 +134,7 @@
         "dom.event.clipboardevents.enabled" = true;
         "media.navigator.enabled" = false;
         "network.cookie.cookieBehavior" = 1;
+        "browser.contentblocking.category" = "strict";
         "network.http.referer.XOriginPolicy" = 2;
         "network.http.referer.XOriginTrimmingPolicy" = 2;
         "beacon.enabled" = false;
