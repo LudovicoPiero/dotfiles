@@ -125,6 +125,7 @@ in {
     bind = SUPER , G , exec , ${pkgs.firefox}/bin/firefox
     bind = SUPER , M , exec , [workspace 6 silent;tile] mailspring
     bind = SUPER , P , exec , $menu
+    bind = SUPER , Q , exec , ${pkgs.hyprpicker}/bin/hyprpicker
     bind = SUPER , T , togglefloating ,
     bind = SUPER , S , exec , [workspace 5 silent;tile] spotify
     bind = SUPER , W , killactive ,
@@ -134,7 +135,6 @@ in {
     # Binds Mouse
     bindm = SUPER , mouse:272 , movewindow
     bindm = SUPER , mouse:273 , resizewindow
-
 
     # Screenshot
     bind = CTRL , Print , exec , grimblast --notify copysave area
