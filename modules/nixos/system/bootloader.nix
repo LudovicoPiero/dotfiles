@@ -1,4 +1,5 @@
 {
+    config,
   inputs,
   pkgs,
   ...
@@ -24,11 +25,12 @@
         useOSProber = true;
       };
     };
-  };
-  kernel.sysctl = {
+kernel.sysctl = {
     "vm.swappiness" = 10;
   };
 
+  };
+  
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
