@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{inputs,pkgs, ...}: {
   # Bootloader.
   boot = {
       kernelPackages = pkgs.linuxPackages_xanmod;

@@ -5,7 +5,7 @@
 }: {
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  environment.pathsToLink = ["/share/zsh"];
+  environment.pathsToLink = ["/share/fish"];
 
   environment.variables = {
     EDITOR = "nvim";
