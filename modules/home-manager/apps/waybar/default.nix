@@ -2,8 +2,9 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
-}: {
+} @ args: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -13,15 +14,17 @@
         layer = "bottom";
         height = 30;
 
-        modules-center = [
-          "wlr/workspaces"
-          "tray"
+        modules-left = ["wlr/workspaces" "tray"];
+        modules-right = [
+          #   "wlr/workspaces"
+          #   "tray"
           "network"
           "pulseaudio"
           "battery"
           "custom/date"
           "clock"
         ];
+
         "wlr/workspaces" = {
           on-click = "activate";
           active-only = false;
@@ -39,7 +42,7 @@
             "8" = "8";
             "9" = "9";
             "10" = "10";
-            "active" = "";
+            "active" = "";
             "default" = "";
           };
         };
@@ -48,17 +51,17 @@
         };
         "network" = {
           interface = "wlp3s0";
-          format-wifi = " Connected";
+          format-wifi = "  Connected";
           format-linked = "{ifname} (No IP)";
-          format-disconnected = " Disconnected";
+          format-disconnected = "  Disconnected";
           tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
         };
         "pulseaudio" = {
           format = "{icon} {volume}%";
           format-muted = "󰖁 Muted";
           format-icons = {
-            "headphone" = "";
-            "default" = "";
+            "headphone" = " ";
+            "default" = " ";
           };
         };
         "battery" = {
@@ -80,7 +83,7 @@
           ];
         };
         "custom/date" = {
-          format = " {}";
+          format = "  {}";
           interval = 3600;
           exec = pkgs.writeShellScript "waybar-date" ''
             date "+%a %d %b %Y"
@@ -92,124 +95,6 @@
         };
       };
     };
-
-    style = ''
-      	* {
-        border: none;
-        border-radius: 0;
-        font-family: JetBrainsMono Nerd Font;
-        font-size: 13px;
-        min-height: 0;
-      }
-
-      /* Fix Coloring issue */
-      button,
-      label {
-        all: unset;
-      }
-
-      #memory {
-        color: #f5e0dc;
-      }
-
-      #cpu {
-        border-radius: 15px 0px 0px 15px;
-        color: #cba6f7;
-        padding: 5px 10px;
-        margin: 5px 0px;
-      }
-
-      window#waybar {
-        background: transparent;
-        color: white;
-      }
-
-      tooltip {
-        background: #0f0f0f;
-        border-radius: 15px;
-        border-width: 2px;
-        border-style: none;
-        border-color: #262626;
-      }
-
-      #workspaces button {
-        padding: 2px 5px;
-        color: #cba6f7;
-      }
-
-      #workspaces button.focused {
-        color: #0f0f0f;
-        background-color: #c49ec4;
-        border-radius: 15px;
-      }
-
-      #workspaces button.urgent {
-        color: #0f0f0f;
-        background-color: #9ec3c4;
-        border-radius: 15px;
-      }
-
-      #workspaces button:hover {
-        background-color: #c49ec4;
-        color: #0f0f0f;
-        border-radius: 20px;
-      }
-
-      #custom-date,
-      #custom-notification,
-      #clock,
-      #battery,
-      #pulseaudio,
-      #network,
-      #cpu,
-      #disk,
-      #tray,
-      #memory,
-      #workspaces {
-        background-color: #181825;
-        padding: 5px 10px;
-        margin: 5px 0px;
-      }
-
-      #custom-launcher {
-        padding: 5px 10px;
-        margin: 5px 0px;
-        background-color: #1e1e2e;
-        color: #1793d1;
-        border-radius: 0px 15px 15px 0px;
-      }
-
-      /* #tray {
-        background-color: #1e1e2e;
-        border-radius: 0px 15px 15px 0px;
-      } */
-
-      #workspaces {
-        background-color: #1e1e2e;
-        border-radius: 15px 0px 0px 15px;
-      }
-
-      #custom-date {
-        color: #89dceb;
-      }
-
-      #clock {
-        color: #cba6f7;
-        border-radius: 0px 15px 15px 0px;
-      }
-
-      #battery {
-        color: #f38ba8;
-      }
-
-      #network {
-        color: #fab387;
-        border-radius: 0px 0px 0px 0px;
-      }
-
-      #pulseaudio {
-        color: #a6e3a1;
-      }
-    '';
+    style = import ./style.nix args;
   };
 }
