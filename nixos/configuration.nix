@@ -38,6 +38,7 @@
 
       # Or overlays exported from other flakes:
       inputs.rust-overlay.overlays.default
+      inputs.portal-hyprland.overlays.default
 
       # Or define it inline, for example:
       # (final: prev: {

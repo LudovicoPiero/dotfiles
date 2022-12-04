@@ -721,6 +721,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1669969257,
+        "narHash": "sha256-mOS13sK3v+kfgP+1Mh56ohiG8uVhLHAo7m/q9kqAehc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b72b8b94cf0c012b0252a9100a636cad69696666",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1655043425,
         "narHash": "sha256-A+oT+aQGhW5lXy8H0cqBLsYtgcnT5glmGOXWQDcGw6I=",
         "owner": "NixOS",
@@ -734,7 +750,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1664876616,
         "narHash": "sha256-OxZntLnFgKbGUrPJJNLMxxj4yUaN/30+LG9N81ADqZE=",
@@ -781,6 +797,24 @@
         "type": "github"
       }
     },
+    "portal-hyprland": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1670111136,
+        "narHash": "sha256-VR13SwK/3qUFqm8kmepOwQfYqMm3FVMBq6cWDPi9HWA=",
+        "owner": "hyprwm",
+        "repo": "xdg-desktop-portal-hyprland",
+        "rev": "3d3c5a42001f3e9fc3bdb9c8e2e324f4f251986d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-utils": [
@@ -822,6 +856,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",
+        "portal-hyprland": "portal-hyprland",
         "rust-overlay": "rust-overlay_2",
         "spicetify-nix": "spicetify-nix",
         "webcord": "webcord"
@@ -891,7 +926,7 @@
     },
     "spicetify-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1670022043,
@@ -925,7 +960,7 @@
     "webcord": {
       "inputs": {
         "dream2nix": "dream2nix_2",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "webcord": "webcord_2"
       },
       "locked": {

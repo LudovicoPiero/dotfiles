@@ -46,6 +46,7 @@
       inputs.flake-utils.follows = "fu";
     };
 
+    portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";

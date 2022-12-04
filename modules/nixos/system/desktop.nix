@@ -7,6 +7,11 @@
   hardware.pulseaudio.enable = false;
   environment.pathsToLink = ["/share/fish"];
 
+  xdg.portal = {
+      enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+  };
+
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
