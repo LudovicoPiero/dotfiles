@@ -125,7 +125,7 @@ in {
     bind = SUPER , G , exec , ${pkgs.firefox}/bin/firefox
     bind = SUPER , M , exec , [workspace 6 silent;tile] mailspring
     bind = SUPER , P , exec , $menu
-    bind = SUPER , Q , exec , ${pkgs.hyprpicker}/bin/hyprpicker
+    bind = SUPER , Q , exec , ${pkgs.hyprpicker}/bin/hyprpicker -f hex --autocopy
     bind = SUPER , T , togglefloating ,
     bind = SUPER , S , exec , [workspace 5 silent;tile] spotify
     bind = SUPER , W , killactive ,
