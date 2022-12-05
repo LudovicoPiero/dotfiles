@@ -3,11 +3,11 @@
   lib,
   ...
 }: {
-    home.packages = [
-        pkgs.wezterm
-    ];
+  home.packages = [
+    pkgs.wezterm
+  ];
 
-    xdg.configFile."wezterm/wezterm.lua".source = ./wezterm.lua;
+  xdg.configFile."wezterm/wezterm.lua".source = ./wezterm.lua;
   # xdg.configFile."wezterm/wezterm.lua".text = ''
   #   local wezterm = require("wezterm")
   #

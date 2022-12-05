@@ -3,17 +3,7 @@
   config,
   pkgs,
   ...
-}: let
-  catppuccin-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "catppuccin-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "nvim";
-      rev = "72540852ca00d7842ea1123635aecb9353192f0b";
-      sha256 = "0mb3qhg5aaxvkc8h95sbwg5nm89w719l9apymc5rpmis4r0mr5zg";
-    };
-  };
-in {
+}: {
   programs.neovim = {
     enable = true;
     withNodeJs = false;
@@ -22,17 +12,17 @@ in {
     vimdiffAlias = true;
 
     coc = {
-        enable = true;
-        settings = {
-            definitions.languageserver.enable = false; # I'm using cmp
-            rpc = {
-                checkIdle = false;
-                detailsViewing = "In {workspace_folder}";
-                detailsEditing = "{workspace_folder}";
-                lowerDetailsEditing = "Working on {file_name}";
-            };
-            # ...
+      enable = true;
+      settings = {
+        definitions.languageserver.enable = false; # I'm using cmp
+        rpc = {
+          checkIdle = false;
+          detailsViewing = "In {workspace_folder}";
+          detailsEditing = "{workspace_folder}";
+          lowerDetailsEditing = "Working on {file_name}";
         };
+        # ...
+      };
     };
 
     plugins = with pkgs.vimPlugins; [
