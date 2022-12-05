@@ -1,8 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
+{ lib
+, config
+, pkgs
+, ...
 }: {
   programs.neovim = {
     enable = true;
@@ -15,6 +14,7 @@
       enable = true;
       settings = {
         definitions.languageserver.enable = false; # I'm using cmp
+        suggest.autoTrigger = "none";
         rpc = {
           checkIdle = false;
           detailsViewing = "In {workspace_folder}";
@@ -70,24 +70,26 @@
     ];
 
     # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
-    extraConfig = let
-      luaRequire = module:
-        builtins.readFile (builtins.toString
-          ./lua
+    extraConfig =
+      let
+        luaRequire = module:
+          builtins.readFile (builtins.toString
+            ./lua
           + "/${module}.lua");
-      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-        "cmp"
-        "colorizer"
-        "keybind"
-        "settings"
-        "theme"
-        "ui"
-      ]);
-    in ''
-      lua << EOF
-      ${luaConfig}
-      EOF
-    '';
+        luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
+          "cmp"
+          "colorizer"
+          "keybind"
+          "settings"
+          "theme"
+          "ui"
+        ]);
+      in
+      ''
+        lua << EOF
+        ${luaConfig}
+        EOF
+      '';
   };
   # home.file.".config/nvim/settings.lua".source = ./init.lua;
   # extraConfig = ''
