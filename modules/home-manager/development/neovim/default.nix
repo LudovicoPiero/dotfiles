@@ -14,12 +14,9 @@
     };
   };
 in {
-  home.packages = with pkgs; [
-  ];
-
   programs.neovim = {
     enable = true;
-    # withNodeJs = true;
+    withNodeJs = false;
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
@@ -27,6 +24,7 @@ in {
     coc = {
         enable = true;
         settings = {
+            languageserver.enable = false; # I'm using cmp
             rpc = {
                 checkIdle = false;
                 detailsViewing = "In {workspace_folder}";

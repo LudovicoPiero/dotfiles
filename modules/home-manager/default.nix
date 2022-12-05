@@ -17,6 +17,7 @@
   foot = import ./apps/foot;
   i3status = import ./apps/i3status;
   kitty = import ./apps/kitty;
+  wezterm = import ./apps/wezterm;
   lf = import ./apps/lf;
   mako = import ./apps/mako;
   obs = import ./apps/obs;

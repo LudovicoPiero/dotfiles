@@ -18,6 +18,7 @@
     outputs.homeManagerModules.git
     outputs.homeManagerModules.kitty
     outputs.homeManagerModules.foot
+    outputs.homeManagerModules.wezterm
     outputs.homeManagerModules.dunst
     outputs.homeManagerModules.wofi
     outputs.homeManagerModules.lf
