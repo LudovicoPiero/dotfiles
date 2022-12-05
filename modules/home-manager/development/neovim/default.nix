@@ -24,7 +24,7 @@ in {
     coc = {
         enable = true;
         settings = {
-            languageserver.enable = false; # I'm using cmp
+            definitions.languageserver.enable = false; # I'm using cmp
             rpc = {
                 checkIdle = false;
                 detailsViewing = "In {workspace_folder}";
@@ -53,6 +53,7 @@ in {
       comment-nvim
       vim-fugitive
       nvim-web-devicons
+      lsp-format-nvim
 
       # Cmp
       cmp-nvim-lsp

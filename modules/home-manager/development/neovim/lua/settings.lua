@@ -17,7 +17,7 @@ autocmd FileType nix setlocal shiftwidth=4
 local o = vim.opt
 local g = vim.g
 
--- Show line 
+-- Show line
 o.colorcolumn = "80,100"
 
 g.mapleader = " "
