@@ -50,8 +50,8 @@
     };
     "hypr/hyprpaper.conf" = {
       text = ''
-        preload = /home/ludovico/.config/hypr/Wallpaper/wall.png
-        wallpaper = eDP-1,/home/ludovico/.config/hypr/Wallpaper/wall.png
+        preload = /home/ludovico/.config/hypr/Wallpaper/Wallpaper3.jpg
+        wallpaper = eDP-1,/home/ludovico/.config/hypr/Wallpaper/Wallpaper3.jpg
         ipc = off
       '';
     };
