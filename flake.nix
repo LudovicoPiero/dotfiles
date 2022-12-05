@@ -60,6 +60,7 @@
     nixpkgs,
     home-manager,
     hyprland,
+    nix-colors,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -109,7 +110,7 @@
     homeConfigurations = {
       "ludovico@uwunix" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs nix-colors outputs;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix

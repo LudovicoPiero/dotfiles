@@ -1,5 +1,5 @@
 local map = vim.api.nvim_set_keymap
-local opts = {silent = true, noremap = true}
+local opts = { silent = true, noremap = true }
 
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
@@ -20,4 +20,4 @@ require("Comment").setup()
 
 map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)
-map("n", ";", ":", {noremap = true})
+map("n", ";", ":", { noremap = true })

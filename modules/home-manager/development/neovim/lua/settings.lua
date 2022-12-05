@@ -2,7 +2,7 @@
 require("impatient")
 
 -- Autocmds
-vim.cmd [[
+vim.cmd([[
 	augroup CursorLine
     au!
     au VimEnter * setlocal cursorline
@@ -12,7 +12,7 @@ vim.cmd [[
 	augroup END
 
 autocmd FileType nix setlocal shiftwidth=4
-]]
+]])
 
 local o = vim.opt
 local g = vim.g

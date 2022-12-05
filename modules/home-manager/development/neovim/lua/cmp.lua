@@ -93,11 +93,25 @@ local on_attach = function(client)
     require("lsp-format").on_attach(client)
 end
 
+local caps = vim.tbl_extend(
+    'keep',
+    vim.lsp.protocol.make_client_capabilities(),
+    require('cmp_nvim_lsp').default_capabilities()
+);
+
 -- Set up lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig")["rnix"].setup {
+require('lspconfig')["nil_ls"].setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+        ['nil'] = {
+            testSetting = 42,
+            formatting = {
+                command = { "alejandra" },
+            },
+        },
+    },
 }
 require("lspconfig")["rust_analyzer"].setup {
     on_attach = on_attach,
