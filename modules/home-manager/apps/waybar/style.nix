@@ -9,7 +9,7 @@ in
   ''
        * {
        	border: none;
-       	border-radius: 6;
+       	border-radius: 6px;
         font-family: "UbuntuMono Nerd Font" ;
        	font-size: 15px;
        	min-height: 10px;
@@ -27,7 +27,7 @@ in
        	margin-top: 2px;
        	padding-left: 10px;
        	padding-right: 10px;
-       	border-radius: 10px;
+       	border-radius: 5px;
        	transition: none;
         color: transparent;
        	background: transparent;
@@ -38,7 +38,7 @@ in
        	margin-left: 12px;
        	font-size: 4px;
        	margin-bottom: 0px;
-       	border-radius: 10px;
+       	border-radius: 5px;
        	background: #${colors.base00};
        	transition: none;
        }
@@ -68,7 +68,7 @@ in
        	padding-left: 10px;
        	padding-right: 10px;
        	margin-bottom: 0px;
-       	border-radius: 10px;
+       	border-radius: 5px;
        	transition: none;
        	color: #${colors.base00};
        	background: #${colors.base0E};
@@ -80,7 +80,7 @@ in
        	padding-left: 10px;
        	padding-right: 10px;
        	margin-bottom: 0px;
-       	border-radius: 10px;
+       	border-radius: 5px;
        	transition: none;
        	color: #${colors.base00};
        	background: #${colors.base09};
@@ -92,7 +92,7 @@ in
        	padding-left: 10px;
        	padding-right: 10px;
        	margin-bottom: 0px;
-       	border-radius: 10px;
+       	border-radius: 5px;
        	transition: none;
        	color: #${colors.base00};
        	background: #${colors.base0D};
@@ -126,7 +126,7 @@ in
        	padding-left: 10px;
        	padding-right: 10px;
        	margin-bottom: 0px;
-       	border-radius: 10px;
+       	border-radius: 5px;
        	transition: none;
        	color: #${colors.base00};
        	background: #${colors.base0B};
@@ -138,7 +138,7 @@ in
        	padding-left: 10px;
        	margin-bottom: 0px;
        	padding-right: 10px;
-       	border-radius: 10px;
+       	border-radius: 5px;
        	transition: none;
        	background: #${colors.base01};
        }
@@ -149,7 +149,7 @@ in
     	padding-left: 10px;
     	padding-right: 10px;
     	margin-bottom: 0px;
-    	border-radius: 10px;
+    	border-radius: 5px;
     	transition: none;
     	color: #${colors.base00};
     	background: #${colors.base08};
