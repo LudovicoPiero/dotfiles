@@ -19,12 +19,26 @@ in {
 
   programs.neovim = {
     enable = true;
-    withNodeJs = true;
+    # withNodeJs = true;
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
 
+    coc = {
+        enable = true;
+        settings = {
+            rpc = {
+                checkIdle = false;
+                detailsViewing = "In {workspace_folder}";
+                detailsEditing = "{workspace_folder}";
+                lowerDetailsEditing = "Working on {file_name}";
+            };
+            # ...
+        };
+    };
+
     plugins = with pkgs.vimPlugins; [
+      # presence-nvim
       catppuccin-nvim
       vim-nix
       plenary-nvim
@@ -38,7 +52,6 @@ in {
       telescope-nvim
       indent-blankline-nvim
       nvim-treesitter
-      presence-nvim
       comment-nvim
       vim-fugitive
       nvim-web-devicons
@@ -55,6 +68,7 @@ in {
     ];
 
     extraPackages = with pkgs; [
+      nodejs-16_x # for copilot
       rnix-lsp
       nixfmt # Nix
       nixpkgs-fmt
