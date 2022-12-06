@@ -2,7 +2,6 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {
   # Apps
-  webcord = import ./apps/webcord.nix;
   thunar = import ./apps/thunar.nix;
 
   # System

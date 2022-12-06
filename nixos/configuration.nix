@@ -18,13 +18,17 @@
     outputs.nixosModules.thunar
     outputs.nixosModules.fonts
     outputs.nixosModules.user
-    outputs.nixosModules.webcord
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     #inputs.hardware.nixosModules.common-gpu-amd-sea-islands
 
+    # inputs.hyprland.nixosModules.default
+    # {
+    #   programs.hyprland.enable = true;
+    #   programs.hyprland.package = null;
+    # }
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
@@ -38,7 +42,7 @@
 
       # Or overlays exported from other flakes:
       inputs.rust-overlay.overlays.default
-      inputs.portal-hyprland.overlays.default
+      # inputs.portal-hyprland.overlays.default
 
       # Or define it inline, for example:
       # (final: prev: {
