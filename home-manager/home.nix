@@ -16,6 +16,7 @@
 
     # Apps
     outputs.homeManagerModules.git
+    outputs.homeManagerModules.webcord
     outputs.homeManagerModules.kitty
     outputs.homeManagerModules.foot
     outputs.homeManagerModules.wezterm

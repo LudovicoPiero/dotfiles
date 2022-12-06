@@ -18,7 +18,6 @@
     outputs.nixosModules.thunar
     outputs.nixosModules.fonts
     outputs.nixosModules.user
-    outputs.nixosModules.webcord
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
@@ -38,7 +37,6 @@
 
       # Or overlays exported from other flakes:
       inputs.rust-overlay.overlays.default
-      inputs.portal-hyprland.overlays.default
 
       # Or define it inline, for example:
       # (final: prev: {

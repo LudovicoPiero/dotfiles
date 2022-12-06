@@ -13,6 +13,7 @@
 
   # Apps
   dunst = import ./apps/dunst;
+  webcord = import ./apps/webcord;
   eww = import ./apps/eww;
   foot = import ./apps/foot;
   i3status = import ./apps/i3status;
