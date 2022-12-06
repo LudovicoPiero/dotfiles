@@ -12,11 +12,18 @@ map("n", "<C-w>", ":Telescope find_files <CR>", opts)
 
 -- Nvim-Tree
 map("n", "<C-b>", ":NvimTreeFocus <CR>", opts)
+map("n", "<C-c>", ":NvimTreeClose <CR>", opts)
 map("n", "<C-t>", ":NvimTreeToggle <CR>", opts)
+
+-- Change Buffer
+map("n", "<C-1>", ":BufferLineGoToBuffer 1 <CR>", opts)
+map("n", "<C-2>", ":BufferLineGoToBuffer 2 <CR>", opts)
+map("n", "<C-3>", ":BufferLineGoToBuffer 3 <CR>", opts)
+map("n", "<C-4>", ":BufferLineGoToBuffer 4 <CR>", opts)
+map("n", "<C-5>", ":BufferLineGoToBuffer 5 <CR>", opts)
 
 -- Comment Toggle
 require("Comment").setup()
--- map("n", "<C-c>", ":CommentToggle <CR>", opts)
 
 map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)
