@@ -24,7 +24,7 @@
         "$character"
       ];
       command_timeout = 1000;
-      right_format = "$all";
+      # right_format = "$all";
       directory = {
         style = "blue";
       };
