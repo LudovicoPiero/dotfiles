@@ -124,6 +124,7 @@ in {
     bind = SUPERSHIFT , G , exec , chromium
     bind = SUPER , C , exit ,
     bind = SUPER , D , exec , $discord
+    bind = SUPERSHIFT , D , exec , webcord
     bind = SUPER , E , exec , [float] thunar
     bind = SUPER , F , fullscreen , 0
     bind = SUPER , G , exec , ${pkgs.firefox}/bin/firefox
