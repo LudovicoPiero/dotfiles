@@ -30,7 +30,12 @@
   };
 
   # make HM-managed GTK stuff work
-  programs.dconf.enable = true;
+  programs = {
+    dconf.enable = true;
+  };
+
+  # Use Gnome Theme for QT
+  qt5.platformTheme = "gnome";
 
   # Enable OpenGL
   hardware.opengl = {
