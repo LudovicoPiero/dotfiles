@@ -13,8 +13,11 @@
     coc = {
       enable = true;
       settings = {
-        definitions.languageserver.enable = false; # I'm using cmp
+        # Disable coc suggestion
+        definitions.languageserver.enable = false;
         suggest.autoTrigger = "none";
+
+        # coc-discord-rpc
         rpc = {
           checkIdle = false;
           detailsViewing = "In {workspace_folder}";
