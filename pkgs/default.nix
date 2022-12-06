@@ -3,5 +3,4 @@
 {pkgs ? (import ../nixpkgs.nix) {}}: {
   # example = pkgs.callPackage ./example { };
   google-sans = pkgs.callPackage ./google-sans.nix {};
-  lunarvim = pkgs.callPackage ./lunarvim {};
 }
