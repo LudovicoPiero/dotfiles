@@ -58,6 +58,7 @@
         };
         "pulseaudio" = {
           format = "{icon} {volume}%";
+          on-click = "amixer -q set Master toggle-mute";
           format-muted = "󰖁 Muted";
           format-icons = {
             "headphone" = " ";
