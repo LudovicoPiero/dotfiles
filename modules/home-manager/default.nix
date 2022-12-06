@@ -19,7 +19,7 @@
   i3status = import ./apps/i3status;
   kitty = import ./apps/kitty;
   wezterm = import ./apps/wezterm;
-  lf = import ./apps/lf;
+  ranger = import ./apps/ranger;
   mako = import ./apps/mako;
   obs = import ./apps/obs;
   picom = import ./apps/picom;

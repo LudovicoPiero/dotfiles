@@ -22,7 +22,7 @@
     outputs.homeManagerModules.wezterm
     outputs.homeManagerModules.dunst
     outputs.homeManagerModules.wofi
-    outputs.homeManagerModules.lf
+    outputs.homeManagerModules.ranger
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.gtk
     outputs.homeManagerModules.fish
