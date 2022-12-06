@@ -12,7 +12,6 @@
     wlr.enable = false;
     extraPortals = [
       inputs.xdph.packages.${pkgs.system}.default
-      #   xdg-desktop-portal-wlr
     ];
   };
 
@@ -74,8 +73,25 @@
       deviceSection = ''
         Option "TearFree" "true"
       '';
-      displayManager.lightdm.enable = false;
-      displayManager.sddm.enable = true;
+      displayManager.lightdm = {
+        enable = true;
+        greeters.gtk = {
+          theme = {
+            package = pkgs.whitesur-gtk-theme;
+            name = "WhiteSur-Dark";
+          };
+          iconTheme = {
+            package = pkgs.whitesur-icon-theme;
+            name = "WhiteSur";
+          };
+          cursorTheme = {
+            package = pkgs.capitaine-cursors;
+            name = "capitaine-cursors-white";
+            size = 24;
+          };
+        };
+      };
+      # displayManager.sddm.enable = true;
       displayManager.session = [
         {
           manage = "window";
@@ -88,7 +104,9 @@
     };
 
     # add hyprland to display manager sessions
-    xserver.displayManager.sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
+    xserver.displayManager.sessionPackages = [
+      inputs.hyprland.packages.${pkgs.system}.default
+    ];
 
     # Pipewire
     pipewire = {
