@@ -35,7 +35,7 @@
     keyMap = "us";
 
     colors = let
-      colorscheme = inputs.nix-colors.colorSchemes.material-darker;
+      colorscheme = inputs.nix-colors.colorSchemes.catppuccin;
     in
       with colorscheme.colors; [
         base01
