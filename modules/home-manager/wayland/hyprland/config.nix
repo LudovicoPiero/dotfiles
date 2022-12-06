@@ -100,6 +100,8 @@ in {
     windowrulev2 = noblur, class:^(firefox)$
     windowrulev2 = noblur, class:^(chromium-browser)$
     windowrulev2 = noblur, class:^(discord)$
+    windowrulev2 = noblur, title:^(WebCord)$
+    windowrulev2 = workspace 3, title:^(WebCord)$
     windowrulev2 = noblur, title:^(Open File)$
     windowrulev2 = noshadow, class:^(waybar)$
     windowrulev2 = noshadow, class:^(firefox)$
