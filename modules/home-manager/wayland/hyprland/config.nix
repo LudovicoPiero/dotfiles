@@ -135,8 +135,8 @@ in {
     bind = SUPER , S , exec , [workspace 5 silent;tile] spotify
     bind = SUPER , W , killactive ,
     bind = SUPER , X , exec , $powermenu
-    #bind = SUPER , Return , exec , ${pkgs.kitty}/bin/kitty
-    bind = SUPER , Return , exec , ${pkgs.wezterm}/bin/wezterm
+    bind = SUPER , Return , exec , ${pkgs.kitty}/bin/kitty
+    bind = CTRL  , Return , exec , ${pkgs.wezterm}/bin/wezterm
 
     # Binds Mouse
     bindm = SUPER , mouse:272 , movewindow
