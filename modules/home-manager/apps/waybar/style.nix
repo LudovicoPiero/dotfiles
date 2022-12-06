@@ -58,6 +58,10 @@ in
         color: #${colors.base08};
        }
 
+       #workspaces button.active {
+        color: #${colors.base08};
+       }
+
        #workspaces button.active:hover {
            color: #${colors.base08};
        }
