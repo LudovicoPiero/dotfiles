@@ -128,6 +128,8 @@
         "general.useragent.locale" = "en-AU";
         "general.smoothScroll" = true;
 
+        "browser.startup.homepage" = "https://onigiri-gules.vercel.app/";
+
         "browser.send_pings" = false;
         "browser.urlbar.speculativeConnect.enabled" = false;
         "dom.event.clipboardevents.enabled" = true;
