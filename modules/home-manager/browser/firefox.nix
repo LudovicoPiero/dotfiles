@@ -6,6 +6,8 @@
       sponsorblock
       bitwarden
       fastforward
+      darkreader
+      enhanced-github
     ];
     profiles.ludovico = {
       id = 0;
