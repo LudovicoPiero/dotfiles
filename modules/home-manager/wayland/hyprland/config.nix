@@ -116,7 +116,6 @@ in {
 
     # Variables
     $discord = discordcanary  --disable-features=UseOzonePlatform --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
-    $menu = $HYPR_FOLDER/scripts/bemenu
     $powermenu = $HYPR_FOLDER/scripts/powermenu
 
     # Binds Keyboard
@@ -129,7 +128,7 @@ in {
     bind = SUPER , F , fullscreen , 0
     bind = SUPER , G , exec , ${pkgs.firefox}/bin/firefox
     bind = SUPER , M , exec , [workspace 5 silent;tile] mailspring
-    bind = SUPER , P , exec , $menu
+    bind = SUPER , P , exec , wofi
     bind = SUPER , Q , exec , ${pkgs.hyprpicker}/bin/hyprpicker -f hex --autocopy
     bind = SUPER , T , togglefloating ,
     bind = SUPER , S , exec , [workspace 5 silent;tile] spotify

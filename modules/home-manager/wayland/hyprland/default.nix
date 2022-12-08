@@ -28,7 +28,7 @@
   imports = [
     # ../apps/mako
     # ../apps/eww
-    ../../apps/waybar
+    # ../../apps/waybar
     ../../apps/eww
     ./config.nix
   ];
