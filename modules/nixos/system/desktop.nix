@@ -70,6 +70,7 @@
     xserver = {
       enable = true;
       layout = "us"; # Configure keymap
+      libinput.enable = true;
       deviceSection = ''
         Option "TearFree" "true"
       '';

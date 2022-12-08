@@ -47,7 +47,6 @@
     };
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    # portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
