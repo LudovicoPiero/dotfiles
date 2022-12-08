@@ -1,8 +1,8 @@
 # Wofi Config
 
 ## Files (absolute path)
-#style=/home/USER/.config/wayfire/wofi/style.css
-#color=/home/USER/.config/wayfire/wofi/colors
+style=/home/ludovico/.config/wofi/style.css
+color=/home/ludovico/.config/wofi/colors
 
 ## General
 show=drun

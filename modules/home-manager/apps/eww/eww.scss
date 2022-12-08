@@ -223,7 +223,9 @@ button {
 .launchbutton {
   background-color: $blue;
   color: $mantle;
-  margin-top: 6px;
+  margin: 2px 8px;
+  font-size: 1.3rem;
+  border-radius: 10px;
 }
 
 .launchbutton:hover {
