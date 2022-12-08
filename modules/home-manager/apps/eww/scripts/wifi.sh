@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if iwctl station wlan0 show | grep -q "connected"; then
+if nmcli n | grep -q "enabled"; then
     icon=""
-    ssid=Amadeus
+    ssid=AUSSIE
     status="Connected to ${ssid}"
 else
     icon="睊"

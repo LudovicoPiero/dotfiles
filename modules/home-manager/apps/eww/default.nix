@@ -21,7 +21,6 @@
   home.packages = with pkgs; [
     pamixer
     brightnessctl
-    iwd
   ];
 
   systemd.user.services.eww = {
