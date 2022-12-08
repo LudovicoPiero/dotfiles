@@ -47,6 +47,7 @@ in
        	transition: none;
        	color: #${colors.base0C};
        	background: transparent;
+        border-radius: 0px;
        	font-size: 16px;
        }
 
@@ -60,6 +61,7 @@ in
 
        #workspaces button.active {
         color: #${colors.base08};
+        border-bottom: 2px solid #${colors.base08};
        }
 
        #workspaces button.active:hover {
