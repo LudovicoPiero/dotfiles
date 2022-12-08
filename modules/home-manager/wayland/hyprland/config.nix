@@ -196,8 +196,8 @@ in {
     bind = , XF86MonBrightnessUp , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%+
     bind = , XF86MonBrightnessDown , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
 
-    exec-once = ${pkgs.waybar}/bin/waybar
-    # exec-once = eww open bar
+    # exec-once = ${pkgs.waybar}/bin/waybar
+    exec-once = eww open bar
     # exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
     exec-once = ${pkgs.mpvpaper}/bin/mpvpaper -o "no-audio --loop-playlist" eDP-1 $HYPR_FOLDER/Wallpaper/Wallpaper.mp4
   '';

@@ -295,9 +295,8 @@
     :x "-4px"
     :y "0px"
     :width "45px"
-    :anchor "top left"
+    :anchor "left center"
   )
-  :reserve (struts :distance "45px" :side "left")
   :stacking "fg"
   :exclusive true
   :wm-ignore false
