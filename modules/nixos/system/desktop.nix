@@ -39,7 +39,10 @@
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [amdvlk];
+    extraPackages = with pkgs; [
+      amdvlk
+      rocm-opencl-icd
+    ];
     driSupport = true;
     driSupport32Bit = true; # For wine, etc.
   };
