@@ -128,7 +128,7 @@ in {
     bind = SUPER , E , exec , [float] thunar
     bind = SUPER , F , fullscreen , 0
     bind = SUPER , G , exec , ${pkgs.firefox}/bin/firefox
-    bind = SUPER , M , exec , [workspace 6 silent;tile] mailspring
+    bind = SUPER , M , exec , [workspace 5 silent;tile] mailspring
     bind = SUPER , P , exec , $menu
     bind = SUPER , Q , exec , ${pkgs.hyprpicker}/bin/hyprpicker -f hex --autocopy
     bind = SUPER , T , togglefloating ,
@@ -166,22 +166,22 @@ in {
     bind = SUPER , 3 , workspace , 3
     bind = SUPER , 4 , workspace , 4
     bind = SUPER , 5 , workspace , 5
-    bind = SUPER , 6 , workspace , 6
-    bind = SUPER , 7 , workspace , 7
-    bind = SUPER , 8 , workspace , 8
-    bind = SUPER , 9 , workspace , 9
-    bind = SUPER , 0 , workspace , 10
+    # bind = SUPER , 6 , workspace , 6
+    # bind = SUPER , 7 , workspace , 7
+    # bind = SUPER , 8 , workspace , 8
+    # bind = SUPER , 9 , workspace , 9
+    # bind = SUPER , 0 , workspace , 10
 
     bind = SUPERSHIFT , 1 , movetoworkspacesilent , 1
     bind = SUPERSHIFT , 2 , movetoworkspacesilent , 2
     bind = SUPERSHIFT , 3 , movetoworkspacesilent , 3
     bind = SUPERSHIFT , 4 , movetoworkspacesilent , 4
     bind = SUPERSHIFT , 5 , movetoworkspacesilent , 5
-    bind = SUPERSHIFT , 6 , movetoworkspacesilent , 6
-    bind = SUPERSHIFT , 7 , movetoworkspacesilent , 7
-    bind = SUPERSHIFT , 8 , movetoworkspacesilent , 8
-    bind = SUPERSHIFT , 9 , movetoworkspacesilent , 9
-    bind = SUPERSHIFT , 0 , movetoworkspacesilent , 10
+    # bind = SUPERSHIFT , 6 , movetoworkspacesilent , 6
+    # bind = SUPERSHIFT , 7 , movetoworkspacesilent , 7
+    # bind = SUPERSHIFT , 8 , movetoworkspacesilent , 8
+    # bind = SUPERSHIFT , 9 , movetoworkspacesilent , 9
+    # bind = SUPERSHIFT , 0 , movetoworkspacesilent , 10
 
     # Media Keys
     bind = , XF86AudioNext , exec , ${pkgs.playerctl}/bin/playerctl next
