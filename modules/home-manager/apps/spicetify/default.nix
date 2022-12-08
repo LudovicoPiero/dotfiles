@@ -26,6 +26,6 @@
       "adblock.js"
     ];
 
-    enabledCustomApps = ["marketplace"];
+    # enabledCustomApps = ["marketplace"];
   };
 }
