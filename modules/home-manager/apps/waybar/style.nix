@@ -4,160 +4,173 @@
   ...
 }: let
   inherit (config.colorScheme) colors;
-in
-  # https://github.com/theCode-Breaker/riverwm/blob/main/waybar/river/river_style.css
-  ''
-       * {
-       	border: none;
-       	border-radius: 6px;
-        font-family: "UbuntuMono Nerd Font" ;
-       	font-size: 15px;
-       	min-height: 10px;
-       }
+in ''
+     * {
+     	border: none;
+     	border-radius: 6px;
+      font-family: "UbuntuMono Nerd Font" ;
+     	font-size: 15px;
+     	min-height: 10px;
+     }
 
-       window#waybar {
-       	background: transparent;
-       }
+     window#waybar {
+      background: transparent;
+     	/*background-color: #${colors.base00};
+      transition-property: background-color;
+      transition-duration: .5s;*/
+     }
 
-       window#waybar.hidden {
-       	opacity: 0.2;
-       }
+     window#waybar.hidden {
+     	opacity: 0.2;
+     }
 
-       #window {
-       	margin-top: 2px;
-       	padding-left: 10px;
-       	padding-right: 10px;
-       	border-radius: 5px;
-       	transition: none;
-        color: transparent;
-       	background: transparent;
-       }
+     #window {
+     	margin-top: 2px;
+     	padding-left: 10px;
+     	padding-right: 10px;
+     	border-radius: 5px;
+     	transition: none;
+      color: transparent;
+     	background: transparent;
+     }
 
-       #workspaces {
-       	margin-top: 3px;
-       	margin-left: 12px;
-       	font-size: 4px;
-       	margin-bottom: 0px;
-       	border-radius: 5px;
-       	background: #${colors.base00};
-       	transition: none;
-       }
+     #workspaces {
+     	margin-top: 3px;
+     	margin-left: 12px;
+     	font-size: 4px;
+     	margin-bottom: 0px;
+     	border-radius: 5px;
+     	background: #${colors.base00};
+     	transition: none;
+     }
 
-       #workspaces button {
-       	transition: none;
-       	color: #${colors.base0C};
-       	background: transparent;
-        border-radius: 0px;
-       	font-size: 16px;
-       }
+     #workspaces button {
+     	transition: none;
+     	color: #${colors.base0C};
+     	background: transparent;
+      border-radius: 0px;
+     	font-size: 16px;
+     }
 
-       #workspaces button:hover {
-       	transition: none;
-       	box-shadow: inherit;
-       	text-shadow: inherit;
-        border-color: #${colors.base08};
-        color: #${colors.base08};
-       }
+     #workspaces button:hover {
+     	transition: none;
+     	box-shadow: inherit;
+     	text-shadow: inherit;
+      border-color: #${colors.base08};
+      color: #${colors.base08};
+     }
 
-       #workspaces button.active {
-        color: #${colors.base08};
-        border-bottom: 2px solid #${colors.base08};
-       }
+     #workspaces button.active {
+      color: #${colors.base08};
+      border-bottom: 2px solid #${colors.base08};
+     }
 
-       #workspaces button.active:hover {
-           color: #${colors.base08};
-       }
+     #workspaces button.active:hover {
+         color: #${colors.base08};
+     }
 
-       #network {
-       	margin-top: 3px;
-       	margin-left: 8px;
-       	padding-left: 10px;
-       	padding-right: 10px;
-       	margin-bottom: 0px;
-       	border-radius: 5px;
-       	transition: none;
-       	color: #${colors.base00};
-       	background: #${colors.base0E};
-       }
+     #network {
+     	margin-top: 3px;
+     	margin-left: 8px;
+     	padding-left: 10px;
+     	padding-right: 10px;
+     	margin-bottom: 0px;
+     	border-radius: 5px;
+     	transition: none;
+     	color: #${colors.base00};
+     	background: #${colors.base0E};
+     }
 
-       #pulseaudio {
-       	margin-top: 3px;
-       	margin-left: 8px;
-       	padding-left: 10px;
-       	padding-right: 10px;
-       	margin-bottom: 0px;
-       	border-radius: 5px;
-       	transition: none;
-       	color: #${colors.base00};
-       	background: #${colors.base09};
-       }
+     #custom-weather {
+      margin-top: 3px;
+      margin-left: 8px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-bottom: 0px;
+      border-radius: 5px;
+      transition: none;
+      color: #${colors.base00};
+      background: #${colors.base0F}
+     }
 
-       #battery {
-       	margin-top: 3px;
-       	margin-left: 8px;
-       	padding-left: 10px;
-       	padding-right: 10px;
-       	margin-bottom: 0px;
-       	border-radius: 5px;
-       	transition: none;
-       	color: #${colors.base00};
-       	background: #${colors.base0D};
-       }
+     #pulseaudio {
+     	margin-top: 3px;
+     	margin-left: 8px;
+     	padding-left: 10px;
+     	padding-right: 10px;
+     	margin-bottom: 0px;
+     	border-radius: 5px;
+     	transition: none;
+     	color: #${colors.base00};
+     	background: #${colors.base09};
+     }
 
-       #battery.charging, #battery.plugged {
-       	   color: #${colors.base00};
-           background-color: #${colors.base0D};
-       }
+     #battery {
+     	margin-top: 3px;
+     	margin-left: 8px;
+     	padding-left: 10px;
+     	padding-right: 10px;
+     	margin-bottom: 0px;
+     	border-radius: 5px;
+     	transition: none;
+     	color: #${colors.base00};
+     	background: #${colors.base0D};
+     }
 
-       #battery.critical:not(.charging) {
-           background-color: #${colors.base0D};
-           color: #${colors.base00};
-           animation-name: blink;
-           animation-duration: 0.5s;
-           animation-timing-function: linear;
-           animation-iteration-count: infinite;
-           animation-direction: alternate;
-       }
+     #battery.charging, #battery.plugged {
+     	   color: #${colors.base00};
+         background-color: #${colors.base0D};
+     }
 
-       @keyframes blink {
-           to {
-               background-color: #${colors.base08};
-               color: #${colors.base09};
-           }
-       }
+     #battery.critical:not(.charging) {
+         background-color: #${colors.base0D};
+         color: #${colors.base00};
+         animation-name: blink;
+         animation-duration: 0.5s;
+         animation-timing-function: linear;
+         animation-iteration-count: infinite;
+         animation-direction: alternate;
+     }
 
-       #clock {
-       	margin-top: 3px;
-       	margin-left: 8px;
-       	padding-left: 10px;
-       	padding-right: 10px;
-       	margin-bottom: 0px;
-       	border-radius: 5px;
-       	transition: none;
-       	color: #${colors.base00};
-       	background: #${colors.base0B};
-       }
+     @keyframes blink {
+         to {
+             background-color: #${colors.base08};
+             color: #${colors.base09};
+         }
+     }
 
-       #tray {
-       	margin-top: 3px;
-       	margin-left: 8px;
-       	padding-left: 10px;
-       	margin-bottom: 0px;
-       	padding-right: 10px;
-       	border-radius: 5px;
-       	transition: none;
-       	background: #${colors.base01};
-       }
+     #clock {
+     	margin-top: 3px;
+     	margin-left: 8px;
+     	padding-left: 10px;
+     	padding-right: 10px;
+     	margin-bottom: 0px;
+     	border-radius: 5px;
+     	transition: none;
+     	color: #${colors.base00};
+     	background: #${colors.base0B};
+     }
 
-    #custom-date {
-    	margin-top: 3px;
-    	margin-left: 8px;
-    	padding-left: 10px;
-    	padding-right: 10px;
-    	margin-bottom: 0px;
-    	border-radius: 5px;
-    	transition: none;
-    	color: #${colors.base00};
-    	background: #${colors.base08};
-    }
-  ''
+     #tray {
+     	margin-top: 3px;
+     	margin-left: 8px;
+     	padding-left: 10px;
+     	margin-bottom: 0px;
+     	padding-right: 10px;
+     	border-radius: 5px;
+     	transition: none;
+     	background: #${colors.base01};
+     }
+
+  #custom-date {
+  	margin-top: 3px;
+  	margin-left: 8px;
+  	padding-left: 10px;
+  	padding-right: 10px;
+  	margin-bottom: 0px;
+  	border-radius: 5px;
+  	transition: none;
+  	color: #${colors.base00};
+  	background: #${colors.base08};
+  }
+''

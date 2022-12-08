@@ -19,6 +19,7 @@
           #   "wlr/workspaces"
           #   "tray"
           "network"
+          "custom/weather"
           "pulseaudio"
           "battery"
           "custom/date"
@@ -55,6 +56,15 @@
           format-linked = "{ifname} (No IP)";
           format-disconnected = "  Disconnected";
           tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
+        };
+        "custom/weather" = {
+          "format" = "{}";
+          "format-alt" = "{alt}: {}";
+          "format-alt-click" = "click-right";
+          "interval" = 1800;
+          "return-type" = "json";
+          "exec" = "~/.config/hypr/scripts/weather.sh";
+          "exec-if" = "ping wttr.in -c1";
         };
         "pulseaudio" = {
           format = "{icon} {volume}%";
