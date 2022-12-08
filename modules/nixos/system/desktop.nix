@@ -81,12 +81,12 @@
         enable = true;
         greeters.gtk = {
           theme = {
-            package = pkgs.whitesur-gtk-theme;
-            name = "WhiteSur-Dark";
+            package = pkgs.arc-theme;
+            name = "Arc-Dark";
           };
           iconTheme = {
-            package = pkgs.whitesur-icon-theme;
-            name = "WhiteSur";
+            package = pkgs.papirus-icon-theme;
+            name = "Papirus-Dark";
           };
           cursorTheme = {
             package = pkgs.capitaine-cursors;
