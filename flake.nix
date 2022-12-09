@@ -14,6 +14,9 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
 
+    # Doom Emacs
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
     helix.url = "github:SoraTenshi/helix/experimental";
 
     # Webcord

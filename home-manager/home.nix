@@ -44,11 +44,13 @@
     # Development
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.helix
+    outputs.homeManagerModules.emacs
 
     # Or modules exported from other flakes (such as nix-colors):
     inputs.hyprland.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModule
     inputs.nix-colors.homeManagerModule
+    inputs.nix-doom-emacs.hmModule
 
     # You can also split up your configuration and import pieces of it here:
     # ./chromium.nix

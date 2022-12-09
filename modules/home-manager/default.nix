@@ -38,6 +38,7 @@
   vscode = import ./development/vscode.nix;
   neovim = import ./development/neovim;
   helix = import ./development/helix;
+  emacs = import ./development/emacs;
 
   # Browser
   chromium = import ./browser/chromium.nix;
