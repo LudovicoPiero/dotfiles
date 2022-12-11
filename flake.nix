@@ -50,10 +50,10 @@
     };
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # xdph = {
+    #   url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";

@@ -22,6 +22,7 @@
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hyprland.nixosModules.default
     #inputs.hardware.nixosModules.common-gpu-amd-sea-islands
 
     # Import your generated (nixos-generate-config) hardware configuration
@@ -36,6 +37,7 @@
       outputs.overlays.additions
 
       # Or overlays exported from other flakes:
+      inputs.nixpkgs-wayland.overlay
       inputs.rust-overlay.overlays.default
 
       # Or define it inline, for example:

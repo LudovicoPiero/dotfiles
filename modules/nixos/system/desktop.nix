@@ -10,9 +10,9 @@
   xdg.portal = {
     enable = true;
     wlr.enable = false;
-    extraPortals = [
-      inputs.xdph.packages.${pkgs.system}.default
-    ];
+    # extraPortals = [
+    #   inputs.xdph.packages.${pkgs.system}.default
+    # ];
   };
 
   environment.variables = {
@@ -28,9 +28,12 @@
     pam.services.swaylock.text = "auth include login";
   };
 
-  # make HM-managed GTK stuff work
   programs = {
+    # make HM-managed GTK stuff work
     dconf.enable = true;
+
+    # Enable Hyprland and the options
+    hyprland.enable = true;
   };
 
   # Use Gnome Theme for QT
