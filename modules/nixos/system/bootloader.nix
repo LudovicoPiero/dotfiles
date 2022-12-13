@@ -9,7 +9,7 @@
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback # Virtual Camera for OBS-Studio
     ];
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     supportedFilesystems = ["ntfs"];
     loader = {
       efi = {
