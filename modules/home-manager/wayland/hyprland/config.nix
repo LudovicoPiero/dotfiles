@@ -198,7 +198,7 @@ in {
 
     exec-once = ${pkgs.waybar}/bin/waybar
     # exec-once = eww open bar
-    # exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
-    exec-once = ${pkgs.mpvpaper}/bin/mpvpaper -o "no-audio --loop-playlist" eDP-1 $HYPR_FOLDER/Wallpaper/Wallpaper.mp4
+    exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
+    # exec-once = ${pkgs.mpvpaper}/bin/mpvpaper -o "no-audio --loop-playlist" eDP-1 $HYPR_FOLDER/Wallpaper/Wallpaper.mp4
   '';
 }
