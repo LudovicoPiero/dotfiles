@@ -19,7 +19,7 @@
           #   "wlr/workspaces"
           #   "tray"
           "network"
-          "custom/weather"
+          # "custom/weather"
           "pulseaudio"
           "battery"
           "custom/date"
