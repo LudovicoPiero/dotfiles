@@ -104,7 +104,7 @@
     homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
-      uwunix = nixpkgs.lib.nixosSystem {
+      sforza = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
@@ -114,7 +114,7 @@
     };
 
     homeConfigurations = {
-      "ludovico@uwunix" = home-manager.lib.homeManagerConfiguration {
+      "ludovico@sforza" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs nix-colors outputs;};
         modules = [
