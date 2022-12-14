@@ -16,7 +16,6 @@
       g = "https://www.google.com/search?hl=en&q={}";
     };
     settings = {
-      tabs.tabs_are_windows = true;
       qt.args = [
         "enable-accelerated-video-decode"
         "enable-native-gpu-memory-buffers"
