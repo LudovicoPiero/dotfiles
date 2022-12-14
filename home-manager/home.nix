@@ -45,7 +45,7 @@
     # Development
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.helix
-    outputs.homeManagerModules.emacs
+    # outputs.homeManagerModules.emacs
 
     # Or modules exported from other flakes (such as nix-colors):
     inputs.hyprland.homeManagerModules.default
