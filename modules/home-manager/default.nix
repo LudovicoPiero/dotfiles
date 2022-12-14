@@ -43,4 +43,5 @@
   # Browser
   chromium = import ./browser/chromium.nix;
   firefox = import ./browser/firefox.nix;
+  qutebrowser = import ./browser/qutebrowser.nix;
 }

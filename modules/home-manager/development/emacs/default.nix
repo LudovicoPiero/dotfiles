@@ -6,5 +6,6 @@
 
   services.emacs = {
     enable = true;
+    defaultEditor = true; # it will override $EDITOR
   };
 }
