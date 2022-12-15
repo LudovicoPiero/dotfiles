@@ -88,6 +88,7 @@
         "ui"
       ]);
     in ''
+      set guicursor=n-v-c-i:block
       lua << EOF
       ${luaConfig}
       EOF
