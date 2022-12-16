@@ -48,6 +48,8 @@
       nvim-web-devicons
       lsp-format-nvim
 
+      gitsigns-nvim
+
       # Cmp
       cmp-nvim-lsp
       cmp-buffer

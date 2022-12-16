@@ -1,6 +1,9 @@
 -- Telescope
 require("telescope").setup()
 
+-- Gitsigns
+require('gitsigns').setup()
+
 -- Bufferline
 require("bufferline").setup({
     options = {
