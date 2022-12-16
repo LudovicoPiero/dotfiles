@@ -2,7 +2,7 @@ local cmp = require("cmp")
 cmp.setup(
     {
         experimental = {
-            ghost_text = true
+            -- ghost_text = true -- disabled because conflict with copilot.vim
         },
         snippet = {
             expand = function(args)
@@ -12,6 +12,10 @@ cmp.setup(
         window = {},
         mapping = cmp.mapping.preset.insert(
             {
+                ['<C-g>'] = cmp.mapping(function(fallback)
+                    vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true,
+                        true)), 'n', true)
+                end),
                 ["<C-j>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-k>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(),
