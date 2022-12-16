@@ -13,8 +13,24 @@
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
-(beacon-mode 1)
-(setq doom-theme 'doom-one)
+;; Enables Nixos-installed packages to be loaded
+(require 'package)
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+;; Set location of custom.el
+(setq custom-file "~/.emacs.d/custom.el")
+
+(setq vc-follow-symlinks t) ;; Always follow symlinks.
+
+;; enable beacon here
+(beacon-mode 0)
+
+;; Set rust lsp server
+(setq lsp-rust-server 'rust-analyzer)
+
+;; Set Doom theme
+(setq doom-theme 'doom-dracula)
 
 (setq display-line-numbers-type 'relative)
 
