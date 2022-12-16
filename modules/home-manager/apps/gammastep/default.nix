@@ -11,14 +11,14 @@
     latitude = "-27.4"; # Obviously not my real address :)
     longitude = "153.0";
     provider = "manual";
-    settings = {
-      general = {
-        adjustment-method = "randr";
-      };
-      randr = {
-        screen = 0;
-      };
-    };
+    # settings = {
+    #   general = {
+    #     adjustment-method = "randr";
+    #   };
+    #   randr = {
+    #     screen = 0;
+    #   };
+    # };
     tray = true; # Enable tray
   };
 }
