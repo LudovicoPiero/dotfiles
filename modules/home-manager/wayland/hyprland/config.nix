@@ -116,6 +116,7 @@ in {
 
     # Variables
     $discord = discordcanary --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy --ignore-gpu-blocklist
+    $webcord = webcord --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy --ignore-gpu-blocklist
     $powermenu = $HYPR_FOLDER/scripts/powermenu
 
     # Binds Keyboard
@@ -123,7 +124,7 @@ in {
     bind = SUPERSHIFT , G , exec , chromium
     bind = SUPER , C , exit ,
     bind = SUPER , D , exec , $discord
-    bind = SUPERSHIFT , D , exec , webcord
+    bind = SUPERSHIFT , D , exec , $webcord
     bind = SUPERSHIFT , E , exec , [float] thunar
     bind = SUPER , E , exec , emacsclient -c -a 'nvim'
     bind = SUPER , F , fullscreen , 0
