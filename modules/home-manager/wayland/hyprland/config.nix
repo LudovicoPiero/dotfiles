@@ -115,7 +115,7 @@ in {
     windowrulev2 = rounding 0 , class:^(Code)$ # VSCODE
 
     # Variables
-    $discord = discordcanary  --disable-features=UseOzonePlatform --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
+    $discord = discordcanary --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy --ignore-gpu-blocklist
     $powermenu = $HYPR_FOLDER/scripts/powermenu
 
     # Binds Keyboard
