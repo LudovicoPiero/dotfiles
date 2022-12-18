@@ -30,7 +30,7 @@
 (setq lsp-rust-server 'rust-analyzer)
 
 ;; Set Doom theme
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-tokyo-night)
 
 (setq display-line-numbers-type 'relative)
 
@@ -53,4 +53,6 @@
 
 ;; Discord Presence
 (require 'elcord)
+(setq elcord-quiet t)
+
 (add-hook 'after-init-hook 'elcord-mode)
