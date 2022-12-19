@@ -5,6 +5,9 @@
   config,
   ...
 } @ args: {
+  home.packages = with pkgs; [
+    alsa-utils
+  ];
   programs.waybar = {
     enable = true;
     settings = {
