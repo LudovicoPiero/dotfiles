@@ -33,6 +33,7 @@
     outputs.homeManagerModules.spicetify
     outputs.homeManagerModules.obs
     outputs.homeManagerModules.gpg
+    outputs.homeManagerModules.gallery-dl
 
     # Browser
     outputs.homeManagerModules.chromium

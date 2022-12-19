@@ -27,6 +27,7 @@
   tmux = import ./apps/tmux;
   waybar = import ./apps/waybar;
   wofi = import ./apps/wofi;
+  gallery-dl = import ./apps/gallery-dl;
 
   # Scripts
   scripts = import ./scripts;
