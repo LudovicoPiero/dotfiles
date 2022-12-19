@@ -12,7 +12,7 @@
         proxy = null;
         skip = true;
 
-        user-agent =  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0";
+        user-agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0";
         retries = 3;
         timeout = 30.0;
         verify = true;
