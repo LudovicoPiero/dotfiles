@@ -50,6 +50,18 @@
       :desc "Counsel eshell history" "e h" #'counsel-esh-history
       :desc "Vterm popup toggle" "v t" #'+vterm/toggle)
 
+;; Change formatter for nix files
+(after! nix-mode
+  (set-formatter! 'alejandra "alejandra --quiet" :modes '(nix-mode))
+  (map! :localleader
+        :map nix-mode-map
+        :desc "nix-format-buffer" "p" #'+format/buffer))
+
+;; Change doom modeline to user letter instead of icon
+(use-package! doom-modeline
+  :defer t
+  :custom
+  (doom-modeline-modal-icon nil))
 
 ;; Discord Presence
 (require 'elcord)

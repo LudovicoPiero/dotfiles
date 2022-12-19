@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.doom-emacs = {
+   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./doom.d;
   };
