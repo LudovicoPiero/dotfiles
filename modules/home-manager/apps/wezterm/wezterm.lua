@@ -1,5 +1,76 @@
 local wezterm = require("wezterm")
 
+local DIVIDERS = {
+    LEFT = utf8.char(0xe0be),
+    RIGHT = utf8.char(0xe0bc),
+}
+
+-- custom tab bar
+---@diagnostic disable-next-line: unused-local
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+    local colours = config.resolved_palette.tab_bar
+
+    local active_tab_index = 0
+    for _, t in ipairs(tabs) do
+        if t.is_active == true then
+            active_tab_index = t.tab_index
+        end
+    end
+
+    local active_bg = config.resolved_palette.ansi[6]
+    local active_fg = colours.background
+    local inactive_bg = colours.inactive_tab.bg_color
+    local inactive_fg = colours.inactive_tab.fg_color
+    local new_tab_bg = colours.new_tab.bg_color
+
+    local s_bg, s_fg, e_bg, e_fg
+
+    -- the last tab
+    if tab.tab_index == #tabs - 1 then
+        if tab.is_active then
+            s_bg = active_bg
+            s_fg = active_fg
+            e_bg = new_tab_bg
+            e_fg = active_bg
+        else
+            s_bg = inactive_bg
+            s_fg = inactive_fg
+            e_bg = new_tab_bg
+            e_fg = inactive_bg
+        end
+    elseif tab.tab_index == active_tab_index - 1 then
+        s_bg = inactive_bg
+        s_fg = inactive_fg
+        e_bg = active_bg
+        e_fg = inactive_bg
+    elseif tab.is_active then
+        s_bg = active_bg
+        s_fg = active_fg
+        e_bg = inactive_bg
+        e_fg = active_bg
+    else
+        s_bg = inactive_bg
+        s_fg = inactive_fg
+        e_bg = inactive_bg
+        e_fg = inactive_bg
+    end
+
+    local muxpanes = wezterm.mux.get_tab(tab.tab_id):panes()
+    local count = #muxpanes == 1 and "" or #muxpanes
+    local index = tab.tab_index + 1 .. ": "
+
+    return {
+        { Background = { Color = s_bg } },
+        { Foreground = { Color = s_fg } },
+        {
+            Text = " " .. index .. tab.active_pane.title .. fonts.numberStyle(count, "superscript") .. " ",
+        },
+        { Background = { Color = e_bg } },
+        { Foreground = { Color = e_fg } },
+        { Text = DIVIDERS.RIGHT },
+    }
+end)
+
 return {
     font = wezterm.font_with_fallback({
         {
@@ -59,6 +130,7 @@ return {
         -- inactive_titlebar_bg = "#333333",
     },
 
+
     -- colors = {
     --     tab_bar = {
     --         -- The color of the inactive tab bar edge/divider
@@ -97,4 +169,14 @@ return {
         -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
         { key = "b", mods = "LEADER|CTRL", action = wezterm.action({ SendString = "\x02" }) },
     },
+    -- tab bar
+    hide_tab_bar_if_only_one_tab = false,
+    tab_bar_at_bottom = true,
+    tab_max_width = 32,
+    use_fancy_tab_bar = false,
+    -- etc.
+    adjust_window_size_when_changing_font_size = false,
+    audible_bell = "Disabled",
+    clean_exit_codes = { 130 },
+    enable_scroll_bar = false,
 }
