@@ -57,6 +57,15 @@
         :map nix-mode-map
         :desc "nix-format-buffer" "p" #'+format/buffer))
 
+;; Change rust lsp server
+(use-package! rustic
+  :defer t
+  :custom
+  (rustic-lsp-server 'rust-analyzer)
+  :config
+  (when (featurep 'evil)
+  (add-hook! 'rustic-popup-mode-hook #'evil-emacs-state)))
+
 ;; Change doom modeline to user letter instead of icon
 (use-package! doom-modeline
   :defer t
