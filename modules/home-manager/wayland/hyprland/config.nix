@@ -39,7 +39,7 @@ in {
 
     decoration {
         rounding = 0
-        blur = 1
+        blur = false
         blur_size = 8
         blur_passes = 2
         blur_new_optimizations = true
