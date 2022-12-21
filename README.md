@@ -1,3 +1,5 @@
+# Moving to [GitLab](https://gitlab.com/LudovicoSforza/dotfiles)
+
 # My NixOS Dotfiles
 
 This is my NixOS dotfiles based on [nixos-starter-config](https://github.com/Misterio77/nix-starter-configs). Feel free to use it as a starting point for your own configuration.
