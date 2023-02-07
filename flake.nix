@@ -114,7 +114,7 @@
               users = digga.lib.rakeLeaves ./users;
             };
           suites = with profiles; rec {
-            base = [core.nixos users.nixos users.root];
+            base = [core.nixos users.ludovico users.root];
           };
         };
       };
@@ -129,7 +129,7 @@
           };
         };
         users = {
-          nixos = {suites, ...}: {
+          ludovico = {suites, ...}: {
             imports = suites.base;
 
             home.stateVersion = "22.11";
