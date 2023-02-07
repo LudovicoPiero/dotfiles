@@ -6,7 +6,6 @@
   ...
 }: let
   inherit (lib) fileContents;
-  inherit (pkgs.stdenv.hostPlatform) isDarwin;
 in {
   # Sets binary caches which speeds up some builds
   imports = [../cachix];
@@ -43,9 +42,7 @@ in {
     '';
 
     shellAliases = let
-      # The `security.sudo.enable` option does not exist on darwin because
-      # sudo is always available.
-      ifSudo = lib.mkIf (isDarwin || config.security.sudo.enable);
+      ifSudo = lib.mkIf config.security.sudo.enable;
     in {
       # quick cd
       ".." = "cd ..";
