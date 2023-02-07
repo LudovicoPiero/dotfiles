@@ -19,6 +19,7 @@ in {
       direnv
       dnsutils
       fd
+      firefox
       git
       bottom
       jq
