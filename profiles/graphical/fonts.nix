@@ -11,6 +11,9 @@
       #inputs.self.packages.${pkgs.system}.material-symbols
       #inputs.self.packages.${pkgs.system}.google-sans
 
+      powerline-fonts
+      dejavu_fonts
+
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
@@ -25,15 +28,17 @@
         ];
       })
     ];
-    enableDefaultFonts = true;
+
+    # use fonts specified by user rather than default ones
+    enableDefaultFonts = false;
 
     # user defined fonts
     # the reason there's Noto Color Emoji everywhere is to override DejaVu's
     # B&W emojis that would sometimes show instead of some Color emojis
     fontconfig.defaultFonts = {
-      serif = ["Google Sans" "Noto Color Emoji"];
-      sansSerif = ["Google Sans" "Noto Color Emoji"];
-      monospace = ["Google Sans" "Noto Color Emoji"];
+      serif = ["DejaVu Sans" "Noto Color Emoji"];
+      sansSerif = ["DejaVu Sans" "Noto Color Emoji"];
+      monospace = ["DejaVu Sans Mono for Powerline" "Noto Color Emoji"];
       emoji = ["Noto Color Emoji"];
     };
   };
