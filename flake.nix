@@ -19,9 +19,7 @@
       flake = false;
     };
 
-    # Track channels with commits tested and built by hydra
-    nixos.url = "github:nixos/nixpkgs/nixos-22.11";
-    latest.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos.url = "github:nixos/nixpkgs/nixos-unstable";
 
     digga.url = "github:divnix/digga";
     digga.inputs.nixpkgs.follows = "nixos";
@@ -29,8 +27,11 @@
     digga.inputs.home-manager.follows = "home";
     digga.inputs.deploy.follows = "deploy";
 
-    home.url = "github:nix-community/home-manager/release-22.11";
+    home.url = "github:nix-community/home-manager";
     home.inputs.nixpkgs.follows = "nixos";
+
+    hyprland.url = "github:hyprwm/hyprland";
+    hyprland-contrib.url = "github:hyprwm/contrib";
 
     deploy.url = "github:serokell/deploy-rs";
     deploy.inputs.nixpkgs.follows = "nixos";
@@ -41,7 +42,9 @@
     nvfetcher.url = "github:berberman/nvfetcher";
     nvfetcher.inputs.nixpkgs.follows = "nixos";
 
+nur.url = github:nix-community/NUR;
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
@@ -49,6 +52,7 @@
     digga,
     nixos,
     home,
+    hyprland,
     nixos-hardware,
     nur,
     agenix,
@@ -68,7 +72,6 @@
           imports = [(digga.lib.importOverlays ./overlays)];
           overlays = [];
         };
-        latest = {};
       };
 
       lib = import ./lib {lib = digga.lib // nixos.lib;};
@@ -104,43 +107,29 @@
 
         imports = [(digga.lib.importHosts ./hosts)];
         hosts = {
-          # set host-specific properties here
-          NixOS = {};
+          sforza = {
+            modules = [
+              hyprland.nixosModules.default
+			  nur.nixosModules.nur
+            ];
+          };
         };
         importables = rec {
-          profiles =
-            digga.lib.rakeLeaves ./profiles
-            // {
-              users = digga.lib.rakeLeaves ./users;
+          profiles = digga.lib.rakeLeaves ./profiles;
+          suites = with builtins; let
+            explodeAttrs = set: map (a: getAttr a set) (attrNames set);
+          in
+            with profiles; rec {
+              base = (explodeAttrs core) ++ [security vars];
+              desktop = base ++ (explodeAttrs graphical);
             };
-          suites = with profiles; rec {
-            base = [core.nixos users.ludovico users.root];
-          };
         };
       };
 
-      home = {
-        imports = [(digga.lib.importExportableModules ./users/modules)];
-        modules = [];
-        importables = rec {
-          profiles = digga.lib.rakeLeaves ./users/profiles;
-          suites = with profiles; rec {
-            base = [direnv git];
-          };
-        };
-        users = {
-          ludovico = {suites, ...}: {
-            imports = suites.base;
-
-            home.stateVersion = "22.11";
-          };
-        }; # digga.lib.importers.rakeLeaves ./users/hm;
-      };
+	  home.modules = [inputs.hyprland.homeManagerModules.default];
 
       devshell = ./shell;
 
-      # TODO: similar to the above note: does it make sense to make all of
-      # these users available on all systems?
       homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
 
       deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations {};
