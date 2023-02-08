@@ -104,6 +104,10 @@
         hosts = {
           sforza = {
             modules = [
+              nixos-hardware.nixosModules.common-cpu-amd
+              nixos-hardware.nixosModules.common-cpu-amd-pstate
+              nixos-hardware.nixosModules.common-gpu-amd
+              nixos-hardware.nixosModules.common-pc-laptop-ssd
               hyprland.nixosModules.default
               nur.nixosModules.nur
             ];
