@@ -1,11 +1,9 @@
 {
   config,
-  pkgs,
   suites,
   inputs,
   ...
 }: {
-  ### root password is empty by default ###
   imports =
     [./hardware-configuration.nix]
     ++ suites.desktop;

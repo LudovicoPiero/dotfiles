@@ -42,6 +42,7 @@
     nvfetcher.url = "github:berberman/nvfetcher";
     nvfetcher.inputs.nixpkgs.follows = "nixos";
 
+    nil.url = "github:oxalica/nil";
     nur.url = "github:nix-community/NUR";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -120,8 +121,9 @@
             explodeAttrs = set: map (a: getAttr a set) (attrNames set);
           in
             with profiles; rec {
-              base = (explodeAttrs core) ++ [security vars];
+              base = (explodeAttrs core) ++ (explodeAttrs editor) ++ [security vars];
               desktop = base ++ (explodeAttrs graphical);
+              # editor = (explodeAttrs editor);
             };
         };
       };
