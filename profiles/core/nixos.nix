@@ -9,6 +9,21 @@
     ./common.nix
   ];
 
+  security = {
+    polkit.enable = true;
+    sudo.enable = false;
+    doas = {
+      enable = true;
+      extraRules = [
+        {
+          users = ["ludovico"];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
+    };
+  };
+
   environment = {
     # completion for system packages (e.g. systemd).
     pathsToLink = ["/share/fish"];
@@ -20,26 +35,6 @@
       usbutils
       utillinux
     ];
-
-    shellAliases = let
-      ifSudo = lib.mkIf config.security.sudo.enable;
-    in {
-      # nix
-      nrb = ifSudo "sudo nixos-rebuild";
-
-      # fix nixos-option for flake compat
-      nixos-option = "nixos-option -I nixpkgs=${self}/lib/compat";
-
-      # systemd
-      ctl = "systemctl";
-      stl = ifSudo "s systemctl";
-      utl = "systemctl --user";
-      ut = "systemctl --user start";
-      un = "systemctl --user stop";
-      up = ifSudo "s systemctl start";
-      dn = ifSudo "s systemctl stop";
-      jtl = "journalctl";
-    };
   };
 
   nix = {
