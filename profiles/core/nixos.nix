@@ -35,7 +35,7 @@
       usbutils
       utillinux
     ];
-    variables = {
+    sessionVariables = {
       # silence direnv warnings for "long running commands"
       DIRENV_WARN_TIMEOUT = "24h";
       # silence direnv
