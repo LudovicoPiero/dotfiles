@@ -9,7 +9,7 @@
     fonts = with pkgs; [
       # Icons
       #inputs.self.packages.${pkgs.system}.material-symbols
-      #inputs.self.packages.${pkgs.system}.google-sans
+      inputs.self.packages.${pkgs.system}.google-sans
 
       powerline-fonts
       dejavu_fonts

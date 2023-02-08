@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) fileContents;
@@ -25,12 +26,15 @@ in {
       jq
       manix
       moreutils
+      neovim
       nix-index
       nmap
       ripgrep
       skim
       tealdeer
       whois
+
+      inputs.self.packages.${pkgs.system}.multicolor-sddm-theme
     ];
   };
 
