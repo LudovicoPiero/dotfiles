@@ -36,9 +36,6 @@
     deploy.url = "github:serokell/deploy-rs";
     deploy.inputs.nixpkgs.follows = "nixos";
 
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixos";
-
     nvfetcher.url = "github:berberman/nvfetcher";
     nvfetcher.inputs.nixpkgs.follows = "nixos";
 
@@ -56,7 +53,6 @@
     hyprland,
     nixos-hardware,
     nur,
-    agenix,
     nvfetcher,
     deploy,
     nixpkgs,
@@ -86,7 +82,6 @@
         })
 
         nur.overlay
-        agenix.overlays.default
         nvfetcher.overlays.default
 
         (import ./pkgs)
@@ -102,7 +97,6 @@
             digga.nixosModules.bootstrapIso
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
-            agenix.nixosModules.age
           ];
         };
 
