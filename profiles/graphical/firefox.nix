@@ -166,12 +166,11 @@
         # # Extra
         "identity.fxaccounts.enabled" = false;
         "browser.search.suggest.enabled" = false;
-        "browser.urlbar.suggest.searches" = false;
         "browser.urlbar.shortcuts.bookmarks" = false;
         "browser.urlbar.shortcuts.history" = false;
         "browser.urlbar.shortcuts.tabs" = false;
         "browser.urlbar.suggest.bookmark" = false;
-        "browser.urlbar.suggest.searches" = true;
+        "browser.urlbar.suggest.searches" = false;
         "browser.urlbar.suggest.engines" = false;
         "browser.urlbar.suggest.history" = true;
         "browser.urlbar.suggest.openpage" = false;
