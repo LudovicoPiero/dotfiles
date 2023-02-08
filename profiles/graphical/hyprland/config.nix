@@ -25,16 +25,18 @@ in ''
           gaps_in             = 2
           gaps_out            = 2
           border_size         = 2
-          col.active_border   = rgb(${colors.base0D}) rgb(${colors.base0E}) 270deg
-          col.inactive_border = rgb(${colors.base00}) rgb(${colors.base01}) 270deg
+          col.active_border   = rgb(${colors.base0D}) rgb(${colors.base0E}) 45deg
+          col.inactive_border = rgb(${colors.base00}) rgb(${colors.base01}) 45deg
+
           layout              = dwindle
       }
 
       dwindle {
-           col.group_border_active = rgb(${colors.base0B})
-           col.group_border        = rgb(${colors.base00})
-           force_split             = 2 # new = right or bottom
-           pseudotile              = 0 # enable pseudotiling on dwindle
+          col.group_border_active = rgb(${colors.base0B})
+          col.group_border        = rgb(${colors.base00})
+          force_split             = 2 # new = right or bottom
+          pseudotile              = yes # enable pseudotiling on dwindle
+          preserve_split          = yes # you probably want this
       }
 
       decoration {
@@ -53,9 +55,13 @@ in ''
 
       animations {
           enabled = 1
+          # animation=NAME,ONOFF,SPEED,CURVE,STYLE
           bezier    = customBezier , 0.79  , 0.33 , 0.14 , 0.53
+
           animation = windows      , 1 , 3 , customBezier
+          animation = windowsOut   , 1 , 7 , default , popin 80%
           animation = border       , 1 , 2 , default
+          animation = borderangle  , 1 , 4 , default
           animation = fade         , 1 , 2 , default
           animation = workspaces   , 1 , 2 , customBezier
   }
@@ -93,13 +99,12 @@ in ''
       windowrulev2 = noblur, class:^(waybar)$
       windowrulev2 = noblur, class:^(firefox)$
       windowrulev2 = noblur, class:^(chromium-browser)$
-      windowrulev2 = noblur, class:^(discord)$
+      windowrulev2 = noblur, class:^(discordcanary)$
       windowrulev2 = noblur, title:^(WebCord)$
       windowrulev2 = noblur, title:^(Open File)$
-      windowrulev2 = noshadow, class:^(waybar)$
       windowrulev2 = noshadow, class:^(firefox)$
       windowrulev2 = noshadow, class:^(chromium-browser)$
-      windowrulev2 = noshadow, class:^(discord)$
+      windowrulev2 = noshadow, class:^(discordcanary)$
 
       # Variables
       $discordOption = --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer
@@ -142,7 +147,6 @@ in ''
       bind = SUPER , l , resizeactive , 20 0
       bind = SUPER , k , movefocus , u
       bind = SUPER , j , movefocus , d
-      # bind = ALT , Return , layoutmsg , swapwithmaster
 
       bind = SUPER , left , movewindow , l
       bind = SUPER , right , movewindow , r
@@ -154,22 +158,22 @@ in ''
       bind = SUPER , 3 , workspace , 3
       bind = SUPER , 4 , workspace , 4
       bind = SUPER , 5 , workspace , 5
-      # bind = SUPER , 6 , workspace , 6
-      # bind = SUPER , 7 , workspace , 7
-      # bind = SUPER , 8 , workspace , 8
-      # bind = SUPER , 9 , workspace , 9
-      # bind = SUPER , 0 , workspace , 10
+      bind = SUPER , 6 , workspace , 6
+      bind = SUPER , 7 , workspace , 7
+      bind = SUPER , 8 , workspace , 8
+      bind = SUPER , 9 , workspace , 9
+      bind = SUPER , 0 , workspace , 10
 
       bind = SUPERSHIFT , 1 , movetoworkspacesilent , 1
       bind = SUPERSHIFT , 2 , movetoworkspacesilent , 2
       bind = SUPERSHIFT , 3 , movetoworkspacesilent , 3
       bind = SUPERSHIFT , 4 , movetoworkspacesilent , 4
       bind = SUPERSHIFT , 5 , movetoworkspacesilent , 5
-      # bind = SUPERSHIFT , 6 , movetoworkspacesilent , 6
-      # bind = SUPERSHIFT , 7 , movetoworkspacesilent , 7
-      # bind = SUPERSHIFT , 8 , movetoworkspacesilent , 8
-      # bind = SUPERSHIFT , 9 , movetoworkspacesilent , 9
-      # bind = SUPERSHIFT , 0 , movetoworkspacesilent , 10
+      bind = SUPERSHIFT , 6 , movetoworkspacesilent , 6
+      bind = SUPERSHIFT , 7 , movetoworkspacesilent , 7
+      bind = SUPERSHIFT , 8 , movetoworkspacesilent , 8
+      bind = SUPERSHIFT , 9 , movetoworkspacesilent , 9
+      bind = SUPERSHIFT , 0 , movetoworkspacesilent , 10
 
       # Media Keys
       bind  = , XF86AudioNext , exec , ${pkgs.playerctl}/bin/playerctl next
