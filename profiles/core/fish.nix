@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  _ = lib.getExe;
+in {
   home-manager.users."${config.vars.username}" = {
     home.packages = with pkgs; [commitizen zoxide exa fzf fd bat ripgrep lazygit];
     programs.fish = {
@@ -14,11 +16,11 @@
         run = "nix run nixpkgs#$argv";
         gadd = "git add $argv";
       };
-      interactiveShellInit = ''
-        starship init fish | source
-        any-nix-shell fish --info-right | source
-        zoxide init fish | source
-        direnv hook fish | source
+      interactiveShellInit = with pkgs; ''
+        ${_ starship} init fish | source
+        ${_ any-nix-shell} fish --info-right | source
+        ${_ zoxide} init fish | source
+        ${_ direnv} hook fish | source
       '';
       shellAliases = with pkgs; {
         "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake ~/.config/nixos && popd";
