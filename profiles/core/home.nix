@@ -7,7 +7,7 @@
     home = {
       username = "${config.vars.username}";
       homeDirectory = "${config.vars.home}";
-      stateVersion = config.system.stateVersion;
+      inherit (config.system) stateVersion;
       sessionVariables = {
         EDITOR = "nvim";
         VISUAL = "nvim";

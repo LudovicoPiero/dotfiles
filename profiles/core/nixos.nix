@@ -35,6 +35,12 @@
       usbutils
       utillinux
     ];
+    variables = {
+      # silence direnv warnings for "long running commands"
+      DIRENV_WARN_TIMEOUT = "24h";
+      # silence direnv
+      DIRENV_LOG_FORMAT = "";
+    };
   };
 
   nix = {
