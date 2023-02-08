@@ -27,16 +27,16 @@
   powermenu-launch = pkgs.writeShellScriptBin "powermenu-launch" ''${builtins.readFile ./scripts/powermenu}'';
 in {
   home-manager.users."${config.vars.username}" = {
-    #home.packages = with pkgs; [
-    #  # Utils
-    #  inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
-    #  grim
-    #  slurp
-    #  ocrScript
-    #  bemenu
-    #  bemenu-launch
-    #  powermenu-launch
-    #];
+    home.packages = with pkgs; [
+      # Utils
+      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+      grim
+      slurp
+      ocrScript
+      bemenu
+      bemenu-launch
+      powermenu-launch
+    ];
 
     wayland.windowManager.hyprland = {
       enable = true;
