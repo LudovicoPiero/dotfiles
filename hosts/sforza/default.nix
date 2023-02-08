@@ -22,8 +22,8 @@
     displayManager.sddm.enable = true;
   };
 
-# Enable Hyprland Modules
-programs.hyprland.enable = true;
+  # Enable Hyprland Modules
+  programs.hyprland.enable = true;
 
   system.stateVersion = "22.11";
 }

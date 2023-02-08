@@ -9,11 +9,11 @@
       id = 0;
       isDefault = true;
       name = "Ludovico";
-	      extensions = with config.nur.repos.rycee.firefox-addons; [
-      ublock-origin
-      bitwarden
-      fastforward
-    ];
+      extensions = with config.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        bitwarden
+        fastforward
+      ];
       bookmarks = [
         {
           name = "ANIME"; # Bookmark Folder

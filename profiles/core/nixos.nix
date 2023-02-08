@@ -10,6 +10,8 @@
   ];
 
   environment = {
+    # completion for system packages (e.g. systemd).
+    pathsToLink = ["/share/fish"];
     # Selection of sysadmin tools that can come in handy
     systemPackages = with pkgs; [
       dosfstools
@@ -40,11 +42,6 @@
     };
   };
 
-  fonts.fontconfig.defaultFonts = {
-    monospace = ["DejaVu Sans Mono for Powerline"];
-    sansSerif = ["DejaVu Sans"];
-  };
-
   nix = {
     settings = {
       # Prevent impurities in builds
@@ -58,18 +55,6 @@
     # Improve nix store disk usage
     settings.auto-optimise-store = true;
     optimise.automatic = true;
-  };
-
-  programs.bash = {
-    # Enable starship
-    promptInit = ''
-      eval "$(${pkgs.starship}/bin/starship init bash)"
-    '';
-
-    # Enable direnv, a tool for managing shell environments
-    interactiveShellInit = ''
-      eval "$(${pkgs.direnv}/bin/direnv hook bash)"
-    '';
   };
 
   # For rage encryption, all hosts need a ssh key pair

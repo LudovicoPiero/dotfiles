@@ -42,7 +42,7 @@
     nvfetcher.url = "github:berberman/nvfetcher";
     nvfetcher.inputs.nixpkgs.follows = "nixos";
 
-nur.url = github:nix-community/NUR;
+    nur.url = github:nix-community/NUR;
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
   };
@@ -110,7 +110,7 @@ nur.url = github:nix-community/NUR;
           sforza = {
             modules = [
               hyprland.nixosModules.default
-			  nur.nixosModules.nur
+              nur.nixosModules.nur
             ];
           };
         };
@@ -126,7 +126,7 @@ nur.url = github:nix-community/NUR;
         };
       };
 
-	  home.modules = [inputs.hyprland.homeManagerModules.default];
+      home.modules = [inputs.hyprland.homeManagerModules.default];
 
       devshell = ./shell;
 

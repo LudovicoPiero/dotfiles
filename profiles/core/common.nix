@@ -33,15 +33,6 @@ in {
       whois
     ];
 
-    # Starship is a fast and featureful shell prompt
-    # starship.toml has sane defaults that can be changed there
-    shellInit = ''
-      export STARSHIP_CONFIG=${
-        pkgs.writeText "starship.toml"
-        (fileContents ./starship.toml)
-      }
-    '';
-
     shellAliases = let
       ifSudo = lib.mkIf config.security.sudo.enable;
     in {
