@@ -9,6 +9,10 @@
     ./common.nix
   ];
 
+  programs = {
+    fish.enable = true;
+  };
+
   security = {
     polkit.enable = true;
     sudo.enable = false;
