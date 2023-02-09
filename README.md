@@ -31,7 +31,7 @@ This is my personal NixOS configuration. It is a work in progress and I am still
 
 These are the people who have helped me learn Nix and NixOS. I would not have been able to do this without them.
 
-- [fufexan](https://github.com/dotfiles)
+- [fufexan](https://github.com/fufexan)
 - [misterio77](https://github.com/misterio77)
 - [hlissner](https://github.com/hlissner)
 - [digga](https://digga.divnix.com)
