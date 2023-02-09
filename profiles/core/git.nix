@@ -2,6 +2,9 @@
   home-manager.users."${config.vars.username}".programs.git = {
     enable = true;
 
+    userEmail = "ludovicopiero@pm.me";
+    userName = "Ludovico";
+
     extraConfig = {
       pull.rebase = false;
     };
