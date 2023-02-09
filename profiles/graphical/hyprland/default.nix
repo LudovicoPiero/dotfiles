@@ -23,20 +23,39 @@
       ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
       ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
     '';
-  bemenu-launch = pkgs.writeShellScriptBin "bemenu-launch" ''${builtins.readFile ./scripts/bemenu}'';
   powermenu-launch = pkgs.writeShellScriptBin "powermenu-launch" ''${builtins.readFile ./scripts/powermenu}'';
 in {
   home-manager.users."${config.vars.username}" = {
     home.packages = with pkgs; [
       # Utils
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+      fuzzel
       grim
       slurp
       ocrScript
-      bemenu
-      bemenu-launch
       powermenu-launch
     ];
+
+    #TODO: Move this somewhere else
+    xdg.configFile."fuzzel/fuzzel.ini".text = ''
+      font='Iosevka Nerd Font-16'
+      icon-theme='WhiteSur'
+      prompt='->'
+      [dmenu]
+      mode=text
+      [colors]
+      background=24283bff
+      text=a9b1d6ff
+      match=8031caff
+      selection=8031caff
+      selection-text=7aa2f7ff
+      selection-match=2ac3deff
+      border=8031caff
+
+      [border]
+      width=2
+      radius=0
+    '';
 
     wayland.windowManager.hyprland = {
       enable = true;

@@ -120,7 +120,7 @@ in ''
       bind = SUPERSHIFT , G , exec , chromium
       bind = SUPER      , G , exec , ${pkgs.firefox}/bin/firefox
       bind = SUPER      , M , exec , [workspace 5 silent;tile] mailspring
-      bind = SUPER      , P , exec , bemenu-launch
+      bind = SUPER      , P , exec , ${pkgs.fuzzel}/bin/fuzzel
       bind = SUPER      , T , togglefloating ,
       bind = SUPER      , R , togglegroup ,
       bind = SUPERSHIFT , J , changegroupactive, f
