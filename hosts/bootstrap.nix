@@ -1,9 +1,13 @@
-{profiles, ...}: {
+{
+  suites,
+  profiles,
+  ...
+}: {
   imports = [
+    suites.base
     # profiles.networking
-    profiles.core.nixos
-    profiles.users.root # make sure to configure ssh keys
-    profiles.users.ludovico
+    #profiles.core.nixos
+    #profiles.core.users
   ];
 
   boot.loader.systemd-boot.enable = true;
