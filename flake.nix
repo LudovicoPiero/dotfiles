@@ -119,9 +119,8 @@
             explodeAttrs = set: map (a: getAttr a set) (attrNames set);
           in
             with profiles; rec {
-              base = (explodeAttrs core) ++ (explodeAttrs editor) ++ [security vars];
+              base = (explodeAttrs core) ++ (explodeAttrs editor) ++ (explodeAttrs apps) ++ [security vars];
               desktop = base ++ (explodeAttrs graphical);
-              # editor = (explodeAttrs editor);
             };
         };
       };
