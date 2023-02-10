@@ -56,7 +56,10 @@ in {
 
   nix = {
     # Improve nix store disk usage
-    gc.automatic = true;
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
 
     # Generally useful nix option defaults
     extraOptions = ''
