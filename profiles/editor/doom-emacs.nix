@@ -5,7 +5,7 @@
   location,
   ...
 }: {
-  #services.emacs.enable = true;
+  services.emacs.enable = true;
 
   system.userActivationScripts = {
     # Installation script every time nixos-rebuild is run. So not during initial install.
