@@ -39,6 +39,8 @@
     nvfetcher.inputs.nixpkgs.follows = "nixos";
 
     spicetify-nix.url = "github:the-argus/spicetify-nix";
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     nil.url = "github:oxalica/nil";
     nur.url = "github:nix-community/NUR";
     nixos-hardware.url = "github:nixos/nixos-hardware";
