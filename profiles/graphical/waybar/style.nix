@@ -29,7 +29,7 @@ in ''
 
   /** ********** Battery ********** **/
   #battery {
-      border-bottom: 2px solid #${colors.base0D};
+      border-bottom: 2px solid #${colors.base0B};
   }
 
   #battery.charging {
@@ -56,32 +56,32 @@ in ''
 
   /** ********** Clock ********** **/
   #clock {
-      border-bottom: 2px solid #${colors.base0B};
+      border-bottom: 2px solid #${colors.base0C};
   }
 
   #cpu {
-      border-bottom: 2px solid #${colors.base09};
+      border-bottom: 2px solid #${colors.base08};
   }
 
   #memory {
-      border-bottom: 2px solid #${colors.base09};
+      border-bottom: 2px solid #${colors.base07};
   }
 
   /** ********** Workspace ********** **/
   #workspaces {
-  	background-color: #2D3039;
-  	border-radius: 2px;
-    border-bottom: 2px solid #${colors.base0C};
-  	margin: 6px 0px;
-  	padding: 2px 10px;
+    background-color: #2D3039;
+    /*border-radius: 2px;*/
+    border-bottom: 2px solid #${colors.base06};
+    margin: 6px 0px;
+    padding: 2px 10px;
   }
 
   #workspaces button {
-  	color: #${colors.base05};
+    color: #${colors.base05};
   }
 
   #workspaces button:hover {
-  	color: #${colors.base05};
+    color: #${colors.base05};
   }
 
   #workspaces button.visible,
@@ -104,7 +104,7 @@ in ''
 
   /** ********** Tray ********** **/
   #tray {
-      border-bottom: 2px solid #${colors.base06};
+      border-bottom: 2px solid #${colors.base0D};
   }
   #tray > .passive {
       -gtk-icon-effect: dim;
@@ -117,31 +117,31 @@ in ''
 
   /** ********** Pulseaudio ********** **/
   #pulseaudio {
-      border-bottom: 2px solid #${colors.base09};
+      border-bottom: 2px solid #${colors.base0A};
   }
 
   #pulseaudio.bluetooth {
       border-bottom: 2px solid #${colors.base07};
   }
   #pulseaudio.muted {
-  	background-color: #${colors.base0E};
-  	color: #${colors.base05};
-      border-bottom: 2px solid #${colors.base00};
+    background-color: #${colors.base0E};
+    color: #${colors.base05};
+    border-bottom: 2px solid #${colors.base00};
   }
 
   /** ********** Network ********** **/
   #network {
-      border-bottom: 2px solid #${colors.base0E};
+      border-bottom: 2px solid #${colors.base09};
   }
 
   #network.disconnected {
-  	background-color: #${colors.base0C};
-  	color: #${colors.base00};
+    background-color: #${colors.base0C};
+    color: #${colors.base00};
     border-bottom: 2px solid #${colors.base00};
   }
   #network.disabled {
-  	background-color: #${colors.base08};
-  	color: #${colors.base05};
+    background-color: #${colors.base08};
+    color: #${colors.base05};
   }
   #network.linked {
   }
@@ -152,7 +152,7 @@ in ''
 
   /** Custom **/
   #custom-date {
-      border-bottom: 2px solid #${colors.base08};
+      border-bottom: 2px solid #${colors.base0C};
   }
 
   /** ********** Workspace ********** **/
@@ -176,8 +176,8 @@ in ''
   #network,
   #custom-date {
     background-color: #2D3039;
-  	border-radius: 2px;
-  	margin: 6px 0px;
-  	padding: 2px 10px;
+    /*border-radius: 2px;*/
+    margin: 6px 0px;
+    padding: 2px 10px;
   }
 ''
