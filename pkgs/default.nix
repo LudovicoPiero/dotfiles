@@ -5,4 +5,5 @@ final: prev: {
 
   google-sans = prev.callPackage ./google-sans.nix {};
   multicolor-sddm-theme = prev.callPackage ./multicolor-sddm-theme.nix {};
+  spotify = prev.callPackage ./spotify.nix {};
 }
