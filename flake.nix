@@ -2,7 +2,6 @@
   description = "A highly structured configuration database.";
 
   nixConfig = {
-    extra-experimental-features = "nix-command flakes";
     extra-substituters = [
       "https://nrdxp.cachix.org"
       "https://nix-community.cachix.org"
