@@ -34,6 +34,7 @@ These are the people who have helped me learn Nix and NixOS. I would not have be
 - [fufexan](https://github.com/fufexan)
 - [misterio77](https://github.com/misterio77)
 - [hlissner](https://github.com/hlissner)
+- [sweenu](https://github.com/sweenu)
 - [digga](https://digga.divnix.com)
 
 ---
