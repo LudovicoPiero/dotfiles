@@ -14,6 +14,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.supportedFilesystems = ["ntfs"];
 
   networking.networkmanager.enable = true;
 
