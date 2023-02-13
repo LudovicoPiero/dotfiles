@@ -25,6 +25,8 @@ This is my personal NixOS configuration. It is a work in progress and I am still
 - Shell: [fish](https://fishshell.com)
 - Browser: [firefox](https://www.mozilla.org/en-US/firefox)
 
+Sway version can be found [here](https://github.com/Lewdovico/dotfiles/tree/sway)
+
 ---
 
 ## **Acknowledgment:**
