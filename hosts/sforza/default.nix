@@ -38,10 +38,10 @@
       lightdm.enable = false;
       # Add Hyprland to display manager
       sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
-      sddm = {
-        enable = true;
-        theme = "multicolor-sddm-theme";
-      };
+      # sddm = {
+      #   enable = true;
+      #   theme = "multicolor-sddm-theme";
+      # };
     };
   };
 
