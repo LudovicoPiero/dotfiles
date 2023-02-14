@@ -11,7 +11,8 @@ in {
       homeDirectory = "${config.vars.home}";
       inherit (config.system) stateVersion;
       sessionVariables = {
-        EDITOR = "EMACS";
+        EDITOR = "nvim";
+        VISUAL = "nvim";
         PAGER = "less -R";
         TERM = "${config.vars.terminal}";
         BROWSER = "${browser}";
