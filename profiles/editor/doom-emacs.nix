@@ -5,7 +5,12 @@
   location,
   ...
 }: {
-  services.emacs.enable = true;
+  home-manager.users.${config.vars.username} = {
+    programs.emacs = {
+      enable = true;
+      #package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
+    };
+  };
 
   system.userActivationScripts = {
     # Installation script every time nixos-rebuild is run. So not during initial install.
