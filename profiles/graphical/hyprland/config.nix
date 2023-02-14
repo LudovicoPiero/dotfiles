@@ -22,8 +22,8 @@ in ''
 
       general {
           sensitivity         = 1
-          gaps_in             = 2
-          gaps_out            = 2
+          gaps_in             = 0
+          gaps_out            = 0
           border_size         = 2
           col.active_border   = rgb(${colors.base0D}) rgb(${colors.base0E}) 45deg
           col.inactive_border = rgb(${colors.base00}) rgb(${colors.base01}) 45deg
