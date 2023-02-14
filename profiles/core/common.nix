@@ -32,6 +32,7 @@ in {
       skim
       tealdeer
       whois
+      wl-clipboard
 
       inputs.self.packages.${pkgs.system}.multicolor-sddm-theme
     ];
