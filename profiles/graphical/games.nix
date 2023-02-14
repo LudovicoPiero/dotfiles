@@ -13,6 +13,7 @@
         gamescope
         gamemode
         steam
+        inputs.self.packages.${pkgs.system}.TLauncher
       ]);
   };
 }
