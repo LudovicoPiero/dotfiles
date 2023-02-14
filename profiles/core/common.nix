@@ -26,7 +26,6 @@ in {
       jq
       manix
       moreutils
-      neovim
       nix-index
       nmap
       ripgrep
