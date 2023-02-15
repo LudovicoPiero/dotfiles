@@ -139,6 +139,7 @@ in ''
       bindm = SUPER , mouse:273 , resizewindow
 
       # Screenshot
+      bind = , print , exec , sharenix --selection
       bind = CTRL  , Print , exec , grimblast --notify copy area
       bind = SUPER , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')
       bind = SUPERSHIFT , Print , exec , wl-ocr

@@ -24,6 +24,7 @@
       ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
     '';
   powermenu-launch = pkgs.writeShellScriptBin "powermenu-launch" ''${builtins.readFile ./scripts/powermenu}'';
+  sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/screenshot}'';
 in {
   systemd.services = {
     seatd = {
@@ -47,6 +48,7 @@ in {
       grim
       slurp
       ocrScript
+      sharenix
       powermenu-launch
     ];
 
