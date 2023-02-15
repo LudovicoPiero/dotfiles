@@ -6,6 +6,14 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    config.pipewire-pulse = {
+      "context.exec" = [
+        {
+          path = "pactl";
+          args = "load-module module-switch-on-connect";
+        }
+      ];
+    };
   };
 
   environment.etc = {
