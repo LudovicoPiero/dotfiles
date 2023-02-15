@@ -125,7 +125,7 @@ in ''
   }
   #pulseaudio.muted {
     background-color: #${colors.base0E};
-    color: #${colors.base05};
+    color: #${colors.base00};
     border-bottom: 2px solid #${colors.base00};
   }
 
@@ -141,7 +141,7 @@ in ''
   }
   #network.disabled {
     background-color: #${colors.base08};
-    color: #${colors.base05};
+    color: #${colors.base00};
   }
   #network.linked {
   }
