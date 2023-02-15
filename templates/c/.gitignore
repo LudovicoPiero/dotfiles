@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+*.log
+tmp/
+
+# Nix build
+result
+# make build
+build

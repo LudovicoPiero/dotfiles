@@ -131,6 +131,8 @@
 
       devshell = ./shell;
 
+      templates = import ./templates;
+
       homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
 
       deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations {};
