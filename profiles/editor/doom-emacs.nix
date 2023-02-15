@@ -10,6 +10,8 @@
       enable = true;
       #package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
     };
+
+    services.emacs.enable = true;
   };
 
   system.userActivationScripts = {
