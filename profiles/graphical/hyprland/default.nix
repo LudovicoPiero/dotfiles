@@ -25,6 +25,20 @@
     '';
   powermenu-launch = pkgs.writeShellScriptBin "powermenu-launch" ''${builtins.readFile ./scripts/powermenu}'';
 in {
+  systemd.services = {
+    seatd = {
+      enable = true;
+      description = "Seat Management Daemon";
+      script = "${pkgs.seatd}/bin/seatd -g wheel";
+      serviceConfig = {
+        Type = "simple";
+        Restart = "always";
+        RestartSec = 1;
+      };
+      wantedBy = ["multi-user.target"];
+    };
+  };
+
   home-manager.users."${config.vars.username}" = {
     home.packages = with pkgs; [
       # Utils
