@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   browser = ["firefox.desktop"];
 
   # XDG MIME types
@@ -27,6 +31,16 @@
     "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
   };
 in {
+  xdg = {
+    portal = {
+      # wlr disabled because i'm using xdg-desktop-portal-hyprland
+      wlr.enable = false;
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+    };
+  };
   home-manager.users."${config.vars.username}" = {
     xdg = {
       enable = true;
