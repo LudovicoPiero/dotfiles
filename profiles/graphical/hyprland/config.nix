@@ -68,7 +68,8 @@ in ''
       misc {
           disable_hyprland_logo = 1
           disable_splash_rendering = 1
-          no_vfr = 0
+          vfr = 1
+          vrr = 1
           disable_autoreload = false
           enable_swallow = 1
           swallow_regex = ^(kitty)$
