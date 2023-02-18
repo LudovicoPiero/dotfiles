@@ -7,7 +7,10 @@
   ...
 }: {
   imports =
-    [./hardware-configuration.nix]
+    [
+      ./hardware-configuration.nix
+      ./persist.nix
+    ]
     ++ suites.desktop;
 
   boot.loader.systemd-boot.enable = true;

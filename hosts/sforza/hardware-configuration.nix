@@ -18,7 +18,18 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/3fb6b5bc-3b28-4feb-aae7-688e35528b32";
+    device = "none";
+    fsType = "tmpfs";
+    options = ["defaults" "size=4G" "mode=755"];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/4237-3159";
+    fsType = "vfat";
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/eb1861eb-b024-4288-b745-2525c862282e";
     fsType = "ext4";
   };
 
@@ -27,9 +38,16 @@
     fsType = "ext4";
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/834A-F936";
-    fsType = "vfat";
+  fileSystems."/etc/nixos" = {
+    device = "/nix/persist/etc/nixos";
+    fsType = "none";
+    options = ["bind"];
+  };
+
+  fileSystems."/var/log" = {
+    device = "/nix/persist/var/log";
+    fsType = "none";
+    options = ["bind"];
   };
 
   fileSystems."/Stuff" = {
