@@ -61,7 +61,6 @@ in ''
           animation = windows      , 1 , 3 , customBezier
           animation = windowsOut   , 1 , 7 , default , popin 80%
           animation = border       , 1 , 2 , default
-          animation = borderangle  , 1 , 4 , default
           animation = fade         , 1 , 2 , default
           animation = workspaces   , 1 , 2 , customBezier
   }
