@@ -1,3 +1,12 @@
+;; Disable things
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+
+;; Set a font
+(add-to-list 'default-frame-alist
+              '(font . "Iosevka Nerd Font-10"))
+
 ;; set splash screen
 (setq inhibit-startup-screen nil)
 

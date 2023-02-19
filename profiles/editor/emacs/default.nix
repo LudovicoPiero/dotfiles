@@ -64,17 +64,6 @@
       };
     };
 
-    xresources.properties = {
-      # Set some Emacs GUI properties in the .Xresources file because they are
-      # expensive to set during initialization in Emacs lisp. This saves about
-      # half a second on startup time. See the following link for more options:
-      # https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html#Fonts
-      "Emacs.menuBar" = false;
-      "Emacs.toolBar" = false;
-      "Emacs.verticalScrollBars" = false;
-      "Emacs.Font" = "Iosevka Nerd Font-12";
-    };
-
     # services.emacs.enable = true;
   };
   fonts.fonts = with pkgs; [emacs-all-the-icons-fonts];
