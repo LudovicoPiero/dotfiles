@@ -9,6 +9,7 @@
         nss = pkgs.nss_latest;
         withOpenASAR = true;
       })
+      element-desktop
     ];
   };
 }
