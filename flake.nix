@@ -33,6 +33,8 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
+    impermanence.url = "github:nix-community/impermanence";
+
     deploy.url = "github:serokell/deploy-rs";
     deploy.inputs.nixpkgs.follows = "nixos";
 
@@ -54,6 +56,7 @@
     nixos,
     home,
     hyprland,
+    impermanence,
     nixos-hardware,
     nur,
     nvfetcher,
@@ -113,6 +116,7 @@
               nixos-hardware.nixosModules.common-pc-laptop-ssd
               hyprland.nixosModules.default
               nur.nixosModules.nur
+              impermanence.nixosModules.impermanence
             ];
           };
         };
