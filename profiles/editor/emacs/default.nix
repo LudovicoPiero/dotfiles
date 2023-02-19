@@ -19,6 +19,7 @@
 
           # ide
           direnv
+          format-all
           command-log-mode
           company
           projectile

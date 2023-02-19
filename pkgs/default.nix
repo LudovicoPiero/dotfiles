@@ -3,8 +3,8 @@ final: prev: {
   sources = prev.callPackage (import ./_sources/generated.nix) {};
   # then, call packages with `final.callPackage`
 
-  google-sans = prev.callPackage ./google-sans.nix {};
-  multicolor-sddm-theme = prev.callPackage ./multicolor-sddm-theme.nix {};
-  spotify = prev.callPackage ./spotify.nix {};
-  TLauncher = prev.callPackage ./TLauncher {};
+  google-sans = final.callPackage ./google-sans.nix {};
+  multicolor-sddm-theme = final.callPackage ./multicolor-sddm-theme.nix {};
+  spotify = final.callPackage ./spotify.nix {};
+  TLauncher = final.callPackage ./TLauncher {};
 }

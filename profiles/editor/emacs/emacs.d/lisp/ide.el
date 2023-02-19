@@ -13,10 +13,10 @@
   :bind
   ;; use <C> instead of <M> to navigate completions
   (:map company-active-map
-    ("M-n" . nil)
-    ("M-p" . nil)
-    ("C-n" . #'company-select-next)
-    ("C-p" . #'company-select-previous)))
+        ("M-n" . nil)
+        ("M-p" . nil)
+        ("C-n" . #'company-select-next)
+        ("C-p" . #'company-select-previous)))
 
 (use-package projectile
   :commands projectile-mode
@@ -34,7 +34,14 @@
   :init (counsel-projectile-mode +1))
 
 (use-package lsp-mode
-  :ensure t)
+  :commands lsp
+  :diminish lsp-mode
+  :hook
+  (nix-mode . lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
 
 (use-package lsp-nix
   :ensure lsp-mode
@@ -43,9 +50,9 @@
   :custom
   (lsp-nix-nil-formatter ["alejandra"]))
 
-(use-package nix-mode
-  :hook (nix-mode . lsp-deferred)
-  :ensure t)
+;; (use-package nix-mode
+;;   :hook (nix-mode . lsp-deferred)
+;;   :ensure t)
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
@@ -75,3 +82,12 @@
 ;;   ;; ((rustic-mode . ((rustic-test-arguments . "-- --skip integration"))))
 ;;   :bind (("C-c C-c C-t" . rustic-cargo-test-rerun)))
 
+(use-package format-all
+  :hook
+  ((nix-mode . format-all-mode)
+    (python-mode . format-all-mode)
+    (format-all-mode-hook . format-all-ensure-formatter))
+  :config
+  (custom-set-variables
+    '(format-all-formatters (quote (("Python" black)
+                                    ("Nix" alejandra))))))
