@@ -89,7 +89,7 @@
       extraPackages = with pkgs; [
         nodejs-16_x # for copilot
         alejandra
-        sumneko-lua-language-server
+        lua-language-server
         stylua # Lua
         rust-analyzer
         gcc

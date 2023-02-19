@@ -39,7 +39,7 @@
   environment.systemPackages = with pkgs; [
     inputs.nil.packages.${pkgs.system}.default
     nodejs-16_x # for copilot
-    sumneko-lua-language-server
+    lua-language-server
     stylua # Lua
     rust-analyzer
     ripgrep
