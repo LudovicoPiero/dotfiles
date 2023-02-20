@@ -1,34 +1,29 @@
-{
-  environment.persistence."/nix/persist" = {
-    hideMounts = true;
-    directories = [
-      "/var/log"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-      {
-        directory = "/etc/nix";
-        user = "ludovico";
-        group = "users";
-        mode = "u=rwx,g=rx,o=";
-      }
-    ];
-    files = [
-      "/etc/machine-id"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      # {
-      #   file = "/etc/nix/id_rsa";
-      #   parentDirectory = {mode = "u=rwx,g=,o=";};
-      # }
-    ];
+{lib, ...}: {
+  # Configure LUKS
+  # blkid --match-tag UUID --output value "$DISK-part2"
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/d7cd14b8-3c6e-446d-bd58-950fe2461527";
+
+  # Configure ZFS
+  boot.supportedFilesystems = ["zfs"];
+  networking.hostId = "bf23b5ac"; # head -c8 /etc/machine-id
+  boot.zfs.devNodes = "/dev/vg/root";
+
+  # Roll back to blank snapshot on boot
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r tank/local/root@blank
+  '';
+
+  # Persist state
+  environment.etc = {
+    "nixos".source = "/persist/etc/nixos";
+    "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
+    "adjtime".source = "/persist/etc/adjtime";
+    "NIXOS".source = "/persist/etc/NIXOS";
   };
-  # environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
-  # environment.etc."ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
-  # environment.etc."ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
-  # environment.etc."ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
-  # environment.etc."ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+
+  systemd.tmpfiles.rules = [
+    "L /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
+    "L /var/lib/NetworkManager/seen-bssids - - - - /persist/var/lib/NetworkManager/seen-bssids"
+    "L /var/lib/NetworkManager/timestamps - - - - /persist/var/lib/NetworkManager/timestamps"
+  ];
 }

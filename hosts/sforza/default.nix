@@ -16,18 +16,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = ["ntfs"];
 
   networking.networkmanager.enable = true;
 
   time.timeZone = config.vars.timezone;
-
-  zramSwap = {
-    enable = lib.mkDefault true;
-    algorithm = "zstd";
-    memoryPercent = 50;
-  };
 
   services.xserver = {
     enable = true;

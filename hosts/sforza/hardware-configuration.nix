@@ -13,41 +13,36 @@
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = ["kvm-amd"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = ["defaults" "size=4G" "mode=755"];
-  };
+  services.zfs.autoScrub.enable = true;
+  services.zfs.trim.enable = true;
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/4237-3159";
-    fsType = "vfat";
+  fileSystems."/" = {
+    device = "tank/local/root";
+    fsType = "zfs";
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/eb1861eb-b024-4288-b745-2525c862282e";
-    fsType = "ext4";
+    device = "tank/local/nix";
+    fsType = "zfs";
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/ed83a23f-f00c-4f71-b0cf-6d0680fce66e";
-    fsType = "ext4";
+    device = "tank/safe/home";
+    fsType = "zfs";
   };
 
-  fileSystems."/etc/nixos" = {
-    device = "/nix/persist/etc/nixos";
-    fsType = "none";
-    options = ["bind"];
+  fileSystems."/persist" = {
+    device = "tank/safe/persist";
+    fsType = "zfs";
   };
 
-  fileSystems."/var/log" = {
-    device = "/nix/persist/var/log";
-    fsType = "none";
-    options = ["bind"];
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1EF5-60C8";
+    fsType = "vfat";
   };
 
   fileSystems."/Stuff" = {
@@ -55,7 +50,9 @@
     fsType = "ext4";
   };
 
-  swapDevices = [];
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/605ca6ea-830e-488c-b390-c0561092c90d";}
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
