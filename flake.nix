@@ -1,5 +1,5 @@
 {
-  description = "A highly structured configuration database.";
+  description = "My NixOS Flake Configuration";
 
   nixConfig = {
     extra-substituters = [
