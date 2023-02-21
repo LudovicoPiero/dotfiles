@@ -29,11 +29,11 @@ in ''
           col.inactive_border = rgb(${colors.base00}) rgb(${colors.base01}) 45deg
 
           layout              = dwindle
+          col.group_border_active = rgb(${colors.base0B})
+          col.group_border        = rgb(${colors.base00})
       }
 
       dwindle {
-          col.group_border_active = rgb(${colors.base0B})
-          col.group_border        = rgb(${colors.base00})
           force_split             = 2 # new = right or bottom
           pseudotile              = yes # enable pseudotiling on dwindle
           preserve_split          = yes # you probably want this
