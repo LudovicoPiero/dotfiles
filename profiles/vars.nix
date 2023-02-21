@@ -10,7 +10,7 @@
     username = "ludovico";
     terminal = "wezterm";
     terminalBin = "${pkgs.wezterm}/bin/wezterm";
-    colorScheme = inputs.nix-colors.colorSchemes.rose-pine-moon;
+    colorScheme = inputs.nix-colors.colorSchemes.catppuccin;
 
     home = "/home/${username}";
     inherit ((builtins.getAttr username config.home-manager.users).xdg) configHome;
