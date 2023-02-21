@@ -28,8 +28,8 @@ in {
       moreutils
       nix-index
       nmap
-      ripgrep
       skim
+      (ripgrep.override {withPCRE2 = true;})
       tealdeer
       whois
       wl-clipboard

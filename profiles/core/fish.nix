@@ -7,7 +7,7 @@
   _ = lib.getExe;
 in {
   home-manager.users."${config.vars.username}" = {
-    home.packages = with pkgs; [commitizen zoxide exa fzf fd bat ripgrep lazygit];
+    home.packages = with pkgs; [commitizen zoxide exa fzf fd bat lazygit];
     programs.fish = {
       enable = true;
       functions = {
