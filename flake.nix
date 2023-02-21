@@ -71,7 +71,10 @@
     {
       inherit self inputs;
 
-      channelsConfig = {allowUnfree = true;};
+      channelsConfig = {
+        allowUnfree = true;
+        allowBroken = true;
+      };
 
       channels = {
         nixos = {
@@ -130,7 +133,7 @@
           in
             with profiles; rec {
               base = (explodeAttrs core) ++ (explodeAttrs editor) ++ [security vars];
-              desktop = base ++ (explodeAttrs graphical);
+              desktop = base ++ (explodeAttrs graphical) ++ (explodeAttrs browser);
             };
         };
       };
