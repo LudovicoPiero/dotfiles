@@ -107,7 +107,7 @@
               }
           ),
           font_size = 12.0,
-          window_background_opacity = 1,
+          window_background_opacity = 0.88,
           color_scheme = "Catppuccin Mocha",
           window_frame = {
               font = wezterm.font_with_fallback(
@@ -168,7 +168,7 @@
               { key = "b", mods = "LEADER|CTRL", action = wezterm.action({ SendString = "\x02" }) }
           },
           -- tab bar
-          hide_tab_bar_if_only_one_tab = false,
+          hide_tab_bar_if_only_one_tab = true,
           tab_bar_at_bottom = true,
           tab_max_width = 32,
           use_fancy_tab_bar = false,
