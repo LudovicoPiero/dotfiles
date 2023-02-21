@@ -28,6 +28,7 @@
           lsp-mode
           lsp-ui
           flycheck
+          rustic
 
           # ui
           dracula-theme
