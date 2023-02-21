@@ -11,12 +11,14 @@ in ''
       $HYPR_FOLDER = /home/$(whoami)/.config/hypr
 
       input {
-          follow_mouse = 1
+          kb_layout = us
+          kb_options = caps:ctrl_modifier
+          follow_mouse = 2
           repeat_rate  = 50
           repeat_delay = 300
           touchpad {
-              natural_scroll       = 1
-              disable_while_typing = 1
+              natural_scroll       = true
+              disable_while_typing = true
           }
       }
 
@@ -41,20 +43,20 @@ in ''
 
       decoration {
           rounding               = 0
-          blur                   = no
+          blur                   = true
           blur_size              = 8
-          blur_passes            = 2
+          blur_passes            = 1
           blur_new_optimizations = true
 
           drop_shadow            = false
           shadow_range           = 20
           col.shadow             = rgb(eba0ac)
           shadow_render_power    = 2
-          shadow_ignore_window   = 1
+          shadow_ignore_window   = true
       }
 
       animations {
-          enabled = 1
+          enabled = true
           # animation=NAME,ONOFF,SPEED,CURVE,STYLE
           bezier    = customBezier , 0.79  , 0.33 , 0.14 , 0.53
 
@@ -66,8 +68,8 @@ in ''
   }
 
       misc {
-          disable_hyprland_logo = 1
-          disable_splash_rendering = 1
+          disable_hyprland_logo = true
+          disable_splash_rendering = true
           vfr = 1
           vrr = 0
           disable_autoreload = false
@@ -76,7 +78,7 @@ in ''
       }
 
       gestures {
-          workspace_swipe = 1
+          workspace_swipe = true
       }
 
       # window rules
