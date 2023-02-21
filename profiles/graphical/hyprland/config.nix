@@ -69,7 +69,7 @@ in ''
           disable_hyprland_logo = 1
           disable_splash_rendering = 1
           vfr = 1
-          vrr = 1
+          vrr = 0
           disable_autoreload = false
           enable_swallow = 1
           swallow_regex = ^(kitty)$
