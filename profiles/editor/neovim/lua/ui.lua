@@ -4,30 +4,12 @@ require("telescope").setup()
 -- Gitsigns
 require('gitsigns').setup()
 
--- Treesitter Rainbow
-require("nvim-treesitter.configs").setup {
-    rainbow = {
-        enable = true,
-        query = {
-            'rainbow-parens'
-        },
-        strategy = require 'ts-rainbow.strategy.global',
-        hlgroups = {
-            'TSRainbowBlue',
-            'TSRainbowGreen',
-            'TSRainbowOrange',
-            'TSRainbowYellow',
-            'TSRainbowViolet',
-            'TSRainbowCyan'
-        },
-        max_file_lines = nil,
-    }
-}
-
 -- Bufferline
 require("bufferline").setup({
     options = {
         mode = "buffers",
+        separator_style = "padded_slant",
+        diagnostics = "nvim_lsp",
         offsets = {
             {
                 filetype = "NvimTree",
@@ -35,27 +17,29 @@ require("bufferline").setup({
                 text_align = "left",
             },
         },
-        separator_style = "thick",
-        diagnostics = "nvim_lsp",
-    },
-    highlights = {
-        buffer_selected = {
-            italic = false,
-        },
-        indicator_selected = {
-            fg = { attribute = "fg", highlight = "Function" },
-            italic = false,
-        },
     },
 })
 
 -- Indent Blankline
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 require("indent_blankline").setup({
-    char = "▏",
-    show_trailing_blankline_indent = false,
-    show_first_indent_level = true,
     use_treesitter = true,
-    show_current_context = false,
+    show_current_context = true,
+    show_current_context_start = true,
+    space_char_blankline = " ",
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
 })
 
 -- Dashboard

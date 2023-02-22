@@ -36,7 +36,6 @@
         # presence-nvim
         # catppuccin-nvim
         rose-pine
-        nvim-ts-rainbow2
         vim-nix
         plenary-nvim
         dashboard-nvim
