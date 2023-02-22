@@ -1,9 +1,13 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   inherit (config.vars.colorScheme) colors;
+  terminal = "${lib.getExe pkgs.kitty}";
+  launcher = "${lib.getExe pkgs.fuzzel}";
+  browser = "${lib.getExe pkgs.firefox}";
 in ''
       #        name  , resolution  ,offset , scale
       monitor = eDP-1, 1366x768@60 , 0x0   , 1
@@ -120,9 +124,9 @@ in ''
       bind = SUPERSHIFT , E , exec , [float] thunar
       bind = SUPER      , F , fullscreen , 0
       bind = SUPERSHIFT , G , exec , chromium
-      bind = SUPER      , G , exec , ${pkgs.firefox}/bin/firefox
+      bind = SUPER      , G , exec , ${browser}
       bind = SUPER      , M , exec , [workspace 5 silent;tile] mailspring
-      bind = SUPER      , P , exec , ${pkgs.fuzzel}/bin/fuzzel
+      bind = SUPER      , P , exec , ${launcher}
       bind = SUPER      , T , togglefloating ,
       bind = SUPER      , R , togglegroup ,
       bind = SUPERSHIFT , J , changegroupactive, f
@@ -130,7 +134,7 @@ in ''
       bind = SUPER      , S , exec , [workspace 5 silent;tile] spotify
       bind = SUPER      , W , killactive ,
       bind = SUPER      , X , exec , powermenu-launch
-      bind = SUPER      , Return , exec , ${pkgs.wezterm}/bin/wezterm
+      bind = SUPER      , Return , exec , ${terminal}
 
       # EMACS
       bind = SUPER , E , exec , emacsclient -c -a 'nvim'
