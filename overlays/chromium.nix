@@ -1,5 +1,5 @@
 final: prev: {
-  chromium = prev.chromium.override {
+  ungoogled-chromium = prev.ungoogled-chromium.override {
     commandLineArgs = toString [
       # Ungoogled features
       "--disable-search-engine-collection"
