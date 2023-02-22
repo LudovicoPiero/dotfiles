@@ -5,6 +5,11 @@
     userEmail = "ludovicopiero@pm.me";
     userName = "Ludovico";
 
+    signing = {
+      key = "3911DD276CFE779C";
+      signByDefault = true;
+    };
+
     extraConfig = {
       pull.rebase = false;
     };
