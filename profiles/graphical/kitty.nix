@@ -17,6 +17,7 @@ in {
         scrollback_lines = 5000;
         enable_audio_bell = false;
         update_check_interval = 0;
+        window_padding_width = 10;
         open_url_with = "xdg-open";
 
         # Colors
