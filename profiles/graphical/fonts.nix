@@ -13,7 +13,7 @@
 
       powerline-fonts
       dejavu_fonts
-      # iosevka-ft #TODO: remove comment after updating nixpkgs
+      iosevka-comfy.comfy
 
       noto-fonts
       noto-fonts-cjk
