@@ -85,23 +85,20 @@ in ''
           workspace_swipe = true
       }
 
-      # window rules
-      windowrule = float       , Steam
-      windowrule = workspace 4 , Steam
-      windowrule = workspace 4 , lutris
-      windowrule = workspace 3 , discord
-      windowrule = workspace 2 , Chromium
-      windowrule = workspace 2 , firefox
-      windowrule = workspace 2 , chromium-browser
-      windowrule = workspace 2 , librewolf
-      windowrule = workspace 4 , Mailspring
-      windowrule = workspace 1 , jetbrains-goland
-
       # v2
+      windowrulev2 = workspace 5 , class:^(Mailspring)$
+      windowrulev2 = workspace 4 , class:^(Steam)$
+      windowrulev2 = workspace 4 , class:^(lutris)$
+      windowrulev2 = workspace 3 , class:^(discord)$
+      windowrulev2 = workspace 2 , class:^(firefox)$
+      windowrulev2 = workspace 2 , class:^(chromium-browser)$
+      windowrulev2 = workspace 2 , class:^(librewolf)$
+      windowrulev2 = workspace 1 , class:^(jetbrains-goland)$
       windowrulev2 = workspace 3 , title:^(WebCord)$
-      windowrulev2 = workspace 5 , class:^(Spotify(y|y-free))$
+      windowrulev2 = workspace 4 , class:^(Spotify(y|y-free))$
       windowrulev2 = workspace 1 , class:^(jetbrains-clion)$
       windowrulev2 = float, class:^(discordcanary)$ # Discord File Picker
+      windowrulev2 = float, class:^(Steam)$
       windowrulev2 = noblur, class:^(waybar)$
       windowrulev2 = noblur, class:^(firefox)$
       windowrulev2 = noblur, class:^(chromium-browser)$
