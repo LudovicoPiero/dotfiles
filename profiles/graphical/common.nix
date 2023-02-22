@@ -9,7 +9,13 @@
         nss = pkgs.nss_latest;
         withOpenASAR = true;
       })
+      webcord
       element-desktop
     ];
+  };
+
+  services = {
+    # Service for battery
+    upower.enable = true;
   };
 }
