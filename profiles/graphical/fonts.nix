@@ -16,6 +16,8 @@
 
       noto-fonts-cjk
       noto-fonts-cjk-sans
+      noto-fonts-emoji
+      twemoji-color-font
 
       (nerdfonts.override {
         fonts = [
