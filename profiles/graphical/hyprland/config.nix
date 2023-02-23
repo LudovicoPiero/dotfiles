@@ -86,17 +86,17 @@ in ''
       }
 
       # v2
-      windowrulev2 = workspace 5 , class:^(Mailspring)$
-      windowrulev2 = workspace 4 , class:^(Steam)$
-      windowrulev2 = workspace 4 , class:^(lutris)$
-      windowrulev2 = workspace 3 , class:^(discord)$
-      windowrulev2 = workspace 2 , class:^(firefox)$
-      windowrulev2 = workspace 2 , class:^(chromium-browser)$
-      windowrulev2 = workspace 2 , class:^(librewolf)$
-      windowrulev2 = workspace 1 , class:^(jetbrains-goland)$
-      windowrulev2 = workspace 3 , title:^(WebCord)$
-      windowrulev2 = workspace 4 , class:^(Spotify(y|y-free))$
-      windowrulev2 = workspace 1 , class:^(jetbrains-clion)$
+      windowrulev2 = workspace 5, class:^(Mailspring)$
+      windowrulev2 = workspace 4, class:^(Steam)$
+      windowrulev2 = workspace 4, class:^(lutris)$
+      windowrulev2 = workspace 3, class:^(discord)$
+      windowrulev2 = workspace 2, class:^(firefox)$
+      windowrulev2 = workspace 2, class:^(chromium-browser)$
+      windowrulev2 = workspace 2, class:^(librewolf)$
+      windowrulev2 = workspace 1, class:^(jetbrains-goland)$
+      windowrulev2 = workspace 3, title:^(WebCord)$
+      windowrulev2 = workspace 4, class:^(Spotify(y|y-free))$
+      windowrulev2 = workspace 1, class:^(jetbrains-clion)$
       windowrulev2 = float, class:^(discordcanary)$ # Discord File Picker
       windowrulev2 = float, class:^(Steam)$
       windowrulev2 = noblur, class:^(waybar)$
