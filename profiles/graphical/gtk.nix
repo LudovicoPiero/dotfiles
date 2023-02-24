@@ -34,16 +34,16 @@ in {
         gtk-cursor-theme-name = cursorsTheme.name;
       };
       font = {
-        name = font.name;
-        size = font.size;
+        inherit (font) name;
+        inherit (font) size;
       };
       theme = {
-        package = theme.package;
-        name = theme.name;
+        inherit (theme) package;
+        inherit (theme) name;
       };
       iconTheme = {
-        package = iconsTheme.package;
-        name = iconsTheme.name;
+        inherit (iconsTheme) package;
+        inherit (iconsTheme) name;
       };
     };
 
