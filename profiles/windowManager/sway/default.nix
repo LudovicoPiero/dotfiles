@@ -9,7 +9,6 @@
   sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./Scripts/screenshot}'';
 in {
   programs.sway.enable = true; # Enable nixos modules
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   home-manager.users.${config.vars.username} = {
     home.packages = with pkgs; [
