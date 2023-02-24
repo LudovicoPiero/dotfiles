@@ -13,7 +13,7 @@
     colorScheme = inputs.nix-colors.colorSchemes.catppuccin;
 
     home = "/home/${username}";
-    inherit ((builtins.getAttr username config.home-manager.users).xdg) configHome;
+    configHome = (builtins.getAttr username config.home-manager.users).xdg.configHome;
     documentsFolder = "Documents";
     downloadFolder = "Downloads";
     musicFolder = "Music";
