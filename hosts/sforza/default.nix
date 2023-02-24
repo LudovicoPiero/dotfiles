@@ -11,7 +11,7 @@
       ./hardware-configuration.nix
       ./persist.nix
     ]
-    ++ suites.desktop;
+    ++ suites.sway;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

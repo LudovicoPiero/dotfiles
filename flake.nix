@@ -33,6 +33,8 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
+    swayfx.url = "github:WillPower3309/swayfx";
+
     impermanence.url = "github:nix-community/impermanence";
 
     deploy.url = "github:serokell/deploy-rs";
@@ -134,6 +136,9 @@
             with profiles; rec {
               base = (explodeAttrs core) ++ (explodeAttrs editor) ++ [security vars];
               desktop = base ++ (explodeAttrs graphical) ++ (explodeAttrs browser);
+
+              hyprland = desktop ++ [wayland.hyprland];
+              sway = desktop ++ [wayland.sway];
             };
         };
       };
