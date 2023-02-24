@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  location,
   ...
 }: let
   gitUrl = "https://github.com";

@@ -69,7 +69,6 @@
     nur,
     nvfetcher,
     deploy,
-    nixpkgs,
     ...
   } @ inputs:
     digga.lib.mkFlake
@@ -91,9 +90,9 @@
       lib = import ./lib {lib = digga.lib // nixos.lib;};
 
       sharedOverlays = [
-        (final: prev: {
+        (_final: prev: {
           __dontExport = true;
-          lib = prev.lib.extend (lfinal: lprev: {
+          lib = prev.lib.extend (_lfinal: _lprev: {
             our = self.lib;
           });
         })

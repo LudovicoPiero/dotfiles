@@ -1,13 +1,10 @@
 {
   self,
-  config,
   lib,
   pkgs,
   inputs,
   ...
-}: let
-  inherit (lib) fileContents;
-in {
+}: {
   # Sets binary caches which speeds up some builds
   imports = [../cachix];
 

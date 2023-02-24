@@ -8,7 +8,6 @@
   inputs,
   ...
 } @ args: let
-  inherit (config.vars.colorScheme) colors;
   mkService = lib.recursiveUpdate {
     Unit.PartOf = ["graphical-session.target"];
     Unit.After = ["graphical-session.target"];

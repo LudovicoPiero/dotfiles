@@ -1,5 +1,4 @@
 {
-  suites,
   profiles,
   config,
   ...

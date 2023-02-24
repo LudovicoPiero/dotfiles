@@ -6,7 +6,6 @@
   mod = cfg.modifier;
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
 in rec {
   # Kill focused window

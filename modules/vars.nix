@@ -1,12 +1,9 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }:
-with lib; let
-  cfg = config.vars;
-in {
+with lib; {
   options.vars = {
     email = mkOption {type = types.str;};
     username = mkOption {type = types.str;};
