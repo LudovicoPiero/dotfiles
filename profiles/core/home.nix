@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  browser = "firefox";
+  browser = "chromium";
 in {
   home-manager.users."${config.vars.username}" = {
     home = {
@@ -11,8 +11,8 @@ in {
       homeDirectory = "${config.vars.home}";
       inherit (config.system) stateVersion;
       sessionVariables = {
-        EDITOR = "emacs -nw";
-        VISUAL = "emacs";
+        EDITOR = "nvim";
+        VISUAL = "nvim";
         PAGER = "less -R";
         TERM = "${config.vars.terminal}";
         BROWSER = "${browser}";
