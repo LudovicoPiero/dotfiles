@@ -137,8 +137,8 @@
               base = (explodeAttrs core) ++ (explodeAttrs editor) ++ [security vars];
               desktop = base ++ (explodeAttrs graphical) ++ (explodeAttrs browser);
 
-              hyprland = desktop ++ [wayland.hyprland];
-              sway = desktop ++ [wayland.sway];
+              hyprland = desktop ++ [windowManager.hyprland];
+              sway = desktop ++ [windowManager.sway];
             };
         };
       };
