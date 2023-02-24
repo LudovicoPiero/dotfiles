@@ -23,7 +23,6 @@
       ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
       ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
     '';
-  powermenu-launch = pkgs.writeShellScriptBin "powermenu-launch" ''${builtins.readFile ./scripts/powermenu}'';
   sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/screenshot}'';
 in {
   systemd.services = {
@@ -49,7 +48,6 @@ in {
       slurp
       ocrScript
       sharenix
-      powermenu-launch
     ];
 
     #TODO: Move this somewhere else

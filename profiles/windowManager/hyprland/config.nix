@@ -8,6 +8,7 @@
   terminal = "${lib.getExe pkgs.kitty}";
   launcher = "${lib.getExe pkgs.fuzzel}";
   browser = "${lib.getExe pkgs.firefox}";
+  powermenu = "${lib.getExe pkgs.wlogout}";
 in ''
       #        name  , resolution  ,offset , scale
       monitor = eDP-1, 1366x768@60 , 0x0   , 1
@@ -130,7 +131,7 @@ in ''
       bind = SUPERSHIFT , K , changegroupactive, b
       bind = SUPER      , S , exec , [workspace 5 silent;tile] spotify
       bind = SUPER      , W , killactive ,
-      bind = SUPER      , X , exec , powermenu-launch
+      bind = SUPER      , X , exec , ${powermenu}
       bind = SUPER      , Return , exec , ${terminal}
 
       # EMACS
