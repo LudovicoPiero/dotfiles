@@ -3,8 +3,8 @@
   colors,
 }: [
   {
-    # statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
-    statusCommand = "${pkgs.i3status}/bin/i3status";
+    statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
+    # statusCommand = "${pkgs.i3status}/bin/i3status";
     command = "${pkgs.sway}/bin/swaybar";
     fonts = {
       names = ["Google Sans" "Font Awesome 6 Free" "Font Awesome 6 Brands"];
