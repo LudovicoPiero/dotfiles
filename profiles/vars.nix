@@ -8,8 +8,8 @@
   vars = rec {
     email = "ludovicopiero@pm.me";
     username = "ludovico";
-    terminal = "wezterm";
-    terminalBin = "${pkgs.wezterm}/bin/wezterm";
+    terminal = "kitty";
+    terminalBin = "${pkgs.kitty}/bin/kitty";
     colorScheme = inputs.nix-colors.colorSchemes.catppuccin;
 
     home = "/home/${username}";
