@@ -13,6 +13,7 @@
       iosevka-comfy.comfy
       sarasa-gothic
       emacs-all-the-icons-fonts
+      font-awesome
 
       noto-fonts-cjk
       noto-fonts-cjk-sans
