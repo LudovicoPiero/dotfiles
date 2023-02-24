@@ -25,7 +25,6 @@ in {
       sharenix
       playerctl
       fuzzel
-      autotiling-rs
     ];
     wayland.windowManager.sway = {
       enable = true;
@@ -97,8 +96,6 @@ in {
         shadows off
         shadow_blur_radius 15
         shadow_color #FFC0CB
-
-        exec autotiling-rs
       '';
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway

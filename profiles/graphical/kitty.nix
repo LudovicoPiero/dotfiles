@@ -19,6 +19,7 @@ in {
         update_check_interval = 0;
         window_padding_width = 10;
         open_url_with = "xdg-open";
+        confirm_os_window_close = 0;
 
         # Colors
         active_border_color = "#${colors.base03}";
