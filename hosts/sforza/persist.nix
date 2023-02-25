@@ -14,11 +14,29 @@
   '';
 
   # Persist state
-  environment.etc = {
-    "nixos".source = "/persist/etc/nixos";
-    "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
-    "adjtime".source = "/persist/etc/adjtime";
-    "NIXOS".source = "/persist/etc/NIXOS";
+  # environment.etc = {
+  #   "nixos".source = "/persist/etc/nixos";
+  #   "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
+  #   "adjtime".source = "/persist/etc/adjtime";
+  #   "NIXOS".source = "/persist/etc/NIXOS";
+  # };
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+      "/etc/NIXOS"
+    ];
+    files = [
+      "/etc/machine-id"
+      {
+        file = "/etc/nix/id_rsa";
+        parentDirectory = {mode = "u=rwx,g=,o=";};
+      }
+    ];
   };
 
   systemd.tmpfiles.rules = [

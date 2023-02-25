@@ -37,6 +37,7 @@
   fileSystems."/persist" = {
     device = "tank/safe/persist";
     fsType = "zfs";
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {
