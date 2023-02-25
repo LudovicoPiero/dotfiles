@@ -25,11 +25,20 @@ in {
               format = " $icon $mem_used_percents.eng(w:1) ";
             }
             {
+              block = "disk_space";
+              path = "/";
+              info_type = "available";
+              alert_unit = "GB";
+              interval = 20;
+              warning = 20.0;
+              alert = 10.0;
+              format = " $icon ROOT: $available.eng(w:2) ";
+            }
+            {
               block = "net";
               device = "wlp4s0";
               format = " $icon DOWN: $speed_down UP: $speed_up ";
             }
-            {block = "backlight";}
             {
               block = "sound";
               driver = "pulseaudio";
@@ -41,7 +50,7 @@ in {
             }
             {
               block = "time";
-              format = " %a %e %b %R ";
+              format = " $timestamp.datetime(f:'%a %d/%m %R') ";
             }
           ];
           settings = {
