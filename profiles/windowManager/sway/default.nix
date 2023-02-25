@@ -27,7 +27,7 @@ in {
     ];
     wayland.windowManager.sway = {
       enable = true;
-      package = inputs.swayfx.packages.${pkgs.system}.default;
+      # package = inputs.swayfx.packages.${pkgs.system}.default;
       config = {
         colors = import ./colors.nix {inherit colors;};
         keybindings = import ./keybindings.nix {inherit config pkgs;};
@@ -65,11 +65,11 @@ in {
           ];
         };
         gaps = {
-          inner = 3;
-          outer = 3;
+          inner = 0;
+          outer = 0;
         };
         fonts = {
-          names = ["UbuntuMono Nerd Font"];
+          names = ["Iosevka Comfy"];
           size = 10.0;
         };
         startup = [
@@ -91,11 +91,11 @@ in {
         titlebar_padding 2
 
         # SwayFX stuff
-        corner_radius 5
-        smart_corner_radius on
-        shadows off
-        shadow_blur_radius 15
-        shadow_color #FFC0CB
+        # corner_radius 5
+        # smart_corner_radius on
+        # shadows off
+        # shadow_blur_radius 15
+        # shadow_color #FFC0CB
       '';
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway
