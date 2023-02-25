@@ -34,7 +34,8 @@ in {
         bars = import ./bars.nix {inherit pkgs colors;};
         window = import ./windows.nix;
         output = {
-          "*" = {bg = "${./Wallpaper/wallpaper.jpg} fill";};
+          "*" = {bg = "#2e2b2b solid_color";};
+          # "*" = {bg = "${./Wallpaper/wallpaper.jpg} fill";};
         };
         input = {
           "type:touchpad" = {
