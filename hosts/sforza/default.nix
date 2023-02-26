@@ -18,6 +18,8 @@
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.supportedFilesystems = ["zfs" "ntfs"];
 
+  hardware.bluetooth.enable = true;
+
   networking.networkmanager.enable = true;
 
   time.timeZone = config.vars.timezone;
