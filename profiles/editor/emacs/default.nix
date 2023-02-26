@@ -8,7 +8,12 @@
   # REFERENCES
   # https://gitlab.com/rycee/nur-expressions
   # https://github.com/Denommus/nix-configurations
+  # https://git.sr.ht/~rycee/configurations/tree/master/item/user/emacs.nix
   home-manager.users.${config.vars.username} = {
+    home.file = {
+      ".emacs.d/snippets".source = ./snippets;
+    };
+
     imports = [config.nur.repos.rycee.hmModules.emacs-init];
     programs.emacs = {
       enable = true;
@@ -20,43 +25,7 @@
         prelude = builtins.readFile ./prelude.el;
 
         #TODO
-        #python
-        #rust
-        #go
-        #c family
         usePackage = {
-          company = {
-            enable = true;
-            demand = true;
-            command = [
-              "company-mode"
-              "global-company-mode"
-            ];
-            config = "(global-company-mode 1)";
-          };
-
-          helm = {
-            enable = true;
-            demand = true;
-            command = [
-              "helm-mode"
-            ];
-            bind = {
-              "C-c h" = "helm-command-prefix";
-              "M-x" = "helm-M-x";
-              "C-c y" = "helm-show-kill-ring";
-              "C-x C-f" = "helm-find-files";
-            };
-            bindLocal = {
-              helm-map = {
-                "<tab>" = "helm-execute-persistent-action";
-                "C-i" = "helm-execute-persistent-action";
-                "C-z" = "helm-select-action";
-              };
-            };
-            config = builtins.readFile ./configs/helm.el;
-          };
-
           projectile = {
             enable = true;
             diminish = ["projectile-mode"];
@@ -66,22 +35,21 @@
             bindKeyMap = {
               "C-z" = "projectile-command-map";
             };
-            config = builtins.readFile ./configs/projectile.el;
+            config = ''
+              (projectile-mode)
+              (setq projectile-indexing-method 'alien)
+              (setq projectile-mode-line "Projectile")
+            '';
           };
 
-          helm-projectile = {
+          company = {
             enable = true;
             demand = true;
             command = [
-              "helm-projectile-on"
+              "company-mode"
+              "global-company-mode"
             ];
-            after = ["projectile"];
-            config = "(helm-projectile-on)";
-          };
-
-          helm-flyspell = {
-            enable = true;
-            after = ["helm"];
+            config = "(global-company-mode 1)";
           };
 
           flyspell = {
@@ -94,21 +62,44 @@
             };
           };
 
+          flycheck = {
+            enable = true;
+            command = ["global-flycheck-mode"];
+            defer = 1;
+            bind = {
+              "M-n" = "flycheck-next-error";
+              "M-p" = "flycheck-previous-error";
+            };
+            config = ''
+              ;; Only check buffer when mode is enabled or buffer is saved.
+              (setq flycheck-check-syntax-automatically '(mode-enabled save)
+                    flycheck-markdown-mdl-executable "${pkgs.mdl}/bin/mdl")
+
+              ;; Enable flycheck in all eligible buffers.
+              (global-flycheck-mode)
+            '';
+          };
+
+          flycheck-projectile = {
+            enable = true;
+            after = ["flycheck" "projectile"];
+          };
+
           dracula-theme = {
             enable = true;
             init = "(load-theme 'dracula t)";
           };
 
+          # Configure magit, a nice mode for the git SCM.
           magit = {
             enable = true;
-            command = ["magit-custom"];
-            config = builtins.readFile ./configs/magit.el;
-          };
-
-          magit-svn = {
-            enable = true;
-            command = ["magit-svn-mode"];
-            after = ["magit"];
+            command = ["magit-project-status"];
+            bind = {"C-c g" = "magit-status";};
+            config = ''
+              (setq forge-add-pullreq-refspec 'ask)
+              (add-to-list 'git-commit-style-convention-checks
+                            'overlong-summary-line)
+            '';
           };
 
           switch-window = {
@@ -131,21 +122,78 @@
 
           lsp-mode = {
             enable = true;
-            command = [
-              "lsp"
-            ];
+            command = ["lsp"];
+            after = ["flycheck"];
             bindLocal = {
               lsp-mode-map = {
-                "C-c C-t" = "lsp-describe-thing-at-point";
-                "C-c C-r" = "lsp-rename";
-                "C-c C-i" = "lsp-describe-thing-at-point";
-                "C-c t" = "lsp-describe-thing-at-point";
-                "C-c r" = "lsp-rename";
-                "C-c i" = "lsp-describe-thing-at-point";
-                "M-." = "xref-find-definitions";
+                "C-c f r" = "lsp-find-references";
+                "C-c r a" = "lsp-execute-code-action";
+                "C-c r f" = "lsp-format-buffer";
+                "C-c r g" = "lsp-format-region";
+                "C-c r l" = "lsp-avy-lens";
+                "C-c r r" = "lsp-rename";
               };
             };
-            init = builtins.readFile ./configs/lsp.el;
+            init = ''
+              (setq lsp-keymap-prefix "C-c l")
+            '';
+            config = ''
+              (setq lsp-diagnostics-provider :flycheck
+                    lsp-eldoc-render-all nil
+                    lsp-headerline-breadcrumb-enable nil
+                    lsp-modeline-code-actions-enable nil
+                    lsp-modeline-diagnostics-enable nil
+                    lsp-modeline-workspace-status-enable nil
+                    lsp-lens-enable t)
+              (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+            '';
+          };
+
+          lsp-ui = {
+            enable = true;
+            command = ["lsp-ui-mode"];
+            bindLocal = {
+              lsp-mode-map = {
+                "C-c r d" = "lsp-ui-doc-toggle";
+                "C-c r i" = "lsp-ui-doc-focus-frame";
+                "C-c f s" = "lsp-ui-find-workspace-symbol";
+              };
+            };
+            config = ''
+              (setq lsp-ui-sideline-enable t
+                    lsp-ui-sideline-show-symbol nil
+                    lsp-ui-sideline-show-hover nil
+                    lsp-ui-sideline-show-code-actions nil
+                    lsp-ui-sideline-update-mode 'point)
+              (setq lsp-ui-doc-enable nil
+                    lsp-ui-doc-position 'at-point
+                    lsp-ui-doc-max-width 125
+                    lsp-ui-doc-max-height 18)
+            '';
+          };
+
+          lsp-ui-flycheck = {
+            enable = true;
+            after = ["flycheck" "lsp-ui"];
+          };
+
+          lsp-completion = {
+            enable = true;
+            after = ["lsp-mode"];
+            config = ''
+              (setq lsp-completion-enable-additional-text-edit nil)
+            '';
+          };
+
+          lsp-diagnostics = {
+            enable = true;
+            after = ["lsp-mode"];
+          };
+
+          lsp-lens = {
+            enable = true;
+            command = ["lsp-lens--enable"];
+            after = ["lsp-mode"];
           };
 
           lsp-nix = {
@@ -153,17 +201,107 @@
             demand = true;
             config = ''
               (lsp-nix-nil-formatter ["alejandra"])
-            '';
+            ''; #FIXME: Formatter no worky
           };
 
           nix-mode = {
             enable = true;
             demand = true;
+            mode = ["\\.nix\\"];
             hook = ["(nix-mode.lsp-deferred)"];
+          };
+
+          ripgrep = {
+            enable = true;
+            command = ["ripgrep-regexp"];
+          };
+
+          vertico = {
+            enable = true;
+            command = ["vertico-mode" "vertico-next"];
+            init = "(vertico-mode)";
+          };
+
+          consult = {
+            enable = true;
+            bind = {
+              "C-s" = "consult-line";
+              "C-x b" = "consult-buffer";
+              "M-g M-g" = "consult-goto-line";
+              "M-g g" = "consult-goto-line";
+              "M-s f" = "consult-find";
+              "M-s r" = "consult-ripgrep";
+              "M-y" = "consult-yank-pop";
+            };
+            config = ''
+              (defvar rah/consult-line-map
+                (let ((map (make-sparse-keymap)))
+                  (define-key map "\C-s" #'vertico-next)
+                  map))
+
+              (consult-customize
+                consult-line
+                  :history t ;; disable history
+                  :keymap rah/consult-line-map
+                consult-buffer consult-find consult-ripgrep
+                  :preview-key (kbd "M-.")
+                consult-theme
+                  :preview-key '(:debounce 1 any)
+              )
+            '';
+          };
+
+          dashboard = {
+            enable = true;
+            demand = true;
+            config = ''
+              (dashboard-setup-startup-hook)
+              (setq dashboard-banner-logo-title "Ludovico Sforza")
+              (setq dashboard-center-content t)
+            '';
+          };
+
+          direnv = {
+            enable = true;
+            config = "(direnv-mode)";
+          };
+
+          tree-sitter = {
+            enable = true;
+            demand = true;
+            command = ["global-tree-sitter-mode"];
+            config = ''
+              (global-tree-sitter-mode 1)
+            '';
+          };
+
+          tree-sitter-langs = {
+            enable = true;
+            demand = true;
+          };
+
+          which-key = {
+            enable = true;
+            config = "(which-key-mode)";
           };
 
           nixos-options = {
             enable = true;
+          };
+
+          nix-sandbox = {
+            enable = true;
+            command = ["nix-current-sandbox" "nix-shell-command"];
+          };
+
+          multiple-cursors = {
+            enable = true;
+            bind = {
+              "C-S-c C-S-c" = "mc/edit-lines";
+              "C-c m" = "mc/mark-all-like-this";
+              "C->" = "mc/mark-next-like-this";
+              "C-<" = "mc/mark-previous-like-this";
+            };
           };
         };
       };
