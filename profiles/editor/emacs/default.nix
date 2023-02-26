@@ -34,11 +34,6 @@
             config = "(global-company-mode 1)";
           };
 
-          hl-todo = {
-            enable = true;
-            demand = true;
-          };
-
           helm = {
             enable = true;
             demand = true;
