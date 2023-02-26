@@ -12,6 +12,7 @@
     imports = [config.nur.repos.rycee.hmModules.emacs-init];
     programs.emacs = {
       enable = true;
+      package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
 
       init = {
         enable = true;

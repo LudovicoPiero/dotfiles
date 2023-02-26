@@ -14,7 +14,7 @@
 (column-number-mode 1)
 (global-auto-revert-mode)
 (global-whitespace-mode)
-(global-linum-mode)
+(global-display-line-numbers-mode)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default whitespace-style
