@@ -39,6 +39,9 @@ in {
   };
 
   home-manager.users."${config.vars.username}" = {
+    home.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
     home.packages = with pkgs; [
       # Utils
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast

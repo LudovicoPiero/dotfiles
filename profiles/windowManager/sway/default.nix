@@ -11,6 +11,9 @@ in {
   programs.sway.enable = true; # Enable nixos modules
 
   home-manager.users.${config.vars.username} = {
+    home.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
     home.packages = with pkgs; [
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       swayidle
