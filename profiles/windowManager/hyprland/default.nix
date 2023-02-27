@@ -38,6 +38,9 @@ in {
     };
   };
 
+  # Enable hyprland module
+  programs.hyprland.enable = true;
+
   home-manager.users."${config.vars.username}" = {
     home.sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -82,7 +85,7 @@ in {
 
     programs.fish.interactiveShellInit = lib.mkBefore ''
       if test -z $DISPLAY && test (tty) = "/dev/tty1"
-          exec Hyprland
+      exec Hyprland
       end
     '';
 
