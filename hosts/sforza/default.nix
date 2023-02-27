@@ -12,11 +12,14 @@
     ]
     ++ suites.sway;
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  boot.supportedFilesystems = ["zfs" "ntfs"];
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    loader.systemd-boot.configurationLimit = 5;
+    loader.efi.efiSysMountPoint = "/boot";
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    supportedFilesystems = ["zfs" "ntfs"];
+  };
 
   hardware.bluetooth.enable = true;
 
@@ -42,9 +45,6 @@
       # };
     };
   };
-
-  # Enable Hyprland Modules
-  programs.hyprland.enable = true;
 
   system.stateVersion = "${config.vars.stateVersion}";
 }
