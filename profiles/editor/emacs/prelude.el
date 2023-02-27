@@ -1,12 +1,8 @@
-(package-initialize)
 (custom-set-variables
   '(inhibit-startup-screen t))
 ;; Set a font
 (add-to-list 'default-frame-alist
               '(font . "Iosevka Comfy 15"))
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
 (column-number-mode 1)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)

@@ -22,6 +22,19 @@
       init = {
         enable = true;
         recommendedGcSettings = true;
+
+        earlyInit = ''
+          ;; Disable some GUI distractions. We set these manually to avoid starting
+          ;; the corresponding minor modes.
+          (menu-bar-mode 0)
+          (tool-bar-mode 0)
+          (scroll-bar-mode 0)
+
+          ;; Set up fonts early.
+          (add-to-list 'default-frame-alist
+              '(font . "Iosevka Comfy 15"))
+        '';
+
         prelude = builtins.readFile ./prelude.el;
 
         #TODO
@@ -49,7 +62,17 @@
               "company-mode"
               "global-company-mode"
             ];
-            config = "(global-company-mode 1)";
+            bindLocal = {
+              company-active-map = {
+                "C-n" = "company-select-next";
+                "C-p" = "company-select-previous";
+                "M-<" = "company-select-first";
+                "M->" = "company-select-last";
+              };
+            };
+            config = ''
+              (global-company-mode 1)
+            '';
           };
 
           flyspell = {
@@ -73,7 +96,7 @@
             config = ''
               ;; Only check buffer when mode is enabled or buffer is saved.
               (setq flycheck-check-syntax-automatically '(mode-enabled save)
-                    flycheck-markdown-mdl-executable "${pkgs.mdl}/bin/mdl")
+              flycheck-markdown-mdl-executable "${pkgs.mdl}/bin/mdl")
 
               ;; Enable flycheck in all eligible buffers.
               (global-flycheck-mode)
@@ -98,7 +121,7 @@
             config = ''
               (setq forge-add-pullreq-refspec 'ask)
               (add-to-list 'git-commit-style-convention-checks
-                            'overlong-summary-line)
+              'overlong-summary-line)
             '';
           };
 
@@ -139,12 +162,12 @@
             '';
             config = ''
               (setq lsp-diagnostics-provider :flycheck
-                    lsp-eldoc-render-all nil
-                    lsp-headerline-breadcrumb-enable nil
-                    lsp-modeline-code-actions-enable nil
-                    lsp-modeline-diagnostics-enable nil
-                    lsp-modeline-workspace-status-enable nil
-                    lsp-lens-enable t)
+              lsp-eldoc-render-all nil
+              lsp-headerline-breadcrumb-enable nil
+              lsp-modeline-code-actions-enable nil
+              lsp-modeline-diagnostics-enable nil
+              lsp-modeline-workspace-status-enable nil
+              lsp-lens-enable t)
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 
             '';
@@ -162,14 +185,15 @@
             };
             config = ''
               (setq lsp-ui-sideline-enable t
-                    lsp-ui-sideline-show-symbol nil
-                    lsp-ui-sideline-show-hover nil
-                    lsp-ui-sideline-show-code-actions nil
-                    lsp-ui-sideline-update-mode 'point)
+              lsp-ui-sideline-show-symbol nil
+              lsp-ui-sideline-show-hover t
+              lsp-ui-doc-enable nil
+              lsp-ui-sideline-show-code-actions nil
+              lsp-ui-sideline-update-mode 'point)
               (setq lsp-ui-doc-enable nil
-                    lsp-ui-doc-position 'at-point
-                    lsp-ui-doc-max-width 125
-                    lsp-ui-doc-max-height 18)
+              lsp-ui-doc-position 'at-point
+              lsp-ui-doc-max-width 125
+              lsp-ui-doc-max-height 18)
             '';
           };
 
@@ -236,18 +260,18 @@
             };
             config = ''
               (defvar rah/consult-line-map
-                (let ((map (make-sparse-keymap)))
-                  (define-key map "\C-s" #'vertico-next)
-                  map))
+              (let ((map (make-sparse-keymap)))
+              (define-key map "\C-s" #'vertico-next)
+              map))
 
               (consult-customize
-                consult-line
-                  :history t ;; disable history
-                  :keymap rah/consult-line-map
-                consult-buffer consult-find consult-ripgrep
-                  :preview-key (kbd "M-.")
-                consult-theme
-                  :preview-key '(:debounce 1 any)
+              consult-line
+              :history t ;; disable history
+              :keymap rah/consult-line-map
+              consult-buffer consult-find consult-ripgrep
+              :preview-key (kbd "M-.")
+              consult-theme
+              :preview-key '(:debounce 1 any)
               )
             '';
           };
@@ -319,7 +343,39 @@
 
             '';
           };
+
           rust-mode.enable = true;
+
+          rustic = {
+            enable = true;
+            bindLocal = {
+              rustic-mode-map = {
+                "M-j" = "lsp-ui-imenu";
+                "M-?" = "lsp-find-references";
+                "C-c C-c l" = "flycheck-list-errors";
+                "C-c C-c a" = "lsp-execute-code-action";
+                "C-c C-c r" = "lsp-rename";
+                "C-c C-c q" = "lsp-workspace-restart";
+                "C-c C-c Q" = "lsp-workspace-shutdown";
+                "C-c C-c s" = "lsp-rust-analyzer-status";
+              };
+            };
+            config = ''
+              ;; uncomment for less flashiness
+              ;; (setq lsp-eldoc-hook nil)
+              ;; (setq lsp-enable-symbol-highlighting nil)
+              ;; (setq lsp-signature-auto-activate nil)
+
+              ;; comment to disable rustfmt on save
+              (setq rustic-format-on-save t)
+              (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook)
+
+              (defun rk/rustic-mode-hook ()
+              (when buffer-file-name
+              (setq-local buffer-save-without-query t))
+              (add-hook 'before-save-hook 'lsp-format-buffer nil t))
+            '';
+          };
         };
       };
     };
