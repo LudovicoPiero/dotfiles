@@ -85,9 +85,9 @@
             after = ["flycheck" "projectile"];
           };
 
-          dracula-theme = {
+          catppuccin-theme = {
             enable = true;
-            init = "(load-theme 'dracula t)";
+            init = "(load-theme 'catppuccin t)";
           };
 
           # Configure magit, a nice mode for the git SCM.
@@ -146,6 +146,7 @@
                     lsp-modeline-workspace-status-enable nil
                     lsp-lens-enable t)
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+
             '';
           };
 
@@ -266,12 +267,17 @@
             config = "(direnv-mode)";
           };
 
+          highlight-indent-guides = {
+            enable = true;
+            config = "(highlight-indent-guides-mode)";
+          };
+
           tree-sitter = {
             enable = true;
             demand = true;
-            command = ["global-tree-sitter-mode"];
             config = ''
-              (global-tree-sitter-mode 1)
+              (global-tree-sitter-mode)
+              (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
             '';
           };
 
@@ -303,6 +309,17 @@
               "C-<" = "mc/mark-previous-like-this";
             };
           };
+
+          lsp-rust = {
+            enable = true;
+            defer = true;
+            hook = ["(rust-mode . rah-lsp)"];
+            config = ''
+              (setq rust-format-on-save t)
+
+            '';
+          };
+          rust-mode.enable = true;
         };
       };
     };
