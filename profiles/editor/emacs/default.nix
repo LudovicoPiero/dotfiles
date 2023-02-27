@@ -162,14 +162,13 @@
             '';
             config = ''
               (setq lsp-diagnostics-provider :flycheck
-              lsp-eldoc-render-all nil
-              lsp-headerline-breadcrumb-enable nil
-              lsp-modeline-code-actions-enable nil
-              lsp-modeline-diagnostics-enable nil
-              lsp-modeline-workspace-status-enable nil
-              lsp-lens-enable t)
+                    lsp-eldoc-render-all nil
+                    lsp-headerline-breadcrumb-enable nil
+                    lsp-modeline-code-actions-enable nil
+                    lsp-modeline-diagnostics-enable nil
+                    lsp-modeline-workspace-status-enable nil
+                    lsp-lens-enable t)
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
-
             '';
           };
 
@@ -185,15 +184,15 @@
             };
             config = ''
               (setq lsp-ui-sideline-enable t
-              lsp-ui-sideline-show-symbol nil
-              lsp-ui-sideline-show-hover t
-              lsp-ui-doc-enable nil
-              lsp-ui-sideline-show-code-actions nil
-              lsp-ui-sideline-update-mode 'point)
+                    lsp-ui-sideline-show-symbol nil
+                    lsp-ui-sideline-show-hover t
+                    lsp-ui-doc-enable nil
+                    lsp-ui-sideline-show-code-actions nil
+                    lsp-ui-sideline-update-mode 'point)
               (setq lsp-ui-doc-enable nil
-              lsp-ui-doc-position 'at-point
-              lsp-ui-doc-max-width 125
-              lsp-ui-doc-max-height 18)
+                    lsp-ui-doc-position 'at-point
+                    lsp-ui-doc-max-width 125
+                    lsp-ui-doc-max-height 18)
             '';
           };
 
@@ -225,15 +224,16 @@
             after = ["lsp-mode"];
             demand = true;
             config = ''
-              (lsp-nix-nil-formatter ["alejandra"])
-            ''; #FIXME: Formatter no worky
+              (add-to-list 'lsp-disabled-clients 'lsp-nix-rnix)
+              (setq lsp-nix-nil-formatter 'alejandra)
+            '';
           };
 
           nix-mode = {
             enable = true;
             demand = true;
             mode = ["\\.nix\\"];
-            hook = ["(nix-mode.lsp-deferred)"];
+            hook = ["(nix-mode . lsp-deferred)"];
           };
 
           ripgrep = {
@@ -317,6 +317,13 @@
 
           nixos-options = {
             enable = true;
+          };
+
+          company-nixos-options = {
+            enable = true;
+            config = ''
+              (add-to-list 'company-backends 'company-nixos-options)
+            '';
           };
 
           nix-sandbox = {
