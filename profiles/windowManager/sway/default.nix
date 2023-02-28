@@ -47,6 +47,7 @@ in {
             natural_scroll = "enabled";
           };
           "type:keyboard" = {
+            xkb_options = "ctrl:nocaps";
             repeat_delay = "200";
             repeat_rate = "30";
           };
