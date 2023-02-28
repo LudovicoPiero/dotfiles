@@ -50,7 +50,7 @@ in {
             }
             {
               block = "time";
-              format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+              format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
             }
           ];
           settings = {
