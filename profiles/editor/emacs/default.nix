@@ -38,6 +38,13 @@
         prelude = builtins.readFile ./prelude.el;
 
         #TODO
+        /*
+        Maybe move files separately, for example
+        all rust related into 1 file separately.
+        - Rust.nix
+        - Python.nix
+        - etc.
+        */
         usePackage = {
           projectile = {
             enable = true;
@@ -317,13 +324,6 @@
 
           nixos-options = {
             enable = true;
-          };
-
-          company-nixos-options = {
-            enable = true;
-            config = ''
-              (add-to-list 'company-backends 'company-nixos-options)
-            '';
           };
 
           nix-sandbox = {
