@@ -153,7 +153,7 @@
 
           lsp-mode = {
             enable = true;
-            command = ["lsp"];
+            command = ["lsp" "lsp-deferred"];
             after = ["flycheck"];
             bindLocal = {
               lsp-mode-map = {
@@ -165,6 +165,12 @@
                 "C-c r r" = "lsp-rename";
               };
             };
+            hook = [
+              "(go-mode . lsp)"
+              "(nix-mode . lsp-deferred)"
+              "(rust-mode . lsp)"
+              "(lsp-mode . lsp-enable-which-key-integration)"
+            ];
             init = ''
               (setq lsp-keymap-prefix "C-c l")
             '';
@@ -176,6 +182,9 @@
                     lsp-modeline-diagnostics-enable nil
                     lsp-modeline-workspace-status-enable nil
                     lsp-lens-enable t)
+              (setq lsp-rust-server 'rust-analyzer
+                    lsp-nix-server 'nil
+                    lsp-nix-nil-formatter 'alejandra)
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
             '';
           };
@@ -231,10 +240,6 @@
           lsp-nix = {
             after = ["lsp-mode"];
             demand = true;
-            config = ''
-              (add-to-list 'lsp-disabled-clients 'lsp-nix-rnix)
-              (setq lsp-nix-nil-formatter 'alejandra)
-            '';
           };
 
           nix-mode = {
