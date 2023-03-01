@@ -10,7 +10,8 @@
       ./hardware-configuration.nix
       ./persist.nix
     ]
-    ++ suites.sway;
+    # ++ suites.sway
+    ++ suites.hyprland;
 
   boot = {
     loader.systemd-boot.enable = true;
