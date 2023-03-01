@@ -109,6 +109,7 @@ in ''
       windowrulev2 = noshadow, class:^(firefox)$
       windowrulev2 = noshadow, class:^(chromium-browser)$
       windowrulev2 = noshadow, class:^(discordcanary)$
+      windowrulev2 = noanim, class:^(wlogout)$
 
       # Variables
       $discordOption = --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer
