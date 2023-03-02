@@ -13,8 +13,8 @@ layer=top
 term=wezterm
 
 ## Geometry
-width=800px
-height=600px
+width=500px
+height=415px
 location=0
 #xoffset=10
 #yoffset=10
@@ -46,7 +46,7 @@ no_actions=false
 sort_order=default
 gtk_dark=true
 filter_rate=100
-#cache_file=/dev/null
+cache_file=/dev/null
 
 ## Keys
 key_expand=Tab

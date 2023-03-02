@@ -1,51 +1,51 @@
 /** ********** Fonts ********** **/
 * {
-    font-family: "JetBrainsMono Nerd Font", "Iosevka Nerd Font", archcraft, sans-serif;
+    font-family: "JetBrainsMono Nerd Font", "Iosevka Nerd Font", sans-serif;
     font-size: 12px;
 }
 
 #window {
-	background-color: --wofi-color0;
-	color: --wofi-color2;
-	border: 2px solid --wofi-color1;
-	border-radius: 10px;
+  background-color: --wofi-color0;
+  color: --wofi-color2;
+  border: 2px solid --wofi-color1;
+  border-radius: 10px;
 }
 
 #outer-box {
-	padding: 10px;
+  padding: 10px;
 }
 
 #input {
-	background-color: --wofi-color1;
-	border: 0px solid --wofi-color3;
-	padding: 8px 10px;
+  background-color: --wofi-color1;
+  border: 0px solid --wofi-color3;
+  padding: 8px 10px;
 }
 
 #scroll {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 #img {
-	padding-right: 8px;
+  padding-right: 8px;
 }
 
 #text {
-	color: --wofi-color2;
+  color: --wofi-color2;
 }
 
 #text:selected {
-	color: --wofi-color0;
+  color: --wofi-color0;
 }
 
 #entry {
-	padding: 10px;
+  padding: 10px;
 }
 
 #entry:selected {
-	background-color: --wofi-color3;
-	color: --wofi-color0;
+  background-color: --wofi-color3;
+  color: --wofi-color0;
 }
 
 #input, #entry:selected {
-	border-radius: 6px;
+  border-radius: 6px;
 }
