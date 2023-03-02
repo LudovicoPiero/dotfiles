@@ -8,6 +8,9 @@
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     date "+%a %d %b %Y"
   '';
+  cfg = config.home-manager.users.${config.vars.username};
+  hyprland = cfg.wayland.windowManager.hyprland.enable;
+  sway = cfg.wayland.windowManager.sway.enable;
 in {
   home-manager.users."${config.vars.username}" = {
     home.packages = with pkgs; [
@@ -34,7 +37,19 @@ in {
           fixed-center = true;
           # ipc = true;
 
-          modules-left = ["wlr/workspaces" "tray"];
+          modules-left =
+            # Maybe there is a better way to manage this?
+            if hyprland
+            then [
+              "wlr/workspaces"
+              "tray"
+            ]
+            else if sway
+            then [
+              "sway/workspaces"
+              "tray"
+            ]
+            else ["tray"];
           modules-right = [
             "cpu"
             "memory"

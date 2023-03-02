@@ -72,8 +72,8 @@ in ''
     background-color: #2D3039;
     /*border-radius: 2px;*/
     border-bottom: 2px solid #${colors.base06};
-    margin: 6px 0px;
-    padding: 2px 10px;
+    margin: 5px 0px;
+    padding: 2px 5px;
   }
 
   #workspaces button {
