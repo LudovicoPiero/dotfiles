@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  browser = "chromium";
+  browser = "firefox";
 in {
   home-manager.users."${config.vars.username}" = {
     home = {
