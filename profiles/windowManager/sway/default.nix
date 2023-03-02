@@ -26,7 +26,6 @@ in {
       swappy
       sharenix
       playerctl
-      fuzzel
     ];
     wayland.windowManager.sway = {
       enable = true;
@@ -87,7 +86,7 @@ in {
         ];
         modifier = "Mod4";
         terminal = "${config.vars.terminalBin}";
-        menu = "${pkgs.fuzzel}/bin/fuzzel";
+        menu = "${pkgs.wofi}/bin/wofi";
       };
       extraConfig = ''
         titlebar_border_thickness 1
@@ -116,25 +115,6 @@ in {
       if test -z $DISPLAY && test (tty) = "/dev/tty1"
           exec sway
       end
-    '';
-
-    xdg.configFile."fuzzel/fuzzel.ini".text = ''
-      font='Iosevka Nerd Font-16'
-      icon-theme='WhiteSur'
-      prompt='->'
-      [dmenu]
-      mode=text
-      [colors]
-      background=24283bff
-      text=a9b1d6ff
-      match=8031caff
-      selection=8031caff
-      selection-text=7aa2f7ff
-      selection-match=2ac3deff
-      border=8031caff
-      [border]
-      width=2
-      radius=0
     '';
   };
 }
