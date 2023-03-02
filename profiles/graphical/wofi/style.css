@@ -1,51 +1,51 @@
 /** ********** Fonts ********** **/
 * {
-    font-family: "JetBrainsMono Nerd Font", "Iosevka Nerd Font", sans-serif;
-    font-size: 12px;
+  font-family: "JetBrains Mono", "Iosevka", "Font Awesome 6 Brands", "Font Awesome 6 Free", monospace;
+  font-size: 12px;
 }
 
 #window {
-	background-color: --wofi-color0;
-	color: --wofi-color2;
-	border: 2px solid --wofi-color1;
-	border-radius: 0px;
+  background-color: --wofi-color0;
+  color: --wofi-color2;
+  border: 2px solid --wofi-color1;
+  border-radius: 0px;
 }
 
 #outer-box {
-	padding: 20px;
+  padding: 20px;
 }
 
 #input {
-	background-color: --wofi-color1;
-	border: 0px solid --wofi-color3;
-	padding: 8px 12px;
+  background-color: --wofi-color1;
+  border: 0px solid --wofi-color3;
+  padding: 8px 12px;
 }
 
 #scroll {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 #img {
-	padding-right: 8px;
+  padding-right: 8px;
 }
 
 #text {
-	color: --wofi-color2;
+  color: --wofi-color2;
 }
 
 #text:selected {
-	color: --wofi-color0;
+  color: --wofi-color0;
 }
 
 #entry {
-	padding: 6px;
+  padding: 6px;
 }
 
 #entry:selected {
-	background-image: linear-gradient(to right, --wofi-color4 , --wofi-color5);
-	color: --wofi-color0;
+  background-image: linear-gradient(to right, --wofi-color4 , --wofi-color5);
+  color: --wofi-color0;
 }
 
 #input, #entry:selected {
-	border-radius: 0px;
+  border-radius: 0px;
 }

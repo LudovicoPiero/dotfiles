@@ -23,7 +23,7 @@ in {
           transparency = 10;
           background = "#${colors.base00}";
           frame_color = "#${colors.base06}"; # border
-          font = "Iosevka Mono Nerd Font 10";
+          font = "Iosevka 10";
           notification_limit = 5;
           layer = "overlay"; # bottom, top or overlay
           browser = "${pkgs.xdg-utils}/bin/xdg-open";

@@ -57,7 +57,7 @@ in {
 
     #TODO: Move this somewhere else
     xdg.configFile."fuzzel/fuzzel.ini".text = ''
-      font='Iosevka Nerd Font-16'
+      font='Iosevka-16'
       icon-theme='WhiteSur'
       prompt='->'
       [dmenu]

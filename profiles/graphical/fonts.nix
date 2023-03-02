@@ -10,6 +10,7 @@
       inputs.self.packages.${pkgs.system}.google-sans
 
       powerline-fonts
+      material-symbols
       iosevka-comfy.comfy
       sarasa-gothic
       emacs-all-the-icons-fonts
@@ -20,13 +21,9 @@
       noto-fonts-emoji
       twemoji-color-font
 
-      (nerdfonts.override {
-        fonts = [
-          "Iosevka"
-          "UbuntuMono"
-          "JetBrainsMono"
-        ];
-      })
+      jetbrains-mono
+      iosevka
+      ubuntu_font_family
     ];
 
     # use fonts specified by user rather than default ones
@@ -49,7 +46,7 @@
         ];
 
         monospace = [
-          "Iosevka Nerd Font"
+          "Iosevka"
           "Sarasa Mono C"
           "Sarasa Mono J"
           "Sarasa Mono K"

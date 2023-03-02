@@ -82,25 +82,8 @@
           font = wezterm.font_with_fallback(
               {
                   {
-                      family = "UbuntuMono Nerd Font",
+                      family = "Ubuntu Mono",
                       weight = "Regular",
-                      -- harfbuzz for UbuntuMono Nerd Font
-                      harfbuzz_features = {
-                          "cv01",
-                          "cv02",
-                          "cv12",
-                          "ss05",
-                          "ss04",
-                          "ss03",
-                          "cv31",
-                          "cv29",
-                          "cv24",
-                          "cv25",
-                          "cv26",
-                          "ss07",
-                          "zero",
-                          "onum"
-                      }
                   },
                   "Noto Color Emoji",
                   "Material Symbols"
@@ -113,7 +96,7 @@
               font = wezterm.font_with_fallback(
                   {
                       {
-                          family = "Iosevka Nerd Font",
+                          family = "Iosevka",
                           harfbuzz_features = {
                               "cv01",
                               "cv02",

@@ -2,7 +2,7 @@
   inherit (config.vars.colorScheme) colors;
 in ''
   * {
-    font-family: "JetBrainsMono Nerd Font", "Iosevka Nerd Font", sans-serif;
+    font-family: "JetBrains Mono", "Iosevka", "Font Awesome 6 Brands", "Font Awesome 6 Free",sans-serif;
     font-size: 12px;
   }
 
