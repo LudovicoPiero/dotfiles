@@ -18,7 +18,7 @@
     services.emacs.enable = true;
     programs.emacs = {
       enable = true;
-      package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
+      #package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
 
       init = {
         enable = true;
@@ -33,7 +33,7 @@
 
           ;; Set up fonts early.
           (add-to-list 'default-frame-alist
-              '(font . "Iosevka q 15"))
+          '(font . "Iosevka q 15"))
         '';
 
         prelude = builtins.readFile ./prelude.el;
@@ -176,15 +176,15 @@
             '';
             config = ''
               (setq lsp-diagnostics-provider :flycheck
-                    lsp-eldoc-render-all nil
-                    lsp-headerline-breadcrumb-enable nil
-                    lsp-modeline-code-actions-enable nil
-                    lsp-modeline-diagnostics-enable nil
-                    lsp-modeline-workspace-status-enable nil
-                    lsp-lens-enable t)
+              lsp-eldoc-render-all nil
+              lsp-headerline-breadcrumb-enable nil
+              lsp-modeline-code-actions-enable nil
+              lsp-modeline-diagnostics-enable nil
+              lsp-modeline-workspace-status-enable nil
+              lsp-lens-enable t)
               (setq lsp-rust-server 'rust-analyzer
-                    lsp-nix-server 'nil
-                    lsp-nix-nil-formatter 'alejandra)
+              lsp-nix-server 'nil
+              lsp-nix-nil-formatter 'alejandra)
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
             '';
           };
@@ -201,15 +201,15 @@
             };
             config = ''
               (setq lsp-ui-sideline-enable t
-                    lsp-ui-sideline-show-symbol nil
-                    lsp-ui-sideline-show-hover t
-                    lsp-ui-doc-enable nil
-                    lsp-ui-sideline-show-code-actions nil
-                    lsp-ui-sideline-update-mode 'point)
+              lsp-ui-sideline-show-symbol nil
+              lsp-ui-sideline-show-hover t
+              lsp-ui-doc-enable nil
+              lsp-ui-sideline-show-code-actions nil
+              lsp-ui-sideline-update-mode 'point)
               (setq lsp-ui-doc-enable nil
-                    lsp-ui-doc-position 'at-point
-                    lsp-ui-doc-max-width 125
-                    lsp-ui-doc-max-height 18)
+              lsp-ui-doc-position 'at-point
+              lsp-ui-doc-max-width 125
+              lsp-ui-doc-max-height 18)
             '';
           };
 
@@ -247,6 +247,11 @@
             demand = true;
             mode = ["\\.nix\\"];
             hook = ["(nix-mode . lsp-deferred)"];
+            bindLocal = {
+              nix-mode-map = {
+                "C-c f f" = "nix-mode-format";
+              };
+            };
           };
 
           ripgrep = {
@@ -260,10 +265,151 @@
             init = "(vertico-mode)";
           };
 
+          org = {
+            enable = true;
+            bind = {
+              "C-c o c" = "org-capture";
+              "C-c o a" = "org-agenda";
+              "C-c o l" = "org-store-link";
+              "C-c o b" = "org-switchb";
+            };
+            hook = [
+              ''
+                (org-mode
+                . (lambda ()
+                (add-hook 'completion-at-point-functions
+                'pcomplete-completions-at-point nil t)))
+              ''
+            ];
+            config = ''
+              ;; Some general stuff.
+              (setq org-reverse-note-order t
+              org-use-fast-todo-selection t
+              org-adapt-indentation nil
+              org-hide-leading-stars t
+              org-hide-emphasis-markers t
+              org-ctrl-k-protect-subtree t
+              org-pretty-entities t
+              org-ellipsis "…")
+
+              ;; Add some todo keywords.
+              (setq org-todo-keywords
+              '((sequence "TODO(t)"
+              "STARTED(s!)"
+              "WAITING(w@/!)"
+              "DELEGATED(@!)"
+              "|"
+              "DONE(d!)"
+              "CANCELED(c@!)")))
+
+              ;; Unfortunately org-mode tends to take over keybindings that
+              ;; start with C-c.
+              (unbind-key "C-c SPC" org-mode-map)
+              (unbind-key "C-c w" org-mode-map)
+              (unbind-key "C-'" org-mode-map)
+            '';
+          };
+
+          org-agenda = {
+            enable = true;
+            after = ["org"];
+            defer = true;
+            config = ''
+              ;; Set up agenda view.
+              (setq org-agenda-span 5
+              org-deadline-warning-days 14
+              org-agenda-show-all-dates t
+              org-agenda-skip-deadline-if-done t
+              org-agenda-skip-scheduled-if-done t
+              org-agenda-start-on-weekday nil)
+            '';
+          };
+
+          org-modern = {
+            enable = true;
+            hook = [
+              "(org-mode . org-modern-mode)"
+              "(org-agenda-finalize . org-modern-agenda)"
+            ];
+          };
+
+          org-roam = {
+            enable = true;
+            command = ["org-roam-db-autosync-mode"];
+            defines = ["org-roam-v2-ack"];
+            bind = {"C-' f" = "org-roam-node-find";};
+            bindLocal = {
+              org-mode-map = {
+                "C-' b" = "org-roam-buffer-toggle";
+                "C-' i" = "org-roam-node-insert";
+              };
+            };
+            init = ''
+              (setq org-roam-v2-ack t)
+            '';
+            config = ''
+              (setq org-roam-directory "~/roam")
+              (org-roam-db-autosync-mode)
+            '';
+          };
+
+          org-table = {
+            enable = true;
+            after = ["org"];
+            command = ["orgtbl-to-generic"];
+            functions = ["org-combine-plists"];
+            hook = [
+              # For orgtbl mode, add a radio table translator function for
+              # taking a table to a psql internal variable.
+              ''
+                (orgtbl-mode
+                . (lambda ()
+                (defun rah-orgtbl-to-psqlvar (table params)
+                "Converts an org table to an SQL list inside a psql internal variable"
+                (let* ((params2
+                (list
+                :tstart (concat "\\set " (plist-get params :var-name) " '(")
+                :tend ")'"
+                :lstart "("
+                :lend "),"
+                :sep ","
+                :hline ""))
+                (res (orgtbl-to-generic table (org-combine-plists params2 params))))
+                (replace-regexp-in-string ",)'$"
+                ")'"
+                (replace-regexp-in-string "\n" "" res))))))
+              ''
+            ];
+            config = ''
+              (unbind-key "C-c SPC" orgtbl-mode-map)
+              (unbind-key "C-c w" orgtbl-mode-map)
+            '';
+          };
+
+          org-capture = {
+            enable = true;
+            after = ["org"];
+          };
+
+          yasnippet = {
+            enable = true;
+            command = ["yas-global-mode" "yas-minor-mode" "yas-expand-snippet"];
+            hook = [
+              # Yasnippet interferes with tab completion in ansi-term.
+              "(term-mode . (lambda () (yas-minor-mode -1)))"
+            ];
+            config = "(yas-global-mode 1)";
+          };
+
+          yasnippet-snippets = {
+            enable = true;
+            after = ["yasnippet"];
+          };
+
           consult = {
             enable = true;
             bind = {
-              "C-s" = "consult-line";
+              "C-x p" = "consult-line";
               "C-x b" = "consult-buffer";
               "M-g M-g" = "consult-goto-line";
               "M-g g" = "consult-goto-line";
@@ -350,10 +496,9 @@
           lsp-rust = {
             enable = true;
             defer = true;
-            hook = ["(rust-mode . rah-lsp)"];
+            hook = ["(rust-mode . lsp-deferred)"];
             config = ''
               (setq rust-format-on-save t)
-
             '';
           };
 
