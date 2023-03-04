@@ -19,7 +19,6 @@
       noto-fonts-cjk
       noto-fonts-cjk-sans
       noto-fonts-emoji
-      twemoji-color-font
 
       jetbrains-mono
       iosevka
@@ -47,13 +46,13 @@
         ];
 
         monospace = [
-          "Iosevka"
+          "Iosevka q"
           "Sarasa Mono C"
           "Sarasa Mono J"
           "Sarasa Mono K"
         ];
 
-        emoji = ["Twitter Color Emoji"];
+        emoji = ["noto-fonts-emoji"];
       };
     };
   };

@@ -82,7 +82,7 @@
           font = wezterm.font_with_fallback(
               {
                   {
-                      family = "Ubuntu Mono",
+                      family = "Iosevka q",
                       weight = "Regular",
                   },
                   "Noto Color Emoji",
@@ -96,23 +96,23 @@
               font = wezterm.font_with_fallback(
                   {
                       {
-                          family = "Iosevka",
-                          harfbuzz_features = {
-                              "cv01",
-                              "cv02",
-                              "cv12",
-                              "ss05",
-                              "ss04",
-                              "ss03",
-                              "cv31",
-                              "cv29",
-                              "cv24",
-                              "cv25",
-                              "cv26",
-                              "ss07",
-                              "zero",
-                              "onum"
-                          }
+                          family = "Iosevka q",
+                          -- harfbuzz_features = {
+                          --     "cv01",
+                          --     "cv02",
+                          --     "cv12",
+                          --     "ss05",
+                          --     "ss04",
+                          --     "ss03",
+                          --     "cv31",
+                          --     "cv29",
+                          --     "cv24",
+                          --     "cv25",
+                          --     "cv26",
+                          --     "ss07",
+                          --     "zero",
+                          --     "onum"
+                          -- }
                       },
                       "Noto Color Emoji",
                       "Material Symbols"
