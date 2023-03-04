@@ -11,9 +11,7 @@
       ./persist.nix
     ]
     ++ suites.sway
-    /*
-    ++ suites.hyprland
-    */
+    #++ suites.hyprland
     ;
 
   boot = {
