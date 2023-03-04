@@ -23,6 +23,7 @@
 
       jetbrains-mono
       iosevka
+      iosevka-q # coming from overlays
       ubuntu_font_family
     ];
 
