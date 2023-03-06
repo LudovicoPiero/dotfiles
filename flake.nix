@@ -56,6 +56,7 @@
     nur.url = "github:nix-community/NUR";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
   outputs = {
@@ -127,6 +128,12 @@
               hyprland.nixosModules.default
               nur.nixosModules.nur
               impermanence.nixosModules.impermanence
+            ];
+          };
+          duchy = {
+            modules = [
+              inputs.nixos-wsl.nixosModules.wsl
+              nur.nixosModules.nur
             ];
           };
         };
