@@ -114,6 +114,7 @@
             digga.nixosModules.bootstrapIso
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
+            nur.nixosModules.nur
           ];
         };
 
@@ -126,14 +127,12 @@
               nixos-hardware.nixosModules.common-gpu-amd
               nixos-hardware.nixosModules.common-pc-laptop-ssd
               hyprland.nixosModules.default
-              nur.nixosModules.nur
               impermanence.nixosModules.impermanence
             ];
           };
           duchy = {
             modules = [
               inputs.nixos-wsl.nixosModules.wsl
-              nur.nixosModules.nur
             ];
           };
         };
