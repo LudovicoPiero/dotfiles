@@ -83,11 +83,11 @@ in {
       extraConfig = import ./config.nix args;
     };
 
-    programs.fish.interactiveShellInit = lib.mkBefore ''
-      if test -z $DISPLAY && test (tty) = "/dev/tty1"
-      exec Hyprland
-      end
-    '';
+    # programs.fish.interactiveShellInit = lib.mkBefore ''
+    #   if test -z $DISPLAY && test (tty) = "/dev/tty1"
+    #   exec Hyprland
+    #   end
+    # '';
 
     # User Services
     systemd.user.services = {

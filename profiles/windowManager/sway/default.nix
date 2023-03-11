@@ -111,10 +111,10 @@ in {
       systemdIntegration = false;
     };
 
-    programs.fish.interactiveShellInit = lib.mkBefore ''
-      if test -z $DISPLAY && test (tty) = "/dev/tty1"
-          exec sway
-      end
-    '';
+    # programs.fish.interactiveShellInit = lib.mkBefore ''
+    #   if test -z $DISPLAY && test (tty) = "/dev/tty1"
+    #       exec sway
+    #   end
+    # '';
   };
 }
