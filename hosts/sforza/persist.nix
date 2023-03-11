@@ -1,7 +1,7 @@
 {lib, ...}: {
   # Configure LUKS
   # blkid --match-tag UUID --output value "$DISK-part2"
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/d7cd14b8-3c6e-446d-bd58-950fe2461527";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/efd1256f-fb17-448c-bd1e-1343e99a2355";
 
   # Configure ZFS
   boot.supportedFilesystems = ["zfs"];
@@ -28,7 +28,7 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
-      "/etc/NIXOS"
+      "/etc/nixos"
     ];
     files = [
       "/etc/machine-id"
