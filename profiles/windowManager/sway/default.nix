@@ -29,7 +29,7 @@ in {
     ];
     wayland.windowManager.sway = {
       enable = true;
-      # package = inputs.swayfx.packages.${pkgs.system}.default;
+      package = inputs.swayfx.packages.${pkgs.system}.default;
       config = {
         colors = import ./colors.nix {inherit colors;};
         keybindings = import ./keybindings.nix {inherit config pkgs;};
@@ -68,8 +68,8 @@ in {
           ];
         };
         gaps = {
-          inner = 0;
-          outer = 0;
+          inner = 3;
+          outer = 3;
         };
         fonts = {
           names = ["Iosevka Comfy"];
@@ -80,7 +80,7 @@ in {
           {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
           {command = "dunst";}
           {
-            command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland";
+            command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr";
             always = true;
           }
         ];
@@ -94,11 +94,11 @@ in {
         titlebar_padding 2
 
         # SwayFX stuff
-        # corner_radius 5
-        # smart_corner_radius on
-        # shadows off
-        # shadow_blur_radius 15
-        # shadow_color #FFC0CB
+        corner_radius 5
+        smart_corner_radius on
+        shadows off
+        shadow_blur_radius 15
+        shadow_color #FFC0CB
       '';
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway
