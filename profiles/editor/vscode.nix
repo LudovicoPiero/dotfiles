@@ -14,7 +14,6 @@
       extensions = with pkgs.vscode-extensions; [
         ms-vscode.cpptools # C/C++
         bbenoist.nix
-        kamikillerto.vscode-colorize # css background
         catppuccin.catppuccin-vsc # Color theme
         github.copilot
         kamadorueda.alejandra
