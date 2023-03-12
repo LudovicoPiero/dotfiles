@@ -6,7 +6,9 @@
 }: let
   _ = lib.getExe;
 in {
+  programs.command-not-found.enable = false;
   home-manager.users."${config.vars.username}" = {
+    programs.nix-index.enable = true;
     home.packages = with pkgs; [commitizen zoxide exa fzf fd bat lazygit];
     programs.fish = {
       enable = true;
