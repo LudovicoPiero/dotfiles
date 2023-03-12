@@ -29,13 +29,10 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
+      "/etc/nix"
     ];
     files = [
       "/etc/machine-id"
-      {
-        file = "/etc/nix/id_rsa";
-        parentDirectory = {mode = "u=rwx,g=,o=";};
-      }
     ];
   };
 
