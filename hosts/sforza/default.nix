@@ -16,8 +16,8 @@
 
   boot = {
     loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.configurationLimit = 5;
+    loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["zfs" "ntfs"];
@@ -41,6 +41,24 @@
       LC_PAPER = "en_AU.UTF-8";
       LC_TELEPHONE = "en_AU.UTF-8";
       LC_TIME = "en_AU.UTF-8";
+    };
+  };
+
+  # TLP For Laptop
+  services = {
+    tlp.enable = true;
+    tlp.settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      RADEON_DPM_STATE_ON_AC = "performance";
+      RADEON_DPM_STATE_ON_BAT = "battery";
+
+      # https://linrunner.de/en/tlp/docs/tlp-faq.html#battery
+      # use "tlp fullcharge" to override temporarily
+      START_CHARGE_THRESH_BAT0 = 85;
+      STOP_CHARGE_THRESH_BAT0 = 90;
+      START_CHARGE_THRESH_BAT1 = 85;
+      STOP_CHARGE_THRESH_BAT1 = 90;
     };
   };
 
