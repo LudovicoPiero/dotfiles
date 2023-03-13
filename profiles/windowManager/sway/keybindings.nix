@@ -95,7 +95,6 @@ in rec {
 
   ### Screenshot
   "${mod}+Print" = "exec grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
-  "Print" = "exec sharenix --selection";
   "CTRL+Print" = "exec grimblast --notify copy area";
 
   # Volume

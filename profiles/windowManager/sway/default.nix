@@ -1,12 +1,10 @@
 {
   config,
-  lib,
   pkgs,
   inputs,
   ...
 }: let
   inherit (config.vars.colorScheme) colors;
-  sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./Scripts/screenshot}'';
 in {
   programs.sway.enable = true; # Enable nixos modules
 
@@ -24,7 +22,6 @@ in {
       slurp
       grim
       swappy
-      sharenix
       playerctl
       fuzzel
     ];
