@@ -95,11 +95,18 @@ in {
         titlebar_padding 2
 
         # SwayFX stuff
+        # window corner radius in px
         corner_radius 5
-        smart_corner_radius on
+
         shadows off
-        shadow_blur_radius 15
-        shadow_color #FFC0CB
+        shadows_on_csd off
+        shadow_blur_radius 20
+        shadow_color #0000007F
+
+        # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+        default_dim_inactive 0.0
+        dim_inactive_colors.unfocused #000000FF
+        dim_inactive_colors.urgent #900000FF
       '';
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway
