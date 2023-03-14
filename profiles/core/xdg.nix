@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   browser = ["firefox.desktop"];
@@ -34,7 +35,7 @@ in {
   xdg = {
     portal = {
       # wlr disabled because i'm using xdg-desktop-portal-hyprland
-      wlr.enable = false;
+      wlr.enable = lib.mkForce false;
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
