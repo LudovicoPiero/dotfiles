@@ -3,6 +3,7 @@
   pkgs,
   suites,
   inputs,
+  lib,
   ...
 }: {
   imports =
@@ -11,8 +12,7 @@
       ./persist.nix
     ]
     ++ suites.sway
-    #++ suites.hyprland
-    ;
+    ++ suites.hyprland;
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -81,5 +81,7 @@
     };
   };
 
+  # Remove Bloat
+  documentation.nixos.enable = lib.mkForce false;
   system.stateVersion = "${config.vars.stateVersion}";
 }
