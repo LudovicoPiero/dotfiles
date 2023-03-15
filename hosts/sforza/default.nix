@@ -75,8 +75,8 @@
   };
 
   environment.etc."greetd/environments".text = ''
-    Hyprland
     sway
+    Hyprland
     fish
   '';
 
