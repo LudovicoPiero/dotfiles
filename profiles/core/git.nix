@@ -20,7 +20,7 @@
       co = "checkout";
       cob = "checkout -b";
       f = "fetch -p";
-      c = "commit";
+      c = "commit -s";
       p = "push";
       ba = "branch -a";
       bd = "branch -d";
