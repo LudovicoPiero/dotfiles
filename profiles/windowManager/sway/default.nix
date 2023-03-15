@@ -26,7 +26,7 @@ in {
     ];
     wayland.windowManager.sway = {
       enable = true;
-      package = inputs.swayfx.packages.${pkgs.system}.default;
+      # package = inputs.swayfx.packages.${pkgs.system}.default;
       config = {
         colors = import ./colors.nix {inherit colors;};
         keybindings = import ./keybindings.nix {inherit config pkgs;};
@@ -65,8 +65,8 @@ in {
           ];
         };
         gaps = {
-          inner = 3;
-          outer = 3;
+          inner = 0;
+          outer = 0;
         };
         fonts = {
           names = ["Iosevka Comfy"];
@@ -92,17 +92,17 @@ in {
 
         # SwayFX stuff
         # window corner radius in px
-        corner_radius 5
-
-        shadows off
-        shadows_on_csd off
-        shadow_blur_radius 20
-        shadow_color #0000007F
-
-        # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
-        default_dim_inactive 0.0
-        dim_inactive_colors.unfocused #000000FF
-        dim_inactive_colors.urgent #900000FF
+        # corner_radius 5
+        #
+        # shadows off
+        # shadows_on_csd off
+        # shadow_blur_radius 20
+        # shadow_color #0000007F
+        #
+        # # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+        # default_dim_inactive 0.0
+        # dim_inactive_colors.unfocused #000000FF
+        # dim_inactive_colors.urgent #900000FF
       '';
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway
