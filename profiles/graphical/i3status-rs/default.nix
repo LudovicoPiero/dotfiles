@@ -41,7 +41,8 @@ in {
             }
             {
               block = "sound";
-              driver = "pulseaudio";
+              # driver = "pulseaudio";
+              format = " $icon $volume ";
             }
             {
               block = "battery";
