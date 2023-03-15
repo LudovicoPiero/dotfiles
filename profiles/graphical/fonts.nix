@@ -32,21 +32,21 @@
       enable = true;
       defaultFonts = {
         serif = [
-          "Google Sans"
+          "Iosevka q"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
         ];
 
         sansSerif = [
-          "Google Sans"
+          "Iosevka q"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
         ];
 
         monospace = [
-          "Iosevka q"
+          "Google Sans"
           "Sarasa Mono C"
           "Sarasa Mono J"
           "Sarasa Mono K"
