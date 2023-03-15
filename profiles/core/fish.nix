@@ -39,7 +39,7 @@ in {
         "tree" = "exa --tree --icons";
         "nv" = "nvim";
         "mkdir" = "mkdir -p";
-        "g" = "git";
+        "g" = "git -s";
         "gcl" = "git clone";
         "gcm" = "cz c";
         "gd" = "git diff HEAD";
