@@ -12,7 +12,6 @@
       powerline-fonts
       material-symbols
       iosevka-comfy.comfy
-      sarasa-gothic
       emacs-all-the-icons-fonts
       font-awesome
 
@@ -32,24 +31,24 @@
       enable = true;
       defaultFonts = {
         serif = [
-          "Iosevka q"
-          "Sarasa Gothic C"
-          "Sarasa Gothic J"
-          "Sarasa Gothic K"
+          "Google Sans"
+          "Noto Sans JP"
+          "Noto Sans KR"
+          "Noto Sans HK"
         ];
 
         sansSerif = [
-          "Iosevka q"
-          "Sarasa Gothic C"
-          "Sarasa Gothic J"
-          "Sarasa Gothic K"
+          "Google Sans"
+          "Noto Sans JP"
+          "Noto Sans KR"
+          "Noto Sans HK"
         ];
 
         monospace = [
           "Google Sans"
-          "Sarasa Mono C"
-          "Sarasa Mono J"
-          "Sarasa Mono K"
+          "Noto Sans JP"
+          "Noto Sans KR"
+          "Noto Sans HK"
         ];
 
         emoji = ["noto-fonts-emoji"];
