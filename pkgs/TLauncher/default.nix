@@ -14,8 +14,8 @@
 
   src = fetchurl rec {
     name = "TLauncher-${lib.strings.sanitizeDerivationName sha256}.jar";
-    url = "https://tlaun.ch/jar";
-    sha256 = "sha256-Uef9RAuPwMt6yo6cOg3878RzLH2UPUX/y+QO937FHNE=";
+    url = "https://tlaun.ch/repo/downloads/TL_mcl.jar";
+    sha256 = "0a4gy5ypkj6w477b5r87jn6vacc4d7mb2ypz7234j5nsf8gwpscs";
   };
 
   desktopItems = makeDesktopItem {
