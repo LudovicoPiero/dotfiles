@@ -7,51 +7,34 @@
   modulesPath,
   ...
 }: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = ["kvm-amd"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
-  services.zfs.autoScrub.enable = true;
-  services.zfs.trim.enable = true;
-
   fileSystems."/" = {
-    device = "tank/local/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/nix" = {
-    device = "tank/local/nix";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "tank/safe/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/persist" = {
-    device = "tank/safe/persist";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/44EC-FCEB";
-    fsType = "vfat";
-  };
-
-  fileSystems."/Stuff" = {
-    device = "/dev/disk/by-uuid/e6cc4b28-e7b4-4691-a673-f9281f7d8b9d";
+    device = "/dev/disk/by-uuid/a70d7222-0e1c-4d02-8cbd-da5668270f6d";
     fsType = "ext4";
   };
 
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/ecd2f4c4-57c3-44e9-8d2b-cf9ae2b58f41";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/85D3-68CE";
+    fsType = "vfat";
+  };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
   swapDevices = [
-    {device = "/dev/disk/by-uuid/48c01871-6213-41a2-b519-94a0825fcb78";}
+    {device = "/dev/disk/by-uuid/ecc1957e-efc4-4ea8-853b-210f33521d5c";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

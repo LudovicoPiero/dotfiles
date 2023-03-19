@@ -9,7 +9,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./persist.nix
+      # ./persist.nix
     ]
     ++ suites.sway
     ++ suites.hyprland;
@@ -19,8 +19,8 @@
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    supportedFilesystems = ["zfs" "ntfs"];
+    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = ["ntfs"];
   };
 
   hardware.bluetooth.enable = true;
