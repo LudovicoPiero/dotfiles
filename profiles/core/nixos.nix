@@ -7,12 +7,8 @@
     ./common.nix
   ];
 
-  programs = {
-    fish.enable = true;
-  };
-
   security = {
-    polkit.enable = true;
+    # polkit.enable = true;
     sudo.enable = false;
     doas = {
       enable = true;

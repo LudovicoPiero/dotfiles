@@ -6,6 +6,9 @@
 }: let
   _ = lib.getExe;
 in {
+  programs = {
+    fish.enable = true; # This settings comes from nixos options
+  };
   programs.command-not-found.enable = false;
   home-manager.users."${config.vars.username}" = {
     programs.nix-index.enable = true;
