@@ -12,6 +12,7 @@
       # ./persist.nix
     ]
     ++ suites.sway
+    ++ suites.dwm
     ++ suites.hyprland;
 
   boot = {
@@ -62,17 +63,17 @@
     };
   };
 
-  services.greetd = {
-    enable = true;
-    # package = pkgs.greetd.gtkgreet;
-    vt = 1;
-    settings = {
-      default_session = {
-        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-        user = "ludovico";
-      };
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   # package = pkgs.greetd.gtkgreet;
+  #   vt = 1;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+  #       user = "ludovico";
+  #     };
+  #   };
+  # };
 
   environment.etc."greetd/environments".text = ''
     sway
@@ -92,10 +93,10 @@
       lightdm.enable = false;
       # Add Hyprland to display manager
       sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
-      #  sddm = {
-      #    enable = true;
-      #    theme = "multicolor-sddm-theme";
-      #  };
+      sddm = {
+        enable = true;
+        theme = "multicolor-sddm-theme";
+      };
     };
   };
 
