@@ -22,37 +22,26 @@ in {
       package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
       settings = {
         mainBar = {
-          position = "top";
+          position = "bottom";
           monitor = "eDP-1";
           layer = "top";
-          mode = "dock";
-          height = 30;
+          height = 25;
+          # mode = "dock";
           # width = "";
-          spacing = 6;
-          margin = "0";
-          margin-top = 0;
-          margin-bottom = 0;
-          margin-left = 0;
-          margin-right = 0;
-          fixed-center = true;
+          # spacing = 6;
+          # margin = "0";
+          # margin-top = 0;
+          # margin-bottom = 0;
+          # margin-left = 0;
+          # margin-right = 0;
+          # fixed-center = true;
           # ipc = true;
 
-          modules-left =
-            # Maybe there is a better way to manage this?
-            if hyprland
-            then [
-              "wlr/workspaces"
-              "tray"
-            ]
-            else if sway
-            then [
-              "sway/workspaces"
-              "tray"
-            ]
-            else ["tray"];
+          modules-left = [
+            "wlr/workspaces"
+            "tray"
+          ];
           modules-right = [
-            "cpu"
-            "memory"
             "network"
             "pulseaudio"
             "battery"
