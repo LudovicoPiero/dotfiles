@@ -142,7 +142,7 @@
             explodeAttrs = set: map (a: getAttr a set) (attrNames set);
           in
             with profiles; rec {
-              base = (explodeAttrs core) ++ (explodeAttrs editor) ++ [security vars];
+              base = (explodeAttrs core) ++ (explodeAttrs editor) ++ (explodeAttrs virtualisation) ++ [security vars];
               desktop = base ++ (explodeAttrs graphical) ++ (explodeAttrs browser);
 
               hyprland = desktop ++ [windowManager.hyprland];
