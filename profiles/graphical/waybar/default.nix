@@ -8,9 +8,6 @@
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     date "+%a %d %b %Y"
   '';
-  cfg = config.home-manager.users.${config.vars.username};
-  hyprland = cfg.wayland.windowManager.hyprland.enable;
-  sway = cfg.wayland.windowManager.sway.enable;
 in {
   home-manager.users."${config.vars.username}" = {
     home.packages = with pkgs; [
@@ -24,7 +21,7 @@ in {
         mainBar = {
           position = "bottom";
           monitor = "eDP-1";
-          layer = "top";
+          # layer = "top";
           height = 25;
           # mode = "dock";
           # width = "";
