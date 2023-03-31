@@ -25,7 +25,6 @@
     digga.inputs.nixpkgs.follows = "nixos";
     digga.inputs.nixlib.follows = "nixos";
     digga.inputs.home-manager.follows = "home";
-    digga.inputs.deploy.follows = "deploy";
 
     home.url = "github:nix-community/home-manager";
     home.inputs.nixpkgs.follows = "nixos";
@@ -37,14 +36,8 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    deploy.url = "github:serokell/deploy-rs";
-    deploy.inputs.nixpkgs.follows = "nixos";
-
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     emacs-overlay.inputs.nixpkgs.follows = "nixos";
-
-    nvfetcher.url = "github:berberman/nvfetcher";
-    nvfetcher.inputs.nixpkgs.follows = "nixos";
 
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixos";
@@ -68,8 +61,6 @@
     impermanence,
     nixos-hardware,
     nur,
-    nvfetcher,
-    deploy,
     ...
   } @ inputs:
     digga.lib.mkFlake
@@ -97,10 +88,7 @@
             our = self.lib;
           });
         })
-
         nur.overlay
-        nvfetcher.overlays.default
-
         (import ./pkgs)
       ];
 
@@ -156,7 +144,5 @@
       devshell = ./shell;
 
       homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
-
-      deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations {};
     };
 }

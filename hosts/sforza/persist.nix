@@ -25,7 +25,9 @@
     directories = [
       "/var/log"
       "/var/lib/bluetooth"
+      "/var/lib/libvirt"
       "/var/lib/nixos"
+      "/var/lib/pipewire"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"

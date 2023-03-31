@@ -6,17 +6,15 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
-    # config.pipewire-pulse = {
-    #   "context.exec" = [
-    #     {
-    #       path = "pactl";
-    #       args = "load-module module-switch-on-connect";
-    #     }
-    #   ];
-    # };
   };
 
   environment.etc = {
+    "pipewire/pipewire-pulse.conf.d/00-autoswitch.conf".text = ''
+      pulse.cmd = [
+        { cmd = "load-module" args = "module-always-sink" flags = [ ] }
+        { cmd = "load-module" args = "module-switch-on-connect" }
+      ]
+    '';
     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
       bluez_monitor.properties = {
           ["bluez5.enable-sbc-xq"] = true,

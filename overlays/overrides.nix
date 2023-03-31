@@ -3,7 +3,6 @@ channels: _final: _prev: {
 
   inherit
     (channels.stable)
-    deploy-rs
     cachix
     ;
 }

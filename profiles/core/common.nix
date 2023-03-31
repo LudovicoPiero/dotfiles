@@ -21,7 +21,6 @@
       git
       bottom
       jq
-      manix
       moreutils
       nix-index
       nmap

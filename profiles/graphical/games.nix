@@ -21,8 +21,8 @@
   };
   home-manager.users.${config.vars.username} = {
     home.packages = with pkgs; [
-      # inputs.self.packages.${pkgs.system}.albion-online
       gamescope
+      mangohud
       inputs.self.packages.${pkgs.system}.TLauncher
     ];
   };

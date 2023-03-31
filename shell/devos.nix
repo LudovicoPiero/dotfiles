@@ -1,7 +1,6 @@
 {
   pkgs,
   extraModulesPath,
-  inputs,
   lib,
   ...
 }: let
@@ -14,7 +13,6 @@
     nodePackages
     shfmt
     treefmt
-    nvfetcher-bin
     nixos-generators
     ;
 
@@ -34,13 +32,6 @@ in {
   commands =
     [
       (devos nixUnstable)
-      {
-        category = "devos";
-        name = nvfetcher-bin.pname;
-        help = nvfetcher-bin.meta.description;
-        command = "cd $PRJ_ROOT/pkgs; ${nvfetcher-bin}/bin/nvfetcher -c ./sources.toml $@";
-      }
-
       (formatter treefmt)
     ]
     ++ lib.optionals (!pkgs.stdenv.buildPlatform.isi686) [
@@ -48,6 +39,5 @@ in {
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       (devos nixos-generators)
-      (devos inputs.deploy.packages.${pkgs.system}.deploy-rs)
     ];
 }
