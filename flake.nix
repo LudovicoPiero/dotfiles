@@ -147,7 +147,6 @@
 
               hyprland = desktop ++ [windowManager.hyprland];
               sway = desktop ++ [windowManager.sway];
-              dwm = desktop ++ [windowManager.dwm];
             };
         };
       };

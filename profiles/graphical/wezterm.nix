@@ -82,7 +82,7 @@
           font = wezterm.font_with_fallback(
               {
                   {
-                      family = "Iosevka q",
+                      family = "Iosevka Nerd Font",
                       weight = "Regular",
                   },
                   "Noto Color Emoji",
@@ -96,7 +96,7 @@
               font = wezterm.font_with_fallback(
                   {
                       {
-                          family = "Iosevka q",
+                          family = "Iosevka Nerd Font",
                           -- harfbuzz_features = {
                           --     "cv01",
                           --     "cv02",

@@ -20,9 +20,7 @@
       noto-fonts-emoji
 
       jetbrains-mono
-      iosevka
-      iosevka-q # coming from overlays
-      ubuntu_font_family
+      (nerdfonts.override {fonts = ["Iosevka"];})
     ];
 
     # use fonts specified by user rather than default ones

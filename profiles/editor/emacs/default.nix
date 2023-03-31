@@ -33,7 +33,7 @@
 
           ;; Set up fonts early.
           (add-to-list 'default-frame-alist
-          '(font . "Iosevka q 15"))
+          '(font . "Iosevka Nerd Font 15"))
         '';
 
         prelude = builtins.readFile ./prelude.el;

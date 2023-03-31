@@ -7,4 +7,5 @@ final: prev: {
   multicolor-sddm-theme = final.callPackage ./multicolor-sddm-theme.nix {};
   spotify = final.callPackage ./spotify.nix {};
   TLauncher = final.callPackage ./TLauncher {};
+  albion-online = final.callPackage ./albion-online.nix {};
 }

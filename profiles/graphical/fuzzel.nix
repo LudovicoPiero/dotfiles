@@ -8,7 +8,7 @@
     home.packages = with pkgs; [fuzzel];
     #TODO: Move this somewhere else
     xdg.configFile."fuzzel/fuzzel.ini".text = ''
-      font='Iosevka q-16'
+      font='Iosevka Nerd Font-16'
       icon-theme='WhiteSur'
       prompt='->'
       [dmenu]

@@ -9,10 +9,9 @@
   imports =
     [
       ./hardware-configuration.nix
-      # ./persist.nix
+      ./persist.nix
     ]
     ++ suites.sway
-    ++ suites.dwm
     ++ suites.hyprland;
 
   boot = {
@@ -20,7 +19,8 @@
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["ntfs"];
   };
 

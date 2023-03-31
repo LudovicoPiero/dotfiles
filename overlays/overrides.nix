@@ -3,6 +3,7 @@ channels: _final: _prev: {
 
   inherit
     (channels.stable)
-    wezterm
+    deploy-rs
+    cachix
     ;
 }

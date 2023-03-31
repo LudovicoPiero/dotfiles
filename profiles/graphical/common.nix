@@ -10,12 +10,7 @@
         withOpenASAR = true;
       })
       webcord
-      element-desktop
+      tdesktop
     ];
-  };
-
-  services = {
-    # Service for battery
-    upower.enable = true;
   };
 }
