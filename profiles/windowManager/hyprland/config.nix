@@ -18,7 +18,7 @@ in ''
         input {
             kb_layout = us
             kb_options = ctrl:nocaps
-            follow_mouse = 0
+            follow_mouse = 1
             repeat_rate  = 30
             repeat_delay = 300
             touchpad {
