@@ -100,7 +100,7 @@ in ''
         windowrulev2 = workspace 4, class:^(Spotify(y|y-free))$
         windowrulev2 = workspace 1, class:^(jetbrains-clion)$
         windowrulev2 = float, class:^(discordcanary)$ # Discord File Picker
-        windowrulev2 = float, class:^(Steam)$
+        windowrulev2 = float, title:^(Steam - News)$
         windowrulev2 = noblur, class:^(waybar)$
         windowrulev2 = noblur, class:^(firefox)$
         windowrulev2 = noblur, class:^(chromium-browser)$
