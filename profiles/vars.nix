@@ -9,7 +9,7 @@
     username = "ludovico";
     terminal = "kitty";
     terminalBin = "${pkgs.kitty}/bin/kitty";
-    colorScheme = inputs.nix-colors.colorSchemes.catppuccin;
+    colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
     home = "/home/${username}";
     configHome = (builtins.getAttr username config.home-manager.users).xdg.configHome;
