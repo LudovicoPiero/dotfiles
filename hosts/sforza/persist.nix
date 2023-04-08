@@ -1,11 +1,11 @@
 {lib, ...}: {
   # Configure LUKS
   # blkid --match-tag UUID --output value "$DISK-part2"
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/1f5e8946-4cac-4eff-af4f-fb96adead7c8";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/8a29d1a4-83c7-4a46-ad37-736cfdfd9e70";
 
   # Configure ZFS
   boot.supportedFilesystems = ["zfs"];
-  networking.hostId = "bbf097da"; # head -c8 /etc/machine-id
+  networking.hostId = "d2ce8a60"; # head -c8 /etc/machine-id
   boot.zfs.devNodes = "/dev/vg/root";
 
   # Roll back to blank snapshot on boot
