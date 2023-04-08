@@ -12,7 +12,7 @@
       enable = true;
       # package = pkgs.vscodium; # use vscode because copilot no worky :(
       extensions = with pkgs.vscode-extensions; [
-        ms-vscode.cpptools # C/C++
+        #ms-vscode.cpptools # C/C++
         bbenoist.nix
         catppuccin.catppuccin-vsc # Color theme
         github.copilot
