@@ -12,6 +12,8 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
+  services.fstrim.enable = true;
+
   fileSystems."/" = {
     device = "tank/local/root";
     fsType = "zfs";

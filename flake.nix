@@ -47,7 +47,6 @@
 
     nil.url = "github:oxalica/nil";
     nur.url = "github:nix-community/NUR";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
@@ -59,7 +58,6 @@
     home,
     hyprland,
     impermanence,
-    nixos-hardware,
     nur,
     ...
   } @ inputs:
@@ -110,10 +108,7 @@
         hosts = {
           sforza = {
             modules = [
-              nixos-hardware.nixosModules.common-cpu-amd
-              nixos-hardware.nixosModules.common-cpu-amd-pstate
-              nixos-hardware.nixosModules.common-gpu-amd
-              nixos-hardware.nixosModules.common-pc-laptop-ssd
+              # nixos-hardware.nixosModules.common-pc-laptop-ssd
               hyprland.nixosModules.default
               impermanence.nixosModules.impermanence
             ];

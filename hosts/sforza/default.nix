@@ -26,6 +26,26 @@
 
   hardware.bluetooth.enable = true;
 
+  # OpenGL
+  boot = {
+    initrd.kernelModules = ["amdgpu"];
+    kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
+    kernelModules = ["amd-pstate"];
+  };
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    # mesaPackage = pkgs.mesa_23;
+    extraPackages = with pkgs; [
+      amdvlk
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
+    extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+  };
+
   networking.networkmanager.enable = true;
 
   time.timeZone = config.vars.timezone;
