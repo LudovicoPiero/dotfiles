@@ -12,7 +12,6 @@ in {
   home-manager.users.${config.vars.username} = {
     programs.i3status-rust = {
       enable = lib.mkIf sway true;
-      package = inputs.nixpkgs-wayland.packages.${pkgs.system}.i3status-rust;
       bars = {
         bottom = {
           blocks = [
