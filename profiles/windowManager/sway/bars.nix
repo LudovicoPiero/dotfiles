@@ -1,6 +1,4 @@
-{
-  colors,
-}: [
+{colors}: [
   {
     statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
     fonts = {

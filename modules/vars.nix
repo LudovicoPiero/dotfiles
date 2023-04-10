@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}:
+{lib, ...}:
 with lib; {
   options.vars = {
     email = mkOption {type = types.str;};

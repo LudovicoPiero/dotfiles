@@ -30,7 +30,7 @@ in {
       config = {
         colors = import ./colors.nix {inherit colors;};
         keybindings = import ./keybindings.nix {inherit config pkgs;};
-        bars = import ./bars.nix {inherit pkgs colors;};
+        bars = import ./bars.nix {inherit colors;};
         window = import ./windows.nix;
         output = {
           "*" = {bg = "#2e2b2b solid_color";};
