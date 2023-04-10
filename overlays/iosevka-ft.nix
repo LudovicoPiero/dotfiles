@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   iosevka-q = prev.iosevka.override {
     privateBuildPlan = ''
       [buildPlans.iosevka-q]

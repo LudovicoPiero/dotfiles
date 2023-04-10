@@ -1,6 +1,4 @@
-{config, ...}: let
-  inherit (config.vars.colorScheme) colors;
-in ''
+{config, ...}: ''
   * {
       border: none;
       border-radius: 0;
