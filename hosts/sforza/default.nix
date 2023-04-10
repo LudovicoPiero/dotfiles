@@ -15,13 +15,14 @@
     ++ suites.hyprland;
 
   boot = {
+    zfs.enableUnstable = true;
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
-    #kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    supportedFilesystems = ["ntfs"];
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    supportedFilesystems = ["zfs" "ntfs"];
   };
 
   hardware.bluetooth.enable = true;
