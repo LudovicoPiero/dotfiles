@@ -1,9 +1,6 @@
 {
   config,
-  pkgs,
-  inputs,
   suites,
-  profiles,
   ...
 }: {
   imports =

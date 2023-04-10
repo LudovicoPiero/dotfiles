@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  pkgs,
-  inputs,
   ...
 }: let
   inherit (config.vars.colorScheme) colors;
