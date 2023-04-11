@@ -1,4 +1,4 @@
-{...}: ''
+_: ''
   * {
       border: none;
       border-radius: 0;
