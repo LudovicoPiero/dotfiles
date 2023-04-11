@@ -47,7 +47,7 @@ in {
           ];
           "pulseaudio" = {
             "format" = "{icon} {volume}%";
-            "format-muted" = "";
+            "format-muted" = "󰝟";
             "on-click" = "amixer -q set Master toggle-mute";
             "format-icons" = ["" "" ""];
           };
@@ -110,24 +110,23 @@ in {
             interface = "wlp4s0";
             format-wifi = "  Connected";
             format-linked = "{ifname} (No IP)";
-            format-disconnected = "  Disconnected";
+            format-disconnected = "󰖪  Disconnected";
             tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
           };
           "battery" = {
             bat = "BAT1";
             interval = 60;
             format = "{icon} {capacity}%";
-            format-charging = " {capacity}%";
+            format-charging = "󰂄 {capacity}%";
             states = {
               "good" = 95;
               "warning" = 20;
               "critical" = 10;
             };
             format-icons = [
-              #TODO fix icon below
               " "
-              " "
-              " "
+              " "
+              ""
               " "
               " "
             ];
