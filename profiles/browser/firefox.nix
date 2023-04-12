@@ -12,7 +12,7 @@
       extensions = with config.nur.repos.rycee.firefox-addons; [
         ublock-origin
         bitwarden
-        #        fastforward
+        # fastforward
       ];
       bookmarks = [
         {
@@ -51,9 +51,13 @@
         }
       ];
       search = {
-        default = "DuckDuckGo";
+        default = "Brave";
         force = true;
         engines = {
+          "Brave" = {
+            urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
+            definedAliases = ["@b"];
+          };
           "Nix Packages" = {
             urls = [
               {
