@@ -11,8 +11,8 @@
       ./hardware-configuration.nix
       ./persist.nix
     ]
-    ++ suites.sway
-    ++ suites.hyprland;
+    ++ suites.hyprland
+    ++ suites.kde;
 
   boot = {
     zfs.enableUnstable = true;
@@ -38,13 +38,12 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    # mesaPackage = pkgs.mesa_23;
     extraPackages = with pkgs; [
-      amdvlk
+      # amdvlk
       rocm-opencl-icd
       rocm-opencl-runtime
     ];
-    extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+    # extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
   };
 
   networking.networkmanager.enable = true;

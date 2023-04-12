@@ -130,6 +130,8 @@
 
               hyprland = desktop ++ [windowManager.hyprland];
               sway = desktop ++ [windowManager.sway];
+              kde = desktop ++ [desktopEnvironment.kde];
+              gnome = desktop ++ [desktopEnvironment.gnome];
             };
         };
       };
