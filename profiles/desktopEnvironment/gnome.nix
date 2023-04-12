@@ -1,9 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.xserver.desktopManager.gnome.enable = true;
   # Systray
-  environment.systemPackages = with pkgs; [gnomeExtensions.appindicator];
+  environment.systemPackages = with pkgs; [
+    gnome.gnome-tweaks
+    gnomeExtensions.appindicator
+  ];
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   services.dbus.packages = with pkgs; [gnome2.GConf];
+
+  services.power-profiles-daemon.enable = lib.mkForce false;
+  hardware.pulseaudio.enable = lib.mkForce false;
 
   environment.gnome.excludePackages =
     (with pkgs; [
