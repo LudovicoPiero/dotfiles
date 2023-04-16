@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
       ./persist.nix
     ]
+    ++ suites.desktop
     ++ suites.hyprland
     ++ suites.kde;
 

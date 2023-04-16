@@ -128,10 +128,10 @@
               base = (explodeAttrs core) ++ (explodeAttrs editor) ++ (explodeAttrs virtualisation) ++ [security vars];
               desktop = base ++ (explodeAttrs graphical) ++ (explodeAttrs browser);
 
-              hyprland = desktop ++ [windowManager.hyprland];
-              sway = desktop ++ [windowManager.sway];
-              kde = desktop ++ [desktopEnvironment.kde];
-              gnome = desktop ++ [desktopEnvironment.gnome];
+              hyprland = [windowManager.hyprland];
+              sway = [windowManager.sway];
+              kde = [desktopEnvironment.kde];
+              gnome = [desktopEnvironment.gnome];
             };
         };
       };
