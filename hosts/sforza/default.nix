@@ -112,11 +112,9 @@
 
     displayManager = {
       lightdm.enable = false;
-      # Add Hyprland to display manager
-      sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
       gdm = {
         enable = true;
-        wayland = true;
+        # wayland = true;
       };
       # sddm = {
       #   enable = true;
