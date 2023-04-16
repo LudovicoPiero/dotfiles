@@ -18,6 +18,8 @@
     home.packages = with pkgs; [
       gamescope
       mangohud
+      lutris
+      protonup-qt
       inputs.self.packages.${pkgs.system}.TLauncher
     ];
   };
