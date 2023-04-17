@@ -25,7 +25,7 @@ in {
     home.packages = with pkgs; [capitaine-cursors];
     gtk = {
       #TODO: change to true if not using any DEs
-      enable = false;
+      enable = true;
       gtk2.extraConfig = ''
         gtk-cursor-theme-name="${cursorsTheme.name}"
         gtk-cursor-theme-size="${builtins.toString cursorsTheme.size}"
