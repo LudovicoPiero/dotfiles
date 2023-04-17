@@ -32,9 +32,7 @@
       };
 
       plugins = with pkgs.vimPlugins; [
-        # presence-nvim
-        # catppuccin-nvim
-        rose-pine
+        catppuccin-nvim
         vim-nix
         plenary-nvim
         dashboard-nvim
@@ -118,9 +116,5 @@
         EOF
       '';
     };
-    # home.file.".config/nvim/settings.lua".source = ./init.lua;
-    # extraConfig = ''
-    #   luafile ~/.config/nvim/settings.lua
-    # '';
   };
 }

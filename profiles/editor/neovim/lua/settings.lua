@@ -18,7 +18,7 @@ local o = vim.opt
 local g = vim.g
 
 -- Show line
-o.colorcolumn = "80,100"
+o.colorcolumn = "80"
 
 g.mapleader = " "
 g.loaded_netrw = 1
