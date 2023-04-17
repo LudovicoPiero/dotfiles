@@ -8,7 +8,7 @@
     #TODO: Move this somewhere else
     xdg.configFile."fuzzel/fuzzel.ini".text = ''
       font='Iosevka Nerd Font-16'
-      icon-theme='WhiteSur'
+      icon-theme='Papirus-Dark'
       prompt='->'
       [dmenu]
       mode=text
