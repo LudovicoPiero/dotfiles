@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     gnomeExtensions.appindicator
+    xclip
   ];
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   services.dbus.packages = with pkgs; [gnome2.GConf];
