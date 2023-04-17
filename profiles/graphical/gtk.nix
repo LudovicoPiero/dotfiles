@@ -8,8 +8,12 @@
     size = 10;
   };
   theme = {
-    name = "WhiteSur-Dark";
-    package = pkgs.whitesur-gtk-theme;
+    name = "Catppuccin-Mocha-Compact-Pink-Dark";
+    package = pkgs.catppuccin-gtk.override {
+      accents = ["pink"];
+      size = "compact";
+      variant = "mocha";
+    };
   };
   cursorsTheme = {
     name = "capitaine-cursors-white";
@@ -17,8 +21,8 @@
     package = pkgs.capitaine-cursors;
   };
   iconsTheme = {
-    name = "WhiteSur";
-    package = pkgs.whitesur-icon-theme;
+    name = "Papirus-Dark";
+    package = pkgs.papirus-icon-theme;
   };
 in {
   home-manager.users."${config.vars.username}" = {
