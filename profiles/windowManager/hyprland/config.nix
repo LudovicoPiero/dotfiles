@@ -11,8 +11,7 @@
   powermenu = "${lib.getExe pkgs.wlogout}";
 in ''
   #        name  , resolution  ,offset , scale
-  #monitor = eDP-1, 1366x768@60 , 0x0   , 1
-  monitor=,preferred,auto,auto
+  monitor = eDP-1, 1366x768@60 , 0x0   , 1
 
   $HYPR_FOLDER = /home/$(whoami)/.config/hypr
 
