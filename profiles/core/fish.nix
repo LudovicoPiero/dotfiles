@@ -21,7 +21,7 @@ in {
         run = "nix run nixpkgs#$argv";
         "watchLive" = let
           args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
-        in "${lib.getExe pkgs.streamlink} --player ${lib.getExe pkgs.mpv} --twitch-disable-hosting --twitch-low-latency --player-args \"${args}\" --player-continuous-http --player-no-close --hls-live-edge 2 --hls-segment-threads 2 --retry-open 60 --retry-streams 60 $argv best -a --ontop -a --no-border";
+        in "${lib.getExe pkgs.streamlink} --player ${lib.getExe pkgs.mpv} --twitch-disable-hosting --twitch-low-latency --player-args \"${args}\" --player-continuous-http --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 --retry-streams 15 $argv best -a --ontop -a --no-border";
       };
       interactiveShellInit = with pkgs; ''
         ${_ starship} init fish | source
