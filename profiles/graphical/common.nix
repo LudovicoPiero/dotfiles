@@ -12,6 +12,7 @@
       webcord
       nur.repos.baduhai.chatterino7
       tdesktop
+      mpv
     ];
   };
 }
