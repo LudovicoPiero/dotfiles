@@ -16,7 +16,10 @@
   };
   home-manager.users.${config.vars.username} = {
     home.packages = with inputs.nix-gaming.packages.${pkgs.system};
-      [wine-tkg]
+      [
+        # wine-tkg
+        osu-stable
+      ]
       ++ (with pkgs; [
         gamescope
         mangohud
