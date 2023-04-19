@@ -26,7 +26,7 @@ in {
     ];
     wayland.windowManager.sway = {
       enable = true;
-      # package = inputs.swayfx.packages.${pkgs.system}.default;
+      package = inputs.swayfx.packages.${pkgs.system}.default;
       config = {
         colors = import ./colors.nix {inherit colors;};
         keybindings = import ./keybindings.nix {inherit config pkgs;};
@@ -92,17 +92,20 @@ in {
 
         # SwayFX stuff
         # window corner radius in px
-        # corner_radius 5
-        #
-        # shadows off
-        # shadows_on_csd off
-        # shadow_blur_radius 20
-        # shadow_color #0000007F
-        #
-        # # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
-        # default_dim_inactive 0.0
-        # dim_inactive_colors.unfocused #000000FF
-        # dim_inactive_colors.urgent #900000FF
+        corner_radius 5
+
+        shadows off
+        shadows_on_csd off
+        shadow_blur_radius 20
+        shadow_color #0000007F
+
+        # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+        default_dim_inactive 0.0
+        dim_inactive_colors.unfocused #000000FF
+        dim_inactive_colors.urgent #900000FF
+
+        # Treat Scratchpad as minimized
+        scratchpad_minimize enable
       '';
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway
@@ -114,11 +117,5 @@ in {
       wrapperFeatures = {gtk = true;};
       systemdIntegration = false;
     };
-
-    # programs.fish.interactiveShellInit = lib.mkBefore ''
-    #   if test -z $DISPLAY && test (tty) = "/dev/tty1"
-    #       exec sway
-    #   end
-    # '';
   };
 }

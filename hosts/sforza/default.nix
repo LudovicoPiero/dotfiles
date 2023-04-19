@@ -2,7 +2,6 @@
   config,
   pkgs,
   suites,
-  inputs,
   lib,
   ...
 }: {
@@ -13,6 +12,7 @@
     ]
     ++ suites.desktop
     ++ suites.hyprland
+    ++ suites.sway
     ++ suites.kde;
 
   boot = {
