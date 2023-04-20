@@ -76,6 +76,7 @@ in {
         startup = [
           {command = "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
           {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
+          {command = "systemctl --user stop xdg-desktop-portal-wlr";}
           {command = "dunst";}
           {
             command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr";
