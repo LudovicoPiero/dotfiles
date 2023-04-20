@@ -29,6 +29,7 @@
   hardware.bluetooth.enable = true;
 
   # OpenGL
+  environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
   boot = {
     initrd.kernelModules = ["amdgpu"];
     kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
@@ -40,11 +41,11 @@
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
-      # amdvlk
+      amdvlk
       rocm-opencl-icd
       rocm-opencl-runtime
     ];
-    # extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+    extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
   };
 
   networking.networkmanager.enable = true;
