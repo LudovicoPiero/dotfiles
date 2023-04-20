@@ -423,6 +423,21 @@
         "type": "github"
       }
     },
+    "master": {
+      "locked": {
+        "lastModified": 1681963077,
+        "narHash": "sha256-8uJm8D6bJ7HEUkeHiWYbSfYKKhEIcgCsp/FQaGTS8RM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7ddf6698abe1eec2479590144701ca88fe2fcfe9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nil": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -683,6 +698,7 @@
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",
         "impermanence": "impermanence",
+        "master": "master",
         "nil": "nil",
         "nix-colors": "nix-colors",
         "nix-gaming": "nix-gaming",

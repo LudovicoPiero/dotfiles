@@ -26,7 +26,8 @@ in {
     ];
     wayland.windowManager.sway = {
       enable = true;
-      package = inputs.swayfx.packages.${pkgs.system}.default;
+      # package = inputs.swayfx.packages.${pkgs.system}.default;
+      package = pkgs.swayfx; # Grabbed from overlays/overrides.nix
       config = {
         colors = import ./colors.nix {inherit colors;};
         keybindings = import ./keybindings.nix {inherit config pkgs;};
@@ -65,8 +66,8 @@ in {
           ];
         };
         gaps = {
-          inner = 0;
-          outer = 0;
+          inner = 3;
+          outer = 3;
         };
         fonts = {
           names = ["Iosevka Comfy"];
@@ -105,7 +106,7 @@ in {
         dim_inactive_colors.urgent #900000FF
 
         # Treat Scratchpad as minimized
-        scratchpad_minimize enable
+        # scratchpad_minimize enable
       '';
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway

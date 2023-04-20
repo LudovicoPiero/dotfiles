@@ -20,6 +20,7 @@
 
     nixos.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-22.11";
+    master.url = "github:nixos/nixpkgs";
 
     digga.url = "github:divnix/digga";
     digga.inputs.nixpkgs.follows = "nixos";

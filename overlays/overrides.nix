@@ -5,4 +5,9 @@ channels: _final: _prev: {
     (channels.stable)
     cachix
     ;
+
+  inherit
+    (channels.master)
+    swayfx
+    ;
 }
