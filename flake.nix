@@ -131,6 +131,7 @@
 
               hyprland = [windowManager.hyprland];
               sway = [windowManager.sway];
+              cinnamon = [desktopEnvironment.cinnamon];
               kde = [desktopEnvironment.kde];
               gnome = [desktopEnvironment.gnome];
             };

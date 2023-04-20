@@ -13,7 +13,7 @@
     ++ suites.desktop
     ++ suites.hyprland
     ++ suites.sway
-    ++ suites.kde;
+    ++ suites.cinnamon;
 
   boot = {
     zfs.enableUnstable = true;
