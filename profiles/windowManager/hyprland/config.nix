@@ -199,5 +199,5 @@ in ''
   binde = , XF86MonBrightnessDown , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
 
   exec-once = waybar
-  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
+  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland
 ''
