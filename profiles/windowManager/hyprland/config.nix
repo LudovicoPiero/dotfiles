@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (config.vars.colorScheme) colors;
-  terminal = "${lib.getExe pkgs.kitty}";
+  terminal = "${config.vars.terminalBin}";
   launcher = "${lib.getExe pkgs.fuzzel}";
   browser = "${lib.getExe pkgs.firefox}";
   powermenu = "${lib.getExe pkgs.wlogout}";

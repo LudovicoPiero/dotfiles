@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }: {
@@ -8,7 +9,7 @@
     email = "ludovicopiero@pm.me";
     username = "ludovico";
     terminal = "kitty";
-    terminalBin = "${pkgs.kitty}/bin/kitty";
+    terminalBin = "${lib.getExe pkgs.wezterm}";
     colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
     home = "/home/${username}";
