@@ -29,21 +29,21 @@
       enable = true;
       defaultFonts = {
         serif = [
-          "Noto Sans"
+          "Google Sans"
           "Noto Sans JP"
           "Noto Sans KR"
           "Noto Sans HK"
         ];
 
         sansSerif = [
-          "Noto Sans"
+          "Google Sans"
           "Noto Sans JP"
           "Noto Sans KR"
           "Noto Sans HK"
         ];
 
         monospace = [
-          "Noto Sans"
+          "Google Sans"
           "Noto Sans JP"
           "Noto Sans KR"
           "Noto Sans HK"
