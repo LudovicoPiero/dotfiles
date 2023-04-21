@@ -12,6 +12,7 @@
       extensions = with config.nur.repos.rycee.firefox-addons; [
         ublock-origin
         bitwarden
+        betterttv
         # fastforward
       ];
       bookmarks = [
