@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }: let
@@ -30,7 +31,7 @@ in {
       package = pkgs.swayfx; # Grabbed from overlays/overrides.nix
       config = {
         colors = import ./colors.nix {inherit colors;};
-        keybindings = import ./keybindings.nix {inherit config pkgs;};
+        keybindings = import ./keybindings.nix {inherit config lib pkgs;};
         bars = import ./bars.nix {inherit colors;};
         window = import ./windows.nix;
         output = {
@@ -116,7 +117,10 @@ in {
         export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
         export _JAVA_AWT_WM_NONREPARENTING=1
       '';
-      wrapperFeatures = {gtk = true;};
+      wrapperFeatures = {
+        base = true;
+        gtk = true;
+      };
       systemdIntegration = false;
     };
   };
