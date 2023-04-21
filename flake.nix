@@ -122,12 +122,11 @@
         };
         importables = rec {
           profiles = digga.lib.rakeLeaves ./profiles;
-          suites = with builtins; let
-            explodeAttrs = set: map (a: getAttr a set) (attrNames set);
-          in
-            with profiles; rec {
-              base = (explodeAttrs core) ++ (explodeAttrs editor) ++ (explodeAttrs virtualisation) ++ [security vars];
-              desktop = base ++ (explodeAttrs graphical) ++ (explodeAttrs browser);
+          suites = with builtins;
+          with profiles;
+            {lib}: rec {
+              base = (lib.our.explodeAttrs core) ++ (lib.our.explodeAttrs editor) ++ (lib.our.explodeAttrs virtualisation) ++ [security vars];
+              desktop = base ++ (lib.our.explodeAttrs graphical) ++ (lib.our.explodeAttrs browser);
 
               hyprland = [windowManager.hyprland];
               sway = [windowManager.sway];

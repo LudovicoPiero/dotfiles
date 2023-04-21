@@ -5,4 +5,5 @@ lib.makeExtensible (_self: rec {
   ## Or in files, containing functions that take {lib}
   #foo = callLibs ./foo.nix;
   ## In configs, they can be used under "lib.our"
+  explodeAttrs = set: map (a: lib.getAttr a set) (lib.attrNames set);
 })
