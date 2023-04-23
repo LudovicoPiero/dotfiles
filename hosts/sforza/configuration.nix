@@ -1,0 +1,112 @@
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./persist.nix
+
+    # Shared Configuration
+    ../shared/configuration.nix
+  ];
+  boot = {
+    zfs.enableUnstable = true;
+    loader.systemd-boot.enable = true;
+    loader.systemd-boot.configurationLimit = 5;
+    loader.efi.canTouchEfiVariables = true;
+    loader.efi.efiSysMountPoint = "/boot";
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    supportedFilesystems = ["zfs" "ntfs"];
+  };
+
+  hardware.bluetooth.enable = true;
+
+  # OpenGL
+  environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
+  boot = {
+    initrd.kernelModules = ["amdgpu"];
+    kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
+    kernelModules = ["amd-pstate"];
+  };
+  hardware = {
+    enableRedistributableFirmware = true;
+    cpu.amd.updateMicrocode = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        amdvlk
+        rocm-opencl-icd
+        rocm-opencl-runtime
+      ];
+      extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+    };
+  };
+
+  networking.networkmanager.enable = true;
+
+  time.timeZone = "Australia/Brisbane";
+
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_AU.UTF-8";
+      LC_IDENTIFICATION = "en_AU.UTF-8";
+      LC_MEASUREMENT = "en_AU.UTF-8";
+      LC_MONETARY = "en_AU.UTF-8";
+      LC_NAME = "en_AU.UTF-8";
+      LC_NUMERIC = "en_AU.UTF-8";
+      LC_PAPER = "en_AU.UTF-8";
+      LC_TELEPHONE = "en_AU.UTF-8";
+      LC_TIME = "en_AU.UTF-8";
+    };
+  };
+
+  # TLP For Laptop
+  services = {
+    tlp.enable = false;
+    tlp.settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      RADEON_DPM_STATE_ON_AC = "performance";
+      RADEON_DPM_STATE_ON_BAT = "battery";
+
+      # https://linrunner.de/en/tlp/docs/tlp-faq.html#battery
+      # use "tlp fullcharge" to override temporarily
+      START_CHARGE_THRESH_BAT0 = 85;
+      STOP_CHARGE_THRESH_BAT0 = 90;
+      START_CHARGE_THRESH_BAT1 = 85;
+      STOP_CHARGE_THRESH_BAT1 = 90;
+    };
+  };
+
+  services.xserver = {
+    enable = true;
+    layout = "us"; # Configure keymap
+    libinput.enable = true;
+    deviceSection = ''
+      Option "TearFree" "true"
+    '';
+
+    desktopManager.plasma5.enable = true;
+
+    displayManager = {
+      lightdm.enable = false;
+      # gdm = {
+      #   enable = true;
+      #   # wayland = true;
+      # };
+      sddm = {
+        enable = true;
+        # theme = "multicolor-sddm-theme";
+      };
+    };
+  };
+
+  # Remove Bloat
+  documentation.nixos.enable = lib.mkForce false;
+}
