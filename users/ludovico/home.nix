@@ -44,13 +44,11 @@
 
   home = {
     packages = lib.attrValues {
-      #TODO: separate firefox
       inherit
         (pkgs)
         fuzzel
         bemenu
         discord-canary
-        firefox
         neofetch
         ripgrep
         mpv
@@ -67,6 +65,11 @@
         wf-recorder
         wl-clipboard
         wlogout
+        ;
+
+      inherit
+        (inputs.nil.packages.${system})
+        default
         ;
     };
 
@@ -94,6 +97,23 @@
           updateUrl = "https://raw.githubusercontent.com/FastForwardTeam/releases/main/update/update.xml";
         }
       ];
+    };
+
+    spicetify = let
+      spicePkgs = inputs.spicetify.packages.${pkgs.system}.default;
+    in {
+      enable = true;
+      theme = spicePkgs.themes.catppuccin-mocha;
+      colorScheme = "flamingo";
+
+      enabledExtensions = with spicePkgs.extensions; [
+        fullAppDisplay
+        shuffle
+        hidePodcasts
+        adblock
+      ];
+
+      # enabledCustomApps = ["marketplace"];
     };
 
     wezterm = {

@@ -28,6 +28,7 @@ in
       inputs.hyprland.homeManagerModules.default
       inputs.nix-colors.homeManagerModules.default
       inputs.nur.hmModules.nur
+      inputs.spicetify.homeManagerModule
 
       ./home.nix
     ];

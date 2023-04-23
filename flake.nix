@@ -15,11 +15,14 @@
     emacs.url = "github:nix-community/emacs-overlay";
     home.url = "github:nix-community/home-manager";
     hyprland.url = "github:hyprwm/hyprland?rev=2df0d034bc4a18fafb3524401eeeceaa6b23e753";
+    hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
+    nil.url = "github:oxalica/nil";
     nix.url = "github:nixos/nix";
     nur.url = github:nix-community/NUR;
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-colors.url = "github:Misterio77/nix-colors";
+    spicetify.url = "github:the-argus/spicetify-nix";
     statix.url = "github:nerdypepper/statix";
 
     # Minimize duplicate instances of inputs
@@ -32,6 +35,7 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -46,6 +50,8 @@
       allowUnfree = true;
       allowUnfreePredicate = _: true;
     };
+
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
     filterNixFiles = k: v: v == "regular" && nixpkgs.lib.hasSuffix ".nix" k;
 
@@ -71,6 +77,9 @@
         inherit config nixpkgs home overlays inputs;
       };
     };
+
+    # Default formatter for the entire repo
+    formatter = nixpkgs.lib.genAttrs ["x86_64-linux"] (system: pkgs.alejandra);
 
     sforza = self.nixosConfigurations.sforza.config.system.build.toplevel;
 
