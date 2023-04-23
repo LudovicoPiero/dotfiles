@@ -19,7 +19,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nil.url = "github:oxalica/nil";
     nix.url = "github:nixos/nix";
-    nur.url = github:nix-community/NUR;
+    nur.url = "github:nix-community/NUR";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-colors.url = "github:Misterio77/nix-colors";
     spicetify.url = "github:the-argus/spicetify-nix";
