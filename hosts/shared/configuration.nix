@@ -14,7 +14,7 @@
       hashedPassword = "$6$lWUeoIB0ygj2rDad$V5Bc.OB7tTpOEImflTmb0DqoKBmTVTK6PnqfhuG8YO0IjioC1pdFyFoDdInlM8NXrES5lmxGjBt9CSySxrsOj0";
       isNormalUser = true;
       home = "/home/ludovico";
-      # shell = pkgs.zsh;
+      shell = pkgs.zsh;
 
       extraGroups =
         [

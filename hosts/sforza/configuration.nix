@@ -11,6 +11,7 @@
     # Shared Configuration
     ../shared/configuration.nix
   ];
+
   boot = {
     zfs.enableUnstable = true;
     loader.systemd-boot.enable = true;
@@ -48,6 +49,9 @@
   };
 
   networking.networkmanager.enable = true;
+
+  programs.zsh.enable = true;
+  programs.hyprland.enable = true;
 
   time.timeZone = "Australia/Brisbane";
 
@@ -96,13 +100,9 @@
 
     displayManager = {
       lightdm.enable = false;
-      # gdm = {
-      #   enable = true;
-      #   # wayland = true;
-      # };
-      sddm = {
+      gdm = {
         enable = true;
-        # theme = "multicolor-sddm-theme";
+        wayland = true;
       };
     };
   };

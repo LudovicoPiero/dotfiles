@@ -21,8 +21,6 @@ in
           */
           stateVersion = "21.11";
         };
-
-	programs.home-manager.enable = true;
       }
 
       inputs.hyprland.homeManagerModules.default

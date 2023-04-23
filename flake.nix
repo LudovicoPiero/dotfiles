@@ -16,6 +16,7 @@
     hyprland.url = "github:hyprwm/hyprland";
     impermanence.url = "github:nix-community/impermanence";
     nix.url = "github:nixos/nix";
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-colors.url = "github:Misterio77/nix-colors";
     statix.url = "github:nerdypepper/statix";
 
@@ -26,6 +27,7 @@
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
