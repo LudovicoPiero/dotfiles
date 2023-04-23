@@ -43,6 +43,7 @@
         man-pages-posix
         ripgrep
         wget
+        git
         ;
     };
   };

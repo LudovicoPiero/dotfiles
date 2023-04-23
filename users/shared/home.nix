@@ -14,41 +14,103 @@
         alejandra
         ;
     };
+  };
+
+  programs = {
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
 
-    programs = {
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
+
+    git = {
+      enable = true;
+
+      userEmail = "ludovicopiero@pm.me";
+      userName = "Ludovico";
+
+      signing = {
+        key = "3911DD276CFE779C";
+        signByDefault = true;
       };
 
-      exa = {
-        enable = true;
-        enableAliases = true;
+      extraConfig = {
+        init.defaultBranch = "main";
+        pull.rebase = false;
       };
 
-      home-manager.enable = true;
+      aliases = {
+        a = "add -p";
+        co = "checkout";
+        cob = "checkout -b";
+        f = "fetch -p";
+        c = "commit -s";
+        p = "push";
+        ba = "branch -a";
+        bd = "branch -d";
+        bD = "branch -D";
+        d = "diff";
+        dc = "diff --cached";
+        ds = "diff --staged";
+        r = "restore";
+        rs = "restore --staged";
+        st = "status -sb";
 
-      starship = {
-        enable = true;
-        settings = import ./config/starship.nix;
-      };
+        # reset
+        soft = "reset --soft";
+        hard = "reset --hard";
+        s1ft = "soft HEAD~1";
+        h1rd = "hard HEAD~1";
 
-      zsh = {
-        enable = true;
-        autocd = true;
-        enableAutosuggestions = true;
+        # logging
+        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        plog = "log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'";
+        tlog = "log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative";
+        rank = "shortlog -sn --no-merges";
 
-        history = {
-          expireDuplicatesFirst = true;
-          extended = true;
-          save = 10000;
-        };
-
-        initExtra = ''''; #TODO
-
-        plugins = [];
-        shellAliases = import ./config/sh-aliases.nix;
+        # delete merged branches
+        bdm = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d";
       };
     };
+
+    gpg = {
+      enable = true;
+      homedir = "${config.xdg.configHome}/gnupg";
+    };
+
+    home-manager.enable = true;
+
+    starship = {
+      enable = true;
+      settings = import ./config/starship.nix;
+    };
+
+    zsh = {
+      enable = true;
+      autocd = true;
+      enableAutosuggestions = true;
+
+      history = {
+        expireDuplicatesFirst = true;
+        extended = true;
+        save = 10000;
+      };
+
+      initExtra = ''''; #TODO
+
+      plugins = [];
+      shellAliases = import ./config/sh-aliases.nix;
+    };
+  };
+
+  services = {
+    gpg-agent = {
+      enable = true;
+      pinentryFlavor = "gnome3";
+    };
+  };
 }

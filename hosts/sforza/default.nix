@@ -8,7 +8,6 @@
 nixpkgs.lib.nixosSystem rec {
   system = "x86_64-linux";
   modules = [
-    inputs.impermanence.nixosModules.impermanence
     {
       nix = import ../../nix-settings.nix {
         inherit inputs system nixpkgs;
@@ -24,6 +23,10 @@ nixpkgs.lib.nixosSystem rec {
       */
       system.stateVersion = "22.11";
     }
+
+    # Import modules from inputs
+    inputs.impermanence.nixosModules.impermanence
+    inputs.nur.nixosModules.nur
 
     ./configuration.nix
   ];

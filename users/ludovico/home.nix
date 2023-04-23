@@ -78,6 +78,24 @@
   };
 
   programs = {
+    chromium = {
+      enable = true;
+      package = pkgs.ungoogled-chromium; # with ungoogled, you can't install extensions from the settings below
+      extensions = [
+        {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
+        {id = "jhnleheckmknfcgijgkadoemagpecfol";} # Auto-Tab-Discard
+        {id = "nngceckbapebfimnlniiiahkandclblb";} # Bitwarden
+        {
+          id = "dcpihecpambacapedldabdbpakmachpb";
+          updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
+        }
+        {
+          id = "ilcacnomdmddpohoakmgcboiehclpkmj";
+          updateUrl = "https://raw.githubusercontent.com/FastForwardTeam/releases/main/update/update.xml";
+        }
+      ];
+    };
+
     wezterm = {
       enable = true;
       extraConfig = import ./config/wezterm.nix {
@@ -85,19 +103,29 @@
       };
     };
 
-    #doom-emacs = {
-    #  enable = true;
-    #  doomPrivateDir = ./config/emacs;
-    #  emacsPackage = pkgs.emacsPgtk;
-    #};
+    # doom-emacs = {
+    # enable = true;
+    # doomPrivateDir = ./config/emacs;
+    # emacsPackage = pkgs.emacsPgtk;
+    # };
 
     firefox = {
       enable = true;
 
-      #TODO
-      # extensions = lib.
-
-      profiles."ludovico".isDefault = true;
+      profiles.ludovico = {
+        isDefault = true;
+        name = "Ludovico";
+        extensions = with config.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          bitwarden
+          betterttv
+          # fastforward
+        ];
+        bookmarks = import ./config/firefox/bookmarks.nix;
+        search = import ./config/firefox/search.nix {inherit pkgs;};
+        settings = import ./config/firefox/settings.nix;
+        userChrome = import ./config/firefox/userChrome.nix;
+      };
     };
 
     waybar = {
@@ -243,6 +271,21 @@
     recommendedEnvironment = true;
 
     extraConfig = import ./config/hyprland.nix {inherit (config) colorscheme;};
+  };
+
+  home.file.".icons/default/index.theme".text = ''
+    [icon theme]
+    Name=Default
+    Comment=Default Cursor Theme
+    Inherits=capitaine-cursors-white
+  '';
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Catppuccin-Mocha-Compact-Pink-Dark";
+      icon-theme = "Papirus-Dark";
+      cursor-theme = "capitaine-cursors-white";
+    };
   };
 
   xdg = {

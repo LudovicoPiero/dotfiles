@@ -1,9 +1,5 @@
-{
-  colorscheme,
-  ...
-}:
-with colorscheme.colors;
-''
+{colorscheme, ...}:
+with colorscheme.colors; ''
   #        name  , resolution  ,offset , scale
   monitor = eDP-1, 1366x768@60 , 0x0   , 1
 

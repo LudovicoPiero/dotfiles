@@ -11,21 +11,25 @@
     nixpkgs.follows = "unstable";
 
     # Flake inputs
+    doom.url = "github:nix-community/nix-doom-emacs";
     emacs.url = "github:nix-community/emacs-overlay";
     home.url = "github:nix-community/home-manager";
     hyprland.url = "github:hyprwm/hyprland?rev=2df0d034bc4a18fafb3524401eeeceaa6b23e753";
     impermanence.url = "github:nix-community/impermanence";
     nix.url = "github:nixos/nix";
+    nur.url = github:nix-community/NUR;
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-colors.url = "github:Misterio77/nix-colors";
     statix.url = "github:nerdypepper/statix";
 
     # Minimize duplicate instances of inputs
+    doom.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
     emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";

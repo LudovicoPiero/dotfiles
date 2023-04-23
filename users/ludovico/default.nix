@@ -23,8 +23,11 @@ in
         };
       }
 
+      # Import modules from inputs
+      inputs.doom.hmModule
       inputs.hyprland.homeManagerModules.default
       inputs.nix-colors.homeManagerModules.default
+      inputs.nur.hmModules.nur
 
       ./home.nix
     ];
