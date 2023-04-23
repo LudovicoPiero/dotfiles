@@ -71,6 +71,11 @@
         (inputs.nil.packages.${system})
         default
         ;
+
+      inherit
+        (inputs.hyprland-contrib.packages.${system})
+        grimblast
+        ;
     };
 
     sessionVariables = {
@@ -122,12 +127,6 @@
         inherit (config) colorscheme;
       };
     };
-
-    # doom-emacs = {
-    # enable = true;
-    # doomPrivateDir = ./config/emacs;
-    # emacsPackage = pkgs.emacsPgtk;
-    # };
 
     firefox = {
       enable = true;
@@ -293,12 +292,14 @@
     extraConfig = import ./config/hyprland.nix {inherit (config) colorscheme;};
   };
 
-  home.file.".icons/default/index.theme".text = ''
-    [icon theme]
-    Name=Default
-    Comment=Default Cursor Theme
-    Inherits=capitaine-cursors-white
-  '';
+  home.file = {
+    ".icons/default/index.theme".text = ''
+      [icon theme]
+      Name=Default
+      Comment=Default Cursor Theme
+      Inherits=capitaine-cursors-white
+    '';
+  };
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {

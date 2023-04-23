@@ -129,10 +129,6 @@ with colorscheme.colors; ''
   bind = SUPER      , X , exec , wlogout
   bind = SUPER      , Return , exec , wezterm
 
-  # EMACS
-  bind = SUPER , E , exec , emacsclient -c -a 'nvim'
-  bind = ALT   , E , exec , emacsclient -c -eval '(dired nil)'
-
   # Binds Mouse
   bindm = SUPER , mouse:272 , movewindow
   bindm = SUPER , mouse:273 , resizewindow
