@@ -14,6 +14,7 @@
         alejandra
         ;
     };
+    };
 
     programs = {
       direnv = {
@@ -50,5 +51,4 @@
         shellAliases = import ./config/sh-aliases.nix;
       };
     };
-  };
 }

@@ -24,6 +24,7 @@ in
       }
 
       inputs.hyprland.homeManagerModules.default
+      inputs.nix-colors.homeManagerModules.default
 
       ./home.nix
     ];

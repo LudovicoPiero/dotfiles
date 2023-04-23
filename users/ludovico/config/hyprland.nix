@@ -1,9 +1,9 @@
 {
   colorscheme,
-  pkgs,
   ...
 }:
-with colorscheme.colors; ''
+with colorscheme.colors;
+''
   #        name  , resolution  ,offset , scale
   monitor = eDP-1, 1366x768@60 , 0x0   , 1
 
@@ -30,8 +30,8 @@ with colorscheme.colors; ''
       col.inactive_border = rgba(595959aa)
 
       layout = dwindle
-      col.group_border_active = rgb(${colors.base0B})
-      col.group_border        = rgb(${colors.base00})
+      col.group_border_active = rgb(${base0B})
+      col.group_border        = rgb(${base00})
   }
 
   dwindle {
@@ -180,18 +180,18 @@ with colorscheme.colors; ''
   bind = SUPERSHIFT , 0 , movetoworkspacesilent , 10
 
   # Media Keys
-  bind  = , XF86AudioNext , exec , ${pkgs.playerctl}/bin/playerctl next
-  bind  = , XF86AudioPrev , exec , ${pkgs.playerctl}/bin/playerctl previous
-  bind  = , XF86AudioPlay , exec , ${pkgs.playerctl}/bin/playerctl play-pause
-  bind  = , XF86AudioPause , exec , ${pkgs.playerctl}/bin/playerctl pause
-  bind  = , XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop
-  binde = , XF86AudioRaiseVolume , exec , ${pkgs.alsa-utils}/bin/amixer -q set Master 5%+
-  binde = , XF86AudioLowerVolume , exec , ${pkgs.alsa-utils}/bin/amixer -q set Master 5%-
+  bind  = , XF86AudioNext , exec , playerctl next
+  bind  = , XF86AudioPrev , exec , playerctl previous
+  bind  = , XF86AudioPlay , exec , playerctl play-pause
+  bind  = , XF86AudioPause , exec , playerctl pause
+  bind  = , XF86AudioStop , exec , playerctl stop
+  binde = , XF86AudioRaiseVolume , exec , amixer -q set Master 5%+
+  binde = , XF86AudioLowerVolume , exec , amixer -q set Master 5%-
 
   # Brightness Keys
-  binde = , XF86MonBrightnessUp , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%+
-  binde = , XF86MonBrightnessDown , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
+  binde = , XF86MonBrightnessUp , exec , brightnessctl set 5%+
+  binde = , XF86MonBrightnessDown , exec , brightnessctl set 5%-
 
-  # exec-once = waybar
-  # exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland
+  exec-once = waybar
+  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland
 ''

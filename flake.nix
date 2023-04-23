@@ -13,7 +13,7 @@
     # Flake inputs
     emacs.url = "github:nix-community/emacs-overlay";
     home.url = "github:nix-community/home-manager";
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland.url = "github:hyprwm/hyprland?rev=2df0d034bc4a18fafb3524401eeeceaa6b23e753";
     impermanence.url = "github:nix-community/impermanence";
     nix.url = "github:nixos/nix";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
@@ -40,6 +40,7 @@
     config = {
       allowBroken = true;
       allowUnfree = true;
+      allowUnfreePredicate = _: true;
     };
 
     filterNixFiles = k: v: v == "regular" && nixpkgs.lib.hasSuffix ".nix" k;
