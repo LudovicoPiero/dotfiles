@@ -48,7 +48,7 @@
     };
   };
 
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
   programs.hyprland.enable = true;
 
   # TLP For Laptop
@@ -67,21 +67,30 @@
       START_CHARGE_THRESH_BAT1 = 85;
       STOP_CHARGE_THRESH_BAT1 = 90;
     };
-  };
 
-  services.xserver = {
-    enable = true;
-    layout = "us"; # Configure keymap
-    libinput.enable = true;
-    deviceSection = ''
-      Option "TearFree" "true"
-    '';
+    greetd = {
+      enable = true;
 
-    displayManager = {
-      lightdm.enable = false;
-      gdm = {
-        enable = true;
-        wayland = true;
+      settings = {
+        default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'Hyprland'";
+
+        initial_session = {
+          command = "Hyprland";
+          user = "ludovico";
+        };
+      };
+    };
+
+    xserver = {
+      enable = true;
+      layout = "us"; # Configure keymap
+      libinput.enable = true;
+      deviceSection = ''
+        Option "TearFree" "true"
+      '';
+
+      displayManager = {
+        lightdm.enable = false;
       };
     };
   };

@@ -14,7 +14,7 @@
       hashedPassword = "$6$lWUeoIB0ygj2rDad$V5Bc.OB7tTpOEImflTmb0DqoKBmTVTK6PnqfhuG8YO0IjioC1pdFyFoDdInlM8NXrES5lmxGjBt9CSySxrsOj0";
       isNormalUser = true;
       home = "/home/ludovico";
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
 
       extraGroups =
         [
@@ -28,8 +28,10 @@
     };
   };
 
+  programs.command-not-found.enable = false;
+
   environment = {
-    pathsToLink = ["/share/zsh"];
+    pathsToLink = ["/share/fish"];
 
     # Font packages should go in `fonts.fonts` a few lines below this.
     systemPackages = lib.attrValues {
