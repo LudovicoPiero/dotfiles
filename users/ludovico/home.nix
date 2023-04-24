@@ -55,6 +55,11 @@
         nitch
         exa
         fzf
+        steam
+        gamescope
+        mangohud
+        lutris
+        protonup-qt
         ;
 
       inherit

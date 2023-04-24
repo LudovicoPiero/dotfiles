@@ -21,7 +21,7 @@
   #   "NIXOS".source = "/persist/etc/NIXOS";
   # };
   environment.persistence."/persist" = {
-    hideMounts = true;
+    hideMounts = false;
     directories = [
       "/var/log"
       "/var/lib/bluetooth"
@@ -32,6 +32,7 @@
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
       "/etc/nix"
+      "/run/agenix.d"
     ];
     files = [
       "/etc/machine-id"

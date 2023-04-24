@@ -48,8 +48,19 @@
     };
   };
 
-  programs.fish.enable = true;
-  programs.hyprland.enable = true;
+  programs = {
+    gamemode = {
+      enable = true;
+      settings = {
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        };
+      };
+    };
+    fish.enable = true;
+    hyprland.enable = true;
+  };
 
   # TLP For Laptop
   services = {
