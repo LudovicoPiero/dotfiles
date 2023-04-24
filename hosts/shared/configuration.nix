@@ -7,11 +7,18 @@
   sytem,
   ...
 }: {
+  age = {
+    identityPaths = ["/home/ludovico/.ssh/id_ed25519" "/home/ludovico/.ssh/id_rsa"];
+    secrets = {
+      userPassword.file = ../../secrets/userPassword.age;
+      rootPassword.file = ../../secrets/rootPassword.age;
+    };
+  };
   users = {
     mutableUsers = false;
-    users.root.hashedPassword = "$6$q6aVT9DEdwux5RuN$L2gzdL6EgMh6/gZisV0nDIU.f71x3cKTlZ9NWsD0urdntVb7AxTCVlW/jwAKQfKaAn9rCh47fKqD74gSEIR8s.";
+    users.root.passwordFile = config.age.secrets.rootPassword.path;
     users.ludovico = {
-      hashedPassword = "$6$lWUeoIB0ygj2rDad$V5Bc.OB7tTpOEImflTmb0DqoKBmTVTK6PnqfhuG8YO0IjioC1pdFyFoDdInlM8NXrES5lmxGjBt9CSySxrsOj0";
+      passwordFile = config.age.secrets.userPassword.path;
       isNormalUser = true;
       home = "/home/ludovico";
       shell = pkgs.fish;

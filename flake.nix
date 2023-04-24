@@ -11,6 +11,7 @@
     nixpkgs.follows = "unstable";
 
     # Flake inputs
+    agenix.url = "github:ryantm/agenix";
     home.url = "github:nix-community/home-manager";
     hyprland.url = "github:hyprwm/hyprland?rev=2df0d034bc4a18fafb3524401eeeceaa6b23e753";
     hyprland-contrib.url = "github:hyprwm/contrib";
@@ -25,6 +26,7 @@
     statix.url = "github:nerdypepper/statix";
 
     # Minimize duplicate instances of inputs
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.nixpkgs.follows = "nixpkgs";

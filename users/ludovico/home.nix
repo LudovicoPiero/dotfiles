@@ -368,10 +368,14 @@
               " "
             ];
           };
-          "custom/date" = {
+          "custom/date" = let
+            waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
+              date "+%a %d %b %Y"
+            '';
+          in {
             format = "  {}";
             interval = 3600;
-            #exec = "${lib.getExe waybar-date}";
+            exec = "${lib.getExe waybar-date}";
           };
           "clock" = {
             format = " {:%I:%M %p}";
