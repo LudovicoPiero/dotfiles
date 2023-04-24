@@ -28,7 +28,6 @@
     # Minimize duplicate instances of inputs
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     neovim-flake.inputs.nixpkgs.follows = "nixpkgs";
