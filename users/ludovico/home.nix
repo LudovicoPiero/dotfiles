@@ -8,11 +8,15 @@
 }: {
   imports = [
     ../shared/home.nix
+
+    ../../modules/home-manager/emacs
   ];
 
   colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   fonts.fontconfig.enable = true;
+
+  lv.emacs.enable = true;
 
   gtk = {
     enable = true;
