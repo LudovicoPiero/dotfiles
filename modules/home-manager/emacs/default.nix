@@ -15,7 +15,7 @@ in {
     services.emacs.enable = true;
     programs.emacs = {
       enable = true;
-      package = inputs.emacs.packages.${pkgs.system}.emacsPgtk;
+      # package = inputs.emacs.packages.${pkgs.system}.emacsGit;
 
       init = {
         enable = true;
