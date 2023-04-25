@@ -12,6 +12,7 @@
 
     # Flake inputs
     agenix.url = "github:ryantm/agenix";
+    emacs.url = "github:nix-community/emacs-overlay";
     home.url = "github:nix-community/home-manager";
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";

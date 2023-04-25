@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 with lib; let
@@ -14,14 +15,34 @@ in {
     services.emacs.enable = true;
     programs.emacs = {
       enable = true;
-      #package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
+      package = inputs.emacs.packages.${pkgs.system}.emacsPgtk;
 
       init = {
         enable = true;
         recommendedGcSettings = true;
 
+        earlyInit = ''
+          ;; Disable some GUI distractions. We set these manually to avoid starting
+          ;; the corresponding minor modes.
+          (menu-bar-mode 0)
+          (tool-bar-mode 0)
+          (scroll-bar-mode 0)
+
+          ;; Set up fonts early.
+          (add-to-list 'default-frame-alist
+          '(font . "Iosevka Nerd Font 15"))
+        '';
+
         prelude = builtins.readFile ./prelude.el;
 
+        #TODO
+        /*
+        Maybe move files separately, for example
+        all rust related into 1 file separately.
+        - Rust.nix
+        - Python.nix
+        - etc.
+        */
         usePackage = {
           projectile = {
             enable = true;
@@ -309,58 +330,58 @@ in {
             ];
           };
 
-          # org-roam = {
-          #   enable = true;
-          #   command = ["org-roam-db-autosync-mode"];
-          #   defines = ["org-roam-v2-ack"];
-          #   bind = {"C-' f" = "org-roam-node-find";};
-          #   bindLocal = {
-          #     org-mode-map = {
-          #       "C-' b" = "org-roam-buffer-toggle";
-          #       "C-' i" = "org-roam-node-insert";
-          #     };
-          #   };
-          #   init = ''
-          #     (setq org-roam-v2-ack t)
-          #   '';
-          #   config = ''
-          #     (setq org-roam-directory "~/roam")
-          #     (org-roam-db-autosync-mode)
-          #   '';
-          # };
+          org-roam = {
+            enable = true;
+            command = ["org-roam-db-autosync-mode"];
+            defines = ["org-roam-v2-ack"];
+            bind = {"C-' f" = "org-roam-node-find";};
+            bindLocal = {
+              org-mode-map = {
+                "C-' b" = "org-roam-buffer-toggle";
+                "C-' i" = "org-roam-node-insert";
+              };
+            };
+            init = ''
+              (setq org-roam-v2-ack t)
+            '';
+            config = ''
+              (setq org-roam-directory "~/roam")
+              (org-roam-db-autosync-mode)
+            '';
+          };
 
-          # org-table = {
-          #   enable = true;
-          #   after = ["org"];
-          #   command = ["orgtbl-to-generic"];
-          #   functions = ["org-combine-plists"];
-          #   hook = [
-          #     # For orgtbl mode, add a radio table translator function for
-          #     # taking a table to a psql internal variable.
-          #     ''
-          #       (orgtbl-mode
-          #       . (lambda ()
-          #       (defun rah-orgtbl-to-psqlvar (table params)
-          #       "Converts an org table to an SQL list inside a psql internal variable"
-          #       (let* ((params2
-          #       (list
-          #       :tstart (concat "\\set " (plist-get params :var-name) " '(")
-          #       :tend ")'"
-          #       :lstart "("
-          #       :lend "),"
-          #       :sep ","
-          #       :hline ""))
-          #       (res (orgtbl-to-generic table (org-combine-plists params2 params))))
-          #       (replace-regexp-in-string ",)'$"
-          #       ")'"
-          #       (replace-regexp-in-string "\n" "" res))))))
-          #     ''
-          #   ];
-          #   config = ''
-          #     (unbind-key "C-c SPC" orgtbl-mode-map)
-          #     (unbind-key "C-c w" orgtbl-mode-map)
-          #   '';
-          # };
+          org-table = {
+            enable = true;
+            after = ["org"];
+            command = ["orgtbl-to-generic"];
+            functions = ["org-combine-plists"];
+            hook = [
+              # For orgtbl mode, add a radio table translator function for
+              # taking a table to a psql internal variable.
+              ''
+                (orgtbl-mode
+                . (lambda ()
+                (defun rah-orgtbl-to-psqlvar (table params)
+                "Converts an org table to an SQL list inside a psql internal variable"
+                (let* ((params2
+                (list
+                :tstart (concat "\\set " (plist-get params :var-name) " '(")
+                :tend ")'"
+                :lstart "("
+                :lend "),"
+                :sep ","
+                :hline ""))
+                (res (orgtbl-to-generic table (org-combine-plists params2 params))))
+                (replace-regexp-in-string ",)'$"
+                ")'"
+                (replace-regexp-in-string "\n" "" res))))))
+              ''
+            ];
+            config = ''
+              (unbind-key "C-c SPC" orgtbl-mode-map)
+              (unbind-key "C-c w" orgtbl-mode-map)
+            '';
+          };
 
           org-capture = {
             enable = true;

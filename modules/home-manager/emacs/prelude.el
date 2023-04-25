@@ -1,14 +1,3 @@
-;; Disable some GUI distractions. We set these manually to avoid starting
-;; the corresponding minor modes.
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-
-;; Set up fonts early.
-(add-to-list 'default-frame-alist
-'(font . "Iosevka Nerd Font 15"))
-
-
 (custom-set-variables
   '(inhibit-startup-screen t))
 ;; Set a font
