@@ -19,8 +19,8 @@ with colorscheme.colors; ''
 
   general {
       sensitivity         = 1
-      gaps_in = 4
-      gaps_out = 4
+      gaps_in = 2
+      gaps_out = 2
       border_size = 2
       col.active_border = rgb(1e5799) rgb(f300ff) rgb(e0ff00) 45deg
       col.inactive_border = rgba(595959aa)
@@ -39,10 +39,10 @@ with colorscheme.colors; ''
   decoration {
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-      rounding = 5
+      rounding = 3
       blur = yes
-      blur_size = 3
-      blur_passes = 1
+      blur_size = 8
+      blur_passes = 2
       blur_new_optimizations = on
 
       drop_shadow = no
@@ -54,12 +54,13 @@ with colorscheme.colors; ''
 
   animations {
       enabled = true
-      # animation=NAME,ONOFF,SPEED,CURVE,STYLE
       bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+      # bezier = myBezier , 0.5, 1, 0.89, 1
 
+      # animation=NAME,ONOFF,SPEED,CURVE,STYLE
       animation = windows, 1, 7, myBezier
-      animation = windowsOut, 1, 7, default, popin 80%
-      animation = windowsMove, 1, 2, default, popin 80%
+      animation = windowsOut, 1, 7, myBezier
+      animation = windowsMove, 1, 2, myBezier
       animation = border, 1, 10, default
       animation = borderangle, 1, 8, default
       animation = fade, 1, 7, default
@@ -69,8 +70,8 @@ with colorscheme.colors; ''
   misc {
       disable_hyprland_logo = true
       disable_splash_rendering = true
-      vfr = 1
-      vrr = 2 # 0 - off, 1 - on, 2 - fullscreen only
+      vfr = true
+      vrr = 0 # 0 - off, 1 - on, 2 - fullscreen only
       disable_autoreload = false
   }
 

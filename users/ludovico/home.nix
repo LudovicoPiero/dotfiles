@@ -53,6 +53,7 @@
         fuzzel
         bemenu
         discord-canary
+        webcord
         neofetch
         ripgrep
         mpv
@@ -102,7 +103,6 @@
       package = pkgs.ungoogled-chromium; # with ungoogled, you can't install extensions from the settings below
       extensions = [
         {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
-        {id = "jhnleheckmknfcgijgkadoemagpecfol";} # Auto-Tab-Discard
         {id = "nngceckbapebfimnlniiiahkandclblb";} # Bitwarden
         {
           id = "dcpihecpambacapedldabdbpakmachpb";
@@ -229,7 +229,7 @@
     };
 
     spicetify = let
-      spicePkgs = inputs.spicetify.packages.${pkgs.system}.default;
+      spicePkgs = inputs.spicetify.packages.${system}.default;
     in {
       enable = true;
       theme = spicePkgs.themes.catppuccin-mocha;
