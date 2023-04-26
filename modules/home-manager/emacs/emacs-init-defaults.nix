@@ -1,28 +1,29 @@
 # A collection of "uncontroversial" configurations for selected packages.
-
-{ pkgs, lib, config, ... }:
-
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   programs.emacs.init.usePackage = {
-    all-the-icons = { extraPackages = [ pkgs.emacs-all-the-icons-fonts ]; };
+    all-the-icons = {extraPackages = [pkgs.emacs-all-the-icons-fonts];};
 
-    csharp-mode.mode = [ ''"\\.cs\\'"'' ];
+    csharp-mode.mode = [''"\\.cs\\'"''];
 
     cue-mode = {
       package = epkgs:
         epkgs.trivialBuild {
           pname = "cue-mode.el";
           src = pkgs.fetchurl {
-            url =
-              "https://raw.githubusercontent.com/russell/cue-mode/9c803ee8fa4a6e99c7dc9ae373c6178569583b7a/cue-mode.el";
+            url = "https://raw.githubusercontent.com/russell/cue-mode/9c803ee8fa4a6e99c7dc9ae373c6178569583b7a/cue-mode.el";
             sha256 = "0swhpknkg1vwbchblzrwynixf5grg95jy1bkc8w92yfpb1jch7m7";
           };
           preferLocalBuild = true;
           allowSubstitutes = true;
         };
-      command = [ "cue-mode" ];
-      mode = [ ''"\\.cue\\'"'' ];
-      hook = [ "(cue-mode . subword-mode)" ];
+      command = ["cue-mode"];
+      mode = [''"\\.cue\\'"''];
+      hook = ["(cue-mode . subword-mode)"];
     };
 
     dap-lldb = {
@@ -37,11 +38,11 @@
       '';
     };
 
-    dhall-mode.mode = [ ''"\\.dhall\\'"'' ];
+    dhall-mode.mode = [''"\\.dhall\\'"''];
 
-    dockerfile-mode.mode = [ ''"Dockerfile\\'"'' ];
+    dockerfile-mode.mode = [''"Dockerfile\\'"''];
 
-    elm-mode.mode = [ ''"\\.elm\\'"'' ];
+    elm-mode.mode = [''"\\.elm\\'"''];
 
     emacsql-sqlite3 = {
       enable =
@@ -59,18 +60,18 @@
     };
 
     idris-mode = {
-      mode = [ ''"\\.idr\\'"'' ];
+      mode = [''"\\.idr\\'"''];
       config = ''
         (setq idris-interpreter-path "${pkgs.idris}/bin/idris")
       '';
     };
 
     kotlin-mode = {
-      mode = [ ''"\\.kts?\\'"'' ];
-      hook = [ "(kotlin-mode . subword-mode)" ];
+      mode = [''"\\.kts?\\'"''];
+      hook = ["(kotlin-mode . subword-mode)"];
     };
 
-    latex.mode = [ ''("\\.tex\\'" . latex-mode)'' ];
+    latex.mode = [''("\\.tex\\'" . latex-mode)''];
 
     lsp-eslint = {
       config = ''
@@ -79,10 +80,10 @@
     };
 
     markdown-mode = {
-      mode = [ ''"\\.mdwn\\'"'' ''"\\.markdown\\'"'' ''"\\.md\\'"'' ];
+      mode = [''"\\.mdwn\\'"'' ''"\\.markdown\\'"'' ''"\\.md\\'"''];
     };
 
-    nix-mode.mode = [ ''"\\.nix\\'"'' ];
+    nix-mode.mode = [''"\\.nix\\'"''];
 
     notmuch = {
       package = epkgs: lib.getOutput "emacs" pkgs.notmuch;
@@ -91,7 +92,7 @@
       '';
     };
 
-    octave.mode = [ ''("\\.m\\'" . octave-mode)'' ];
+    octave.mode = [''("\\.m\\'" . octave-mode)''];
 
     ob-plantuml = {
       config = ''
@@ -100,7 +101,7 @@
     };
 
     org-roam = {
-      defines = [ "org-roam-graph-executable" ];
+      defines = ["org-roam-graph-executable"];
       config = ''
         (setq org-roam-graph-executable "${pkgs.graphviz}/bin/dot")
       '';
@@ -112,19 +113,19 @@
       '';
     };
 
-    php-mode.mode = [ ''"\\.php\\'"'' ];
+    php-mode.mode = [''"\\.php\\'"''];
 
     plantuml-mode = {
-      mode = [ ''"\\.puml\\'"'' ];
+      mode = [''"\\.puml\\'"''];
       config = ''
         (setq plantuml-default-exec-mode 'executable
               plantuml-executable-path "${pkgs.plantuml}/bin/plantuml")
       '';
     };
 
-    protobuf-mode.mode = [ ''"\\.proto\\'"'' ];
+    protobuf-mode.mode = [''"\\.proto\\'"''];
 
-    purescript-mode.mode = [ ''"\\.purs\\'"'' ];
+    purescript-mode.mode = [''"\\.purs\\'"''];
 
     ripgrep = {
       config = ''
@@ -132,10 +133,10 @@
       '';
     };
 
-    rust-mode.mode = [ ''"\\.rs\\'"'' ];
+    rust-mode.mode = [''"\\.rs\\'"''];
 
-    terraform-mode.mode = [ ''"\\.tf\\'"'' ];
+    terraform-mode.mode = [''"\\.tf\\'"''];
 
-    yaml-mode.mode = [ ''"\\.\\(e?ya?\\|ra\\)ml\\'"'' ];
+    yaml-mode.mode = [''"\\.\\(e?ya?\\|ra\\)ml\\'"''];
   };
 }

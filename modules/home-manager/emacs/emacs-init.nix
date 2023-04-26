@@ -239,7 +239,7 @@ with lib; let
         mkFunctions = vs: optional (vs != []) ":functions (${toString vs})";
         mkBind = mkBindHelper "bind" "";
         mkBindLocal = bs: let
-          mkMap = n: v: mkBindHelper "bind" ":map ${n}" v;
+          mkMap = n: mkBindHelper "bind" ":map ${n}";
         in
           flatten (mapAttrsToList mkMap bs);
         mkBindKeyMap = mkBindHelper "bind-keymap" "";
@@ -530,7 +530,7 @@ in {
         else optional (isString v && hasAttr v epkgs) epkgs.${v};
 
       packages =
-        concatMap (v: getPkg (v.package))
+        concatMap (v: getPkg v.package)
         (filter (getAttr "enable") (builtins.attrValues cfg.usePackage));
     in [
       (epkgs.trivialBuild {
