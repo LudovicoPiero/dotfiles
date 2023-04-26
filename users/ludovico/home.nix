@@ -261,7 +261,6 @@
         extensions = with config.nur.repos.rycee.firefox-addons; [
           ublock-origin
           bitwarden
-          betterttv
           # fastforward
         ];
         bookmarks = import ./config/firefox/bookmarks.nix;
