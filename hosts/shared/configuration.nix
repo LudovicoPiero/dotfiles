@@ -40,6 +40,17 @@
   };
 
   programs.command-not-found.enable = false;
+  programs.fish.enable = true;
+
+  # Thunar stuff
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
+  services = {
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
+  };
 
   environment = {
     pathsToLink = ["/share/fish"];
@@ -57,6 +68,11 @@
         ripgrep
         wget
         git
+        ;
+
+      inherit
+        (pkgs.xfce)
+        thunar
         ;
     };
   };
