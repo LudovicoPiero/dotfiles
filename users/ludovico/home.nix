@@ -284,6 +284,7 @@
             "tray"
           ];
           modules-right = [
+            "custom/vpn"
             "network"
             "pulseaudio"
             "battery"
@@ -351,8 +352,15 @@
           "tray" = {
             spacing = 5;
           };
+          "custom/vpn" = {
+            "format" = "VPN ";
+            "exec" = "echo '{\"class\": \"connected\"}'";
+            "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+            "return-type" = "json";
+            "interval" = 5;
+          };
           "network" = {
-            interface = "wlp4s0";
+            # interface = "wlp4s0";
             format-wifi = "  Connected";
             format-linked = "{ifname} (No IP)";
             format-disconnected = "󰖪  Disconnected";

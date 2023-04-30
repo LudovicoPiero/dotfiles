@@ -32,8 +32,7 @@ with colorscheme.colors; ''
    }
 
    #workspaces button:hover {
-   	background-color: #7dcfff;
-   	color: #24283b;
+   	color: #7dcfff;
    	border-radius: 5px;
    }
 
@@ -42,7 +41,13 @@ with colorscheme.colors; ''
        border-radius: 5px;
    }
 
-   #tray, #custom-date, #clock, #battery, #pulseaudio, #network {
+   #custom-vpn {
+       color: #7dcfff;
+       border-radius: 5px;
+   	   border-radius: 5px 0px 0px 5px;
+   }
+
+   #tray, #custom-date, #custom-vpn, #clock, #battery, #pulseaudio, #network {
    	background-color: #24283b;
    	padding: 5px 10px;
    	margin: 5px 0px;
@@ -85,7 +90,6 @@ with colorscheme.colors; ''
 
    #network {
    	color: #f7768e;
-   	border-radius: 5px 0px 0px 5px;
    }
 
    #pulseaudio {
