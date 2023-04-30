@@ -110,6 +110,24 @@
     wlr.enable = lib.mkForce false;
   };
 
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = ["10.7.0.3/24"];
+      # dns = ["1.1.1.1" "fdc9:281f:04d7:9ee9::1"];
+      privateKeyFile = "/persist/wireguard/wireguardKey";
+
+      peers = [
+        {
+          publicKey = "hbzODBQTdgHi8Ae04k2FMjPEfr7oLPBzQZiYnJjUq3o=";
+          presharedKeyFile = "/persist/wireguard/presharedKey";
+          allowedIPs = ["0.0.0.0/0" "::/0"];
+          endpoint = "3.27.65.47:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
   # Remove Bloat
   documentation.nixos.enable = lib.mkForce false;
 }
