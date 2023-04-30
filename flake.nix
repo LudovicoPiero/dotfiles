@@ -18,7 +18,7 @@
     hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
     neovim-flake.url = "github:notashelf/neovim-flake";
-    nil.url = "github:oxalica/nil";
+    nil.url = "github:oxalica/nil?rev=4dcb73894281644d4d29ffa337eff88d1d7ffd1a";
     nix.url = "github:nixos/nix";
     nur.url = "github:nix-community/NUR";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
