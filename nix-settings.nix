@@ -19,7 +19,7 @@
     "home-manager=${inputs.home}"
   ];
 
-  package = inputs.nix.packages.${system}.default;
+  # package = inputs.nix.packages.${system}.default;
 
   registry = {
     system.flake = inputs.self;
@@ -40,7 +40,6 @@
     # home-manager will attempt to rebuild the world otherwise...
     substituters = [
       "https://cache.nixos.org?priority=7"
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store/?priority=10"
       "https://nix-community.cachix.org?priority=5"
       "https://nixpkgs-wayland.cachix.org"
       "https://hyprland.cachix.org"
