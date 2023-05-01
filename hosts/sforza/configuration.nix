@@ -112,16 +112,16 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      address = ["10.7.0.3/24"];
-      # dns = ["1.1.1.1" "fdc9:281f:04d7:9ee9::1"];
+      address = ["10.66.66.2/32" "fd42:42:42::2/128"];
+      dns = ["1.1.1.1" "1.0.0.1"];
       privateKeyFile = "/persist/wireguard/wireguardKey";
 
       peers = [
         {
-          publicKey = "hbzODBQTdgHi8Ae04k2FMjPEfr7oLPBzQZiYnJjUq3o=";
+          publicKey = "EpF2DZEMP+pnw+NdI4UkAW5QQZAeILzH4XnmAroeZgw=";
           presharedKeyFile = "/persist/wireguard/presharedKey";
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "3.27.65.47:51820";
+          endpoint = "3.25.226.114:50412";
           persistentKeepalive = 25;
         }
       ];
