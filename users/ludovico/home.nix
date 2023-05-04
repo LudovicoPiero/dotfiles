@@ -5,7 +5,22 @@
   pkgs,
   system,
   ...
-}: {
+}: let
+  mkService = lib.recursiveUpdate {
+    Unit.PartOf = ["graphical-session.target"];
+    Unit.After = ["graphical-session.target"];
+    Install.WantedBy = ["graphical-session.target"];
+  };
+  # use OCR and copy to clipboard
+  ocrScript = let
+    inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
+    _ = lib.getExe;
+  in
+    pkgs.writeShellScriptBin "wl-ocr" ''
+      ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
+      ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+    '';
+in {
   imports = [
     ../shared/home.nix
 
@@ -480,6 +495,31 @@
     };
     userDirs = {
       enable = true;
+    };
+  };
+
+  # User Services
+  systemd.user.services = {
+    # swaybg = mkService {
+    #   Unit.Description = "Images Wallpaper Daemon";
+    #   Service = {
+    #     ExecStart = "${lib.getExe pkgs.swaybg} -i ${./Wallpaper/wallpaper.jpg}";
+    #     Restart = "always";
+    #   };
+    # };
+    mpvpaper = mkService {
+      Unit.Description = "Video Wallpaper Daemon";
+      Service = {
+        ExecStart = "${lib.getExe pkgs.mpvpaper} -o \"no-audio --loop-playlist shuffle\" eDP-1 ${../../assets/wallpaper/wallpaper.mp4}";
+        Restart = "always";
+      };
+    };
+    cliphist = mkService {
+      Unit.Description = "Clipboard History";
+      Service = {
+        ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${lib.getExe pkgs.cliphist} store";
+        Restart = "always";
+      };
     };
   };
 
