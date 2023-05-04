@@ -1,5 +1,6 @@
-{colorscheme}: ''
-    local wezterm = require("wezterm")
+{colorscheme}:
+with colorscheme.colors; ''
+  local wezterm = require("wezterm")
   return {
   	font = wezterm.font_with_fallback({
   		"Iosevka Nerd Font",
@@ -7,11 +8,11 @@
   		"Material Symbols",
   	}),
   	font_size = 12.0,
-  	color_scheme = "Catppuccin Mocha",
   	window_background_opacity = 0.88,
+  	color_scheme = "coolTheme",
   	enable_scroll_bar = false,
   	-- enable_tab_bar = false,
-    hide_tab_bar_if_only_one_tab = true,
+  	hide_tab_bar_if_only_one_tab = true,
   	scrollback_lines = 10000,
   	adjust_window_size_when_changing_font_size = false,
   	audible_bell = "Disabled",
@@ -24,6 +25,33 @@
   	},
   	check_for_updates = false,
   	default_cursor_style = "SteadyBlock",
+
+  	colors = {
+  		tab_bar = {
+  			background = "#${base01}",
+  			active_tab = {
+  				bg_color = "#${base0D}",
+  				fg_color = "#${base00}",
+  			},
+  			inactive_tab = {
+  				bg_color = "#${base00}",
+  				fg_color = "#${base08}",
+  			},
+  			inactive_tab_hover = {
+  				bg_color = "#${base00}",
+  				fg_color = "#${base0D}",
+  			},
+  			new_tab = {
+  				bg_color = "#${base02}",
+  				fg_color = "#${base08}",
+  			},
+  			new_tab_hover = {
+  				bg_color = "#${base00}",
+  				fg_color = "#${base0D}",
+  			},
+  		},
+  	},
+
   	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
   	keys = {
   		{ key = "UpArrow", mods = "SHIFT", action = wezterm.action({ ScrollToPrompt = -1 }) },
@@ -32,8 +60,21 @@
   		{ key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
   		{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
   		{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-  		{ key = ";", mods = "LEADER", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-  		{ key = "v", mods = "LEADER", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+  		{
+  			key = ";",
+  			mods = "LEADER",
+  			action = wezterm.action({
+  				SplitHorizontal = { domain = "CurrentPaneDomain" },
+  			}),
+  		},
+  		{
+  			key = "v",
+  			mods = "LEADER",
+  			action = wezterm.action({
+  				SplitVertical = { domain = "CurrentPaneDomain" },
+  			}),
+  		},
+
   		-- close tabs
   		-- { key = "w", mods = "CTRL", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
 

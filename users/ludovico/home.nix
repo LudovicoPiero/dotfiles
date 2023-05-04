@@ -247,7 +247,10 @@
 
     wezterm = {
       enable = true;
-      extraConfig = import ./config/wezterm.nix {
+      colorSchemes = import ./config/wezterm/colorscheme.nix {
+        inherit (config) colorscheme;
+      };
+      extraConfig = import ./config/wezterm/config.nix {
         inherit (config) colorscheme;
       };
     };
