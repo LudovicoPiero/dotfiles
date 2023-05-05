@@ -51,7 +51,7 @@
   # curl -H 'Snap-Device-Series: 16' 'https://api.snapcraft.io/v2/snaps/info/spotify' | jq '.'
   # More examples of api usage:
   # https://github.com/canonical-websites/snapcraft.io/blob/master/webapp/publisher/snaps/views.py
-  rev = "63";
+  rev = "64";
 
   deps = [
     alsa-lib
@@ -112,7 +112,7 @@ in
     # https://community.spotify.com/t5/Desktop-Linux/Redistribute-Spotify-on-Linux-Distributions/td-p/1695334
     src = fetchurl {
       url = "https://api.snapcraft.io/api/v1/snaps/download/pOBIoZ2LrCB3rDohMxoYGnbN14EHOgD7_${rev}.snap";
-      sha512 = "9b8f63c067632f15f5abf6449d09d28fd56839decfc9801d4526cf5b97b9cb5933ede179bcd0b0f2d8b6d4c7e72f55c7fc13dfb0ae4293ef447ead1d018b9cc6";
+      sha512 = "1adw1nh4y57vmnw4yw3nd9qcwhhnqczlvj1mlmw60zmy589nx2lc";
     };
 
     nativeBuildInputs = [makeWrapper wrapGAppsHook squashfsTools];
