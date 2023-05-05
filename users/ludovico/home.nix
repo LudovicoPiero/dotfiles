@@ -35,7 +35,7 @@ in {
 
   gtk = {
     enable = true;
-    font.name = "Noto Sans"; #TODO: change it to Google Sans later
+    font.name = "Google Sans Medium"; #TODO: change it to Google Sans later
 
     iconTheme = {
       package = pkgs.papirus-icon-theme;
