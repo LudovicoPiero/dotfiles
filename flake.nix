@@ -18,7 +18,7 @@
     hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
     neovim-flake.url = "github:notashelf/neovim-flake";
-    nil.url = "github:oxalica/nil?rev=4dcb73894281644d4d29ffa337eff88d1d7ffd1a";
+    nil.url = "github:oxalica/nil?rev=e74b767a43d86a1997cf4df3c5d15ff3e769d6f2";
     nix.url = "github:nixos/nix";
     nur.url = "github:nix-community/NUR";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
@@ -27,7 +27,7 @@
     statix.url = "github:nerdypepper/statix";
 
     # Other Flakes
-    fufexan-dotfiles.url = "github:fufexan/dotfiles";
+    ludovico-dotfiles.url = "github:ludovicopiero/dotfiles/main"; # I'm too lazy to move my own packages here
 
     # Minimize duplicate instances of inputs
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +40,7 @@
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
-    fufexan-dotfiles.inputs.nixpkgs.follows = "nixpkgs";
+    ludovico-dotfiles.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {

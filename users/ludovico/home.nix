@@ -103,6 +103,12 @@ in {
         (inputs.hyprland-contrib.packages.${system})
         grimblast
         ;
+
+      inherit
+        (inputs.ludovico-dotfiles.packages.${system})
+        TLauncher
+        google-sans
+        ;
     };
 
     sessionVariables = {
@@ -252,7 +258,7 @@ in {
       spicePkgs = inputs.spicetify.packages.${system}.default;
     in {
       enable = true;
-      spotifyPackage = inputs.fufexan-dotfiles.packages.${system}.spotify;
+      spotifyPackage = inputs.ludovico-dotfiles.packages.${system}.spotify;
       theme = spicePkgs.themes.catppuccin-mocha;
       colorScheme = "flamingo";
 
