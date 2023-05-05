@@ -15,6 +15,7 @@
   atk,
   gdk-pixbuf,
   gtk3,
+  harfbuzz,
   cups,
   nspr,
   nss,
@@ -69,6 +70,7 @@
     gdk-pixbuf
     glib
     gtk3
+    harfbuzz
     libdrm
     libgcrypt
     libnotify
