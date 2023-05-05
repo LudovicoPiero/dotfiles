@@ -32,15 +32,11 @@
     # Minimize duplicate instances of inputs
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
-    impermanence.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     neovim-flake.inputs.nixpkgs.follows = "nixpkgs";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
-    nix-colors.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
-    ludovico-dotfiles.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
