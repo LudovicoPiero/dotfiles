@@ -112,7 +112,7 @@ in
     # https://community.spotify.com/t5/Desktop-Linux/Redistribute-Spotify-on-Linux-Distributions/td-p/1695334
     src = fetchurl {
       url = "https://api.snapcraft.io/api/v1/snaps/download/pOBIoZ2LrCB3rDohMxoYGnbN14EHOgD7_${rev}.snap";
-      sha512 = "1adw1nh4y57vmnw4yw3nd9qcwhhnqczlvj1mlmw60zmy589nx2lc";
+      sha512 = "0nz3ba438j4wdrwisz1zhjhvhffl7yb2mdvlm76v7458jlam3322k9f2kpjiwh4lhh6pwdcqb25npx1v0k8413fk2srnvn204clm3sy";
     };
 
     nativeBuildInputs = [makeWrapper wrapGAppsHook squashfsTools];
