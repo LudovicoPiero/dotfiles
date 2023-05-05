@@ -26,6 +26,9 @@
     spicetify.url = "github:the-argus/spicetify-nix";
     statix.url = "github:nerdypepper/statix";
 
+    # Other Flakes
+    fufexan-dotfiles.url = "github:fufexan/dotfiles";
+
     # Minimize duplicate instances of inputs
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
@@ -37,6 +40,7 @@
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
+    fufexan-dotfiles.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {

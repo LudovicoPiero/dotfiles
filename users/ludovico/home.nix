@@ -130,6 +130,11 @@ in {
       ];
     };
 
+    obs-studio = {
+      enable = true;
+      plugins = with inputs.nixpkgs-wayland.packages.${system}; [obs-wlrobs];
+    };
+
     neovim = {
       enable = true;
       #TODO
@@ -247,6 +252,7 @@ in {
       spicePkgs = inputs.spicetify.packages.${system}.default;
     in {
       enable = true;
+      spotifyPackage = inputs.fufexan-dotfiles.packages.${system}.spotify;
       theme = spicePkgs.themes.catppuccin-mocha;
       colorScheme = "flamingo";
 
