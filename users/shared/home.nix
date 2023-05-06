@@ -21,6 +21,47 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    font.name = "Google Sans Medium";
+
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+
+    theme = {
+      name = "Nordic-darker";
+      package = pkgs.nordic;
+    };
+    cursorTheme = {
+      name = "capitaine-cursors-white";
+      size = 24;
+      package = pkgs.capitaine-cursors;
+    };
+
+    gtk2.extraConfig = "gtk-cursor-theme-size=24";
+    gtk3.extraConfig."gtk-cursor-theme-size" = 24;
+    gtk4.extraConfig."gtk-cursor-theme-size" = 24;
+  };
+
+  home.file = {
+    ".icons/default/index.theme".text = ''
+      [icon theme]
+      Name=Default
+      Comment=Default Cursor Theme
+      Inherits=capitaine-cursors-white
+    '';
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Nordic-darker";
+      icon-theme = "Papirus-Dark";
+      cursor-theme = "capitaine-cursors-white";
+    };
+  };
+
   programs = {
     direnv = {
       enable = true;

@@ -27,39 +27,11 @@ in {
     ../../modules/home-manager/emacs
   ];
 
-  colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  colorscheme = inputs.nix-colors.colorSchemes.nord;
 
   fonts.fontconfig.enable = true;
 
   lv.emacs.enable = true;
-
-  gtk = {
-    enable = true;
-    font.name = "Google Sans Medium"; #TODO: change it to Google Sans later
-
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
-    };
-
-    theme = {
-      name = "Catppuccin-Mocha-Compact-Pink-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["pink"];
-        size = "compact";
-        variant = "mocha";
-      };
-    };
-    cursorTheme = {
-      name = "capitaine-cursors-white";
-      size = 24;
-      package = pkgs.capitaine-cursors;
-    };
-
-    gtk2.extraConfig = "gtk-cursor-theme-size=24";
-    gtk3.extraConfig."gtk-cursor-theme-size" = 24;
-    gtk4.extraConfig."gtk-cursor-theme-size" = 24;
-  };
 
   home = {
     packages = lib.attrValues {
@@ -455,23 +427,6 @@ in {
     recommendedEnvironment = true;
 
     extraConfig = import ./config/hyprland.nix {inherit (config) colorscheme;};
-  };
-
-  home.file = {
-    ".icons/default/index.theme".text = ''
-      [icon theme]
-      Name=Default
-      Comment=Default Cursor Theme
-      Inherits=capitaine-cursors-white
-    '';
-  };
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      gtk-theme = "Catppuccin-Mocha-Compact-Pink-Dark";
-      icon-theme = "Papirus-Dark";
-      cursor-theme = "capitaine-cursors-white";
-    };
   };
 
   xdg = {
