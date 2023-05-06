@@ -27,7 +27,7 @@ in {
     ../../modules/home-manager/emacs
   ];
 
-  colorscheme = inputs.nix-colors.colorSchemes.nord;
+  colorscheme = inputs.nix-colors.colorSchemes.tokyo-night-terminal-dark;
 
   fonts.fontconfig.enable = true;
 
@@ -430,7 +430,9 @@ in {
   };
 
   xdg = {
-    configFile = {
+    configFile = let
+      inherit (config.colorscheme) colors;
+    in {
       "fuzzel/fuzzel.ini".text = ''
         font='Iosevka Nerd Font-16'
         icon-theme='Papirus-Dark'
@@ -438,13 +440,13 @@ in {
         [dmenu]
         mode=text
         [colors]
-        background=24283bff
-        text=a9b1d6ff
-        match=8031caff
-        selection=8031caff
-        selection-text=7aa2f7ff
-        selection-match=2ac3deff
-        border=8031caff
+        background=${colors.base00}ff
+        text=${colors.base07}ff
+        match=${colors.base0E}ff
+        selection=${colors.base08}ff
+        selection-text=${colors.base07}ff
+        selection-match=${colors.base07}ff
+        border=${colors.base0E}ff
 
         [border]
         width=2
