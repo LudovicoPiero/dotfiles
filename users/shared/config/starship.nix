@@ -1,23 +1,52 @@
-{
-  command_timeout = 3000;
-  format = "$all";
-
-  username = {
-    style_user = "bold red";
-    format = "[$user]($style) ";
-    disabled = true;
-    show_always = true;
+{lib}: {
+  add_newline = false;
+  format = lib.concatStrings [
+    "$username"
+    "$hostname"
+    "$directory"
+    "$git_branch"
+    "$git_state"
+    "$git_status"
+    "$cmd_duration"
+    "$line_break"
+    "$python"
+    "$character"
+  ];
+  command_timeout = 1000;
+  # right_format = "$all";
+  directory = {
+    style = "blue";
   };
-
-  hostname = {
-    ssh_only = false;
-    format = "at [$hostname](bold blue) in ";
-    disabled = true;
+  character = {
+    success_symbol = "[❯](purple)";
+    error_symbol = "[❯](red)";
   };
-
-  git_branch.symbol = "";
-  battery.disabled = true;
-  line_break.disabled = true;
-  directory.format = "[$path]($style) [$read_only]($read_only_style)";
-  nix_shell.symbol = "(nix shell)";
+  git_branch = {
+    style = "bright-black";
+    format = "[$branch]($style)";
+  };
+  git_status = {
+    format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+    style = "cyan";
+    conflicted = "​";
+    untracked = "​";
+    modified = "​";
+    staged = "​";
+    renamed = "​";
+    deleted = "​";
+    stashed = "≡";
+  };
+  git_state = {
+    format = "\([$state( $progress_current/$progress_total)]($style)\)";
+    style = "bright-black";
+  };
+  cmd_duration = {
+    format = "[$duration]($style) ";
+    style = "yellow";
+    min_time = 5000;
+  };
+  python = {
+    format = "[$virtualenv]($style) ";
+    style = "bright-black";
+  };
 }

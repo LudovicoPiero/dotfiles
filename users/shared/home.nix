@@ -132,7 +132,7 @@
 
     starship = {
       enable = true;
-      settings = import ./config/starship.nix;
+      settings = import ./config/starship.nix {inherit lib;};
     };
 
     nix-index.enable = true;

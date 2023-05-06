@@ -82,12 +82,5 @@
     formatter = nixpkgs.lib.genAttrs ["x86_64-linux"] (system: pkgs.alejandra);
 
     sforza = self.nixosConfigurations.sforza.config.system.build.toplevel;
-
-    nixConfig = {
-      substituters = [
-        #TODO: add more
-        "https://cache.nixos.org?priority=10"
-      ];
-    };
   };
 }
