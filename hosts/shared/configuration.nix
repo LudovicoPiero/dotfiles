@@ -104,12 +104,14 @@
       enable = true;
       defaultFonts = {
         serif = [
+          "Google Sans"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
         ];
 
         sansSerif = [
+          "Google Sans"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
