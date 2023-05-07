@@ -469,25 +469,25 @@ in {
 
   # User Services
   systemd.user.services = {
-    # swaybg = mkService {
-    #   Unit.Description = "Images Wallpaper Daemon";
-    #   Service = {
-    #     ExecStart = "${lib.getExe pkgs.swaybg} -i ${./Wallpaper/wallpaper.jpg}";
-    #     Restart = "always";
-    #   };
-    # };
-    mpvpaper = mkService {
-      Unit.Description = "Video Wallpaper Daemon";
+    swaybg = mkService {
+      Unit.Description = "Images Wallpaper Daemon";
       Service = {
-        ExecStart = "${lib.getExe pkgs.mpvpaper} -o \"no-audio --loop-playlist shuffle\" eDP-1 ${../../assets/wallpaper/wallpaper.mp4}";
-        Restart = "always";
+        ExecStart = "${lib.getExe pkgs.swaybg} -i ${../../assets/wallpaper/wallpaper.jpg}";
+        Restart = "on-failure";
       };
     };
+    # mpvpaper = mkService {
+    #   Unit.Description = "Video Wallpaper Daemon";
+    #   Service = {
+    #     ExecStart = "${lib.getExe pkgs.mpvpaper} -o \"no-audio --loop-playlist shuffle\" eDP-1 ${../../assets/wallpaper/wallpaper.mp4}";
+    #     Restart = "on-failure";
+    #   };
+    # };
     cliphist = mkService {
       Unit.Description = "Clipboard History";
       Service = {
         ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${lib.getExe pkgs.cliphist} store";
-        Restart = "always";
+        Restart = "on-failure";
       };
     };
   };
