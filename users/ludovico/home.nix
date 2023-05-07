@@ -27,7 +27,7 @@ in {
     ../../modules/home-manager/emacs
   ];
 
-  colorscheme = inputs.nix-colors.colorSchemes.tokyo-night-terminal-dark;
+  colorscheme = inputs.nix-colors.colorSchemes.dracula;
 
   fonts.fontconfig.enable = true;
 
