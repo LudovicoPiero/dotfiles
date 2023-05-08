@@ -18,12 +18,12 @@ with colorscheme.colors; ''
   }
 
   general {
-      sensitivity         = 1
+      sensitivity = 1
       gaps_in = 2
       gaps_out = 2
       border_size = 2
-      col.active_border = rgb(1e5799) rgb(f300ff) rgb(e0ff00) 45deg
-      col.inactive_border = rgba(595959aa)
+      col.active_border = rgb(${blue}) rgb(${pink}) rgb(${yellow}) 45deg
+      col.inactive_border = rgba(${gray})
 
       layout = dwindle
       col.group_border_active = rgb(${base0B})
@@ -39,7 +39,7 @@ with colorscheme.colors; ''
   decoration {
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-      rounding = 3
+      rounding = 0
       blur = yes
       blur_size = 8
       blur_passes = 2
@@ -49,7 +49,7 @@ with colorscheme.colors; ''
       shadow_range = 8
       shadow_render_power = 3
       shadow_offset = 2 2
-      col.shadow = rgb(f300ff)
+      col.shadow = rgb(${pink})
   }
 
   animations {

@@ -17,7 +17,7 @@ with colorscheme.colors; ''
     background-color: #${base00};
     margin: 5px;
     margin-left: 10px;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
   }
 
   #workspaces button {
@@ -28,23 +28,22 @@ with colorscheme.colors; ''
   #workspaces button.active {
     color: #${base00};
     background-color: #${base0C};
-    border-radius: 5px;
+    /*border-radius: 5px;*/
   }
 
   #workspaces button:hover {
     color: #${base0C};
-    border-radius: 5px;
+    /*border-radius: 5px;*/
   }
 
   #tray {
     color: #${base00};
-    border-radius: 5px;
+    /*border-radius: 5px;*/
   }
 
   #custom-vpn {
     color: #${base06};
-    border-radius: 5px;
-    border-radius: 5px 0px 0px 5px;
+    /*border-radius: 5px 0px 0px 5px;*/
   }
 
   #tray,
@@ -65,7 +64,7 @@ with colorscheme.colors; ''
 
   #clock {
     color: #${base0F};
-    border-radius: 0px 5px 5px 0px;
+    /*border-radius: 0px 5px 5px 0px;*/
     margin-right: 10px;
   }
 
@@ -80,7 +79,7 @@ with colorscheme.colors; ''
   #battery.warning:not(.charging) {
     background-color: #${base08};
     color: #${base00};
-    border-radius: 5px 5px 5px 5px;
+    /*border-radius: 5px 5px 5px 5px;*/
   }
 
   #network {

@@ -27,7 +27,20 @@ in {
     ../../modules/home-manager/emacs
   ];
 
-  colorscheme = inputs.nix-colors.colorSchemes.dracula;
+  colorscheme = {
+    slug = "Skeet";
+    name = "Skeet";
+    author = "Ludovico";
+
+    colors =
+      inputs.nix-colors.colorSchemes.dracula.colors
+      // {
+        blue = "1e5799";
+        pink = "f300ff";
+        yellow = "e0ff00";
+        gray = "595959";
+      };
+  };
 
   fonts.fontconfig.enable = true;
 
