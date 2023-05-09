@@ -222,7 +222,7 @@
   };
 
   xdg = let
-    browser = ["chromium-browser.desktop"];
+    browser = ["firefox.desktop"];
 
     # XDG MIME types
     associations = {
