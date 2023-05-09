@@ -23,7 +23,7 @@ with colorscheme.colors; ''
       gaps_out = 2
       border_size = 2
       col.active_border = rgb(${blue}) rgb(${pink}) rgb(${yellow}) 45deg
-      col.inactive_border = rgba(${gray})
+      col.inactive_border = rgb(${gray})
 
       layout = dwindle
       col.group_border_active = rgb(${base0B})
