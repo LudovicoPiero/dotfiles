@@ -5,7 +5,7 @@
   pkgs,
   system,
   ...
-}: {
+}: rec {
   home = {
     packages = lib.attrValues {
       inherit
@@ -26,13 +26,17 @@
     font.name = "Google Sans Medium";
 
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+      package = pkgs.whitesur-icon-theme;
+      name = "WhiteSur-dark";
     };
 
     theme = {
-      name = "Nordic-darker";
-      package = pkgs.nordic;
+      name = "WhiteSur-Dark-alt";
+      package = pkgs.whitesur-gtk-theme.override {
+        altVariants = ["alt"];
+        opacityVariants = ["normal"];
+        themeVariants = ["default"];
+      };
     };
     cursorTheme = {
       name = "capitaine-cursors-white";
@@ -56,9 +60,9 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      gtk-theme = "Nordic-darker";
-      icon-theme = "Papirus-Dark";
-      cursor-theme = "capitaine-cursors-white";
+      gtk-theme = "${gtk.theme.name}";
+      icon-theme = "${gtk.iconTheme.name}";
+      cursor-theme = "${gtk.cursorTheme.name}";
     };
   };
 
