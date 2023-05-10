@@ -17,7 +17,7 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
-    nil.url = "github:oxalica/nil?rev=e74b767a43d86a1997cf4df3c5d15ff3e769d6f2";
+    nil.url = "github:oxalica/nil?rev=18de045d7788df2343aec58df7b85c10d1f5d5dd";
     nix.url = "github:nixos/nix";
     nur.url = "github:nix-community/NUR";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
