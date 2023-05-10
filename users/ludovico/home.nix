@@ -448,7 +448,7 @@ in {
     in {
       "fuzzel/fuzzel.ini".text = ''
         font='Iosevka Nerd Font-16'
-        icon-theme='Papirus-Dark'
+        icon-theme='WhiteSur-dark'
         prompt='->'
         [dmenu]
         mode=text
