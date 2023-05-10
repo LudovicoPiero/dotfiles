@@ -17,7 +17,6 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
-    neovim-flake.url = "github:notashelf/neovim-flake";
     nil.url = "github:oxalica/nil?rev=e74b767a43d86a1997cf4df3c5d15ff3e769d6f2";
     nix.url = "github:nixos/nix";
     nur.url = "github:nix-community/NUR";
@@ -33,7 +32,6 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-flake.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";

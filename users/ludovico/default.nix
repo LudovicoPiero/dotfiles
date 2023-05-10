@@ -25,7 +25,6 @@ in
 
       # Import modules from inputs
       inputs.hyprland.homeManagerModules.default
-      inputs.neovim-flake.homeManagerModules.default
       inputs.nix-colors.homeManagerModules.default
       inputs.nur.hmModules.nur
       inputs.spicetify.homeManagerModule

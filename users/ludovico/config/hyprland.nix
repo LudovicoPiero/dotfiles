@@ -1,4 +1,9 @@
-{colorscheme, ...}:
+{
+  colorscheme,
+  pkgs,
+  lib,
+  ...
+}:
 with colorscheme.colors; ''
   #        name  , resolution  ,offset , scale
   monitor = eDP-1, 1366x768@60 , 0x0   , 1
@@ -106,8 +111,8 @@ with colorscheme.colors; ''
 
   # Variables
   $discordOption = --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer
-  $discord = discordcanary $discordOption
-  $webcord = webcord $discordOption
+  $discord = ${lib.getExe pkgs.discord-canary} $discordOption
+  $webcord = ${lib.getExe pkgs.webcord} $discordOption
 
   # Binds Keyboard
   bind = SUPER      , C , exit ,
@@ -115,27 +120,27 @@ with colorscheme.colors; ''
   bind = SUPERSHIFT , Q, movetoworkspace, special
   bind = SUPER      , D , exec , $discord
   bind = SUPERSHIFT , D , exec , $webcord
-  bind = SUPERSHIFT , E , exec , [float] thunar
+  bind = SUPERSHIFT , E , exec , [float] ${lib.getExe pkgs.xfce.thunar}
   bind = SUPER      , F , fullscreen , 0
-  bind = SUPERSHIFT , G , exec , chromium
-  bind = SUPER      , G , exec , firefox
-  bind = SUPER      , M , exec , [workspace 5 silent;tile] mailspring
-  bind = SUPER      , P , exec , fuzzel
+  bind = SUPERSHIFT , G , exec , ${lib.getExe pkgs.chromium}
+  bind = SUPER      , G , exec , ${lib.getExe pkgs.firefox}
+  bind = SUPER      , M , exec , [workspace 5 silent;tile] ${lib.getExe pkgs.mailspring}
+  bind = SUPER      , P , exec , ${lib.getExe pkgs.fuzzel}
+  bind = SUPERSHIFT , P , exec , bemenuCatppuccin
   bind = SUPER      , T , togglefloating ,
   bind = SUPER      , R , togglegroup ,
   bind = SUPERSHIFT , J , changegroupactive, f
   bind = SUPERSHIFT , K , changegroupactive, b
-  bind = SUPER      , S , exec , [workspace 5 silent;tile] spotify
+  bind = SUPER      , S , exec , [workspace 5 silent;tile] ${lib.getExe pkgs.spotify}
   bind = SUPER      , W , killactive ,
-  bind = SUPER      , X , exec , wlogout
-  bind = SUPER      , Return , exec , wezterm
+  bind = SUPER      , X , exec , ${lib.getExe pkgs.wlogout}
+  bind = SUPER      , Return , exec , ${lib.getExe pkgs.wezterm}
 
   # Binds Mouse
   bindm = SUPER , mouse:272 , movewindow
   bindm = SUPER , mouse:273 , resizewindow
 
   # Screenshot
-  bind = , print , exec , sharenix --selection
   bind = CTRL  , Print , exec , grimblast --notify copy area
   bind = SUPER , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')
   bind = SUPERSHIFT , Print , exec , wl-ocr
