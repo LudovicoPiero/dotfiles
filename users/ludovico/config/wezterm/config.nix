@@ -8,7 +8,7 @@ with colorscheme.colors; ''
   		"Material Symbols",
   	}),
   	font_size = 12.0,
-  	window_background_opacity = 0.88,
+  	window_background_opacity = 1,
   	color_scheme = "coolTheme",
   	enable_scroll_bar = false,
   	-- enable_tab_bar = false,
