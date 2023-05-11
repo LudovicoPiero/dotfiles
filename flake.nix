@@ -12,6 +12,7 @@
 
     # Flake inputs
     agenix.url = "github:ryantm/agenix";
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix"; # Anime Game Launcher
     emacs.url = "github:nix-community/emacs-overlay";
     home.url = "github:nix-community/home-manager";
     hyprland.url = "github:hyprwm/hyprland";
@@ -30,6 +31,7 @@
 
     # Minimize duplicate instances of inputs
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    # aagl.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";

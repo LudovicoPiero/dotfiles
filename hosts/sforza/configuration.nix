@@ -12,6 +12,12 @@
     ../shared/configuration.nix
   ];
 
+  # An anime game launcher
+  programs = {
+    an-anime-game-launcher.enable = true;
+    the-honkers-railway-launcher.enable = true;
+  };
+
   boot = {
     zfs.enableUnstable = true;
     loader.systemd-boot.enable = true;

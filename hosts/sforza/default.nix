@@ -25,6 +25,7 @@ nixpkgs.lib.nixosSystem rec {
     }
 
     # Import modules from inputs
+    inputs.aagl.nixosModules.default
     inputs.impermanence.nixosModules.impermanence
     # inputs.agenix.nixosModules.default
     inputs.nur.nixosModules.nur
