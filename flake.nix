@@ -8,7 +8,7 @@
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # Default nixpkgs for packages and modules
-    nixpkgs.follows = "master";
+    nixpkgs.follows = "unstable";
 
     # Flake inputs
     agenix.url = "github:ryantm/agenix";
