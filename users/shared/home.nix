@@ -21,6 +21,9 @@
     };
   };
 
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
+
   gtk = {
     enable = true;
     font.name = "Google Sans Medium";
