@@ -319,6 +319,7 @@ in {
       inherit (config) colorscheme;
       inherit pkgs;
       inherit lib;
+      inherit config;
     };
   };
 

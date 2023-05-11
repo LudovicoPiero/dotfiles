@@ -2,6 +2,7 @@
   colorscheme,
   pkgs,
   lib,
+  config,
   ...
 }:
 with colorscheme.colors; ''
@@ -122,16 +123,15 @@ with colorscheme.colors; ''
   bind = SUPERSHIFT , D , exec , $webcord
   bind = SUPERSHIFT , E , exec , [float] ${lib.getExe pkgs.xfce.thunar}
   bind = SUPER      , F , fullscreen , 0
-  bind = SUPERSHIFT , G , exec , ${lib.getExe pkgs.ungoogled-chromium}
+  bind = SUPERSHIFT , G , exec , ${lib.getExe config.programs.chromium.package};
   bind = SUPER      , G , exec , ${lib.getExe pkgs.firefox}
   bind = SUPER      , M , exec , [workspace 5 silent;tile] ${lib.getExe pkgs.mailspring}
   bind = SUPER      , P , exec , ${lib.getExe pkgs.fuzzel}
-  bind = SUPERSHIFT , P , exec , bemenuCatppuccin
   bind = SUPER      , T , togglefloating ,
   bind = SUPER      , R , togglegroup ,
   bind = SUPERSHIFT , J , changegroupactive, f
   bind = SUPERSHIFT , K , changegroupactive, b
-  bind = SUPER      , S , exec , [workspace 5 silent;tile] ${lib.getExe pkgs.spotify}
+  bind = SUPER      , S , exec , [workspace 5 silent;tile] ${lib.getExe config.programs.spicetify.spotifyPackage}
   bind = SUPER      , W , killactive ,
   bind = SUPER      , X , exec , ${lib.getExe pkgs.wlogout}
   bind = SUPER      , Return , exec , ${lib.getExe pkgs.wezterm}
