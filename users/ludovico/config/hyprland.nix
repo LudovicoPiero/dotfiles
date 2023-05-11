@@ -122,7 +122,7 @@ with colorscheme.colors; ''
   bind = SUPERSHIFT , D , exec , $webcord
   bind = SUPERSHIFT , E , exec , [float] ${lib.getExe pkgs.xfce.thunar}
   bind = SUPER      , F , fullscreen , 0
-  bind = SUPERSHIFT , G , exec , ${lib.getExe pkgs.chromium}
+  bind = SUPERSHIFT , G , exec , ${lib.getExe pkgs.ungoogled-chromium}
   bind = SUPER      , G , exec , ${lib.getExe pkgs.firefox}
   bind = SUPER      , M , exec , [workspace 5 silent;tile] ${lib.getExe pkgs.mailspring}
   bind = SUPER      , P , exec , ${lib.getExe pkgs.fuzzel}
