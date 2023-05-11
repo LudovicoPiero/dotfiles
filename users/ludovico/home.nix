@@ -24,7 +24,7 @@ in {
     author = "Ludovico";
 
     colors =
-      inputs.nix-colors.colorSchemes.dracula.colors
+      inputs.nix-colors.colorSchemes.catppuccin-mocha.colors
       // {
         blue = "1e5799";
         pink = "f300ff";
