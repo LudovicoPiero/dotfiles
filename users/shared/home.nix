@@ -1,9 +1,7 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
-  system,
   ...
 }: rec {
   home = {
@@ -17,6 +15,7 @@
         playerctl
         brightnessctl
         fzf
+        thunderbird
         ;
     };
   };
@@ -226,6 +225,7 @@
 
   xdg = let
     browser = ["chromium-browser.desktop"];
+    thunderbird = ["thunderbird.desktop"];
 
     # XDG MIME types
     associations = {
@@ -251,6 +251,9 @@
       "x-scheme-handler/discord" = ["discordcanary.desktop"];
       "x-scheme-handler/spotify" = ["spotify.desktop"];
       "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
+      "x-scheme-handler/mailto" = thunderbird;
+      "message/rfc822" = thunderbird;
+      "x-scheme-handler/mid" = thunderbird;
     };
   in {
     mimeApps = {

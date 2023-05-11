@@ -86,6 +86,7 @@ with colorscheme.colors; ''
   }
 
   # v2
+  windowrulev2 = workspace 9, class:^(thunderbird)$
   windowrulev2 = workspace 5, class:^(Spotify)$
   windowrulev2 = workspace 4, class:^(Steam)$
   windowrulev2 = workspace 3, class:^(discord)$
