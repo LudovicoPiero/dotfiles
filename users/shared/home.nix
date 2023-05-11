@@ -31,12 +31,8 @@
     };
 
     theme = {
-      name = "WhiteSur-Dark-alt";
-      package = pkgs.whitesur-gtk-theme.override {
-        altVariants = ["alt"];
-        opacityVariants = ["normal"];
-        themeVariants = ["default"];
-      };
+      name = "WhiteSur-Dark";
+      package = pkgs.whitesur-gtk-theme;
     };
     cursorTheme = {
       name = "capitaine-cursors-white";
@@ -54,7 +50,7 @@
       [icon theme]
       Name=Default
       Comment=Default Cursor Theme
-      Inherits=capitaine-cursors-white
+      Inherits=${gtk.cursorTheme.name}
     '';
   };
 
