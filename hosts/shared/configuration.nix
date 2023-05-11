@@ -2,9 +2,7 @@
   config,
   lib,
   pkgs,
-  options,
-  input,
-  sytem,
+  inputs,
   ...
 }: {
   #TODO: FIX AGENIX
@@ -15,6 +13,35 @@
   #     rootPassword.file = ../../secrets/rootPassword.age;
   #   };
   # };
+
+  # Earlyoom prevents systems from locking up when they run out of memory
+  services.earlyoom.enable = true;
+
+  console = {
+    # A good TTY font
+    font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
+    colors = let
+      colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+    in
+      with colorscheme.colors; [
+        base01
+        base08
+        base0B
+        base0A
+        base0D
+        base0E
+        base0C
+        base06
+        base02
+        base08
+        base0B
+        base0A
+        base0D
+        base0E
+        base0C
+        base07
+      ];
+  };
 
   users = {
     mutableUsers = false;
