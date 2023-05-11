@@ -1362,7 +1362,7 @@
         "nix": "nix",
         "nix-colors": "nix-colors_2",
         "nixpkgs": [
-          "unstable"
+          "master"
         ],
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur_2",
