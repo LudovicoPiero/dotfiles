@@ -19,7 +19,7 @@
 
   console = {
     # A good TTY font
-    font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
+    font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u18n.psf.gz";
     colors = let
       colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
     in
