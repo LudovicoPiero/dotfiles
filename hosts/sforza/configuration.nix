@@ -129,9 +129,14 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
+      autostart = false;
       address = ["10.66.66.2/32" "fd42:42:42::2/128"];
-      # dns = ["1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001"];
-      dns = ["172.31.14.59"];
+      dns = [
+        "9.9.9.11"
+        "149.112.112.11"
+        "2620:fe::11"
+        "2620:fe::fe:11"
+      ];
       privateKeyFile = "/persist/wireguard/wireguardKey";
 
       peers = [
