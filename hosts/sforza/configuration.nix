@@ -14,8 +14,8 @@
 
   # An anime game launcher
   programs = {
-    an-anime-game-launcher.enable = true;
-    the-honkers-railway-launcher.enable = true;
+    anime-game-launcher.enable = true;
+    honkers-railway-launcher.enable = true;
   };
 
   boot = {
