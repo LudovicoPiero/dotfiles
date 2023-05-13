@@ -27,7 +27,7 @@
     statix.url = "github:nerdypepper/statix";
 
     # Other Flakes
-    ludovico-dotfiles.url = "github:ludovicopiero/dotfiles/main"; # I'm too lazy to move my own packages here
+    fufexan-dotfiles.url = "github:fufexan/dotfiles"; # I'm too lazy to move my own packages here
 
     # Minimize duplicate instances of inputs
     agenix.inputs.nixpkgs.follows = "nixpkgs";

@@ -79,12 +79,6 @@ in {
         grimblast
         ;
 
-      inherit
-        (inputs.ludovico-dotfiles.packages.${system})
-        TLauncher
-        google-sans
-        ;
-
       # use OCR and copy to clipboard
       ocrScript = let
         inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
@@ -241,7 +235,7 @@ in {
       spicePkgs = inputs.spicetify.packages.${system}.default;
     in {
       enable = true;
-      spotifyPackage = inputs.ludovico-dotfiles.packages.${system}.spotify;
+      spotifyPackage = inputs.fufexan-dotfiles.packages.${system}.spotify;
       theme = spicePkgs.themes.catppuccin-mocha;
       colorScheme = "flamingo";
 

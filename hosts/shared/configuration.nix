@@ -108,7 +108,8 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       # Icons
-      # inputs.self.packages.${pkgs.system}.google-sans
+      inputs.self.packages.${pkgs.system}.google-sans
+      inputs.self.packages.${pkgs.system}.material-symbols
 
       powerline-fonts
       material-symbols
