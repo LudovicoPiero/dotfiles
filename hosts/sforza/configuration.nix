@@ -24,7 +24,7 @@
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["zfs" "ntfs"];
   };
