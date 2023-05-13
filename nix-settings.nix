@@ -12,9 +12,7 @@
     http-connections = 0
   '';
 
-  nixPath = let
-    path = toString ./.;
-  in [
+  nixPath = [
     "nixpkgs=${nixpkgs}"
     "home-manager=${inputs.home}"
   ];

@@ -96,7 +96,7 @@
     );
 
     # Default formatter for the entire repo
-    formatter = nixpkgs.lib.genAttrs ["x86_64-linux"] (system: pkgs.alejandra);
+    formatter = nixpkgs.lib.genAttrs ["x86_64-linux"] (_system: pkgs.alejandra);
 
     sforza = self.nixosConfigurations.sforza.config.system.build.toplevel;
   };
