@@ -34,7 +34,7 @@ final: prev: {
       # Wayland
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"
-      "--use-gl=egl"
+      # "--use-gl=egl"
 
       # Etc
       # "--gtk-version=4"
