@@ -1,5 +1,6 @@
 final: prev: {
   ungoogled-chromium = prev.ungoogled-chromium.override {
+    nss = final.nss_latest;
     commandLineArgs = toString [
       # Ungoogled features
       "--disable-search-engine-collection"
@@ -33,8 +34,10 @@ final: prev: {
       # Wayland
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"
+      "--use-gl=egl"
 
       # Etc
+      # "--gtk-version=4"
       "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
       "--no-default-browser-check"
       "--no-service-autorun"
