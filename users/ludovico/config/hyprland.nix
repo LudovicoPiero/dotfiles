@@ -92,7 +92,8 @@ with colorscheme.colors; ''
   windowrulev2 = workspace 3, class:^(discord)$
   windowrulev2 = workspace 3, title:^(WebCord)$
   windowrulev2 = workspace 2, class:^(firefox)$
-  windowrulev2 = workspace 2, class:^(Chromium-browser)$
+  windowrulev2 = workspace 2, class:^(Chromium-browser)$ # xwayland
+  windowrulev2 = workspace 2, class:^(chromium-browser)$ # wayland
   windowrulev2 = workspace 1, class:^(jetbrains-goland)$
   windowrulev2 = workspace 1, class:^(jetbrains-clion)$
   windowrulev2 = workspace 1, class:^(Albion-Online)$
@@ -100,12 +101,14 @@ with colorscheme.colors; ''
   windowrulev2 = float, title:^(Steam - News)$
   windowrulev2 = noblur, class:^(waybar)$
   windowrulev2 = noblur, class:^(firefox)$
-  windowrulev2 = noblur, class:^(Chromium-browser)$
+  windowrulev2 = noblur, class:^(Chromium-browser)$ # xwayland
+  windowrulev2 = noblur, class:^(chromium-browser)$ # wayland
   windowrulev2 = noblur, class:^(discordcanary)$
   windowrulev2 = noblur, title:^(WebCord)$
   windowrulev2 = noblur, title:^(Open File)$
   windowrulev2 = noshadow, class:^(firefox)$
-  windowrulev2 = noshadow, class:^(Chromium-browser)$
+  windowrulev2 = noshadow, class:^(Chromium-browser)$ # xwayland
+  windowrulev2 = noshadow, class:^(chromium-browser)$ # wayland
   windowrulev2 = noshadow, class:^(discordcanary)$
   windowrulev2 = noanim, class:^(wlogout)$
   windowrulev2 = noanim, class:^(Albion-Online)$
