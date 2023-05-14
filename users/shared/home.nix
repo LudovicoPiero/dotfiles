@@ -182,7 +182,6 @@
         "..." = "cd ../..";
         ".." = "cd ..";
       };
-      plugins = []; #TODO: add plugins
     };
   };
 

@@ -5,15 +5,6 @@
   inputs,
   ...
 }: {
-  #TODO: FIX AGENIX
-  # age = {
-  #   identityPaths = ["/persist/etc/ssh/id_ed25519" "/persist/etc/ssh/id_rsa"];
-  #   secrets = {
-  #     userPassword.file = ../../secrets/userPassword.age;
-  #     rootPassword.file = ../../secrets/rootPassword.age;
-  #   };
-  # };
-
   # Earlyoom prevents systems from locking up when they run out of memory
   services.earlyoom.enable = true;
 
