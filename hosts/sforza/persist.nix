@@ -13,13 +13,6 @@
     zfs rollback -r tank/local/root@blank
   '';
 
-  # Persist state
-  # environment.etc = {
-  #   "nixos".source = "/persist/etc/nixos";
-  #   "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
-  #   "adjtime".source = "/persist/etc/adjtime";
-  #   "NIXOS".source = "/persist/etc/NIXOS";
-  # };
   environment.persistence."/persist" = {
     hideMounts = false;
     directories = [
