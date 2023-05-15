@@ -79,6 +79,11 @@ in {
         grimblast
         ;
 
+      inherit
+        (inputs.ludovico-main.packages.${system})
+        TLauncher
+        ;
+
       # use OCR and copy to clipboard
       ocrScript = let
         inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;

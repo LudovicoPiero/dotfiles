@@ -32,9 +32,15 @@ final: prev: {
       "--ignore-gpu-blocklist"
 
       # Wayland
-      "--enable-features=UseOzonePlatform"
+      /*
+      Disabled because hardware acceleration doesn't work
+      when disabling --use-gl=egl, it's not gonna show any emoji
+      and it's gonna be slow as hell
+
       "--ozone-platform=wayland"
-      # "--use-gl=egl"
+      "--enable-features=UseOzonePlatform"
+      "--use-gl=egl"
+      */
 
       # Etc
       # "--gtk-version=4"

@@ -28,11 +28,13 @@
 
     # Other Flakes
     fufexan-dotfiles.url = "github:fufexan/dotfiles"; # I'm too lazy to move my own packages here
+    ludovico-main.url = "github:ludovicopiero/dotfiles/main";
 
     # Minimize duplicate instances of inputs
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     # aagl.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
+    ludovico-main.inputs.nixos.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
