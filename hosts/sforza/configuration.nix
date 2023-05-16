@@ -31,7 +31,7 @@
   hardware.bluetooth.enable = true;
 
   # OpenGL
-  environment.variables.AMD_VULKAN_ICD = lib.mkDefault "AMDVLK"; # AMDVLK or RADV
+  environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV"; # AMDVLK or RADV
   boot = {
     initrd.kernelModules = ["amdgpu"];
     kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
