@@ -45,11 +45,11 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
+        # amdvlk
         rocm-opencl-icd
         rocm-opencl-runtime
       ];
-      extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+      # extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
     };
   };
 
