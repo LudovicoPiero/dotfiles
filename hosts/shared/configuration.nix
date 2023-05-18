@@ -80,12 +80,12 @@
         coreutils
         curl
         fd
+        git
         home-manager
         man-pages
         man-pages-posix
         ripgrep
         wget
-        git
         ;
 
       inherit
@@ -251,6 +251,12 @@
       # Give root user and wheel group special Nix privileges.
       trusted-users = ["root" "@wheel"];
       allowed-users = ["@wheel"];
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 3d";
     };
 
     # Improve nix store disk usage

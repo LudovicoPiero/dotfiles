@@ -41,20 +41,22 @@ in {
     packages = lib.attrValues {
       inherit
         (pkgs)
-        fuzzel
+        catgirl
         discord-canary
-        webcord
-        neofetch
-        ripgrep
-        mpv
-        nitch
         exa
+        fuzzel
         fzf
-        steam
         gamescope
-        mangohud
         lutris
+        mangohud
+        mpv
+        neofetch
+        nitch
         protonup-qt
+        ripgrep
+        steam
+        thunderbird
+        webcord
         ;
 
       inherit

@@ -8,14 +8,13 @@
     packages = lib.attrValues {
       inherit
         (pkgs)
+        alejandra
         alsa-utils
         bat
-        alejandra
-        exa
-        playerctl
         brightnessctl
+        exa
         fzf
-        thunderbird
+        playerctl
         ;
     };
   };
