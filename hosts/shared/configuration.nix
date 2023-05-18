@@ -5,6 +5,10 @@
   inputs,
   ...
 }: {
+  imports = [
+    # Modules
+    ../../modules/nixos/pipewireLowLatency.nix
+  ];
   # Earlyoom prevents systems from locking up when they run out of memory
   services.earlyoom.enable = true;
 
@@ -175,6 +179,9 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+
+    # From Modules
+    lowLatency.enable = true;
   };
 
   environment.etc = {
