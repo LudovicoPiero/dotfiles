@@ -37,10 +37,10 @@ final: prev: {
       when disabling --use-gl=egl, it's not gonna show any emoji
       and it's gonna be slow as hell
 
-      "--ozone-platform=wayland"
-      "--enable-features=UseOzonePlatform"
       "--use-gl=egl"
       */
+      "--ozone-platform=wayland"
+      "--enable-features=UseOzonePlatform"
 
       # Etc
       # "--gtk-version=4"
