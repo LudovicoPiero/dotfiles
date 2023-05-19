@@ -128,7 +128,7 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      autostart = false;
+      autostart = true;
       address = ["10.66.66.2/32" "fd42:42:42::2/128"];
       dns = [
         "9.9.9.11"
@@ -140,10 +140,10 @@
 
       peers = [
         {
-          publicKey = "EpF2DZEMP+pnw+NdI4UkAW5QQZAeILzH4XnmAroeZgw=";
+          publicKey = "WZaYfZUw8JTrwHkiZJjyUd83SvFp89oKIhJUGLkkXEg=";
           presharedKeyFile = "/persist/wireguard/presharedKey";
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "3.25.226.114:50412";
+          endpoint = "139.84.194.23:59854";
           persistentKeepalive = 25;
         }
       ];
