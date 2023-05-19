@@ -222,7 +222,7 @@
   };
 
   xdg = let
-    browser = ["firefox.desktop"];
+    browser = ["chromium-browser.desktop"];
     thunderbird = ["thunderbird.desktop"];
 
     # XDG MIME types
