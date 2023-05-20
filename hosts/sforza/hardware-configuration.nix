@@ -69,9 +69,6 @@
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
   networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
-  nix.settings.max-jobs = lib.mkDefault 8;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
