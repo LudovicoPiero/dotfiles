@@ -18,7 +18,6 @@
   };
 
   boot = {
-    zfs.enableUnstable = true;
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
