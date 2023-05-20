@@ -128,7 +128,7 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      autostart = true;
+      autostart = false;
       address = ["10.66.66.2/32" "fd42:42:42::2/128"];
       dns = [
         "9.9.9.11"
