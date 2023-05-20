@@ -23,9 +23,8 @@
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
-    kernelPackages = pkgs.linuxPackages_xanmod;
-    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    supportedFilesystems = ["zfs" "ntfs"];
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    supportedFilesystems = ["ntfs" "btrfs"];
   };
 
   hardware.bluetooth.enable = true;
@@ -128,22 +127,16 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      autostart = false;
-      address = ["10.66.66.2/32" "fd42:42:42::2/128"];
-      dns = [
-        "9.9.9.11"
-        "149.112.112.11"
-        "2620:fe::11"
-        "2620:fe::fe:11"
-      ];
-      privateKeyFile = "/persist/wireguard/wireguardKey";
+      address = ["10.66.66.4/32,fd42:42:42::4/128"];
+      dns = ["139.84.194.106"];
+      privateKeyFile = "/persist/wireguard/privateKey";
 
       peers = [
         {
-          publicKey = "WZaYfZUw8JTrwHkiZJjyUd83SvFp89oKIhJUGLkkXEg=";
+          publicKey = "llWdOpPUakDWBB85BIOg2Bqr88k+B/0LguzzpxZUozU=";
           presharedKeyFile = "/persist/wireguard/presharedKey";
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "139.84.194.23:59854";
+          endpoint = "139.84.194.106:52728";
           persistentKeepalive = 25;
         }
       ];

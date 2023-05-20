@@ -4,61 +4,75 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = ["dm-snapshot"];
+
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
   services.fstrim.enable = true;
 
   fileSystems."/" = {
-    device = "tank/local/root";
-    fsType = "zfs";
+    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+    fsType = "btrfs";
+    options = ["subvol=root"];
   };
 
-  fileSystems."/persist" = {
-    device = "tank/safe/persist";
-    neededForBoot = true;
-    fsType = "zfs";
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/0783173e-f38d-4492-8039-08b4d3fa77a8";
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+    fsType = "btrfs";
+    options = ["subvol=home"];
   };
 
   fileSystems."/nix" = {
-    device = "tank/local/nix";
-    fsType = "zfs";
+    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+    fsType = "btrfs";
+    options = ["subvol=nix"];
   };
 
-  fileSystems."/home" = {
-    device = "tank/safe/home";
-    fsType = "zfs";
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+    fsType = "btrfs";
+    options = ["subvol=persist"];
+  };
+
+  fileSystems."/var/log" = {
+    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+    fsType = "btrfs";
+    options = ["subvol=log"];
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2568-EDAA";
+    device = "/dev/disk/by-uuid/E27D-00C9";
     fsType = "vfat";
   };
 
-  fileSystems."/Stuff" = {
-    device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
-    fsType = "ntfs";
-  };
-
   swapDevices = [
-    {device = "/dev/disk/by-uuid/382633b9-ddbb-45e6-91d0-907e3f6c04bf";}
+    {device = "/dev/disk/by-uuid/592b2453-4980-4e93-a120-9e1b5ba25fbc";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  # networking.useDHCP = lib.mkDefault true;
+  #networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
   networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
+
+  nix.settings.max-jobs = lib.mkDefault 8;
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  # High-DPI console
+  console.font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u16n.psf.gz";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
