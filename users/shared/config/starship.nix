@@ -13,7 +13,7 @@
     "$character"
   ];
   command_timeout = 1000;
-  # right_format = "$all";
+  right_format = "$nix_shell";
   directory = {
     style = "blue";
   };
