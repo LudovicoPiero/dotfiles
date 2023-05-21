@@ -43,6 +43,7 @@
     device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
     fsType = "btrfs";
     options = ["subvol=persist"];
+    neededForBoot = true;
   };
 
   fileSystems."/var/log" = {
@@ -65,9 +66,9 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  #networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
-  networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
+  #networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -1,11 +1,22 @@
 {pkgs, ...}: {
-  networking.hostId = "d2ce8a60"; # head -c8 /etc/machine-id
-  environment.etc = {
-    nixos.source = "/persist/etc/nixos";
-    "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
-    adjtime.source = "/persist/etc/adjtime";
-    NIXOS.source = "/persist/etc/NIXOS";
-    machine-id.source = "/persist/etc/machine-id";
+  networking.hostId = "f4024419"; # head -c8 /etc/machine-id
+
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      # "/var/log" # i have my own subvolume for this
+      "/var/lib/bluetooth"
+      "/var/lib/libvirt"
+      "/var/lib/nixos"
+      "/var/lib/pipewire"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+      "/etc/nixos"
+      "/etc/nix"
+    ];
+    files = [
+      "/etc/machine-id"
+    ];
   };
 
   systemd.tmpfiles.rules = [
