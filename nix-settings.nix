@@ -22,7 +22,7 @@
   registry = {
     system.flake = inputs.self;
     default.flake = nixpkgs;
-    nixpkgs.flake = inputs.nixpkgs;
+    nixpkgs.flake = nixpkgs;
     home-manager.flake = inputs.home;
   };
 
