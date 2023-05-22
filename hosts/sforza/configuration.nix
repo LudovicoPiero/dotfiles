@@ -18,12 +18,12 @@
     secrets.ludovico.neededForUsers = true;
     secrets.root.neededForUsers = true;
     secrets.wireguardPrivateKey = {
-      group = config.users.users.systemd-network.group;
+      inherit (config.users.users.systemd-network) group;
       reloadUnits = ["systemd-networkd.service"];
       mode = "0640";
     };
     secrets.wireguardPresharedKey = {
-      group = config.users.users.systemd-network.group;
+      inherit (config.users.users.systemd-network) group;
       reloadUnits = ["systemd-networkd.service"];
       mode = "0640";
     };
