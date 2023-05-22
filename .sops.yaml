@@ -1,11 +1,11 @@
 keys:
-  # - &ludovico age1jedat345uwjtvjl2uyd05n04yq5zdqr37lz2p95vl3hjv0eahadst74x23
+  - &ludovico age1jedat345uwjtvjl2uyd05n04yq5zdqr37lz2p95vl3hjv0eahadst74x23
   - &sforza age16gslehwlwjq202wrkc0gmrsts63y8mhyuxdwukhvpwkvlg0pyclsc2xu6j
   - &nostra age1t29lvnvwkenxhfffyyhc6s68rvg0uuh3603rue6r4agzr6ywastsfhkknl
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:
-          # - *ludovico
+          - *ludovico
           - *sforza
           - *nostra
