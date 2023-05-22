@@ -16,55 +16,55 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
-  services.fstrim.enable = true;
+  services.fstrim.enable = true; # SSD
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
-    fsType = "btrfs";
-    options = ["subvol=root"];
+  fileSystems = let
+    default = ["rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
+  in {
+    "/" = {
+      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      fsType = "btrfs";
+      options = default ++ ["subvol=root"];
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      fsType = "btrfs";
+      options = default ++ ["subvol=home"];
+      neededForBoot = true;
+    };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      fsType = "btrfs";
+      options = default ++ ["subvol=nix"];
+    };
+    "/persist" = {
+      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      fsType = "btrfs";
+      options = default ++ ["subvol=persist"];
+      neededForBoot = true;
+    };
+    "/var/log" = {
+      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      fsType = "btrfs";
+      options = default ++ ["subvol=log"];
+      neededForBoot = true;
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/E27D-00C9";
+      fsType = "vfat";
+    };
+    "/Stuff" = {
+      device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+      fsType = "ntfs";
+    };
   };
 
   boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/0783173e-f38d-4492-8039-08b4d3fa77a8";
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
-    fsType = "btrfs";
-    options = ["subvol=home"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
-    fsType = "btrfs";
-    options = ["subvol=nix"];
-  };
-
-  fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
-    fsType = "btrfs";
-    options = ["subvol=persist"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
-    fsType = "btrfs";
-    options = ["subvol=log"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/E27D-00C9";
-    fsType = "vfat";
-  };
-
-  fileSystems."/Stuff" = {
-    device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
-    fsType = "ntfs";
-  };
-
   swapDevices = [
-    {device = "/dev/disk/by-uuid/592b2453-4980-4e93-a120-9e1b5ba25fbc";}
+    {
+      device = "/dev/disk/by-uuid/592b2453-4980-4e93-a120-9e1b5ba25fbc";
+      options = ["rw" "noatime" "discard" "ssd"];
+    }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
