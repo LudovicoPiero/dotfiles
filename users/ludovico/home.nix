@@ -74,7 +74,6 @@ in {
 
       inherit (inputs.nil.packages.${system}) default;
       inherit (inputs.hyprland-contrib.packages.${system}) grimblast;
-      inherit (inputs.ludovico-main.packages.${system}) TLauncher;
 
       # use OCR and copy to clipboard
       ocrScript = let

@@ -22,18 +22,19 @@
     nur.url = "github:nix-community/NUR";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-colors.url = "github:Misterio77/nix-colors";
+    sops-nix.url = "github:Mic92/sops-nix";
     spicetify.url = "github:the-argus/spicetify-nix";
     statix.url = "github:nerdypepper/statix";
 
     # Other Flakes
-    fufexan-dotfiles.url = "github:fufexan/dotfiles"; # I'm too lazy to move my own packages here
-    ludovico-main.url = "github:ludovicopiero/dotfiles/main";
+    fufexan-dotfiles.url = "github:fufexan/dotfiles";
 
     # Minimize duplicate instances of inputs
     home.inputs.nixpkgs.follows = "nixpkgs";
-    ludovico-main.inputs.nixos.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs-stable.follows = "stable";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
   };
