@@ -3,9 +3,8 @@ keys:
   - &sforza age16gslehwlwjq202wrkc0gmrsts63y8mhyuxdwukhvpwkvlg0pyclsc2xu6j
   - &nostra age1t29lvnvwkenxhfffyyhc6s68rvg0uuh3603rue6r4agzr6ywastsfhkknl
 creation_rules:
-  - path_regex: secrets/[^/]+\.yaml$
+  - path_regex: hosts/sforza/secrets.yaml
     key_groups:
       - age:
-          - *ludovico
-          - *sforza
-          - *nostra
+        - *ludovico
+        - *sforza

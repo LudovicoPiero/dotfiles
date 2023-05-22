@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -10,6 +11,44 @@
     # Shared Configuration
     ../shared/configuration.nix
   ];
+
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    age.sshKeyPaths = ["/home/ludovico/.ssh/id_ed25519" "/home/ludovico/.ssh/id_rsa"];
+    secrets.ludovico.neededForUsers = true;
+    secrets.root.neededForUsers = true;
+    secrets.wireguardPrivateKey = {
+      group = config.users.users.systemd-network.group;
+      reloadUnits = ["systemd-networkd.service"];
+      mode = "0640";
+    };
+    secrets.wireguardPresharedKey = {
+      group = config.users.users.systemd-network.group;
+      reloadUnits = ["systemd-networkd.service"];
+      mode = "0640";
+    };
+  };
+
+  users = {
+    mutableUsers = false;
+    users.root.passwordFile = config.sops.secrets.root.path;
+    users.ludovico = {
+      passwordFile = config.sops.secrets.ludovico.path;
+      isNormalUser = true;
+      home = "/home/ludovico";
+      shell = pkgs.fish;
+
+      extraGroups =
+        [
+          "wheel"
+          "video"
+          "audio"
+          "realtime"
+        ]
+        ++ pkgs.lib.optional config.virtualisation.libvirtd.enable "libvirtd"
+        ++ pkgs.lib.optional config.networking.networkmanager.enable "networkmanager";
+    };
+  };
 
   # An anime game launcher
   programs = {
@@ -128,12 +167,12 @@
     wg0 = {
       address = ["10.66.66.4/32,fd42:42:42::4/128"];
       dns = ["139.84.194.106"];
-      privateKeyFile = "/persist/wireguard/privateKey";
+      privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
 
       peers = [
         {
           publicKey = "llWdOpPUakDWBB85BIOg2Bqr88k+B/0LguzzpxZUozU=";
-          presharedKeyFile = "/persist/wireguard/presharedKey";
+          presharedKeyFile = config.sops.secrets.wireguardPresharedKey.path;
           allowedIPs = ["0.0.0.0/0" "::/0"];
           endpoint = "139.84.194.106:52728";
           persistentKeepalive = 25;

@@ -10,13 +10,6 @@
     ../../modules/nixos/pipewireLowLatency.nix
   ];
 
-  sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    age.sshKeyPaths = ["/home/ludovico/.ssh/id_ed25519" "/home/ludovico/.ssh/id_rsa"];
-    secrets.userPassword.neededForUsers = true;
-    secrets.rootPassword.neededForUsers = true;
-  };
-
   # Earlyoom prevents systems from locking up when they run out of memory
   services.earlyoom.enable = true;
 
@@ -46,27 +39,6 @@
       ];
   };
 
-  users = {
-    mutableUsers = false;
-    users.root.passwordFile = config.sops.secrets.rootPassword.path;
-    users.ludovico = {
-      passwordFile = config.sops.secrets.userPassword.path;
-      isNormalUser = true;
-      home = "/home/ludovico";
-      shell = pkgs.fish;
-
-      extraGroups =
-        [
-          "wheel"
-          "video"
-          "audio"
-          "realtime"
-        ]
-        ++ pkgs.lib.optional config.virtualisation.libvirtd.enable "libvirtd"
-        ++ pkgs.lib.optional config.networking.networkmanager.enable "networkmanager";
-    };
-  };
-
   programs.command-not-found.enable = false;
   programs.fish.enable = true;
 
@@ -94,14 +66,12 @@
         home-manager
         man-pages
         man-pages-posix
+        sops
         ripgrep
         wget
         ;
 
-      inherit
-        (pkgs.xfce)
-        thunar
-        ;
+      inherit (pkgs.xfce) thunar;
     };
   };
 
