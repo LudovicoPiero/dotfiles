@@ -222,7 +222,7 @@
   };
 
   xdg = let
-    browser = ["chromium-browser.desktop"];
+    browser = ["firefox.desktop"];
     thunderbird = ["thunderbird.desktop"];
 
     # XDG MIME types
@@ -254,9 +254,21 @@
       "x-scheme-handler/mid" = thunderbird;
     };
   in {
+    enable = true;
+    cacheHome = config.home.homeDirectory + "/.cache";
+
     mimeApps = {
       enable = true;
       defaultApplications = associations;
+    };
+
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      extraConfig = {
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+        XDG_MISC_DIR = "${config.home.homeDirectory}/Stuff";
+      };
     };
   };
 }

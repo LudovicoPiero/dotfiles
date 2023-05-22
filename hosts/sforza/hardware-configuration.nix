@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -31,6 +30,7 @@
     device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
     fsType = "btrfs";
     options = ["subvol=home"];
+    neededForBoot = true;
   };
 
   fileSystems."/nix" = {
@@ -56,6 +56,11 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/E27D-00C9";
     fsType = "vfat";
+  };
+
+  fileSystems."/Stuff" = {
+    device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+    fsType = "ntfs";
   };
 
   swapDevices = [
