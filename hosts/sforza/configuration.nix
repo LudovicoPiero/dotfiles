@@ -1,6 +1,8 @@
 {
   pkgs,
   lib,
+  inputs,
+  system,
   ...
 }: {
   imports = [
@@ -53,13 +55,18 @@
 
   # Qemu
   virtualisation.libvirtd.enable = true;
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    virt-viewer
-    qemu
-    OVMF
-    gvfs
-  ];
+  environment.systemPackages = lib.attrValues {
+    inherit
+      (pkgs)
+      virt-manager
+      virt-viewer
+      qemu
+      OVMF
+      gvfs
+      ;
+
+    inherit (inputs.ragenix.packages.${system}) default;
+  };
   services.gvfs.enable = true;
 
   programs = {

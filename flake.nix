@@ -22,6 +22,7 @@
     nur.url = "github:nix-community/NUR";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-colors.url = "github:Misterio77/nix-colors";
+    ragenix.url = "github:yaxitech/ragenix";
     spicetify.url = "github:the-argus/spicetify-nix";
     statix.url = "github:nerdypepper/statix";
 
@@ -34,6 +35,7 @@
     ludovico-main.inputs.nixos.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    ragenix.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
   };

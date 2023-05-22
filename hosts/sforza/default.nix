@@ -28,6 +28,7 @@ nixpkgs.lib.nixosSystem rec {
     inputs.aagl.nixosModules.default
     inputs.impermanence.nixosModules.impermanence
     inputs.nur.nixosModules.nur
+    inputs.ragenix.nixosModules.age
 
     ./configuration.nix
   ];
