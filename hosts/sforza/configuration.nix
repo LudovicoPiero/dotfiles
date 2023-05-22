@@ -27,6 +27,11 @@
       reloadUnits = ["systemd-networkd.service"];
       mode = "0640";
     };
+    secrets.wireguardDNS = {
+      inherit (config.users.users.systemd-network) group;
+      reloadUnits = ["systemd-networkd.service"];
+      mode = "0640";
+    };
   };
 
   users = {
@@ -71,8 +76,8 @@
   environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV"; # AMDVLK or RADV
   boot = {
     initrd.kernelModules = ["amdgpu"];
-    kernelParams = ["amd_pstate=active" "initcall_blacklist=acpi_cpufreq_init"];
-    kernelModules = ["amd-pstate"];
+    kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
+    # kernelModules = ["amd-pstate"];
   };
   hardware = {
     enableRedistributableFirmware = true;
@@ -129,6 +134,8 @@
       STOP_CHARGE_THRESH_BAT0 = 90;
       START_CHARGE_THRESH_BAT1 = 85;
       STOP_CHARGE_THRESH_BAT1 = 90;
+
+      SOUND_POWER_SAVE_ON_AC = 0;
     };
 
     greetd = {
@@ -166,7 +173,9 @@
   networking.wg-quick.interfaces = {
     wg0 = {
       address = ["10.66.66.4/32,fd42:42:42::4/128"];
-      dns = ["139.84.194.106"];
+      dns = [
+        "${config.sops.secrets.wireguardDNS.path}"
+      ];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
 
       peers = [
