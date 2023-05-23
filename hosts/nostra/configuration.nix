@@ -123,13 +123,13 @@
       peers = [
         {
           # pc
-          publicKey = config.sops.secrets.wireguardPublicKey.path;
+          publicKey = "FCq5ME9IglSSZR3kNzfyM935hho9c3C+Y5cbMG1PyCM=";
           presharedKeyFile = config.sops.secrets.wireguardPreshared-pc.path;
           allowedIPs = ["10.66.66.2/32" "fdc9:281f:04d7:9ee9::2/128"];
         }
         {
           # phone
-          publicKey = config.sops.secrets.wireguardPublicKey.path;
+          publicKey = "FCq5ME9IglSSZR3kNzfyM935hho9c3C+Y5cbMG1PyCM=";
           presharedKeyFile = config.sops.secrets.wireguardPreshared-phone.path;
           allowedIPs = ["10.66.66.3/32" "fdc9:281f:04d7:9ee9::3/128"];
         }
