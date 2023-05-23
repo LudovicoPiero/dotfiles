@@ -78,6 +78,9 @@
       sforza = import ./hosts/sforza {
         inherit config nixpkgs overlays inputs;
       };
+      cosa = import ./hosts/cosa {
+        inherit config nixpkgs overlays inputs;
+      };
     };
 
     homeConfigurations = {
