@@ -111,6 +111,7 @@
         };
       };
     };
+    fish.enable = true;
     hyprland.enable = true;
   };
 
@@ -165,16 +166,17 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      address = ["10.66.66.4/32,fd42:42:42::4/128"];
-      dns = ["139.84.194.106"];
+      autostart = false;
+      address = ["10.66.66.2/32" "fdc9:281f:04d7:9ee9::2/128"];
+      dns = ["139.84.195.93"];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
 
       peers = [
         {
-          publicKey = "llWdOpPUakDWBB85BIOg2Bqr88k+B/0LguzzpxZUozU=";
+          publicKey = "tS2dxv4sVsdQYJOFckJPioE9fpzrDxZ9U8k9+h1TQSk=";
           presharedKeyFile = config.sops.secrets.wireguardPresharedKey.path;
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "139.84.194.106:52728";
+          endpoint = "139.84.195.93:60116";
           persistentKeepalive = 25;
         }
       ];

@@ -8,3 +8,8 @@ creation_rules:
       - age:
         - *ludovico
         - *sforza
+  - path_regex: hosts/nostra/secrets.yaml
+    key_groups:
+      - age:
+        - *nostra
+        - *ludovico
