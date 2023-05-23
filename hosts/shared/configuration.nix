@@ -67,6 +67,7 @@
         man-pages-posix
         sops
         ripgrep
+        vim
         wget
         ;
 
