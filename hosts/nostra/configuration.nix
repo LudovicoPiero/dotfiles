@@ -18,7 +18,7 @@
     age.sshKeyPaths = ["/home/cosa/.ssh/id_rsa"];
     secrets = let
       default = {
-        owner = "wireguard";
+        # owner = "wireguard";
         mode = "0640";
         reloadUnits = ["systemd-networkd.service"];
       };
