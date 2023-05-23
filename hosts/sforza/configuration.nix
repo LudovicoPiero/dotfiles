@@ -27,11 +27,6 @@
       reloadUnits = ["systemd-networkd.service"];
       mode = "0640";
     };
-    secrets.wireguardDNS = {
-      inherit (config.users.users.systemd-network) group;
-      reloadUnits = ["systemd-networkd.service"];
-      mode = "0640";
-    };
   };
 
   users = {
@@ -173,7 +168,7 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      autostart = false;
+      autostart = true;
       address = ["10.66.66.2/32" "fdc9:281f:04d7:9ee9::2/128"];
       dns = ["139.84.195.93"];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
