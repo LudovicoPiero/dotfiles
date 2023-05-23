@@ -5,10 +5,10 @@
     # Nixpkgs branches
     master.url = "github:nixos/nixpkgs/master";
     stable.url = "github:nixos/nixpkgs/nixos-21.11";
-    unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Default nixpkgs for packages and modules
-    nixpkgs.follows = "master";
+    nixpkgs.follows = "unstable";
 
     # Flake inputs
     aagl.url = "github:ezKEa/aagl-gtk-on-nix"; # Anime Game Launcher
@@ -76,6 +76,9 @@
   in {
     nixosConfigurations = {
       sforza = import ./hosts/sforza {
+        inherit config nixpkgs overlays inputs;
+      };
+      nostra = import ./hosts/nostra {
         inherit config nixpkgs overlays inputs;
       };
     };

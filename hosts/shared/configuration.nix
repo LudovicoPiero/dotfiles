@@ -40,7 +40,6 @@
   };
 
   programs.command-not-found.enable = false;
-  programs.fish.enable = true;
 
   # Thunar stuff
   programs.thunar.plugins = with pkgs.xfce; [
@@ -68,6 +67,7 @@
         man-pages-posix
         sops
         ripgrep
+        vim
         wget
         ;
 
@@ -83,7 +83,7 @@
       inputs.self.packages.${pkgs.system}.material-symbols
 
       powerline-fonts
-      material-symbols
+      #material-symbols
       iosevka-comfy.comfy
       emacs-all-the-icons-fonts
       font-awesome
@@ -135,7 +135,7 @@
 
   security = {
     polkit.enable = true;
-    sudo.enable = false;
+    sudo.enable = true;
     doas = {
       enable = true;
       extraRules = [
