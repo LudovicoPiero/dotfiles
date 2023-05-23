@@ -8,7 +8,7 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Default nixpkgs for packages and modules
-    nixpkgs.follows = "unstable";
+    nixpkgs.follows = "master";
 
     # Flake inputs
     aagl.url = "github:ezKEa/aagl-gtk-on-nix"; # Anime Game Launcher
