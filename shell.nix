@@ -8,6 +8,7 @@
       home-manager
       git
       deadnix
+      sops
       statix
       alejandra
     ];

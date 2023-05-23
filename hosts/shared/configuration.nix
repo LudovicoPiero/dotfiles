@@ -82,7 +82,7 @@
       inputs.self.packages.${pkgs.system}.material-symbols
 
       powerline-fonts
-      material-symbols
+      #material-symbols
       iosevka-comfy.comfy
       emacs-all-the-icons-fonts
       font-awesome

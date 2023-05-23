@@ -15,7 +15,7 @@
   sops = {
     defaultSopsFile = ./secrets.yaml;
     age.sshKeyPaths = ["/home/ludovico/.ssh/id_ed25519" "/home/ludovico/.ssh/id_rsa"];
-    secrets.ludovico.neededForUsers = true;
+    secrets.cosa.neededForUsers = true;
     secrets.root.neededForUsers = true;
     secrets.wireguardPrivateKey = {
       inherit (config.users.users.systemd-network) group;
