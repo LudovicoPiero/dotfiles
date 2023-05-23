@@ -71,65 +71,40 @@
     };
   };
 
-  # Enable NAT
-  networking.nat = {
-    enable = true;
-    enableIPv6 = true;
-    externalInterface = "ens3";
-    internalInterfaces = ["wg0"];
-  };
-  # Open ports in the firewall
+  # enable NAT
+  networking.nat.enable = true;
+  networking.nat.externalInterface = "ens3";
+  networking.nat.internalInterfaces = ["wg0"];
   networking.firewall = {
-    allowedTCPPorts = [53 22];
-    allowedUDPPorts = [53 52780];
+    allowedUDPPorts = [51820];
   };
 
-  # Wireguard Server
-  services = {
-    dnsmasq = {
-      enable = true;
-      settings = {
-        interface = "wg0";
-      };
-    };
-  };
-  networking.wg-quick.interfaces = {
-    # "wg0" is the network interface name. You can name the interface arbitrarily.
+  networking.wireguard.interfaces = {
     wg0 = {
-      # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
-      address = ["10.66.66.1/24" "fdc9:281f:04d7:9ee9::1/64"];
-      listenPort = 52780;
-      # Path to the server's private key
-      privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
-
-      # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
-      postUp = ''
-        ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.0.0.1/24 -o eth0 -j MASQUERADE
-        ${pkgs.iptables}/bin/ip6tables -A FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s fdc9:281f:04d7:9ee9::1/64 -o eth0 -j MASQUERADE
+      ips = ["10.100.0.1/24"];
+      # The port that WireGuard listens to. Must be accessible by the client.
+      listenPort = 51820;
+      postSetup = ''
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
       '';
-
-      # Undo the above
-      preDown = ''
-        ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.0.0.1/24 -o eth0 -j MASQUERADE
-        ${pkgs.iptables}/bin/ip6tables -D FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fdc9:281f:04d7:9ee9::1/64 -o eth0 -j MASQUERADE
+      postShutdown = ''
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
       '';
+      privateKeyFile = "/home/cosa/wireguard-keys/private";
 
       peers = [
+        # List of allowed peers.
         {
-          # pc
+          # Feel free to give a meaning full name
+          # Public key of the peer (not a file path).
           publicKey = "FCq5ME9IglSSZR3kNzfyM935hho9c3C+Y5cbMG1PyCM=";
-          presharedKeyFile = config.sops.secrets.wireguardPreshared-pc.path;
-          allowedIPs = ["10.66.66.2/32" "fdc9:281f:04d7:9ee9::2/128"];
+          # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
+          allowedIPs = ["10.100.0.2/32"];
         }
         {
-          # phone
-          publicKey = "FCq5ME9IglSSZR3kNzfyM935hho9c3C+Y5cbMG1PyCM=";
-          presharedKeyFile = config.sops.secrets.wireguardPreshared-phone.path;
-          allowedIPs = ["10.66.66.3/32" "fdc9:281f:04d7:9ee9::3/128"];
+          # John Doe
+          publicKey = "{john doe's public key}";
+          allowedIPs = ["10.100.0.3/32"];
         }
       ];
     };
