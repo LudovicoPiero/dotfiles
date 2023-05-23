@@ -17,9 +17,8 @@
     defaultSopsFile = ./secrets.yaml;
     age.sshKeyPaths = ["/home/cosa/.ssh/id_rsa"];
     secrets = let
-      default = lib.recursiveUpdate {
+      default = {
         owner = "wireguard";
-        group = "wireguard";
         mode = "0640";
         reloadUnits = ["systemd-networkd.service"];
       };
