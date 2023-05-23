@@ -98,7 +98,6 @@
     wg0 = {
       # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
       address = ["10.66.66.1/24" "fdc9:281f:04d7:9ee9::1/64"];
-      # The port that WireGuard listens to - recommended that this be changed from default
       listenPort = 52780;
       # Path to the server's private key
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
