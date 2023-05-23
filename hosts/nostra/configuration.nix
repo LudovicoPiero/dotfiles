@@ -87,6 +87,14 @@
   };
 
   # Wireguard Server
+  services = {
+    dnsmasq = {
+      enable = true;
+      extraConfig = ''
+        interface=wg0
+      '';
+    };
+  };
   networking.wg-quick.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.
     wg0 = {
