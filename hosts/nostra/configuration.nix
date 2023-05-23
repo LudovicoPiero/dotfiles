@@ -17,9 +17,12 @@
     secrets.root.neededForUsers = true;
   };
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    extraModulePackages = with config.boot.kernelPackages; [wireguard];
+    loader.grub.enable = true;
+    loader.grub.device = "/dev/vda"; # or "nodev" for efi only
+  };
 
   time.timeZone = "Australia/Brisbane";
 
@@ -49,12 +52,26 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
-    passwordAuthentication = false;
+    settings = {
+      permitRootLogin = "no";
+      passwordAuthentication = false;
+    };
   };
 
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  # Enable NAT
+  networking.nat = {
+    enable = true;
+    enableIPv6 = true;
+    externalInterface = "eth0";
+    internalInterfaces = ["wg0"];
+  };
+  # Open ports in the firewall
+  networking.firewall = {
+    allowedTCPPorts = [53];
+    allowedUDPPorts = [53 51820];
+  };
 }
