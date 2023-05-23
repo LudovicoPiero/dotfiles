@@ -40,7 +40,6 @@
   };
 
   programs.command-not-found.enable = false;
-  programs.fish.enable = true;
 
   # Thunar stuff
   programs.thunar.plugins = with pkgs.xfce; [

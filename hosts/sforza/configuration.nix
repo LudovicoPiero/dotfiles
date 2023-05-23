@@ -111,6 +111,7 @@
         };
       };
     };
+    fish.enable = true;
     hyprland.enable = true;
   };
 
@@ -165,7 +166,7 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-        autostart = false;
+      autostart = false;
       address = ["10.66.66.4/32,fd42:42:42::4/128"];
       dns = ["139.84.194.106"];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
