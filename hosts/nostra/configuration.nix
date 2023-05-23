@@ -75,7 +75,7 @@
   networking.nat = {
     enable = true;
     enableIPv6 = true;
-    externalInterface = "eth0";
+    externalInterface = "ens3";
     internalInterfaces = ["wg0"];
   };
   # Open ports in the firewall
