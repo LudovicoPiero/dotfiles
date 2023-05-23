@@ -41,6 +41,7 @@ in {
     packages = lib.attrValues {
       inherit
         (pkgs)
+        authy
         catgirl
         discord-canary
         exa
