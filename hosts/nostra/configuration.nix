@@ -19,7 +19,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with config.boot.kernelPackages; [wireguard];
     loader.grub.enable = true;
     loader.grub.device = "/dev/vda"; # or "nodev" for efi only
   };
