@@ -10,6 +10,9 @@
     ../shared/configuration.nix
   ];
 
+  # Don't care
+  documentation.nixos.enable = false;
+
   sops = {
     defaultSopsFile = ./secrets.yaml;
     age.sshKeyPaths = ["/home/cosa/.ssh/id_rsa"];
