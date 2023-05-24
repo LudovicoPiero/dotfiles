@@ -1,11 +1,7 @@
 {pkgs}: {
-  default = "SearxNG";
+  default = "Brave";
   force = true;
   engines = {
-    "SearxNG" = {
-      urls = [{template = "https://search.ludovico.pp.ua/search?q={searchTerms}";}];
-      definedAliases = ["@s"];
-    };
     "Brave" = {
       urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
       definedAliases = ["@b"];
