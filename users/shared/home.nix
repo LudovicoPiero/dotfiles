@@ -267,6 +267,7 @@
       createDirectories = true;
       extraConfig = {
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+        XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
         XDG_MISC_DIR = "${config.home.homeDirectory}/Stuff";
       };
     };
