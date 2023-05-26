@@ -82,17 +82,16 @@
       inputs.self.packages.${pkgs.system}.google-sans
       inputs.self.packages.${pkgs.system}.material-symbols
 
+      # From Overlays directory
+      iosevka-q
+
       powerline-fonts
-      #material-symbols
-      iosevka-comfy.comfy
       emacs-all-the-icons-fonts
       font-awesome
       sarasa-gothic
-
       noto-fonts-cjk
       noto-fonts-cjk-sans
       noto-fonts-emoji
-
       jetbrains-mono
       (nerdfonts.override {fonts = ["Iosevka"];})
     ];
