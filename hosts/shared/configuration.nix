@@ -59,6 +59,13 @@
       inherit
         (pkgs)
         coreutils
+        alejandra
+        alsa-utils
+        bat
+        brightnessctl
+        exa
+        fzf
+        playerctl
         curl
         fd
         git

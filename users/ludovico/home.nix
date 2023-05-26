@@ -37,61 +37,10 @@ in {
 
   lv.emacs.enable = true;
 
-  home = {
-    packages = lib.attrValues {
-      inherit
-        (pkgs)
-        authy
-        catgirl
-        discord-canary
-        exa
-        fuzzel
-        fzf
-        gamescope
-        lutris
-        mangohud
-        mpv
-        neofetch
-        nitch
-        protonup-qt
-        ripgrep
-        steam
-        thunderbird
-        vscode
-        webcord
-        ;
-
-      inherit
-        (inputs.nixpkgs-wayland.packages.${system})
-        grim
-        slurp
-        swaybg
-        swayidle
-        swaylock
-        wf-recorder
-        wl-clipboard
-        wlogout
-        ;
-
-      inherit (inputs.nil.packages.${system}) default;
-      inherit (inputs.hyprland-contrib.packages.${system}) grimblast;
-
-      # use OCR and copy to clipboard
-      ocrScript = let
-        inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
-        _ = lib.getExe;
-      in
-        pkgs.writers.writeDashBin "wl-ocr" ''
-          ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-          ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
-        '';
-    };
-
-    sessionVariables = {
-      EDITOR = "nvim";
-      NIXOS_OZONE_WL = "1";
-      XCURSOR_SIZE = "24";
-    };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    NIXOS_OZONE_WL = "1";
+    XCURSOR_SIZE = "24";
   };
 
   programs = {
@@ -320,7 +269,7 @@ in {
     in {
       "fuzzel/fuzzel.ini".text = ''
         font='Iosevka Nerd Font-16'
-        icon-theme='WhiteSur-dark'
+        icon-theme='${config.gtk.iconTheme.name}'
         prompt='->'
         [dmenu]
         mode=text

@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  inputs,
+  system,
   ...
 }: {
   imports = [
@@ -92,13 +94,59 @@
 
   # Qemu
   virtualisation.libvirtd.enable = true;
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    virt-viewer
-    qemu
-    OVMF
-    gvfs
-  ];
+  environment.systemPackages = lib.attrValues {
+    inherit
+      (pkgs)
+      authy
+      catgirl
+      discord-canary
+      exa
+      fuzzel
+      fzf
+      gamescope
+      lutris
+      mangohud
+      mpv
+      neofetch
+      nitch
+      protonup-qt
+      ripgrep
+      steam
+      thunderbird
+      vscode
+      webcord
+      virt-manager
+      virt-viewer
+      qemu
+      OVMF
+      gvfs
+      ;
+
+    inherit
+      (inputs.nixpkgs-wayland.packages.${system})
+      grim
+      slurp
+      swaybg
+      swayidle
+      swaylock
+      wf-recorder
+      wl-clipboard
+      wlogout
+      ;
+
+    inherit (inputs.nil.packages.${system}) default;
+    inherit (inputs.hyprland-contrib.packages.${system}) grimblast;
+
+    # use OCR and copy to clipboard
+    ocrScript = let
+      inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
+      _ = lib.getExe;
+    in
+      pkgs.writers.writeDashBin "wl-ocr" ''
+        ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
+        ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+      '';
+  };
   services.gvfs.enable = true;
 
   programs = {

@@ -4,21 +4,6 @@
   pkgs,
   ...
 }: rec {
-  home = {
-    packages = lib.attrValues {
-      inherit
-        (pkgs)
-        alejandra
-        alsa-utils
-        bat
-        brightnessctl
-        exa
-        fzf
-        playerctl
-        ;
-    };
-  };
-
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
