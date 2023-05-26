@@ -19,6 +19,14 @@
 
   # package = inputs.nix.packages.${system}.default;
 
+  gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 3d";
+  };
+
+  optimise.automatic = true;
+
   registry = {
     system.flake = inputs.self;
     default.flake = nixpkgs;
@@ -32,6 +40,8 @@
     accept-flake-config = true;
     experimental-features = ["ca-derivations" "flakes" "nix-command"];
     inherit max-jobs;
+
+    auto-optimise-store = true;
 
     sandbox = !isDarwin;
     sandbox-fallback = nixpkgs.lib.mkForce isDarwin;
@@ -55,6 +65,7 @@
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
 
-    trusted-users = ["ludovico"];
+    trusted-users = ["root" "@wheel"];
+    allowed-users = ["@wheel"];
   };
 }

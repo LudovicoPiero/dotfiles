@@ -37,11 +37,6 @@
     loader.grub.device = "/dev/vda"; # or "nodev" for efi only
   };
 
-  time.timeZone = "Australia/Brisbane";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
   users = {
     mutableUsers = false;
     users.root.passwordFile = config.sops.secrets.root.path;
@@ -71,6 +66,7 @@
     };
   };
 
+  ##TODO: Currently no worky
   # enable NAT
   networking.nat.enable = true;
   networking.nat.externalInterface = "ens3";
