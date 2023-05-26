@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation {
     owner = "google";
     repo = "material-design-icons";
     rev = "3912baecc97388955ce39f5e26bfb786a70cbe48";
-    sha256 = "1zvcc4yrkh86dsbw11lfx6j6g5xczvza21gx93xrlr6wir2mg90f";
+    sha256 = "sha256-KZ2sgFKKUAaQeOIR5WIwotFS8WTsKkfczBcFz1xzH6A=";
     sparseCheckout = ["variablefont"];
   };
 
