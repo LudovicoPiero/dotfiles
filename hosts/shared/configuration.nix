@@ -81,7 +81,7 @@
       # Icons
       inputs.self.packages.${pkgs.system}.google-sans
       inputs.self.packages.${pkgs.system}.material-symbols
-      # inputs.self.packages.${pkgs.system}.san-francisco-pro
+      inputs.self.packages.${pkgs.system}.san-francisco-pro
 
       # From Overlays directory
       iosevka-q

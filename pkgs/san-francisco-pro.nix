@@ -9,7 +9,7 @@ fetchFromGitHub {
   repo = "San-Francisco-Pro-Fonts";
   rev = "8bfea09aa6f1139479f80358b2e1e5c6dc991a58";
   fetchSubmodules = false;
-  sha256 = "1mgrg676lp944cmz1sgspxm2qni8y53lhai1zz18k1svjbhi5lsr";
+  sha256 = "sha256-8XVzzBDKnezRElyCwDQJ5VZP7ARuDxyi0Z8TFNGz2p0";
 
   postFetch = ''
     mkdir -p $out/share/fonts/San-Francisco-Pro
