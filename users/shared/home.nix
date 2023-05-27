@@ -9,7 +9,10 @@
 
   gtk = {
     enable = true;
-    font.name = "Google Sans Medium";
+    font = {
+      name = "SF Pro Rounded";
+      size = 11;
+    };
 
     iconTheme = {
       package = pkgs.whitesur-icon-theme;
@@ -17,7 +20,7 @@
     };
 
     theme = {
-      name = "WhiteSur-Dark";
+      name = "WhiteSur-Light";
       package = pkgs.whitesur-gtk-theme;
     };
     cursorTheme = {

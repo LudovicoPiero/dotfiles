@@ -17,7 +17,7 @@
     # A good TTY font
     font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u12n.psf.gz";
     colors = let
-      colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+      colorscheme = inputs.nix-colors.colorSchemes.catppuccin-latte;
     in
       with colorscheme.colors; [
         base01
@@ -86,7 +86,7 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       # Icons
-      inputs.self.packages.${pkgs.system}.google-sans
+      # inputs.self.packages.${pkgs.system}.google-sans
       inputs.self.packages.${pkgs.system}.material-symbols
       inputs.self.packages.${pkgs.system}.san-francisco-pro
 
@@ -110,21 +110,21 @@
       enable = true;
       defaultFonts = {
         serif = [
-          "Google Sans"
+          "SF Pro"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
         ];
 
         sansSerif = [
-          "Google Sans"
+          "SF Pro"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
         ];
 
         monospace = [
-          "Iosevka Nerd Font"
+          "SF Pro Rounded"
           "Sarasa Mono C"
           "Sarasa Mono J"
           "Sarasa Mono K"

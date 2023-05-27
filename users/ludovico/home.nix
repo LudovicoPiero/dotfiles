@@ -24,7 +24,7 @@ in {
     author = "Ludovico";
 
     colors =
-      inputs.nix-colors.colorSchemes.catppuccin-mocha.colors
+      inputs.nix-colors.colorSchemes.catppuccin-latte.colors
       // {
         blue = "1e5799";
         pink = "f300ff";
@@ -182,7 +182,7 @@ in {
     in {
       enable = true;
       spotifyPackage = inputs.fufexan-dotfiles.packages.${system}.spotify;
-      theme = spicePkgs.themes.catppuccin-mocha;
+      theme = spicePkgs.themes.catppuccin-latte;
       colorScheme = "flamingo";
 
       enabledExtensions = with spicePkgs.extensions; [
