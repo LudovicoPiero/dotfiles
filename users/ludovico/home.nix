@@ -96,7 +96,6 @@ in {
         vim-nix
         plenary-nvim
         dashboard-nvim
-        # copilot-lua
         lualine-nvim
         nvim-tree-lua
         bufferline-nvim
@@ -137,14 +136,13 @@ in {
         cmp-buffer
         cmp-path
         cmp-cmdline
-        cmp-vsnip
-        vim-vsnip
         nvim-cmp
         nvim-lspconfig
+        luasnip
+        cmp_luasnip
       ];
 
       extraPackages = with pkgs; [
-        # nodejs-16_x # for copilot
         alejandra
         lua-language-server
         stylua # Lua

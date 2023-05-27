@@ -6,9 +6,10 @@ require('gitsigns').setup()
 
 -- Bufferline
 require("bufferline").setup({
+    highlights = require("catppuccin.groups.integrations.bufferline").get(),
     options = {
         mode = "buffers",
-        separator_style = "padded_slant",
+        separator_style = "thin",
         diagnostics = "nvim_lsp",
         offsets = {
             {
@@ -144,15 +145,6 @@ require("nvim-treesitter.configs").setup({
         enable = true,
         additional_vim_regex_highlighting = false,
     },
-    -- ensure_installed = { "javascript",
-    --     "typescript",
-    --     "tsx",
-    --     "css",
-    --     "rust",
-    --     "nix",
-    --     "go",
-    --     "lua",
-    -- },
 })
 
 require("nvim-tree").setup({})
