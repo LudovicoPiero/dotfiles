@@ -20,7 +20,7 @@
     };
 
     theme = {
-      name = "WhiteSur-Light";
+      name = "WhiteSur-Dark";
       package = pkgs.whitesur-gtk-theme;
     };
     cursorTheme = {

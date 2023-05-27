@@ -25,8 +25,8 @@ with colorscheme.colors; ''
 
   general {
       sensitivity = 1
-      gaps_in = 2
-      gaps_out = 2
+      gaps_in = 4
+      gaps_out = 4
       border_size = 2
       col.active_border = rgb(${blue}) rgb(${pink}) rgb(${yellow}) 45deg
       col.inactive_border = rgb(${gray})
@@ -46,8 +46,8 @@ with colorscheme.colors; ''
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
       rounding = 0
-      blur = no
-      blur_size = 8
+      blur = yes
+      blur_size = 10
       blur_passes = 2
       blur_new_optimizations = on
 

@@ -24,7 +24,7 @@ in {
     author = "Ludovico";
 
     colors =
-      inputs.nix-colors.colorSchemes.catppuccin-latte.colors
+      inputs.nix-colors.colorSchemes.catppuccin-mocha.colors
       // {
         blue = "1e5799";
         pink = "f300ff";
@@ -182,7 +182,7 @@ in {
     in {
       enable = true;
       spotifyPackage = inputs.fufexan-dotfiles.packages.${system}.spotify;
-      theme = spicePkgs.themes.catppuccin-latte;
+      theme = spicePkgs.themes.catppuccin-mocha;
       colorScheme = "flamingo";
 
       enabledExtensions = with spicePkgs.extensions; [
@@ -306,7 +306,7 @@ in {
     swaybg = mkService {
       Unit.Description = "Images Wallpaper Daemon";
       Service = {
-        ExecStart = "${lib.getExe pkgs.swaybg} -i ${../../assets/wallpaper/wallpaper_light.png}";
+        ExecStart = "${lib.getExe pkgs.swaybg} -i ${../../assets/wallpaper/wolf.jpeg}";
         Restart = "on-failure";
       };
     };

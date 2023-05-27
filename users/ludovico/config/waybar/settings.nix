@@ -81,7 +81,7 @@
       spacing = 5;
     };
     "custom/vpn" = {
-      "format" = "Wireguard ";
+      "format" = " Wireguard";
       "exec" = "echo '{\"class\": \"connected\"}'";
       "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
       "return-type" = "json";
