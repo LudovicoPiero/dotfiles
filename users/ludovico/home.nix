@@ -179,7 +179,7 @@ in {
       spicePkgs = inputs.spicetify.packages.${system}.default;
     in {
       enable = true;
-      spotifyPackage = inputs.fufexan-dotfiles.packages.${system}.spotify;
+      spotifyPackage = pkgs.spotify;
       theme = spicePkgs.themes.catppuccin-mocha;
       colorScheme = "flamingo";
 

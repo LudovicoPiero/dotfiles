@@ -26,11 +26,13 @@
     spicetify.url = "github:the-argus/spicetify-nix";
     statix.url = "github:nerdypepper/statix";
 
-    # Other Flakes
-    fufexan-dotfiles.url = "github:fufexan/dotfiles";
-
     # Minimize duplicate instances of inputs
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
+    emacs.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
+    nil.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -108,7 +110,5 @@
 
     # Default formatter for the entire repo
     formatter = nixpkgs.lib.genAttrs ["x86_64-linux"] (_system: pkgs.alejandra);
-
-    sforza = self.nixosConfigurations.sforza.config.system.build.toplevel;
   };
 }
