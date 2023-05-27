@@ -306,7 +306,7 @@ in {
     swaybg = mkService {
       Unit.Description = "Images Wallpaper Daemon";
       Service = {
-        ExecStart = "${lib.getExe pkgs.swaybg} -i ${../../assets/wallpaper/wolf.jpeg}";
+        ExecStart = "${lib.getExe pkgs.swaybg} -i ${../../assets/wallpaper/wallpaper_light.png}";
         Restart = "on-failure";
       };
     };
