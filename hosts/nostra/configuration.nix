@@ -58,13 +58,13 @@
   };
 
   # Enable the OpenSSH daemon.
-  # services.openssh = {
-  #   enable = true;
-  #   settings = {
-  #     permitRootLogin = "no";
-  #     passwordAuthentication = false;
-  #   };
-  # };
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };
 
   ##TODO: Currently no worky
   # enable NAT
