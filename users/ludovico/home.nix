@@ -211,7 +211,8 @@ in {
         extensions = with config.nur.repos.rycee.firefox-addons; [
           ublock-origin
           bitwarden
-          # fastforward
+          grammarly
+          darkreader
         ];
         bookmarks = import ./config/firefox/bookmarks.nix;
         search = import ./config/firefox/search.nix {inherit pkgs;};
