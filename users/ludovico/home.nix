@@ -22,7 +22,6 @@ in {
     slug = "Skeet";
     name = "Skeet";
     author = "Ludovico";
-
     colors =
       inputs.nix-colors.colorSchemes.catppuccin-mocha.colors
       // {

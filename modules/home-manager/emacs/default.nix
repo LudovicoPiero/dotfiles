@@ -387,6 +387,23 @@ in {
             after = ["org"];
           };
 
+          smartparens = {
+            enable = true;
+            defer = 3;
+            command = ["smartparens-global-mode" "show-smartparens-global-mode"];
+            bindLocal = {
+              smartparens-mode-map = {
+                "C-M-f" = "sp-forward-sexp";
+                "C-M-b" = "sp-backward-sexp";
+              };
+            };
+            config = ''
+              (require 'smartparens-config)
+              (smartparens-global-mode t)
+              (show-smartparens-global-mode t)
+            '';
+          };
+
           yasnippet = {
             enable = true;
             command = ["yas-global-mode" "yas-minor-mode" "yas-expand-snippet"];
