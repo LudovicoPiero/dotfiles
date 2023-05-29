@@ -17,7 +17,7 @@
     "home-manager=${inputs.home}"
   ];
 
-  # package = inputs.nix.packages.${system}.default;
+  package = inputs.nix.packages.${system}.default;
 
   gc = {
     automatic = true;
