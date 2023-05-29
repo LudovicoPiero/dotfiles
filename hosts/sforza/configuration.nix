@@ -217,7 +217,7 @@
   networking.wg-quick.interfaces = {
     wg0 = {
       autostart = true;
-      address = ["10.66.66.2/32" "fdc9:281f:04d7:9ee9::2/128"];
+      address = ["10.66.66.5/32" "fdc9:281f:04d7:9ee9::5/128"];
       dns = ["139.84.195.93"];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
 
