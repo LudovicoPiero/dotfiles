@@ -59,7 +59,7 @@
 
     exa = {
       enable = true;
-      enableAliases = true;
+      enableAliases = false;
     };
 
     git = {
@@ -118,14 +118,16 @@
     };
 
     home-manager.enable = true;
+    nix-index.enable = true;
 
     starship = {
       enable = true;
       settings = import ./config/starship.nix {inherit lib;};
     };
 
-    nix-index.enable = true;
-    fish = {
+    fish = let
+      _ = lib.getExe;
+    in {
       enable = true;
       functions = {
         gitignore = "curl -sL https://www.gitignore.io/api/$argv";
@@ -133,38 +135,34 @@
         run = "nix run nixpkgs#$argv";
         "watchLive" = let
           args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
-        in "${lib.getExe pkgs.streamlink} --player ${lib.getExe pkgs.mpv} --twitch-disable-hosting --twitch-low-latency --player-args \"${args}\" --player-continuous-http --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 --retry-streams 15 $argv best -a --ontop -a --no-border";
+        in "${_ pkgs.streamlink} --player ${_ pkgs.mpv} --twitch-disable-hosting --twitch-low-latency --player-args \"${args}\" --player-continuous-http --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 --retry-streams 15 $argv best -a --ontop -a --no-border";
       };
-      interactiveShellInit = with pkgs; let
-        _ = lib.getExe;
-      in ''
+      interactiveShellInit = with pkgs; ''
         ${_ starship} init fish | source
         ${_ any-nix-shell} fish --info-right | source
         ${_ direnv} hook fish | source
       '';
       shellAliases = with pkgs; {
-        "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake ~/.config/nixos && popd";
-        "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake ~/.config/nixos && popd";
-        "hs" = "pushd ~/.config/nixos && home-manager switch --flake ~/.config/nixos && popd";
-        "cat" = lib.getExe bat;
+        "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake .# && popd";
+        "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake .# && popd";
+        "hs" = "pushd ~/.config/nixos && home-manager switch --flake .# && popd";
+        "cat" = _ bat;
         "config" = "cd ~/.config/nixos";
-        "lg" = "lazygit";
-        # "ls" = "exa --icons";
-        # "l" = "${md} exa -lbF --git --icons";
-        # "ll" = "${md} exa -lbGF --git --icons";
-        # "llm" = "${md} exa -lbGF --git --sort=modified --icons";
-        # "la" = "${md} exa -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
-        # "lx" = "${md} exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
-        "tree" = "exa --tree --icons";
+        "ls" = "${_ exa} --icons";
+        "l" = "${_ exa} -lbF --git --icons";
+        "ll" = "${_ exa} -lbGF --git --icons";
+        "llm" = "${_ exa} -lbGF --git --sort=modified --icons";
+        "la" = "${_ exa} -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
+        "lx" = "${_ exa} -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
+        "tree" = "${_ exa} --tree --icons";
         "nv" = "nvim";
         "mkdir" = "mkdir -p";
         "g" = "git";
-        "gcl" = "git clone";
-        "gcm" = "cz c";
-        "gd" = "git diff HEAD";
-        "gpl" = "git pull";
-        "gpsh" = "git push -u origin";
-        "gs" = "git status";
+        "gcl" = "g clone";
+        "gd" = "g diff HEAD";
+        "gpl" = "g pull";
+        "gpsh" = "g push -u origin";
+        "gs" = "g status";
         "sudo" = "doas";
         "..." = "cd ../..";
         ".." = "cd ..";
