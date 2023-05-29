@@ -143,9 +143,9 @@
         ${_ direnv} hook fish | source
       '';
       shellAliases = with pkgs; {
-        "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake .# && popd";
-        "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake .# && popd";
-        "hs" = "pushd ~/.config/nixos && home-manager switch --flake .# && popd";
+        "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake .#ludovico && popd";
+        "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake .#ludovico && popd";
+        "hs" = "pushd ~/.config/nixos && home-manager switch --flake .#ludovico && popd";
         "cat" = _ bat;
         "config" = "cd ~/.config/nixos";
         "ls" = "${_ exa} --icons";
