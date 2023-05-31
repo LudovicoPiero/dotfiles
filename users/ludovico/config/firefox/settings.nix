@@ -55,4 +55,14 @@
   "network.dns.disableIPv6" = true;
   "network.proxy.socks_remote_dns" = true;
   "dom.security.https_first" = true;
+
+  # Firefox GNOME Theme
+  # Hide the tab bar when only one tab is open.
+  "gnomeTheme.hideSingleTab" = false;
+  # Move Bookmarks toolbar under tabs.
+  "gnomeTheme.bookmarksToolbarUnderTabs" = true;
+  # Hide WebRTC indicator since GNOME provides their own privacy icons in the top right.
+  "gnomeTheme.hideWebrtcIndicator" = true;
+  # Use system theme icons instead of Adwaita icons included by theme.
+  "gnomeTheme.systemIcons" = true;
 }

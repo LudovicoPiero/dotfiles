@@ -143,8 +143,8 @@
         ${_ direnv} hook fish | source
       '';
       shellAliases = with pkgs; {
-        "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake .#ludovico && popd";
-        "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake .#ludovico && popd";
+        "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake .#sforza && popd";
+        "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake .#sforza && popd";
         "hs" = "pushd ~/.config/nixos && home-manager switch --flake .#ludovico && popd";
         "cat" = _ bat;
         "config" = "cd ~/.config/nixos";

@@ -205,20 +205,27 @@ in {
     firefox = {
       enable = true;
 
-      profiles.ludovico = {
-        isDefault = true;
-        name = "Ludovico";
-        extensions = with config.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          bitwarden
-          grammarly
-          darkreader
-        ];
-        bookmarks = import ./config/firefox/bookmarks.nix;
-        search = import ./config/firefox/search.nix {inherit pkgs;};
-        settings = import ./config/firefox/settings.nix;
-        userChrome = import ./config/firefox/userChrome.nix;
-      };
+      profiles.ludovico =
+        {
+          isDefault = true;
+          name = "Ludovico";
+          extensions = with config.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+            bitwarden
+            grammarly
+            darkreader
+          ];
+          bookmarks = import ./config/firefox/bookmarks.nix;
+          search = import ./config/firefox/search.nix {inherit pkgs;};
+          settings = import ./config/firefox/settings.nix;
+        }
+        // (let
+          inherit (config.nur.repos.federicoschonborn) firefox-gnome-theme;
+        in {
+          userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
+          userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
+          extraConfig = builtins.readFile "${firefox-gnome-theme}/configuration/user.js";
+        });
     };
 
     waybar = {
