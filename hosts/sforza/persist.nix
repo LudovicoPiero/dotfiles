@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  networking.hostId = "f4024419"; # head -c8 /etc/machine-id
+  networking.hostId = "97999349"; # head -c8 /etc/machine-id
 
   environment.persistence."/persist" = {
     hideMounts = true;

@@ -22,35 +22,35 @@
     default = ["rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
   in {
     "/" = {
-      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      device = "/dev/disk/by-uuid/b2399e88-8c0b-4518-97dc-cb3462cbaeb0";
       fsType = "btrfs";
       options = default ++ ["subvol=root"];
     };
     "/home" = {
-      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      device = "/dev/disk/by-uuid/b2399e88-8c0b-4518-97dc-cb3462cbaeb0";
       fsType = "btrfs";
       options = default ++ ["subvol=home"];
       neededForBoot = true;
     };
     "/nix" = {
-      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      device = "/dev/disk/by-uuid/b2399e88-8c0b-4518-97dc-cb3462cbaeb0";
       fsType = "btrfs";
       options = default ++ ["subvol=nix"];
     };
     "/persist" = {
-      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      device = "/dev/disk/by-uuid/b2399e88-8c0b-4518-97dc-cb3462cbaeb0";
       fsType = "btrfs";
       options = default ++ ["subvol=persist"];
       neededForBoot = true;
     };
     "/var/log" = {
-      device = "/dev/disk/by-uuid/d47b8ddb-16d4-464e-90a0-1d169f4da855";
+      device = "/dev/disk/by-uuid/b2399e88-8c0b-4518-97dc-cb3462cbaeb0";
       fsType = "btrfs";
       options = default ++ ["subvol=log"];
       neededForBoot = true;
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/E27D-00C9";
+      device = "/dev/disk/by-uuid/5FC3-D254";
       fsType = "vfat";
     };
     "/Stuff" = {
@@ -59,10 +59,10 @@
     };
   };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/0783173e-f38d-4492-8039-08b4d3fa77a8";
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/33494f0f-cf8e-4757-83c0-3b3fb8bda64c";
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/592b2453-4980-4e93-a120-9e1b5ba25fbc";
+      device = "/dev/disk/by-uuid/bce65cf1-162a-426e-be84-5fcc822a1f60";
       options = ["rw" "noatime" "discard" "ssd"];
     }
   ];

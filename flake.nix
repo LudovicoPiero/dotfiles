@@ -13,6 +13,10 @@
     # Flake inputs
     aagl.url = "github:ezKEa/aagl-gtk-on-nix"; # Anime Game Launcher
     emacs.url = "github:nix-community/emacs-overlay";
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
     home.url = "github:nix-community/home-manager";
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";

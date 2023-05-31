@@ -48,6 +48,7 @@
           "realtime"
         ]
         ++ pkgs.lib.optional config.virtualisation.libvirtd.enable "libvirtd"
+        ++ pkgs.lib.optional config.virtualisation.docker.enable "docker"
         ++ pkgs.lib.optional config.networking.networkmanager.enable "networkmanager";
     };
   };
@@ -92,8 +93,12 @@
     };
   };
 
-  # Qemu
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = true; # Qemu
+  # Docker
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+  };
   environment.systemPackages = lib.attrValues {
     inherit
       (pkgs)
