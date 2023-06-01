@@ -67,7 +67,6 @@ with colorscheme.colors; ''
       # animation = NAME,ONOFF,SPEED,CURVE,STYLE
       animation   = windows     , 1, 7,   overshot
       animation   = windowsOut  , 1, 7,   overshot
-      animation   = windowsMove , 1, 2,   overshot
       animation   = border      , 1, 10,  default
       animation   = borderangle , 1, 100, linear, loop
       animation   = fade        , 1, 7,   default
