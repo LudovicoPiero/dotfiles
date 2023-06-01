@@ -213,7 +213,6 @@ in {
             ublock-origin
             bitwarden
             grammarly
-            darkreader
           ];
           bookmarks = import ./config/firefox/bookmarks.nix;
           search = import ./config/firefox/search.nix {inherit pkgs;};
