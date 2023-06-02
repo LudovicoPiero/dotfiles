@@ -22,6 +22,12 @@ map("n", "<C-3>", ":BufferLineGoToBuffer 3 <CR>", opts)
 map("n", "<C-4>", ":BufferLineGoToBuffer 4 <CR>", opts)
 map("n", "<C-5>", ":BufferLineGoToBuffer 5 <CR>", opts)
 
+-- Resizing panes
+map("n", "<Left>", ":vertical resize +1<CR>", opts)
+map("n", "<Right>", ":vertical resize -1<CR>", opts)
+map("n", "<Up>", ":resize -1<CR>", opts)
+map("n", "<Down>", ":resize +1<CR>", opts)
+
 -- Comment Toggle
 require("Comment").setup()
 

@@ -127,8 +127,10 @@ in {
         vim-fugitive
         nvim-web-devicons
         lsp-format-nvim
+        which-key-nvim
 
         gitsigns-nvim
+        neogit
 
         # Cmp
         cmp-nvim-lsp
@@ -165,6 +167,7 @@ in {
           "settings"
           "theme"
           "ui"
+          "which-key"
         ]);
       in ''
         set guicursor=n-v-c-i:block

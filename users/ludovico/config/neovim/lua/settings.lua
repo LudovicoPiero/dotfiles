@@ -20,7 +20,6 @@ local g = vim.g
 -- Show line
 o.colorcolumn = "80"
 
-g.mapleader = " "
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
@@ -38,7 +37,7 @@ o.undofile = true
 -- Indentation
 o.smartindent = true
 o.tabstop = 4
-o.shiftwidth = 4
+o.shiftwidth = 2
 o.shiftround = true
 o.expandtab = true
 o.scrolloff = 3
@@ -60,7 +59,6 @@ o.viminfofile = "NONE"
 
 -- Miscellaneous quality of life
 o.ignorecase = true
-o.ttimeoutlen = 5
 o.hidden = true
 o.shortmess = "atI"
 o.wrap = false
