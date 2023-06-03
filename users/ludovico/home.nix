@@ -220,6 +220,27 @@ in {
       };
     };
 
+    tmux = {
+      enable = true;
+      customPaneNavigationAndResize = true;
+      keyMode = "vi";
+      mouse = true;
+      prefix = "C-a";
+      extraConfig = import ./config/tmux.nix;
+      plugins = [
+        {
+          plugin = pkgs.tmuxPlugins.catppuccin;
+          extraConfig = ''
+            set -g @catppuccin_window_tabs_enabled on
+            set -g @catppuccin_flavour 'mocha'
+            set -g @catppuccin_left_separator "█"
+            set -g @catppuccin_right_separator "█"
+            set -g @catppuccin_date_time "%Y-%m-%d %H:%M"
+          '';
+        }
+      ];
+    };
+
     firefox = {
       enable = true;
 
