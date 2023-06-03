@@ -138,7 +138,7 @@ with colorscheme.colors; ''
   bind = SUPER      , S , exec , [workspace 5 silent;tile] ${lib.getExe config.programs.spicetify.spotifyPackage}
   bind = SUPER      , W , killactive ,
   bind = SUPER      , X , exec , ${lib.getExe pkgs.wlogout}
-  bind = SUPER      , Return , exec , ${lib.getExe pkgs.wezterm}
+  bind = SUPER      , Return , exec , ${lib.getExe pkgs.foot}
 
   # Binds Mouse
   bindm = SUPER , mouse:272 , movewindow

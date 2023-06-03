@@ -202,15 +202,15 @@ in {
       };
     };
 
-    wezterm = {
-      enable = true;
-      colorSchemes = import ./config/wezterm/colorscheme.nix {
-        inherit (config) colorscheme;
-      };
-      extraConfig = import ./config/wezterm/config.nix {
-        inherit (config) colorscheme;
-      };
-    };
+    # wezterm = {
+    #   enable = true;
+    #   colorSchemes = import ./config/wezterm/colorscheme.nix {
+    #     inherit (config) colorscheme;
+    #   };
+    #   extraConfig = import ./config/wezterm/config.nix {
+    #     inherit (config) colorscheme;
+    #   };
+    # };
 
     firefox = {
       enable = true;
