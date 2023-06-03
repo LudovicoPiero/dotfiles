@@ -212,6 +212,14 @@ in {
     #   };
     # };
 
+    fuzzel = {
+      enable = true;
+      settings = import ./config/fuzzel.nix {
+        inherit (config) colorscheme;
+        inherit config;
+      };
+    };
+
     firefox = {
       enable = true;
 
@@ -278,38 +286,14 @@ in {
   };
 
   xdg = {
-    configFile = let
-      inherit (config.colorscheme) colors;
-    in {
-      "fuzzel/fuzzel.ini".text = ''
-        font='Iosevka Nerd Font-16'
-        icon-theme='${config.gtk.iconTheme.name}'
-        prompt='->'
-        [dmenu]
-        mode=text
-        [colors]
-        background=${colors.base00}ff
-        text=${colors.base07}ff
-        match=${colors.base0E}ff
-        selection=${colors.base08}ff
-        selection-text=${colors.base07}ff
-        selection-match=${colors.base07}ff
-        border=${colors.base0E}ff
-
-        [border]
-        width=2
-        radius=0
-      '';
-
-      "MangoHud/MangoHud.conf".text = ''
-        gpu_stats
-        cpu_stats
-        fps
-        frame_timing = 0
-        throttling_status = 0
-        position=top-right
-      '';
-    };
+    configFile."MangoHud/MangoHud.conf".text = ''
+      gpu_stats
+      cpu_stats
+      fps
+      frame_timing = 0
+      throttling_status = 0
+      position=top-right
+    '';
     userDirs = {
       enable = true;
     };

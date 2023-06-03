@@ -106,7 +106,6 @@
       catgirl
       discord-canary
       exa
-      fuzzel
       fzf
       gamescope
       lutris
