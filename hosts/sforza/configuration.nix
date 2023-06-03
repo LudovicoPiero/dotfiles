@@ -119,7 +119,7 @@
       steam
       thunderbird
       vscode
-      webcord
+      webcord-vencord
       virt-manager
       virt-viewer
       qemu
