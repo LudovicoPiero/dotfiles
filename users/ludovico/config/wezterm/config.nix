@@ -7,7 +7,7 @@ with colorscheme.colors; ''
   		"Noto Color Emoji",
   		"Material Symbols",
   	}),
-    font_size = 14.0,
+    font_size = 13.0,
   	window_background_opacity = 0.66,
   	color_scheme = "coolTheme",
   	enable_scroll_bar = false,

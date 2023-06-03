@@ -24,7 +24,7 @@ with colorscheme.colors; ''
   }
 
   general {
-      sensitivity = 1
+      sensitivity = 0.9
       gaps_in = 4
       gaps_out = 4
       border_size = 3

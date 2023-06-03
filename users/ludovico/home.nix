@@ -195,6 +195,13 @@ in {
       # enabledCustomApps = ["marketplace"];
     };
 
+    foot = {
+      enable = true;
+      settings = import ./config/foot.nix {
+        inherit (config) colorscheme;
+      };
+    };
+
     wezterm = {
       enable = true;
       colorSchemes = import ./config/wezterm/colorscheme.nix {
