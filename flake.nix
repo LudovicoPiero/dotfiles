@@ -22,7 +22,7 @@
     hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
     nil.url = "github:oxalica/nil?rev=18de045d7788df2343aec58df7b85c10d1f5d5dd";
-    nix.url = "github:nixos/nix?rev=b1c34c0ee808f60da32f09e238087106b9c4f680";
+    nix.url = "github:nixos/nix";
     nur.url = "github:nix-community/NUR";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-colors.url = "github:Misterio77/nix-colors";

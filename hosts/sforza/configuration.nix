@@ -238,5 +238,5 @@
   };
 
   # Remove Bloat
-  documentation.nixos.enable = lib.mkForce false;
+  documentation.doc.enable = lib.mkForce false;
 }
