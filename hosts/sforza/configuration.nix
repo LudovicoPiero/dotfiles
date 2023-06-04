@@ -116,6 +116,7 @@
       protonup-qt
       ripgrep
       steam
+      tdesktop
       thunderbird
       vscode
       webcord-vencord
