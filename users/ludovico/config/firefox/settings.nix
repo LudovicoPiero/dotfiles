@@ -41,6 +41,7 @@
 
   # # Extra
   "identity.fxaccounts.enabled" = false;
+  "browser.download.useDownloadDir" = true;
   "browser.search.suggest.enabled" = false;
   "browser.urlbar.shortcuts.bookmarks" = false;
   "browser.urlbar.shortcuts.history" = false;
@@ -51,7 +52,10 @@
   "browser.urlbar.suggest.history" = true;
   "browser.urlbar.suggest.openpage" = false;
   "browser.urlbar.suggest.topsites" = false;
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
   "signon.rememberSignons" = false;
+  "signon.autofillForms" = false;
   "network.dns.disableIPv6" = true;
   "network.proxy.socks_remote_dns" = true;
   "dom.security.https_first" = true;
