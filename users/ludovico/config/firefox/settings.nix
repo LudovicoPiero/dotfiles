@@ -41,7 +41,7 @@
 
   # # Extra
   "identity.fxaccounts.enabled" = false;
-  "browser.download.useDownloadDir" = true;
+  "browser.download.useDownloadDir" = false;
   "browser.search.suggest.enabled" = false;
   "browser.urlbar.shortcuts.bookmarks" = false;
   "browser.urlbar.shortcuts.history" = false;
