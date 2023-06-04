@@ -117,7 +117,7 @@ with colorscheme.colors; ''
   # Variables
   $discordOption = --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer
   $discord = ${lib.getExe pkgs.discord-canary} $discordOption
-  $webcord = ${lib.getExe pkgs.webcord} $discordOption
+  $webcord = ${lib.getExe pkgs.webcord-vencord} $discordOption
 
   # Binds Keyboard
   bind = SUPER      , C , exit ,
