@@ -25,8 +25,8 @@ with colorscheme.colors; ''
 
   general {
       sensitivity = 0.9
-      gaps_in = 4
-      gaps_out = 4
+      gaps_in = 0
+      gaps_out = 0
       border_size = 3
       col.active_border = rgb(${blue}) rgb(${pink}) rgb(${yellow}) 45deg
       col.inactive_border = rgb(${gray})
