@@ -87,9 +87,9 @@ with colorscheme.colors; ''
 
   # v2
   windowrulev2 = workspace 9, class:^(thunderbird)$
-  windowrulev2 = workspace 8, class:^(org.telegram.desktop)$
+  windowrulev2 = workspace 6, class:^(Steam)$
   windowrulev2 = workspace 5, class:^(Spotify)$
-  windowrulev2 = workspace 4, class:^(Steam)$
+  windowrulev2 = workspace 4, class:^(org.telegram.desktop)$
   windowrulev2 = workspace 3, class:^(discord)$
   windowrulev2 = workspace 3, title:^(WebCord)$
   windowrulev2 = workspace 2, class:^(firefox)$
@@ -195,6 +195,9 @@ with colorscheme.colors; ''
   binde = , XF86MonBrightnessUp , exec , brightnessctl set 5%+
   binde = , XF86MonBrightnessDown , exec , brightnessctl set 5%-
 
-  exec-once = waybar
   exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland
+  exec-once = waybar
+  exec-once = [workspace 2 silent] ${lib.getExe pkgs.firefox}
+  exec-once = [workspace 3 silent] ${lib.getExe pkgs.discord-canary}
+  exec-once = [workspace 4 silent] ${lib.getExe pkgs.tdesktop}
 ''
