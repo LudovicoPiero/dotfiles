@@ -39,6 +39,31 @@
   # Harden SSL
   "security.ssl.require_safe_negotiation" = true;
 
+  # Tweaks from archwiki
+  "browser.cache.disk.enable" = false;
+  "browser.cache.memory.enable" = true;
+  "browser.cache.memory.capacity" = -1;
+  "browser.aboutConfig.showWarning" = false;
+  "browser.preferences.defaultPerformanceSettings.enabled" = false;
+  "middlemouse.paste" = false;
+
+  # Smooth Scroll
+  "general.smoothScroll.lines.durationMaxMS" = 125;
+  "general.smoothScroll.lines.durationMinMS" = 125;
+  "general.smoothScroll.mouseWheel.durationMaxMS" = 200;
+  "general.smoothScroll.mouseWheel.durationMinMS" = 100;
+  "general.smoothScroll.msdPhysics.enabled" = true;
+  "general.smoothScroll.other.durationMaxMS" = 125;
+  "general.smoothScroll.other.durationMinMS" = 125;
+  "general.smoothScroll.pages.durationMaxMS" = 125;
+  "general.smoothScroll.pages.durationMinMS" = 125;
+  "mousewheel.min_line_scroll_amount" = 30;
+  "mousewheel.system_scroll_override_on_root_content.enabled" = true;
+  "mousewheel.system_scroll_override_on_root_content.horizontal.factor" = 175;
+  "mousewheel.system_scroll_override_on_root_content.vertical.factor" = 175;
+  "toolkit.scrollbox.horizontalScrollDistance" = 6;
+  "toolkit.scrollbox.verticalScrollDistance" = 2;
+
   # # Extra
   "identity.fxaccounts.enabled" = false;
   "browser.download.useDownloadDir" = false;
