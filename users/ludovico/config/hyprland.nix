@@ -195,9 +195,9 @@ with colorscheme.colors; ''
   binde = , XF86MonBrightnessUp , exec , brightnessctl set 5%+
   binde = , XF86MonBrightnessDown , exec , brightnessctl set 5%-
 
-  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland
   exec-once = waybar
   exec-once = [workspace 2 silent] ${lib.getExe pkgs.firefox}
-  exec-once = [workspace 3 silent] ${lib.getExe pkgs.discord-canary}
+  exec-once = [workspace 3 silent] $discord
   exec-once = [workspace 4 silent] ${lib.getExe pkgs.tdesktop}
+  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland
 ''
