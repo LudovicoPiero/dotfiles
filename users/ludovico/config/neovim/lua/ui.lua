@@ -104,9 +104,9 @@ local lualine = require("lualine")
 lualine.setup({
   options = {
     icons_enabled = true,
-    theme = "palenight",
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
+    theme = "catppuccin",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
