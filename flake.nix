@@ -21,6 +21,7 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nil.url = "github:oxalica/nil?rev=18de045d7788df2343aec58df7b85c10d1f5d5dd";
     nix.url = "github:nixos/nix";
     nur.url = "github:nix-community/NUR";
@@ -36,6 +37,7 @@
     home.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
     nil.inputs.nixpkgs.follows = "nixpkgs";
     nix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +70,9 @@
         import;
 
     overlays = with inputs;
-      []
+      [
+        neovim-nightly-overlay.overlay
+      ]
       # Overlays from ./overlays directory
       ++ (importNixFiles ./overlays);
 
