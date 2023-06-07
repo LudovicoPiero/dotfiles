@@ -38,7 +38,7 @@
       passwordFile = config.sops.secrets.ludovico.path;
       isNormalUser = true;
       home = "/home/ludovico";
-      shell = pkgs.fish;
+      shell = pkgs.zsh;
 
       extraGroups =
         [
@@ -164,7 +164,7 @@
         };
       };
     };
-    fish.enable = true;
+    zsh.enable = true;
     hyprland.enable = true;
   };
 

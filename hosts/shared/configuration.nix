@@ -52,7 +52,7 @@
   };
 
   environment = {
-    pathsToLink = ["/share/fish"];
+    pathsToLink = ["/share/zsh"];
 
     # Font packages should go in `fonts.fonts` a few lines below this.
     systemPackages = lib.attrValues {
