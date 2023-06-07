@@ -8,7 +8,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
 ![GitHub repo size](https://img.shields.io/github/repo-size/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
 [![Made with Doom Emacs](https://img.shields.io/badge/Made_with-Doom_Emacs-blueviolet.svg?style=for-the-badge&logo=GNU%20Emacs&labelColor=1B2330&logoColor=white&color=ef65ea)](https://github.com/doomemacs/doom-emacs)
-[![NixOS Unstable](https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea)](https://nixos.org)
+[![NixOS Master](https://img.shields.io/badge/NixOS-master-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea)](https://nixos.org)
 
 This is my personal NixOS configuration. This configuration is heavily based on the config of [fortuneteller2k](https://github.com/fortuneteller2k/nix-config). It is a work in progress and I am still learning NixOS. I am using this configuration to learn Nix and to learn how to use NixOS to manage my personal computers.
 <br />
