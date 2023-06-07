@@ -240,7 +240,7 @@
 
   xdg = let
     browser = ["firefox.desktop"];
-    thunderbird = ["thunderbird.desktop"];
+    mailspring = ["Mailspring.desktop"];
 
     # XDG MIME types
     associations = {
@@ -266,9 +266,9 @@
       "x-scheme-handler/discord" = ["discordcanary.desktop"];
       "x-scheme-handler/spotify" = ["spotify.desktop"];
       "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
-      "x-scheme-handler/mailto" = thunderbird;
-      "message/rfc822" = thunderbird;
-      "x-scheme-handler/mid" = thunderbird;
+      "x-scheme-handler/mailto" = mailspring;
+      "message/rfc822" = mailspring;
+      "x-scheme-handler/mid" = mailspring;
     };
   in {
     enable = true;

@@ -109,6 +109,7 @@
       fzf
       gamescope
       lutris
+      mailspring
       mangohud
       mpv
       neofetch
@@ -117,7 +118,6 @@
       ripgrep
       steam
       tdesktop
-      thunderbird
       vscode
       webcord-vencord
       virt-manager
