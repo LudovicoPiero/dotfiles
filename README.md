@@ -27,7 +27,7 @@ This is my personal NixOS configuration. This configuration is heavily based on 
 - Notification manager: [dunst](https://dunst-project.org)
 - Editor: [Doomemacs](https://github.com/doomemacs/doomemacs) & [Neovim](https://neovim.io/)
 - Terminal: [foot](https://codeberg.org/dnkl/foot)
-- Shell: [fish](https://fishshell.com)
+- Shell: [zsh](https://zsh.sourceforge.io/)
 - Browser: [firefox](https://www.mozilla.org/en-US/firefox)
 
 ## **:cherry_blossom: Acknowledgment**
