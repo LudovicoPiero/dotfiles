@@ -13,6 +13,10 @@
   # Earlyoom prevents systems from locking up when they run out of memory
   services.earlyoom.enable = true;
 
+  # make HM-managed GTK stuff work
+  programs.dconf.enable = true;
+  programs.xwayland.enable = true;
+
   console = {
     # A good TTY font
     font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u12n.psf.gz";
