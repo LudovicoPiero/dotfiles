@@ -23,12 +23,12 @@ This is my personal NixOS configuration. This configuration is heavily based on 
 
 - Kernel: [Xanmod](https://xanmod.org/)
 - Wayland compositor: [sway](https://swaywm.org)
-- Wayland bar: [Waybar](https://github.com/Alexays/Waybar)
+- Wayland bar: [i3status-rs](https://github.com/greshake/i3status-rust)
 - Notification manager: [dunst](https://dunst-project.org)
 - Editor: [Doomemacs](https://github.com/doomemacs/doomemacs) & [Neovim](https://neovim.io/)
 - Terminal: [foot](https://codeberg.org/dnkl/foot)
 - Shell: [zsh](https://zsh.sourceforge.io/)
-- Browser: [firefox](https://www.mozilla.org/en-US/firefox)
+- Browser: [firefox](https://www.mozilla.org/en-US/firefox) & [ungoogled-chromium](https://github.com/ungoogled-software/ungoogled-chromium)
 
 ## **:cherry_blossom: Acknowledgment**
 
