@@ -139,6 +139,7 @@
       wlogout
       ;
 
+    inherit (pkgs.qt6) qtwayland;
     inherit (inputs.nil.packages.${system}) default;
     inherit (inputs.hyprland-contrib.packages.${system}) grimblast;
 
