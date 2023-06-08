@@ -31,5 +31,13 @@
       criteria = {app_id = "discord";};
       command = "move to workspace 3";
     }
+    {
+      criteria = {app_id = "org.telegram.desktop";};
+      command = "move to workspace 4";
+    }
+    {
+      criteria = {class = "Mailspring";};
+      command = "move to workspace 9";
+    }
   ];
 }
