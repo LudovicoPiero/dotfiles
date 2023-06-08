@@ -33,8 +33,8 @@ final: prev: {
 
       # Wayland
       # "--use-gl=egl"
-      # "--ozone-platform=wayland"
-      # "--enable-features=UseOzonePlatform"
+      "--ozone-platform=wayland"
+      "--enable-features=UseOzonePlatform"
     ];
   };
 }
