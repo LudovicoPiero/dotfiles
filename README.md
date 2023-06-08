@@ -22,7 +22,7 @@ This is my personal NixOS configuration. This configuration is heavily based on 
 ## **:computer: Details**
 
 - Kernel: [Xanmod](https://xanmod.org/)
-- Wayland compositor: [Hyprland](https://hyprland.org)
+- Wayland compositor: [sway](https://swaywm.org)
 - Wayland bar: [Waybar](https://github.com/Alexays/Waybar)
 - Notification manager: [dunst](https://dunst-project.org)
 - Editor: [Doomemacs](https://github.com/doomemacs/doomemacs) & [Neovim](https://neovim.io/)

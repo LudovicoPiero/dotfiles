@@ -266,15 +266,91 @@ in {
         });
     };
 
-    waybar = {
+    i3status-rust = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
-      settings = import ./config/waybar/settings.nix {
-        inherit pkgs;
-        inherit lib;
+      bars = {
+        bottom = {
+          blocks = [
+            {
+              block = "cpu";
+              format = " $icon $utilization ";
+            }
+            {
+              block = "memory";
+              format = " $icon $mem_used_percents.eng(w:1) ";
+            }
+            {
+              block = "disk_space";
+              path = "/";
+              info_type = "available";
+              alert_unit = "GB";
+              interval = 20;
+              warning = 20.0;
+              alert = 10.0;
+              format = " $icon ROOT: $available.eng(w:2) ";
+            }
+            {
+              block = "net";
+              device = "wlp4s0";
+              format = " $icon DOWN: $speed_down UP: $speed_up ";
+            }
+            {
+              block = "sound";
+              # driver = "pulseaudio";
+              format = " $icon $volume ";
+            }
+            {
+              block = "battery";
+              device = "BAT1";
+              format = " $icon $percentage ";
+            }
+            {
+              block = "time";
+              format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
+            }
+          ];
+          settings = {
+            theme = {
+              theme = "solarized-dark";
+              overrides = let
+                inherit (config) colorscheme;
+              in
+                with colorscheme.colors; {
+                  idle_bg = "#${base00}";
+                  idle_fg = "#${base05}";
+                  info_bg = "#${base0C}";
+                  info_fg = "#${base00}";
+                  good_bg = "#${base0B}";
+                  good_fg = "#${base00}";
+                  warning_bg = "#${base0A}";
+                  warning_fg = "#${base00}";
+                  critical_bg = "#${base08}";
+                  critical_fg = "#${base00}";
+                  separator = "<span font='12'></span>";
+                };
+            };
+            icons = {
+              icons = "awesome6";
+              overrides = {
+                tux = "";
+                upd = "";
+                noupd = "";
+              };
+            };
+          };
+        };
       };
-      style = import ./config/waybar/style.nix {inherit (config) colorscheme;};
     };
+
+    # waybar = {
+    #   enable = true;
+    #   package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+    #   settings = import ./config/waybar/settings.nix {
+    #     inherit pkgs;
+    #     inherit lib;
+    #   };
+    #   style = import ./config/waybar/style.nix {inherit (config) colorscheme;};
+    # };
   };
 
   services = {
@@ -292,18 +368,107 @@ in {
     };
   };
 
-  wayland.windowManager.hyprland = {
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+
+  #   systemdIntegration = true;
+  #   recommendedEnvironment = true;
+
+  #   extraConfig = import ./config/hyprland.nix {
+  #     inherit (config) colorscheme;
+  #     inherit pkgs;
+  #     inherit lib;
+  #     inherit config;
+  #   };
+  # };
+
+  wayland.windowManager.sway = let
+    inherit (config) colorscheme;
+  in {
     enable = true;
-
-    systemdIntegration = true;
-    recommendedEnvironment = true;
-
-    extraConfig = import ./config/hyprland.nix {
-      inherit (config) colorscheme;
-      inherit pkgs;
-      inherit lib;
-      inherit config;
+    package = inputs.swayfx.packages.${pkgs.system}.default;
+    config = {
+      colors = import ./config/sway/colors.nix {inherit colorscheme;};
+      keybindings = import ./config/sway/keybindings.nix {inherit config lib pkgs;};
+      bars = import ./config/sway/bars.nix {inherit colorscheme;};
+      window = import ./config/sway/windows.nix;
+      input = {
+        "type:touchpad" = {
+          dwt = "enabled";
+          tap = "enabled";
+          natural_scroll = "enabled";
+        };
+        "type:keyboard" = {
+          xkb_options = "ctrl:nocaps";
+          repeat_delay = "200";
+          repeat_rate = "30";
+        };
+      };
+      floating = {
+        border = 2;
+        titlebar = true;
+        criteria = [
+          {window_role = "pop-up";}
+          {window_role = "bubble";}
+          {window_role = "dialog";}
+          {window_type = "dialog";}
+          {app_id = "lutris";}
+          {app_id = "thunar";}
+          {app_id = "pavucontrol";}
+          {class = ".*.exe";} # Wine apps
+          {class = "steam_app.*";} # Steam games
+          {class = "^Steam$";} # Steam itself
+        ];
+      };
+      gaps = {
+        inner = 2;
+        outer = 2;
+      };
+      fonts = {
+        names = ["Iosevka Nerd Font"];
+        size = 10.0;
+      };
+      startup = [
+        {command = "dunst";}
+        {command = "systemctl --user restart swaybg.service";}
+        {command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland";}
+      ];
+      modifier = "Mod4";
     };
+    extraConfig = ''
+      titlebar_border_thickness 1
+      title_align center
+      titlebar_padding 2
+
+      # SwayFX stuff
+      # window corner radius in px
+      corner_radius 3
+
+      shadows off
+      shadows_on_csd off
+      shadow_blur_radius 20
+      shadow_color #0000007F
+
+      # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+      default_dim_inactive 0.0
+      dim_inactive_colors.unfocused #000000FF
+      dim_inactive_colors.urgent #900000FF
+
+      # Treat Scratchpad as minimized
+      # scratchpad_minimize enable
+    '';
+    extraSessionCommands = ''
+      export XDG_CURRENT_DESKTOP=sway
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
+    };
+    systemdIntegration = true;
   };
 
   xdg = {

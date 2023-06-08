@@ -165,7 +165,7 @@
       };
     };
     zsh.enable = true;
-    hyprland.enable = true;
+    # hyprland.enable = true;
   };
 
   # TLP For Laptop
@@ -191,10 +191,10 @@
       enable = true;
 
       settings = {
-        default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'Hyprland'";
+        default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'sway'";
 
         initial_session = {
-          command = "Hyprland";
+          command = "sway";
           user = "ludovico";
         };
       };
@@ -217,6 +217,11 @@
   xdg.portal = {
     enable = true;
     wlr.enable = lib.mkForce false;
+    extraPortals = with pkgs;
+    with inputs; [
+      xdg-desktop-portal-gtk
+      xdph.packages.${pkgs.system}.default
+    ];
   };
 
   networking.wg-quick.interfaces = {
