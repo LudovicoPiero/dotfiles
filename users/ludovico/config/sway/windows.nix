@@ -8,7 +8,7 @@
       command = "move to workspace 5";
     }
     {
-      criteria = {app_id = "WebCord";};
+      criteria = {class = "WebCord";};
       command = "move to workspace 3";
     }
     {
@@ -22,6 +22,10 @@
     {
       criteria = {class = "Chromium-browser";};
       command = "move to workspace 2";
+    }
+    {
+      criteria = {class = "discord";};
+      command = "move to workspace 3";
     }
     {
       criteria = {app_id = "discord";};

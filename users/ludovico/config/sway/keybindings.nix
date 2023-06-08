@@ -88,11 +88,11 @@ in {
   "${mod}+Space" = "floating toggle";
 
   ### Apps
-  "${mod}+Return" = "exec ${pkgs.foot}/bin/foot";
-  "${mod}+p" = "exec ${pkgs.fuzzel}/bin/fuzzel";
-  "${mod}+g" = "exec ${pkgs.ungoogled-chromium}/bin/chromium-browser";
-  "${mod}+d" = "exec ${pkgs.discord-canary}/bin/discordcanary ${discordOptions}";
-  "${mod}+Shift+e" = "exec ${pkgs.xfce.thunar}/bin/thunar";
+  "${mod}+Return" = "exec ${lib.getExe pkgs.foot}";
+  "${mod}+p" = "exec ${lib.getExe pkgs.fuzzel}";
+  "${mod}+g" = "exec ${lib.getExe pkgs.ungoogled-chromium}";
+  "${mod}+d" = "exec \"${lib.getExe pkgs.discord-canary} ${discordOptions}\"";
+  "${mod}+Shift+e" = "exec ${lib.getExe pkgs.xfce.thunar}";
 
   ### Screenshot
   "Print" = "exec wl-ocr";
