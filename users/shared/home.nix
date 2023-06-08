@@ -303,6 +303,7 @@
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
       "x-scheme-handler/unknown" = browser;
+      "x-scheme-handler/mailspring" = mailspring;
 
       "audio/*" = ["mpv.desktop"];
       "video/*" = ["mpv.dekstop"];
