@@ -450,6 +450,12 @@ in {
       titlebar_padding 2
 
       # SwayFX stuff
+      # Blur
+      blur enable
+      blur_xray disable
+      blur_passes 3
+      blur_radius 3
+
       # window corner radius in px
       corner_radius 3
 
