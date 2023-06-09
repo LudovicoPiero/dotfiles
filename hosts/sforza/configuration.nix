@@ -94,11 +94,6 @@
   };
 
   virtualisation.libvirtd.enable = true; # Qemu
-  # Docker
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
-  };
   environment.systemPackages = lib.attrValues {
     inherit
       (pkgs)
