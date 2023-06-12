@@ -36,19 +36,25 @@ in {
 
   lv.emacs.enable = true;
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    NIXOS_OZONE_WL = "1";
-    XCURSOR_THEME = "${config.gtk.cursorTheme.name}";
-    XCURSOR_SIZE = "24";
-    DIRENV_LOG_FORMAT = "";
-    SDL_VIDEODRIVER = "wayland";
-    # needs qt5.qtwayland in systemPackages
-    QT_QPA_PLATFORM = "wayland";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    # Fix for some Java AWT applications (e.g. Android Studio),
-    # use this if they aren't displayed properly:
-    _JAVA_AWT_WM_NONREPARENTING = "1";
+  home = {
+    packages = lib.attrValues {
+      inherit (pkgs) jq;
+      sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/sharenix}'';
+    };
+    sessionVariables = {
+      EDITOR = "nvim";
+      NIXOS_OZONE_WL = "1";
+      XCURSOR_THEME = "${config.gtk.cursorTheme.name}";
+      XCURSOR_SIZE = "24";
+      DIRENV_LOG_FORMAT = "";
+      SDL_VIDEODRIVER = "wayland";
+      # needs qt5.qtwayland in systemPackages
+      QT_QPA_PLATFORM = "wayland";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+    };
   };
 
   programs = {
@@ -360,15 +366,15 @@ in {
       };
     };
 
-    # waybar = {
-    #   enable = true;
-    #   package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
-    #   settings = import ./config/waybar/settings.nix {
-    #     inherit pkgs;
-    #     inherit lib;
-    #   };
-    #   style = import ./config/waybar/style.nix {inherit (config) colorscheme;};
-    # };
+    waybar = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+      settings = import ./config/waybar/settings.nix {
+        inherit pkgs;
+        inherit lib;
+      };
+      style = import ./config/waybar/style.nix {inherit (config) colorscheme;};
+    };
   };
 
   services = {
@@ -386,114 +392,112 @@ in {
     };
   };
 
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-
-  #   systemdIntegration = true;
-  #   recommendedEnvironment = true;
-
-  #   extraConfig = import ./config/hyprland.nix {
-  #     inherit (config) colorscheme;
-  #     inherit pkgs;
-  #     inherit lib;
-  #     inherit config;
-  #   };
-  # };
-
-  wayland.windowManager.sway = let
-    inherit (config) colorscheme;
-  in {
+  wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.swayfx.packages.${pkgs.system}.default;
-    config = {
-      colors = import ./config/sway/colors.nix {inherit colorscheme;};
-      keybindings = import ./config/sway/keybindings.nix {inherit config lib pkgs;};
-      bars = import ./config/sway/bars.nix {inherit colorscheme;};
-      window = import ./config/sway/windows.nix;
-      input = {
-        "type:touchpad" = {
-          dwt = "enabled";
-          tap = "enabled";
-          natural_scroll = "enabled";
-        };
-        "type:keyboard" = {
-          xkb_options = "ctrl:nocaps";
-          repeat_delay = "200";
-          repeat_rate = "30";
-        };
-      };
-      floating = {
-        border = 2;
-        titlebar = true;
-        criteria = [
-          {window_role = "pop-up";}
-          {window_role = "bubble";}
-          {window_role = "dialog";}
-          {window_type = "dialog";}
-          {app_id = "lutris";}
-          {app_id = "thunar";}
-          {app_id = "pavucontrol";}
-          {class = ".*.exe";} # Wine apps
-          {class = "steam_app.*";} # Steam games
-          {class = "^Steam$";} # Steam itself
-        ];
-      };
-      gaps = {
-        inner = 2;
-        outer = 2;
-      };
-      fonts = {
-        names = ["Iosevka Nerd Font"];
-        size = 10.0;
-      };
-      startup = [
-        {command = "dunst";}
-        {command = "systemctl --user restart swaybg.service";}
-        {command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland";}
-      ];
-      modifier = "Mod4";
+    systemdIntegration = true;
+    recommendedEnvironment = true;
+    extraConfig = import ./config/hyprland.nix {
+      inherit (config) colorscheme;
+      inherit pkgs;
+      inherit lib;
+      inherit config;
     };
-    extraConfig = ''
-      titlebar_border_thickness 1
-      title_align center
-      titlebar_padding 2
-
-      # SwayFX stuff
-      # Blur
-      blur enable
-      blur_xray disable
-      blur_passes 3
-      blur_radius 3
-
-      # window corner radius in px
-      corner_radius 3
-
-      shadows off
-      shadows_on_csd off
-      shadow_blur_radius 20
-      shadow_color #0000007F
-
-      # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
-      default_dim_inactive 0.0
-      dim_inactive_colors.unfocused #000000FF
-      dim_inactive_colors.urgent #900000FF
-
-      # Treat Scratchpad as minimized
-      # scratchpad_minimize enable
-    '';
-    extraSessionCommands = ''
-      export XDG_CURRENT_DESKTOP=sway
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-      export _JAVA_AWT_WM_NONREPARENTING=1
-    '';
-    wrapperFeatures = {
-      base = true;
-      gtk = true;
-    };
-    systemd.enable = true;
   };
+
+  # wayland.windowManager.sway = let
+  #   inherit (config) colorscheme;
+  # in {
+  #   enable = true;
+  #   package = inputs.swayfx.packages.${pkgs.system}.default;
+  #   config = {
+  #     colors = import ./config/sway/colors.nix {inherit colorscheme;};
+  #     keybindings = import ./config/sway/keybindings.nix {inherit config lib pkgs;};
+  #     bars = import ./config/sway/bars.nix {inherit colorscheme;};
+  #     window = import ./config/sway/windows.nix;
+  #     input = {
+  #       "type:touchpad" = {
+  #         dwt = "enabled";
+  #         tap = "enabled";
+  #         natural_scroll = "enabled";
+  #       };
+  #       "type:keyboard" = {
+  #         xkb_options = "ctrl:nocaps";
+  #         repeat_delay = "200";
+  #         repeat_rate = "30";
+  #       };
+  #     };
+  #     floating = {
+  #       border = 2;
+  #       titlebar = true;
+  #       criteria = [
+  #         {window_role = "pop-up";}
+  #         {window_role = "bubble";}
+  #         {window_role = "dialog";}
+  #         {window_type = "dialog";}
+  #         {app_id = "lutris";}
+  #         {app_id = "thunar";}
+  #         {app_id = "pavucontrol";}
+  #         {class = ".*.exe";} # Wine apps
+  #         {class = "steam_app.*";} # Steam games
+  #         {class = "^Steam$";} # Steam itself
+  #       ];
+  #     };
+  #     gaps = {
+  #       inner = 2;
+  #       outer = 2;
+  #     };
+  #     fonts = {
+  #       names = ["Iosevka Nerd Font"];
+  #       size = 10.0;
+  #     };
+  #     startup = [
+  #       {command = "dunst";}
+  #       {command = "systemctl --user restart swaybg.service";}
+  #       {command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland";}
+  #     ];
+  #     modifier = "Mod4";
+  #   };
+  #   extraConfig = ''
+  #     titlebar_border_thickness 1
+  #     title_align center
+  #     titlebar_padding 2
+  #
+  #     # SwayFX stuff
+  #     # Blur
+  #     blur enable
+  #     blur_xray disable
+  #     blur_passes 3
+  #     blur_radius 3
+  #
+  #     # window corner radius in px
+  #     corner_radius 3
+  #
+  #     shadows off
+  #     shadows_on_csd off
+  #     shadow_blur_radius 20
+  #     shadow_color #0000007F
+  #
+  #     # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+  #     default_dim_inactive 0.0
+  #     dim_inactive_colors.unfocused #000000FF
+  #     dim_inactive_colors.urgent #900000FF
+  #
+  #     # Treat Scratchpad as minimized
+  #     # scratchpad_minimize enable
+  #   '';
+  #   extraSessionCommands = ''
+  #     export XDG_CURRENT_DESKTOP=sway
+  #     export SDL_VIDEODRIVER=wayland
+  #     export QT_QPA_PLATFORM=wayland
+  #     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  #     export _JAVA_AWT_WM_NONREPARENTING=1
+  #   '';
+  #   wrapperFeatures = {
+  #     base = true;
+  #     gtk = true;
+  #   };
+  #   systemd.enable = true;
+  # };
 
   xdg = {
     configFile."MangoHud/MangoHud.conf".text = ''

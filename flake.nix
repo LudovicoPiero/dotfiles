@@ -18,7 +18,7 @@
       flake = false;
     };
     home.url = "github:nix-community/home-manager";
-    # hyprland.url = "github:hyprwm/hyprland";
+    hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
     impermanence.url = "github:nix-community/impermanence";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -30,14 +30,14 @@
     sops-nix.url = "github:Mic92/sops-nix";
     spicetify.url = "github:the-argus/spicetify-nix";
     statix.url = "github:nerdypepper/statix";
-    swayfx.url = "github:WillPower3309/swayfx";
+    # swayfx.url = "github:WillPower3309/swayfx";
     xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     # Minimize duplicate instances of inputs
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     emacs.inputs.nixpkgs.follows = "nixpkgs";
     home.inputs.nixpkgs.follows = "nixpkgs";
-    # hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
     nil.inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +47,7 @@
     sops-nix.inputs.nixpkgs-stable.follows = "stable";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
-    swayfx.inputs.nixpkgs.follows = "nixpkgs";
+    # swayfx.inputs.nixpkgs.follows = "nixpkgs";
     xdph.inputs.nixpkgs.follows = "nixpkgs";
   };
 

@@ -46,7 +46,7 @@ with colorscheme.colors; ''
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
       rounding = 0
-      blur = yes
+      blur = no
       blur_size = 10
       blur_passes = 2
       blur_new_optimizations = on
@@ -146,6 +146,7 @@ with colorscheme.colors; ''
   bindm = SUPER , mouse:273 , resizewindow
 
   # Screenshot
+  bind =       , Print , exec , sharenix --selection
   bind = CTRL  , Print , exec , grimblast --notify copy area
   bind = SUPER , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')
   bind = SUPERSHIFT , Print , exec , wl-ocr
@@ -199,5 +200,5 @@ with colorscheme.colors; ''
   exec-once = [workspace 3 silent] $discord
   exec-once = [workspace 4 silent] ${lib.getExe pkgs.tdesktop}
   exec-once = [workspace 9 silent] ${lib.getExe pkgs.mailspring}
-  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland
+  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 ''
