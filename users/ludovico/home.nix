@@ -308,7 +308,9 @@ in {
             {
               block = "net";
               device = "wlp4s0";
-              format = " $icon DOWN: $speed_down UP: $speed_up ";
+              format = " $icon Connected ";
+              inactive_format = " $icon Disconnected ";
+              missing_format = " $icon Disconnected ";
             }
             {
               block = "sound";
