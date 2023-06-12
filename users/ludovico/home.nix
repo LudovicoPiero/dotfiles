@@ -300,6 +300,13 @@ in {
             }
             {
               block = "net";
+              device = "wg0";
+              format = " $icon VPN Connected ";
+              inactive_format = " $icon VPN Disconnected ";
+              missing_format = " $icon VPN Disconnected ";
+            }
+            {
+              block = "net";
               device = "wlp4s0";
               format = " $icon DOWN: $speed_down UP: $speed_up ";
             }
@@ -483,7 +490,7 @@ in {
       base = true;
       gtk = true;
     };
-    systemdIntegration = true;
+    systemd.enable = true;
   };
 
   xdg = {
