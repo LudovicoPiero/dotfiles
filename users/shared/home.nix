@@ -125,50 +125,22 @@
       settings = import ./config/starship.nix {inherit lib;};
     };
 
-    zsh = let
+    fish = let
       _ = lib.getExe;
     in {
       enable = true;
-      defaultKeymap = "emacs";
-
-      history = {
-        expireDuplicatesFirst = true;
-        extended = true;
-        save = 50000;
+      functions = {
+        gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+        fish_greeting = ""; # disable welcome text
+        run = "nix run nixpkgs#$argv";
+        "watchLive" = let
+          args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
+        in "${_ pkgs.streamlink} --player ${_ pkgs.mpv} --twitch-disable-hosting --twitch-low-latency --player-args \"${args}\" --player-continuous-http --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 --retry-streams 15 $argv best -a --ontop -a --no-border";
       };
-
-      initExtra = with pkgs; let
-        args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
-      in ''
-        eval "$(starship init zsh)"
-        ${_ any-nix-shell} zsh --info-right | source /dev/stdin
-        eval "$(direnv hook zsh)"
-
-        # case insensitive tab completion
-        zstyle ':completion:*' completer _complete _ignored _approximate
-        zstyle ':completion:*' list-colors '\'
-        zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-        zstyle ':completion:*' menu select
-        zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-        zstyle ':completion:*' verbose true
-        _comp_options+=(globdots)
-
-        gitignore(){
-          curl -sL https://www.gitignore.io/api/$@
-        }
-
-        run(){
-          nix run nixpkgs#$@
-        }
-
-        watchLive(){
-            ${_ pkgs.streamlink} --player ${_ pkgs.mpv} --twitch-disable-hosting \
-            --twitch-low-latency --player-args "${args}" --player-continuous-http \
-            --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 \
-            --retry-streams 15 $argv best -a --ontop -a --no-border
-        }
-
+      interactiveShellInit = with pkgs; ''
+        ${_ starship} init fish | source
+        ${_ any-nix-shell} fish --info-right | source
+        ${_ direnv} hook fish | source
       '';
       shellAliases = with pkgs; {
         "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake .#sforza && popd";
@@ -195,55 +167,6 @@
         "..." = "cd ../..";
         ".." = "cd ..";
       };
-
-      plugins = [
-        {
-          name = "zsh-syntax-highlighting";
-          file = "zsh-syntax-highlighting.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-syntax-highlighting";
-            rev = "1386f1213eb0b0589d73cd3cf7c56e6a972a9bfd";
-            sha256 = "sha256-iKx7lsQCoSAbpANYFkNVCZlTFdwOEI34rx/h1rnraSg=";
-          };
-        }
-        {
-          name = "zsh-autosuggestions";
-          file = "zsh-autosuggestions.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-autosuggestions";
-            rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
-            sha256 = "sha256-KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
-          };
-        }
-        {
-          name = "zsh-completions";
-          file = "zsh-completions.plugin.zsh";
-          src = builtins.fetchGit {
-            url = "https://github.com/zsh-users/zsh-completions";
-            rev = "66c4b6fe720fc34bd18dbb879aa005fc7352c65b";
-          };
-        }
-        {
-          name = "enhancd";
-          file = "init.sh";
-          src = pkgs.fetchFromGitHub {
-            owner = "b4b4r07";
-            repo = "enhancd";
-            rev = "v2.5.1";
-            sha256 = "sha256-kaintLXSfLH7zdLtcoZfVNobCJCap0S/Ldq85wd3krI=";
-          };
-        }
-        {
-          name = "forgit";
-          file = "forgit.plugin.zsh";
-          src = builtins.fetchGit {
-            url = "https://github.com/wfxr/forgit";
-            rev = "665e3fd215fe68ad066af1ad732e8618990da5a6";
-          };
-        }
-      ];
     };
   };
 
