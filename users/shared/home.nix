@@ -208,7 +208,7 @@
   };
 
   xdg = let
-    browser = ["chromium-browser.desktop"];
+    browser = ["firefox.desktop"];
     mailspring = ["Mailspring.desktop"];
 
     # XDG MIME types

@@ -25,8 +25,8 @@ with colorscheme.colors; ''
 
   general {
       sensitivity = 0.9
-      gaps_in = 0
-      gaps_out = 0
+      gaps_in = 3
+      gaps_out = 3
       border_size = 3
       col.active_border = rgb(${blue}) rgb(${pink}) rgb(${yellow}) 45deg
       col.inactive_border = rgb(${gray})
@@ -79,6 +79,7 @@ with colorscheme.colors; ''
       vfr = true
       vrr = 0 # 0 - off, 1 - on, 2 - fullscreen only
       disable_autoreload = false
+      render_titles_in_groupbar = false
   }
 
   gestures {
@@ -128,7 +129,7 @@ with colorscheme.colors; ''
   bind = SUPERSHIFT , D , exec , $webcord
   bind = SUPERSHIFT , E , exec , [float] ${lib.getExe pkgs.xfce.thunar}
   bind = SUPER      , F , fullscreen , 0
-  bind = SUPERSHIFT , G , exec , ${lib.getExe config.programs.chromium.package};
+  # bind = SUPERSHIFT , G , exec , ${lib.getExe config.programs.chromium.package};
   bind = SUPER      , G , exec , ${lib.getExe pkgs.firefox}
   bind = SUPER      , M , exec , [workspace 5 silent;tile] ${lib.getExe pkgs.mailspring}
   bind = SUPER      , P , exec , ${lib.getExe pkgs.fuzzel}

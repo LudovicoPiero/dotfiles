@@ -58,22 +58,22 @@ in {
   };
 
   programs = {
-    chromium = {
-      enable = true;
-      package = pkgs.ungoogled-chromium; # with ungoogled, you can't install extensions from the settings below
-      extensions = [
-        {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
-        {id = "nngceckbapebfimnlniiiahkandclblb";} # Bitwarden
-        {
-          id = "dcpihecpambacapedldabdbpakmachpb";
-          updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
-        }
-        {
-          id = "ilcacnomdmddpohoakmgcboiehclpkmj";
-          updateUrl = "https://raw.githubusercontent.com/FastForwardTeam/releases/main/update/update.xml";
-        }
-      ];
-    };
+    # chromium = {
+    #   enable = true;
+    #   package = pkgs.ungoogled-chromium; # with ungoogled, you can't install extensions from the settings below
+    #   extensions = [
+    #     {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
+    #     {id = "nngceckbapebfimnlniiiahkandclblb";} # Bitwarden
+    #     {
+    #       id = "dcpihecpambacapedldabdbpakmachpb";
+    #       updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
+    #     }
+    #     {
+    #       id = "ilcacnomdmddpohoakmgcboiehclpkmj";
+    #       updateUrl = "https://raw.githubusercontent.com/FastForwardTeam/releases/main/update/update.xml";
+    #     }
+    #   ];
+    # };
 
     obs-studio = {
       enable = true;
@@ -368,7 +368,7 @@ in {
 
     waybar = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+      package = inputs.hyprland.packages.${system}.waybar-hyprland;
       settings = import ./config/waybar/settings.nix {
         inherit pkgs;
         inherit lib;
@@ -394,8 +394,8 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
     recommendedEnvironment = true;
+    systemdIntegration = true;
     extraConfig = import ./config/hyprland.nix {
       inherit (config) colorscheme;
       inherit pkgs;
