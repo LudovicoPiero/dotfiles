@@ -11,6 +11,7 @@ with colorscheme.colors; {
     font = "Iosevka Nerd Font 10";
     notification_limit = 5;
     layer = "overlay"; # bottom, top or overlay
+    fullscreen = "pushback";
     browser = "xdg-open";
     corner_radius = 0;
   };
