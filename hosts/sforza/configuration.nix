@@ -164,6 +164,12 @@
     hyprland.enable = true;
   };
 
+  environment.etc."greetd/environments".text = ''
+    Hyprland
+    sway
+    fish
+  '';
+
   # TLP For Laptop
   services = {
     tlp.enable = true;
@@ -185,12 +191,11 @@
 
     greetd = {
       enable = true;
-
+      # package = pkgs.greetd.gtkgreet;
+      vt = 1;
       settings = {
-        default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'Hyprland'";
-
-        initial_session = {
-          command = "Hyprland";
+        default_session = {
+          command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
           user = "ludovico";
         };
       };

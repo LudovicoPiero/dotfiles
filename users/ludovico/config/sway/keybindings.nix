@@ -90,7 +90,7 @@ in {
   ### Apps
   "${mod}+Return" = "exec ${lib.getExe pkgs.foot}";
   "${mod}+p" = "exec ${lib.getExe pkgs.fuzzel}";
-  "${mod}+g" = "exec ${lib.getExe pkgs.ungoogled-chromium}";
+  "${mod}+g" = "exec ${lib.getExe pkgs.firefox}";
   "${mod}+d" = "exec \"${lib.getExe pkgs.discord-canary} ${discordOptions}\"";
   "${mod}+Shift+e" = "exec ${lib.getExe pkgs.xfce.thunar}";
 

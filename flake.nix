@@ -30,7 +30,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     spicetify.url = "github:the-argus/spicetify-nix";
     statix.url = "github:nerdypepper/statix";
-    # swayfx.url = "github:WillPower3309/swayfx";
+    swayfx.url = "github:WillPower3309/swayfx";
     xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     # Minimize duplicate instances of inputs
@@ -47,7 +47,7 @@
     sops-nix.inputs.nixpkgs-stable.follows = "stable";
     spicetify.inputs.nixpkgs.follows = "nixpkgs";
     statix.inputs.nixpkgs.follows = "nixpkgs";
-    # swayfx.inputs.nixpkgs.follows = "nixpkgs";
+    swayfx.inputs.nixpkgs.follows = "nixpkgs";
     xdph.inputs.nixpkgs.follows = "nixpkgs";
   };
 
