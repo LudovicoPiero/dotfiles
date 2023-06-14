@@ -12,7 +12,7 @@ with colorscheme.colors; {
     notification_limit = 5;
     layer = "overlay"; # bottom, top or overlay
     browser = "xdg-open";
-    corner_radius = 6;
+    corner_radius = 0;
   };
   urgency_low = {
     background = "#${base00}";
