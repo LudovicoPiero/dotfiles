@@ -378,6 +378,16 @@ in {
   };
 
   services = {
+    wlsunset = {
+      enable = true;
+      latitude = "-37.8";
+      longitude = "144.9";
+      temperature = {
+        day = 6200;
+        night = 3750;
+      };
+    };
+
     dunst = {
       enable = true;
       package = inputs.nixpkgs-wayland.packages.${system}.dunst;
@@ -510,6 +520,14 @@ in {
     '';
     userDirs = {
       enable = true;
+    };
+  };
+
+  # https://github.com/nix-community/home-manager/issues/2064
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = ["graphical-session-pre.target"];
     };
   };
 
