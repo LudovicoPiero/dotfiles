@@ -194,11 +194,10 @@
 
     greetd = {
       enable = true;
-      # package = pkgs.greetd.gtkgreet;
-      vt = 1;
+      vt = 7;
       settings = {
         default_session = {
-          command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+          command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd Hyprland";
           user = "ludovico";
         };
       };
