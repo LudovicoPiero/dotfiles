@@ -164,6 +164,9 @@
     hyprland.enable = true;
   };
 
+  # unlock GPG keyring on login
+  security.pam.services.greetd.gnupg.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
   environment.etc."greetd/environments".text = ''
     Hyprland
     sway
