@@ -309,7 +309,7 @@ in {
               device = "wg0";
               format = " $icon VPN Connected ";
               inactive_format = " $icon VPN Disconnected ";
-              missing_format = " $icon VPN Disconnected ";
+              missing_format = "  VPN Disconnected ";
             }
             {
               block = "net";
@@ -322,6 +322,7 @@ in {
               block = "sound";
               # driver = "pulseaudio";
               format = " $icon $volume ";
+              show_volume_when_muted = true;
             }
             {
               block = "battery";
