@@ -13,6 +13,9 @@
   # Earlyoom prevents systems from locking up when they run out of memory
   services.earlyoom.enable = true;
 
+  # Location service
+  location.provider = "geoclue2";
+
   # make HM-managed GTK stuff work
   programs.dconf.enable = true;
   programs.xwayland.enable = true;
@@ -51,6 +54,13 @@
     thunar-volman
   ];
   services = {
+    geoclue2 = {
+      enable = true;
+      appConfig.gammastep = {
+        isAllowed = true;
+        isSystem = false;
+      };
+    };
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
   };

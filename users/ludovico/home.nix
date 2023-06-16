@@ -378,14 +378,10 @@ in {
   };
 
   services = {
-    wlsunset = {
+    gammastep = {
       enable = true;
-      latitude = "-37.8";
-      longitude = "144.9";
-      temperature = {
-        day = 6200;
-        night = 3750;
-      };
+      provider = "geoclue2";
+      tray = true;
     };
 
     dunst = {
