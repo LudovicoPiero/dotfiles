@@ -8,16 +8,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1686853598,
-        "narHash": "sha256-2SY1bMtn0SZEiQJO9IRETATFbXR4MylUFbNsxwZhZrM=",
+        "lastModified": 1686935787,
+        "narHash": "sha256-tef/apRySrJS7caROJw5EDYFh4ORfAK1RNYSdU2X9pk=",
         "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix",
-        "rev": "76f3588444b501d4934fe9cae86e87887af0b868",
+        "rev": "c917931a76534b9f72cf8e4abede8f3a3a741c75",
         "type": "github"
       },
       "original": {
         "owner": "ezKEa",
-        "ref": "update-the-honkers-railway-launcher",
         "repo": "aagl-gtk-on-nix",
         "type": "github"
       }
