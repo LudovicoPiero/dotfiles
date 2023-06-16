@@ -11,7 +11,7 @@
     nixpkgs.follows = "master";
 
     # Flake inputs
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix"; # Anime Game Launcher
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix/update-the-honkers-railway-launcher"; # Anime Game Launcher
     emacs.url = "github:nix-community/emacs-overlay";
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
