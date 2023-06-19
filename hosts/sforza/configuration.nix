@@ -56,6 +56,7 @@
   # An anime game launcher
   programs = {
     anime-game-launcher.enable = true;
+    anime-borb-launcher.enable = true;
     honkers-railway-launcher.enable = true;
   };
 
