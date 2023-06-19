@@ -19,7 +19,7 @@ in {
   "${mod}+x" = "exec wlogout";
 
   # Exit sway
-  "${mod}+Shift+q" = "exit";
+  "${mod}+Shift+c" = "exit";
 
   ### Moving around
   # Move your focus around
@@ -66,11 +66,11 @@ in {
 
   ### Scratchpad
   # Move the currently focused window to the scratchpad
-  "${mod}+Shift+minus" = "move scratchpad";
+  "${mod}+Shift+q" = "move scratchpad";
 
   # Show the next scratchpad window or hide the focused scratchpad window.
   # If there are multiple scratchpad windows, this command cycles through them.
-  "${mod}+minus" = "scratchpad show";
+  "${mod}+q" = "scratchpad show";
 
   # Fullscreen
   "${mod}+f" = "fullscreen";
