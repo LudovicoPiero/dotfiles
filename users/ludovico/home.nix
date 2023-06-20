@@ -78,26 +78,68 @@ in {
     vscode = {
       enable = true;
       package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
-        bbenoist.nix
-        catppuccin.catppuccin-vsc
-        ms-python.python
-        golang.go
-        pkief.material-icon-theme
-        rust-lang.rust-analyzer
-      ];
+      enableUpdateCheck = false;
+      enableExtensionUpdateCheck = false;
+      extensions = with pkgs.vscode-extensions;
+        [
+          # Theme & flair
+          catppuccin.catppuccin-vsc
+          pkief.material-icon-theme
+
+          # Nix
+          bbenoist.nix
+          kamadorueda.alejandra
+
+          # Python
+          ms-python.python
+
+          # Go
+          golang.go
+
+          # Rust
+          rust-lang.rust-analyzer
+          serayuzgur.crates
+
+          # Misc
+          usernamehw.errorlens
+          eamodio.gitlens
+          esbenp.prettier-vscode
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            publisher = "leonardssh";
+            name = "vscord";
+            version = "5.1.10";
+            sha256 = "1nw3zvlw0bx9yih4z3i20irdw02zz444ncf84xjvjn6h5hw47i3x";
+          }
+        ];
       userSettings = {
-        "editor.scrollbar.vertical" = "hidden";
-        "editor.minimap.enabled" = false;
-        "editor.renderWhitespace" = "none";
-        "workbench.editor.limit.perEditorGroup" = true;
-        "workbench.editor.limit.enabled" = true;
-        "workbench.editor.limit.value" = 1;
-        "files.autoSave" = "onWindowChange";
-        "workbench.iconTheme" = "material-icon-theme";
-        "workbench.colorTheme" = "Catppuccin Mocha";
+        "editor.cursorBlinking" = "phase";
+        "editor.cursorSmoothCaretAnimation" = "on";
         "editor.fontFamily" = "'Iosevka Nerd Font', 'monospace', monospace";
         "editor.fontSize" = 18;
+        "editor.minimap.enabled" = false;
+        "editor.renderWhitespace" = "none";
+        "editor.scrollbar.vertical" = "hidden";
+        "editor.smoothScrolling" = true;
+        "extensions.autoCheckUpdates" = false;
+        "files.autoSave" = "onWindowChange";
+        "gitlens.currentLine.enabled" = false;
+        "gitlens.hovers.currentLine.over" = "line";
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        "update.mode" = "none";
+        "vscord.status.details.text.editing" = "In {full_directory_name}";
+        "vscord.status.idle.check" = false;
+        "vscord.status.problems.enabled" = false;
+        "vscord.status.state.text.editing" = "Working on {file_name}{file_extension}";
+        "workbench.colorTheme" = "Catppuccin Mocha";
+        "workbench.editor.limit.enabled" = true;
+        "workbench.editor.limit.perEditorGroup" = true;
+        "workbench.editor.limit.value" = 5;
+        "workbench.iconTheme" = "material-icon-theme";
+        "workbench.sideBar.location" = "right";
+        "workbench.startupEditor" = "none";
       };
     };
 
