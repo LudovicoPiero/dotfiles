@@ -75,6 +75,32 @@ in {
     #   ];
     # };
 
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        catppuccin.catppuccin-vsc
+        ms-python.python
+        golang.go
+        pkief.material-icon-theme
+        rust-lang.rust-analyzer
+      ];
+      userSettings = {
+        "editor.scrollbar.vertical" = "hidden";
+        "editor.minimap.enabled" = false;
+        "editor.renderWhitespace" = "none";
+        "workbench.editor.limit.perEditorGroup" = true;
+        "workbench.editor.limit.enabled" = true;
+        "workbench.editor.limit.value" = 1;
+        "files.autoSave" = "onWindowChange";
+        "workbench.iconTheme" = "material-icon-theme";
+        "workbench.colorTheme" = "Catppuccin Mocha";
+        "editor.fontFamily" = "'Iosevka Nerd Font', 'monospace', monospace";
+        "editor.fontSize" = 18;
+      };
+    };
+
     obs-studio = {
       enable = true;
       plugins = with inputs.nixpkgs-wayland.packages.${system}; [obs-wlrobs];

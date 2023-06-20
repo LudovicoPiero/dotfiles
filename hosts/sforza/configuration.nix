@@ -114,7 +114,6 @@
       ripgrep
       steam
       tdesktop
-      vscode
       webcord-vencord
       virt-manager
       virt-viewer
