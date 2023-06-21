@@ -198,8 +198,8 @@ with colorscheme.colors; ''
   binde = , XF86MonBrightnessDown , exec , brightnessctl set 5%-
 
   exec-once = waybar
-  exec-once = [workspace 3 silent] $discord
-  exec-once = [workspace 4 silent] ${lib.getExe pkgs.tdesktop}
-  exec-once = [workspace 9 silent] ${lib.getExe pkgs.mailspring}
+  # exec-once = [workspace 3 silent] $discord
+  # exec-once = [workspace 4 silent] ${lib.getExe pkgs.tdesktop}
+  # exec-once = [workspace 9 silent] ${lib.getExe pkgs.mailspring}
   exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 ''
