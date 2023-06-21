@@ -60,13 +60,13 @@ with colorscheme.colors; ''
 
   animations {
       enabled = true
-      #bezier = myBezier , 0.05, 0.9, 0.1, 1.05
+      bezier = myBezier , 0.05, 0.9, 0.1, 1.05
       bezier = overshot  , 0.7 , 0.6, 0.1, 1.1
       bezier = linear    , 0.0 , 0.0, 1.0, 1.0
 
       # animation = NAME,ONOFF,SPEED,CURVE,STYLE
-      animation   = windows     , 1, 7,   overshot
-      animation   = windowsOut  , 1, 7,   overshot
+      animation   = windows     , 1, 7,   myBezier
+      animation   = windowsOut  , 1, 7,   myBezier
       animation   = border      , 1, 10,  default
       animation   = borderangle , 1, 100, linear, loop
       animation   = fade        , 1, 7,   default
