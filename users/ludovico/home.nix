@@ -326,7 +326,6 @@ in {
 
     firefox = {
       enable = true;
-      package = pkgs.unstable.firefox;
 
       profiles.ludovico =
         {
@@ -534,6 +533,7 @@ in {
       modifier = "Mod4";
     };
     extraConfig = ''
+      output * adaptive_sync on
       titlebar_border_thickness 1
       title_align center
       titlebar_padding 2

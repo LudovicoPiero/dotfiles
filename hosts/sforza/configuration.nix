@@ -102,6 +102,7 @@
       catgirl
       discord-canary
       exa
+      firefox
       fzf
       gamescope
       lutris
