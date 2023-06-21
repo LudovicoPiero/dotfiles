@@ -75,6 +75,22 @@
 
     overlays = with inputs;
       [
+        (final: prev: let
+          inherit (final) system;
+        in {
+          /*
+          Nixpkgs branches, replace when https://github.com/NixOS/nixpkgs/pull/160061 is live.
+
+          One can access these branches like so:
+
+          `pkgs.stable.mpd'
+          `pkgs.master.linuxPackages_xanmod'
+          */
+          master = import master {inherit config system;};
+          unstable = import unstable {inherit config system;};
+          stable = import stable {inherit config system;};
+        })
+
         neovim-nightly-overlay.overlay
       ]
       # Overlays from ./overlays directory

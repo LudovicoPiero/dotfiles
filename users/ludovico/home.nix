@@ -326,6 +326,7 @@ in {
 
     firefox = {
       enable = true;
+      package = pkgs.unstable.firefox;
 
       profiles.ludovico =
         {
