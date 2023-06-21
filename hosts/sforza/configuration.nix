@@ -230,16 +230,16 @@
   networking.wg-quick.interfaces = {
     wg0 = {
       autostart = true;
-      address = ["10.66.66.5/32" "fdc9:281f:04d7:9ee9::5/128"];
-      dns = ["139.84.195.93"];
+      address = ["10.66.66.3/32" "fd42:42:42::3/128"];
+      dns = ["139.180.135.207"];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
 
       peers = [
         {
-          publicKey = "tS2dxv4sVsdQYJOFckJPioE9fpzrDxZ9U8k9+h1TQSk=";
+          publicKey = "igZ4WvPhX3UK/jxPTeXtkQVJMK/OloWUJ9nyKBijsAg=";
           presharedKeyFile = config.sops.secrets.wireguardPresharedKey.path;
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "139.84.195.93:60116";
+          endpoint = "139.180.135.207:56287";
           persistentKeepalive = 25;
         }
       ];

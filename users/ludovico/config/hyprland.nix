@@ -77,7 +77,7 @@ with colorscheme.colors; ''
       disable_hyprland_logo = true
       disable_splash_rendering = true
       vfr = true
-      vrr = 0 # 0 - off, 1 - on, 2 - fullscreen only
+      vrr = 1 # 0 - off, 1 - on, 2 - fullscreen only
       disable_autoreload = false
       render_titles_in_groupbar = false
   }
