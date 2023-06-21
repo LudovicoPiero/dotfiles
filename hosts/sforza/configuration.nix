@@ -126,9 +126,6 @@
       (inputs.nixpkgs-wayland.packages.${system})
       grim
       slurp
-      swaybg
-      swayidle
-      swaylock
       wf-recorder
       wl-clipboard
       wlogout
@@ -165,11 +162,14 @@
   };
 
   # unlock GPG keyring on login
-  security.pam.services.greetd.gnupg.enable = true;
-  security.pam.services.greetd.enableGnomeKeyring = true;
+  security = {
+    pam.services.greetd.gnupg.enable = true;
+    pam.services.greetd.enableGnomeKeyring = true;
+    pam.services.swaylock.text = "auth include login";
+  };
   environment.etc."greetd/environments".text = ''
-    Hyprland
     sway
+    Hyprland
     fish
   '';
 

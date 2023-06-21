@@ -525,10 +525,21 @@ in {
         names = ["Iosevka Nerd Font"];
         size = 10.0;
       };
-      startup = [
-        {command = "dunst";}
+      startup = let
+        _ = lib.getExe;
+      in [
+        {command = "${_ pkgs.dunst}";}
         {command = "systemctl --user restart swaybg.service";}
         {command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland";}
+        {
+          command = ''
+            ${_ pkgs.swayidle} -w \
+            	timeout 300 '${_ pkgs.swaylock} -f -c 000000' \
+            	timeout 600 'swaymsg "output * power off"' \
+            	resume 'swaymsg "output * power on"' \
+            	before-sleep '${_ pkgs.swaylock} -f -c 000000'
+          '';
+        }
       ];
       modifier = "Mod4";
     };
