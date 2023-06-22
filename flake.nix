@@ -91,7 +91,7 @@
           stable = import stable {inherit config system;};
         })
 
-        neovim-nightly-overlay.overlay
+        # neovim-nightly-overlay.overlay #TODO: remove comment if the lspconfig bug is fixed
       ]
       # Overlays from ./overlays directory
       ++ (importNixFiles ./overlays);

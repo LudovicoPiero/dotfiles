@@ -221,7 +221,6 @@ in {
         lsp-format-nvim
         which-key-nvim
 
-        diffview-nvim
         gitsigns-nvim
         neogit
 
