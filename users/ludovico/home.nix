@@ -87,7 +87,8 @@ in {
           pkief.material-icon-theme
 
           # Nix
-          bbenoist.nix
+          # bbenoist.nix
+          jnoortheen.nix-ide
           kamadorueda.alejandra
 
           # Python
@@ -95,6 +96,9 @@ in {
 
           # Go
           golang.go
+
+          # Lua
+          sumneko.lua
 
           # Rust
           rust-lang.rust-analyzer
@@ -128,6 +132,11 @@ in {
         "gitlens.hovers.currentLine.over" = "line";
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
+        "nix.serverSettings" = {
+          "formatting" = {
+            "command" = "alejandra";
+          };
+        };
         "update.mode" = "none";
         "vscord.status.details.text.editing" = "In {full_directory_name}";
         "vscord.status.idle.check" = false;
@@ -212,6 +221,7 @@ in {
         lsp-format-nvim
         which-key-nvim
 
+        diffview-nvim
         gitsigns-nvim
         neogit
 
