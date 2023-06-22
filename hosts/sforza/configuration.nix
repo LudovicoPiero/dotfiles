@@ -95,56 +95,100 @@
   };
 
   virtualisation.libvirtd.enable = true; # Qemu
-  environment.systemPackages = lib.attrValues {
-    inherit
-      (pkgs)
-      authy
-      catgirl
-      discord-canary
-      exa
-      fzf
-      gamescope
-      lutris
-      mailspring
-      mangohud
-      mpv
-      neofetch
-      nitch
-      protonup-qt
-      ripgrep
-      steam
-      tdesktop
-      webcord-vencord
-      virt-manager
-      virt-viewer
-      qemu
-      OVMF
-      gvfs
-      ;
+  environment.systemPackages = let
+    myDwl = pkgs.dwl.overrideAttrs (oldAttrs: rec {
+      # conf = ./config/config.def.h;
+      src = pkgs.fetchFromGitHub {
+        owner = "djpohly";
+        repo = "dwl";
+        rev = "main";
+        hash = "sha256-MnEylBPuqZuZgRybMQt8OfnFMEVzUuntOQJrWlDr5p8=";
+      };
+      patches = [
+        (pkgs.fetchpatch {
+          url = "https://github.com/djpohly/dwl/compare/main...bencollerson:pertag.patch";
+          sha256 = "sha256-5bviuTDBsXIKeuaDiP4SvJnYnGOGGjAX1Wxz1l/XMxk=";
+        })
+      ];
+      configFile = pkgs.writeText "config.def.h" (builtins.readFile ./config/config.def.h);
+      postPatch = "${oldAttrs.postPatch} \n cp ${configFile} config.def.h && sed -i '13s/^#//;14s/^#//' config.mk";
+    });
+    somebar = pkgs.somebar.overrideAttrs (oldAttrs: {
+      prePatch = ''
+        echo '#pragma once
+        #include "common.hpp"
+        constexpr bool topbar = true;
+        constexpr int paddingX = 10;
+        constexpr int paddingY = 3;
+        constexpr const char* font = "Iosevka Nerd Font 9";
+        constexpr ColorScheme colorInactive = {Color(0x42, 0x42, 0x42), Color(0xff, 0xff, 0xe8)};
+        constexpr ColorScheme colorActive = {Color(0x42, 0x42, 0x42), Color(0xe8, 0xeb, 0x98)};
+        constexpr const char* termcmd[] = {"foot", nullptr};
+        static std::vector<std::string> tagNames = {
+        	"1", "2", "3", "4", "5", "6", "7", "8", "9",
+        };
+        constexpr Button buttons[] = {
+        	{ ClkStatusText, BTN_RIGHT, spawn, {.v = termcmd} },
+        };'>src/config.hpp'';
+    });
+  in
+    lib.attrValues {
+      inherit
+        (pkgs)
+        authy
+        catgirl
+        discord-canary
+        exa
+        fzf
+        gamescope
+        lutris
+        mailspring
+        mangohud
+        mpv
+        neofetch
+        nitch
+        protonup-qt
+        ripgrep
+        steam
+        tdesktop
+        webcord-vencord
+        virt-manager
+        virt-viewer
+        qemu
+        OVMF
+        gvfs
+        ;
 
-    inherit
-      (inputs.nixpkgs-wayland.packages.${system})
-      grim
-      slurp
-      wf-recorder
-      wl-clipboard
-      wlogout
-      ;
+      inherit
+        (inputs.nixpkgs-wayland.packages.${system})
+        grim
+        slurp
+        wf-recorder
+        wl-clipboard
+        wlogout
+        ;
 
-    inherit (pkgs.qt6) qtwayland;
-    inherit (inputs.nil.packages.${system}) default;
-    inherit (inputs.hyprland-contrib.packages.${system}) grimblast;
-
-    # use OCR and copy to clipboard
-    ocrScript = let
-      inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
-      _ = lib.getExe;
-    in
-      pkgs.writers.writeDashBin "wl-ocr" ''
-        ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-        ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+      inherit myDwl;
+      inherit somebar;
+      runDwl = pkgs.writers.writeDashBin "runDwl" ''
+        dwl -s somebar & dunst
+        systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland
       '';
-  };
+
+      inherit (pkgs.qt6) qtwayland;
+      inherit (inputs.nil.packages.${system}) default;
+      inherit (inputs.hyprland-contrib.packages.${system}) grimblast;
+
+      # use OCR and copy to clipboard
+      ocrScript = let
+        inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
+        _ = lib.getExe;
+      in
+        pkgs.writers.writeDashBin "wl-ocr" ''
+          ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
+          ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+        '';
+    };
   services.gvfs.enable = true;
 
   programs = {
@@ -168,8 +212,9 @@
     pam.services.swaylock.text = "auth include login";
   };
   environment.etc."greetd/environments".text = ''
-    sway
     Hyprland
+    runDwl
+    sway
     fish
   '';
 
@@ -197,7 +242,7 @@
       vt = 7;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd Hyprland";
+          command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd sway";
           user = "ludovico";
         };
       };
