@@ -492,7 +492,7 @@ in {
     inherit (config) colorscheme;
   in {
     enable = true;
-    # package = inputs.swayfx.packages.${pkgs.system}.default;
+    package = inputs.swayfx.packages.${pkgs.system}.default;
     config = {
       colors = import ./config/sway/colors.nix {inherit colorscheme;};
       keybindings = import ./config/sway/keybindings.nix {inherit config lib pkgs;};
@@ -560,23 +560,23 @@ in {
 
       # SwayFX stuff
       # Blur
-      # blur enable
-      # blur_xray disable
-      # blur_passes 3
-      # blur_radius 3
+      blur enable
+      blur_xray disable
+      blur_passes 3
+      blur_radius 3
 
       # window corner radius in px
-      # corner_radius 3
+      corner_radius 3
 
-      # shadows off
-      # shadows_on_csd off
-      # shadow_blur_radius 20
-      # shadow_color #0000007F
+      shadows off
+      shadows_on_csd off
+      shadow_blur_radius 20
+      shadow_color #0000007F
 
       # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
-      # default_dim_inactive 0.0
-      # dim_inactive_colors.unfocused #000000FF
-      # dim_inactive_colors.urgent #900000FF
+      default_dim_inactive 0.0
+      dim_inactive_colors.unfocused #000000FF
+      dim_inactive_colors.urgent #900000FF
 
       # Treat Scratchpad as minimized
       # scratchpad_minimize enable
