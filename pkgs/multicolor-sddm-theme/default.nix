@@ -20,8 +20,8 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     license = licenses.gpl3;
-    maintainers = with maintainers; [ludovicosforza];
+    maintainers = with maintainers; [ludovicopiero];
     homepage = "https://gitlab.com/dwt1/multicolor-sddm-theme";
-    description = "yes";
+    description = "Multicolor theme for sddm";
   };
 }

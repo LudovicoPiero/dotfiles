@@ -85,6 +85,20 @@
   "network.proxy.socks_remote_dns" = true;
   "dom.security.https_first" = true;
 
+  # Disable permission
+  # 0=always ask (default), 1=allow, 2=block
+  "permissions.default.geo" = 2;
+  "permissions.default.camera" = 2;
+  "permissions.default.microphone" = 0;
+  "permissions.default.desktop-notification" = 2;
+  "permissions.default.xr" = 2; # Virtual Reality
+  "browser.discovery.enabled" = false;
+  "datareporting.healthreport.uploadEnabled" = false;
+  "datareporting.policy.dataSubmissionEnabled" = false;
+  "app.shield.optoutstudies.enabled" = false;
+  "app.normandy.enabled" = false;
+  "app.normandy.api_url" = "";
+
   # Firefox GNOME Theme
   # Hide the tab bar when only one tab is open.
   "gnomeTheme.hideSingleTab" = false;
