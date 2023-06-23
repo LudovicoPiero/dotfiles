@@ -273,7 +273,7 @@ in {
       spicePkgs = inputs.spicetify.packages.${system}.default;
     in {
       enable = true;
-      spotifyPackage = pkgs.spotify;
+      spotifyPackage = inputs.self.packages.${system}.spotify;
       theme = spicePkgs.themes.catppuccin-mocha;
       colorScheme = "flamingo";
 

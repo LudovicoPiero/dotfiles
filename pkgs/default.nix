@@ -1,6 +1,7 @@
 {pkgs ? (import ../nixpkgs.nix) {}}: {
-  multicolor-sddm-theme = pkgs.callPackage ./multicolor-sddm-theme.nix {};
-  google-sans = pkgs.callPackage ./google-sans.nix {};
-  san-francisco-pro = pkgs.callPackage ./san-francisco-pro.nix {};
-  material-symbols = pkgs.callPackage ./material-symbols.nix {};
+  google-sans = pkgs.callPackage ./google-sans {};
+  material-symbols = pkgs.callPackage ./material-symbols {};
+  multicolor-sddm-theme = pkgs.callPackage ./multicolor-sddm-theme {};
+  san-francisco-pro = pkgs.callPackage ./san-francisco-pro {};
+  spotify = pkgs.callPackage ./spotify {};
 }

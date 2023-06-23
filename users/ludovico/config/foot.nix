@@ -11,7 +11,7 @@ with colorscheme.colors; {
   };
 
   colors = {
-    alpha = "1.00";
+    alpha = "0.8";
     foreground = "${base05}"; # Text
     background = "${base00}"; # Base
 
