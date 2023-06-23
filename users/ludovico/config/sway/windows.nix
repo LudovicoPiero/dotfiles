@@ -8,6 +8,10 @@
       command = "move to workspace 5";
     }
     {
+      criteria = {app_id = "DiscordCanary";}; # Discord File Picker
+      command = "floating enable";
+    }
+    {
       criteria = {class = "WebCord";};
       command = "move to workspace 3";
     }
