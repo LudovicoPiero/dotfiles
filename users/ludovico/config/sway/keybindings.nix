@@ -97,7 +97,7 @@ in {
   ### Screenshot
   "Print" = "exec wl-ocr";
   "${mod}+Print" = "exec grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
-  "CTRL+Print" = "exec grimblast --notify copy area";
+  "CTRL+Print" = "exec grimblast save area - | ${lib.getExe pkgs.swappy} -f -";
 
   # Volume
   # (un)mute output
