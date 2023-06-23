@@ -18,7 +18,7 @@
   harfbuzz,
   cups,
   nspr,
-  nss,
+  nss_latest,
   libpng,
   libnotify,
   libgcrypt,
@@ -26,7 +26,7 @@
   fontconfig,
   dbus,
   expat,
-  ffmpeg,
+  ffmpeg_4,
   curlWithGnuTls,
   zlib,
   gnome,
@@ -64,7 +64,7 @@
     curlWithGnuTls
     dbus
     expat
-    ffmpeg
+    ffmpeg_4
     fontconfig
     freetype
     gdk-pixbuf
@@ -78,7 +78,7 @@
     libpulseaudio
     libxkbcommon
     mesa
-    nss
+    nss_latest
     pango
     stdenv.cc.cc
     systemd
@@ -164,8 +164,8 @@ in
       ln -s ${nspr.out}/lib/libnspr4.so $libdir/libnspr4.so
       ln -s ${nspr.out}/lib/libplc4.so $libdir/libplc4.so
 
-      ln -s ${ffmpeg.lib}/lib/libavcodec.so* $libdir
-      ln -s ${ffmpeg.lib}/lib/libavformat.so* $libdir
+      ln -s ${ffmpeg_4.lib}/lib/libavcodec.so* $libdir
+      ln -s ${ffmpeg_4.lib}/lib/libavformat.so* $libdir
 
       rpath="$out/share/spotify:$libdir"
 
