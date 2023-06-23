@@ -88,8 +88,8 @@ in {
   "${mod}+Space" = "floating toggle";
 
   ### Apps
-  "${mod}+Return" = "exec ${lib.getExe pkgs.foot}";
-  "${mod}+p" = "exec ${lib.getExe pkgs.fuzzel}";
+  "${mod}+Return" = "exec run-as-service ${lib.getExe pkgs.foot}";
+  "${mod}+p" = "exec run-as-service ${lib.getExe pkgs.fuzzel}";
   "${mod}+g" = "exec ${lib.getExe pkgs.firefox}";
   "${mod}+d" = "exec \"${lib.getExe pkgs.discord-canary} ${discordOptions}\"";
   "${mod}+Shift+e" = "exec ${lib.getExe pkgs.xfce.thunar}";

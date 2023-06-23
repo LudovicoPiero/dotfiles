@@ -132,7 +132,7 @@ with colorscheme.colors; ''
   # bind = SUPERSHIFT , G , exec , ${lib.getExe config.programs.chromium.package};
   bind = SUPER      , G , exec , ${lib.getExe pkgs.firefox}
   bind = SUPER      , M , exec , [workspace 5 silent;tile] ${lib.getExe pkgs.mailspring}
-  bind = SUPER      , P , exec , ${lib.getExe pkgs.fuzzel}
+  bind = SUPER      , P , exec , run-as-service ${lib.getExe pkgs.fuzzel}
   bind = SUPER      , T , togglefloating ,
   bind = SUPER      , R , togglegroup ,
   bind = SUPERSHIFT , J , changegroupactive, f
@@ -140,7 +140,7 @@ with colorscheme.colors; ''
   bind = SUPER      , S , exec , [workspace 5 silent;tile] ${lib.getExe config.programs.spicetify.spotifyPackage}
   bind = SUPER      , W , killactive ,
   bind = SUPER      , X , exec , ${lib.getExe pkgs.wlogout}
-  bind = SUPER      , Return , exec , ${lib.getExe pkgs.foot}
+  bind = SUPER      , Return , exec , run-as-service ${lib.getExe pkgs.foot}
 
   # Binds Mouse
   bindm = SUPER , mouse:272 , movewindow
