@@ -163,6 +163,7 @@
         "gpl" = "g pull";
         "gpsh" = "g push -u origin";
         "gs" = "g status";
+        "record" = "${_ wf-recorder} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4 -c h264_vaapi -d /dev/dri/renderD128 -D";
         "sudo" = "doas";
         "..." = "cd ../..";
         ".." = "cd ..";
@@ -254,6 +255,7 @@
       createDirectories = true;
       extraConfig = {
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+        XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
         XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
         XDG_MISC_DIR = "${config.home.homeDirectory}/Code";
       };
