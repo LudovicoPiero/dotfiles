@@ -117,15 +117,21 @@
       OVMF
       gvfs
       qbittorrent
-
       /*
       Audio & Video
       */
+      
       mpv
       kdenlive # Video Editor
       gimp
       mediainfo
       glaxnimate
+      /*
+      Remove Later
+      */
+      
+      chromium
+      ungoogled-chromium
       ;
 
     inherit
