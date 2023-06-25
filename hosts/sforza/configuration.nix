@@ -99,18 +99,14 @@
     inherit
       (pkgs)
       authy
-      catgirl
       discord-canary
       exa
+      firefox
       fzf
       gamescope
       lutris
       mailspring
       mangohud
-      mpv
-      neofetch
-      nitch
-      protonup-qt
       ripgrep
       steam
       tdesktop
@@ -120,6 +116,16 @@
       qemu
       OVMF
       gvfs
+      qbittorrent
+
+      /*
+      Audio & Video
+      */
+      mpv
+      kdenlive # Video Editor
+      gimp
+      mediainfo
+      glaxnimate
       ;
 
     inherit
