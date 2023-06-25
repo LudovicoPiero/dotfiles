@@ -126,12 +126,6 @@
       gimp
       mediainfo
       glaxnimate
-      /*
-      Remove Later
-      */
-      
-      chromium
-      ungoogled-chromium
       ;
 
     inherit
