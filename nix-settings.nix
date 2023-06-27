@@ -53,7 +53,7 @@
       "https://nix-community.cachix.org?priority=5"
       "https://ezkea.cachix.org"
       "https://nixpkgs-wayland.cachix.org"
-      "https://sforza.cachix.org"
+      "https://ludovico-home-manager.cachix.org"
     ];
 
     trusted-public-keys = [
@@ -62,7 +62,7 @@
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-      "sforza.cachix.org-1:g/Zn9CI6svVm4gTGNQueJMsIPdyDAhh4TQZRwHS+TrU="
+      "ludovico-home-manager.cachix.org-1:0C6ekMczzOf71RZpFtdxgE1sbALZaAqHclFavdwPZUU="
     ];
 
     trusted-users = ["root" "@wheel"];

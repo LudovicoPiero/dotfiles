@@ -33,7 +33,7 @@ jobs:
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           extraPullNames: nix-community
-          name: sforza
+          name: ludovico-home-manager
       - name: Set default git branch (to reduce log spam)
         run: git config --global init.defaultBranch master
       - name: Validate Flakes
