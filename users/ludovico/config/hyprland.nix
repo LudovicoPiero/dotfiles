@@ -46,8 +46,8 @@ with colorscheme.colors; ''
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
       rounding = 0
-      blur = no
-      blur_size = 10
+      blur = yes
+      blur_size = 5
       blur_passes = 2
       blur_new_optimizations = on
 
@@ -140,7 +140,7 @@ with colorscheme.colors; ''
   bind = SUPER      , S , exec , [workspace 5 silent;tile] ${lib.getExe config.programs.spicetify.spotifyPackage}
   bind = SUPER      , W , killactive ,
   bind = SUPER      , X , exec , ${lib.getExe pkgs.wlogout}
-  bind = SUPER      , Return , exec , run-as-service ${lib.getExe pkgs.foot}
+  bind = SUPER      , Return , exec , run-as-service ${lib.getExe pkgs.wezterm}
 
   # Binds Mouse
   bindm = SUPER , mouse:272 , movewindow

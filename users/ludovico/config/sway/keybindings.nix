@@ -88,7 +88,7 @@ in {
   "${mod}+Space" = "floating toggle";
 
   ### Apps
-  "${mod}+Return" = "exec run-as-service ${lib.getExe pkgs.foot}";
+  "${mod}+Return" = "exec run-as-service ${lib.getExe pkgs.wezterm}";
   "${mod}+p" = "exec run-as-service ${lib.getExe pkgs.fuzzel}";
   "${mod}+g" = "exec ${lib.getExe pkgs.firefox}";
   "${mod}+d" = "exec \"${lib.getExe pkgs.discord-canary} ${discordOptions}\"";
