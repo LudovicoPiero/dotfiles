@@ -1,12 +1,7 @@
-name: Build flake
-concurrency: build
+name: "Build flake"
 on:
   pull_request:
   push:
-    branches-ignore:
-      - 'update*'
-  workflow_dispatch:
-
 jobs:
   show:
     runs-on: ubuntu-latest
