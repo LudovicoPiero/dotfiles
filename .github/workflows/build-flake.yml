@@ -31,12 +31,11 @@ jobs:
       - name: 'Build Home-Manager configs for: ludovico'
         run: |-
           nix build --print-build-logs '.#homeConfigurations.ludovico.activationPackage'
-      - name: build-home-manager-and-cache
       - name: 'Build NixOS configs for: nostra, sforza'
         run: |-
           nix build --print-build-logs '.#nixosConfigurations.nostra.config.system.build.toplevel'
           nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
-name: build-and-cache
+name: build-home-manager-and-cache
 "on":
   - push
   - workflow_dispatch
