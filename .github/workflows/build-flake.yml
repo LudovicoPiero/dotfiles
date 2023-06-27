@@ -1,64 +1,40 @@
-name: "Build flake"
-on:
-  pull_request:
-  push:
+# https://github.com/thiagokokada/nix-configs
 jobs:
-  show:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Install nix
-      uses: ./.github/actions/install-nix
-    - name: Flake show
-      run: nix flake show
-
-  generate_matrix:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Install nix
-      uses: ./.github/actions/install-nix
-
-  build_flake:
-    runs-on: ubuntu-latest
-    needs: [generate_matrix]
-    strategy:
-      fail-fast: false
-      max-parallel: 5
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Install nix
-      uses: ./.github/actions/install-nix
-    - name: Set up cachix
-      uses: cachix/cachix-action@master
-      with:
-        name: sforza
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-        pathsToPush: result
-    - name: Build output
-
-  eval:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        output: [
-          nixosConfigurations.sforza.config.system.build.toplevel,
-          nixosConfigurations.nostra.config.system.build.toplevel,
-          homeConfigurations.ludovico.activationPackage
-        ]
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Install nix
-      uses: ./.github/actions/install-nix
-    - name: Set up cachix
-      uses: cachix/cachix-action@master
-      with:
-        name: sforza
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Eval output
-      run: nix build .#${{ matrix.output }} -L --dry-run --print-out-paths -j0
+      - uses: easimon/maximize-build-space@v7
+        with:
+          overprovision-lvm: true
+          remove-android: true
+          remove-codeql: true
+          remove-docker-images: true
+          remove-dotnet: true
+          remove-haskell: true
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: access-tokens = github.com=${{ secrets.GH_TOKEN }}
+          nix_path: nixpkgs=channel:master
+      - uses: cachix/cachix-action@v12
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          extraPullNames: nix-community
+          name: sforza
+      - name: Set default git branch (to reduce log spam)
+        run: git config --global init.defaultBranch master
+      - name: Validate Flakes
+        run: nix flake check
+      - name: 'Build Home-Manager configs for: ludovico'
+        run: |-
+          nix build --print-build-logs '.#homeConfigurations.ludovico.activationPackage'
+      - name: 'Build NixOS configs for: nostra, sforza'
+        run: |-
+          nix build --print-build-logs '.#nixosConfigurations.nostra.config.system.build.toplevel'
+          nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
+name: build-and-cache
+"on":
+  - push
+  - workflow_dispatch
