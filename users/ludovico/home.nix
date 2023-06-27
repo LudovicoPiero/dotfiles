@@ -142,10 +142,12 @@ in {
           }
         ];
       userSettings = {
+        #TODO: move to config folder
         "editor.cursorBlinking" = "phase";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.fontFamily" = "'Iosevka Nerd Font', 'monospace', monospace";
         "editor.fontSize" = 18;
+        "editor.formatOnSave" = true;
         "editor.minimap.enabled" = false;
         "editor.renderWhitespace" = "none";
         "editor.scrollbar.vertical" = "hidden";
