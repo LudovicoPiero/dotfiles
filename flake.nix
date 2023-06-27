@@ -12,7 +12,7 @@
 
     # Flake inputs
     aagl.url = "github:ezKEa/aagl-gtk-on-nix"; # Anime Game Launcher
-    emacs.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
@@ -35,7 +35,8 @@
 
     # Minimize duplicate instances of inputs
     aagl.inputs.nixpkgs.follows = "nixpkgs";
-    emacs.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay.inputs.nixpkgs-stable.follows = "stable";
     home.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";

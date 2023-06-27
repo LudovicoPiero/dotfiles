@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   config,
   ...
 }:
@@ -14,7 +15,7 @@ in {
     services.emacs.enable = true;
     programs.emacs = {
       enable = true;
-      # package = inputs.emacs.packages.${pkgs.system}.emacsGit;
+      package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-unstable-pgtk;
 
       init = {
         enable = true;
