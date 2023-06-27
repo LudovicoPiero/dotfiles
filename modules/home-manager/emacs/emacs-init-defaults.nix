@@ -26,18 +26,6 @@
       hook = ["(cue-mode . subword-mode)"];
     };
 
-    dap-lldb = {
-      config = ''
-        (setq dap-lldb-debug-program "${pkgs.lldb}/bin/lldb-vscode")
-      '';
-    };
-
-    deadgrep = {
-      config = ''
-        (setq deadgrep-executable "${pkgs.ripgrep}/bin/rg")
-      '';
-    };
-
     dhall-mode.mode = [''"\\.dhall\\'"''];
 
     dockerfile-mode.mode = [''"Dockerfile\\'"''];
@@ -85,27 +73,7 @@
 
     nix-mode.mode = [''"\\.nix\\'"''];
 
-    notmuch = {
-      package = _epkgs: lib.getOutput "emacs" pkgs.notmuch;
-      config = ''
-        (setq notmuch-command "${pkgs.notmuch}/bin/notmuch")
-      '';
-    };
-
     octave.mode = [''("\\.m\\'" . octave-mode)''];
-
-    ob-plantuml = {
-      config = ''
-        (setq org-plantuml-jar-path "${pkgs.plantuml}/lib/plantuml.jar")
-      '';
-    };
-
-    org-roam = {
-      defines = ["org-roam-graph-executable"];
-      config = ''
-        (setq org-roam-graph-executable "${pkgs.graphviz}/bin/dot")
-      '';
-    };
 
     pandoc-mode = {
       config = ''
@@ -114,14 +82,6 @@
     };
 
     php-mode.mode = [''"\\.php\\'"''];
-
-    plantuml-mode = {
-      mode = [''"\\.puml\\'"''];
-      config = ''
-        (setq plantuml-default-exec-mode 'executable
-              plantuml-executable-path "${pkgs.plantuml}/bin/plantuml")
-      '';
-    };
 
     protobuf-mode.mode = [''"\\.proto\\'"''];
 

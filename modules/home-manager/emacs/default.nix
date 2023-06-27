@@ -15,7 +15,7 @@ in {
     services.emacs.enable = true;
     programs.emacs = {
       enable = true;
-      package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-unstable-pgtk;
+      package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git;
 
       init = {
         enable = true;
@@ -27,22 +27,10 @@ in {
           (menu-bar-mode 0)
           (tool-bar-mode 0)
           (scroll-bar-mode 0)
-
-          ;; Set up fonts early.
-          (add-to-list 'default-frame-alist
-          '(font . "Iosevka q 15"))
         '';
 
         prelude = builtins.readFile ./prelude.el;
 
-        #TODO
-        /*
-        Maybe move files separately, for example
-        all rust related into 1 file separately.
-        - Rust.nix
-        - Python.nix
-        - etc.
-        */
         usePackage = {
           projectile = {
             enable = true;
@@ -181,7 +169,7 @@ in {
               lsp-lens-enable t)
               (setq lsp-rust-server 'rust-analyzer
               lsp-nix-server 'nil
-              lsp-nix-nil-formatter 'alejandra)
+              lsp-nix-nil-formatter ["alejandra"])
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
             '';
           };
@@ -396,6 +384,7 @@ in {
               smartparens-mode-map = {
                 "C-M-f" = "sp-forward-sexp";
                 "C-M-b" = "sp-backward-sexp";
+                "C-;" = "sp-comment";
               };
             };
             config = ''
