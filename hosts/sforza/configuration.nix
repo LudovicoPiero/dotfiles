@@ -137,6 +137,7 @@
       wlogout
       ;
 
+    inherit (inputs.self.packages.${system}) koneko;
     inherit (pkgs.qt6) qtwayland;
     inherit (inputs.nil.packages.${system}) default;
     inherit (inputs.hyprland-contrib.packages.${system}) grimblast;
@@ -151,7 +152,6 @@
         ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
       '';
   };
-  services.gvfs.enable = true;
 
   programs = {
     gamemode = {
@@ -181,6 +181,7 @@
 
   # TLP For Laptop
   services = {
+    gvfs.enable = true;
     tlp.enable = true;
     tlp.settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
