@@ -333,9 +333,9 @@ in {
           isDefault = true;
           name = "Ludovico";
           extensions = with config.nur.repos.rycee.firefox-addons; [
-            ublock-origin
             bitwarden
-            grammarly
+            istilldontcareaboutcookies
+            ublock-origin
           ];
           bookmarks = import ./config/firefox/bookmarks.nix;
           search = import ./config/firefox/search.nix {inherit pkgs;};
