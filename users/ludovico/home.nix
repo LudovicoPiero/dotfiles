@@ -585,7 +585,6 @@ in {
       gtk = true;
     };
     systemd.enable = true;
-    xwayland = false;
   };
 
   xdg = {
