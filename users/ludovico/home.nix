@@ -610,11 +610,13 @@ in {
   };
 
   # User Services
-  systemd.user.services = {
+  systemd.user.services = let
+    _ = lib.getExe;
+  in {
     swaybg = mkService {
       Unit.Description = "Images Wallpaper Daemon";
       Service = {
-        ExecStart = "${lib.getExe pkgs.swaybg} -i ${../../assets/wallpaper/wolf.jpeg}";
+        ExecStart = "${_ pkgs.swaybg} -i ${../../assets/wallpaper/wolf.jpeg}";
         Restart = "on-failure";
       };
     };
@@ -625,10 +627,10 @@ in {
     #     Restart = "on-failure";
     #   };
     # };
-    cliphist = mkService {
-      Unit.Description = "Clipboard History";
+    wl-clip-persist = mkService {
+      Unit.Description = "Keep Wayland clipboard even after programs close";
       Service = {
-        ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${lib.getExe pkgs.cliphist} store";
+        ExecStart = "${_ pkgs.wl-clip-persist} --clipboard both";
         Restart = "on-failure";
       };
     };
