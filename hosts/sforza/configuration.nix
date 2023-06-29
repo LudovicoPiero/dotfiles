@@ -102,6 +102,7 @@
       discord-canary
       exa
       firefox
+      google-chrome-dev
       fzf
       gamescope
       lutris
