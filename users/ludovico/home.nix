@@ -438,7 +438,6 @@ in {
 
     waybar = {
       enable = true;
-      package = inputs.hyprland.packages.${system}.waybar-hyprland;
       settings = import ./config/waybar/settings.nix {
         inherit pkgs;
         inherit lib;
