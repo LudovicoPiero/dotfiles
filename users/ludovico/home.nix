@@ -15,7 +15,7 @@ in {
   imports = [
     ../shared/home.nix
 
-    ../../modules/home-manager/emacs
+    # ../../modules/home-manager/emacs
   ];
 
   colorscheme = {
@@ -34,7 +34,7 @@ in {
 
   fonts.fontconfig.enable = true;
 
-  lv.emacs.enable = true;
+  # lv.emacs.enable = true;
 
   home = let
     # Borrowed from fuf's dotfiles
@@ -79,6 +79,12 @@ in {
       # use this if they aren't displayed properly:
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
+
+    file.".doom.d" = {
+      source = ./config/doom.d;
+      recursive = true;
+      onChange = builtins.readFile ./config/doom.d/doom.sh;
+    };
   };
 
   programs = {
@@ -98,6 +104,14 @@ in {
     #     }
     #   ];
     # };
+
+    emacs = {
+      enable = true;
+      package = inputs.emacs-overlay.packages.${system}.emacs-git;
+      extraPackages = epkgs: [
+        epkgs.vterm
+      ];
+    };
 
     vscode = {
       enable = true;
