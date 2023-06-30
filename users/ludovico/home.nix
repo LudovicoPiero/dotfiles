@@ -467,6 +467,11 @@ in {
       tray = true;
     };
 
+    emacs = {
+      enable = true;
+      package = inputs.emacs-overlay.packages.${system}.emacs-git;
+    };
+
     dunst = {
       enable = true;
       package = inputs.nixpkgs-wayland.packages.${system}.dunst;

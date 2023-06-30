@@ -112,9 +112,9 @@
       ";" #'evil-ex)
 
 ;; Remove q macro keybind
-(map! :map evil-normal-state-map
-      "q" nil
-      "1" #'evil-execute-macro)
+;; (map! :map evil-normal-state-map
+;;       "q" nil
+;;       "1" #'evil-execute-macro)
 
 ;; lang:: cc
 ;; Set CC lsp server to clangd
@@ -128,9 +128,15 @@
           "--header-insertion-decorators=0"))
   (set-lsp-priority! 'clangd 2))
 
+;; Elcord
+(elcord-mode)
+(setq elcord-quiet t) ;; Make elcord shut up
+(setq elcord-editor-icon 'doom_cute_icon)
+
+
 ;; This gonna disable auto comment when pressing `Enter`
-(setq +default-want-RET-continue-comments nil)
-(setq +evil-want-o/O-to-continue-comments nil)
+;; (setq +default-want-RET-continue-comments nil)
+;; (setq +evil-want-o/O-to-continue-comments nil)
 
 ;; (provide 'config)
 ;;; config.el ends here

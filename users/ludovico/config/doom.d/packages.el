@@ -9,6 +9,7 @@
 (package! org-modern)
 (package! evil-tutor)
 (package! yuck-mode)
+(package! elcord)
 
 ;; ;; Copilot
 ;; (package! copilot
