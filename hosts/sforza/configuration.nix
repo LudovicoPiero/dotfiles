@@ -102,7 +102,6 @@
       discord-canary
       exa
       firefox
-      google-chrome-dev
       fzf
       gamescope
       lutris
@@ -237,7 +236,7 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      autostart = true;
+      autostart = false;
       address = ["10.66.66.3/32" "fd42:42:42::3/128"];
       dns = ["139.180.135.207"];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
