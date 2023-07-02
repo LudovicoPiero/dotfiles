@@ -163,7 +163,8 @@
         "gpl" = "g pull";
         "gpsh" = "g push -u origin";
         "gs" = "g status";
-        "record" = "${_ wf-recorder} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4 -c h264_vaapi -d /dev/dri/renderD128 -D";
+        "record" = "${_ wl-screenrec} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
+        "record-region" = "${_ wl-screenrec} -g \"$(${_ slurp})\"";
         "sudo" = "doas";
         "..." = "cd ../..";
         ".." = "cd ..";

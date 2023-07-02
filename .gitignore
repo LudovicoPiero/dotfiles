@@ -1,4 +1,5 @@
 result/
 .direnv/
 
-update
+update.sh
+push.sh
