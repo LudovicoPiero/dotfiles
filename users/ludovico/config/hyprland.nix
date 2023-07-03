@@ -198,7 +198,8 @@ with colorscheme.colors; ''
   binde = , XF86MonBrightnessUp , exec , brightnessctl set 5%+
   binde = , XF86MonBrightnessDown , exec , brightnessctl set 5%-
 
-  exec-once = waybar
+  exec-once = gBar bar 0
+  # exec-once = waybar
   # exec-once = [workspace 3 silent] $discord
   # exec-once = [workspace 4 silent] ${lib.getExe pkgs.tdesktop}
   # exec-once = [workspace 9 silent] ${lib.getExe pkgs.mailspring}

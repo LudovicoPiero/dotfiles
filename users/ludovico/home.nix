@@ -51,7 +51,8 @@ in {
     '';
   in {
     packages = lib.attrValues {
-      inherit (pkgs) jq;
+      inherit (pkgs) pamixer jq;
+      inherit (inputs.self.packages.${system}) gBar;
 
       # runs processes as systemd transient services
       run-as-service = pkgs.writeShellScriptBin "run-as-service" ''
@@ -450,14 +451,14 @@ in {
       };
     };
 
-    waybar = {
-      enable = true;
-      settings = import ./config/waybar/settings.nix {
-        inherit pkgs;
-        inherit lib;
-      };
-      style = import ./config/waybar/style.nix {inherit (config) colorscheme;};
-    };
+    # waybar = {
+    #   enable = true;
+    #   settings = import ./config/waybar/settings.nix {
+    #     inherit pkgs;
+    #     inherit lib;
+    #   };
+    #   style = import ./config/waybar/style.nix {inherit (config) colorscheme;};
+    # };
   };
 
   services = {
@@ -606,14 +607,18 @@ in {
   };
 
   xdg = {
-    configFile."MangoHud/MangoHud.conf".text = ''
-      gpu_stats
-      cpu_stats
-      fps
-      frame_timing = 0
-      throttling_status = 0
-      position=top-right
-    '';
+    configFile = {
+      "gBar/style.css".text = builtins.readFile ./config/gBar/style.css;
+      "gBar/config".text = builtins.readFile ./config/gBar/config;
+      "MangoHud/MangoHud.conf".text = ''
+        gpu_stats
+        cpu_stats
+        fps
+        frame_timing = 0
+        throttling_status = 0
+        position=top-right
+      '';
+    };
     userDirs = {
       enable = true;
     };

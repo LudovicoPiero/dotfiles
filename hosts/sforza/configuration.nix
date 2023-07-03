@@ -204,7 +204,7 @@
       vt = 7;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd sway";
+          command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd Hyprland";
           user = "ludovico";
         };
       };

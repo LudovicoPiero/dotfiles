@@ -1,4 +1,5 @@
 {pkgs ? (import ../nixpkgs.nix) {}}: {
+  gBar = pkgs.callPackage ./gBar {};
   google-sans = pkgs.callPackage ./google-sans {};
   koneko = pkgs.callPackage ./koneko {};
   material-symbols = pkgs.callPackage ./material-symbols {};
