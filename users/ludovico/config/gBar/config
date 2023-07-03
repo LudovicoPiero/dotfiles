@@ -85,7 +85,7 @@ NetworkAdapter: enp3s0
 NetworkWidget: false
 
 # Enables tray icons
-EnableSNI: true
+EnableSNI: false #TODO: switch to true if it's less buggy
 
 # SNIIconSize sets the icon size for a SNI icon.
 # SNIPaddingTop Can be used to push the Icon down. Negative values are allowed
