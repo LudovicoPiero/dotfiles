@@ -243,10 +243,10 @@
 
       peers = [
         {
-          publicKey = "THai2mJzpxaI/BMmFpaWrLZYmPFNTmUH4zChdKOBHHs=";
+          publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
           presharedKeyFile = config.sops.secrets.wireguardPresharedKey.path;
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "103.235.73.71:56710";
+          endpoint = "103.235.73.71:50935";
           persistentKeepalive = 25;
         }
       ];
