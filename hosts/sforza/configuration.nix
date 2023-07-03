@@ -236,17 +236,17 @@
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      autostart = false;
+      autostart = true;
       address = ["10.66.66.3/32" "fd42:42:42::3/128"];
-      dns = ["139.180.135.207"];
+      dns = ["103.235.73.71"];
       privateKeyFile = config.sops.secrets.wireguardPrivateKey.path;
 
       peers = [
         {
-          publicKey = "igZ4WvPhX3UK/jxPTeXtkQVJMK/OloWUJ9nyKBijsAg=";
+          publicKey = "THai2mJzpxaI/BMmFpaWrLZYmPFNTmUH4zChdKOBHHs=";
           presharedKeyFile = config.sops.secrets.wireguardPresharedKey.path;
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "139.180.135.207:56287";
+          endpoint = "103.235.73.71:56710";
           persistentKeepalive = 25;
         }
       ];
