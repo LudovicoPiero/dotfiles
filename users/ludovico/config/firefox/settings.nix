@@ -4,10 +4,8 @@
   "distribution.searchplugins.defaultLocale" = "en-AU";
   "general.useragent.locale" = "en-AU";
   "browser.bookmarks.showMobileBookmarks" = true;
-  "general.smoothScroll" = true;
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
-  # # Disable telemetry
+  # Disable telemetry
   "browser.newtabpage.activity-stream.feeds.telemetry" = false;
   "browser.ping-centre.telemetry" = false;
   "browser.tabs.crashReporting.sendReport" = false;
@@ -48,6 +46,7 @@
   "middlemouse.paste" = false;
 
   # Smooth Scroll
+  "general.smoothScroll" = true;
   "general.smoothScroll.lines.durationMaxMS" = 125;
   "general.smoothScroll.lines.durationMinMS" = 125;
   "general.smoothScroll.mouseWheel.durationMaxMS" = 200;
