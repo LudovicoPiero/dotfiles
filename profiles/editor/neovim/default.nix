@@ -84,7 +84,7 @@
       ];
 
       extraPackages = with pkgs; [
-        nodejs-16_x # for copilot
+        # nodejs-16_x # for copilot
         alejandra
         lua-language-server
         stylua # Lua

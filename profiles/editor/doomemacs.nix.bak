@@ -41,7 +41,7 @@ in {
     ((emacsPackagesFor emacsNativeComp).emacsWithPackages
       (epkgs: [epkgs.vterm]))
     inputs.nil.packages.${pkgs.system}.default
-    nodejs-16_x # for copilot
+    # nodejs-16_x # for copilot
     lua-language-server
     stylua # Lua
     rust-analyzer
