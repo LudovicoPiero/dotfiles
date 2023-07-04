@@ -4,11 +4,11 @@
 }
 
 .popup {
-  color: #50fa7b;
+  color: #a6e3a1;
 }
 
 .bar, tooltip {
-  background-color: #282a36;
+  background-color: #1e1e2e;
   border-radius: 16px;
 }
 
@@ -24,22 +24,22 @@
 .reboot-button {
   font-size: 28px;
   margin-right: 6px;
-  color: #6272a4;
+  color: #89b4fa;
 }
 
 .sleep-button {
   font-size: 28px;
-  color: #6272a4;
+  color: #89b4fa;
 }
 
 .exit-button {
   font-size: 28px;
-  color: #6272a4;
+  color: #89b4fa;
 }
 
 .power-button {
   font-size: 28px;
-  color: #ff5555;
+  color: #f38ba8;
 }
 
 .power-box-expand {
@@ -47,14 +47,14 @@
 }
 
 .system-confirm {
-  color: #50fa7b;
+  color: #a6e3a1;
 }
 
 trough {
   border-radius: 3px;
   border-width: 1px;
   border-style: none;
-  background-color: #44475a;
+  background-color: #585b70;
   margin-top: 2px;
   min-width: 4px;
   min-height: 4px;
@@ -79,192 +79,192 @@ highlight {
 
 .audio-icon {
   font-size: 24px;
-  color: #ffb86c;
+  color: #fab387;
   margin-right: 12px;
 }
 
 .audio-volume trough {
-  background-color: #44475a;
+  background-color: #585b70;
 }
 .audio-volume slider {
   background-color: transparent;
 }
 .audio-volume highlight {
-  background-color: #ffb86c;
+  background-color: #fab387;
 }
 
 .mic-icon {
   font-size: 24px;
-  color: #bd93f9;
+  color: #cba6f7;
   margin-right: 0px;
 }
 
 .mic-volume trough {
-  background-color: #44475a;
+  background-color: #585b70;
 }
 .mic-volume slider {
   background-color: transparent;
 }
 .mic-volume highlight {
-  background-color: #bd93f9;
+  background-color: #cba6f7;
 }
 
 .package-outofdate {
   font-size: 24px;
   margin-right: -5px;
   margin-left: -5px;
-  color: #ff5555;
+  color: #f38ba8;
 }
 
 .bt-num {
   font-size: 16px;
-  color: #1793D1;
+  color: #89b4fa;
   margin-left: -6px;
 }
 
 .bt-label-on {
   font-size: 20px;
-  color: #1793D1;
+  color: #89b4fa;
   margin-right: 6px;
 }
 
 .bt-label-off {
   font-size: 24px;
-  color: #1793D1;
+  color: #89b4fa;
   margin-right: 6px;
 }
 
 .bt-label-connected {
   font-size: 28px;
-  color: #1793D1;
+  color: #89b4fa;
   margin-right: 6px;
 }
 
 .disk-util-progress {
-  color: #bd93f9;
-  background-color: #44475a;
+  color: #cba6f7;
+  background-color: #585b70;
   font-size: 16px;
 }
 
 .disk-data-text {
-  color: #bd93f9;
+  color: #cba6f7;
   margin-right: 6px;
   font-size: 16px;
 }
 
 .vram-util-progress {
-  color: #ffb86c;
-  background-color: #44475a;
+  color: #fab387;
+  background-color: #585b70;
 }
 
 .vram-data-text {
-  color: #ffb86c;
+  color: #fab387;
   margin-right: 6px;
   font-size: 16px;
 }
 
 .ram-util-progress {
-  color: #f1fa8c;
-  background-color: #44475a;
+  color: #f9e2af;
+  background-color: #585b70;
 }
 
 .ram-data-text {
-  color: #f1fa8c;
+  color: #f9e2af;
   margin-right: 6px;
   font-size: 16px;
 }
 
 .gpu-util-progress {
-  color: #8be9fd;
-  background-color: #44475a;
+  color: #b4befe;
+  background-color: #585b70;
 }
 
 .gpu-data-text {
-  color: #8be9fd;
+  color: #b4befe;
   margin-right: 6px;
   font-size: 16px;
 }
 
 .cpu-util-progress {
-  color: #50fa7b;
-  background-color: #44475a;
+  color: #a6e3a1;
+  background-color: #585b70;
   font-size: 16px;
 }
 
 .cpu-data-text {
-  color: #50fa7b;
+  color: #a6e3a1;
   margin-right: 6px;
   font-size: 16px;
 }
 
 .battery-util-progress {
-  color: #ff79c6;
-  background-color: #44475a;
+  color: #f38ba8;
+  background-color: #585b70;
   font-size: 16px;
 }
 
 .battery-data-text {
-  color: #ff79c6;
+  color: #f38ba8;
   margin-right: 6px;
   font-size: 16px;
 }
 
 .network-data-text {
-  color: #50fa7b;
+  color: #a6e3a1;
   margin-right: 6px;
   font-size: 16px;
 }
 
 .network-up-under {
-  color: #44475a;
+  color: #585b70;
 }
 
 .network-up-low {
-  color: #50fa7b;
+  color: #a6e3a1;
 }
 
 .network-up-mid-low {
-  color: #f1fa8c;
+  color: #f9e2af;
 }
 
 .network-up-mid-high {
-  color: #ffb86c;
+  color: #fab387;
 }
 
 .network-up-high {
-  color: #bd93f9;
+  color: #cba6f7;
 }
 
 .network-up-over {
-  color: #ff5555;
+  color: #f38ba8;
 }
 
 .network-down-under {
-  color: #44475a;
+  color: #585b70;
 }
 
 .network-down-low {
-  color: #50fa7b;
+  color: #a6e3a1;
 }
 
 .network-down-mid-low {
-  color: #f1fa8c;
+  color: #f9e2af;
 }
 
 .network-down-mid-high {
-  color: #ffb86c;
+  color: #fab387;
 }
 
 .network-down-high {
-  color: #bd93f9;
+  color: #cba6f7;
 }
 
 .network-down-over {
-  color: #ff5555;
+  color: #f38ba8;
 }
 
 .ws-dead {
-  color: #44475a;
+  color: #585b70;
   font-size: 16px;
 }
 
@@ -279,49 +279,49 @@ highlight {
 }
 
 .ws-current {
-  color: #f1fa8c;
+  color: #f9e2af;
   font-size: 16px;
 }
 
 .ws-active {
-  color: #50fa7b;
+  color: #a6e3a1;
   font-size: 16px;
 }
 
 @keyframes connectanim {
   from {
-    background-image: radial-gradient(circle farthest-side at center, #1793D1 0%, transparent 0%, transparent 100%);
+    background-image: radial-gradient(circle farthest-side at center, #89b4fa 0%, transparent 0%, transparent 100%);
   }
   to {
-    background-image: radial-gradient(circle farthest-side at center, #1793D1 0%, #1793D1 100%, transparent 100%);
+    background-image: radial-gradient(circle farthest-side at center, #89b4fa 0%, #89b4fa 100%, transparent 100%);
   }
 }
 @keyframes disconnectanim {
   from {
-    background-image: radial-gradient(circle farthest-side at center, transparent 0%, #1793D1 0%, #1793D1 100%);
+    background-image: radial-gradient(circle farthest-side at center, transparent 0%, #89b4fa 0%, #89b4fa 100%);
   }
   to {
-    background-image: radial-gradient(circle farthest-side at center, transparent 0%, transparent 100%, #1793D1 100%);
+    background-image: radial-gradient(circle farthest-side at center, transparent 0%, transparent 100%, #89b4fa 100%);
   }
 }
 @keyframes scanonanim {
   from {
-    color: #f1fa8c;
+    color: #f9e2af;
   }
   to {
-    color: #50fa7b;
+    color: #a6e3a1;
   }
 }
 @keyframes scanoffanim {
   from {
-    color: #50fa7b;
+    color: #a6e3a1;
   }
   to {
-    color: #f1fa8c;
+    color: #f9e2af;
   }
 }
 .bt-bg {
-  background-color: #282a36;
+  background-color: #313244;
   border-radius: 16px;
 }
 
@@ -330,7 +330,7 @@ highlight {
   margin-right: 8px;
   margin-left: 8px;
   font-size: 24px;
-  color: #1793D1;
+  color: #89b4fa;
 }
 
 .bt-body-box {
@@ -361,20 +361,20 @@ highlight {
   animation-fill-mode: forwards;
 }
 .bt-button.failed {
-  color: #ff5555;
+  color: #f38ba8;
 }
 
 .bt-close {
-  color: #ff5555;
-  background-color: #44475a;
+  color: #f38ba8;
+  background-color: #585b70;
   border-radius: 16px;
   padding: 0px 8px 0px 7px;
   margin: 0px 0px 0px 8px;
 }
 
 .bt-scan {
-  color: #f1fa8c;
-  background-color: #44475a;
+  color: #f9e2af;
+  background-color: #585b70;
   border-radius: 16px;
   padding: 2px 11px 0px 7px;
   margin: 0px 0px 0px 10px;
