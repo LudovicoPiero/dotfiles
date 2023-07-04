@@ -19,7 +19,7 @@
     };
 
     nixos.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-22.11";
+    stable.url = "github:nixos/nixpkgs/nixos-23.05";
     master.url = "github:nixos/nixpkgs";
 
     digga.url = "github:divnix/digga";
