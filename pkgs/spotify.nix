@@ -5,7 +5,7 @@
   squashfsTools,
   xorg,
   alsa-lib,
-  makeWrapper,
+  makeShellWrapper,
   wrapGAppsHook,
   openssl,
   freetype,
@@ -18,7 +18,7 @@
   harfbuzz,
   cups,
   nspr,
-  nss,
+  nss_latest,
   libpng,
   libnotify,
   libgcrypt,
@@ -26,7 +26,7 @@
   fontconfig,
   dbus,
   expat,
-  ffmpeg,
+  ffmpeg_4,
   curlWithGnuTls,
   zlib,
   gnome,
@@ -45,14 +45,14 @@
   # If an update breaks things, one of those might have valuable info:
   # https://aur.archlinux.org/packages/spotify/
   # https://community.spotify.com/t5/Desktop-Linux
-  version = "1.2.9.743.g85d9593d";
+  version = "1.2.13.661.ga588f749";
   # To get the latest stable revision:
   # curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/spotify?channel=stable' | jq '.download_url,.version,.last_updated'
   # To get general information:
   # curl -H 'Snap-Device-Series: 16' 'https://api.snapcraft.io/v2/snaps/info/spotify' | jq '.'
   # More examples of api usage:
   # https://github.com/canonical-websites/snapcraft.io/blob/master/webapp/publisher/snaps/views.py
-  rev = "64";
+  rev = "68";
 
   deps = [
     alsa-lib
@@ -64,7 +64,7 @@
     curlWithGnuTls
     dbus
     expat
-    ffmpeg
+    ffmpeg_4
     fontconfig
     freetype
     gdk-pixbuf
@@ -78,7 +78,7 @@
     libpulseaudio
     libxkbcommon
     mesa
-    nss
+    nss_latest
     pango
     stdenv.cc.cc
     systemd
@@ -106,7 +106,7 @@ in
 
     # fetch from snapcraft instead of the debian repository most repos fetch from.
     # That is a bit more cumbersome. But the debian repository only keeps the last
-    # two versions, while snapcraft should provide versions indefinately:
+    # two versions, while snapcraft should provide versions indefinitely:
     # https://forum.snapcraft.io/t/how-can-a-developer-remove-her-his-app-from-snap-store/512
 
     # This is the next-best thing, since we're not allowed to re-distribute
@@ -114,10 +114,10 @@ in
     # https://community.spotify.com/t5/Desktop-Linux/Redistribute-Spotify-on-Linux-Distributions/td-p/1695334
     src = fetchurl {
       url = "https://api.snapcraft.io/api/v1/snaps/download/pOBIoZ2LrCB3rDohMxoYGnbN14EHOgD7_${rev}.snap";
-      sha512 = "0nz3ba438j4wdrwisz1zhjhvhffl7yb2mdvlm76v7458jlam3322k9f2kpjiwh4lhh6pwdcqb25npx1v0k8413fk2srnvn204clm3sy";
+      hash = "sha256-UbA0HHLCnENO3e3c+wOeuJ9F9d19S5MAQ6zEg2hitwk=";
     };
 
-    nativeBuildInputs = [makeWrapper wrapGAppsHook squashfsTools];
+    nativeBuildInputs = [wrapGAppsHook makeShellWrapper squashfsTools];
 
     dontStrip = true;
     dontPatchELF = true;
@@ -164,8 +164,8 @@ in
       ln -s ${nspr.out}/lib/libnspr4.so $libdir/libnspr4.so
       ln -s ${nspr.out}/lib/libplc4.so $libdir/libplc4.so
 
-      ln -s ${ffmpeg.out}/lib/libavcodec.so* $libdir
-      ln -s ${ffmpeg.out}/lib/libavformat.so* $libdir
+      ln -s ${ffmpeg_4.lib}/lib/libavcodec.so* $libdir
+      ln -s ${ffmpeg_4.lib}/lib/libavformat.so* $libdir
 
       rpath="$out/share/spotify:$libdir"
 
@@ -174,13 +174,14 @@ in
         --set-rpath $rpath $out/share/spotify/spotify
 
       librarypath="${lib.makeLibraryPath deps}:$libdir"
-      wrapProgram $out/share/spotify/spotify \
+      wrapProgramShell $out/share/spotify/spotify \
         ''${gappsWrapperArgs[@]} \
         ${lib.optionalString (deviceScaleFactor != null) ''
         --add-flags "--force-device-scale-factor=${toString deviceScaleFactor}" \
       ''} \
         --prefix LD_LIBRARY_PATH : "$librarypath" \
-        --prefix PATH : "${gnome.zenity}/bin"
+        --prefix PATH : "${gnome.zenity}/bin" \
+        --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--enable-features=UseOzonePlatform --ozone-platform=wayland}}"
 
       # fix Icon line in the desktop file (#48062)
       sed -i "s:^Icon=.*:Icon=spotify-client:" "$out/share/spotify/spotify.desktop"
@@ -204,7 +205,7 @@ in
       homepage = "https://www.spotify.com/";
       description = "Play music from the Spotify music service";
       sourceProvenance = with sourceTypes; [binaryNativeCode];
-      license = licenses.unfree;
+      # license = licenses.unfree;
       maintainers = with maintainers; [eelco ftrvxmtrx sheenobu mudri timokau ma27];
       platforms = ["x86_64-linux"];
     };
