@@ -1,7 +1,6 @@
 {
   pkgs,
   stdenv,
-  lib,
   ...
 }:
 with pkgs;

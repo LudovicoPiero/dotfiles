@@ -199,13 +199,23 @@
       SOUND_POWER_SAVE_ON_AC = 0;
     };
 
-    greetd = {
+    greetd = let
+      user = "ludovico";
+      greetd = "${pkgs.greetd.greetd}/bin/greetd";
+      gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+
+      sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
+        output * bg #000000 solid_color
+        exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+        exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
+      ''}";
+    in {
       enable = true;
       vt = 7;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd Hyprland";
-          user = "ludovico";
+          command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
+          inherit user;
         };
       };
     };
