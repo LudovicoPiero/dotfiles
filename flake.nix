@@ -20,6 +20,7 @@
     home.inputs.nixpkgs.follows = "nixos";
 
     hyprland.url = "github:hyprwm/hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixos";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
     swayfx.url = "github:WillPower3309/swayfx";
