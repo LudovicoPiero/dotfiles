@@ -61,6 +61,8 @@
 
     registry = {
       system.flake = inputs.self;
+      default.flake = inputs.nixos;
+      nixpkgs.flake = inputs.nixos;
     };
 
     # Generally useful nix option defaults
