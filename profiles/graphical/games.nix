@@ -18,7 +18,7 @@
     home.packages = with inputs.nix-gaming.packages.${pkgs.system};
       [
         # wine-tkg
-        osu-stable
+        #osu-stable
       ]
       ++ (with pkgs; [
         gamescope

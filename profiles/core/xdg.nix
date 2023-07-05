@@ -37,6 +37,7 @@ in {
       # wlr disabled because i'm using xdg-desktop-portal-hyprland
       wlr.enable = lib.mkForce false;
       enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
   };
   home-manager.users."${config.vars.username}" = {
@@ -62,6 +63,9 @@ in {
         publicShare = "${config.vars.home}";
         extraConfig = {
           XDG_SCREENSHOTS_DIR = config.vars.screenshotFolder;
+          #XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
+          #XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
+          #XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
         };
       };
     };

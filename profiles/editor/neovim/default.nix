@@ -36,7 +36,6 @@
         vim-nix
         plenary-nvim
         dashboard-nvim
-        copilot-lua
         lualine-nvim
         nvim-tree-lua
         bufferline-nvim
@@ -102,7 +101,6 @@
             + "/${module}.lua");
         luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
           "cmp"
-          "copilot"
           "colorizer"
           "keybind"
           "settings"

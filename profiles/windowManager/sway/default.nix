@@ -7,7 +7,7 @@
 }: let
   inherit (config.vars.colorScheme) colors;
 in {
-  programs.sway.enable = true; # Enable nixos modules
+  programs.sway.enable = false; # Enable nixos modules
 
   home-manager.users.${config.vars.username} = {
     home.sessionVariables = {
@@ -80,7 +80,7 @@ in {
           {command = "systemctl --user stop xdg-desktop-portal-wlr";}
           {command = "dunst";}
           {
-            command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr";
+            command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";
             always = true;
           }
         ];
@@ -121,7 +121,7 @@ in {
         base = true;
         gtk = true;
       };
-      systemdIntegration = false;
+      systemd.enable = true;
     };
   };
 }
