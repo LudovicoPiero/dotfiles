@@ -57,6 +57,12 @@
       options = "--delete-older-than 3d";
     };
 
+    optimise.automatic = true;
+
+    registry = {
+      system.flake = inputs.self;
+    };
+
     # Generally useful nix option defaults
     extraOptions = ''
       min-free = 536870912

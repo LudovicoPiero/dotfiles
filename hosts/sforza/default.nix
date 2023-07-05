@@ -16,14 +16,11 @@
   # ++ suites.cinnamon;
 
   boot = {
-    zfs.enableUnstable = true;
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
-    # kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    supportedFilesystems = ["zfs" "ntfs"];
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
 
   hardware.bluetooth.enable = true;
@@ -35,17 +32,16 @@
     kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
     kernelModules = ["amd-pstate"];
   };
-  hardware.cpu.amd.updateMicrocode = true;
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
-      amdvlk
+      #  amdvlk
       rocm-opencl-icd
       rocm-opencl-runtime
     ];
-    extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+    #extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
   };
 
   networking.networkmanager.enable = true;
@@ -85,17 +81,26 @@
     };
   };
 
-  # services.greetd = {
-  #   enable = true;
-  #   # package = pkgs.greetd.gtkgreet;
-  #   vt = 1;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-  #       user = "ludovico";
-  #     };
-  #   };
-  # };
+  services.greetd = let
+    user = "ludovico";
+    greetd = "${pkgs.greetd.greetd}/bin/greetd";
+    gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+
+    sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
+      output * bg #000000 solid_color
+      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+      exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
+    ''}";
+  in {
+    enable = true;
+    vt = 7;
+    settings = {
+      default_session = {
+        command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
+        inherit user;
+      };
+    };
+  };
 
   environment.etc."greetd/environments".text = ''
     sway
@@ -113,10 +118,10 @@
 
     displayManager = {
       lightdm.enable = false;
-      gdm = {
-        enable = true;
-        # wayland = true;
-      };
+      # gdm = {
+      #   enable = true;
+      # wayland = true;
+      # };
       # sddm = {
       #   enable = true;
       #   theme = "multicolor-sddm-theme";

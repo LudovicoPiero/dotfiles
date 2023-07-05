@@ -4,18 +4,14 @@
   ...
 }: let
   font = {
-    name = "Google Sans";
-    size = 10;
+    name = "SF Pro Rounded";
+    size = 11;
   };
   theme = {
-    name = "Catppuccin-Mocha-Compact-Pink-Dark";
-    package = pkgs.catppuccin-gtk.override {
-      accents = ["pink"];
-      size = "compact";
-      variant = "mocha";
-    };
+    name = "WhiteSur-Dark";
+    package = pkgs.whitesur-gtk-theme;
   };
-  cursorsTheme = {
+  cursorTheme = {
     name = "capitaine-cursors-white";
     size = 24;
     package = pkgs.capitaine-cursors;
@@ -31,24 +27,21 @@ in {
       #TODO: change to true if not using any DEs
       enable = true;
       gtk2.extraConfig = ''
-        gtk-cursor-theme-name="${cursorsTheme.name}"
-        gtk-cursor-theme-size="${builtins.toString cursorsTheme.size}"
+        gtk-cursor-theme-name="${cursorTheme.name}"
+        gtk-cursor-theme-size="${builtins.toString cursorTheme.size}"
       '';
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = true;
-        gtk-cursor-theme-name = cursorsTheme.name;
+        gtk-cursor-theme-name = cursorTheme.name;
       };
       font = {
-        inherit (font) name;
-        inherit (font) size;
+        inherit (font) name size;
       };
       theme = {
-        inherit (theme) package;
-        inherit (theme) name;
+        inherit (theme) name package;
       };
       iconTheme = {
-        inherit (iconsTheme) package;
-        inherit (iconsTheme) name;
+        inherit (iconsTheme) name package;
       };
     };
 
@@ -56,14 +49,14 @@ in {
       [icon theme]
       Name=Default
       Comment=Default Cursor Theme
-      Inherits=${cursorsTheme.name}
+      Inherits=${cursorTheme.name}
     '';
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         gtk-theme = theme.name;
         icon-theme = iconsTheme.name;
-        cursor-theme = cursorsTheme.name;
+        cursor-theme = cursorTheme.name;
       };
     };
   };

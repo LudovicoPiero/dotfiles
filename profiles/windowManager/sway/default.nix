@@ -7,7 +7,7 @@
 }: let
   inherit (config.vars.colorScheme) colors;
 in {
-  programs.sway.enable = true; # Enable nixos modules
+  programs.sway.enable = false; # Enable nixos modules
 
   home-manager.users.${config.vars.username} = {
     home.sessionVariables = {
@@ -121,7 +121,7 @@ in {
         base = true;
         gtk = true;
       };
-      systemdIntegration = false;
+      systemd.enable = true;
     };
   };
 }

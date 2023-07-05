@@ -62,6 +62,9 @@ in {
         publicShare = "${config.vars.home}";
         extraConfig = {
           XDG_SCREENSHOTS_DIR = config.vars.screenshotFolder;
+          #XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
+          #XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
+          #XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
         };
       };
     };

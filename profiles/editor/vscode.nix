@@ -13,7 +13,6 @@
       # package = pkgs.vscodium; # use vscode because copilot no worky :(
       extensions = with pkgs.vscode-extensions; [
         catppuccin.catppuccin-vsc # Color theme
-        github.copilot
         pkief.material-icon-theme # Icons theme
         esbenp.prettier-vscode
       ];

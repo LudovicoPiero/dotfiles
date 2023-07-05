@@ -8,6 +8,7 @@
     fonts = with pkgs; [
       # Icons
       inputs.self.packages.${pkgs.system}.google-sans
+      inputs.self.packages.${pkgs.system}.san-francisco-pro
 
       powerline-fonts
       material-symbols
@@ -15,8 +16,7 @@
       emacs-all-the-icons-fonts
       font-awesome
 
-      noto-fonts-cjk
-      noto-fonts-cjk-sans
+      sarasa-gothic
       noto-fonts-emoji
 
       jetbrains-mono
@@ -29,24 +29,24 @@
       enable = true;
       defaultFonts = {
         serif = [
-          "Google Sans"
-          "Noto Sans JP"
-          "Noto Sans KR"
-          "Noto Sans HK"
+          "SF Pro"
+          "Sarasa Gothic C"
+          "Sarasa Gothic J"
+          "Sarasa Gothic K"
         ];
 
         sansSerif = [
-          "Google Sans"
-          "Noto Sans JP"
-          "Noto Sans KR"
-          "Noto Sans HK"
+          "SF Pro"
+          "Sarasa Gothic C"
+          "Sarasa Gothic J"
+          "Sarasa Gothic K"
         ];
 
         monospace = [
-          "Google Sans"
-          "Noto Sans JP"
-          "Noto Sans KR"
-          "Noto Sans HK"
+          "SF Pro Rounded"
+          "Sarasa Mono C"
+          "Sarasa Mono J"
+          "Sarasa Mono K"
         ];
 
         emoji = ["noto-fonts-emoji"];
