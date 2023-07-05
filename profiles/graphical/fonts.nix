@@ -7,7 +7,6 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       # Icons
-      inputs.self.packages.${pkgs.system}.google-sans
       inputs.self.packages.${pkgs.system}.san-francisco-pro
 
       powerline-fonts
