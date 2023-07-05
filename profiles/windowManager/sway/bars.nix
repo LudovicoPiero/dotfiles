@@ -2,7 +2,7 @@
   {
     statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
     fonts = {
-      names = ["Google Sans" "Font Awesome 6 Free" "Font Awesome 6 Brands"];
+      names = ["Iosevka Nerd Font" "Font Awesome 6 Free" "Font Awesome 6 Brands"];
       size = 9.0;
     };
     position = "bottom";

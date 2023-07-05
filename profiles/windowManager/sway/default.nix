@@ -80,7 +80,7 @@ in {
           {command = "systemctl --user stop xdg-desktop-portal-wlr";}
           {command = "dunst";}
           {
-            command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr";
+            command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";
             always = true;
           }
         ];
