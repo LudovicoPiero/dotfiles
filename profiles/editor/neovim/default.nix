@@ -6,8 +6,6 @@
   home-manager.users.${config.vars.username} = {
     programs.neovim = {
       enable = true;
-      #TODO
-      # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
       vimAlias = true;
       viAlias = true;
       vimdiffAlias = true;
@@ -68,22 +66,23 @@
         vim-fugitive
         nvim-web-devicons
         lsp-format-nvim
+        which-key-nvim
 
         gitsigns-nvim
+        neogit
 
         # Cmp
         cmp-nvim-lsp
         cmp-buffer
         cmp-path
         cmp-cmdline
-        cmp-vsnip
-        vim-vsnip
         nvim-cmp
         nvim-lspconfig
+        luasnip
+        cmp_luasnip
       ];
 
       extraPackages = with pkgs; [
-        # nodejs-16_x # for copilot
         alejandra
         lua-language-server
         stylua # Lua
@@ -106,6 +105,7 @@
           "settings"
           "theme"
           "ui"
+          "which-key"
         ]);
       in ''
         set guicursor=n-v-c-i:block
