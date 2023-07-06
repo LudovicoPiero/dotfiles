@@ -41,7 +41,7 @@
         impatient-nvim
         telescope-nvim
         indent-blankline-nvim
-        # nvim-treesitter
+        nvim-treesitter-context
         (nvim-treesitter.withPlugins (plugins:
           with plugins; [
             tree-sitter-bash
