@@ -40,7 +40,11 @@ _: ''
       border-radius: 5px;
   }
 
-  #tray, #custom-date, #clock, #battery, #pulseaudio, #network {
+  #custom-vpn {
+    color: #fab387;
+  }
+
+  #tray, #custom-date, #custom-vpn, #clock, #battery, #pulseaudio, #network {
   	background-color: #24283b;
   	padding: 5px 10px;
   	margin: 5px 0px;

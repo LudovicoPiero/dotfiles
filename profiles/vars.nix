@@ -8,7 +8,7 @@
   vars = rec {
     email = "ludovicopiero@pm.me";
     username = "ludovico";
-    terminal = "wezterm";
+    terminal = "xterm-256color";
     terminalBin = "${lib.getExe pkgs.wezterm}";
     colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 

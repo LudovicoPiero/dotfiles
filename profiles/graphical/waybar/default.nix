@@ -40,6 +40,7 @@ in {
           ];
           modules-right = [
             "network"
+            "custom/vpn"
             "pulseaudio"
             "battery"
             "custom/date"
@@ -112,6 +113,13 @@ in {
             format-linked = "{ifname} (No IP)";
             format-disconnected = "󰖪  Disconnected";
             tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
+          };
+          "custom/vpn" = {
+            "format" = " Wireguard";
+            "exec" = "echo '{\"class\": \"connected\"}'";
+            "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+            "return-type" = "json";
+            "interval" = 5;
           };
           "battery" = {
             bat = "BAT1";

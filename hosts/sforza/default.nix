@@ -129,6 +129,25 @@
     };
   };
 
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      autostart = true;
+      address = ["10.66.66.3/32" "fd42:42:42::3/128"];
+      dns = ["103.235.73.71"];
+      privateKeyFile = "/persist/wireguard/privKey";
+
+      peers = [
+        {
+          publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
+          presharedKeyFile = "/persist/wireguard/presharedKey";
+          allowedIPs = ["0.0.0.0/0" "::/0"];
+          endpoint = "103.235.73.71:50935";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
   # Remove Bloat
   documentation.nixos.enable = lib.mkForce false;
   system.stateVersion = "${config.vars.stateVersion}";
