@@ -2,28 +2,40 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  cfg = config.home-manager.users."${config.vars.username}";
+  gtkCfg = cfg.gtk;
+  inherit (config.vars.colorScheme) colors;
+in {
   home-manager.users.${config.vars.username} = {
-    home.packages = with pkgs; [fuzzel];
-    #TODO: Move this somewhere else
-    xdg.configFile."fuzzel/fuzzel.ini".text = ''
-      font='Iosevka Nerd Font-16'
-      icon-theme='Papirus-Dark'
-      prompt='->'
-      [dmenu]
-      mode=text
-      [colors]
-      background=24283bff
-      text=a9b1d6ff
-      match=8031caff
-      selection=8031caff
-      selection-text=7aa2f7ff
-      selection-match=2ac3deff
-      border=8031caff
+    programs.fuzzel = {
+      enable = true;
+      settings = {
+        main = {
+          font = "Iosevka Nerd Font-16";
+          icon-theme = "${gtkCfg.iconTheme.name}";
+          prompt = "->";
+        };
 
-      [border]
-      width=2
-      radius=0
-    '';
+        border = {
+          width = 2;
+          radius = 0;
+        };
+
+        dmenu = {
+          mode = "text";
+        };
+
+        colors = {
+          background = "${colors.base00}ff";
+          text = "${colors.base07}ff";
+          match = "${colors.base0E}ff";
+          selection = "${colors.base08}ff";
+          selection-text = "${colors.base07}ff";
+          selection-match = "${colors.base07}ff";
+          border = "${colors.base0E}ff";
+        };
+      };
+    };
   };
 }
