@@ -10,8 +10,9 @@
         nss = pkgs.nss_latest;
         withOpenASAR = true;
         withTTS = true;
+        withVencord = true;
       })
-      webcord
+      webcord-vencord
       tdesktop
       mpv
       viewnior
