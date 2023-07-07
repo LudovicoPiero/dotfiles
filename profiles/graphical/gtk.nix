@@ -17,8 +17,8 @@
     package = pkgs.capitaine-cursors;
   };
   iconsTheme = {
-    name = "Papirus-Dark";
-    package = pkgs.papirus-icon-theme;
+    name = "WhiteSur-dark";
+    package = pkgs.whitesur-icon-theme;
   };
 in {
   home-manager.users."${config.vars.username}" = {
