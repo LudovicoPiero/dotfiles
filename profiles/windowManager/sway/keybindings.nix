@@ -8,15 +8,6 @@
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  # use OCR and copy to clipboard
-  ocrScript = let
-    inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
-    _ = lib.getExe;
-  in
-    pkgs.writeShellScriptBin "wl-ocr" ''
-      ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-      ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
-    '';
 in rec {
   # Kill focused window
   "${mod}+w" = "kill";
@@ -104,8 +95,9 @@ in rec {
   "${mod}+Shift+e" = "exec ${pkgs.xfce.thunar}/bin/thunar";
 
   ### Screenshot
-  "Print" = "exec wl-ocr";
+  "Print" = "exec sharenix --selection";
   "${mod}+Print" = "exec grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
+  "${mod}+Shift+Print" = "exec wl-ocr";
   "CTRL+Print" = "exec grimblast --notify copy area";
 
   # Volume

@@ -13,16 +13,6 @@
     Unit.After = ["graphical-session.target"];
     Install.WantedBy = ["graphical-session.target"];
   };
-  # use OCR and copy to clipboard
-  ocrScript = let
-    inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
-    _ = lib.getExe;
-  in
-    pkgs.writeShellScriptBin "wl-ocr" ''
-      ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-      ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
-    '';
-  sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/screenshot}'';
 in {
   systemd.services = {
     seatd = {
@@ -50,8 +40,6 @@ in {
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       grim
       slurp
-      ocrScript
-      sharenix
     ];
 
     wayland.windowManager.hyprland = {
