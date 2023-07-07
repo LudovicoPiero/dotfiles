@@ -26,6 +26,7 @@ in {
           font = "Iosevka Nerd Font 10";
           notification_limit = 5;
           layer = "overlay"; # bottom, top or overlay
+          fullscreen = "pushback";
           browser = "${pkgs.xdg-utils}/bin/xdg-open";
           corner_radius = 6;
         };
