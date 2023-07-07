@@ -155,7 +155,7 @@ in ''
 
   # Screenshot
   bind = , print , exec , sharenix --selection
-  bind = CTRL  , Print , exec , grimblast --notify copy area
+  bind = CTRL  , Print , exec , grimblast save area - | ${lib.getExe pkgs.swappy} -f -
   bind = SUPER , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')
   bind = SUPERSHIFT , Print , exec , wl-ocr
 
