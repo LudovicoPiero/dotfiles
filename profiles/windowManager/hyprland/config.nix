@@ -79,9 +79,10 @@ in ''
   misc {
       disable_hyprland_logo = true
       disable_splash_rendering = true
-      vfr = 1
-      vrr = 2 # 0 - off, 1 - on, 2 - fullscreen only
+      vfr = true
+      vrr = 1 # 0 - off, 1 - on, 2 - fullscreen only
       disable_autoreload = false
+      render_titles_in_groupbar = false
   }
 
   gestures {
