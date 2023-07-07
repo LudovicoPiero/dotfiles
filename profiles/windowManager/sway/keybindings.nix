@@ -89,7 +89,7 @@ in rec {
 
   ### Apps
   "${mod}+Return" = "exec ${cfg.terminal}";
-  "${mod}+p" = "exec ${cfg.menu}";
+  "${mod}+p" = "exec run-as-service ${cfg.menu}";
   "${mod}+g" = "exec ${pkgs.firefox}/bin/firefox";
   "${mod}+d" = "exec ${pkgs.discord-canary}/bin/discordcanary";
   "${mod}+Shift+e" = "exec ${pkgs.xfce.thunar}/bin/thunar";

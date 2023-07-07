@@ -135,7 +135,7 @@ in ''
   bind = SUPERSHIFT , G , exec , chromium
   bind = SUPER      , G , exec , ${browser}
   bind = SUPER      , M , exec , [workspace 5 silent;tile] mailspring
-  bind = SUPER      , P , exec , ${launcher}
+  bind = SUPER      , P , exec , run-as-service ${launcher}
   bind = SUPER      , T , togglefloating ,
   bind = SUPER      , R , togglegroup ,
   bind = SUPERSHIFT , J , changegroupactive, f
