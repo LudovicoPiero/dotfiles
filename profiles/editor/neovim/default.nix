@@ -69,7 +69,7 @@
         which-key-nvim
 
         gitsigns-nvim
-        neogit
+        # neogit
 
         # Cmp
         cmp-nvim-lsp

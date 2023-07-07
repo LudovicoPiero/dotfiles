@@ -5,7 +5,7 @@ require("telescope").setup()
 require('gitsigns').setup()
 
 -- Neogit
-require('neogit').setup()
+-- require('neogit').setup()
 
 -- Bufferline
 require("bufferline").setup({
