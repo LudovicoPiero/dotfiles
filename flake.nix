@@ -11,6 +11,9 @@
     stable.url = "github:nixos/nixpkgs/nixos-23.05";
     master.url = "github:nixos/nixpkgs";
 
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    aagl.inputs.nixpkgs.follows = "nixos"; # Name of nixpkgs input you want to use
+
     digga.url = "github:divnix/digga";
     digga.inputs.nixpkgs.follows = "nixos";
     digga.inputs.nixlib.follows = "nixos";
@@ -46,6 +49,7 @@
     self,
     digga,
     nixos,
+    aagl,
     home,
     hyprland,
     impermanence,
@@ -100,6 +104,7 @@
           sforza = {
             modules = [
               # nixos-hardware.nixosModules.common-pc-laptop-ssd
+              aagl.nixosModules.default
               hyprland.nixosModules.default
               impermanence.nixosModules.impermanence
             ];
