@@ -65,11 +65,11 @@ in {
       #     Restart = "always";
       #   };
       # };
-      cliphist = mkService {
-        Unit.Description = "Clipboard History";
+      wl-clip-persist = mkService {
+        Unit.Description = "Keep Wayland clipboard even after programs close";
         Service = {
-          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${lib.getExe pkgs.cliphist} store";
-          Restart = "always";
+          ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard both";
+          Restart = "on-failure";
         };
       };
     };
