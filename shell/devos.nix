@@ -13,6 +13,7 @@
     nixUnstable
     nodePackages
     sops
+    stylua
     shfmt
     treefmt
     nixos-generators
@@ -29,6 +30,7 @@ in {
     alejandra
     nodePackages.prettier
     shfmt
+    stylua
     editorconfig-checker
   ];
 

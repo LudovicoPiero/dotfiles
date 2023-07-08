@@ -1,3 +1,9 @@
+[formatter.lua]
+command = "stylua"
+includes = [
+"*.lua"
+]
+
 [formatter.nix]
 command = "alejandra"
 includes = ["*.nix"]

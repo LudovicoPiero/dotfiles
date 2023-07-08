@@ -26,23 +26,23 @@ local mappings = {
   },
 
   k = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help" },
-  p = { "\"+p", "Paste from clipboard" },
-  P = { "\"+P", "Paste from clipboard before cursor" },
-  y = { "\"+y", "Yank to clipboard" },
+  p = { '"+p', "Paste from clipboard" },
+  P = { '"+P', "Paste from clipboard before cursor" },
+  y = { '"+y', "Yank to clipboard" },
 }
 
 local opts = {
-  mode = "n",     -- Normal mode
+  mode = "n", -- Normal mode
   prefix = "<leader>",
-  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true,  -- use `silent` when creating keymaps
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = false, -- use `nowait` when creating keymaps
 }
 
 local conf = {
   window = {
-    border = "single",   -- none, single, double, shadow
+    border = "single", -- none, single, double, shadow
     position = "bottom", -- bottom, top
   },
 }

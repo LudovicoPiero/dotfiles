@@ -2,7 +2,7 @@
 require("telescope").setup()
 
 -- Gitsigns
-require('gitsigns').setup()
+require("gitsigns").setup()
 
 -- Neogit
 -- require('neogit').setup()
@@ -25,12 +25,12 @@ require("bufferline").setup({
 })
 
 -- Indent Blankline
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
 require("indent_blankline").setup({
   use_treesitter = true,
   show_current_context = true,
@@ -139,7 +139,7 @@ lualine.setup({
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = { 'nvim-tree' },
+  extensions = { "nvim-tree" },
 })
 
 -- Nvim-Treesitter
@@ -161,20 +161,20 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- Nivm-treesitter-context
-require 'treesitter-context'.setup {
-  enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
-  max_lines = 2,            -- How many lines the window should span. Values <= 0 mean no limit.
-  min_window_height = 2,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+require("treesitter-context").setup({
+  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  max_lines = 2, -- How many lines the window should span. Values <= 0 mean no limit.
+  min_window_height = 2, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
   line_numbers = true,
   multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-  trim_scope = 'outer',     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-  mode = 'cursor',          -- Line used to calculate context. Choices: 'cursor', 'topline'
+  trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+  mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
   -- Separator between context and content. Should be a single character string, like '-'.
   -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-  separator = '-',
-  zindex = 20,     -- The Z-index of the context window
+  separator = "-",
+  zindex = 20, -- The Z-index of the context window
   on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
-}
+})
 
 require("nvim-tree").setup({})
 
