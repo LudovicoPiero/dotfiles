@@ -27,6 +27,7 @@ in {
       webcord-vencord
       tdesktop
       mpv
+      mailspring
       viewnior
 
       # Utils

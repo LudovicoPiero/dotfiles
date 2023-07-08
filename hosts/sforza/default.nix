@@ -84,6 +84,7 @@
     };
   };
 
+  security.pam.services.greetd.enableGnomeKeyring = true;
   services.greetd = let
     user = "ludovico";
     greetd = "${pkgs.greetd.greetd}/bin/greetd";
