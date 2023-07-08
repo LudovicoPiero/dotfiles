@@ -29,6 +29,7 @@
       whois
       wl-clipboard
 
+      inputs.self.packages.${pkgs.system}.teavpn2
       inputs.self.packages.${pkgs.system}.multicolor-sddm-theme
     ];
   };
