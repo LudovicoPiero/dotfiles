@@ -7,15 +7,17 @@ with lib; {
     terminalBin = mkOption {type = types.str;};
     colorScheme = mkOption {type = types.anything;};
 
-    home = mkOption {type = types.str;};
+    codeFolder = mkOption {type = types.str;};
     configHome = mkOption {type = types.str;};
     documentsFolder = mkOption {type = types.str;};
     downloadFolder = mkOption {type = types.str;};
+    gamesFolder = mkOption {type = types.str;};
+    home = mkOption {type = types.str;};
     musicFolder = mkOption {type = types.str;};
     picturesFolder = mkOption {type = types.str;};
-    videosFolder = mkOption {type = types.str;};
-    repositoriesFolder = mkOption {type = types.str;};
+    recordFolder = mkOption {type = types.str;};
     screenshotFolder = mkOption {type = types.str;};
+    videosFolder = mkOption {type = types.str;};
 
     sshPublicKey = mkOption {type = types.str;};
     stateVersion = mkOption {type = types.str;};

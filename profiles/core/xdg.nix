@@ -62,15 +62,14 @@ in {
         download = "${config.vars.home}/${config.vars.downloadFolder}";
         music = "${config.vars.home}/${config.vars.musicFolder}";
         pictures = "${config.vars.home}/${config.vars.picturesFolder}";
-        templates = "${config.vars.home}/${config.vars.repositoriesFolder}";
         videos = "${config.vars.home}/${config.vars.videosFolder}";
         desktop = "${config.vars.home}";
         publicShare = "${config.vars.home}";
         extraConfig = {
-          XDG_SCREENSHOTS_DIR = config.vars.screenshotFolder;
-          #XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
-          #XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
-          #XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
+          XDG_CODE_DIR = "${config.vars.home}/${config.vars.codeFolder}";
+          XDG_GAMES_DIR = "${config.vars.home}/${config.vars.gamesFolder}";
+          XDG_SCREENSHOT_DIR = "${config.vars.home}/${config.vars.screenshotFolder}";
+          XDG_RECORD_DIR = "${config.vars.home}/${config.vars.recordFolder}";
         };
       };
     };

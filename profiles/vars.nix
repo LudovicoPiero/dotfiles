@@ -14,13 +14,15 @@
 
     home = "/home/${username}";
     inherit ((builtins.getAttr username config.home-manager.users).xdg) configHome;
+    codeFolder = "Code";
     documentsFolder = "Documents";
     downloadFolder = "Downloads";
+    gamesFolder = "Games";
     musicFolder = "Music";
     picturesFolder = "Pictures";
+    recordFolder = "${videosFolder}/Record";
+    screenshotFolder = "${picturesFolder}/Screenshot";
     videosFolder = "Videos";
-    repositoriesFolder = "Stuff";
-    screenshotFolder = "${picturesFolder}/Screenshots";
 
     sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHKPBn388QwATBB2GiXYirTYZ+Nd2GTbzaUryyuWi3A ludovicopiero@pm.me";
     stateVersion = "22.11";
