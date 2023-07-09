@@ -47,6 +47,7 @@ in {
       package = inputs.hyprland.packages.${pkgs.system}.default;
       systemdIntegration = true;
       extraConfig = import ./config.nix args;
+      xwayland.hidpi = true;
     };
 
     # User Services
