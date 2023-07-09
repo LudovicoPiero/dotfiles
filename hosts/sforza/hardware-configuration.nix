@@ -20,50 +20,50 @@
   boot.extraModulePackages = [];
   boot.supportedFilesystems = ["ntfs"];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
-    fsType = "btrfs";
-    options = ["subvol=root" "rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
-  };
-
   boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/9785f98d-e75e-4061-acbf-8ec99c413416";
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
-    fsType = "btrfs";
-    options = ["subvol=home" "rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
-    fsType = "btrfs";
-    options = ["subvol=nix" "rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
-  };
-
-  fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
-    fsType = "btrfs";
-    options = ["subvol=persist" "rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
-    fsType = "btrfs";
-    options = ["subvol=log" "rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C0C6-0498";
-    fsType = "vfat";
-  };
-
-  fileSystems."/Stuff" = {
-    device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
-    fsType = "ntfs";
-    options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+  fileSystems = let
+    commonOptions = ["rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
+    commonDevice = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
+    commonFsType = "btrfs";
+  in {
+    "/boot" = {
+      device = "/dev/disk/by-uuid/C0C6-0498";
+      fsType = "vfat";
+    };
+    "/" = {
+      device = commonDevice;
+      fsType = commonFsType;
+      options = commonOptions ++ ["subvol=root"];
+    };
+    "/home" = {
+      device = commonDevice;
+      fsType = commonFsType;
+      options = commonOptions ++ ["subvol=home"];
+      neededForBoot = true;
+    };
+    "/nix" = {
+      device = commonDevice;
+      fsType = commonFsType;
+      options = commonOptions ++ ["subvol=nix"];
+    };
+    "/persist" = {
+      device = commonDevice;
+      fsType = commonFsType;
+      options = commonOptions ++ ["subvol=persist"];
+      neededForBoot = true;
+    };
+    "/var/log" = {
+      device = commonDevice;
+      fsType = commonFsType;
+      options = commonOptions ++ ["subvol=log"];
+      neededForBoot = true;
+    };
+    "/Stuff" = {
+      device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+      fsType = "ntfs";
+      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    };
   };
 
   swapDevices = [
