@@ -6,12 +6,12 @@
 }: let
   gitUrl = "https://github.com";
   doomUrl = "${gitUrl}/doomemacs/doomemacs";
-  configUrl = "${gitUrl}/lewdovico/doom.d";
+  configUrl = "${gitUrl}/ludovicopiero/doom.d";
 in {
   services.emacs = {
     enable = true;
     defaultEditor = true;
-    package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
+    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git;
   };
 
   system.userActivationScripts = {
