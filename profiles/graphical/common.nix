@@ -29,6 +29,7 @@ in {
       mpv
       mailspring
       viewnior
+      whatsapp-for-linux
 
       # Utils
       ocrScript

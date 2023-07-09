@@ -91,6 +91,7 @@ in ''
 
   # v2
   windowrulev2 = workspace 9, class:^(Mailspring)$
+  windowrulev2 = workspace 8, class:^(whatsapp-for-linux)$
   windowrulev2 = workspace 6, class:^(Steam)$
   windowrulev2 = workspace 5, title:(Spotify)
   windowrulev2 = workspace 4, class:^(org.telegram.desktop)$
@@ -115,9 +116,8 @@ in ''
   windowrulev2 = noshadow, class:^(Chromium-browser)$ # xwayland
   windowrulev2 = noshadow, class:^(chromium-browser)$ # wayland
   windowrulev2 = noshadow, class:^(discordcanary)$
+  windowrulev2 = noanim, class:^(org.telegram.desktop)$
   windowrulev2 = noanim, class:^(wlogout)$
-  windowrulev2 = noanim, class:^(Albion-Online)$
-  windowrulev2 = fullscreen, class:^(Albion-Online)$
 
   # Variables
   $discordOption = --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer
@@ -134,7 +134,7 @@ in ''
   bind = SUPER      , F , fullscreen , 0
   bind = SUPERSHIFT , G , exec , chromium
   bind = SUPER      , G , exec , ${browser}
-  bind = SUPER      , M , exec , [workspace 5 silent;tile] mailspring
+  bind = SUPER      , M , exec , [workspace 9 silent;tile] mailspring
   bind = SUPER      , P , exec , run-as-service ${launcher}
   bind = SUPER      , T , togglefloating ,
   bind = SUPER      , R , togglegroup ,
