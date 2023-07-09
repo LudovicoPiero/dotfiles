@@ -2,22 +2,23 @@
   pkgs,
   extraModulesPath,
   lib,
+  inputs,
   ...
 }: let
   inherit
     (pkgs)
     alejandra
-    age
     cachix
     editorconfig-checker
     nixUnstable
     nodePackages
-    sops
     stylua
     shfmt
     treefmt
     nixos-generators
     ;
+
+  inherit (inputs.agenix.packages.x86_64-linux) agenix;
 
   pkgWithCategory = category: package: {inherit package category;};
   devos = pkgWithCategory "devos";
@@ -38,8 +39,7 @@ in {
     [
       (devos nixUnstable)
       (formatter treefmt)
-      (secrets age)
-      (secrets sops)
+      (secrets agenix)
     ]
     ++ lib.optionals (!pkgs.stdenv.buildPlatform.isi686) [
       (devos cachix)

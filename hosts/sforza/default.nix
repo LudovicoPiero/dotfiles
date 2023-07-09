@@ -15,6 +15,8 @@
     ++ suites.sway;
   # ++ suites.cinnamon;
 
+  age.identityPaths = ["${config.vars.home}/.ssh/id_ed25519"];
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 5;
