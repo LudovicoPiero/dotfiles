@@ -1,3 +1,10 @@
+;;; prelude.el --- Emacs Config Powered by Rycee's emacs-init
+
+;;; Commentary:
+;;; More info : https://gitlab.com/rycee/nur-expressions/-/blob/master/hm-modules/emacs-init.nix
+
+;;; Code:
+
 (custom-set-variables
   '(inhibit-startup-screen t))
 ;; Set a font
@@ -34,5 +41,11 @@
       kept-new-versions      10 ; how many of the newest versions to keep
       kept-old-versions      5) ; and how many of the old
 
+(elcord-mode t)
+(setq elcord-use-major-mode-as-main-icon 't
+      elcord-quiet 't)
+
 ;; Long text goes below
 (global-visual-line-mode t)
+
+;;; prelude.el ends here

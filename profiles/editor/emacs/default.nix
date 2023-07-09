@@ -34,6 +34,9 @@
         prelude = builtins.readFile ./prelude.el;
 
         usePackage = {
+          elcord = {
+            enable = true;
+          };
           projectile = {
             enable = true;
             diminish = ["projectile-mode"];
