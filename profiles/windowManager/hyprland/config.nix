@@ -52,7 +52,7 @@ in ''
       rounding = 5
       blur = yes
       blur_size = 3
-      blur_passes = 1
+      blur_passes = 3
       blur_new_optimizations = on
 
       drop_shadow = no
@@ -92,7 +92,7 @@ in ''
   # v2
   windowrulev2 = workspace 9, class:^(Mailspring)$
   windowrulev2 = workspace 6, class:^(Steam)$
-  windowrulev2 = workspace 5, class:^(Spotify)$
+  windowrulev2 = workspace 5, title:(Spotify)
   windowrulev2 = workspace 4, class:^(org.telegram.desktop)$
   windowrulev2 = workspace 3, class:^(discord)$
   windowrulev2 = workspace 3, title:^(WebCord)$
