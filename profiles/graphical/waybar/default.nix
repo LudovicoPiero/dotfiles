@@ -40,7 +40,8 @@ in {
           ];
           modules-right = [
             "network"
-            "custom/vpn"
+            "custom/wireguard"
+            "custom/teavpn"
             "pulseaudio"
             "battery"
             "custom/date"
@@ -114,10 +115,17 @@ in {
             format-disconnected = "󰖪  Disconnected";
             tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
           };
-          "custom/vpn" = {
+          "custom/wireguard" = {
             "format" = " Wireguard";
             "exec" = "echo '{\"class\": \"connected\"}'";
             "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+            "return-type" = "json";
+            "interval" = 5;
+          };
+          "custom/teavpn" = {
+            "format" = " TeaVPN";
+            "exec" = "echo '{\"class\": \"connected\"}'";
+            "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
             "return-type" = "json";
             "interval" = 5;
           };

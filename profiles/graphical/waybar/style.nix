@@ -40,11 +40,15 @@ _: ''
       border-radius: 5px;
   }
 
-  #custom-vpn {
+  #custom-wireguard {
     color: #fab387;
   }
 
-  #tray, #custom-date, #custom-vpn, #clock, #battery, #pulseaudio, #network {
+  #custom-teavpn {
+    color: #fab387;
+  }
+
+  #tray, #custom-date, #custom-wireguard, #custom-teavpn, #clock, #battery, #pulseaudio, #network {
   	background-color: #24283b;
   	padding: 5px 10px;
   	margin: 5px 0px;
