@@ -23,8 +23,21 @@
     ])
     ++ (with pkgs.gnome; [
       cheese # webcam tool
-      gnome-music
+      gnome-calculator
+      gnome-calendar
+      gnome-characters
+      gnome-clocks
+      gnome-disk-utility
       gnome-terminal
+      gnome-contacts
+      gnome-font-viewer
+      gnome-remote-desktop
+      gnome-logs
+      gnome-system-monitor
+      gnome-maps
+      gnome-music
+      gnome-weather
+      simple-scan
       gedit # text editor
       epiphany # web browser
       geary # email reader
@@ -35,5 +48,7 @@
       iagno # go game
       hitori # sudoku game
       atomix # puzzle game
+      quadrapassel
+      yelp # gnome help
     ]);
 }
