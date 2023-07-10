@@ -120,7 +120,8 @@
 
 ;; Elcord
 (elcord-mode)
-(setq elcord-quiet t) ;; Make elcord shut up
+(setq elcord-quiet t
+      elcord-use-major-mode-as-main-icon 't) ;; Make elcord shut up
 
 ;; (provide 'config)
 ;;; config.el ends here

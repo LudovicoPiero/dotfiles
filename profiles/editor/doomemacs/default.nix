@@ -29,7 +29,7 @@ in {
           cp -r ${./config} $HOME/.doom.d/
           $EMACS/bin/doom sync
         else
-          yes | $EMACS/bin/doom sync
+          $EMACS/bin/doom sync
         fi
       '';
     };
