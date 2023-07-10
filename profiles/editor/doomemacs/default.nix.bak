@@ -31,7 +31,7 @@ in {
       text = ''
         EMACS="$HOME/.emacs.d"
 
-        # [ -d $HOME/.emacs.d ] && mv $HOME/.emacs.d $HOME/.emacs.d.bak
+        [ -d $HOME/.emacs.d ] && mv $HOME/.emacs.d $HOME/.emacs.d.bak
         [ -f $HOME/.emacs.el ] && mv $HOME/.emacs.el .emacs.el.bak
         [ -f $HOME/.emacs ] && mv $HOME/.emacs $HOME/.emacs.bak
         if [ ! -d "$EMACS" ]; then
