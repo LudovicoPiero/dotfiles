@@ -42,7 +42,7 @@ in {
       # wlr disabled because i'm using xdg-desktop-portal-hyprland
       wlr.enable = lib.mkForce false;
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      extraPortals = lib.mkForce [pkgs.xdg-desktop-portal-gtk];
     };
   };
   home-manager.users."${config.vars.username}" = {

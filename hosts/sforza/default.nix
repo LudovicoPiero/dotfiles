@@ -12,8 +12,8 @@
     ]
     ++ suites.desktop
     ++ suites.hyprland
-    ++ suites.sway;
-  # ++ suites.cinnamon;
+    ++ suites.sway
+    ++ suites.gnome;
 
   age.identityPaths = ["${config.vars.home}/.ssh/id_ed25519"];
 
@@ -87,26 +87,26 @@
   };
 
   security.pam.services.greetd.enableGnomeKeyring = true;
-  services.greetd = let
-    user = "ludovico";
-    greetd = "${pkgs.greetd.greetd}/bin/greetd";
-    gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-
-    sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
-      output * bg #000000 solid_color
-      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-      exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
-    ''}";
-  in {
-    enable = true;
-    vt = 7;
-    settings = {
-      default_session = {
-        command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
-        inherit user;
-      };
-    };
-  };
+  # services.greetd = let
+  #   user = "ludovico";
+  #   greetd = "${pkgs.greetd.greetd}/bin/greetd";
+  #   gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+  #
+  #   sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
+  #     output * bg #000000 solid_color
+  #     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+  #     exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
+  #   ''}";
+  # in {
+  #   enable = true;
+  #   vt = 7;
+  #   settings = {
+  #     default_session = {
+  #       command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
+  #       inherit user;
+  #     };
+  #   };
+  # };
 
   environment.etc."greetd/environments".text = ''
     sway
@@ -124,10 +124,10 @@
 
     displayManager = {
       lightdm.enable = false;
-      # gdm = {
-      #   enable = true;
-      # wayland = true;
-      # };
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
       # sddm = {
       #   enable = true;
       #   theme = "multicolor-sddm-theme";
