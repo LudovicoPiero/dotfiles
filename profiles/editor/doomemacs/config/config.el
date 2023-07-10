@@ -119,8 +119,8 @@
 ;; (setq +evil-want-o/O-to-continue-comments nil)
 
 ;; Elcord
-;; (elcord-mode)
-;; (setq elcord-quiet t) ;; Make elcord shut up
+(elcord-mode)
+(setq elcord-quiet t) ;; Make elcord shut up
 
 ;; (provide 'config)
 ;;; config.el ends here
