@@ -6,27 +6,37 @@
 }: let
   gitUrl = "https://github.com";
   doomUrl = "${gitUrl}/doomemacs/doomemacs";
-  configUrl = "${gitUrl}/lewdovico/doom.d";
 in {
-  services.emacs = {
-    enable = true;
-    defaultEditor = true;
-    package = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
+  home-manager.users."${config.vars.username}" = {
+    home.file = {
+      ".emacs.d/snippets".source = ./snippets;
+      ".doom.d" = {
+        source = ./config;
+        recursive = true;
+      };
+    };
+    programs.emacs = {
+      enable = true;
+      package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git;
+    };
+    services.emacs = {
+      enable = true;
+      package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git;
+    };
   };
 
   system.userActivationScripts = {
     # Installation script every time nixos-rebuild is run. So not during initial install.
     doomEmacs = {
       text = ''
-        source ${config.system.build.setEnvironment}
         EMACS="$HOME/.emacs.d"
 
+        # [ -d $HOME/.emacs.d ] && mv $HOME/.emacs.d $HOME/.emacs.d.bak
+        [ -f $HOME/.emacs.el ] && mv $HOME/.emacs.el .emacs.el.bak
+        [ -f $HOME/.emacs ] && mv $HOME/.emacs $HOME/.emacs.bak
         if [ ! -d "$EMACS" ]; then
-          ${pkgs.git}/bin/git clone --depth=1 --single-branch ${doomUrl} $EMACS
-          yes | $EMACS/bin/doom install
-          rm -r $HOME/.doom.d
-          ${pkgs.git}/bin/git clone ${configUrl} $HOME/.doom.d
-          $EMACS/bin/doom sync
+            ${pkgs.git}/bin/git clone --depth=1 --single-branch ${doomUrl} $EMACS
+            yes | $EMACS/bin/doom install
         else
           $EMACS/bin/doom sync
         fi
