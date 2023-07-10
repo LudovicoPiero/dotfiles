@@ -7,7 +7,7 @@
 }: let
   inherit (config.vars.colorScheme) colors;
 in {
-  programs.sway.enable = false; # Enable nixos modules
+  programs.sway.enable = true; # Enable nixos modules
 
   home-manager.users.${config.vars.username} = {
     home.sessionVariables = {
