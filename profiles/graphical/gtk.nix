@@ -28,7 +28,7 @@ in {
       enable = true;
       gtk2.extraConfig = ''
         gtk-cursor-theme-name="${cursorTheme.name}"
-        gtk-cursor-theme-size="${builtins.toString cursorTheme.size}"
+        gtk-cursor-theme-size="${cursorTheme.size}"
       '';
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = true;
