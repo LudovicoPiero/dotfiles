@@ -3,7 +3,7 @@
     enable = true;
 
     userEmail = "ludovicopiero@pm.me";
-    userName = "Ludovico";
+    userName = "Ludovico Piero";
 
     signing = {
       key = "3911DD276CFE779C";
