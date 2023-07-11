@@ -15,6 +15,11 @@
     '';
   sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/screenshot}'';
 in {
+  security = {
+    # pam.services.greetd.gnupg.enable = true;
+    # pam.services.greetd.enableGnomeKeyring = true;
+    pam.services.swaylock.text = "auth include login";
+  };
   home-manager.users.${config.vars.username} = {
     home.packages = with pkgs; [
       authy

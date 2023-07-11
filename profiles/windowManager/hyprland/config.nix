@@ -9,6 +9,13 @@
   launcher = "${lib.getExe pkgs.fuzzel}";
   browser = "${lib.getExe pkgs.firefox}";
   powermenu = "${lib.getExe pkgs.wlogout}";
+  swayidle = pkgs.writeShellScriptBin "swayidle-script" ''
+    ${lib.getExe pkgs.swayidle} -w \
+      timeout 300 '${lib.getExe pkgs.swaylock} -f -c 000000' \
+      timeout 600 'swaymsg "output * power off"' \
+      resume 'swaymsg "output * power on"' \
+      before-sleep '${lib.getExe pkgs.swaylock} -f -c 000000'
+  '';
 in ''
   #        name  , resolution  ,offset , scale
   monitor = eDP-1, 1366x768@60 , 0x0   , 1
@@ -205,5 +212,6 @@ in ''
   binde = , XF86MonBrightnessDown , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
 
   exec-once = waybar
+  exec-once = ${lib.getExe swayidle}
   exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 ''
