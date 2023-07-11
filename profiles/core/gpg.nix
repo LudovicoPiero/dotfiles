@@ -21,6 +21,7 @@
       pinentryFlavor = "gnome3";
       extraConfig = ''
         allow-emacs-pinentry
+        allow-loopback-pinentry
         allow-preset-passphrase
       '';
     };
