@@ -9,5 +9,6 @@ channels: _final: _prev: {
   inherit
     (channels.master)
     swayfx
+    linuxPackages_xanmod_latest
     ;
 }
