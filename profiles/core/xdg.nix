@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: let
   browser = ["firefox.desktop"];
@@ -42,7 +43,14 @@ in {
       # wlr disabled because i'm using xdg-desktop-portal-hyprland
       wlr.enable = lib.mkForce false;
       enable = true;
-      extraPortals = lib.mkForce [pkgs.xdg-desktop-portal-gtk];
+      extraPortals = lib.mkForce [
+        pkgs.xdg-desktop-portal-gtk
+        (inputs.xdph.packages.${pkgs.system}.xdg-desktop-portal-hyprland.override {
+          hyprland-share-picker = inputs.xdph.packages.${pkgs.system}.hyprland-share-picker.override {
+            hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+          };
+        })
+      ];
     };
   };
   home-manager.users."${config.vars.username}" = {

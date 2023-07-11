@@ -29,6 +29,9 @@
     hyprland.inputs.nixpkgs.follows = "nixos";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
+    xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    xdph.inputs.nixpkgs.follows = "nixos";
+
     swayfx.url = "github:WillPower3309/swayfx";
 
     impermanence.url = "github:nix-community/impermanence";
