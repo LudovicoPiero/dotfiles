@@ -7,9 +7,8 @@ channels: _final: _prev: {
     exa
     ;
 
-  inherit
-    (channels.master)
-    swayfx
-    linuxPackages_xanmod_latest
-    ;
+  # inherit
+  #   (channels.nixos)
+  #   swayfx
+  #   ;
 }

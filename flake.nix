@@ -77,6 +77,9 @@
           imports = [(digga.lib.importOverlays ./overlays)];
           overlays = [];
         };
+        master = {
+          imports = [(digga.lib.importOverlays ./overlays)];
+        };
       };
 
       lib = import ./lib {lib = digga.lib // nixos.lib;};
@@ -110,6 +113,7 @@
         imports = [(digga.lib.importHosts ./hosts)];
         hosts = {
           sforza = {
+            channelName = "master";
             modules = [
               # nixos-hardware.nixosModules.common-pc-laptop-ssd
               aagl.nixosModules.default
