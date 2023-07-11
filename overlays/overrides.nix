@@ -4,6 +4,7 @@ channels: _final: _prev: {
   inherit
     (channels.stable)
     cachix
+    exa
     ;
 
   inherit
