@@ -8,17 +8,13 @@
     fonts = with pkgs; [
       # Icons
       inputs.self.packages.${pkgs.system}.san-francisco-pro
-
       powerline-fonts
       material-symbols
       iosevka-comfy.comfy
       emacs-all-the-icons-fonts
       font-awesome
-
       sarasa-gothic
       noto-fonts-emoji
-
-      jetbrains-mono
       (nerdfonts.override {fonts = ["Iosevka"];})
     ];
 
