@@ -26,7 +26,7 @@
     commonOptions = ["rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
     commonDevice = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
     commonFsType = "btrfs";
-    username = config.vars.username;
+    inherit (config.vars) username;
     userHome = "/home/${username}";
   in {
     "/boot" = {

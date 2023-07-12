@@ -41,7 +41,7 @@ in {
       '';
       gtk3 = {
         bookmarks = let
-          username = config.vars.username;
+          inherit (config.vars) username;
         in [
           "file:///home/${username}/Code"
           "file:///home/${username}/Documents"
