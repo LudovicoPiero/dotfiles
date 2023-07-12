@@ -9,7 +9,7 @@
     email = "ludovicopiero@pm.me";
     username = "ludovico";
     terminal = "xterm-256color";
-    terminalBin = "${lib.getExe pkgs.wezterm}";
+    terminalBin = "${lib.getExe pkgs.kitty}";
     colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
     home = "/home/${username}";
