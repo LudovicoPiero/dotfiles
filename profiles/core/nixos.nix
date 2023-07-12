@@ -34,7 +34,7 @@
       DIRENV_WARN_TIMEOUT = "24h";
       # silence direnv
       DIRENV_LOG_FORMAT = "";
-      MANGOHUD = "1"; # Launch all vulkan games with mangohud
+    #   MANGOHUD = "1"; # Launch all vulkan games with mangohud
     };
   };
 
