@@ -24,6 +24,7 @@
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
     "x-scheme-handler/mailspring" = mailspring;
+    "inode/directory" = ["thunar.desktop"];
 
     "audio/*" = ["mpv.desktop"];
     "video/*" = ["mpv.dekstop"];
