@@ -39,20 +39,34 @@ in {
         gtk-xft-hintstyle="hintslight"
         gtk-xft-rgba="rgb"
       '';
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
-        gtk-cursor-theme-name = cursorTheme.name;
-        gtk-cursor-theme-size = cursorTheme.size;
-        gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
-        gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-        gtk-button-images = 1;
-        gtk-menu-images = 1;
-        gtk-enable-event-sounds = 1;
-        gtk-enable-input-feedback-sounds = 1;
-        gtk-xft-antialias = 1;
-        gtk-xft-hinting = 1;
-        gtk-xft-hintstyle = "hintslight";
-        gtk-xft-rgba = "rgb";
+      gtk3 = {
+        bookmarks = let
+          username = config.vars.username;
+        in [
+          "file:///home/${username}/Code"
+          "file:///home/${username}/Documents"
+          "file:///home/${username}/Downloads"
+          "file:///home/${username}/Games"
+          "file:///home/${username}/Music"
+          "file:///home/${username}/Pictures"
+          "file:///home/${username}/Videos"
+          "file:///Stuff"
+        ];
+        extraConfig = {
+          gtk-application-prefer-dark-theme = true;
+          gtk-cursor-theme-name = cursorTheme.name;
+          gtk-cursor-theme-size = cursorTheme.size;
+          gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
+          gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
+          gtk-button-images = 1;
+          gtk-menu-images = 1;
+          gtk-enable-event-sounds = 1;
+          gtk-enable-input-feedback-sounds = 1;
+          gtk-xft-antialias = 1;
+          gtk-xft-hinting = 1;
+          gtk-xft-hintstyle = "hintslight";
+          gtk-xft-rgba = "rgb";
+        };
       };
       font = {
         inherit (font) name size;
