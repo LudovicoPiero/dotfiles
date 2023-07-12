@@ -94,6 +94,7 @@
     sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
       output * bg #000000 solid_color
       exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+      bindsym Mod4+Return wezterm
       exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
     ''}";
   in {
