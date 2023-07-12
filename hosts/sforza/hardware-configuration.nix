@@ -26,6 +26,8 @@
     commonOptions = ["rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
     commonDevice = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
     commonFsType = "btrfs";
+    username = config.vars.username;
+    userHome = "/home/${username}";
   in {
     "/boot" = {
       device = "/dev/disk/by-uuid/C0C6-0498";
@@ -59,8 +61,13 @@
       options = commonOptions ++ ["subvol=log"];
       neededForBoot = true;
     };
-    "/Stuff" = {
+    "${userHome}/FileWindows" = {
       device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+      fsType = "ntfs";
+      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    };
+    "${userHome}/CodeWindows" = {
+      device = "/dev/disk/by-uuid/01D95CDF9A689D70";
       fsType = "ntfs";
       options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
     };
