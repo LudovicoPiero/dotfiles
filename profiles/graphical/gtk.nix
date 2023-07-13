@@ -50,8 +50,9 @@ in {
           "file:///home/${username}/Music"
           "file:///home/${username}/Pictures"
           "file:///home/${username}/Videos"
-          "file:///home/${username}/FileWindows"
-          "file:///home/${username}/CodeWindows"
+          "file:///home/${username}/WinC"
+          "file:///home/${username}/WinD"
+          "file:///home/${username}/WinE"
         ];
         extraConfig = {
           gtk-application-prefer-dark-theme = true;
