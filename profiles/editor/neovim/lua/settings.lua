@@ -10,8 +10,6 @@ vim.cmd([[
     au BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
     augroup END
-
-autocmd FileType nix setlocal shiftwidth=4
 ]])
 
 local o = vim.opt
