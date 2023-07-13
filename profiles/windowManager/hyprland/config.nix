@@ -213,5 +213,5 @@ in ''
 
   exec-once = waybar
   exec-once = ${lib.getExe swayidle}
-  exec-once = systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
+  exec-once = sleep 3;systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 ''
