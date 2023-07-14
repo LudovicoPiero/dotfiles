@@ -35,8 +35,8 @@ in
           ${_ direnv} hook fish | source
         '';
         shellAliases = {
-          "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake ~/.config/nixos && popd";
-          "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake ~/.config/nixos && popd";
+          "bs" = "pushd ~/.config/nixos && nixos-rebuild switch --flake ~/.config/nixos --use-remote-sudo && popd";
+          "bb" = "pushd ~/.config/nixos && nixos-rebuild boot --flake ~/.config/nixos --use-remote-sudo && popd";
           "hs" = "pushd ~/.config/nixos && home-manager switch --flake ~/.config/nixos && popd";
           "cat" = "${_ bat}";
           "config" = "cd ~/.config/nixos";
