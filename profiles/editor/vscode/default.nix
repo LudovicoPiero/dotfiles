@@ -10,10 +10,11 @@
     ];
     programs.vscode = {
       enable = true;
-      # package = pkgs.vscodium; # use vscode because copilot no worky :(
+      package = pkgs.vscodium; # use vscode because copilot no worky :(
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       userSettings = {
+        "C_Cpp.intelliSenseEngine" = "Disabled";
         "editor.cursorBlinking" = "phase";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.fontFamily" = "'Iosevka Nerd Font', 'monospace', monospace";
@@ -52,6 +53,10 @@
           # Theme & flair
           catppuccin.catppuccin-vsc
           pkief.material-icon-theme
+
+          # C/C++
+          ms-vscode.cpptools
+          llvm-vs-code-extensions.vscode-clangd
 
           # Nix
           # bbenoist.nix
