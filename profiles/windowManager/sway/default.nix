@@ -31,7 +31,7 @@ in {
       package = pkgs.swayfx; # Grabbed from overlays/overrides.nix
       config = {
         colors = import ./colors.nix {inherit colors;};
-        keybindings = import ./keybindings.nix {inherit config lib pkgs;};
+        keybindings = import ./keybindings.nix {inherit config pkgs;};
         bars = import ./bars.nix {inherit colors;};
         window = import ./windows.nix;
         output = {
