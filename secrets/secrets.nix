@@ -5,4 +5,6 @@ let
 in {
   "userPassword.age".publicKeys = allKeys;
   "rootPassword.age".publicKeys = allKeys;
+  "wgPrivKey.age".publicKeys = allKeys;
+  "wgPresharedKey.age".publicKeys = allKeys;
 }

@@ -2,6 +2,7 @@
   config,
   pkgs,
   suites,
+  self,
   lib,
   ...
 }: {
@@ -15,7 +16,13 @@
     ++ suites.sway;
   # ++ suites.gnome;
 
-  age.identityPaths = ["${config.vars.home}/.ssh/id_ed25519"];
+  age = {
+    secrets = {
+      wgPresharedKey.file = "${self}/secrets/wgPresharedKey.age";
+      wgPrivKey.file = "${self}/secrets/wgPrivKey.age";
+    };
+    identityPaths = ["${config.vars.home}/.ssh/id_ed25519"];
+  };
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -142,12 +149,12 @@
       autostart = true;
       address = ["10.66.66.3/32" "fd42:42:42::3/128"];
       dns = ["1.1.1.1" "1.0.0.1"];
-      privateKeyFile = "/persist/wireguard/privKey";
+      privateKeyFile = config.age.secrets.wgPrivKey.path;
 
       peers = [
         {
           publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
-          presharedKeyFile = "/persist/wireguard/presharedKey";
+          presharedKeyFile = config.age.secrets.wgPresharedKey.path;
           allowedIPs = ["0.0.0.0/0" "::/0"];
           endpoint = "103.235.73.71:50935";
           persistentKeepalive = 25;
