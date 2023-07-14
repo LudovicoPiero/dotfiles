@@ -5,22 +5,23 @@
   ...
 }: let
   inherit (config.vars.colorScheme) colors;
+  _ = lib.getExe;
   terminal = "${config.vars.terminalBin}";
-  launcher = "${lib.getExe pkgs.fuzzel}";
-  browser = "${lib.getExe pkgs.firefox}";
-  powermenu = "${lib.getExe pkgs.wlogout}";
+  launcher = "${_ pkgs.fuzzel}";
+  browser = "${_ pkgs.firefox}";
+  powermenu = "${_ pkgs.wlogout}";
   swayidle = pkgs.writeShellScriptBin "swayidle-script" ''
-    ${lib.getExe pkgs.swayidle} -w \
+    ${_ pkgs.swayidle} -w \
       timeout 300 '${lib.getExe pkgs.swaylock} -f -c 000000' \
       timeout 600 'swaymsg "output * power off"' \
       resume 'swaymsg "output * power on"' \
       before-sleep '${lib.getExe pkgs.swaylock} -f -c 000000'
   '';
+  discord-wrapped = "${_ pkgs.discord-canary} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
+  webcord-wrapped = "${_ pkgs.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
 in ''
   #        name  , resolution  ,offset , scale
   monitor = eDP-1, 1366x768@60 , 0x0   , 1
-
-  $HYPR_FOLDER = /home/$(whoami)/.config/hypr
 
   input {
       kb_layout = us
@@ -125,17 +126,12 @@ in ''
   windowrulev2 = noanim, class:^(org.telegram.desktop)$
   windowrulev2 = noanim, class:^(wlogout)$
 
-  # Variables
-  $discordOption = --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer
-  $discord = discordcanary $discordOption
-  $webcord = webcord $discordOption
-
   # Binds Keyboard
   bind = SUPER      , C , exit ,
   bind = SUPER      , Q, togglespecialworkspace
   bind = SUPERSHIFT , Q, movetoworkspace, special
-  bind = SUPER      , D , exec , $discord
-  bind = SUPERSHIFT , D , exec , $webcord
+  bind = SUPER      , D , exec , ${discord-wrapped}
+  bind = SUPERSHIFT , D , exec , ${webcord-wrapped}
   bind = SUPERSHIFT , E , exec , [float] thunar
   bind = SUPER      , F , fullscreen , 0
   bind = SUPERSHIFT , G , exec , chromium
