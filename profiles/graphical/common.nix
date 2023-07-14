@@ -23,7 +23,6 @@ in {
   home-manager.users.${config.vars.username} = {
     home.packages = with pkgs; [
       authy
-      webcord-vencord
       tdesktop
       mpv
       mailspring

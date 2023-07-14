@@ -31,7 +31,7 @@
     "image/*" = ["imv.desktop"];
     "application/json" = browser;
     "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
-    "x-scheme-handler/discord" = ["discordcanary.desktop"];
+    "x-scheme-handler/discord" = ["WebCord.desktop"];
     "x-scheme-handler/spotify" = ["spotify.desktop"];
     "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
     "x-scheme-handler/mailto" = mailspring;
