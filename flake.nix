@@ -38,6 +38,7 @@
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     emacs-overlay.inputs.nixpkgs.follows = "nixos";
+    emacs-overlay.inputs.nixpkgs-stable.follows = "stable";
 
     # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     # nixpkgs-wayland.inputs.nixpkgs.follows = "nixos";
