@@ -52,13 +52,13 @@ in {
 
     # User Services
     systemd.user.services = {
-      # swaybg = mkService {
-      #   Unit.Description = "Images Wallpaper Daemon";
-      #   Service = {
-      #     ExecStart = "${lib.getExe pkgs.swaybg} -i ${./Wallpaper/wallpaper.jpg}";
-      #     Restart = "always";
-      #   };
-      # };
+      swaybg = mkService {
+        Unit.Description = "Images Wallpaper Daemon";
+        Service = {
+          ExecStart = "${lib.getExe pkgs.swaybg} -i ${./Wallpaper/hypr-chan.png}";
+          Restart = "always";
+        };
+      };
       # mpvpaper = mkService {
       #   Unit.Description = "Video Wallpaper Daemon";
       #   Service = {
