@@ -18,7 +18,7 @@
     nixos-generators
     ;
 
-  inherit (inputs.agenix.packages.x86_64-linux) agenix;
+  inherit (inputs.ragenix.packages.x86_64-linux) ragenix;
 
   pkgWithCategory = category: package: {inherit package category;};
   devos = pkgWithCategory "devos";
@@ -39,7 +39,7 @@ in {
     [
       (devos nixUnstable)
       (formatter treefmt)
-      (secrets agenix)
+      (secrets ragenix)
     ]
     ++ lib.optionals (!pkgs.stdenv.buildPlatform.isi686) [
       (devos cachix)

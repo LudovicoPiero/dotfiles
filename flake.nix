@@ -14,8 +14,8 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixos"; # Name of nixpkgs input you want to use
 
-    agenix.url = "github:ryantm/agenix/2994d002dcff5353ca1ac48ec584c7f6589fe447";
-    agenix.inputs.nixpkgs.follows = "nixos";
+    ragenix.url = "github:yaxitech/ragenix";
+    ragenix.inputs.nixpkgs.follows = "nixos";
 
     digga.url = "github:divnix/digga";
     digga.inputs.nixpkgs.follows = "nixos";
@@ -55,7 +55,7 @@
     self,
     digga,
     nixos,
-    agenix,
+    ragenix,
     aagl,
     home,
     hyprland,
@@ -102,7 +102,7 @@
           imports = [(digga.lib.importExportableModules ./modules)];
           modules = [
             {lib.our = self.lib;}
-            agenix.nixosModules.default
+            ragenix.nixosModules.default
             digga.nixosModules.bootstrapIso
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
