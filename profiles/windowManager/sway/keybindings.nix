@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
 }: let
   cfg = config.home-manager.users."${config.vars.username}".wayland.windowManager.sway.config;
   mod = cfg.modifier;

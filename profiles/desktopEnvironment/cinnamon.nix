@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: {
   hardware.pulseaudio.enable = lib.mkForce false;

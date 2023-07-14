@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   cfg = config.home-manager.users."${config.vars.username}";
   gtkCfg = cfg.gtk;
   inherit (config.vars.colorScheme) colors;
