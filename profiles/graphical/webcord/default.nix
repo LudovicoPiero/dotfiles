@@ -24,10 +24,6 @@ in {
       "WebCord/Themes/amoled" = {
         source = "${amoledcord}/src/amoled-cord.css";
       };
-
-      "WebCord/config.json" = {
-        source = ./config.json;
-      };
     };
 
     services.arrpc.enable = true;
