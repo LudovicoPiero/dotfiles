@@ -71,9 +71,6 @@ local on_attach = function(client)
   require("lsp-format").on_attach(client)
 end
 
-local caps =
-  vim.tbl_extend("keep", vim.lsp.protocol.make_client_capabilities(), require("cmp_nvim_lsp").default_capabilities())
-
 -- Set up lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("lspconfig")["nil_ls"].setup({
@@ -97,6 +94,10 @@ require("lspconfig")["zk"].setup({
   capabilities = capabilities,
 })
 require("lspconfig")["lua_ls"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+require("lspconfig")["clangd"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
