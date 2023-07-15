@@ -8,14 +8,12 @@
     fonts = with pkgs; [
       # Icons
       inputs.self.packages.${pkgs.system}.san-francisco-pro
-      powerline-fonts
-      material-symbols
-      iosevka-comfy.comfy
+      inputs.self.packages.${pkgs.system}.iosevka-q
       emacs-all-the-icons-fonts
       font-awesome
       sarasa-gothic
       noto-fonts-emoji
-      (nerdfonts.override {fonts = ["Iosevka"];})
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
 
     # use fonts specified by user rather than default ones

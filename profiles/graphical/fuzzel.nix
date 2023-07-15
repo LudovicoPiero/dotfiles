@@ -8,7 +8,7 @@ in {
       enable = true;
       settings = {
         main = {
-          font = "Iosevka Nerd Font-16";
+          font = "Iosevka q-16";
           icon-theme = "${gtkCfg.iconTheme.name}";
           prompt = "->";
         };

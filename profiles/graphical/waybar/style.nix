@@ -2,7 +2,7 @@ _: ''
   * {
       border: none;
       border-radius: 0;
-      font-family: Iosevka Nerd Font;
+      font-family: Iosevka q, Symbols Nerd Font, monospace;
       font-size: 14px;
       min-height: 0;
   }

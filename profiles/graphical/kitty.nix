@@ -5,7 +5,7 @@ in {
     programs.kitty = {
       enable = true;
       font = {
-        name = "Iosevka Nerd Font";
+        name = "Iosevka q";
         size = 14;
       };
       settings = {

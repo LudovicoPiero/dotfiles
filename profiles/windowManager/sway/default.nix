@@ -71,7 +71,7 @@ in {
           outer = 3;
         };
         fonts = {
-          names = ["Iosevka Comfy"];
+          names = ["Iosevka q"];
           size = 10.0;
         };
         startup = [

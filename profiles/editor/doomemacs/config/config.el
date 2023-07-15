@@ -5,9 +5,9 @@
 (setq user-full-name "Ludovico Piero"
       user-mail-address "ludovicopiero@pm.me")
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 15 :weight 'medium :slant 'normal)
-      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font" :size 15 :weight 'medium :slant 'normal)
-      doom-big-font (font-spec :family "Iosevka Nerd Font" :size 20))
+(setq doom-font (font-spec :family "Iosevka q" :size 15 :weight 'medium :slant 'normal)
+      doom-variable-pitch-font (font-spec :family "Iosevka q" :size 15 :weight 'medium :slant 'normal)
+      doom-big-font (font-spec :family "Iosevka q" :size 20))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))

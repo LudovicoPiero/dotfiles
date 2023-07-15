@@ -1,6 +1,7 @@
 /** ********** Fonts ********** **/
 * {
-  font-family: "Iosevka Nerd Font", "Font Awesome 6 Brands", "Font Awesome 6 Free", monospace;
+  font-family: "Iosevka q", "Symbols Nerd Font", "Font Awesome 6 Brands",
+    "Font Awesome 6 Free", monospace;
   font-size: 12px;
 }
 
@@ -42,10 +43,11 @@
 }
 
 #entry:selected {
-  background-image: linear-gradient(to right, --wofi-color4 , --wofi-color5);
+  background-image: linear-gradient(to right, --wofi-color4, --wofi-color5);
   color: --wofi-color0;
 }
 
-#input, #entry:selected {
+#input,
+#entry:selected {
   border-radius: 0px;
 }
