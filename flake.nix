@@ -14,9 +14,6 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixos"; # Name of nixpkgs input you want to use
 
-    arrpc.url = "github:NotAShelf/arrpc-flake";
-    arrpc.inputs.nixpkgs.follows = "nixos";
-
     ragenix.url = "github:yaxitech/ragenix";
     ragenix.inputs.nixpkgs.follows = "nixos";
 

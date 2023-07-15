@@ -43,26 +43,6 @@
         "type": "github"
       }
     },
-    "arrpc": {
-      "inputs": {
-        "nixpkgs": [
-          "nixos"
-        ]
-      },
-      "locked": {
-        "lastModified": 1683545835,
-        "narHash": "sha256-GfsXWlidRkQG/eB/iwWrUAvB2v2uYrQr1LKRAToId/s=",
-        "owner": "NotAShelf",
-        "repo": "arrpc-flake",
-        "rev": "b29476f08795519fdac720fb4caf46dbe756823b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "arrpc-flake",
-        "type": "github"
-      }
-    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -941,7 +921,6 @@
     "root": {
       "inputs": {
         "aagl": "aagl",
-        "arrpc": "arrpc",
         "digga": "digga",
         "emacs-overlay": "emacs-overlay",
         "flake-compat": "flake-compat_4",

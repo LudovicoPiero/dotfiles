@@ -12,10 +12,6 @@
   };
 in {
   home-manager.users."${config.vars.username}" = {
-    imports = [
-      inputs.arrpc.homeManagerModules.default
-    ];
-
     home.packages = with pkgs; [
       webcord-vencord
     ];
@@ -25,7 +21,5 @@ in {
         source = "${amoledcord}/src/amoled-cord.css";
       };
     };
-
-    services.arrpc.enable = true;
   };
 }
