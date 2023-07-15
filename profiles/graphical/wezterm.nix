@@ -7,9 +7,8 @@ in {
       local wezterm = require("wezterm")
       return {
       	font = wezterm.font_with_fallback({
-      		"Iosevka q",
+          "Iosevka q",
           "Symbols Nerd Font",
-      		"Noto Color Emoji",
       	}),
         font_size = 14.0,
       	window_background_opacity = 0.88,

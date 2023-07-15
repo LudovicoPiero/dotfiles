@@ -42,7 +42,7 @@
           "Sarasa Mono K"
         ];
 
-        emoji = ["noto-fonts-emoji"];
+        emoji = ["Noto Color Emoji"];
       };
     };
   };
