@@ -8,8 +8,8 @@
     size = 11;
   };
   theme = {
-    name = "Arc-Dark";
-    package = pkgs.arc-theme;
+    name = "WhiteSur-Dark";
+    package = pkgs.whitesur-gtk-theme;
   };
   cursorTheme = {
     name = "capitaine-cursors-white";
@@ -17,8 +17,8 @@
     package = pkgs.capitaine-cursors;
   };
   iconsTheme = {
-    name = "Papirus-Dark";
-    package = pkgs.papirus-icon-theme;
+    name = "WhiteSur-dark";
+    package = pkgs.whitesur-icon-theme;
   };
 in {
   home-manager.users."${config.vars.username}" = {
