@@ -19,9 +19,10 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    license = licenses.gpl3;
-    maintainers = with maintainers; [lewdovico];
+    description = "DT's SDDM Theme";
     homepage = "https://gitlab.com/dwt1/multicolor-sddm-theme";
-    description = "yes";
+    license = licenses.gpl3Only;
+    maintainers = with maintainers; [ludovicopiero];
+    platforms = platforms.linux;
   };
 }

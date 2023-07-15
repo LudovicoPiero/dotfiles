@@ -17,7 +17,6 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [gnumake];
-  buildInputs = [];
 
   patches = [./nix.patch];
 

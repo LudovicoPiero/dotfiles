@@ -19,6 +19,7 @@ fetchFromGitHub {
   meta = with lib; {
     description = "San Francisco Pro Fonts";
     homepage = "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts";
+    license = licenses.unfree;
     platforms = platforms.all;
   };
 }
