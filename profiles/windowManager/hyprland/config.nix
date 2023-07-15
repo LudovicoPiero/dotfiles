@@ -59,8 +59,8 @@ in ''
 
       rounding = 5
       blur = yes
-      blur_size = 3
-      blur_passes = 3
+      blur_size = 8
+      blur_passes = 4
       blur_new_optimizations = on
 
       drop_shadow = no
