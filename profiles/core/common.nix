@@ -52,6 +52,8 @@
   };
 
   nix = {
+    package = inputs.nix-super.packages.${pkgs.system}.nix;
+
     # Improve nix store disk usage
     gc = {
       automatic = true;

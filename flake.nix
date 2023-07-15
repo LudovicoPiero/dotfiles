@@ -29,6 +29,10 @@
     hyprland.inputs.nixpkgs.follows = "nixos";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
+    nix-super.url = "github:privatevoid-net/nix-super";
+    nix-super.inputs.nixpkgs.follows = "nixos";
+    nix-super.inputs.flake-compat.follows = "flake-compat";
+
     xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     xdph.inputs.nixpkgs.follows = "nixos";
 
