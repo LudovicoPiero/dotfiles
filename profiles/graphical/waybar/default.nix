@@ -110,9 +110,9 @@ in {
           };
           "network" = {
             interface = "wlp4s0";
-            format-wifi = "  Connected";
+            format-wifi = " Connected";
             format-linked = "{ifname} (No IP)";
-            format-disconnected = "󰖪  Disconnected";
+            format-disconnected = "󰖪 Disconnected";
             tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
           };
           "custom/wireguard" = {
@@ -132,7 +132,7 @@ in {
           "battery" = {
             bat = "BAT1";
             interval = 60;
-            format = "{icon} {capacity}%";
+            format = "{icon}{capacity}%";
             format-charging = "󰂄 {capacity}%";
             states = {
               "good" = 95;
@@ -148,7 +148,7 @@ in {
             ];
           };
           "custom/date" = {
-            format = "  {}";
+            format = " {}";
             interval = 3600;
             exec = "${lib.getExe waybar-date}";
           };
