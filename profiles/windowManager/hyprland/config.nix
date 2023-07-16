@@ -99,7 +99,8 @@ in ''
   # v2
   windowrulev2 = workspace 9, class:^(Mailspring)$
   windowrulev2 = workspace 8, class:^(whatsapp-for-linux)$
-  windowrulev2 = workspace 6, class:^(Steam)$
+  windowrulev2 = workspace 6, class:^(steam)$
+  windowrulev2 = workspace 6, title:^(Sign in to Steam)$
   windowrulev2 = workspace 5, title:(Spotify)
   windowrulev2 = workspace 4, class:^(org.telegram.desktop)$
   windowrulev2 = workspace 3, title:^(.*(Disc|WebC)ord.*)$
@@ -111,6 +112,7 @@ in ''
   windowrulev2 = workspace 1, class:^(Albion-Online)$
   windowrulev2 = float, class:^(DiscordCanary)$ # Discord File Picker
   windowrulev2 = float, title:^(Steam - News)$
+  windowrulev2 = float, class:^(steam)$,title:^(Special Offers)$
   windowrulev2 = noblur, class:^(waybar)$
   windowrulev2 = noblur, class:^(firefox)$
   windowrulev2 = noblur, class:^(Chromium-browser)$ # xwayland
