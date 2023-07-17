@@ -48,6 +48,8 @@
     # nixpkgs-wayland.inputs.nixpkgs.follows = "nixos";
 
     spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixos";
+
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     nil.url = "github:oxalica/nil";
