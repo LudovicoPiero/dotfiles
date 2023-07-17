@@ -96,7 +96,6 @@
             our = self.lib;
           });
         })
-        nur.overlay
         (import ./pkgs)
       ];
 
