@@ -163,7 +163,5 @@
     };
   };
 
-  # Remove Bloat
-  documentation.nixos.enable = lib.mkForce false;
   system.stateVersion = "${config.vars.stateVersion}";
 }
