@@ -67,6 +67,7 @@
         nvim-web-devicons
         lsp-format-nvim
         which-key-nvim
+        hop-nvim
 
         gitsigns-nvim
         # neogit

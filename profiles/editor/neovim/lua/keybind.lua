@@ -6,6 +6,12 @@ map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
+-- Hop
+require("hop").setup()
+map("n", "s", ":HopWord <CR>", opts)
+map("n", "S", ":HopLine <CR>", opts)
+map("n", "<C-s>", ":HopPattern <CR>", opts)
+
 -- Telescope
 map("n", "<C-g>", ":Telescope live_grep <CR>", opts)
 map("n", "<C-w>", ":Telescope find_files <CR>", opts)
