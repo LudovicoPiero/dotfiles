@@ -7,55 +7,109 @@
       flake = false;
     };
 
+    fu.url = "github:numtide/flake-utils";
+
     nixos.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-23.05";
     master.url = "github:nixos/nixpkgs";
 
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    aagl.inputs.nixpkgs.follows = "nixos"; # Name of nixpkgs input you want to use
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-    ragenix.url = "github:yaxitech/ragenix";
-    ragenix.inputs.nixpkgs.follows = "nixos";
+    ragenix = {
+      url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.flake-utils.follows = "fu";
+    };
 
-    digga.url = "github:divnix/digga";
-    digga.inputs.nixpkgs.follows = "nixos";
-    digga.inputs.nixlib.follows = "nixos";
-    digga.inputs.home-manager.follows = "home";
+    digga = {
+      url = "github:divnix/digga";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.nixlib.follows = "nixos";
+      inputs.home-manager.follows = "home";
+      inputs.flake-utils.follows = "fu";
+      inputs.flake-compat.follows = "flake-compat";
+    };
 
-    home.url = "github:nix-community/home-manager";
-    home.inputs.nixpkgs.follows = "nixos";
+    home = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-    hyprland.url = "github:hyprwm/hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixos";
-    hyprland-contrib.url = "github:hyprwm/contrib";
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-    nix-super.url = "github:privatevoid-net/nix-super";
-    nix-super.inputs.nixpkgs.follows = "nixos";
-    nix-super.inputs.flake-compat.follows = "flake-compat";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-    xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    xdph.inputs.nixpkgs.follows = "nixos";
+    nix-super = {
+      url = "github:privatevoid-net/nix-super";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+
+    xdph = {
+      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
     # swayfx.url = "github:WillPower3309/swayfx";
 
     impermanence.url = "github:nix-community/impermanence";
 
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
-    emacs-overlay.inputs.nixpkgs.follows = "nixos";
-    emacs-overlay.inputs.nixpkgs-stable.follows = "stable";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.nixpkgs-stable.follows = "stable";
+      inputs.flake-utils.follows = "fu";
+    };
 
     # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     # nixpkgs-wayland.inputs.nixpkgs.follows = "nixos";
 
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixos";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.flake-utils.follows = "fu";
+    };
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-    nil.url = "github:oxalica/nil";
-    nur.url = "github:nix-community/NUR";
-    nix-colors.url = "github:misterio77/nix-colors";
-    nixos-wsl.url = "github:nix-community/nixos-wsl";
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.flake-utils.follows = "fu";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+    };
+
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.flake-utils.follows = "fu";
+    };
+
+    nixos-wsl = {
+      url = "github:nix-community/nixos-wsl";
+      inputs.nixpkgs.follows = "nixos";
+      inputs.flake-utils.follows = "fu";
+      inputs.flake-compat.follows = "flake-compat";
+    };
   };
 
   outputs = {
