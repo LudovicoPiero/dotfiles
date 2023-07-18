@@ -17,8 +17,8 @@
   home-manager.users.${config.vars.username} = {
     home.packages = with inputs.nix-gaming.packages.${pkgs.system};
       [
-        wine-tkg
-        osu-lazer-bin
+        # wine-tkg
+        # osu-lazer-bin
       ]
       ++ (with pkgs; [
         gamescope
