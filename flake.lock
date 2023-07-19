@@ -193,24 +193,22 @@
         "home-manager": [
           "home"
         ],
-        "nixlib": [
-          "nixos"
-        ],
+        "nixlib": "nixlib",
         "nixpkgs": [
           "nixos"
         ],
         "nixpkgs-unstable": "nixpkgs-unstable"
       },
       "locked": {
-        "lastModified": 1674665318,
-        "narHash": "sha256-k3soI+AnNz+9WRU64qv23arssUjnYSwXdJXsPEiFu9I=",
-        "owner": "divnix",
+        "lastModified": 1689805963,
+        "narHash": "sha256-Ev2P9TjqSJnjAkZfNgyM+AsH6Kbijiq1BuimgQfgbjQ=",
+        "owner": "ludovicopiero",
         "repo": "digga",
-        "rev": "0595ae70cdb5ccf1ab031199fe98551c4b378bd9",
+        "rev": "36c5b856433c53f36ba49e0b071bc07571014281",
         "type": "github"
       },
       "original": {
-        "owner": "divnix",
+        "owner": "ludovicopiero",
         "repo": "digga",
         "type": "github"
       }
@@ -615,6 +613,21 @@
       "original": {
         "owner": "privatevoid-net",
         "repo": "nix-super",
+        "type": "github"
+      }
+    },
+    "nixlib": {
+      "locked": {
+        "lastModified": 1689469483,
+        "narHash": "sha256-2SBhY7rZQ/iNCxe04Eqxlz9YK9KgbaTMBssq3/BgdWY=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "02fea408f27186f139153e1ae88f8ab2abd9c22c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
         "type": "github"
       }
     },
