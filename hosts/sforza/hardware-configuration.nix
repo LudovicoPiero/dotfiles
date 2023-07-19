@@ -7,70 +7,56 @@
   lib,
   ...
 }: {
-  #boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  #boot.initrd.kernelModules = ["dm-snapshot"];
-  #boot.kernelModules = ["kvm-amd"];
-  #boot.extraModulePackages = [];
-
   services.fstrim.enable = true;
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.supportedFilesystems = ["ntfs"];
-
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/9785f98d-e75e-4061-acbf-8ec99c413416";
 
   fileSystems = let
-    commonOptions = ["rw" "compress=zstd:3" "space_cache=v2" "noatime" "discard=async" "ssd"];
-    commonDevice = "/dev/disk/by-uuid/e3349e18-ab60-4986-9572-ae21623de113";
-    commonFsType = "btrfs";
     inherit (config.vars) username;
     userHome = "/home/${username}";
   in {
+    "/" = {
+      device = "tank/local/root";
+      fsType = "zfs";
+    };
+
     "/boot" = {
-      device = "/dev/disk/by-uuid/C0C6-0498";
+      device = "/dev/disk/by-uuid/4FA8-A596";
       fsType = "vfat";
     };
-    "/" = {
-      device = commonDevice;
-      fsType = commonFsType;
-      options = commonOptions ++ ["subvol=root"];
-    };
-    "/home" = {
-      device = commonDevice;
-      fsType = commonFsType;
-      options = commonOptions ++ ["subvol=home"];
-      neededForBoot = true;
-    };
+
     "/nix" = {
-      device = commonDevice;
-      fsType = commonFsType;
-      options = commonOptions ++ ["subvol=nix"];
+      device = "tank/local/nix";
+      fsType = "zfs";
     };
+
+    "/home" = {
+      device = "tank/safe/home";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+
     "/persist" = {
-      device = commonDevice;
-      fsType = commonFsType;
-      options = commonOptions ++ ["subvol=persist"];
+      device = "tank/safe/persist";
+      fsType = "zfs";
       neededForBoot = true;
     };
-    "/var/log" = {
-      device = commonDevice;
-      fsType = commonFsType;
-      options = commonOptions ++ ["subvol=log"];
-      neededForBoot = true;
-    };
+
     "${userHome}/WinE" = {
       device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
       fsType = "ntfs";
       options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
     };
+
     "${userHome}/WinD" = {
       device = "/dev/disk/by-uuid/01D95CDF9A689D70";
       fsType = "ntfs";
       options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
     };
+
     "${userHome}/WinC" = {
       device = "/dev/disk/by-uuid/0454A86454A859E6";
       fsType = "ntfs";
@@ -79,7 +65,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/19df1bff-72e7-4694-ac01-37cc8ac42281";}
+    {device = "/dev/disk/by-uuid/2d66abab-93a2-4e86-897b-cbcdb7969c7a";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
