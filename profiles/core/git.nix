@@ -15,6 +15,15 @@
       pull.rebase = false;
     };
 
+    ignores = [
+      "*~"
+      "*.swp"
+      "*result*"
+      ".direnv"
+      "node_modules"
+      "tmp"
+    ];
+
     aliases = {
       a = "add -p";
       co = "checkout";
