@@ -9,6 +9,7 @@ in {
       settings = {
         main = {
           font = "Iosevka q-16";
+          terminal = "${config.vars.terminalBin}";
           icon-theme = "${gtkCfg.iconTheme.name}";
           prompt = "->";
         };
