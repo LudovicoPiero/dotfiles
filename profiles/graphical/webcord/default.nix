@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }: let
   amoledcord = pkgs.fetchFromGitHub {
