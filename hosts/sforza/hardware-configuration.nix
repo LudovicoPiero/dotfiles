@@ -13,6 +13,8 @@
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  boot.zfs.enableUnstable = true;
+  services.zfs.trim.enable = true;
 
   fileSystems = let
     inherit (config.vars) username;
