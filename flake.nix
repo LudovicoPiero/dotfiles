@@ -173,7 +173,7 @@
         imports = [(digga.lib.importHosts ./hosts)];
         hosts = {
           sforza = {
-            channelName = "master";
+            channelName = "nixos";
             modules = [
               # nixos-hardware.nixosModules.common-pc-laptop-ssd
               aagl.nixosModules.default
