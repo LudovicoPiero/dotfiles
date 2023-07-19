@@ -10,7 +10,6 @@
     alejandra
     cachix
     editorconfig-checker
-    nixUnstable
     nodePackages
     stylua
     shfmt
@@ -19,6 +18,7 @@
     ;
 
   inherit (inputs.ragenix.packages.x86_64-linux) ragenix;
+  inherit (inputs.nix-super.packages.x86_64-linux) nix;
 
   pkgWithCategory = category: package: {inherit package category;};
   devos = pkgWithCategory "devos";
@@ -37,7 +37,7 @@ in {
 
   commands =
     [
-      (devos nixUnstable)
+      (devos nix)
       (formatter treefmt)
       (secrets ragenix)
     ]
