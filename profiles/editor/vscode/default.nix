@@ -10,7 +10,9 @@
     ];
     programs.vscode = {
       enable = true;
-      package = pkgs.vscodium; # use vscode because copilot no worky :(
+      package = pkgs.vscodium.override {
+        commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+      };
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       userSettings = {
@@ -40,6 +42,7 @@
         "vscord.status.idle.check" = false;
         "vscord.status.problems.enabled" = false;
         "vscord.status.state.text.editing" = "Working on {file_name}{file_extension}";
+        "window.titleBarStyle" = "custom";
         "workbench.colorTheme" = "Catppuccin Mocha";
         "workbench.editor.limit.enabled" = true;
         "workbench.editor.limit.perEditorGroup" = true;

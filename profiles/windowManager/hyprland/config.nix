@@ -110,6 +110,7 @@ in ''
   windowrulev2 = workspace 1, class:^(jetbrains-goland)$
   windowrulev2 = workspace 1, class:^(jetbrains-clion)$
   windowrulev2 = workspace 1, class:^(Albion-Online)$
+  windowrulev2 = fakefullscreen, class:^(code-url-handler)$
   windowrulev2 = float, class:^(DiscordCanary)$ # Discord File Picker
   windowrulev2 = float, title:^(Steam - News)$
   windowrulev2 = float, class:^(steam)$,title:^(Special Offers)$
