@@ -26,7 +26,7 @@ in {
       tdesktop
       mpv
       mailspring
-      viewnior
+      imv
       whatsapp-for-linux
 
       # Qt
