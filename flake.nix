@@ -204,7 +204,7 @@
         };
       };
 
-      home.modules = [inputs.hyprland.homeManagerModules.default];
+      # home.modules = [inputs.hyprland.homeManagerModules.default];
 
       devshell = ./shell;
 
