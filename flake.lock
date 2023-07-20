@@ -391,11 +391,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1689799203,
-        "narHash": "sha256-N2/zV/HurGH83zQL7JKhRhfw02sdcZ8JIxH7wC2OVko=",
+        "lastModified": 1689876207,
+        "narHash": "sha256-eE4jk1hyjdO0rk3LUN+Xbb5o/58XUbk8dla06IAoHVY=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "7091d4e5979720ddb30f540b2d7da48080bf2487",
+        "rev": "61dc0909ae72c79acc639b001813b4d9ed2e35ab",
         "type": "github"
       },
       "original": {
@@ -962,6 +962,7 @@
         "host": "gitlab.freedesktop.org",
         "owner": "wlroots",
         "repo": "wlroots",
+        "rev": "7791ffe0584c4ac13c170e1661ce33bdbd4a9b9e",
         "type": "gitlab"
       }
     },
