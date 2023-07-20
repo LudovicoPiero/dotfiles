@@ -1,13 +1,20 @@
 local cmp = require("cmp")
+local ok, lspkind = pcall(require, "lspkind")
+if not ok then
+  return
+end
+
 cmp.setup({
   experimental = {
     ghost_text = true,
   },
+
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
+
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
@@ -30,12 +37,28 @@ cmp.setup({
       end
     end, { "i", "s" }),
   }),
+
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" },
   }, {
-    { name = "buffer" },
+    { name = "path" },
+    { name = "buffer", keyword_length = 5 },
   }),
+
+  formatting = {
+    -- Youtube: How to set up nice formatting for your sources.
+    format = lspkind.cmp_format({
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        luasnip = "[snip]",
+      },
+    }),
+  },
 })
 
 -- Set configuration for specific filetype.

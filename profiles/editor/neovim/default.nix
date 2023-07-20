@@ -72,6 +72,7 @@
         gitsigns-nvim
         # neogit
 
+        #TODO: switch to coq
         # Cmp
         cmp-nvim-lsp
         cmp-buffer
@@ -80,6 +81,7 @@
         nvim-cmp
         nvim-lspconfig
         luasnip
+        lspkind-nvim
         cmp_luasnip
       ];
 
