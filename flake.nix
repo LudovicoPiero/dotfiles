@@ -27,6 +27,7 @@
     digga = {
       url = "github:ludovicopiero/digga";
       inputs.nixpkgs.follows = "nixos";
+      inputs.nixlib.follows = "nixos";
       inputs.home-manager.follows = "home";
       inputs.flake-utils.follows = "fu";
       inputs.flake-compat.follows = "flake-compat";

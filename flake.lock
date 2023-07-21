@@ -193,7 +193,9 @@
         "home-manager": [
           "home"
         ],
-        "nixlib": "nixlib",
+        "nixlib": [
+          "nixos"
+        ],
         "nixpkgs": [
           "nixos"
         ],
@@ -598,21 +600,6 @@
       "original": {
         "owner": "privatevoid-net",
         "repo": "nix-super",
-        "type": "github"
-      }
-    },
-    "nixlib": {
-      "locked": {
-        "lastModified": 1689469483,
-        "narHash": "sha256-2SBhY7rZQ/iNCxe04Eqxlz9YK9KgbaTMBssq3/BgdWY=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "02fea408f27186f139153e1ae88f8ab2abd9c22c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
         "type": "github"
       }
     },
