@@ -19,7 +19,10 @@
     extraModulePackages = [];
   };
   boot.zfs.enableUnstable = true;
-  services.zfs.trim.enable = true;
+  services.zfs = {
+    autoScrub.enable = true;
+    trim.enable = true;
+  };
 
   fileSystems = let
     inherit (config.vars) username;
