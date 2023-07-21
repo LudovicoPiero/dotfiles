@@ -110,6 +110,12 @@
       inputs.flake-utils.follows = "fu";
       inputs.flake-compat.follows = "flake-compat";
     };
+
+    # Non Flakes Stuff
+    amoledcord = {
+      url = "github:luckfire/amoled-cord";
+      flake = false;
+    };
   };
 
   outputs = {

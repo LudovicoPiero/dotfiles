@@ -43,6 +43,22 @@
         "type": "github"
       }
     },
+    "amoledcord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689621470,
+        "narHash": "sha256-fFDjG1xw7OOuchJW5tyEFvQvv3MCVTCFxKSdS3FB4Ts=",
+        "owner": "luckfire",
+        "repo": "amoled-cord",
+        "rev": "f82f5adda70d925624a6e721a5e0cc667965397d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luckfire",
+        "repo": "amoled-cord",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -754,6 +770,7 @@
     "root": {
       "inputs": {
         "aagl": "aagl",
+        "amoledcord": "amoledcord",
         "digga": "digga",
         "emacs-overlay": "emacs-overlay",
         "flake-compat": "flake-compat_3",
