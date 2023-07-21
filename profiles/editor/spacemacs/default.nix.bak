@@ -47,7 +47,7 @@ in {
     stylua # Lua
     rust-analyzer
     alejandra
-    (ripgrep.override {withPCRE2 = true;})
+    ripgrep
     coreutils
     fd
     #git

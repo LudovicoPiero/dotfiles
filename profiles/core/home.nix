@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   browser = "firefox";
 in {
   home-manager.users."${config.vars.username}" = {
@@ -25,9 +21,6 @@ in {
         # use this if they aren't displayed properly:
         _JAVA_AWT_WM_NONREPARENTING = "1";
       };
-      packages = with pkgs; [
-        neofetch
-      ];
     };
 
     programs.home-manager.enable = true;

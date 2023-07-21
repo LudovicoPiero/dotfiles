@@ -72,7 +72,7 @@
         stylua # Lua
         rust-analyzer
         gcc
-        (ripgrep.override {withPCRE2 = true;})
+        ripgrep
         fd
       ];
 

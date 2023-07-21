@@ -24,7 +24,7 @@
       nix-index
       nmap
       skim
-      (ripgrep.override {withPCRE2 = true;})
+      ripgrep
       tealdeer
       whois
       wl-clipboard
