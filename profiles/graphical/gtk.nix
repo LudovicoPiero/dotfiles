@@ -7,24 +7,28 @@
     name = "SF Pro Rounded";
     size = 11;
   };
+
   theme = {
     name = "WhiteSur-Dark";
     package = pkgs.whitesur-gtk-theme;
   };
+
   cursorTheme = {
-    name = "capitaine-cursors-white";
+    name = "macOS-BigSur";
     size = 24;
-    package = pkgs.capitaine-cursors;
+    package = pkgs.apple-cursor;
   };
+
   iconsTheme = {
-    name = "WhiteSur-dark";
+    name = "WhiteSur";
     package = pkgs.whitesur-icon-theme;
   };
 in {
   home-manager.users."${config.vars.username}" = {
-    home.packages = with pkgs; [capitaine-cursors];
+    home.packages = with pkgs; [apple-cursor];
     gtk = {
       enable = true;
+
       gtk2.extraConfig = ''
         gtk-cursor-theme-name="${cursorTheme.name}"
         gtk-cursor-theme-size=${toString cursorTheme.size}
@@ -39,6 +43,7 @@ in {
         gtk-xft-hintstyle="hintslight"
         gtk-xft-rgba="rgb"
       '';
+
       gtk3 = {
         bookmarks = let
           inherit (config.vars) username;
@@ -54,8 +59,9 @@ in {
           "file:///home/${username}/WinD"
           "file:///home/${username}/WinE"
         ];
+
         extraConfig = {
-          gtk-application-prefer-dark-theme = true;
+          gtk-application-prefer-dark-theme = 1;
           gtk-cursor-theme-name = cursorTheme.name;
           gtk-cursor-theme-size = cursorTheme.size;
           gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
@@ -70,12 +76,19 @@ in {
           gtk-xft-rgba = "rgb";
         };
       };
+
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
+
       font = {
         inherit (font) name size;
       };
+
       theme = {
         inherit (theme) name package;
       };
+
       iconTheme = {
         inherit (iconsTheme) name package;
       };
