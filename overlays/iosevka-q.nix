@@ -12,20 +12,16 @@ _final: prev: {
         inherits = "ss14"
 
           [buildPlans.iosevka-q.variants.design]
+          capital-e = "top-left-serifed"
           asterisk = "penta-low"
-          caret = "medium"
           brace = "curly-flat-boundary"
-          number-sign = "upright"
+          number-sign = "slanted"
           ampersand = "closed"
-          at = "threefold"
-          dollar = "open"
-          percent = "dots"
-          bar = "force-upright"
+          dollar = "open-cap"
           question = "smooth"
-          punctuation-dot = "square"
 
         [buildPlans.iosevka-q.ligations]
-        inherits = "clike"
+        inherits = "coq"
     '';
 
     set = "q";
