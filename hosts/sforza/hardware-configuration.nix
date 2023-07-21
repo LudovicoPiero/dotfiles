@@ -11,8 +11,8 @@
 
   boot = {
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-    # kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     initrd.kernelModules = ["dm-snapshot"];
     kernelModules = ["kvm-amd"];
     kernelParams = ["nohibernate" "zfs.zfs_arc_max=12884901888"];
