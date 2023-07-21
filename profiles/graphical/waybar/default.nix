@@ -16,7 +16,18 @@ in {
     ];
     programs.waybar = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+      # package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+      package = pkgs.waybar.overrideAttrs (old: {
+        postPatch = ''
+          # use hyprctl to switch workspaces
+          sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+        '';
+        postFixup = ''
+          wrapProgram $out/bin/waybar \
+            --suffix PATH : ${lib.makeBinPath [inputs.hyprland.packages.${pkgs.system}.hyprland]}
+        '';
+        mesonFlags = old.mesonFlags ++ ["-Dexperimental=true"];
+      });
       settings = {
         mainBar = {
           position = "bottom";
