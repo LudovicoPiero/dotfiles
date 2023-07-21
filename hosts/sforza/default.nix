@@ -29,7 +29,6 @@
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
 
   hardware.bluetooth.enable = true;
@@ -93,29 +92,29 @@
     };
   };
 
-  services.greetd = let
-    user = "ludovico";
-    greetd = "${pkgs.greetd.greetd}/bin/greetd";
-    gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-
-    sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
-      output * bg #000000 solid_color
-      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-
-      # Just in case if greetd not working properly
-      bindsym Mod4+Return exec wezterm
-      exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
-    ''}";
-  in {
-    enable = true;
-    vt = 7;
-    settings = {
-      default_session = {
-        command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
-        inherit user;
-      };
-    };
-  };
+  # services.greetd = let
+  #   user = "ludovico";
+  #   greetd = "${pkgs.greetd.greetd}/bin/greetd";
+  #   gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+  #
+  #   sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
+  #     output * bg #000000 solid_color
+  #     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+  #
+  #     # Just in case if greetd not working properly
+  #     bindsym Mod4+Return exec wezterm
+  #     exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
+  #   ''}";
+  # in {
+  #   enable = true;
+  #   vt = 7;
+  #   settings = {
+  #     default_session = {
+  #       command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
+  #       inherit user;
+  #     };
+  #   };
+  # };
 
   environment.etc."greetd/environments".text = ''
     sway
@@ -137,10 +136,10 @@
       #   enable = true;
       #   wayland = true;
       # };
-      # sddm = {
-      #   enable = true;
-      #   theme = "multicolor-sddm-theme";
-      # };
+      sddm = {
+        enable = true;
+        theme = "multicolor-sddm-theme";
+      };
     };
   };
 
