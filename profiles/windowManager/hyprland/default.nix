@@ -72,13 +72,6 @@ in {
           Restart = "always";
         };
       };
-      # mpvpaper = mkService {
-      #   Unit.Description = "Video Wallpaper Daemon";
-      #   Service = {
-      #     ExecStart = "${lib.getExe pkgs.mpvpaper} -o \"no-audio --loop-playlist shuffle\" eDP-1 ${./Wallpaper/wallpaper.mp4}";
-      #     Restart = "always";
-      #   };
-      # };
       wl-clip-persist = mkService {
         Unit.Description = "Keep Wayland clipboard even after programs close";
         Service = {
