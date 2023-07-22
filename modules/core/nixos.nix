@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowBroken = true; # ZFS Stuff
-  };
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  #   allowBroken = true; # ZFS Stuff
+  # };
 
   security = {
     # polkit.enable = true;
@@ -19,9 +19,16 @@
     };
   };
 
+  services = {
+    # Service that makes Out of Memory Killer more effective
+    earlyoom.enable = true;
+    dbus.packages = [pkgs.gcr];
+  };
+
   environment = {
     # completion for system packages (e.g. systemd).
     pathsToLink = ["/share/fish"];
+
     # Selection of sysadmin tools that can come in handy
     systemPackages = with pkgs; [
       dosfstools
@@ -29,7 +36,27 @@
       iputils
       usbutils
       utillinux
+      binutils
+      coreutils
+      curl
+      direnv
+      dnsutils
+      fd
+      firefox
+
+      git
+      bottom
+      jq
+      moreutils
+      nix-index
+      nmap
+      skim
+      ripgrep
+      tealdeer
+      whois
+      wl-clipboard
     ];
+
     sessionVariables = {
       # silence direnv warnings for "long running commands"
       DIRENV_WARN_TIMEOUT = "24h";
@@ -44,6 +71,8 @@
       # Prevent impurities in builds
       sandbox = true;
 
+      auto-optimise-store = true;
+
       # Give root user and wheel group special Nix privileges.
       trusted-users = ["root" "@wheel"];
       allowed-users = ["@wheel"];
@@ -51,13 +80,29 @@
       substituters = [
         "https://cache.garnix.io"
       ];
+
       trusted-public-keys = [
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       ];
     };
 
+    # registry = {
+    #   system.flake = nixpkgs;
+    # };
+
+    extraOptions = ''
+      min-free = 536870912
+      keep-outputs = true
+      keep-derivations = true
+      fallback = true
+      experimental-features = nix-command flakes ca-derivations
+    '';
+
     # Improve nix store disk usage
-    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
     optimise.automatic = true;
   };
 
@@ -66,7 +111,4 @@
   #   enable = true;
   #   openFirewall = lib.mkDefault false;
   # };
-
-  # Service that makes Out of Memory Killer more effective
-  services.earlyoom.enable = true;
 }
