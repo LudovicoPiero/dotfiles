@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true; # ZFS Stuff
@@ -42,7 +46,6 @@
       direnv
       dnsutils
       fd
-      firefox
 
       git
       bottom
@@ -86,9 +89,9 @@
       ];
     };
 
-    # registry = {
-    #   system.flake = nixpkgs;
-    # };
+    registry = {
+      system.flake = inputs.nixpkgs;
+    };
 
     extraOptions = ''
       min-free = 536870912

@@ -1,5 +1,5 @@
-_:
-{
-  imports =[
-    ./firefox.nix];
-  }
+_: {
+  imports = [
+    ./firefox.nix
+  ];
+}
