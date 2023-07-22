@@ -1,8 +1,4 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+_: {
   flake.homeModules.ludovico = {
     inputs,
     pkgs,

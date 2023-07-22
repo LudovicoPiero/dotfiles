@@ -9,11 +9,11 @@
       ../modules/core
       ../modules/graphical
 
-      {_module.args = {inherit inputs;};}
-
       inputs.impermanence.nixosModule
       self.nixosModules.home-manager
       {
+        _module.args = {inherit inputs;};
+        home-manager.extraSpecialArgs = {inherit inputs;};
         home-manager.users.ludovico = {
           imports = [self.homeModules.ludovico];
 

@@ -8,8 +8,6 @@
     ./persist.nix
   ];
 
-  hardware.enableRedistributableFirmware = lib.mkDefault true;
-
   boot = {
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 5;
@@ -23,22 +21,22 @@
   # programs.honkers-railway-launcher.enable = true;
 
   # OpenGL
-  # environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
+  environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
   boot = {
     initrd.kernelModules = ["amdgpu"];
-    #kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
-    #kernelModules = ["amd-pstate"];
+    kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
+    kernelModules = ["amd-pstate"];
   };
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
-      amdvlk
+      # amdvlk
       rocm-opencl-icd
       rocm-opencl-runtime
     ];
-    extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+    # extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
   };
 
   networking.networkmanager.enable = true;
@@ -117,7 +115,6 @@
       Option "TearFree" "true"
     '';
 
-    desktopManager.gnome.enable = true;
     displayManager = {
       lightdm.enable = true;
       sddm = {

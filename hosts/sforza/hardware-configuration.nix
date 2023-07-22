@@ -56,23 +56,23 @@
       neededForBoot = true;
     };
 
-    #"${userHome}/WinE" = {
-    #  device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
-    #  fsType = "ntfs";
-    #  options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    #};
+    "${userHome}/WinE" = {
+      device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+      fsType = "ntfs";
+      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    };
 
-    #"${userHome}/WinD" = {
-    #  device = "/dev/disk/by-uuid/01D95CDF9A689D70";
-    #  fsType = "ntfs";
-    #  options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    #};
+    "${userHome}/WinD" = {
+      device = "/dev/disk/by-uuid/01D95CDF9A689D70";
+      fsType = "ntfs";
+      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    };
 
-    #"${userHome}/WinC" = {
-    #  device = "/dev/disk/by-uuid/0454A86454A859E6";
-    #  fsType = "ntfs";
-    #  options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    #};
+    "${userHome}/WinC" = {
+      device = "/dev/disk/by-uuid/0454A86454A859E6";
+      fsType = "ntfs";
+      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    };
   };
 
   swapDevices = [
