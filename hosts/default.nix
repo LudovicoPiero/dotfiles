@@ -8,7 +8,8 @@
       ./sforza
       ../modules/core
       ../modules/graphical
-      # Setup home-manager in NixOS config
+
+      {_module.args = {inherit inputs;};}
 
       inputs.impermanence.nixosModule
       self.nixosModules.home-manager
