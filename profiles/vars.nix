@@ -8,8 +8,8 @@
   vars = rec {
     email = "ludovicopiero@pm.me";
     username = "ludovico";
-    terminal = "xterm-256color";
-    terminalBin = "${lib.getExe pkgs.kitty}";
+    terminal = "screen-256color";
+    terminalBin = "${lib.getExe pkgs.wezterm}";
     colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
     home = "/home/${username}";
