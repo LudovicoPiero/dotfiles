@@ -4,5 +4,6 @@ _: {
     ./pipewire.nix
     ./seatd.nix
     ./desktop.nix
+    ./thunar.nix
   ];
 }

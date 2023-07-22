@@ -91,8 +91,8 @@
 
     registry = {
       system.flake = inputs.nixpkgs;
-      default.flake = inputs.nixpks;
-      nixpkgs.flake = inputs.nixpks;
+      default.flake = inputs.nixpkgs;
+      nixpkgs.flake = inputs.nixpkgs;
     };
 
     extraOptions = ''
