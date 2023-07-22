@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-  # nixpkgs.config = {
-  #   allowUnfree = true;
-  #   allowBroken = true; # ZFS Stuff
-  # };
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true; # ZFS Stuff
+  };
 
   security = {
     # polkit.enable = true;
