@@ -1,7 +1,7 @@
 {config, ...}: {
   programs.gpg = {
     enable = true;
-    homedir = "${config.xdg.dataHome}/gnupg";
+    homedir = "${config.xdg.configHome}/gnupg";
   };
 
   # Fix pass

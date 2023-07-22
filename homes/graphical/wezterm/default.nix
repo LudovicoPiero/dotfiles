@@ -9,7 +9,7 @@
       local wezterm = require("wezterm")
       return {
       	font = wezterm.font_with_fallback({
-          "Iosevka q Semibold",
+          "Iosevka",
           "Symbols Nerd Font",
       	}),
         font_size = 14.0,

@@ -1,6 +1,8 @@
 _: {
   imports = [
     ./waybar
-    ./wezterm.nix
+    ./wezterm
+    ./fuzzel
+    ./gtk
   ];
 }
