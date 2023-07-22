@@ -46,21 +46,6 @@ in {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.default;
       settings = import ./settings.nix args;
-      extraConfig = ''
-        animations {
-          enabled = true
-          # animation=NAME,ONOFF,SPEED,CURVE,STYLE
-          bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-
-          animation = windows, 1, 7, myBezier
-          animation = windowsOut, 1, 7, default, popin 80%
-          animation = windowsMove, 1, 2, default, popin 80%
-          animation = border, 1, 10, default
-          animation = borderangle, 1, 8, default
-          animation = fade, 1, 7, default
-          animation = workspaces, 1, 6, default
-        }
-      '';
     };
 
     # User Services
