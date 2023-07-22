@@ -167,6 +167,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1690055134,
+        "narHash": "sha256-pca36VkwUxcygKtrY8OPWp9MpxHgWauwBWxO8lgHQTU=",
+        "owner": "nix-community",
+        "repo": "nur",
+        "rev": "15a8d4645c280e35c00a36303bb76eb697d38206",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -175,6 +190,7 @@
         "impermanence": "impermanence",
         "nixos-flake": "nixos-flake",
         "nixpkgs": "nixpkgs",
+        "nur": "nur",
         "xdph": "xdph_2"
       }
     },

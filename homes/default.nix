@@ -9,6 +9,9 @@ _: {
       ./graphical
       ./editor
       ./hyprland
+      ./browser
+
+      inputs.nur.hmModules.nur
     ];
   };
 }
