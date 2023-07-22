@@ -3,5 +3,6 @@ _: {
     ./xdg-portal.nix
     ./pipewire.nix
     ./seatd.nix
+    ./desktop.nix
   ];
 }
