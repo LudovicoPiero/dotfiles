@@ -1,6 +1,8 @@
 {
   self,
   inputs,
+  self',
+  inputs',
   ...
 }: {
   flake.nixosConfigurations.sforza = self.nixos-flake.lib.mkLinuxSystem {
@@ -12,8 +14,8 @@
       inputs.impermanence.nixosModule
       self.nixosModules.home-manager
       {
-        _module.args = {inherit inputs;};
-        home-manager.extraSpecialArgs = {inherit inputs;};
+        _module.args = {inherit self' inputs' inputs;};
+        home-manager.extraSpecialArgs = {inherit self' inputs' inputs;};
         home-manager.users.ludovico = {
           imports = [self.homeModules.ludovico];
 

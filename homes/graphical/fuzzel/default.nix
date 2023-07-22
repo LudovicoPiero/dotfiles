@@ -3,7 +3,7 @@ _: {
     enable = true;
     settings = {
       main = {
-        font = "Iosevka-16";
+        font = "Iosevka q-16";
         terminal = "wezterm";
         # icon-theme = "${gtkCfg.iconTheme.name}";
         prompt = "->";

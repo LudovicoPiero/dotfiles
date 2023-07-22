@@ -1,15 +1,14 @@
 {
-  inputs,
   pkgs,
+  inputs,
   ...
 }: {
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
       # Icons
-      # inputs.self.packages.${pkgs.system}.san-francisco-pro
-      # inputs.self.packages.${pkgs.system}.iosevka-q
-      iosevka
+      inputs.self.packages.${pkgs.system}.san-francisco-pro
+      inputs.self.packages.${pkgs.system}.iosevka-q
       emacs-all-the-icons-fonts
       font-awesome
       sarasa-gothic
@@ -23,21 +22,21 @@
       enable = true;
       defaultFonts = {
         serif = [
-          # "SF Pro"
+          "SF Pro"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
         ];
 
         sansSerif = [
-          # "SF Pro"
+          "SF Pro"
           "Sarasa Gothic C"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
         ];
 
         monospace = [
-          # "SF Pro Rounded"
+          "SF Pro Rounded"
           "Sarasa Mono C"
           "Sarasa Mono J"
           "Sarasa Mono K"

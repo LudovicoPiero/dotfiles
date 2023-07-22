@@ -33,6 +33,7 @@
       imports = [
         ./hosts
         ./homes
+        ./pkgs
         inputs.nixos-flake.flakeModule
       ];
 
