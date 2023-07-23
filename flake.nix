@@ -3,6 +3,11 @@
     # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -35,17 +40,24 @@
     ...
   }:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+      systems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+
       imports = [
         ./hosts
         ./homes
         ./pkgs
         inputs.nixos-flake.flakeModule
+        inputs.devshell.flakeModule
       ];
 
       perSystem = {
         pkgs,
         system,
+        inputs',
         ...
       }: {
         # This sets `pkgs` to a nixpkgs with allowUnfree option set.
@@ -53,6 +65,24 @@
           inherit system;
           config.allowUnfree = true;
         };
+
+        devShells.default = let
+          devshell = import ./parts/devshell;
+        in
+          inputs'.devshell.legacyPackages.mkShell {
+            name = "Devshell";
+            commands = devshell.shellCommands;
+            env = devshell.env;
+            packages = with pkgs; [
+              inputs'.sops-nix.packages.default # provide agenix CLI within flake shell
+              # config.treefmt.build.wrapper # treewide formatter
+              nil
+              alejandra
+              git
+              statix
+              deadnix
+            ];
+          };
       };
     };
 }
