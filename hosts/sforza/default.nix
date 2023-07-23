@@ -1,12 +1,22 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
   ];
+
+  sops.secrets = {
+    "wgPrivKey" = {
+      mode = "0440";
+    };
+    "wgPreKey" = {
+      mode = "0440";
+    };
+  };
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -120,6 +130,25 @@
         enable = false;
         # theme = "multicolor-sddm-theme";
       };
+    };
+  };
+
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      autostart = true;
+      address = ["10.66.66.3/32" "fd42:42:42::3/128"];
+      dns = ["1.1.1.1" "1.0.0.1"];
+      privateKeyFile = config.sops.secrets.wgPrivKey.path;
+
+      peers = [
+        {
+          publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
+          presharedKeyFile = config.sops.secrets.wgPreKey.path;
+          allowedIPs = ["0.0.0.0/0" "::/0"];
+          endpoint = "103.235.73.71:50935";
+          persistentKeepalive = 25;
+        }
+      ];
     };
   };
 
