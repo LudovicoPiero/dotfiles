@@ -35,6 +35,7 @@
 
     # Selection of sysadmin tools that can come in handy
     systemPackages = with pkgs; [
+      inputs.self.packages.${pkgs.system}.teavpn2
       dosfstools
       gptfdisk
       iputils
