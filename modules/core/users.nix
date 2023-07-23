@@ -3,14 +3,27 @@
   pkgs,
   ...
 }: {
+  sops = {
+    secrets = {
+      "rootPassword" = {
+        mode = "0440";
+        neededForUsers = true;
+      };
+      "userPassword" = {
+        mode = "0440";
+        neededForUsers = true;
+      };
+    };
+  };
+
   programs.fish.enable = true;
   users = {
     mutableUsers = false;
     users = {
-      root.initialPassword = "1234";
+      root.passwordFile = config.sops.secrets."rootPassword".path;
       ludovico = {
         shell = pkgs.fish;
-        initialPassword = "1234";
+        passwordFile = config.sops.secrets."userPassword".path;
         isNormalUser = true;
         extraGroups =
           ["seat" "wheel"]

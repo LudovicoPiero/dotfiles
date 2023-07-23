@@ -1,0 +1,7 @@
+keys:
+  - &ludovico age16gslehwlwjq202wrkc0gmrsts63y8mhyuxdwukhvpwkvlg0pyclsc2xu6j
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *ludovico
