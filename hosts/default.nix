@@ -12,6 +12,7 @@
       ../modules/graphical
       ../modules/secrets
 
+      inputs.aagl.nixosModules.default
       inputs.impermanence.nixosModule
       inputs.sops-nix.nixosModules.sops
       self.nixosModules.home-manager

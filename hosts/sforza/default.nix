@@ -18,7 +18,7 @@
   hardware.bluetooth.enable = true;
 
   # AAGL
-  # programs.honkers-railway-launcher.enable = true;
+  programs.honkers-railway-launcher.enable = true;
 
   # OpenGL
   environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
