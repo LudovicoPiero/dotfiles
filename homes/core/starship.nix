@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   programs.starship = {
     enable = true;
     enableIonIntegration = false;

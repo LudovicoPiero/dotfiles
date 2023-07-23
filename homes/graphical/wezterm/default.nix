@@ -1,4 +1,4 @@
-{config, ...}:
+{...}:
 # let
 #   inherit (config.vars.colorScheme) colors;
 # in

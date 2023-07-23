@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   font = {
     name = "SF Pro Rounded";
     size = 11;

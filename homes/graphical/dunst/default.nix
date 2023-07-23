@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{pkgs, ...}:
 # let
 #   inherit (config.vars.colorScheme) colors;
 # in

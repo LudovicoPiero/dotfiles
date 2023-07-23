@@ -9,19 +9,19 @@ require("gitsigns").setup()
 
 -- Bufferline
 require("bufferline").setup({
-  highlights = require("catppuccin.groups.integrations.bufferline").get(),
-  options = {
-    mode = "buffers",
-    separator_style = "thin",
-    diagnostics = "nvim_lsp",
-    offsets = {
-      {
-        filetype = "NvimTree",
-        highlight = "Directory",
-        text_align = "left",
-      },
-    },
-  },
+	highlights = require("catppuccin.groups.integrations.bufferline").get(),
+	options = {
+		mode = "buffers",
+		separator_style = "thin",
+		diagnostics = "nvim_lsp",
+		offsets = {
+			{
+				filetype = "NvimTree",
+				highlight = "Directory",
+				text_align = "left",
+			},
+		},
+	},
 })
 
 -- Indent Blankline
@@ -32,148 +32,148 @@ vim.cmd([[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]])
 vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
 vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
 require("indent_blankline").setup({
-  use_treesitter = true,
-  show_current_context = true,
-  show_current_context_start = true,
-  space_char_blankline = " ",
-  char_highlight_list = {
-    "IndentBlanklineIndent1",
-    "IndentBlanklineIndent2",
-    "IndentBlanklineIndent3",
-    "IndentBlanklineIndent4",
-    "IndentBlanklineIndent5",
-    "IndentBlanklineIndent6",
-  },
+	use_treesitter = true,
+	show_current_context = true,
+	show_current_context_start = true,
+	space_char_blankline = " ",
+	char_highlight_list = {
+		"IndentBlanklineIndent1",
+		"IndentBlanklineIndent2",
+		"IndentBlanklineIndent3",
+		"IndentBlanklineIndent4",
+		"IndentBlanklineIndent5",
+		"IndentBlanklineIndent6",
+	},
 })
 
 -- Dashboard
 local db = require("dashboard")
 db.custom_header = {
-  "",
-  "⣽⣿⢣⣿⡟⣽⣿⣿⠃⣲⣿⣿⣸⣷⡻⡇⣿⣿⢇⣿⣿⣿⣏⣎⣸⣦⣠⡞⣾⢧⣿⣿",
-  "⣿⡏⣿⡿⢰⣿⣿⡏⣼⣿⣿⡏⠙⣿⣿⣤⡿⣿⢸⣿⣿⢟⡞⣰⣿⣿⡟⣹⢯⣿⣿⣿",
-  "⡿⢹⣿⠇⣿⣿⣿⣸⣿⣿⣿⣿⣦⡈⠻⣿⣿⣮⣿⣿⣯⣏⣼⣿⠿⠏⣰⡅⢸⣿⣿⣿",
-  "⡀⣼⣿⢰⣿⣿⣇⣿⣿⡿⠛⠛⠛⠛⠄⣘⣿⣿⣿⣿⣿⣿⣶⣿⠿⠛⢾⡇⢸⣿⣿⣿",
-  "⠄⣿⡟⢸⣿⣿⢻⣿⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡋⠉⣠⣴⣾⣿⡇⣸⣿⣿⡏",
-  "⠄⣿⡇⢸⣿⣿⢸⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠘⢿⣿⠏⠄⣿⣿⣿⣹",
-  "⠄⢻⡇⢸⣿⣿⠸⣿⣿⣿⣿⣿⣿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣦⣼⠃⠄⢰⣿⣿⢯⣿",
-  "⠄⢸⣿⢸⣿⣿⡄⠙⢿⣿⣿⡿⠁⠄⠄⠄⠄⠉⣿⣿⣿⣿⣿⣿⡏⠄⢀⣾⣿⢯⣿⣿",
-  "⣾⣸⣿⠄⣿⣿⡇⠄⠄⠙⢿⣀⠄⠄⠄⠄⠄⣰⣿⣿⣿⣿⣿⠟⠄⠄⣼⡿⢫⣻⣿⣿",
-  "⣿⣿⣿⠄⢸⣿⣿⠄⠄⠄⠄⠙⠿⣷⣶⣤⣴⣿⠿⠿⠛⠉⠄⠄⢸⣿⣿⣿⣿⠃⠄⣴ ",
-  "",
+	"",
+	"⣽⣿⢣⣿⡟⣽⣿⣿⠃⣲⣿⣿⣸⣷⡻⡇⣿⣿⢇⣿⣿⣿⣏⣎⣸⣦⣠⡞⣾⢧⣿⣿",
+	"⣿⡏⣿⡿⢰⣿⣿⡏⣼⣿⣿⡏⠙⣿⣿⣤⡿⣿⢸⣿⣿⢟⡞⣰⣿⣿⡟⣹⢯⣿⣿⣿",
+	"⡿⢹⣿⠇⣿⣿⣿⣸⣿⣿⣿⣿⣦⡈⠻⣿⣿⣮⣿⣿⣯⣏⣼⣿⠿⠏⣰⡅⢸⣿⣿⣿",
+	"⡀⣼⣿⢰⣿⣿⣇⣿⣿⡿⠛⠛⠛⠛⠄⣘⣿⣿⣿⣿⣿⣿⣶⣿⠿⠛⢾⡇⢸⣿⣿⣿",
+	"⠄⣿⡟⢸⣿⣿⢻⣿⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡋⠉⣠⣴⣾⣿⡇⣸⣿⣿⡏",
+	"⠄⣿⡇⢸⣿⣿⢸⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠘⢿⣿⠏⠄⣿⣿⣿⣹",
+	"⠄⢻⡇⢸⣿⣿⠸⣿⣿⣿⣿⣿⣿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣦⣼⠃⠄⢰⣿⣿⢯⣿",
+	"⠄⢸⣿⢸⣿⣿⡄⠙⢿⣿⣿⡿⠁⠄⠄⠄⠄⠉⣿⣿⣿⣿⣿⣿⡏⠄⢀⣾⣿⢯⣿⣿",
+	"⣾⣸⣿⠄⣿⣿⡇⠄⠄⠙⢿⣀⠄⠄⠄⠄⠄⣰⣿⣿⣿⣿⣿⠟⠄⠄⣼⡿⢫⣻⣿⣿",
+	"⣿⣿⣿⠄⢸⣿⣿⠄⠄⠄⠄⠙⠿⣷⣶⣤⣴⣿⠿⠿⠛⠉⠄⠄⢸⣿⣿⣿⣿⠃⠄⣴ ",
+	"",
 }
 db.custom_center = {
-  {
-    icon = "  ",
-    desc = "Recently latest session                  ",
-    shortcut = "SPC s l",
-    action = "SessionLoad",
-  },
-  {
-    icon = "  ",
-    desc = "Recently opened files                   ",
-    action = "DashboardFindHistory",
-    shortcut = "SPC f h",
-  },
-  {
-    icon = "  ",
-    desc = "Find  File                              ",
-    action = "Telescope find_files find_command=rg,--hidden,--files",
-    shortcut = "SPC f f",
-  },
-  {
-    icon = "  ",
-    desc = "File Browser                            ",
-    action = "Telescope file_browser",
-    shortcut = "SPC f b",
-  },
-  {
-    icon = "  ",
-    desc = "Find  word                              ",
-    action = "Telescope live_grep",
-    shortcut = "SPC f w",
-  },
+	{
+		icon = "  ",
+		desc = "Recently latest session                  ",
+		shortcut = "SPC s l",
+		action = "SessionLoad",
+	},
+	{
+		icon = "  ",
+		desc = "Recently opened files                   ",
+		action = "DashboardFindHistory",
+		shortcut = "SPC f h",
+	},
+	{
+		icon = "  ",
+		desc = "Find  File                              ",
+		action = "Telescope find_files find_command=rg,--hidden,--files",
+		shortcut = "SPC f f",
+	},
+	{
+		icon = "  ",
+		desc = "File Browser                            ",
+		action = "Telescope file_browser",
+		shortcut = "SPC f b",
+	},
+	{
+		icon = "  ",
+		desc = "Find  word                              ",
+		action = "Telescope live_grep",
+		shortcut = "SPC f w",
+	},
 }
 db.custom_footer = {
-  "Ludovico Sforza 🚀",
-  "SFORZA FAMIGLIA",
+	"Ludovico Sforza 🚀",
+	"SFORZA FAMIGLIA",
 }
 
 -- Lualine
 local lualine = require("lualine")
 lualine.setup({
-  options = {
-    icons_enabled = true,
-    theme = "catppuccin",
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    },
-  },
-  sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
-    lualine_c = { "filename" },
-    lualine_x = { "encoding", "fileformat", "filetype" },
-    lualine_y = { "progress" },
-    lualine_z = { "location" },
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
-    lualine_y = {},
-    lualine_z = {},
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = { "nvim-tree" },
+	options = {
+		icons_enabled = true,
+		theme = "catppuccin",
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
+		disabled_filetypes = {
+			statusline = {},
+			winbar = {},
+		},
+		ignore_focus = {},
+		always_divide_middle = true,
+		globalstatus = false,
+		refresh = {
+			statusline = 1000,
+			tabline = 1000,
+			winbar = 1000,
+		},
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_c = { "filename" },
+		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { "filename" },
+		lualine_x = { "location" },
+		lualine_y = {},
+		lualine_z = {},
+	},
+	tabline = {},
+	winbar = {},
+	inactive_winbar = {},
+	extensions = { "nvim-tree" },
 })
 
 -- Nvim-Treesitter
 require("nvim-treesitter.configs").setup({
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-  },
-  autotag = {
-    enable = true,
-  },
-  context_commentstring = {
-    enable = true,
-  },
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+	rainbow = {
+		enable = true,
+		extended_mode = true,
+	},
+	autotag = {
+		enable = true,
+	},
+	context_commentstring = {
+		enable = true,
+	},
 })
 
 -- Nivm-treesitter-context
 require("treesitter-context").setup({
-  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-  max_lines = 2, -- How many lines the window should span. Values <= 0 mean no limit.
-  min_window_height = 2, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-  line_numbers = true,
-  multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-  trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-  mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
-  -- Separator between context and content. Should be a single character string, like '-'.
-  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-  separator = "-",
-  zindex = 20, -- The Z-index of the context window
-  on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+	enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+	max_lines = 2, -- How many lines the window should span. Values <= 0 mean no limit.
+	min_window_height = 2, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+	line_numbers = true,
+	multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
+	trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+	mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+	-- Separator between context and content. Should be a single character string, like '-'.
+	-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+	separator = "-",
+	zindex = 20, -- The Z-index of the context window
+	on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 })
 
 require("nvim-tree").setup({})
@@ -206,6 +206,6 @@ require("nvim-tree").setup({})
 
 -- Nvim-Web-DevIcons
 require("nvim-web-devicons").setup({
-  color_icons = true,
-  default = true,
+	color_icons = true,
+	default = true,
 })

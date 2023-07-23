@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   security = {
     pam.services.greetd.gnupg.enable = true;
     pam.services.greetd.enableGnomeKeyring = true;

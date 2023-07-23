@@ -1,9 +1,5 @@
 _: {
-  flake.homeModules.ludovico = {
-    inputs,
-    pkgs,
-    ...
-  }: {
+  flake.homeModules.ludovico = {inputs, ...}: {
     imports = [
       ./core
       ./graphical
