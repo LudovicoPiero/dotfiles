@@ -8,6 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+    };
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -34,11 +38,7 @@
     nixos-flake.url = "github:srid/nixos-flake";
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    ...
-  }:
+  outputs = inputs @ {nixpkgs, ...}:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "aarch64-darwin"
@@ -50,11 +50,14 @@
         ./hosts
         ./homes
         ./pkgs
-        inputs.nixos-flake.flakeModule
+
         inputs.devshell.flakeModule
+        inputs.nixos-flake.flakeModule
+        inputs.treefmt-nix.flakeModule
       ];
 
       perSystem = {
+        config,
         pkgs,
         system,
         inputs',
@@ -66,6 +69,7 @@
           config.allowUnfree = true;
         };
 
+        # configure devshell
         devShells.default = let
           devshell = import ./parts/devshell;
         in
@@ -74,8 +78,8 @@
             commands = devshell.shellCommands;
             env = devshell.env;
             packages = with pkgs; [
-              inputs'.sops-nix.packages.default # provide agenix CLI within flake shell
-              # config.treefmt.build.wrapper # treewide formatter
+              inputs'.sops-nix.packages.default
+              config.treefmt.build.wrapper
               nil
               alejandra
               git
@@ -83,6 +87,20 @@
               deadnix
             ];
           };
+
+        # configure treefmt
+        treefmt = {
+          projectRootFile = "flake.nix";
+
+          programs = {
+            alejandra.enable = true;
+            deadnix.enable = true;
+            shellcheck.enable = true;
+            stylua.enable = true;
+            rustfmt.enable = true;
+            shfmt.enable = true;
+          };
+        };
       };
     };
 }
