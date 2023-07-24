@@ -4,8 +4,8 @@ _: {
       ./core
       ./graphical
       ./editor
-      ./hyprland
       ./browser
+      ./windowManager/hyprland
 
       inputs.nur.hmModules.nur
       inputs.nix-colors.homeManagerModules.default

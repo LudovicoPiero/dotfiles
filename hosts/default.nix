@@ -5,6 +5,10 @@
   inputs',
   ...
 }: {
+  /*
+  TODO: use flake.nixosModules
+  https://github.com/srid/nixos-flake/blob/master/examples/both/flake.nix#L88
+  */
   flake.nixosConfigurations.sforza = self.nixos-flake.lib.mkLinuxSystem {
     imports = [
       ./sforza
