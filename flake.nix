@@ -24,6 +24,8 @@
 
     nur.url = "github:nix-community/nur";
 
+    nix-colors.url = "github:misterio77/nix-colors";
+
     hyprland = {
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";

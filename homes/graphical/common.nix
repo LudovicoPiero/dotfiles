@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: let
   # use OCR and copy to clipboard
@@ -14,6 +15,8 @@
     '';
   # sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/screenshot}'';
 in {
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+
   home.packages = with pkgs; [
     authy
     tdesktop
