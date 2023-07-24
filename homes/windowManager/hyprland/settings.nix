@@ -150,10 +150,9 @@ in {
     "$mod , E , exec , emacsclient -c -a 'nvim'"
     "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
 
-    ", print , exec , sharenix --selection"
+    ", print , exec , wl-ocr"
     "CTRL  , Print , exec , grimblast save area - | ${lib.getExe pkgs.swappy} -f -"
-    "$mod , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshot/$(date +'%s.png')"
-    "$modSHIFT , Print , exec , wl-ocr"
+    "$mod , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
 
     "$mod , h , resizeactive , -20 0"
     "$mod , l , resizeactive , 20 0"

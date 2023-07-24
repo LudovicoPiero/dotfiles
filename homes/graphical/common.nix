@@ -13,7 +13,6 @@
       ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
       ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
     '';
-  # sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/screenshot}'';
 in {
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
@@ -31,6 +30,5 @@ in {
 
     # Utils
     ocrScript
-    # sharenix
   ];
 }
