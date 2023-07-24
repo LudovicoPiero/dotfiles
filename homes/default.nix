@@ -9,6 +9,7 @@ _: {
 
       inputs.nur.hmModules.nur
       inputs.nix-colors.homeManagerModules.default
+      inputs.spicetify-nix.homeManagerModule
     ];
   };
 }

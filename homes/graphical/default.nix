@@ -7,5 +7,6 @@ _: {
     ./wezterm
     ./fuzzel
     ./gtk
+    ./spotify
   ];
 }
