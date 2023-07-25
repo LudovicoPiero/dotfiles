@@ -101,6 +101,7 @@
             env = devshell.env;
             packages = with pkgs; [
               inputs'.sops-nix.packages.default
+              inputs'.nix-super.packages.default
               config.treefmt.build.wrapper
               nil
               alejandra
