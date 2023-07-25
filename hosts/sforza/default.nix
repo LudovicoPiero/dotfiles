@@ -31,7 +31,7 @@
   programs.honkers-railway-launcher.enable = true;
 
   # OpenGL
-  environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
+  environment.sessionVariables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
   boot = {
     initrd.kernelModules = ["amdgpu"];
     kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];

@@ -1,6 +1,7 @@
 _: {
   imports = [
-    ./gamemode.nix
+    ./games
+
     ./xdg-portal.nix
     ./pipewire.nix
     ./seatd.nix
