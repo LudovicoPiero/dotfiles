@@ -1,7 +1,6 @@
 {
   stdenv,
   fetchFromGitHub,
-  gnumake,
   lib,
   ...
 }:
@@ -16,13 +15,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-0/eHK2/+pn6NfawL1xLJv4jDBFvLwELSXNWLUvff1gs=";
   };
 
-  nativeBuildInputs = [gnumake];
-
   patches = [./nix.patch];
-
-  buildPhase = ''
-    make -j$(nproc);
-  '';
 
   installPhase = ''
     mkdir -p $out/bin
