@@ -27,7 +27,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
 
     hyprland = {
-      url = "github:hyprwm/hyprland/603de16f9a98688b79f19baa24d6e2c0346545f5"; #TODO: update if fixed upstream
+      url = "github:hyprwm/hyprland"; #TODO: update if fixed upstream
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
