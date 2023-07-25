@@ -7,13 +7,13 @@
 }:
 stdenv.mkDerivation rec {
   name = "teavpn2-${version}";
-  version = "unstable-05-01-2023";
+  version = "unstable-07-25-2023";
 
   src = fetchFromGitHub {
     owner = "TeaInside";
     repo = "teavpn2";
-    rev = "fa4215152dd2508a47476dd41e474675594a8bd3";
-    hash = "sha256-jEDiCioaWr5Lh0mR5R3rKFUo5HIU9S9FwHw5UAXBuFk=";
+    rev = "b21898d001a2e7b821e045162dd18f13561cb04b";
+    hash = "sha256-0/eHK2/+pn6NfawL1xLJv4jDBFvLwELSXNWLUvff1gs=";
   };
 
   nativeBuildInputs = [gnumake];
