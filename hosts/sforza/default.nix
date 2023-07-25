@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   imports = [
@@ -87,34 +88,38 @@
     };
   };
 
-  services.greetd = let
-    user = "ludovico";
-    greetd = "${pkgs.greetd.greetd}/bin/greetd";
-    gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+  # services.greetd = let
+  #   user = "ludovico";
+  #   greetd = "${pkgs.greetd.greetd}/bin/greetd";
+  #   gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+  #
+  #   sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
+  #     output * bg #000000 solid_color
+  #     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+  #
+  #     # Just in case if greetd not working properly
+  #     bindsym Mod4+Return exec wezterm
+  #     exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
+  #   ''}";
+  # in {
+  #   enable = true;
+  #   vt = 7;
+  #   settings = {
+  #     default_session = {
+  #       command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
+  #       inherit user;
+  #     };
+  #   };
+  # };
+  #
+  # environment.etc."greetd/environments".text = ''
+  #   Hyprland
+  #   fish
+  # '';
 
-    sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
-      output * bg #000000 solid_color
-      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-
-      # Just in case if greetd not working properly
-      bindsym Mod4+Return exec wezterm
-      exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
-    ''}";
-  in {
-    enable = true;
-    vt = 7;
-    settings = {
-      default_session = {
-        command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
-        inherit user;
-      };
-    };
-  };
-
-  environment.etc."greetd/environments".text = ''
-    Hyprland
-    fish
-  '';
+  environment.systemPackages = lib.mkIf config.services.xserver.displayManager.sddm.enable [
+    inputs.self.packages.${pkgs.system}.multicolor-sddm-theme
+  ];
 
   services.xserver = {
     enable = true;
@@ -127,8 +132,8 @@
     displayManager = {
       lightdm.enable = false;
       sddm = {
-        enable = false;
-        # theme = "multicolor-sddm-theme";
+        enable = true;
+        theme = "multicolor-sddm-theme";
       };
     };
   };
