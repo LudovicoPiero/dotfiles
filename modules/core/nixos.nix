@@ -71,6 +71,8 @@
   };
 
   nix = {
+    package = inputs.nix-super.packages.${pkgs.system}.nix;
+
     settings = {
       # Prevent impurities in builds
       sandbox = true;
