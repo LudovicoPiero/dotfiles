@@ -28,7 +28,6 @@
   };
 
   services.greetd = let
-    user = "ludovico";
     regreet = "${lib.getExe config.programs.regreet.package}";
 
     sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
@@ -45,7 +44,6 @@
     settings = {
       default_session = {
         command = sway-kiosk "${regreet}";
-        inherit user;
       };
     };
   };
