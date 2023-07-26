@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }: {
   imports = [
@@ -27,9 +26,6 @@
   };
 
   hardware.bluetooth.enable = true;
-
-  # AAGL
-  programs.honkers-railway-launcher.enable = true;
 
   # OpenGL
   environment.sessionVariables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
@@ -88,54 +84,14 @@
     };
   };
 
-  # services.greetd = let
-  #   user = "ludovico";
-  #   greetd = "${pkgs.greetd.greetd}/bin/greetd";
-  #   gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-  #
-  #   sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
-  #     output * bg #000000 solid_color
-  #     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-  #
-  #     # Just in case if greetd not working properly
-  #     bindsym Mod4+Return exec wezterm
-  #     exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
-  #   ''}";
-  # in {
-  #   enable = true;
-  #   vt = 7;
-  #   settings = {
-  #     default_session = {
-  #       command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
-  #       inherit user;
-  #     };
-  #   };
-  # };
-  #
-  # environment.etc."greetd/environments".text = ''
-  #   Hyprland
-  #   fish
-  # '';
-
-  environment.systemPackages = lib.mkIf config.services.xserver.displayManager.sddm.enable [
-    inputs.self.packages.${pkgs.system}.multicolor-sddm-theme
-  ];
-
   services.xserver = {
     enable = true;
     layout = "us"; # Configure keymap
     libinput.enable = true;
+    displayManager.lightdm.enable = false;
     deviceSection = ''
       Option "TearFree" "true"
     '';
-
-    displayManager = {
-      lightdm.enable = false;
-      sddm = {
-        enable = true;
-        theme = "multicolor-sddm-theme";
-      };
-    };
   };
 
   networking.wg-quick.interfaces = {
