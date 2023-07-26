@@ -17,7 +17,7 @@
     ];
 
     # use fonts specified by user rather than default ones
-    enableDefaultFonts = false;
+    enableDefaultPackages = false;
     fontconfig = {
       enable = true;
       defaultFonts = {
