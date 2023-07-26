@@ -15,6 +15,7 @@
       };
     };
   };
+
   services.greetd = let
     user = "ludovico";
     regreet = "${lib.getExe config.programs.regreet.package}";
