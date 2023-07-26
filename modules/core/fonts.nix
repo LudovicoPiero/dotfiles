@@ -5,7 +5,7 @@
 }: {
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       # Icons
       inputs.self.packages.${pkgs.system}.san-francisco-pro
       inputs.self.packages.${pkgs.system}.iosevka-q
