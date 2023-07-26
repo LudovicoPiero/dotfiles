@@ -1,7 +1,10 @@
 {
   inputs = {
-    # Principle inputs (updated by `nix run .#update`)
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Main Thing
+    master.url = "github:nixos/nixpkgs/master";
+    stable.url = "github:nixos/nixpkgs/release-23.05";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "master";
 
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
@@ -15,6 +18,7 @@
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager.url = "github:nix-community/home-manager";
