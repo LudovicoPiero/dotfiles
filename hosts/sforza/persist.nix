@@ -4,6 +4,11 @@
   networking.hostId = "a5d66b54";
   boot.zfs.devNodes = "/dev/vg/root";
 
+  # rollback results in sudo lectures after each reboot
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
+
   # Rollback to snapshot on boot
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     zfs rollback -r tank/local/root@blank

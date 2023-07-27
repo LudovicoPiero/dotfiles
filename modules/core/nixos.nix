@@ -10,9 +10,9 @@
 
   security = {
     # polkit.enable = true;
-    sudo.enable = false;
+    sudo.enable = true;
     doas = {
-      enable = true;
+      enable = false;
       extraRules = [
         {
           users = ["ludovico"];
