@@ -4,7 +4,7 @@
     master.url = "github:nixos/nixpkgs/master";
     stable.url = "github:nixos/nixpkgs/release-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "unstable";
+    nixpkgs.follows = "master";
 
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
