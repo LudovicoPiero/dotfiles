@@ -4,9 +4,12 @@
   networking.hostId = "a5d66b54";
   boot.zfs.devNodes = "/dev/vg/root";
 
-  # rollback results in sudo lectures after each reboot
   security.sudo.extraConfig = ''
+    # rollback results in sudo lectures after each reboot
     Defaults lecture = never
+
+    # Show asterisk when typing password
+    Defaults pwfeedback
   '';
 
   # Rollback to snapshot on boot
