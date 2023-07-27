@@ -9,7 +9,7 @@
   TODO: use flake.nixosModules
   https://github.com/srid/nixos-flake/blob/master/examples/both/flake.nix#L88
   */
-  flake.nixosConfigurations.sforza = self.nixos-flake.lib.mkLinuxSystem {
+  flake.nixosConfigurations.sforza = self.nixos-flake.lib.mkLinuxSystem "x86_64-linux" {
     imports = [
       ./sforza
       ../modules/core
