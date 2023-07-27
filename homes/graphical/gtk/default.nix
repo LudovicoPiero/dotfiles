@@ -99,9 +99,11 @@ in {
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      # Use dconf-editor to get this settings.
+      color-scheme = "prefer-dark";
+      cursor-theme = cursorTheme.name;
       gtk-theme = theme.name;
       icon-theme = iconsTheme.name;
-      cursor-theme = cursorTheme.name;
     };
   };
 }
