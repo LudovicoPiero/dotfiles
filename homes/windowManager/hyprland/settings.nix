@@ -38,8 +38,8 @@ in {
 
   general = {
     sensitivity = 1;
-    gaps_in = 4;
-    gaps_out = 4;
+    gaps_in = 2;
+    gaps_out = 2;
     border_size = 2;
     "col.active_border" = "rgb(1e5799) rgb(f300ff) rgb(e0ff00) 45deg";
     "col.inactive_border" = "rgba(595959aa)";
@@ -53,6 +53,7 @@ in {
     force_split = 2;
     pseudotile = true;
     preserve_split = true;
+    no_gaps_when_only = 2; #(default: disabled - 0) no border - 1, with border - 2
   };
 
   decoration = {
@@ -63,6 +64,7 @@ in {
     blur_size = 8;
     blur_passes = 4;
     blur_new_optimizations = true;
+    blur_xray = true;
 
     drop_shadow = false;
     shadow_range = 8;
