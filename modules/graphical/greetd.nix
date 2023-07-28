@@ -4,16 +4,22 @@
   lib,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    # theme packages
-    (catppuccin-gtk.override {
-      accents = ["mauve"];
-      size = "compact";
-      variant = "mocha";
-    })
-    apple-cursor
-    papirus-icon-theme
-  ];
+  environment = {
+    etc."greetd/environments".text = ''
+      Hyprland
+      fish
+    '';
+    systemPackages = with pkgs; [
+      # theme packages
+      (catppuccin-gtk.override {
+        accents = ["mauve"];
+        size = "compact";
+        variant = "mocha";
+      })
+      apple-cursor
+      papirus-icon-theme
+    ];
+  };
 
   programs.regreet = {
     enable = true;
@@ -28,11 +34,15 @@
   };
 
   services.greetd = let
+    user = "ludovico";
     regreet = "${lib.getExe config.programs.regreet.package}";
+    gtkgreet = "${lib.getExe pkgs.greetd.gtkgreet}";
 
     sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
       output * bg #000000 solid_color
-      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+      exec ${pkgs.dbus}/bin/dbus-update-activation-environment  --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+      xwayland disable
 
       # Just in case if greetd not working properly
       bindsym Mod4+Return exec ${lib.getExe pkgs.wezterm}
@@ -43,7 +53,8 @@
     vt = 7;
     settings = {
       default_session = {
-        command = sway-kiosk "${regreet}";
+        command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
+        inherit user;
       };
     };
   };
