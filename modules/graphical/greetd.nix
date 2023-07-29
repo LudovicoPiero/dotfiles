@@ -35,7 +35,6 @@
 
   services.greetd = let
     user = "ludovico";
-    regreet = "${lib.getExe config.programs.regreet.package}";
     gtkgreet = "${lib.getExe pkgs.greetd.gtkgreet}";
 
     sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
