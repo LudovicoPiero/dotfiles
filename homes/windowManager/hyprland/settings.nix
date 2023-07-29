@@ -61,10 +61,15 @@ in {
 
     rounding = 5;
     blur = true;
-    blur_size = 8;
-    blur_passes = 4;
+    blur_size = 6;
+    blur_passes = 3;
     blur_new_optimizations = true;
-    blur_xray = true;
+    blur_ignore_opacity = true;
+    blurls = [
+      "launcher" # Fuzzel
+      "lockscreen"
+      "notifications" # Dunst
+    ];
 
     drop_shadow = false;
     shadow_range = 8;
@@ -76,7 +81,8 @@ in {
   animations = {
     enabled = true;
 
-    "bezier" = "myBezier, 0.05, 0.9, 0.1, 1.05";
+    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
+
     animation = [
       "windows, 1, 7, myBezier"
       "windowsOut, 1, 7, default, popin 80%"

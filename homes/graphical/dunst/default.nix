@@ -19,7 +19,7 @@ in {
         height = 100;
         offset = "30x50";
         origin = "top-right";
-        transparency = 10;
+        transparency = 20;
         background = "#${colors.base00}";
         frame_color = "#${colors.base06}"; # border
         font = "Iosevka q 10";
