@@ -1,45 +1,52 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.neovim = {
     enable = true;
+
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
 
     plugins = with pkgs.vimPlugins; [
-      catppuccin-nvim
-      vim-nix
-      plenary-nvim
-      dashboard-nvim
-      lualine-nvim
-      nvim-tree-lua
-      bufferline-nvim
-      nvim-colorizer-lua
-      impatient-nvim
-      telescope-nvim
-      indent-blankline-nvim
-      nvim-treesitter-context
-      nvim-treesitter.withAllGrammars
-      comment-nvim
+      # Git Related
       vim-fugitive
-      nvim-web-devicons
-      lsp-format-nvim
-      which-key-nvim
-      hop-nvim
-
+      vim-rhubarb
       gitsigns-nvim
-      # neogit
 
-      #TODO: switch to coq
-      # Cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      nvim-cmp
+      # Detect tabstop and shiftwidth
+      vim-sleuth
+
+      # Lsp
       nvim-lspconfig
+      mason-nvim
+      mason-lspconfig-nvim
+      fidget-nvim
+      neodev-nvim
+
+      # Autocomplete
+      nvim-cmp
       luasnip
-      lspkind-nvim
       cmp_luasnip
+      cmp-nvim-lsp
+      friendly-snippets
+
+      # Theme
+      catppuccin-nvim
+      onedark-nvim
+      lualine-nvim
+      indent-blankline-nvim
+
+      # Etc
+      comment-nvim
+      telescope-nvim
+      plenary-nvim
+      telescope-fzf-native-nvim
+      nvim-treesitter.withAllGrammars
     ];
 
     extraPackages = with pkgs; [
@@ -48,7 +55,9 @@
       stylua # Lua
       rust-analyzer
       gcc
+      clang-tools # for headers stuff
       ripgrep
+      nil
       fd
     ];
 
@@ -59,18 +68,12 @@
           ./lua
           + "/${module}.lua");
       luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-        "cmp"
-        "colorizer"
-        "keybind"
-        "settings"
-        "theme"
-        "ui"
-        "which-key"
+        "init"
       ]);
     in ''
       set guicursor=n-v-c-i:block
       lua << EOF
-      ${luaConfig}
+        ${luaConfig}
       EOF
     '';
   };
