@@ -6,11 +6,8 @@
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      # Icons
       inputs.self.packages.${pkgs.system}.san-francisco-pro
       inputs.self.packages.${pkgs.system}.iosevka-q
-      emacs-all-the-icons-fonts
-      font-awesome
       sarasa-gothic
       noto-fonts-emoji
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
