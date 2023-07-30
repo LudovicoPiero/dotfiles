@@ -60,21 +60,10 @@
       nil
       fd
     ];
+  };
 
-    # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
-    extraConfig = let
-      luaRequire = module:
-        builtins.readFile (builtins.toString
-          ./lua
-          + "/${module}.lua");
-      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-        "init"
-      ]);
-    in ''
-      set guicursor=n-v-c-i:block
-      lua << EOF
-        ${luaConfig}
-      EOF
-    '';
+  xdg.configFile."nvim" = {
+    source = ./config;
+    recursive = true;
   };
 }
