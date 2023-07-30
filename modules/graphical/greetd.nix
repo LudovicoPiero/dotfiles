@@ -21,7 +21,7 @@
   };
 
   programs.regreet = {
-    enable = true;
+    enable = false;
     settings = {
       GTK = {
         cursor_theme_name = "macOS-BigSur";
