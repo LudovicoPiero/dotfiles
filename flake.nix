@@ -22,11 +22,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -91,7 +86,6 @@
 
         inputs.devshell.flakeModule
         inputs.nixos-flake.flakeModule
-        inputs.treefmt-nix.flakeModule
       ];
 
       perSystem = {
@@ -118,28 +112,18 @@
             packages = with pkgs; [
               inputs'.sops-nix.packages.default
               inputs'.nix-super.packages.default
-              config.treefmt.build.wrapper
-              nil
-              alejandra
               git
+              nil
               statix
               deadnix
+
+              treefmt
+              nodePackages.prettier
+              alejandra
+              shfmt
+              stylua
             ];
           };
-
-        # configure treefmt
-        treefmt = {
-          projectRootFile = "flake.nix";
-
-          programs = {
-            alejandra.enable = true;
-            deadnix.enable = true;
-            shellcheck.enable = true;
-            stylua.enable = true;
-            rustfmt.enable = true;
-            shfmt.enable = true;
-          };
-        };
       };
     };
 }
