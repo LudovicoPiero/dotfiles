@@ -33,9 +33,9 @@ in
       '';
 
       shellAliases = {
-        "bs" = "pushd ~/.config/nixos && nixos-rebuild switch --flake .# --use-remote-sudo && popd";
-        "bb" = "pushd ~/.config/nixos && nixos-rebuild boot --flake .# --use-remote-sudo && popd";
-        "hs" = "pushd ~/.config/nixos && home-manager switch --flake .# --use-remote-sudo && popd";
+        "bs" = "pushd ~/.config/nixos && nixos-rebuild switch --flake .# --use-remote-sudo ; popd";
+        "bb" = "pushd ~/.config/nixos && nixos-rebuild boot --flake .# --use-remote-sudo   ; popd";
+        "hs" = "pushd ~/.config/nixos && home-manager switch --flake .# --use-remote-sudo  ; popd";
         "cat" = "${_ bat}";
         "config" = "cd ~/.config/nixos";
         "lg" = "lazygit";
