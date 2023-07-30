@@ -134,6 +134,20 @@
           "general.useragent.locale" = "en-AU";
           "browser.bookmarks.showMobileBookmarks" = true;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "browser.privatebrowsing.vpnpromourl" = "";
+
+          # DOH
+          /*
+          trr.mode 5 is no DOH.
+          2 is enable DOH.
+          3 is no failback to system dns
+          */
+          "network.trr.mode" = 3;
+          "network.trr.default_provider_uri" = "https://cloudflare-dns.com/dns-query";
+          "network.trr.uri" = "https://cloudflare-dns.com/dns-query";
+          "network.trr.custom_uri" = "https://cloudflare-dns.com/dns-query";
+          "network.trr.bootstrapAddress" = "1.1.1.1";
+
           # Disable telemetry
           "browser.newtabpage.activity-stream.feeds.telemetry" = false;
           "browser.ping-centre.telemetry" = false;
