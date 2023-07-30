@@ -50,14 +50,21 @@
     ];
 
     extraPackages = with pkgs; [
-      alejandra
-      lua-language-server
-      stylua # Lua
-      rust-analyzer
-      gcc
-      clang-tools # for headers stuff
-      ripgrep
+      # Nix
       nil
+      alejandra
+
+      # Lua
+      lua-language-server
+      stylua
+
+      # C/C++
+      clang
+      clang-tools # for headers stuff
+
+      # Etc
+      rust-analyzer
+      ripgrep
       fd
     ];
   };
