@@ -6,9 +6,15 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.follows = "master";
 
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     devshell = {
@@ -58,6 +64,7 @@
     nix-super = {
       url = "github:privatevoid-net/nix-super";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
