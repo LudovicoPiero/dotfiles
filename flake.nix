@@ -31,13 +31,8 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "github:hyprwm/hyprland"; #TODO: update if fixed upstream
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

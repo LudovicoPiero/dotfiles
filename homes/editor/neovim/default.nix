@@ -1,55 +1,49 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
-
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
 
     plugins = with pkgs.vimPlugins; [
-      # Git Related
-      vim-fugitive
-      vim-rhubarb
-      gitsigns-nvim
-
-      # Detect tabstop and shiftwidth
-      vim-sleuth
-
-      # Lsp
-      nvim-lspconfig
-      mason-nvim
-      mason-lspconfig-nvim
-      fidget-nvim
-      neodev-nvim
-
-      # Autocomplete
-      nvim-cmp
-      luasnip
-      cmp_luasnip
-      cmp-nvim-lsp
-      friendly-snippets
-
-      # Theme
       catppuccin-nvim
-      onedark-nvim
-      lualine-nvim
-      indent-blankline-nvim
-
-      # Etc
-      comment-nvim
-      telescope-nvim
+      vim-nix
       plenary-nvim
-      telescope-fzf-native-nvim
+      dashboard-nvim
+      lualine-nvim
+      nvim-tree-lua
+      bufferline-nvim
+      nvim-colorizer-lua
+      impatient-nvim
+      telescope-nvim
+      indent-blankline-nvim
+      nvim-treesitter-context
       nvim-treesitter.withAllGrammars
+      comment-nvim
+      vim-fugitive
+      nvim-web-devicons
+      lsp-format-nvim
+      which-key-nvim
+      hop-nvim
+
+      gitsigns-nvim
+      # neogit
+
+      #TODO: switch to coq
+      # Cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      nvim-cmp
+      nvim-lspconfig
+      luasnip
+      lspkind-nvim
+      cmp_luasnip
     ];
 
     extraPackages = with pkgs; [
+<<<<<<< HEAD
       # Nix
       nil
       alejandra
@@ -64,13 +58,44 @@
 
       # Etc
       rust-analyzer
+=======
+      alejandra
+      lua-language-server
+      stylua # Lua
+      rust-analyzer
+      gcc
+>>>>>>> parent of 03c609b (neovim: update config)
       ripgrep
       fd
     ];
   };
 
+<<<<<<< HEAD
   xdg.configFile."nvim" = {
     source = ./config;
     recursive = true;
+=======
+    # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
+    extraConfig = let
+      luaRequire = module:
+        builtins.readFile (builtins.toString
+          ./lua
+          + "/${module}.lua");
+      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
+        "cmp"
+        "colorizer"
+        "keybind"
+        "settings"
+        "theme"
+        "ui"
+        "which-key"
+      ]);
+    in ''
+      set guicursor=n-v-c-i:block
+      lua << EOF
+      ${luaConfig}
+      EOF
+    '';
+>>>>>>> parent of 03c609b (neovim: update config)
   };
 }
