@@ -1,8 +1,10 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
+  inherit (config.colorScheme) colors;
   _ = lib.getExe;
   terminal = "${_ pkgs.wezterm}";
   launcher = "${_ pkgs.fuzzel}";
@@ -41,12 +43,12 @@ in {
     gaps_in = 2;
     gaps_out = 2;
     border_size = 2;
-    "col.active_border" = "rgb(1e5799) rgb(f300ff) rgb(e0ff00) 45deg";
-    "col.inactive_border" = "rgba(595959aa)";
+    "col.active_border" = "rgb(${colors.blue}) rgb(${colors.pink}) rgb(${colors.yellow}) 45deg";
+    "col.inactive_border" = "rgb(${colors.gray})";
 
     layout = "dwindle";
-    "col.group_border_active" = "rgb(ff0000)";
-    "col.group_border" = "rgb(000000)";
+    "col.group_border_active" = "rgb(${colors.base0B})";
+    "col.group_border" = "rgb(${colors.base00})";
   };
 
   dwindle = {

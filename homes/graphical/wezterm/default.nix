@@ -7,27 +7,30 @@ in {
     colorSchemes = {
       "${colorScheme.slug}" = {
         ansi = [
-          "#${colors.base00}"
-          "#${colors.base01}"
-          "#${colors.base02}"
-          "#${colors.base03}"
-          "#${colors.base04}"
-          "#${colors.base05}"
-          "#${colors.base06}"
-          "#${colors.base07}"
-          "#${colors.base08}"
-          "#${colors.base09}"
-          "#${colors.base0A}"
-          "#${colors.base0B}"
-          "#${colors.base0C}"
-          "#${colors.base0D}"
-          "#${colors.base0E}"
-          "#${colors.base0F}"
+          "${colors.base00}"
+          "${colors.base08}"
+          "${colors.base0B}"
+          "${colors.base0A}"
+          "${colors.base0D}"
+          "${colors.base0E}"
+          "${colors.base0C}"
+          "${colors.base05}"
+        ];
+        brights = [
+          "${colors.base03}"
+          "${colors.base08}"
+          "${colors.base0B}"
+          "${colors.base0A}"
+          "${colors.base0D}"
+          "${colors.base0E}"
+          "${colors.base0C}"
+          "${colors.base05}"
         ];
         foreground = "#${colors.base05}";
         background = "#${colors.base00}";
-        cursor_fg = "#${colors.base00}";
+        cursor_fg = "#${colors.base05}";
         cursor_bg = "#${colors.base05}";
+        cursor_border = "#${colors.base05}";
         selection_fg = "#${colors.base00}";
         selection_bg = "#${colors.base05}";
       };
@@ -39,7 +42,7 @@ in {
           "Symbols Nerd Font",
         }),
         font_size = 14.0,
-        window_background_opacity = 0.88,
+        window_background_opacity = 0.8,
         color_scheme = "${colorScheme.slug}",
         enable_scroll_bar = false,
         -- enable_tab_bar = false,

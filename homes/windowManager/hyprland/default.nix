@@ -29,8 +29,6 @@ in {
 
   home.packages = with pkgs; [
     # Utils
-    qt6.qtwayland.out
-    libsForQt5.qt5.qtwayland.out
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     grim
     slurp

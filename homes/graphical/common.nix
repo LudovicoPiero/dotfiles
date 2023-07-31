@@ -14,7 +14,19 @@
       ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
     '';
 in {
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  colorScheme = {
+    slug = "Skeet";
+    name = "Skeet";
+    author = "Ludovico";
+    colors =
+      inputs.nix-colors.colorSchemes.catppuccin-mocha.colors
+      // {
+        blue = "1e5799";
+        pink = "f300ff";
+        yellow = "e0ff00";
+        gray = "595959";
+      };
+  };
 
   home.packages = with pkgs; [
     authy
