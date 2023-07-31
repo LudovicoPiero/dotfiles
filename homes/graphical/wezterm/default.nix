@@ -1,10 +1,38 @@
 {config, ...}: let
-  inherit (config.colorScheme) colors;
+  inherit (config) colorScheme;
+  inherit (colorScheme) colors;
 in {
   programs.wezterm = {
     enable = true;
+    colorSchemes = {
+      "${colorScheme.slug}" = {
+        ansi = [
+          "#${colors.base00}"
+          "#${colors.base01}"
+          "#${colors.base02}"
+          "#${colors.base03}"
+          "#${colors.base04}"
+          "#${colors.base05}"
+          "#${colors.base06}"
+          "#${colors.base07}"
+          "#${colors.base08}"
+          "#${colors.base09}"
+          "#${colors.base0A}"
+          "#${colors.base0B}"
+          "#${colors.base0C}"
+          "#${colors.base0D}"
+          "#${colors.base0E}"
+          "#${colors.base0F}"
+        ];
+        foreground = "#${colors.base05}";
+        background = "#${colors.base00}";
+        cursor_fg = "#${colors.base00}";
+        cursor_bg = "#${colors.base05}";
+        selection_fg = "#${colors.base00}";
+        selection_bg = "#${colors.base05}";
+      };
+    };
     extraConfig = ''
-      local wezterm = require("wezterm")
       return {
         font = wezterm.font_with_fallback({
           "Iosevka q Semibold",
@@ -12,7 +40,7 @@ in {
         }),
         font_size = 14.0,
         window_background_opacity = 0.88,
-        color_scheme = "Catppuccin Mocha",
+        color_scheme = "${colorScheme.slug}",
         enable_scroll_bar = false,
         -- enable_tab_bar = false,
         hide_tab_bar_if_only_one_tab = true,
@@ -20,40 +48,16 @@ in {
         adjust_window_size_when_changing_font_size = false,
         audible_bell = "Disabled",
         clean_exit_codes = { 130 },
+
         window_padding = {
-          left = 10,
-          right = 10,
-          top = 10,
-          bottom = 10,
+          left = 5,
+          right = 5,
+          top = 5,
+          bottom = 5,
         },
+
         check_for_updates = false,
         default_cursor_style = "SteadyBlock",
-
-        colors = {
-          tab_bar = {
-            background = "#${colors.base01}",
-            active_tab = {
-              bg_color = "#${colors.base0D}",
-              fg_color = "#${colors.base00}",
-            },
-            inactive_tab = {
-              bg_color = "#${colors.base00}",
-              fg_color = "#${colors.base08}",
-            },
-            inactive_tab_hover = {
-              bg_color = "#${colors.base00}",
-              fg_color = "#${colors.base0D}",
-            },
-            new_tab = {
-              bg_color = "#${colors.base02}",
-              fg_color = "#${colors.base08}",
-            },
-            new_tab_hover = {
-              bg_color = "#${colors.base00}",
-              fg_color = "#${colors.base0D}",
-            },
-          },
-        },
 
         leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
         keys = {
