@@ -138,6 +138,28 @@
             stylua.enable = true;
             rustfmt.enable = true;
             shfmt.enable = true;
+            prettier.enable = true;
+          };
+
+          settings.formatter = {
+            stylua.options = [
+              "--indent-type"
+              "spaces"
+            ];
+            prettier = {
+              options = ["--write"];
+              includes = [
+                "*.json"
+                "*.yaml"
+                "*.md"
+              ];
+            };
+            shfmt.options = [
+              "-s"
+              "-w"
+              "-i"
+              "2"
+            ];
           };
         };
       };
