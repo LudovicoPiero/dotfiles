@@ -23,6 +23,42 @@
         "type": "github"
       }
     },
+    "amoledcord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689621470,
+        "narHash": "sha256-fFDjG1xw7OOuchJW5tyEFvQvv3MCVTCFxKSdS3FB4Ts=",
+        "owner": "luckfire",
+        "repo": "amoled-cord",
+        "rev": "f82f5adda70d925624a6e721a5e0cc667965397d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luckfire",
+        "repo": "amoled-cord",
+        "type": "github"
+      }
+    },
+    "arrpc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1683545835,
+        "narHash": "sha256-GfsXWlidRkQG/eB/iwWrUAvB2v2uYrQr1LKRAToId/s=",
+        "owner": "NotAShelf",
+        "repo": "arrpc-flake",
+        "rev": "b29476f08795519fdac720fb4caf46dbe756823b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "arrpc-flake",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -641,6 +677,8 @@
     "root": {
       "inputs": {
         "aagl": "aagl",
+        "amoledcord": "amoledcord",
+        "arrpc": "arrpc",
         "devshell": "devshell",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",

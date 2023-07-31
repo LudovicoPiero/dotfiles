@@ -8,5 +8,6 @@ _: {
     ./fuzzel
     ./gtk
     ./spotify
+    ./webcord
   ];
 }

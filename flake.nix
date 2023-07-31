@@ -11,6 +11,12 @@
       flake = false;
     };
 
+    # For Webcord
+    arrpc = {
+      url = "github:NotAShelf/arrpc-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,6 +80,12 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-flake.url = "github:srid/nixos-flake";
+
+    # Non Flakes Stuff
+    amoledcord = {
+      url = "github:luckfire/amoled-cord";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {nixpkgs, ...}:
