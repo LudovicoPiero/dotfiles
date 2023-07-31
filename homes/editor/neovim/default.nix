@@ -29,7 +29,6 @@
       gitsigns-nvim
       # neogit
 
-      #TODO: switch to coq
       # Cmp
       cmp-nvim-lsp
       cmp-buffer
@@ -43,7 +42,6 @@
     ];
 
     extraPackages = with pkgs; [
-<<<<<<< HEAD
       # Nix
       nil
       alejandra
@@ -53,28 +51,15 @@
       stylua
 
       # C/C++
+      gcc
       clang
       clang-tools # for headers stuff
 
       # Etc
       rust-analyzer
-=======
-      alejandra
-      lua-language-server
-      stylua # Lua
-      rust-analyzer
-      gcc
->>>>>>> parent of 03c609b (neovim: update config)
       ripgrep
       fd
     ];
-  };
-
-<<<<<<< HEAD
-  xdg.configFile."nvim" = {
-    source = ./config;
-    recursive = true;
-=======
     # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
     extraConfig = let
       luaRequire = module:
@@ -96,6 +81,5 @@
       ${luaConfig}
       EOF
     '';
->>>>>>> parent of 03c609b (neovim: update config)
   };
 }
