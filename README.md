@@ -37,3 +37,13 @@ These are the people who have helped me learn Nix and NixOS. I would not have be
 - [misterio77](https://github.com/misterio77)
 - [hlissner](https://github.com/hlissner)
 - [sweenu](https://github.com/sweenu)
+
+## **Resources**
+
+Here are some resources for learning Nix/NixOS
+
+- [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/)
+- [nix-pills](https://nixos.org/guides/nix-pills/)
+- [thiscute](https://nixos-and-flakes.thiscute.world/preface)
+- [zero-to-flakes](https://zero-to-flakes.com/)
+
