@@ -33,14 +33,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    impermanence.url = "github:nix-community/impermanence";
-
-    nur.url = "github:nix-community/nur";
-
-    nix-colors.url = "github:misterio77/nix-colors";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -79,6 +75,9 @@
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+    impermanence.url = "github:nix-community/impermanence";
+    nur.url = "github:nix-community/nur";
+    nix-colors.url = "github:misterio77/nix-colors";
     nixos-flake.url = "github:srid/nixos-flake";
 
     # Non Flakes Stuff
