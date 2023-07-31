@@ -11,8 +11,11 @@
         isDefault = true;
         name = "Ludovico";
         extensions = with config.nur.repos.rycee.firefox-addons; [
-          ublock-origin
           bitwarden
+          duckduckgo-privacy-essentials
+          i-dont-care-about-cookies
+          to-deepl
+          ublock-origin
           # fastforward
         ];
         bookmarks = [
@@ -52,12 +55,17 @@
           }
         ];
         search = {
-          default = "Brave";
+          default = "DuckDuckGo";
           force = true;
           engines = {
             "Brave" = {
               urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
               definedAliases = ["@b"];
+              icon = "${pkgs.brave}/share/icons/hicolor/64x64/apps/brave-browser.png";
+            };
+            "DuckDuckGo" = {
+              urls = [{template = "https://duckduckgo.com/?q={searchTerms}";}];
+              definedAliases = ["@d"];
             };
             "Nix Packages" = {
               urls = [
@@ -125,6 +133,8 @@
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["@nw"];
             };
+            "Bing".metaData.hidden = true;
+            "Google".metaData.alias = "@g";
           };
         };
         settings = {
