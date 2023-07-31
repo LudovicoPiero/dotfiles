@@ -19,6 +19,7 @@ This is my personal NixOS configuration. It is a work in progress. I am using th
 
 ![Screenshot](assets/ss.png)
 
+
 ## **Software I use on my personal computer**
 
 - Wayland compositor: [Hyprland](https://hyprland.org)
@@ -28,6 +29,7 @@ This is my personal NixOS configuration. It is a work in progress. I am using th
 - Terminal: [wezterm](https://github.com/wez/wezterm)
 - Shell: [fish](https://fishshell.com)
 - Browser: [firefox](https://www.mozilla.org/en-US/firefox)
+
 
 ## **Acknowledgment:**
 
