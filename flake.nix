@@ -145,6 +145,8 @@
             stylua.options = [
               "--indent-type"
               "spaces"
+              "--indent-width"
+              "2"
             ];
             prettier = {
               options = ["--write"];
