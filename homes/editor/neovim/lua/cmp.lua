@@ -1,4 +1,9 @@
 local cmp = require("cmp")
+local luasnip = require("luasnip")
+
+require("luasnip.loaders.from_vscode").lazy_load()
+luasnip.config.setup({})
+
 local ok, lspkind = pcall(require, "lspkind")
 if not ok then
     return
@@ -47,7 +52,6 @@ cmp.setup({
     }),
 
     formatting = {
-        -- Youtube: How to set up nice formatting for your sources.
         format = lspkind.cmp_format({
             with_text = true,
             menu = {
@@ -94,8 +98,10 @@ local on_attach = function(client)
     require("lsp-format").on_attach(client)
 end
 
--- Set up lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
 require("lspconfig")["nil_ls"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
