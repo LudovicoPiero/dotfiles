@@ -11,7 +11,16 @@
     pam.services.swaylock.text = "auth include login";
   };
 
-  services.xserver.displayManager.sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
+  services = {
+    xserver.displayManager.sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
+    geoclue2 = {
+      enable = true;
+      appConfig.gammastep = {
+        isAllowed = true;
+        isSystem = false;
+      };
+    };
+  };
 
   programs.dconf.enable = true;
 }

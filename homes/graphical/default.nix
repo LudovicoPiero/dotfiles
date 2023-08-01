@@ -2,6 +2,7 @@ _: {
   imports = [
     ./common.nix
 
+    ./gammastep
     ./dunst
     ./waybar
     ./wezterm
