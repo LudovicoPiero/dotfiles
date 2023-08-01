@@ -26,13 +26,6 @@ in {
 
   # User Services
   systemd.user.services = {
-    swaybg = mkService {
-      Unit.Description = "Images Wallpaper Daemon";
-      Service = {
-        ExecStart = "${lib.getExe pkgs.swaybg} -i ${./Wallpaper/hypr-chan.png}";
-        Restart = "always";
-      };
-    };
     wl-clip-persist = mkService {
       Unit.Description = "Keep Wayland clipboard even after programs close";
       Service = {
