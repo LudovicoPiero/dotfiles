@@ -8,28 +8,6 @@
       Hyprland
       fish
     '';
-    systemPackages = with pkgs; [
-      # theme packages
-      (catppuccin-gtk.override {
-        accents = ["mauve"];
-        size = "compact";
-        variant = "mocha";
-      })
-      apple-cursor
-      papirus-icon-theme
-    ];
-  };
-
-  programs.regreet = {
-    enable = false;
-    settings = {
-      GTK = {
-        cursor_theme_name = "macOS-BigSur";
-        font_name = "SF Pro Rounded 12";
-        icon_theme_name = "Papirus-Dark";
-        theme_name = "Catppuccin-Mocha-Compact-Mauve-dark";
-      };
-    };
   };
 
   services.greetd = let
