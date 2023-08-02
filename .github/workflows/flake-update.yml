@@ -2,7 +2,7 @@ name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 0 */2 * *' # At 00:00 on every 2nd day-of-month.
+    - cron: '0 1 * * *' # Everyday At 01:00
 
 jobs:
   lockfile:
@@ -19,3 +19,8 @@ jobs:
           pr-labels: |                  # Labels to be set on the PR
             dependencies
             automated
+      - name: merge
+        run: |
+          gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
