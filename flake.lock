@@ -692,7 +692,7 @@
         "nix-super": "nix-super",
         "nixos-flake": "nixos-flake",
         "nixpkgs": [
-          "master"
+          "unstable"
         ],
         "nur": "nur",
         "sops-nix": "sops-nix",
