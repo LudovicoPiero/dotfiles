@@ -28,7 +28,7 @@ in {
         ];
         foreground = "#${colors.base05}";
         background = "#${colors.base00}";
-        cursor_fg = "#${colors.base05}";
+        cursor_fg = "#${colors.base00}";
         cursor_bg = "#${colors.base05}";
         cursor_border = "#${colors.base05}";
         selection_fg = "#${colors.base00}";
