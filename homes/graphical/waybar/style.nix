@@ -1,100 +1,102 @@
-_: ''
+{config, ...}: let
+  inherit (config.colorScheme) colors;
+in ''
   * {
-      border: none;
-      border-radius: 0;
-      font-family: Iosevka q, Symbols Nerd Font, monospace;
-      font-size: 14px;
-      min-height: 0;
+    border: none;
+    border-radius: 0;
+    font-family:
+      Iosevka q,
+      Symbols Nerd Font,
+      monospace;
+    font-size: 14px;
+    min-height: 0;
   }
 
   window#waybar {
-      background: transparent;
-      color: white;
+    background: transparent;
+    /* color: #${colors.white}; */
   }
 
   #workspaces {
-  	background-color: #24283b;
-  	margin: 5px;
-  	margin-left: 10px;
-  	border-radius: 5px;
+    background-color: #${colors.base00};
+    margin: 5px;
+    margin-left: 10px;
+    border-radius: 5px;
   }
+
   #workspaces button {
-      padding: 5px 10px;
-      color: #c0caf5;
+    padding: 5px 10px;
+    color: #${colors.base05};
   }
 
   #workspaces button.active {
-      color: #24283b;
-      background-color: #7aa2f7;
-      border-radius: 5px;
+    color: #${colors.base00};
+    background-color: #${colors.base0D};
+    border-radius: 5px;
   }
 
   #workspaces button:hover {
-  	background-color: #7dcfff;
-  	color: #24283b;
-  	border-radius: 5px;
+    background-color: #${colors.base0D};
+    color: #${colors.base00};
+    border-radius: 5px;
   }
 
   #tray {
-      color: #24283b;
-      border-radius: 5px;
+    color: #${colors.base00};
+    border-radius: 5px;
   }
 
   #custom-wireguard {
-    color: #fab387;
+    color: #${colors.base09};
   }
 
   #custom-teavpn {
-    color: #fab387;
+    color: #${colors.base09};
   }
 
-  #tray, #custom-date, #custom-wireguard, #custom-teavpn, #clock, #battery, #pulseaudio, #network {
-  	background-color: #24283b;
-  	padding: 5px 10px;
-  	margin: 5px 0px;
+  #tray,
+  #custom-date,
+  #custom-wireguard,
+  #custom-teavpn,
+  #clock,
+  #battery,
+  #pulseaudio,
+  #network {
+    background-color: #${colors.base00};
+    padding: 5px 10px;
+    margin: 5px 0px;
   }
 
   #custom-date {
-  	color: #7dcfff;
-  }
-
-  #custom-power {
-  	color: #24283b;
-  	background-color: #db4b4b;
-  	border-radius: 5px;
-  	margin-right: 10px;
-  	margin-top: 5px;
-  	margin-bottom: 5px;
-  	margin-left: 0px;
-  	padding: 5px 10px;
+    color: #${colors.base0A};
   }
 
   #clock {
-      color: #b48ead;
-      border-radius: 0px 5px 5px 0px;
-      margin-right: 10px;
+    color: #${colors.base0B};
+    border-radius: 0px 5px 5px 0px;
+    margin-right: 10px;
   }
 
   #battery {
-      color: #9ece6a;
+    color: #${colors.base09};
   }
 
   #battery.charging {
-      color: #9ece6a;
+    color: #${colors.base0B};
   }
 
   #battery.warning:not(.charging) {
-      background-color: #f7768e;
-      color: #24283b;
-      border-radius: 5px 5px 5px 5px;
+    background-color: #${colors.base00};
+    color: #${colors.base08};
+    border-radius: 5px 5px 5px 5px;
   }
 
   #network {
-  	color: #f7768e;
-  	border-radius: 5px 0px 0px 5px;
+    color: #${colors.base0C};
+    border-radius: 5px 0px 0px 5px;
   }
 
   #pulseaudio {
-  	color: #e0af68;
+    color: #${colors.base08};
   }
 ''
