@@ -43,8 +43,8 @@ in {
     gaps_in = 2;
     gaps_out = 2;
     border_size = 2;
-    "col.active_border" = "rgb(${colors.blue}) rgb(${colors.pink}) rgb(${colors.yellow}) 45deg";
-    "col.inactive_border" = "rgb(${colors.gray})";
+    "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
+    "col.inactive_border" = "rgb(${colors.base01})";
 
     layout = "dwindle";
     "col.group_border_active" = "rgb(${colors.base0B})";
