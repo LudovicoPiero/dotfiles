@@ -19,12 +19,13 @@ in {
     name = "Skeet";
     author = "Ludovico";
     colors =
-      inputs.nix-colors.colorSchemes.catppuccin-mocha.colors
+      inputs.nix-colors.colorSchemes.dracula.colors
       // {
         blue = "1e5799";
         pink = "f300ff";
         yellow = "e0ff00";
         gray = "595959";
+        white = "000000";
       };
   };
 
