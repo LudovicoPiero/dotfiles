@@ -12,7 +12,6 @@ _: {
 
     extraConfig = {
       init.defaultBranch = "main";
-      pull.rebase = false;
     };
 
     ignores = [
@@ -30,6 +29,7 @@ _: {
       cob = "checkout -b";
       f = "fetch -p";
       c = "commit -s";
+      cl = "clone";
       p = "push";
       ba = "branch -a";
       bd = "branch -d";
@@ -40,6 +40,7 @@ _: {
       r = "restore";
       rs = "restore --staged";
       st = "status -sb";
+      pl = "pull";
 
       # reset
       soft = "reset --soft";

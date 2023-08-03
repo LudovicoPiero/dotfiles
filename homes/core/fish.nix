@@ -49,13 +49,6 @@ in
         "nv" = "nvim";
         "mkdir" = "mkdir -p";
         "g" = "git";
-        "gcl" = "git clone";
-        "gcm" = "cz c";
-        "gd" = "git diff HEAD";
-        "gpl" = "git pull";
-        "gpsh" = "git push -u origin";
-        "gs" = "git status";
-        # "sudo" = "doas";
         "..." = "cd ../..";
         ".." = "cd ..";
       };
