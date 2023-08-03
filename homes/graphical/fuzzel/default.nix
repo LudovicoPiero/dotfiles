@@ -21,7 +21,7 @@ in {
       };
 
       colors = {
-        background = "${colors.base00}0f";
+        background = "${colors.base00}e0";
         text = "${colors.base07}ff";
         match = "${colors.base0E}ff";
         selection = "${colors.base08}ff";
