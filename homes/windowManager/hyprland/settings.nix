@@ -70,8 +70,10 @@ in {
 
     blur = {
       enabled = true;
-      size = 6;
-      passes = 3;
+      size = 2;
+      passes = 4;
+      contrast = 1.4;
+      brightness = 1;
       new_optimizations = true;
       ignore_opacity = true;
     };
