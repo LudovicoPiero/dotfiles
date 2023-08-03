@@ -62,16 +62,19 @@ in {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
     rounding = 5;
-    blur = true;
-    blur_size = 6;
-    blur_passes = 3;
-    blur_new_optimizations = true;
-    blur_ignore_opacity = true;
     blurls = [
       "launcher" # Fuzzel
       "lockscreen"
       "notifications" # Dunst
     ];
+
+    blur = {
+      enabled = true;
+      size = 6;
+      passes = 3;
+      new_optimizations = true;
+      ignore_opacity = true;
+    };
 
     drop_shadow = false;
     shadow_range = 8;
