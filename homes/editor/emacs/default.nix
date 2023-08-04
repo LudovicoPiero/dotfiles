@@ -45,6 +45,7 @@
         elcord = {
           enable = true;
         };
+
         projectile = {
           enable = true;
           diminish = ["projectile-mode"];
@@ -114,9 +115,9 @@
           after = ["flycheck" "projectile"];
         };
 
-        catppuccin-theme = {
+        dracula-theme = {
           enable = true;
-          init = "(load-theme 'catppuccin t)";
+          init = "(load-theme 'dracula t)";
         };
 
         # Configure magit, a nice mode for the git SCM.
