@@ -9,6 +9,11 @@
   # https://git.sr.ht/~rycee/configurations/tree/master/item/user/emacs.nix
 
   imports = [
+    /*
+    I got infinite recursion when using
+    config.nur.repos.rycee.hmModules.emacs-init
+    pls help T_T
+    */
     ./modules/emacs-init.nix
   ];
 
