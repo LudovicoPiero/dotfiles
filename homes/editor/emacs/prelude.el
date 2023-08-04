@@ -41,9 +41,9 @@
       kept-new-versions      10 ; how many of the newest versions to keep
       kept-old-versions      5) ; and how many of the old
 
-;; (elcord-mode t)
-;; (setq elcord-use-major-mode-as-main-icon 't
-;;       elcord-quiet 't)
+(elcord-mode t)
+(setq elcord-use-major-mode-as-main-icon 't
+      elcord-quiet 't)
 
 ;; Long text goes below
 (global-visual-line-mode t)
