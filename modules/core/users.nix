@@ -13,10 +13,20 @@
         mode = "0440";
         neededForUsers = true;
       };
+      "githubToken"={
+        mode = "0444";
+        owner = "ludovico";
+      };
     };
   };
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      . ${config.sops.secrets.githubToken.path}
+    '';
+  };
+
   users = {
     mutableUsers = false;
     users = {
