@@ -1,5 +1,5 @@
 _: {
   imports = [
-    ./firefox.nix
+    ./firefox
   ];
 }
