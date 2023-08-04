@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./common.nix
+    ./run-as-service.nix
 
     ./gammastep
     ./dunst

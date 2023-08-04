@@ -153,7 +153,7 @@ in {
     "$mod SHIFT, G , exec , chromium"
     "$mod      , G , exec , ${browser}"
     "$mod      , M , exec , [workspace 9 silent;tile] mailspring"
-    "$mod      , P , exec , ${launcher}"
+    "$mod      , P , exec , run-as-service ${launcher}"
     "$mod      , T , togglefloating ,"
     "$mod      , R , togglegroup ,"
     "$mod SHIFT , J , changegroupactive, f"
@@ -161,7 +161,7 @@ in {
     "$mod      , S , exec , [workspace 5 silent;tile] spotify"
     "$mod      , W , killactive ,"
     "$mod      , X , exec , ${powermenu}"
-    "$mod      , Return , exec , ${terminal}"
+    "$mod      , Return , exec , run-as-service ${terminal}"
 
     "$mod , E , exec , emacsclient -c -a 'nvim'"
     "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
