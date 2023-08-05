@@ -1360,11 +1360,11 @@
         "zig": "zig"
       },
       "locked": {
-        "lastModified": 1691237704,
-        "narHash": "sha256-MktOUDdwXeERuCELaeiJRlV7TeZS46hyhcJIdx1bRuM=",
+        "lastModified": 1691262484,
+        "narHash": "sha256-wH7daAXfO0tDiUzLYD1EHdEARxmIWlPL4bs73csUyoQ=",
         "owner": "notashelf",
         "repo": "neovim-flake",
-        "rev": "617384551537899308a400fb4e15c4c3fd8cfbc2",
+        "rev": "b68c0e32e739be2a849340bf46bce326ee596d93",
         "type": "github"
       },
       "original": {

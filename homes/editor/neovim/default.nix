@@ -19,10 +19,6 @@
 
         binds.whichKey.enable = true;
 
-        extraConfig = ''
-          set guicursor=n-v-c-i:block
-        '';
-
         autocomplete = {
           enable = true;
           mappings = {
@@ -45,7 +41,7 @@
 
         languages = {
           enableExtraDiagnostics = false;
-          enableFormat = true;
+          enableFormat = false;
           enableLSP = true;
           enableTreesitter = true;
 
@@ -61,7 +57,6 @@
 
           nix = {
             enable = true;
-            format.enable = true;
             extraDiagnostics = {
               enable = true;
               types = ["statix" "deadnix"];
@@ -90,6 +85,7 @@
 
         lsp = {
           enable = true;
+          formatOnSave = true;
           lightbulb.enable = true;
           lspSignature.enable = true;
           lspconfig.enable = true;
