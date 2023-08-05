@@ -13,7 +13,6 @@
   services.greetd = let
     user = "ludovico";
     tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
-
     # sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
     #   output * bg #000000 solid_color
     #   exec ${pkgs.dbus}/bin/dbus-update-activation-environment  --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
