@@ -14,9 +14,9 @@
   3 is no failback to system dns
   */
   "network.trr.mode" = 3;
-  "network.trr.default_provider_uri" = "https://cloudflare-dns.com/dns-query";
-  "network.trr.uri" = "https://cloudflare-dns.com/dns-query";
-  "network.trr.custom_uri" = "https://cloudflare-dns.com/dns-query";
+  "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
+  "network.trr.uri" = "https://doh.tiarap.org/dns-query";
+  "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
   "network.trr.bootstrapAddress" = "1.1.1.1";
 
   # Disable telemetry
