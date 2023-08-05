@@ -97,7 +97,7 @@
 
         maps = {
           normal.";" = {
-            silent = true;
+            noremap = true;
             action = ":";
           };
         };
