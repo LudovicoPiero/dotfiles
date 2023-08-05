@@ -3,108 +3,171 @@
   inputs,
   ...
 }: {
-  programs.neovim = {
+  imports = [inputs.neovim-flake.homeManagerModules.default];
+
+  programs.neovim-flake = {
     enable = true;
+    settings = {
+      vim = {
+        viAlias = true;
+        vimAlias = true;
+        package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+        enableEditorconfig = true;
+        preventJunkFiles = true;
+        enableLuaLoader = true;
+        wordWrap = true;
 
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-    vimAlias = true;
-    viAlias = true;
-    vimdiffAlias = true;
+        binds.whichKey.enable = true;
 
-    # I use coc only for coc-discord-rpc
-    coc = {
-      enable = true;
-      settings = {
-        # Disable coc suggestion
-        definitions.languageserver.enable = false;
-        suggest.autoTrigger = "none";
+        extraConfig = ''
+          set guicursor=n-v-c-i:block
+        '';
 
-        # :CocInstall coc-discord-rpc
-        # coc-discord-rpc
-        rpc = {
-          checkIdle = false;
-          detailsViewing = "In {workspace_folder}";
-          detailsEditing = "{workspace_folder}";
-          lowerDetailsEditing = "Working on {file_name}";
+        autocomplete = {
+          enable = true;
+          mappings = {
+            close = "<C-e>";
+            complete = "<C-Space>";
+            confirm = "<CR>";
+            next = "<Tab>";
+            previous = "<S-Tab>";
+            scrollDocsDown = "<C-j>";
+            scrollDocsUp = "<C-k>";
+          };
+        };
+
+        comments.comment-nvim.enable = true;
+
+        git = {
+          enable = true;
+          gitsigns.enable = true;
+        };
+
+        languages = {
+          enableExtraDiagnostics = false;
+          enableFormat = true;
+          enableLSP = true;
+          enableTreesitter = true;
+
+          clang = {
+            enable = true;
+            lsp.server = "clangd";
+            cHeader = true;
+          };
+
+          go.enable = true;
+          html.enable = true;
+          markdown.enable = true;
+
+          nix = {
+            enable = true;
+            format.enable = true;
+            extraDiagnostics = {
+              enable = true;
+              types = ["statix" "deadnix"];
+            };
+          };
+
+          python = {
+            enable = true;
+            format.enable = true;
+          };
+
+          rust = {
+            enable = true;
+            crates.enable = true;
+          };
+
+          ts = {
+            enable = true;
+            extraDiagnostics.enable = true;
+            format.enable = true;
+          };
+        };
+
+        mapLeaderSpace = true;
+        lineNumberMode = "relative";
+
+        lsp = {
+          enable = true;
+          lightbulb.enable = true;
+          lspSignature.enable = true;
+          lspconfig.enable = true;
+          lspkind.enable = true;
+          lspsaga.enable = false;
+          nvimCodeActionMenu.enable = true;
+          trouble.enable = false;
+        };
+
+        maps = {
+          normal.";" = {
+            silent = true;
+            action = ":";
+          };
+        };
+
+        notes = {
+          # orgmode.enable = true; #FIXME: enable if fixed upstream
+          todo-comments.enable = true;
+        };
+
+        # Discord Presence
+        presence.presence-nvim.enable = true;
+
+        statusline.lualine = {
+          enable = true;
+          theme = "dracula";
+        };
+
+        tabline.nvimBufferline = {
+          enable = true;
+          mappings = {
+            closeCurrent = "<leader>xx";
+          };
+        };
+
+        telescope = {
+          enable = true;
+          mappings = {
+            buffers = "<leader>fb";
+            diagnostics = "<leader>fd";
+            findFiles = "<leader>ff";
+            findProjects = "<leader>fp";
+          };
+        };
+
+        theme = {
+          enable = true;
+          name = "catppuccin";
+          style = "mocha";
+          transparent = true;
+        };
+
+        # Enable color on text background
+        ui.colorizer.enable = true;
+
+        utility.motion.hop = {
+          enable = true;
+          mappings.hop = "<leader>h";
+        };
+
+        visuals = {
+          nvimWebDevicons.enable = true;
+          indentBlankline = {
+            enable = true;
+            # useTreesitter = true;
+          };
+        };
+
+        #TODO: extraPlugins = {};
+
+        treesitter = {
+          enable = true;
+          grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            lua
+          ];
         };
       };
     };
-
-    plugins = with pkgs.vimPlugins; [
-      catppuccin-nvim
-      vim-nix
-      plenary-nvim
-      dashboard-nvim
-      lualine-nvim
-      nvim-tree-lua
-      bufferline-nvim
-      nvim-colorizer-lua
-      impatient-nvim
-      telescope-nvim
-      indent-blankline-nvim
-      nvim-treesitter-context
-      nvim-treesitter.withAllGrammars
-      comment-nvim
-      vim-fugitive
-      nvim-web-devicons
-      lsp-format-nvim
-      which-key-nvim
-      hop-nvim
-
-      gitsigns-nvim
-      # neogit
-
-      # Cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      nvim-cmp
-      nvim-lspconfig
-      luasnip
-      lspkind-nvim
-      cmp_luasnip
-    ];
-
-    extraPackages = with pkgs; [
-      # Nix
-      nil
-      alejandra
-
-      # Lua
-      lua-language-server
-      stylua
-
-      # C/C++
-      gcc
-      clang
-      clang-tools # for headers stuff
-
-      # Etc
-      rust-analyzer
-      ripgrep
-      fd
-    ];
-    # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
-    extraConfig = let
-      luaRequire = module:
-        builtins.readFile (builtins.toString
-          ./lua
-          + "/${module}.lua");
-      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-        "cmp"
-        "colorizer"
-        "keybind"
-        "settings"
-        "theme"
-        "ui"
-        "which-key"
-      ]);
-    in ''
-      set guicursor=n-v-c-i:block
-      lua << EOF
-      ${luaConfig}
-      EOF
-    '';
   };
 }
