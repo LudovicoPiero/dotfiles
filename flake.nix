@@ -134,9 +134,9 @@
           devshell = import ./parts/devshell;
         in
           inputs'.devshell.legacyPackages.mkShell {
+            inherit (devshell) env;
             name = "Devshell";
             commands = devshell.shellCommands;
-            env = devshell.env;
             packages = with pkgs; [
               inputs'.sops-nix.packages.default
               inputs'.nix-super.packages.default
@@ -153,8 +153,8 @@
         treefmt = let
           treefmt = import ./parts/treefmt;
         in {
+          inherit (treefmt) programs;
           projectRootFile = "flake.nix";
-          programs = treefmt.programs;
           settings.formatter = treefmt.settingsFormatter;
         };
       };
