@@ -13,7 +13,7 @@
         mode = "0440";
         neededForUsers = true;
       };
-      "githubToken"={
+      "githubToken" = {
         mode = "0444";
         owner = "ludovico";
       };
