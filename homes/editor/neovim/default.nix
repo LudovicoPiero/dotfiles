@@ -110,9 +110,12 @@
         # Discord Presence
         presence.presence-nvim.enable = true;
 
+        # Snippets
+        snippets.vsnip.enable = true;
+
         statusline.lualine = {
           enable = true;
-          theme = "dracula";
+          theme = "catppuccin";
         };
 
         tabline.nvimBufferline = {
