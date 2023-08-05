@@ -25,7 +25,7 @@
 
   programs.emacs = {
     enable = true;
-    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git;
+    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-pgtk;
 
     init = {
       enable = true;
