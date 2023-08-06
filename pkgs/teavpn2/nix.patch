@@ -6,9 +6,9 @@ index a77c1c8..815b886 100644
  		"/usr/sbin/ip",
  		"/usr/local/bin/ip",
  		"/usr/local/sbin/ip",
--		"/data/data/com.termux/files/usr/bin/ip"
-+	    "/data/data/com.termux/files/usr/bin/ip",
-+       "/run/current-system/sw/bin/ip"
+-		"/data/data/com.termux/files/usr/bin/ip",
++		"/data/data/com.termux/files/usr/bin/ip",
++		"/run/current-system/sw/bin/ip"
  	};
  
  	for (size_t i = 0; i < (sizeof(ip_bin) / sizeof(*ip_bin)); i++) {
