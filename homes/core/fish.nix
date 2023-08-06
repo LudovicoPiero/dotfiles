@@ -6,7 +6,7 @@
   _ = lib.getExe;
 in
   with pkgs; {
-    home.packages = [zoxide fzf fd bat lazygit];
+    home.packages = [zoxide fzf fd bat];
 
     programs.exa = {
       enable = true;
@@ -38,6 +38,7 @@ in
         "hs" = "pushd ~/.config/nixos && home-manager switch --flake .# --use-remote-sudo  ; popd";
         "cat" = "${_ bat}";
         "config" = "cd ~/.config/nixos";
+        "fe" = "rg --files ''$argv[1] | fzf --preview 'bat -f {}' | xargs $EDITOR"; # search Files and Edit
         "lg" = "lazygit";
         "ls" = "${_ exa} --icons";
         "l" = "${_ exa} -lbF --git --icons";
@@ -47,8 +48,10 @@ in
         "lx" = "${_ exa} -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
         "tree" = "${_ exa} --tree --icons";
         "nv" = "nvim";
+        "nr" = "${_ nixpkgs-review}";
         "mkdir" = "mkdir -p";
         "g" = "git";
+        "v" = "vim";
         "..." = "cd ../..";
         ".." = "cd ..";
       };
