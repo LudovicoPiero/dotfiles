@@ -1,12 +1,12 @@
 diff --git a/src/teavpn2/net/linux/iface.c b/src/teavpn2/net/linux/iface.c
-index a77c1c8..815b886 100644
+index a77c1c8..e59c901 100644
 --- a/src/teavpn2/net/linux/iface.c
 +++ b/src/teavpn2/net/linux/iface.c
 @@ -327,7 +327,8 @@ static __cold __always_inline const char *find_ip_cmd(void)
  		"/usr/sbin/ip",
  		"/usr/local/bin/ip",
  		"/usr/local/sbin/ip",
--		"/data/data/com.termux/files/usr/bin/ip",
+-		"/data/data/com.termux/files/usr/bin/ip"
 +		"/data/data/com.termux/files/usr/bin/ip",
 +		"/run/current-system/sw/bin/ip"
  	};
