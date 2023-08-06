@@ -30,7 +30,6 @@ _: {
       f = "fetch -p";
       c = "commit -s";
       cl = "clone";
-      p = "push";
       ba = "branch -a";
       bd = "branch -d";
       bD = "branch -D";
@@ -39,7 +38,9 @@ _: {
       ds = "diff --staged";
       r = "restore";
       rs = "restore --staged";
+      s = "status";
       st = "status -sb";
+      p = "push";
       pl = "pull";
 
       # reset
