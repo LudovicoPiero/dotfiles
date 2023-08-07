@@ -59,6 +59,10 @@
       tealdeer
       whois
       wl-clipboard
+
+      # Utils for nixpkgs stuff
+      nixpkgs-review
+      haskellPackages.nixpkgs-update
     ];
 
     sessionVariables = {
