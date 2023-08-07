@@ -31,7 +31,7 @@ in {
 
   home = {
     sessionVariables = {
-      NIXOS_OZONE_WL = "1";
+      NIXOS_OZONE_WL = "0";
       EDITOR = "nvim";
       VISUAL = "nvim";
       PAGER = "less -R";
