@@ -8,7 +8,7 @@ in {
   programs.spicetify = {
     enable = true;
     spotifyPackage = inputs.self.packages.${pkgs.system}.spotify;
-    theme = spicePkgs.themes.catppuccin-mocha;
+    theme = spicePkgs.themes.Dracula;
     # colorScheme = "flamingo";
 
     enabledExtensions = with spicePkgs.extensions; [
