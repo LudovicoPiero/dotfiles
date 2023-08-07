@@ -76,16 +76,16 @@ assert (extraParameters != null) -> set != null;
       if set != null
       then "iosevka-${set}"
       else "iosevka";
-    version = "25.1.0";
+    version = "26.0.2";
 
     src = fetchFromGitHub {
       owner = "be5invis";
       repo = "iosevka";
       rev = "v${version}";
-      hash = "sha256-hxkdigJYP0bPn1+HWlq7DoL/jTYAO1WCJcQN2WI8j/U=";
+      hash = "sha256-thQrjK+5Um0T1GK/VZpZoioWvW/ncoHUGEb19/hUIHc=";
     };
 
-    npmDepsHash = "sha256-zIH2rt+uhYO1pwumu6LeIpKX1y4y9ajwxK/vAVwzz9Q=";
+    npmDepsHash = "sha256-28ZyVY6/MkeFWBXmQMY+vLsfDsEvGyY9s6eYW5OzYvw=";
 
     nativeBuildInputs =
       [
