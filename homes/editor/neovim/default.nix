@@ -30,6 +30,13 @@
             scrollDocsDown = "<C-j>";
             scrollDocsUp = "<C-k>";
           };
+          sources = {
+            "nvim-cmp" = null;
+            "luasnip" = "[Luasnip]";
+            "path" = "[Path]";
+            "buffer" = "[Buffer]";
+            "crates" = "[Crates]";
+          };
         };
 
         comments.comment-nvim.enable = true;
@@ -86,36 +93,77 @@
         lsp = {
           enable = true;
           formatOnSave = true;
-          lightbulb.enable = true;
+          lightbulb.enable = false;
           lspSignature.enable = true;
           lspconfig.enable = true;
           lspkind.enable = true;
-          lspsaga.enable = false;
+          lspsaga.enable = true;
           nvimCodeActionMenu.enable = true;
           trouble.enable = false;
         };
 
         maps = {
-          normal.";" = {
-            noremap = true;
-            action = ":";
+          normal = {
+            ";" = {
+              noremap = true;
+              action = ":";
+            };
+            "s" = {
+              desc = "Hop Word";
+              noremap = true;
+              silent = true;
+              action = "<cmd>HopWord <CR>";
+            };
+            "S" = {
+              desc = "Hop Line";
+              noremap = true;
+              silent = true;
+              action = "<cmd>HopLine <CR>";
+            };
+            "<C-s>" = {
+              desc = "Hop Pattern";
+              noremap = true;
+              silent = true;
+              action = "<cmd>HopPattern <CR>";
+            };
+            "<Left>" = {
+              desc = "Vertical Resize +1";
+              noremap = true;
+              silent = true;
+              action = "<cmd>vertical resize +1<CR>";
+            };
+            "<Right>" = {
+              desc = "Vertical Resize -1";
+              noremap = true;
+              silent = true;
+              action = "<cmd>vertical resize -1<CR>";
+            };
+            "<Up>" = {
+              desc = "Resize -1";
+              noremap = true;
+              silent = true;
+              action = "<cmd>resize -1<CR>";
+            };
+            "<Down>" = {
+              desc = "Resize +1";
+              noremap = true;
+              silent = true;
+              action = "<cmd>resize +1<CR>";
+            };
           };
         };
 
         notes = {
-          # orgmode.enable = true; #FIXME: enable if fixed upstream
+          # orgmode.enable = true;
           todo-comments.enable = true;
         };
 
         # Discord Presence
         presence.presence-nvim.enable = true;
 
-        # Snippets
-        snippets.vsnip.enable = true;
-
         statusline.lualine = {
           enable = true;
-          theme = "catppuccin";
+          theme = "palenight";
         };
 
         tabline.nvimBufferline = {
@@ -137,8 +185,8 @@
 
         theme = {
           enable = true;
-          name = "catppuccin";
-          style = "mocha";
+          name = "tokyonight";
+          style = "storm";
           transparent = true;
         };
 
@@ -154,11 +202,26 @@
           nvimWebDevicons.enable = true;
           indentBlankline = {
             enable = true;
-            # useTreesitter = true;
+            useTreesitter = true;
           };
         };
 
-        #TODO: extraPlugins = {};
+        extraPlugins = with pkgs.vimPlugins; {
+          luasnip = {
+            package = luasnip;
+            setup = ''require("luasnip.loaders.from_vscode").lazy_load()'';
+          };
+          friendly-snippets = {
+            package = friendly-snippets;
+            after = ["luasnip"];
+          };
+          cmp_luasnip = {
+            package = cmp_luasnip;
+          };
+          cmp-buffer = {
+            package = cmp-buffer;
+          };
+        };
 
         treesitter = {
           enable = true;
