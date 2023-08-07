@@ -62,7 +62,7 @@
 
       # Utils for nixpkgs stuff
       nixpkgs-review
-      haskellPackages.nixpkgs-update
+      # haskellPackages.nixpkgs-update #FIXME: remove comment if fixed upstream
     ];
 
     sessionVariables = {
