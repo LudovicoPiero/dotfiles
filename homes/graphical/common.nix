@@ -55,10 +55,6 @@ in {
       imv
       whatsapp-for-linux
 
-      # Qt
-      libsForQt5.qt5.qtwayland
-      qt6.qtwayland
-
       # Utils
       ocrScript
     ];
