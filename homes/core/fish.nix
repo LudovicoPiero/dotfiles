@@ -19,6 +19,24 @@ in
       functions = {
         gitignore = "curl -sL https://www.gitignore.io/api/$argv";
         fish_greeting = ""; # disable welcome text
+        prj = ''
+          # Credit to https://www.reddit.com/r/fishshell/comments/152zkrz/
+          if not command -q fzf
+                  echo >&2 "prj: fzf command not found. Install with your OS package manager."
+                  return 1
+              end
+
+          # determine the project home
+          set -q MY_PROJECTS || set -l MY_PROJECTS ~/Code
+          set -l prjfolders (path dirname $MY_PROJECTS/**/.git)
+
+          # use fzf to navigate to a project
+          set -l prjlist (string replace $MY_PROJECTS/ "" $prjfolders)
+          set -l selection (printf '%s\n' $prjlist | sort | fzf --layout=reverse-list --query="$argv")
+          test $status -eq 0 || return $status
+          echo "Navigating to '$selection'."
+          cd $MY_PROJECTS/$selection
+        '';
         run = "nix run nixpkgs#$argv[1] -- $argv[2..-1]";
         "watchLive" = let
           args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
