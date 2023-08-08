@@ -48,4 +48,10 @@
 ;; Long text goes below
 (global-visual-line-mode t)
 
+;; Evil Mode
+(setq evil-want-integration t
+      evil-want-keybinding nil)
+(evil-mode t)
+(evil-collection-init)
+
 ;;; prelude.el ends here
