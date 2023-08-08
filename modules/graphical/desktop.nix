@@ -22,5 +22,6 @@
     };
   };
 
+  programs.sway.enable = true;
   programs.dconf.enable = true;
 }
