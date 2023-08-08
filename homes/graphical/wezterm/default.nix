@@ -40,6 +40,7 @@ in {
         font = wezterm.font_with_fallback({
           "Iosevka q Semibold",
           "Symbols Nerd Font",
+          "Noto Color Emoji",
         }),
         font_size = 14.0,
         window_background_opacity = 0.8,
