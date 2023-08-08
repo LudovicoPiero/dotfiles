@@ -17,6 +17,74 @@
         enableLuaLoader = true;
         wordWrap = true;
 
+        autopairs.enable = true;
+        autoIndent = true;
+
+        luaConfigRC.custom = ''
+          local o = vim.opt
+          local g = vim.g
+          local a = vim.api
+
+          -- Set cursor to always block
+          a.nvim_set_option('guicursor', 'n-v-c-i:block')
+
+          -- Show line
+          o.colorcolumn = "80"
+
+          g.loaded_netrw = 1
+          g.loaded_netrwPlugin = 1
+
+          -- Performance
+          o.lazyredraw = true
+          o.shell = "bash"
+          o.shadafile = "NONE"
+
+          -- Colors
+          o.termguicolors = true
+
+          -- Undo files
+          o.undofile = true
+
+          -- Indentation
+          o.smartindent = true
+          o.tabstop = 4
+          o.shiftwidth = 2
+          o.shiftround = true
+          o.expandtab = true
+          o.scrolloff = 3
+
+          -- Set clipboard to use system clipboard
+          o.clipboard = "unnamedplus"
+
+          -- Use mouse
+          o.mouse = "a"
+
+          -- Nicer UI settings
+          o.cursorline = true
+          o.relativenumber = true
+          o.number = true
+
+          -- Get rid of annoying viminfo file
+          o.viminfo = ""
+          o.viminfofile = "NONE"
+
+          -- Miscellaneous quality of life
+          o.ignorecase = true
+          o.hidden = true
+          o.shortmess = "atI"
+          o.wrap = false
+          o.backup = false
+          o.writebackup = false
+          o.errorbells = false
+          o.swapfile = false
+          o.showmode = false
+          o.laststatus = 3
+          o.pumheight = 6
+          o.splitright = true
+          o.splitbelow = true
+          o.completeopt = "menu,menuone,noselect"
+        '';
+
         binds.whichKey.enable = true;
 
         autocomplete = {
@@ -93,11 +161,11 @@
         lsp = {
           enable = true;
           formatOnSave = true;
-          lightbulb.enable = false;
+          lightbulb.enable = true;
           lspSignature.enable = true;
           lspconfig.enable = true;
           lspkind.enable = true;
-          lspsaga.enable = true;
+          lspsaga.enable = false; #TODO: enable if icons are fixed
           nvimCodeActionMenu.enable = true;
           trouble.enable = false;
         };
@@ -163,11 +231,11 @@
 
         statusline.lualine = {
           enable = true;
-          theme = "palenight";
+          theme = "dracula";
         };
 
         tabline.nvimBufferline = {
-          enable = true;
+          enable = false;
           mappings = {
             closeCurrent = "<leader>xx";
           };
@@ -183,12 +251,12 @@
           };
         };
 
-        theme = {
-          enable = true;
-          name = "tokyonight";
-          style = "storm";
-          transparent = true;
-        };
+        # theme = {
+        #   enable = true;
+        #   name = "tokyonight";
+        #   style = "night";
+        #   transparent = false;
+        # };
 
         # Enable color on text background
         ui.colorizer.enable = true;
@@ -199,14 +267,22 @@
         };
 
         visuals = {
+          fidget-nvim.enable = true;
           nvimWebDevicons.enable = true;
           indentBlankline = {
             enable = true;
             useTreesitter = true;
+            fillChar = null;
+            eolChar = null;
+            showCurrContext = true;
           };
         };
 
         extraPlugins = with pkgs.vimPlugins; {
+          dracula-nvim = {
+            package = dracula-nvim;
+            setup = "vim.cmd[[colorscheme dracula]]";
+          };
           luasnip = {
             package = luasnip;
             setup = ''require("luasnip.loaders.from_vscode").lazy_load()'';
