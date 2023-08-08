@@ -21,7 +21,7 @@
     ".emacs.d/snippets".source = ./snippets;
   };
 
-  services.emacs.enable = false;
+  services.emacs.enable = true;
 
   programs.emacs = {
     enable = true;
