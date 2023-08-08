@@ -25,7 +25,7 @@
 
   programs.emacs = {
     enable = true;
-    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-pgtk;
+    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git;
 
     init = {
       enable = true;
@@ -42,6 +42,39 @@
       prelude = builtins.readFile ./prelude.el;
 
       usePackage = {
+        /*
+        Evil Mode
+        */
+        evil = {
+          enable = true;
+          command = ["evil-mode"];
+          config = ''
+            (setq evil-want-integration t
+                       evil-want-keybinding nil)
+
+            (evil-mode 1)
+          '';
+        };
+
+        evil-collection = {
+          enable = true;
+          command = ["evil-collection-init"];
+          after = ["evil"];
+          config = ''
+            (evil-collection-init)
+          '';
+        };
+
+        vterm = {
+          enable = true;
+          command = ["vterm"];
+          hook = ["(vterm-mode . rah-disable-trailing-whitespace-mode)"];
+          config = ''
+            (setq vterm-kill-buffer-on-exit t
+                  vterm-max-scrollback 10000)
+          '';
+        };
+
         elcord = {
           enable = true;
         };
@@ -113,6 +146,12 @@
         flycheck-projectile = {
           enable = true;
           after = ["flycheck" "projectile"];
+        };
+
+        # Needed by flycheck
+        pkg-info = {
+          enable = true;
+          command = ["pkg-info-version-info"];
         };
 
         dracula-theme = {
