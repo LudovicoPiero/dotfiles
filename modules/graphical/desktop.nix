@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
   security = {
@@ -12,7 +13,10 @@
   };
 
   services = {
-    xserver.displayManager.sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
+    xserver.displayManager.sessionPackages = [
+      inputs.hyprland.packages.${pkgs.system}.default
+      config.programs.sway.package
+    ];
     geoclue2 = {
       enable = true;
       appConfig.gammastep = {
@@ -22,6 +26,5 @@
     };
   };
 
-  programs.sway.enable = true;
   programs.dconf.enable = true;
 }

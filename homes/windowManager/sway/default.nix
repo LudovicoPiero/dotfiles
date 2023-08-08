@@ -2,6 +2,8 @@
   config,
   pkgs,
   inputs,
+  lib,
+  self,
   ...
 }: let
   inherit (config.colorScheme) colors;
@@ -23,12 +25,11 @@ in {
     enable = true;
     config = {
       colors = import ./colors.nix {inherit colors;};
-      keybindings = import ./keybindings.nix {inherit config pkgs;};
+      keybindings = import ./keybindings.nix {inherit lib config pkgs;};
       bars = import ./bars.nix {inherit colors;};
       window = import ./windows.nix;
       output = {
-        "*" = {bg = "#2e2b2b solid_color";};
-        # "*" = {bg = "${./Wallpaper/wallpaper.jpg} fill";};
+        "*" = {bg = "${self}/assets/wallpaper.jpg fill";};
       };
       input = {
         "type:touchpad" = {
