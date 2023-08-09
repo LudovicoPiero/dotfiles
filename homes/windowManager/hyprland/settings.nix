@@ -99,7 +99,7 @@ in {
     ];
 
     blur = {
-      enabled = false;
+      enabled = true;
       size = 2;
       passes = 4;
       contrast = 1.4;
