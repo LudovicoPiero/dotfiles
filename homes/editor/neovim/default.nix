@@ -180,43 +180,80 @@
               desc = "Hop Word";
               noremap = true;
               silent = true;
-              action = "<cmd>HopWord <CR>";
+              action = ":HopWord <CR>";
             };
             "S" = {
               desc = "Hop Line";
               noremap = true;
               silent = true;
-              action = "<cmd>HopLine <CR>";
+              action = ":HopLine <CR>";
             };
             "<C-s>" = {
               desc = "Hop Pattern";
               noremap = true;
               silent = true;
-              action = "<cmd>HopPattern <CR>";
+              action = ":HopPattern <CR>";
             };
-            "<Left>" = {
-              desc = "Vertical Resize +1";
-              noremap = true;
+
+            # Resize with arrows
+            "<C-Left>" = {
+              desc = "Vertical Resize -2";
               silent = true;
-              action = "<cmd>vertical resize +1<CR>";
+              action = ":vertical resize -2<CR>";
             };
-            "<Right>" = {
-              desc = "Vertical Resize -1";
-              noremap = true;
+            "<C-Right>" = {
+              desc = "Vertical Resize +2";
               silent = true;
-              action = "<cmd>vertical resize -1<CR>";
+              action = ":vertical resize +2<CR>";
             };
-            "<Up>" = {
-              desc = "Resize -1";
-              noremap = true;
+            "<C-Up>" = {
+              desc = "Resize -2";
               silent = true;
-              action = "<cmd>resize -1<CR>";
+              action = ":resize -2<CR>";
             };
-            "<Down>" = {
-              desc = "Resize +1";
-              noremap = true;
+            "<C-Down>" = {
+              desc = "Resize +2";
               silent = true;
-              action = "<cmd>resize +1<CR>";
+              action = ":resize +2<CR>";
+            };
+
+            # Navigate buffers
+            "<S-l>" = {
+              desc = "Buffer Next";
+              silent = true;
+              action = ":bnext<CR>";
+            };
+            "<S-h>" = {
+              desc = "Buffer Previous";
+              silent = true;
+              action = ":bprevious<CR>";
+            };
+            "<S-q>" = {
+              desc = "Delete Buffer";
+              silent = true;
+              action = "<cmd>bdelete!<CR>";
+            };
+
+            # Better window navigation
+            "<C-h>" = {
+              desc = "Move focus to left";
+              silent = true;
+              action = "<C-w>h";
+            };
+            "<C-j>" = {
+              desc = "Move focus to below";
+              silent = true;
+              action = "<C-w>j";
+            };
+            "<C-k>" = {
+              desc = "Move focus to above";
+              silent = true;
+              action = "<C-w>k";
+            };
+            "<C-l>" = {
+              desc = "Move focus to right";
+              silent = true;
+              action = "<C-w>l";
             };
           };
         };
