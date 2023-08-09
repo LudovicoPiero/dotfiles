@@ -29,7 +29,15 @@
     settings = {
       default_session = {
         # command = sway-kiosk "${tuigreet} --time --cmd Hyprland";
-        command = "${tuigreet} --time --cmd Hyprland";
+        command = lib.concatStringsSep " " [
+          (lib.getExe pkgs.greetd.tuigreet)
+          "--time"
+          "--remember"
+          "--remember-user-session"
+          "--asterisks"
+          # "--power-shutdown '${pkgs.systemd}/bin/systemctl shutdown'"
+          "--cmd 'Hyprland'"
+        ];
         inherit user;
       };
     };
