@@ -21,13 +21,13 @@ in {
       };
 
       colors = {
-        background = "${colors.base00}e0";
-        text = "${colors.base07}ff";
-        match = "${colors.base0E}ff";
-        selection = "${colors.base08}ff";
-        selection-text = "${colors.base07}ff";
-        selection-match = "${colors.base07}ff";
-        border = "${colors.base0E}ff";
+        background = "${colors.base01}f2";
+        text = "${colors.base05}ff";
+        match = "${colors.base0D}ff";
+        selection = "${colors.base03}ff";
+        selection-text = "${colors.base06}ff";
+        selection-match = "${colors.base0D}ff";
+        border = "${colors.base0D}ff";
       };
     };
   };
