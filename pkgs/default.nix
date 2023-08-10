@@ -11,8 +11,6 @@
 
       spotify = pkgs.callPackage ./spotify {};
 
-      teavpn2 = pkgs.callPackage ./teavpn2 {};
-
       TLauncher = pkgs.callPackage ./TLauncher {};
     };
   };
