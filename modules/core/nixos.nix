@@ -75,6 +75,8 @@
   };
 
   nix = {
+    channel.enable = false; # Disable nix-channel
+
     package = inputs.nix-super.packages.${pkgs.system}.nix;
 
     settings = {
@@ -97,9 +99,9 @@
     };
 
     registry = {
-      system.flake = inputs.nixpkgs;
-      default.flake = inputs.nixpkgs;
-      nixpkgs.flake = inputs.nixpkgs;
+      system.flake = inputs.master;
+      default.flake = inputs.master;
+      nixpkgs.flake = inputs.master;
     };
 
     extraOptions = ''
