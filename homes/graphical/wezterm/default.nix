@@ -24,11 +24,11 @@ in {
           "${colors.base0D}"
           "${colors.base0E}"
           "${colors.base0C}"
-          "${colors.base05}"
+          "${colors.base07}"
         ];
         foreground = "#${colors.base05}";
         background = "#${colors.base00}";
-        cursor_fg = "#${colors.base00}";
+        cursor = "#${colors.base05}";
         cursor_bg = "#${colors.base05}";
         cursor_border = "#${colors.base05}";
         selection_fg = "#${colors.base00}";

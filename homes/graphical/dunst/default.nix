@@ -21,7 +21,8 @@ in {
         origin = "top-right";
         transparency = 20;
         background = "#${colors.base00}";
-        frame_color = "#${colors.base06}"; # border
+        frame_color = "#${colors.base05}"; # border
+        separator_color = "#${colors.base05}";
         font = "Iosevka q 10";
         notification_limit = 5;
         layer = "overlay"; # bottom, top or overlay
@@ -30,18 +31,18 @@ in {
         corner_radius = 6;
       };
       urgency_low = {
-        background = "#${colors.base00}";
-        foreground = "#${colors.base05}";
+        background = "#${colors.base01}";
+        foreground = "#${colors.base03}";
         timeout = 3;
       };
       urgency_normal = {
-        background = "#${colors.base00}";
-        foreground = "#${colors.base06}";
+        background = "#${colors.base02}";
+        foreground = "#${colors.base05}";
         timeout = 5;
       };
       urgency_critical = {
-        foreground = "#${colors.base0D}";
-        frame_color = "#${colors.base08}";
+        background = "#${colors.base08}";
+        foreground = "#${colors.base06}";
         timeout = 8;
       };
     };
