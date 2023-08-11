@@ -912,6 +912,26 @@
         "type": "github"
       }
     },
+    "hy3": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1691652733,
+        "narHash": "sha256-BxUPTu/fIGe6DKMJclP0URrAVHWXfh9wSe1tSRinKdc=",
+        "owner": "outfoxxed",
+        "repo": "hy3",
+        "rev": "febcd88794ab2c4204e4c3785b9dea208b508bb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "outfoxxed",
+        "repo": "hy3",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
@@ -2228,6 +2248,7 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "hy3": "hy3",
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",
         "impermanence": "impermanence",
