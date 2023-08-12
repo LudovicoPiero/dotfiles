@@ -319,6 +319,19 @@
           };
         };
 
+        undo-tree = {
+          enable = true;
+          defer = 1;
+          command = ["global-undo-tree-mode"];
+          config = ''
+            (setq undo-tree-visualizer-relative-timestamps t
+                  undo-tree-visualizer-timestamps t
+                  undo-tree-enable-undo-in-region t
+                  undo-tree-auto-save-history nil)
+            (global-undo-tree-mode)
+          '';
+        };
+
         nix-mode = {
           enable = true;
           demand = true;
