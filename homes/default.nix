@@ -6,7 +6,7 @@ _: {
       ./editor
       ./browser
       ./windowManager/hyprland
-      ./windowManager/sway
+      # ./windowManager/sway
 
       inputs.nur.hmModules.nur
       inputs.nix-colors.homeManagerModules.default
