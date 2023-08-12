@@ -3,11 +3,9 @@
   inputs,
   ...
 } @ args: {
-  home.packages = with pkgs; [
+  home.packages = [
     # Utils
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
-    grim
-    slurp
   ];
 
   wayland.windowManager.hyprland = {
