@@ -4,6 +4,8 @@
   inputs,
   ...
 }: let
+  sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/sharenix}'';
+
   # use OCR and copy to clipboard
   ocrScript = let
     inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
@@ -57,6 +59,7 @@ in {
 
       # Utils
       ocrScript
+      sharenix
     ];
   };
 }

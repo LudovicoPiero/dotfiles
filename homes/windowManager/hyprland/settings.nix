@@ -197,7 +197,7 @@ in {
 
     ", print , exec , wl-ocr"
     "CTRL  , Print , exec , grimblast save area - | ${lib.getExe pkgs.swappy} -f -"
-    "$mod , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
+    "$mod , Print , exec , sharenix --selection"
 
     # hy3 Keybinding
     "$mod , c , hy3:makegroup, v, ephemeral"
