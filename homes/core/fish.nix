@@ -72,7 +72,7 @@ in
         "g" = "git";
         "v" = "vim";
         "record" = "${_ wl-screenrec} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
-        "record-region" = "${_ wl-screenrec} -g \"$(${_ slurp})\"";
+        "record-region" = "${_ wl-screenrec} -g \"$(${_ slurp})\" -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
         "..." = "cd ../..";
         ".." = "cd ..";
       };
