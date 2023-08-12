@@ -45,8 +45,36 @@
 (setq elcord-use-major-mode-as-main-icon 't
       elcord-quiet 't)
 
+;; Stop creating backup and autosave files
+(setq make-backup-files nil
+      auto-save-default nil)
+
+;; Default is 4k, which is too low for LSP.
+(setq read-process-output-max (* 1024 1024))
+
+;; Improved handling of clipboard
+(setq select-enable-clipboard t
+      select-enable-primary t
+      save-interprogram-paste-before-kill t)
+
+;; Avoid noisy bell.
+(setq visible-bell t
+      ring-bell-function #'ignore)
+
 ;; Long text goes below
 (global-visual-line-mode t)
+
+;; Trailing white space are banned!
+(setq-default show-trailing-whitespace t)
+
+;; Use one space to end sentences.
+(setq sentence-end-double-space nil)
+
+;; I typically want to use UTF-8.
+(prefer-coding-system 'utf-8)
+
+;; Nicer handling of regions.
+(transient-mark-mode 1)
 
 ;; Evil Mode
 (setq evil-want-integration t

@@ -10,6 +10,7 @@
 
   imports = [
     /*
+    FIXMEEEEEEEEE
     I got infinite recursion when using
     config.nur.repos.rycee.hmModules.emacs-init
     pls help T_T
@@ -21,7 +22,7 @@
     ".emacs.d/snippets".source = ./snippets;
   };
 
-  services.emacs.enable = true;
+  services.emacs.enable = false;
 
   programs.emacs = {
     enable = true;
@@ -42,6 +43,14 @@
       prelude = builtins.readFile ./prelude.el;
 
       usePackage = {
+        doom-modeline = {
+          enable = true;
+          hook = ["(after-init . doom-modeline-mode)"];
+          config = ''
+            (setq doom-modeline-minor-modes t)
+          '';
+        };
+
         /*
         Evil Mode
         */
@@ -171,6 +180,14 @@
           '';
         };
 
+        treemacs = {
+          enable = true;
+          bind = {
+            "C-c t f" = "treemacs-find-file";
+            "C-c t t" = "treemacs";
+          };
+        };
+
         switch-window = {
           enable = true;
           bind = {
@@ -227,6 +244,12 @@
           '';
         };
 
+        lsp-treemacs = {
+          enable = true;
+          after = ["lsp-mode"];
+          command = ["lsp-treemacs-errors-list"];
+        };
+
         lsp-ui = {
           enable = true;
           command = ["lsp-ui-mode"];
@@ -278,6 +301,22 @@
         lsp-nix = {
           after = ["lsp-mode"];
           demand = true;
+        };
+
+        markdown-mode = {
+          enable = true;
+          config = ''
+            (setq markdown-command "${pkgs.pandoc}/bin/pandoc")
+          '';
+        };
+
+        pandoc-mode = {
+          enable = true;
+          after = ["markdown-mode"];
+          hook = ["markdown-mode"];
+          bindLocal = {
+            markdown-mode-map = {"C-c C-c" = "pandoc-run-pandoc";};
+          };
         };
 
         nix-mode = {
@@ -496,8 +535,8 @@
           demand = true;
           config = ''
             (dashboard-setup-startup-hook)
-            (setq dashboard-banner-logo-title "Ludovico Sforza")
-            (setq dashboard-center-content t)
+            (setq dashboard-banner-logo-title "Ludovico Sforza"
+                  dashboard-center-content t)
           '';
         };
 
