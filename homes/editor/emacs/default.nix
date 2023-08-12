@@ -181,7 +181,7 @@
         };
 
         treemacs = {
-          enable = true;
+          enable = false;
           bind = {
             "C-c t f" = "treemacs-find-file";
             "C-c t t" = "treemacs";
@@ -245,7 +245,7 @@
         };
 
         lsp-treemacs = {
-          enable = true;
+          enable = false;
           after = ["lsp-mode"];
           command = ["lsp-treemacs-errors-list"];
         };
