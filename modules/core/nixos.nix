@@ -48,6 +48,7 @@
       dnsutils
       fd
 
+      pwvucontrol
       git
       bottom
       jq
@@ -59,6 +60,7 @@
       tealdeer
       whois
       wl-clipboard
+      wget
 
       # Utils for nixpkgs stuff
       nixpkgs-review
