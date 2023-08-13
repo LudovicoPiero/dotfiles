@@ -29,11 +29,6 @@
 
   # OpenGL
   environment.sessionVariables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
-  boot = {
-    initrd.kernelModules = ["amdgpu"];
-    kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
-    kernelModules = ["amd-pstate"];
-  };
   hardware.opengl = {
     enable = true;
     driSupport = true;

@@ -13,9 +13,14 @@
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    initrd.kernelModules = ["dm-snapshot"];
+    initrd.kernelModules = ["amdgpu" "dm-snapshot"];
     kernelModules = ["kvm-amd"];
-    kernelParams = ["nohibernate" "zfs.zfs_arc_max=12884901888"];
+    kernelParams = [
+      "amd_pstate=passive"
+      "initcall_blacklist=acpi_cpufreq_init"
+      "nohibernate"
+      "zfs.zfs_arc_max=12884901888"
+    ];
     extraModulePackages = [];
     zfs.enableUnstable = true;
   };
