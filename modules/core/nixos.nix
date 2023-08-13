@@ -61,6 +61,7 @@
       whois
       wl-clipboard
       wget
+      unzip
 
       # Utils for nixpkgs stuff
       nixpkgs-review

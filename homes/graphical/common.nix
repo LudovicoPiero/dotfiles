@@ -59,7 +59,10 @@ in {
       mpv
       mailspring
       imv
+      viewnior
+      nheko
       whatsapp-for-linux
+      obs-studio
 
       # Utils
       ocrScript
