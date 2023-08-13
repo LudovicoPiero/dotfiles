@@ -33,6 +33,9 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Global Keybinding
+(global-set-key (kbd "C-M-j") 'buffer-menu)
+
 ;; Set Backup Directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
       backup-by-copying      t  ; Don't de-link hard links
@@ -78,7 +81,9 @@
 
 ;; Evil Mode
 (setq evil-want-integration t
-      evil-want-keybinding nil)
+      evil-want-keybinding nil
+      evil-undo-system 'undo-tree
+      evil-respect-visual-line-mode t)
 (evil-mode t)
 (evil-collection-init)
 

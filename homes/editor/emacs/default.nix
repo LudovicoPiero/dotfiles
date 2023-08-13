@@ -57,12 +57,6 @@
         evil = {
           enable = true;
           command = ["evil-mode"];
-          config = ''
-            (setq evil-want-integration t
-                       evil-want-keybinding nil)
-
-            (evil-mode 1)
-          '';
         };
 
         evil-collection = {
