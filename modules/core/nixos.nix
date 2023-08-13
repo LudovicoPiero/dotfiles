@@ -77,7 +77,7 @@
   };
 
   nix = {
-    channel.enable = false; # Disable nix-channel
+    nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
 
     package = inputs.nix-super.packages.${pkgs.system}.nix;
 

@@ -33,16 +33,20 @@ in {
 
   home = {
     sessionVariables = {
+      # Colorific GCC.
+      GCC_COLORS = "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01";
+
+      # https://ayats.org/blog/channels-to-flakes/
+      NIX_PATH = "nixpkgs=flake:nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
+
       NIXOS_OZONE_WL = "0";
-      EDITOR = "nvim";
+      EDITOR = "emacs";
       VISUAL = "nvim";
       PAGER = "less -R";
       TERM = "screen-256color";
       BROWSER = "firefox";
       XCURSOR_SIZE = "24";
       DIRENV_LOG_FORMAT = "";
-      # SDL_VIDEODRIVER = "wayland";
-      # QT_QPA_PLATFORM = "wayland"; # needs qt5.qtwayland in systemPackages
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
