@@ -78,6 +78,7 @@ in {
           active-only = false;
           disable-scroll = true;
           all-outputs = true;
+          sort-by-number = true;
           format = "{icon}";
           format-icons = {
             "1" = "1";
