@@ -88,7 +88,6 @@
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
   nix.settings.max-jobs = lib.mkDefault 4;
-  # powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   # High-DPI console
   console.font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u18b.psf.gz";
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

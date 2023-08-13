@@ -71,16 +71,10 @@
     tlp.enable = lib.mkForce true;
     tlp.settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
       RADEON_DPM_STATE_ON_AC = "performance";
-      RADEON_DPM_STATE_ON_BAT = "battery";
-
-      # https://linrunner.de/en/tlp/docs/tlp-faq.html#battery
-      # use "tlp fullcharge" to override temporarily
-      START_CHARGE_THRESH_BAT0 = 85;
-      STOP_CHARGE_THRESH_BAT0 = 90;
-      START_CHARGE_THRESH_BAT1 = 85;
-      STOP_CHARGE_THRESH_BAT1 = 90;
+      RADEON_DPM_STATE_ON_BAT = "balanced";
+      NMI_WATCHDOG = "0";
     };
   };
 
@@ -89,9 +83,6 @@
     layout = "us"; # Configure keymap
     libinput.enable = true;
     displayManager.lightdm.enable = false;
-    deviceSection = ''
-      Option "TearFree" "true"
-    '';
   };
 
   networking.wg-quick.interfaces = {
