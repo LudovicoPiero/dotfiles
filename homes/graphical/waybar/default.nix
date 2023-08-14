@@ -45,7 +45,7 @@ in {
         # ipc = true;
 
         modules-left = [
-          "wlr/workspaces"
+          "hyprland/workspaces"
           "tray"
         ];
         modules-right = [
@@ -73,12 +73,7 @@ in {
           "format" = " {}%";
           "max-length" = 10;
         };
-        "wlr/workspaces" = {
-          on-click = "activate";
-          active-only = false;
-          disable-scroll = true;
-          all-outputs = true;
-          sort-by-number = true;
+        "hyprland/workspaces" = {
           format = "{icon}";
           format-icons = {
             "1" = "1";
