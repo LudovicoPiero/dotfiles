@@ -15,7 +15,7 @@ in
       settings = {
         icons = {
           separator = "  "; # 2 Spaces
-          };
+        };
       };
     };
 
