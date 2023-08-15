@@ -9,9 +9,14 @@ in
   with pkgs; {
     home.packages = [zoxide fzf fd bat];
 
-    programs.exa = {
+    programs.lsd = {
       enable = true;
-      enableAliases = false;
+      enableAliases = true;
+      settings = {
+        icons = {
+          separator = "  "; # 2 Spaces
+          };
+      };
     };
 
     programs.fish = {
@@ -59,13 +64,7 @@ in
         "config" = "cd ~/.config/nixos";
         "fe" = "rg --files ''$argv[1] | fzf --preview 'bat -f {}' | xargs $EDITOR"; # search Files and Edit
         "lg" = "lazygit";
-        "ls" = "${_ exa} --icons";
-        "l" = "${_ exa} -lbF --git --icons";
-        "ll" = "${_ exa} -lbGF --git --icons";
-        "llm" = "${_ exa} -lbGF --git --sort=modified --icons";
-        "la" = "${_ exa} -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
-        "lx" = "${_ exa} -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
-        "tree" = "${_ exa} --tree --icons";
+        "tree" = "${_ lsd} --tree -l";
         "nv" = "nvim";
         "nr" = "${_ nixpkgs-review}";
         "mkdir" = "mkdir -p";
