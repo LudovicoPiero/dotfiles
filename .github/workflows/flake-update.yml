@@ -12,24 +12,13 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@v25
-
-      # Define the list of inputs
-      - name: Set inputs
-        id: set-inputs
-        run: |
-          echo "unstable home-manager hyprland hy3 \
-                hyprland-contrib xdph spicetify-nix" > inputs.txt
-        shell: bash
-
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v19
         with:
-          inputs: ${{ steps.set-inputs.outputs.stdout }} # Reference the defined inputs
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
             dependencies
             automated
-
       - name: merge
         run: |
           gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
