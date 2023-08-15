@@ -15,7 +15,7 @@
 
     "GitHub" = {
       urls = [{template = "https://github.com/search?q={searchTerms}";}];
-      definedAliases = ["git"];
+      definedAliases = ["gh"];
     };
 
     "Nix Packages" = {
