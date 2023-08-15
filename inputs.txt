@@ -1,0 +1,1 @@
+unstable home-manager hyprland hy3       hyprland-contrib xdph spicetify-nix
