@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 } @ args: let
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
@@ -15,35 +14,11 @@ in {
 
   programs.waybar = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
-    package = pkgs.waybar.overrideAttrs (old: {
-      postPatch = ''
-        # use hyprctl to switch workspaces
-        sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
-      '';
-      postFixup = ''
-        wrapProgram $out/bin/waybar \
-          --suffix PATH : ${lib.makeBinPath [inputs.hyprland.packages.${pkgs.system}.hyprland]}
-      '';
-      mesonFlags = old.mesonFlags ++ ["-Dexperimental=true"];
-    });
     settings = {
       mainBar = {
         position = "bottom";
         monitor = "eDP-1";
-        # layer = "top";
         height = 25;
-        # mode = "dock";
-        # width = "";
-        # spacing = 6;
-        # margin = "0";
-        # margin-top = 0;
-        # margin-bottom = 0;
-        # margin-left = 0;
-        # margin-right = 0;
-        # fixed-center = true;
-        # ipc = true;
-
         modules-left = [
           "hyprland/workspaces"
           "tray"
