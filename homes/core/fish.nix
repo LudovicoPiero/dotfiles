@@ -25,6 +25,13 @@ in
       functions = {
         gitignore = "curl -sL https://www.gitignore.io/api/$argv";
         fish_greeting = ""; # disable welcome text
+        fe = ''
+          set selected_file (rg --files ''$argv[1] | fzf --preview "bat -f {}")
+
+          if [ -n "$selected_file" ]
+              echo "$selected_file" | xargs $EDITOR
+          end
+        '';
         prj = ''
           # Credit to https://www.reddit.com/r/fishshell/comments/152zkrz/
           if not command -q fzf
@@ -62,7 +69,6 @@ in
         "hs" = "pushd ~/.config/nixos && home-manager switch --flake .# --use-remote-sudo  ; popd";
         "cat" = "${_ bat}";
         "config" = "cd ~/.config/nixos";
-        "fe" = "rg --files ''$argv[1] | fzf --preview 'bat -f {}' | xargs $EDITOR"; # search Files and Edit
         "lg" = "lazygit";
         "tree" = "${_ lsd} --tree -l";
         "nv" = "nvim";
