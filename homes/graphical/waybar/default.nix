@@ -49,6 +49,8 @@ in {
           "max-length" = 10;
         };
         "hyprland/workspaces" = {
+          on-scroll-up = "hyprctl dispatch workspace r-1";
+          on-scroll-down = "hyprctl dispatch workspace r+1";
           format = "{icon}";
           format-icons = {
             "1" = "1";
