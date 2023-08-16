@@ -100,8 +100,8 @@ in {
 
     blur = {
       enabled = true;
-      size = 2;
-      passes = 4;
+      size = 5;
+      passes = 2;
       contrast = 1.4;
       brightness = 1;
       new_optimizations = true;
