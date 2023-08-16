@@ -32,7 +32,7 @@ in {
       };
       urgency_low = {
         background = "#${colors.base01}";
-        foreground = "#${colors.base03}";
+        foreground = "#${colors.base05}";
         timeout = 3;
       };
       urgency_normal = {
@@ -42,7 +42,7 @@ in {
       };
       urgency_critical = {
         background = "#${colors.base08}";
-        foreground = "#${colors.base06}";
+        foreground = "#${colors.base01}";
         timeout = 8;
       };
     };
