@@ -10,7 +10,11 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  chaotic.mesa-git.enable = true;
+  chaotic = {
+    nyx.cache.enable = false;
+    mesa-git.enable = true;
+  };
+
   boot = {
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
     kernelPackages = inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
