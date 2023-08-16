@@ -78,7 +78,7 @@ in ''
   }
 
   #battery {
-    color: #${colors.base09};
+    color: #${colors.base0E};
   }
 
   #battery.charging {
