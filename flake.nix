@@ -79,6 +79,7 @@
       inputs.flake-compat.follows = "flake-compat";
     };
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";

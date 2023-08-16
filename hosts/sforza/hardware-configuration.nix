@@ -3,15 +3,17 @@
   pkgs,
   lib,
   modulesPath,
+  inputs,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  chaotic.mesa-git.enable = true;
   boot = {
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = inputs.chaotic.packages.${pkgs.system}.linux_cachyos;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     initrd.kernelModules = ["amdgpu" "dm-snapshot"];
     kernelModules = ["kvm-amd"];

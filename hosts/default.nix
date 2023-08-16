@@ -17,6 +17,7 @@
       ../modules/secrets
 
       inputs.aagl.nixosModules.default
+      inputs.chaotic.nixosModules.default
       inputs.impermanence.nixosModule
       inputs.sops-nix.nixosModules.sops
       self.nixosModules.home-manager
