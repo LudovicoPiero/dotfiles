@@ -23,16 +23,6 @@
       inputs.flake-compat.follows = "flake-compat";
     };
 
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,6 +70,7 @@
     };
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    devshell.url = "github:numtide/devshell";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";
@@ -87,6 +78,7 @@
     nur.url = "github:nix-community/nur";
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-flake.url = "github:srid/nixos-flake";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     # Non Flakes Stuff
     amoledcord = {
