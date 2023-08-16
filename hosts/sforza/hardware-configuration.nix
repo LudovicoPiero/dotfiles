@@ -13,7 +13,7 @@
   chaotic.mesa-git.enable = true;
   boot = {
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-    kernelPackages = inputs.chaotic.packages.${pkgs.system}.linux_cachyos;
+    kernelPackages = inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     initrd.kernelModules = ["amdgpu" "dm-snapshot"];
     kernelModules = ["kvm-amd"];
