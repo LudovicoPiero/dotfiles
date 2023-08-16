@@ -1,0 +1,42 @@
+# https://github.com/thiagokokada/nix-configs
+name: build-nixos-configuration-and-populate
+on:
+  workflow_dispatch: # Do not run unless i run it manually
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: easimon/maximize-build-space@v7
+        with:
+          overprovision-lvm: true
+          remove-android: true
+          remove-codeql: true
+          remove-docker-images: true
+          remove-dotnet: true
+          remove-haskell: true
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+
+      - uses: actions/checkout@v3
+
+      - uses: nixbuild/nix-quick-install-action@v25
+        with:
+          github_access_token: ${{ secrets.GH_TOKEN }}
+
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - uses: cachix/cachix-action@v12
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          name: sforza-config
+
+      - name: Set default git branch (to reduce log spam)
+        run: git config --global init.defaultBranch flake-parts
+
+      - name: Validate Flakes
+        run: nix flake check
+
+      - name: "Build nixosConfiguration for: sforza"
+        run: |-
+          nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
