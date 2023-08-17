@@ -24,6 +24,7 @@
     hideMounts = true;
     directories = [
       "/var/lib/bluetooth"
+      "/var/lib/docker"
       "/var/lib/libvirt"
       "/var/lib/nixos"
       "/var/lib/pipewire"

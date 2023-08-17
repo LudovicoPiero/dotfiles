@@ -18,6 +18,11 @@
     };
   };
 
+  virtualisation.docker = {
+    enable=true;
+    storageDriver = "zfs";
+  };
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 5;
