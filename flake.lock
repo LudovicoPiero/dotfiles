@@ -191,11 +191,11 @@
         "yuzu-ea-git-src": "yuzu-ea-git-src"
       },
       "locked": {
-        "lastModified": 1692193292,
-        "narHash": "sha256-uuLd2YVg4J2kWF3i8UKC4vjA020NiCjEh84UuQl2UkE=",
+        "lastModified": 1692215068,
+        "narHash": "sha256-2ozwgXg5P29XV+WclrfTN8SKuAk0GaIBxGEYAG0ldj4=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "7eaacb803c8af9dd48b5ca6a565274081aec71c9",
+        "rev": "e3fd774729d16bb519abbc9cae991345f59d33d8",
         "type": "github"
       },
       "original": {
@@ -980,11 +980,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1692131549,
-        "narHash": "sha256-MFjI8NL63/6HjMZpvJgnB/Pgg2dht22t45jOYtipZig=",
+        "lastModified": 1692260837,
+        "narHash": "sha256-2FpkX1zl+7ni7djK7NeE1ZGupRUwZgjW+RPCSBgDf4k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "75cfe974e2ca05a61b66768674032b4c079e55d4",
+        "rev": "6a94c1a59737783c282c4031555a289c28b961e4",
         "type": "github"
       },
       "original": {
@@ -1040,11 +1040,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1692202599,
-        "narHash": "sha256-wxaOnVUn6h0xQOKCiuR6JpSaVmokVglQ4KTcm53bwhQ=",
+        "lastModified": 1692259999,
+        "narHash": "sha256-T7RMe0mb0pnlxZHgzmrjvx5gxyBCln/rTaMmlUttx+4=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "7e8a21202729ca806cd244fb37e5b45abb4cc69b",
+        "rev": "7155b4c26606d7681bacb2517b1d19495336c6c3",
         "type": "github"
       },
       "original": {
@@ -1684,11 +1684,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1692084312,
-        "narHash": "sha256-Za++qKVK6ovjNL9poQZtLKRM/re663pxzbJ+9M4Pgwg=",
+        "lastModified": 1692174805,
+        "narHash": "sha256-xmNPFDi/AUMIxwgOH/IVom55Dks34u1g7sFKKebxUm0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8353344d3236d3fda429bb471c1ee008857d3b7c",
+        "rev": "caac0eb6bdcad0b32cb2522e03e4002c8975c62e",
         "type": "github"
       },
       "original": {
@@ -2645,11 +2645,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1692063960,
-        "narHash": "sha256-w5fRC+2crET0WrZXX47e+ltY6m4+95AfNG9x0mvRENM=",
+        "lastModified": 1692211420,
+        "narHash": "sha256-K9J2pqPUTXuW6VLlz+wVpbzsvFgIccm9f6LiuBt1+cU=",
         "owner": "the-argus",
         "repo": "spicetify-nix",
-        "rev": "56a61054a8358977240e976a8c0a1ce971273596",
+        "rev": "99050ed27d8aa5caf1f326ad6b6f588692c60b74",
         "type": "github"
       },
       "original": {
