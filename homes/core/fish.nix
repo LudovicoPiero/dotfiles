@@ -71,6 +71,7 @@ in
         "config" = "cd ~/.config/nixos";
         "lg" = "lazygit";
         "tree" = "${_ lsd} --tree -l";
+        "nb" = "nix-build -E \'with import <nixpkgs> { }; callPackage ./default.nix { }\'";
         "nv" = "nvim";
         "nr" = "${_ nixpkgs-review}";
         "mkdir" = "mkdir -p";
