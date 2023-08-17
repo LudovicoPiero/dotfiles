@@ -19,7 +19,7 @@
   };
 
   virtualisation.docker = {
-    enable=true;
+    enable = true;
     storageDriver = "zfs";
   };
 
