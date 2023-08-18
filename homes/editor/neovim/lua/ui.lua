@@ -70,7 +70,7 @@ db.custom_center = {
     action = "SessionLoad",
   },
   {
-    icon = "  ",
+    icon = "󰈢  ",
     desc = "Recently opened files                   ",
     action = "DashboardFindHistory",
     shortcut = "SPC f h",
