@@ -38,40 +38,9 @@ in {
           "on-click" = "amixer -q set Master toggle-mute";
           "format-icons" = ["" "" ""];
         };
-        "cpu" = {
-          "interval" = 10;
-          "format" = " {}%";
-          "max-length" = 10;
-        };
-        "memory" = {
-          "interval" = 30;
-          "format" = " {}%";
-          "max-length" = 10;
-        };
         "hyprland/workspaces" = {
           on-scroll-up = "hyprctl dispatch workspace r-1";
           on-scroll-down = "hyprctl dispatch workspace r+1";
-          format = "{icon}";
-          format-icons = {
-            "1" = "1";
-            "2" = "2";
-            "3" = "3";
-            "4" = "4";
-            "5" = "5";
-            "6" = "6";
-            "7" = "7";
-            "8" = "8";
-            "9" = "9";
-            "10" = "10";
-            # "active" = "";
-            "default" = "";
-          };
-        };
-        "sway/workspaces" = {
-          on-click = "activate";
-          active-only = false;
-          disable-scroll = true;
-          all-outputs = true;
           format = "{icon}";
           format-icons = {
             "1" = "1";
