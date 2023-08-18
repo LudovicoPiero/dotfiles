@@ -132,7 +132,6 @@
             commands = devshell.shellCommands;
             packages = with pkgs; [
               inputs'.sops-nix.packages.default
-              inputs'.nix-super.packages.default
               config.treefmt.build.wrapper
               nil
               alejandra
