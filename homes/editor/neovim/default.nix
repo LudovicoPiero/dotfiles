@@ -42,7 +42,6 @@
       impatient-nvim
       telescope-nvim
       indent-blankline-nvim
-      nvim-treesitter-context
       nvim-treesitter.withAllGrammars
       comment-nvim
       vim-fugitive
