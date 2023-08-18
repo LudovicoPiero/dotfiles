@@ -1018,11 +1018,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1692174958,
-        "narHash": "sha256-TGGPhTcd4uKVuMG7aiEKAVMYDFAX+jrOF3yWU9xXtHo=",
+        "lastModified": 1692337587,
+        "narHash": "sha256-It+nP5tr9/6apQw5gpLqQlbewnMuiFV25lrX+1Z7DXY=",
         "owner": "outfoxxed",
         "repo": "hy3",
-        "rev": "7bb536e709034022457a85a63506c571079a354a",
+        "rev": "bfd56ab9403f6a571a4761c2187909352ee70938",
         "type": "github"
       },
       "original": {
@@ -2989,11 +2989,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1692174805,
-        "narHash": "sha256-xmNPFDi/AUMIxwgOH/IVom55Dks34u1g7sFKKebxUm0=",
+        "lastModified": 1692264070,
+        "narHash": "sha256-WepAkIL2UcHOj7JJiaFS/vxrA9lklQHv8p+xGL+7oQ0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "caac0eb6bdcad0b32cb2522e03e4002c8975c62e",
+        "rev": "42c25608aa2ad4e5d3716d8d63c606063513ba33",
         "type": "github"
       },
       "original": {
