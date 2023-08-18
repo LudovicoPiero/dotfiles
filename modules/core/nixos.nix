@@ -69,12 +69,21 @@
     ];
 
     sessionVariables = {
+      # Used by nh.
+      FLAKE = "/home/ludovico/.config/nixos";
+
       # silence direnv warnings for "long running commands"
       DIRENV_WARN_TIMEOUT = "24h";
       # silence direnv
       DIRENV_LOG_FORMAT = "";
       #   MANGOHUD = "1"; # Launch all vulkan games with mangohud
     };
+  };
+
+  nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 3d --keep 3";
   };
 
   nix = {
@@ -121,10 +130,11 @@
     '';
 
     # Improve nix store disk usage
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 3d";
-    };
+    # Disable this because i'm using nh.
+    # gc = {
+    #   automatic = true;
+    #   options = "--delete-older-than 3d";
+    # };
     optimise.automatic = true;
   };
 
