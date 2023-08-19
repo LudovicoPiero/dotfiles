@@ -78,15 +78,15 @@
     "base16-schemes": {
       "flake": false,
       "locked": {
-        "lastModified": 1680729003,
-        "narHash": "sha256-M9LHTL24/W4oqgbYRkz0B2qpNrkefTs98pfj3MxIXnU=",
-        "owner": "tinted-theming",
+        "lastModified": 1689473676,
+        "narHash": "sha256-L0RhUr9+W5EPWBpLcmkKpUeCEWRs/kLzVMF3Vao2ZU0=",
+        "owner": "ludovicopiero",
         "repo": "base16-schemes",
-        "rev": "dc048afa066287a719ddbab62b3e19e4b5110cf0",
+        "rev": "d95123ca6377cd849cfdce92c0a24406b0c6a789",
         "type": "github"
       },
       "original": {
-        "owner": "tinted-theming",
+        "owner": "ludovicopiero",
         "repo": "base16-schemes",
         "type": "github"
       }
@@ -1651,7 +1651,9 @@
     },
     "nix-colors": {
       "inputs": {
-        "base16-schemes": "base16-schemes",
+        "base16-schemes": [
+          "base16-schemes"
+        ],
         "nixpkgs-lib": "nixpkgs-lib_4"
       },
       "locked": {
@@ -2538,6 +2540,7 @@
         "aagl": "aagl",
         "amoledcord": "amoledcord",
         "arrpc": "arrpc",
+        "base16-schemes": "base16-schemes",
         "chaotic": "chaotic",
         "devshell": "devshell",
         "emacs-overlay": "emacs-overlay",

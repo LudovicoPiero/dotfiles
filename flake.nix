@@ -80,13 +80,19 @@
       inputs.flake-compat.follows = "flake-compat";
     };
 
+    base16-schemes.url = "github:ludovicopiero/base16-schemes";
+    base16-schemes.flake = false;
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+      inputs.base16-schemes.follows = "base16-schemes";
+    };
+
     devshell.url = "github:numtide/devshell";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nur.url = "github:nix-community/nur";
-    nix-colors.url = "github:misterio77/nix-colors";
     nixos-flake.url = "github:srid/nixos-flake";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
