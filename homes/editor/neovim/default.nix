@@ -33,6 +33,7 @@
     plugins = with pkgs.vimPlugins; [
       catppuccin-nvim
       vim-nix
+      vim-tmux-navigator
       plenary-nvim
       dashboard-nvim
       lualine-nvim
