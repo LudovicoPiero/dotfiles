@@ -70,9 +70,9 @@ in {
 
   general = {
     sensitivity = 1;
-    gaps_in = 1;
-    gaps_out = 1;
-    border_size = 2;
+    gaps_in = 0;
+    gaps_out = 0;
+    border_size = 1;
     "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
     "col.inactive_border" = "rgb(${colors.base01})";
 
@@ -91,7 +91,7 @@ in {
   decoration = {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-    rounding = 5;
+    rounding = 0;
     blurls = [
       "launcher" # Fuzzel
       "lockscreen"

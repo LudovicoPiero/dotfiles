@@ -21,7 +21,7 @@ in ''
     background-color: #${colors.base00};
     margin: 5px;
     margin-left: 10px;
-    border-radius: 5px;
+    border-radius: 0px;
   }
 
   #workspaces button {
@@ -32,18 +32,18 @@ in ''
   #workspaces button.active {
     color: #${colors.base00};
     background-color: #${colors.base0D};
-    border-radius: 5px;
+    border-radius: 0px;
   }
 
   #workspaces button:hover {
     background-color: #${colors.base0D};
     color: #${colors.base00};
-    border-radius: 5px;
+    border-radius: 0px;
   }
 
   #tray {
     color: #${colors.base00};
-    border-radius: 5px;
+    border-radius: 0px;
   }
 
   #custom-wireguard {
@@ -73,7 +73,7 @@ in ''
 
   #clock {
     color: #${colors.base0B};
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 0px 0px 0px;
     margin-right: 10px;
   }
 
@@ -88,12 +88,12 @@ in ''
   #battery.warning:not(.charging) {
     background-color: #${colors.base00};
     color: #${colors.base08};
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 0px 0px 0px 0px;
   }
 
   #network {
     color: #${colors.base0C};
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 0px 0px 0px 0px;
   }
 
   #pulseaudio {
