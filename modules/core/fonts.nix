@@ -20,23 +20,17 @@
       defaultFonts = {
         serif = [
           "SF Pro"
-          "Sarasa Gothic C"
-          "Sarasa Gothic J"
-          "Sarasa Gothic K"
+          "Sarasa Gothic SC"
         ];
 
         sansSerif = [
           "SF Pro"
-          "Sarasa Gothic C"
-          "Sarasa Gothic J"
-          "Sarasa Gothic K"
+          "Sarasa Gothic SC"
         ];
 
         monospace = [
           "SF Pro Rounded"
-          "Sarasa Mono C"
-          "Sarasa Mono J"
-          "Sarasa Mono K"
+          "Sarasa Mono SC"
         ];
 
         emoji = ["Noto Color Emoji"];
