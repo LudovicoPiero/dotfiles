@@ -45,16 +45,19 @@
       inherits = "ss14"
 
         [buildPlans.iosevka-q.variants.design]
-        capital-e = "top-left-serifed"
-        asterisk = "penta-low"
+        punctuation-dot = "round"
+        tilde = "low"
+        underscore = "high"
+        caret = "low"
+        paren = "flat-arc"
         brace = "curly-flat-boundary"
-        number-sign = "slanted"
         ampersand = "closed"
         dollar = "open-cap"
-        question = "smooth"
+        bar = "natural-slope"
+        cent = "open"
 
       [buildPlans.iosevka-q.ligations]
-      inherits = "coq"
+      inherits = "dlig"
   '',
   # Extra parameters. Can be used for ligature mapping.
   # It must be a raw TOML string.
@@ -76,16 +79,16 @@ assert (extraParameters != null) -> set != null;
       if set != null
       then "iosevka-${set}"
       else "iosevka";
-    version = "26.0.2";
+    version = "26.2.0";
 
     src = fetchFromGitHub {
       owner = "be5invis";
       repo = "iosevka";
       rev = "v${version}";
-      hash = "sha256-thQrjK+5Um0T1GK/VZpZoioWvW/ncoHUGEb19/hUIHc=";
+      hash = "sha256-KFvDZY99yi7lQQMET4WS7m7+folGE86fleAIU6cR/rY=";
     };
 
-    npmDepsHash = "sha256-28ZyVY6/MkeFWBXmQMY+vLsfDsEvGyY9s6eYW5OzYvw=";
+    npmDepsHash = "sha256-MEgGGCtDrhyfgNrVLZ0Yhb5Tf0hsJo977mqd0W6JWPU=";
 
     nativeBuildInputs =
       [
