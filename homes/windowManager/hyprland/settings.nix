@@ -76,7 +76,7 @@ in {
     "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
     "col.inactive_border" = "rgb(${colors.base01})";
 
-    layout = "hy3";
+    layout = "dwindle";
     "col.group_border_active" = "rgb(${colors.base0B})";
     "col.group_border" = "rgb(${colors.base00})";
   };
@@ -186,8 +186,9 @@ in {
     "$mod      , M , exec , [workspace 9 silent;tile] mailspring"
     "$mod      , P , exec , run-as-service ${launcher}"
     "$mod      , Space , togglefloating ,"
-    # "$mod SHIFT , J , changegroupactive, f"
-    # "$mod SHIFT , K , changegroupactive, b"
+    "$mod      , R , togglegroup ,"
+    "$mod SHIFT, J , changegroupactive, f"
+    "$mod SHIFT, K , changegroupactive, b"
     "$mod      , S , exec , [workspace 5 silent;tile] spotify"
     "$mod      , W , killactive ,"
     "$mod      , X , exec , ${powermenu}"
@@ -200,24 +201,38 @@ in {
     "CTRL  , Print , exec , grimblast save area - | ${lib.getExe pkgs.swappy} -f -"
     "$mod , Print , exec , sharenix --selection"
 
+    # Dwindle Keybind
+    "$mod , h , resizeactive , -20 0"
+    "$mod , l , resizeactive , 20 0"
+    "$mod , k , movefocus , u"
+    "$mod , j , movefocus , d"
+
+    "$mod , left , movewindow , l"
+    "$mod , right , movewindow , r"
+    "$mod , up , movewindow , u"
+    "$mod , down , movewindow , d"
+    "$mod SHIFT , h , movewindow , l"
+    "$mod SHIFT , l , movewindow , r"
+    "$mod SHIFT , k , movewindow , u"
+    "$mod SHIFT , j , movewindow , d"
+
     # hy3 Keybinding
-    "$mod , c , hy3:makegroup, v, ephemeral"
-    "$mod , v , hy3:makegroup, h, ephemeral"
-    "$mod , r , hy3:makegroup, tab, ephemeral"
-
-    "$mod , h , hy3:movefocus , left"
-    "$mod , l , hy3:movefocus , right"
-    "$mod , k , hy3:movefocus , up"
-    "$mod , j , hy3:movefocus , down"
-
-    "$mod SHIFT , h , hy3:movewindow , left"
-    "$mod SHIFT , l , hy3:movewindow , right"
-    "$mod SHIFT , k , hy3:movewindow , up"
-    "$mod SHIFT , j , hy3:movewindow , down"
-    "$mod , left , hy3:movewindow , l"
-    "$mod , right , hy3:movewindow , r"
-    "$mod , up , hy3:movewindow , u"
-    "$mod , down , hy3:movewindow , d"
+    # "$mod , c , hy3:makegroup, v, ephemeral"
+    # "$mod , v , hy3:makegroup, h, ephemeral"
+    #
+    # "$mod , h , hy3:movefocus , left"
+    # "$mod , l , hy3:movefocus , right"
+    # "$mod , k , hy3:movefocus , up"
+    # "$mod , j , hy3:movefocus , down"
+    #
+    # "$mod SHIFT , h , hy3:movewindow , left"
+    # "$mod SHIFT , l , hy3:movewindow , right"
+    # "$mod SHIFT , k , hy3:movewindow , up"
+    # "$mod SHIFT , j , hy3:movewindow , down"
+    # "$mod , left , hy3:movewindow , l"
+    # "$mod , right , hy3:movewindow , r"
+    # "$mod , up , hy3:movewindow , u"
+    # "$mod , down , hy3:movewindow , d"
 
     "$mod , 1 , workspace , 1"
     "$mod , 2 , workspace , 2"
