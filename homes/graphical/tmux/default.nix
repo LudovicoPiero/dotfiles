@@ -48,29 +48,17 @@
       {
         plugin = mkTmuxPlugin {
           pluginName = "dracula";
-          version = "unstable-2023-07-24";
+          version = "unstable-2023-08-20";
           src = pkgs.fetchFromGitHub {
-            owner = "dracula";
+            owner = "ludovicopiero";
             repo = "tmux";
-            rev = "1b6e44e15c76721d592e3e78d93abfa4b327fe85";
-            hash = "sha256-R4S9zI/izMzvrXZeAM0wuynsm1+HaipQLOqjwMA2C3g=";
+            rev = "c21c80055b3ea1b69049ffaa38853d5166535b83";
+            hash = "sha256-DxJTj2VquDS0y19fvTy7TK8k5fT+ggpv40MaiJhs+5E=";
           };
         };
         extraConfig = ''
           # Dracula Theme
           set -g status-position top
-          set -g @dracula-show-location false
-          set -g @dracula-network-bandwidth-show-interface false
-          set -g @dracula-show-timezone false
-          set -g @dracula-show-battery false
-          set -g @dracula-show-powerline true
-          set -g @dracula-refresh-rate 10
-
-          # for left
-          set -g @dracula-show-left-sep 
-
-          # for right symbol (can set any symbol you like as seperator)
-          set -g @dracula-show-right-sep 
         '';
       }
       {
