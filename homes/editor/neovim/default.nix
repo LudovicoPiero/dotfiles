@@ -64,11 +64,14 @@
       luasnip
       lspkind-nvim
       cmp_luasnip
+      null-ls-nvim
     ];
 
     extraPackages = with pkgs; [
       # Nix
       nil
+      deadnix
+      statix
       alejandra
 
       # Lua
