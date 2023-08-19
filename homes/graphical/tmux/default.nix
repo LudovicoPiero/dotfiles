@@ -17,28 +17,72 @@
       # Open panes in current working directory
       bind ';' split-window -h -c "#{pane_current_path}"
       bind v split-window -v -c "#{pane_current_path}"
-
-      # Dracula Theme
-      set -g @dracula-show-location false
-      set -g @dracula-network-bandwidth-show-interface false
-      set -g @dracula-show-timezone false
-      set -g @dracula-show-battery false
-      set -g @dracula-show-powerline true
-      set -g @dracula-refresh-rate 10
-
-      # for left
-      set -g @dracula-show-left-sep 
-
-      # for right symbol (can set any symbol you like as seperator)
-      set -g @dracula-show-right-sep 
     '';
 
     plugins = with pkgs.tmuxPlugins; [
-      dracula
-      sensible
-      vim-tmux-navigator
       {
-        plugin = yank;
+        plugin = mkTmuxPlugin {
+          pluginName = "sensible";
+          version = "unstable-2017-09-05";
+          src = pkgs.fetchFromGitHub {
+            owner = "tmux-plugins";
+            repo = "tmux-sensible";
+            rev = "25cb91f42d020f675bb0a2ce3fbd3a5d96119efa";
+            hash = "sha256-sw9g1Yzmv2fdZFLJSGhx1tatQ+TtjDYNZI5uny0+5Hg=";
+          };
+        };
+      }
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "vim-tmux-navigator";
+          rtpFilePath = "vim-tmux-navigator.tmux";
+          version = "unstable-2022-08-21";
+          src = pkgs.fetchFromGitHub {
+            owner = "christoomey";
+            repo = "vim-tmux-navigator";
+            rev = "cdd66d6a37d991bba7997d593586fc51a5b37aa8";
+            hash = "sha256-gF1b5aBQTNQm2hCY5aR+RSU4cCNG356Yg6uPnlgqS4o=";
+          };
+        };
+      }
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "dracula";
+          version = "unstable-2023-07-24";
+          src = pkgs.fetchFromGitHub {
+            owner = "dracula";
+            repo = "tmux";
+            rev = "1b6e44e15c76721d592e3e78d93abfa4b327fe85";
+            hash = "sha256-R4S9zI/izMzvrXZeAM0wuynsm1+HaipQLOqjwMA2C3g=";
+          };
+        };
+        extraConfig = ''
+          # Dracula Theme
+          set -g @dracula-show-location false
+          set -g @dracula-network-bandwidth-show-interface false
+          set -g @dracula-show-timezone false
+          set -g @dracula-show-battery false
+          set -g @dracula-show-powerline true
+          set -g @dracula-refresh-rate 10
+
+          # for left
+          set -g @dracula-show-left-sep 
+
+          # for right symbol (can set any symbol you like as seperator)
+          set -g @dracula-show-right-sep 
+        '';
+      }
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "yank";
+          version = "unstable-2023-07-24";
+          src = pkgs.fetchFromGitHub {
+            owner = "tmux-plugins";
+            repo = "tmux-yank";
+            rev = "acfd36e4fcba99f8310a7dfb432111c242fe7392";
+            hash = "sha256-/5HPaoOx2U2d8lZZJo5dKmemu6hKgHJYq23hxkddXpA=";
+          };
+        };
         extraConfig = ''
           bind-key -T copy-mode-vi v send-keys -X begin-selection
           bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
