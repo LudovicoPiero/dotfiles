@@ -12,6 +12,7 @@ _: {
     ./fuzzel
     ./gtk
     ./spotify
+    ./tmux
     ./webcord
   ];
 }
