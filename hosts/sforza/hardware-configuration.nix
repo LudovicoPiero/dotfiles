@@ -79,11 +79,11 @@
       options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
     };
 
-    "${userHome}/WinC" = {
-      device = "/dev/disk/by-uuid/0454A86454A859E6";
-      fsType = "ntfs";
-      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    };
+    # "${userHome}/WinC" = {
+    #   device = "/dev/disk/by-uuid/0454A86454A859E6";
+    #   fsType = "ntfs";
+    #   options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    # };
   };
 
   swapDevices = [
