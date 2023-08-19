@@ -63,6 +63,7 @@ in {
       nheko
       whatsapp-for-linux
       obs-studio
+      qbittorrent
 
       # Utils
       ocrScript
