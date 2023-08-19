@@ -14,7 +14,7 @@ in ''
 
   window#waybar {
     background: transparent;
-    /* color: #${colors.white}; */
+    /* color: #${colors.base05}; */
   }
 
   #workspaces {

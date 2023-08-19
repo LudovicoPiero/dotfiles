@@ -73,12 +73,14 @@ in {
     gaps_in = 0;
     gaps_out = 0;
     border_size = 1;
-    "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
-    "col.inactive_border" = "rgb(${colors.base01})";
+    # "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
+    # "col.inactive_border" = "rgb(${colors.base01})";
+    "col.active_border" = "rgb(${colors.base0C})";
+    "col.inactive_border" = "rgb(${colors.base02})";
 
     layout = "dwindle";
     "col.group_border_active" = "rgb(${colors.base0B})";
-    "col.group_border" = "rgb(${colors.base00})";
+    "col.group_border" = "rgb(${colors.base04})";
   };
 
   dwindle = {

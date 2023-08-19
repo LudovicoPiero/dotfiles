@@ -16,20 +16,7 @@
       ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
     '';
 in {
-  colorScheme = {
-    slug = "Skeet";
-    name = "Skeet";
-    author = "Ludovico";
-    colors =
-      inputs.nix-colors.colorSchemes.dracula.colors
-      // {
-        blue = "1e5799";
-        pink = "f300ff";
-        yellow = "e0ff00";
-        gray = "595959";
-        white = "000000";
-      };
-  };
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
   home = {
     sessionVariables = {
