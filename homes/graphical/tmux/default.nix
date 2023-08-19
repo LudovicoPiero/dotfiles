@@ -58,6 +58,7 @@
         };
         extraConfig = ''
           # Dracula Theme
+          set -g status-position top
           set -g @dracula-show-location false
           set -g @dracula-network-bandwidth-show-interface false
           set -g @dracula-show-timezone false
