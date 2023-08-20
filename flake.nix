@@ -1,4 +1,65 @@
 {
+  outputs = inputs @ {nixpkgs, ...}:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+
+      imports = [
+        ./hosts
+        ./homes
+        ./pkgs
+
+        inputs.devshell.flakeModule
+        inputs.nixos-flake.flakeModule
+        inputs.treefmt-nix.flakeModule
+      ];
+
+      perSystem = {
+        config,
+        pkgs,
+        system,
+        inputs',
+        ...
+      }: {
+        # This sets `pkgs` to a nixpkgs with allowUnfree option set.
+        _module.args.pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        # configure devshell
+        devShells.default = let
+          devshell = import ./parts/devshell;
+        in
+          inputs'.devshell.legacyPackages.mkShell {
+            inherit (devshell) env;
+            name = "Devshell";
+            commands = devshell.shellCommands;
+            packages = with pkgs; [
+              inputs'.sops-nix.packages.default
+              config.treefmt.build.wrapper
+              nil
+              alejandra
+              git
+              statix
+              deadnix
+            ];
+          };
+
+        # configure treefmt
+        treefmt = let
+          treefmt = import ./parts/treefmt;
+        in {
+          inherit (treefmt) programs;
+          projectRootFile = "flake.nix";
+          settings.formatter = treefmt.settingsFormatter;
+        };
+      };
+    };
+
   inputs = {
     # Main Thing
     master.url = "github:nixos/nixpkgs/master";
@@ -102,65 +163,4 @@
       flake = false;
     };
   };
-
-  outputs = inputs @ {nixpkgs, ...}:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-linux"
-      ];
-
-      imports = [
-        ./hosts
-        ./homes
-        ./pkgs
-
-        inputs.devshell.flakeModule
-        inputs.nixos-flake.flakeModule
-        inputs.treefmt-nix.flakeModule
-      ];
-
-      perSystem = {
-        config,
-        pkgs,
-        system,
-        inputs',
-        ...
-      }: {
-        # This sets `pkgs` to a nixpkgs with allowUnfree option set.
-        _module.args.pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-
-        # configure devshell
-        devShells.default = let
-          devshell = import ./parts/devshell;
-        in
-          inputs'.devshell.legacyPackages.mkShell {
-            inherit (devshell) env;
-            name = "Devshell";
-            commands = devshell.shellCommands;
-            packages = with pkgs; [
-              inputs'.sops-nix.packages.default
-              config.treefmt.build.wrapper
-              nil
-              alejandra
-              git
-              statix
-              deadnix
-            ];
-          };
-
-        # configure treefmt
-        treefmt = let
-          treefmt = import ./parts/treefmt;
-        in {
-          inherit (treefmt) programs;
-          projectRootFile = "flake.nix";
-          settings.formatter = treefmt.settingsFormatter;
-        };
-      };
-    };
 }
