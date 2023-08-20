@@ -1064,6 +1064,7 @@
         "stable": "stable",
         "treefmt-nix": "treefmt-nix",
         "unstable": "unstable",
+        "wrapper-manager": "wrapper-manager",
         "xdph": "xdph_2"
       }
     },
@@ -1334,6 +1335,26 @@
         "ref": "master",
         "type": "git",
         "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
+      }
+    },
+    "wrapper-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1691847782,
+        "narHash": "sha256-o442oJ4F6tcPYmd6wiC/lnjiq7r8ANa4vPpMGB3/MKk=",
+        "owner": "viperML",
+        "repo": "wrapper-manager",
+        "rev": "ec1cf6abbf017bd17c3e24e8dddbefe4b445b569",
+        "type": "github"
+      },
+      "original": {
+        "owner": "viperML",
+        "repo": "wrapper-manager",
+        "type": "github"
       }
     },
     "xdph": {

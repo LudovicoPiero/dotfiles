@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  packages,
   ...
 }: let
   sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/sharenix}'';
@@ -51,6 +52,9 @@ in {
       whatsapp-for-linux
       obs-studio
       qbittorrent
+
+      # From wrapper-manager
+      packages.self.google
 
       # Utils
       ocrScript

@@ -87,6 +87,11 @@
       inputs.base16-schemes.follows = "base16-schemes";
     };
 
+    wrapper-manager = {
+      url = "github:viperML/wrapper-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     devshell.url = "github:numtide/devshell";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -106,15 +111,16 @@
   outputs = inputs @ {nixpkgs, ...}:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
         "x86_64-linux"
+        # "aarch64-darwin"
+        # "aarch64-linux"
       ];
 
       imports = [
         ./hosts
         ./homes
         ./pkgs
+        ./wrappers
 
         inputs.devshell.flakeModule
         inputs.nixos-flake.flakeModule
