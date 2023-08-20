@@ -62,15 +62,16 @@
     "base16-schemes": {
       "flake": false,
       "locked": {
-        "lastModified": 1689473676,
-        "narHash": "sha256-L0RhUr9+W5EPWBpLcmkKpUeCEWRs/kLzVMF3Vao2ZU0=",
+        "lastModified": 1691645318,
+        "narHash": "sha256-qETZZfJFqgcDfLD0ib54SNEMyHVX6KW4uJjBWG53VHQ=",
         "owner": "ludovicopiero",
         "repo": "base16-schemes",
-        "rev": "d95123ca6377cd849cfdce92c0a24406b0c6a789",
+        "rev": "58305c79fbc42b5155abbcaea42558794ff380f7",
         "type": "github"
       },
       "original": {
         "owner": "ludovicopiero",
+        "ref": "oxocarbon",
         "repo": "base16-schemes",
         "type": "github"
       }
