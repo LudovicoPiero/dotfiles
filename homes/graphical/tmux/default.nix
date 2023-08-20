@@ -52,8 +52,8 @@
           src = pkgs.fetchFromGitHub {
             owner = "ludovicopiero";
             repo = "tmux";
-            rev = "c21c80055b3ea1b69049ffaa38853d5166535b83";
-            hash = "sha256-DxJTj2VquDS0y19fvTy7TK8k5fT+ggpv40MaiJhs+5E=";
+            rev = "0c2a492328a660532a878d2a35910ea20a2c19ee";
+            hash = "sha256-zk9I0PTwpp95pL4OpfprZkzvhshqj4v25JmMjPAzhRc=";
           };
         };
         extraConfig = ''
