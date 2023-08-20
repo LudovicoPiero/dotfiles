@@ -16,7 +16,7 @@
       ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
     '';
 in {
-  colorScheme = inputs.nix-colors.colorSchemes.oxocarbon-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
   home = {
     sessionVariables = {
