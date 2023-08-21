@@ -9,14 +9,13 @@
     settings = {
       add_newline = false;
       format = lib.concatStrings [
-        "$username"
-        "$hostname"
-        "$directory"
-        "$git_branch"
-        "$git_state"
-        "$git_status"
         "$cmd_duration"
+        "$git_metrics"
+        "$git_state"
+        "$git_branch"
         "$line_break"
+        "$status"
+        "$directory"
         "$character"
       ];
       right_format = lib.concatStrings [
@@ -25,6 +24,7 @@
         "\${custom.direnv}"
         "$time"
       ];
+      continuation_prompt = "▶ ";
       command_timeout = 1000;
       # right_format = "$all";
       directory = {
@@ -37,17 +37,6 @@
       git_branch = {
         style = "bright-black";
         format = "[$branch]($style)";
-      };
-      git_status = {
-        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
-        style = "cyan";
-        conflicted = "=";
-        untracked = "?";
-        modified = "!";
-        staged = "+";
-        renamed = "»";
-        deleted = "✘";
-        stashed = "≡";
       };
       git_state = {
         format = "\([$state( $progress_current/$progress_total)]($style)\)";

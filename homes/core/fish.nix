@@ -57,7 +57,6 @@ in
       };
 
       interactiveShellInit = ''
-        ${_ starship} init fish | source
         ${_ any-nix-shell} fish --info-right | source
         ${_ zoxide} init fish | source
         ${_ direnv} hook fish | source
