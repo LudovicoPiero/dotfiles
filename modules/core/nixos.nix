@@ -47,6 +47,7 @@
       direnv
       dnsutils
       fd
+      sbctl # For debugging and troubleshooting Secure boot.
 
       pwvucontrol
       git

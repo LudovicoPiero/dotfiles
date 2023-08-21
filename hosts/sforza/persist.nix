@@ -23,15 +23,16 @@
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
+      "/etc/NetworkManager/system-connections"
+      "/etc/nixos"
+      "/etc/nix"
+      "/etc/secureboot"
       "/var/lib/bluetooth"
       "/var/lib/docker"
       "/var/lib/libvirt"
       "/var/lib/nixos"
       "/var/lib/pipewire"
       "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-      "/etc/nixos"
-      "/etc/nix"
     ];
     files = [
       "/etc/machine-id"

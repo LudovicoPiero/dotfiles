@@ -109,6 +109,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nh = {
       url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
