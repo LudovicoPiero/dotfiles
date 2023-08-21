@@ -27,7 +27,7 @@ in {
       NIX_PATH = "nixpkgs=flake:nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
 
       NIXOS_OZONE_WL = "0";
-      EDITOR = "emacs";
+      EDITOR = "nvim";
       VISUAL = "nvim";
       PAGER = "less -R";
       TERM = "screen-256color";
