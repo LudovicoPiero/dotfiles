@@ -47,17 +47,19 @@
       }
       {
         plugin = mkTmuxPlugin {
-          pluginName = "dracula";
-          version = "unstable-2023-08-20";
+          pluginName = "catppuccin";
+          version = "unstable-2023-08-22";
           src = pkgs.fetchFromGitHub {
             owner = "ludovicopiero";
-            repo = "tmux";
-            rev = "0c2a492328a660532a878d2a35910ea20a2c19ee";
-            hash = "sha256-zk9I0PTwpp95pL4OpfprZkzvhshqj4v25JmMjPAzhRc=";
+            repo = "tmux-cat";
+            rev = "ab8edd7647176044b28b11cce3a871d7584e071d";
+            hash = "sha256-QR1/F/YqNwOFPcuDmiMrDCwQ1CJ8WFBu8kVicU8Mghg=";
           };
+          postInstall = ''
+            sed -i -e 's|''${PLUGIN_DIR}/catppuccin-selected-theme.tmuxtheme|''${TMUX_TMPDIR}/catppuccin-selected-theme.tmuxtheme|g' $target/catppuccin.tmux
+          '';
         };
         extraConfig = ''
-          # Dracula Theme
           set -g status-position top
         '';
       }
