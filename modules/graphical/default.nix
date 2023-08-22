@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./games
+    ./qemu
 
     ./greetd.nix
     ./xdg-portal.nix
