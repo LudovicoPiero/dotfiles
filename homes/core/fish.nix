@@ -25,6 +25,26 @@ in
       functions = {
         gitignore = "curl -sL https://www.gitignore.io/api/$argv";
         fish_greeting = ""; # disable welcome text
+        bs = ''
+          pushd ~/.config/nixos
+          nh os switch .
+            if test $status -eq 0
+              notify-send "Rebuild Switch" "Build successful!"
+            else
+              notify-send "Rebuild Switch" "Build failed!"
+            end
+          popd
+        '';
+        bb = ''
+          pushd ~/.config/nixos
+          nh os boot .
+            if test $status -eq 0
+              notify-send "Rebuild Boot" "Build successful!"
+            else
+              notify-send "Rebuild Boot" "Build failed!"
+            end
+          popd
+        '';
         fe = ''
           set selected_file (rg --files ''$argv[1] | fzf --preview "bat -f {}")
 
@@ -63,11 +83,6 @@ in
       '';
 
       shellAliases = {
-        "bs" = "pushd ~/.config/nixos && nh os switch . ; popd";
-        "bb" = "pushd ~/.config/nixos && nh os switch . ; popd";
-        # "bs" = "pushd ~/.config/nixos && nixos-rebuild switch --flake .# --use-remote-sudo ; popd";
-        # "bb" = "pushd ~/.config/nixos && nixos-rebuild boot --flake .# --use-remote-sudo   ; popd";
-        # "hs" = "pushd ~/.config/nixos && home-manager switch --flake .# --use-remote-sudo  ; popd";
         "cat" = "${_ bat}";
         "config" = "cd ~/.config/nixos";
         "lg" = "lazygit";
@@ -84,7 +99,17 @@ in
         ".." = "cd ..";
       };
 
-      plugins = []; #TODO: add plugins
+      plugins = [
+        {
+          name = "pure";
+          src = pkgs.fetchFromGitHub {
+            owner = "pure-fish";
+            repo = "pure";
+            rev = "fff46b1257bd2122121d02813740a45903ea8593";
+            hash = "sha256-5Rx7ba4OWLnNGL+GVwKlWqy0VQxhBg2MC+HntkgeZn0=";
+          };
+        }
+      ];
     };
 
     programs.man.generateCaches = true; # For fish completions
