@@ -9,16 +9,6 @@ in
   with pkgs; {
     home.packages = [zoxide fzf fd bat];
 
-    programs.lsd = {
-      enable = true;
-      enableAliases = true;
-      settings = {
-        icons = {
-          separator = "  "; # 2 Spaces
-        };
-      };
-    };
-
     programs.fish = {
       enable = true;
 
@@ -85,8 +75,15 @@ in
       shellAliases = {
         "cat" = "${_ bat}";
         "config" = "cd ~/.config/nixos";
+        "ls" = "${_ eza} --icons";
+        "l" = "${_ eza} -lbF --git --icons";
+        "ll" = "${_ eza} -lbGF --git --icons";
+        "llm" = "${_ eza} -lbGF --git --sort=modified --icons";
+        "la" = "${_ eza} -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
+        "lx" = "${_ eza} -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
+        "t" = "${_ eza} --tree --icons";
+        "tree" = "${_ eza} --tree --icons";
         "lg" = "lazygit";
-        "tree" = "${_ lsd} --tree -l";
         "nb" = "nix-build -E \'with import <nixpkgs> { }; callPackage ./default.nix { }\'";
         "nv" = "nvim";
         "nr" = "${_ nixpkgs-review}";
