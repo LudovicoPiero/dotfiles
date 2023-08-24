@@ -13,7 +13,7 @@ jobs:
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@v25
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v19
+        uses: DeterminateSystems/update-flake-lock@v20
         with:
           inputs: amoledcord unstable home-manager hyprland hy3 hyprland-contrib xdph spicetify-nix
           pr-title: "Update flake.lock" # Title of PR to be created
