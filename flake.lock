@@ -26,11 +26,11 @@
     "amoledcord": {
       "flake": false,
       "locked": {
-        "lastModified": 1689621470,
-        "narHash": "sha256-fFDjG1xw7OOuchJW5tyEFvQvv3MCVTCFxKSdS3FB4Ts=",
+        "lastModified": 1692793798,
+        "narHash": "sha256-1MGlFQdqxT9g7A1b7+xcuztEfkGqktt0jfz9xcA2K9w=",
         "owner": "luckfire",
         "repo": "amoled-cord",
-        "rev": "f82f5adda70d925624a6e721a5e0cc667965397d",
+        "rev": "d17b1ae7b0eb5204b3e6cc49ec90ef79d60b0f13",
         "type": "github"
       },
       "original": {
@@ -448,11 +448,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1692786726,
-        "narHash": "sha256-gXleSzIrNYVfgdIpzTnyq4iKNRv01sOwywoF9ms3a/s=",
+        "lastModified": 1692871050,
+        "narHash": "sha256-OJ/OkOLFn546rcXmj/3VEGlsPYjdXWAhEmjqdc6re6k=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "4d14edd8a53389b2583a00da1484bec4408d9207",
+        "rev": "90c03e5bd2204ba6d1a0167c68f65b7a9231bef4",
         "type": "github"
       },
       "original": {
@@ -1193,11 +1193,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1692638711,
-        "narHash": "sha256-J0LgSFgJVGCC1+j5R2QndadWI1oumusg6hCtYAzLID4=",
+        "lastModified": 1692734709,
+        "narHash": "sha256-SCFnyHCyYjwEmgUsHDDuU0TsbVMKeU1vwkR+r7uS2Rg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "91a22f76cd1716f9d0149e8a5c68424bb691de15",
+        "rev": "b85ed9dcbf187b909ef7964774f8847d554fab3b",
         "type": "github"
       },
       "original": {
