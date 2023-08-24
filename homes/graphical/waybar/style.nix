@@ -13,7 +13,7 @@ in ''
   }
 
   window#waybar {
-    background: transparent;
+    background-color: #${colors.base00};
     /* color: #${colors.base05}; */
   }
 
