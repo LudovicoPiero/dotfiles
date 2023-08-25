@@ -52,8 +52,8 @@
           src = pkgs.fetchFromGitHub {
             owner = "ludovicopiero";
             repo = "tmux-cat";
-            rev = "ab8edd7647176044b28b11cce3a871d7584e071d";
-            hash = "sha256-QR1/F/YqNwOFPcuDmiMrDCwQ1CJ8WFBu8kVicU8Mghg=";
+            rev = "38f8631c5e92255d35500550055ce7d6832fd236";
+            hash = "sha256-6LKh/M5QjCiVONA3u1XsY6eozparYogS9Dy2bRGuPC0=";
           };
           postInstall = ''
             sed -i -e 's|''${PLUGIN_DIR}/catppuccin-selected-theme.tmuxtheme|''${TMUX_TMPDIR}/catppuccin-selected-theme.tmuxtheme|g' $target/catppuccin.tmux
