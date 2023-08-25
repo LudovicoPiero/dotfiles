@@ -9,8 +9,10 @@
       inputs.self.packages.${pkgs.system}.san-francisco-pro
       inputs.self.packages.${pkgs.system}.iosevka-q
       sarasa-gothic
+
+      # Icons
+      material-design-icons
       noto-fonts-emoji
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
 
     # use fonts specified by user rather than default ones

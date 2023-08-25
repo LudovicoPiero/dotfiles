@@ -34,9 +34,9 @@ in {
         ];
         "pulseaudio" = {
           "format" = "{icon} {volume}%";
-          "format-muted" = "󰝟";
+          "format-muted" = "󰖁";
           "on-click" = "amixer -q set Master toggle-mute";
-          "format-icons" = ["" "" ""];
+          "format-icons" = ["󰕿" "󰖀" "󰕾"];
         };
         "hyprland/workspaces" = {
           on-scroll-up = "hyprctl dispatch workspace r-1";
@@ -62,7 +62,7 @@ in {
         };
         "network" = {
           interface = "wlp4s0";
-          format-wifi = " Connected";
+          format-wifi = "󰖩 Connected";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "󰖪 Disconnected";
           tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
@@ -85,27 +85,32 @@ in {
           bat = "BAT1";
           interval = 60;
           format = "{icon}{capacity}%";
-          format-charging = "󰂄 {capacity}%";
+          format-charging = "󰂄{capacity}%";
           states = {
             "good" = 95;
             "warning" = 20;
             "critical" = 10;
           };
-          format-icons = [
-            " "
-            " "
-            ""
-            " "
-            " "
+          format-icons = lib.concatStrings [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
           ];
         };
         "custom/date" = {
-          format = " {}";
+          format = "󰭦 {}";
           interval = 3600;
           exec = "${lib.getExe waybar-date}";
         };
         "clock" = {
-          format = " {:%I:%M %p}";
+          format = "󰅐 {:%I:%M %p}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
       };

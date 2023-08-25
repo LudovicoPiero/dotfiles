@@ -39,7 +39,7 @@ in {
       return {
         font = wezterm.font_with_fallback({
           "Iosevka q Semibold",
-          "Symbols Nerd Font",
+          "Material Design Icons",
           "Noto Color Emoji",
         }),
         font_size = 14.0,

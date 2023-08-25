@@ -5,10 +5,10 @@ in ''
     border: none;
     border-radius: 0;
     font-family:
-      Iosevka q,
-      Symbols Nerd Font,
+      SF Pro Rounded,
+      Material Design Icons,
       monospace;
-    font-size: 14px;
+    font-size: 13px;
     min-height: 0;
   }
 
