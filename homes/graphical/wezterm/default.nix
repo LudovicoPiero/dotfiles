@@ -38,11 +38,11 @@ in {
     extraConfig = ''
       return {
         font = wezterm.font_with_fallback({
-          "Iosevka q Semibold",
+          "JetBrains Mono SemiBold",
           "Material Design Icons",
           "Noto Color Emoji",
         }),
-        font_size = 14.0,
+        font_size = 12.0,
         window_background_opacity = 0.8,
         color_scheme = "${colorScheme.slug}",
         enable_scroll_bar = false,

@@ -14,7 +14,7 @@
       "C_Cpp.intelliSenseEngine" = "Disabled";
       "editor.cursorBlinking" = "phase";
       "editor.cursorSmoothCaretAnimation" = "on";
-      "editor.fontFamily" = "'Iosevka q', 'Material Design Icons', monospace";
+      "editor.fontFamily" = "'JetBrains Mono', 'Material Design Icons', monospace";
       "editor.fontSize" = 18;
       "editor.formatOnSave" = true;
       "editor.minimap.enabled" = false;

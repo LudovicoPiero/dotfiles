@@ -7,7 +7,7 @@
     fontDir.enable = true;
     packages = with pkgs; [
       inputs.self.packages.${pkgs.system}.san-francisco-pro
-      inputs.self.packages.${pkgs.system}.iosevka-q
+      jetbrains-mono
       sarasa-gothic
 
       # Icons

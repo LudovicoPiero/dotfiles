@@ -2,7 +2,7 @@
   {
     statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
     fonts = {
-      names = ["Iosevka q" "Material Design Icons"];
+      names = ["JetBrains Mono" "Material Design Icons"];
       size = 9.0;
     };
     position = "bottom";

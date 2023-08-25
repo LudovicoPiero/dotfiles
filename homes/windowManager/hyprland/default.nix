@@ -47,7 +47,7 @@
     #         render_text = false # default: true
     #
     #         # font to render the window title with
-    #         text_font = "Iosevka q" # default: Sans
+    #         text_font = "JetBrains Mono" # default: Sans
     #
     #         # height of the window title
     #         text_height = 8 # default: 8

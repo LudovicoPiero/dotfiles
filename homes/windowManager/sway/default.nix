@@ -64,7 +64,7 @@ in {
         outer = 3;
       };
       fonts = {
-        names = ["Iosevka q"];
+        names = ["JetBrains Mono"];
         size = 10.0;
       };
       startup = [
