@@ -91,7 +91,7 @@ in {
             "warning" = 20;
             "critical" = 10;
           };
-          format-icons = lib.concatStrings [
+          format-icons = [
             "󰁺"
             "󰁻"
             "󰁼"
