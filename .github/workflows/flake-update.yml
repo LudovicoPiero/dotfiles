@@ -3,7 +3,7 @@ on:
   workflow_dispatch: # allows manual triggering
   schedule:
     - cron: "0 12 * * *" # At 12:00 everyday
-    - cron: "* * */3 * *" # Run every 3 day
+    - cron: "0 12 */3 * *" # At 12:00 on every 3rd day-of-month
 
 jobs:
   update-multiple-inputs:
