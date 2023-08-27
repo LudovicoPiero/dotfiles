@@ -154,7 +154,6 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nur.url = "github:nix-community/nur";
     nixos-flake.url = "github:srid/nixos-flake";
     treefmt-nix.url = "github:numtide/treefmt-nix";
