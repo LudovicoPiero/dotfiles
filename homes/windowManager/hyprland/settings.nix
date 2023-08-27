@@ -108,6 +108,7 @@ in {
       brightness = 1;
       new_optimizations = true;
       ignore_opacity = true;
+      special = 0.88;
     };
 
     drop_shadow = false;
