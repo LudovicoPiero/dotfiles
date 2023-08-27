@@ -96,8 +96,6 @@
       # Prevent impurities in builds
       sandbox = true;
 
-      auto-optimise-store = true;
-
       # Give root user and wheel group special Nix privileges.
       trusted-users = ["root" "@wheel"];
       allowed-users = ["@wheel"];
