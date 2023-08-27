@@ -12,7 +12,6 @@
 
   chaotic = {
     nyx.cache.enable = false;
-    mesa-git.enable = true;
   };
 
   boot = {
