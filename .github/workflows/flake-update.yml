@@ -1,6 +1,7 @@
-name: update-flake-lock
+name: Update Flakes
+
 on:
-  workflow_dispatch: # allows manual triggering
+  workflow_dispatch:
   schedule:
     - cron: "0 12 * * *" # At 12:00 everyday
     - cron: "0 12 */3 * *" # At 12:00 on every 3rd day-of-month
@@ -8,13 +9,14 @@ on:
 jobs:
   update-multiple-inputs:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'schedule' && github.event.schedule == '0 12 * * *' }}
+    if: ${{ github.event_name == 'schedule' && github.event.schedule == '0 12 * * *' && needs.update-master.outputs.job-status != 'running' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@v25
       - name: Update flake.lock
+        id: update
         uses: DeterminateSystems/update-flake-lock@v20
         with:
           inputs: amoledcord hyprland hy3 hyprland-contrib neovim-nightly-overlay xdph spicetify-nix
@@ -37,6 +39,7 @@ jobs:
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@v25
       - name: Update flake.lock
+        id: update
         uses: DeterminateSystems/update-flake-lock@v20
         with:
           inputs: master home-manager chaotic
@@ -49,3 +52,5 @@ jobs:
           gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    outputs:
+      job-status: 'running'
