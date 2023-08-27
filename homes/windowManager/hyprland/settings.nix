@@ -100,15 +100,18 @@ in {
       "notifications" # Dunst
     ];
 
+    dim_inactive = true;
+    dim_strength = 0.7;
+
     blur = {
       enabled = true;
       size = 5;
       passes = 2;
-      contrast = 1.4;
-      brightness = 1;
+      contrast = 0.8916;
+      brightness = 0.8172;
       new_optimizations = true;
       ignore_opacity = true;
-      special = 0.88;
+      special = true;
     };
 
     drop_shadow = false;
