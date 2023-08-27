@@ -84,7 +84,6 @@
       inputs.flake-compat.follows = "flake-compat";
     };
 
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
