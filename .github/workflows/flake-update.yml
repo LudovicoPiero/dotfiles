@@ -30,7 +30,7 @@ jobs:
 
   update-master:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'schedule' && github.event.schedule == '* * */3 * *' }}
+    if: ${{ github.event_name == 'schedule' && github.event.schedule == '0 12 */3 * *' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
