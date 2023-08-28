@@ -99,7 +99,7 @@ in {
       "notifications" # Dunst
     ];
 
-    dim_inactive = true;
+    dim_inactive = false;
     dim_strength = 0.7;
 
     blur = {
