@@ -52,6 +52,8 @@ in {
       obs-studio
       qbittorrent
 
+      libsForQt5.kleopatra # Gui for GPG
+
       # Utils
       ocrScript
       sharenix
