@@ -2,7 +2,7 @@ _: {
   programs.git = {
     enable = true;
 
-    userEmail = "ludovicopiero@pm.me";
+    userEmail = "lewdovico@gnuweeb.org";
     userName = "Ludovico Piero";
 
     signing = {
