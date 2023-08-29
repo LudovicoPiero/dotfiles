@@ -43,3 +43,12 @@ jobs:
       - name: "Build nixosConfiguration for: sforza"
         run: |-
           nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
+
+      - name: "Build iso.nix"
+        run: |-
+          nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: nixos
+          path: result/
