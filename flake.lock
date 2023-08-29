@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "amoledcord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692793798,
+        "narHash": "sha256-1MGlFQdqxT9g7A1b7+xcuztEfkGqktt0jfz9xcA2K9w=",
+        "owner": "luckfire",
+        "repo": "amoled-cord",
+        "rev": "d17b1ae7b0eb5204b3e6cc49ec90ef79d60b0f13",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luckfire",
+        "repo": "amoled-cord",
+        "type": "github"
+      }
+    },
     "ananicy-cpp-rules-git-src": {
       "flake": false,
       "locked": {
@@ -1004,6 +1020,7 @@
     "root": {
       "inputs": {
         "aagl": "aagl",
+        "amoledcord": "amoledcord",
         "arrpc": "arrpc",
         "base16-schemes": "base16-schemes",
         "chaotic": "chaotic",

@@ -157,5 +157,11 @@
     nur.url = "github:nix-community/nur";
     nixos-flake.url = "github:srid/nixos-flake";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+
+    # Non Flakes Stuff
+    amoledcord = {
+      url = "github:luckfire/amoled-cord";
+      flake = false;
+    };
   };
 }

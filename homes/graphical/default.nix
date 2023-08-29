@@ -5,7 +5,6 @@ _: {
     ./services.nix
 
     ./i3status-rs
-    ./armcord
     ./gammastep
     ./dunst
     ./waybar
@@ -14,5 +13,6 @@ _: {
     ./gtk
     ./spotify
     ./tmux
+    ./webcord
   ];
 }
