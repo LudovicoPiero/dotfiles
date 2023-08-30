@@ -49,7 +49,6 @@ in {
       viewnior
       nheko
       whatsapp-for-linux
-      obs-studio
       qbittorrent
 
       libsForQt5.kleopatra # Gui for GPG
@@ -57,6 +56,14 @@ in {
       # Utils
       ocrScript
       sharenix
+    ];
+  };
+
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins;[
+      wlrobs
+      obs-pipewire-audio-capture
     ];
   };
 }
