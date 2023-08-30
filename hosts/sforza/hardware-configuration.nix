@@ -12,6 +12,7 @@
 
   chaotic = {
     nyx.cache.enable = false;
+    nyx.overlay.enable = false;
   };
 
   boot = {
