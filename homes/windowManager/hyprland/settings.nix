@@ -47,8 +47,7 @@
     before-sleep '${_ swaylock}' \
     lock '${_ swaylock}}'
   '';
-  discord-wrapped = "${_ pkgs.discord-canary} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
-  webcord-wrapped = "${_ pkgs.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
+  armcord-wrapped = "${_ pkgs.armcord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
 in {
   exec-once = [
     "waybar"
@@ -153,7 +152,7 @@ in {
     "workspace 6, title:^(Sign in to Steam)$"
     "workspace 5, title:(Spotify)"
     "workspace 4, class:^(org.telegram.desktop)$"
-    "workspace 3, title:^(.*(Disc|WebC)ord.*)$"
+    "workspace 3, title:^(.*(Disc|ArmC|WebC)ord.*)$"
     "workspace 2, class:^(firefox)$"
     "workspace 2, class:^(Chromium-browser)$" # xwayland
     "workspace 2, class:^(chromium-browser)$" # wayland
@@ -180,11 +179,10 @@ in {
 
   "$mod" = "SUPER";
   bind = [
-    "$mod SHIFT , C , exit ,"
+    "$mod SHIFT, C , exit ,"
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
-    "$mod      , D , exec , ${discord-wrapped}"
-    "$mod SHIFT, D , exec , ${webcord-wrapped}"
+    "$mod      , D , exec , ${armcord-wrapped}"
     "$mod SHIFT, E , exec , [float] thunar"
     "$mod      , F , fullscreen , 0"
     "$mod SHIFT, G , exec , chromium"
@@ -200,7 +198,7 @@ in {
     "$mod      , X , exec , ${powermenu}"
     "$mod      , Return , exec , run-as-service ${terminal}"
 
-    "$mod , E , exec , emacsclient -c -a 'nvim'"
+    "$mod , E  , exec , emacsclient -c -a 'nvim'"
     "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
 
     ", print , exec , wl-ocr"
