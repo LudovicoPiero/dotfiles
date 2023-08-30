@@ -1,0 +1,29 @@
+name: Update Flakes (Master)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 */3 * *" # At 12:00 on every 3rd day-of-month
+
+jobs:
+  update-master:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Nix
+        uses: nixbuild/nix-quick-install-action@v25
+      - name: Update flake.lock
+        id: update
+        uses: DeterminateSystems/update-flake-lock@v20
+        with:
+          inputs: master home-manager chaotic
+          pr-title: "Update master, home-manager, chaotic" # Title of PR to be created
+          pr-labels: | # Labels to be set on the PR
+            dependencies
+            automated
+      - name: merge
+        run: |
+          gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

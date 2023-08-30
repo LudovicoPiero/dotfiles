@@ -1,0 +1,29 @@
+name: Update Flakes (Hyprland)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # At 00:00 everyday (UTC)
+
+jobs:
+  update-multiple-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Nix
+        uses: nixbuild/nix-quick-install-action@v25
+      - name: Update flake.lock
+        id: update
+        uses: DeterminateSystems/update-flake-lock@v20
+        with:
+          inputs: hyprland hy3 hyprland-contrib xdph spicetify-nix
+          pr-title: "Update flake.lock" # Title of PR to be created
+          pr-labels: | # Labels to be set on the PR
+            dependencies
+            automated
+      - name: merge
+        run: |
+          gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
