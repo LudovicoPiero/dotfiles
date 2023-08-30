@@ -140,7 +140,7 @@ in {
     disable_splash_rendering = true; # Text below the wallpaper
     force_hypr_chan = false; # Cute
     vfr = true;
-    vrr = 1;
+    vrr = 0;
     render_titles_in_groupbar = false;
   };
 
