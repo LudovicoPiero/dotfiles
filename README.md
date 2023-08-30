@@ -15,6 +15,8 @@ This is my personal NixOS configuration. It is a work in progress. I am using th
 
 > **Any damage caused by this configuration is not my responsibility. Use at your own risk.**
 
+[README-jp](README-jp.md)
+
 ## **Screenshots**
 
 ![Screenshot](assets/ss.png)
