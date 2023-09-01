@@ -1,4 +1,4 @@
-name: Update Flakes (Master)
+name: Update Flakes (unstable)
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: "0 12 */3 * *" # At 12:00 on every 3rd day-of-month
 
 jobs:
-  update-master:
+  update-unstable:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,8 +17,8 @@ jobs:
         id: update
         uses: DeterminateSystems/update-flake-lock@v20
         with:
-          inputs: master home-manager chaotic nur
-          pr-title: "Update master, home-manager, chaotic, nur" # Title of PR to be created
+          inputs: unstable home-manager chaotic nur
+          pr-title: "Update unstable, home-manager, chaotic, nur" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
             dependencies
             automated
