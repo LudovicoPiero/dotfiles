@@ -5,7 +5,7 @@ in ''
     border: none;
     border-radius: 0;
     font-family:
-      SF Pro Rounded,
+      JetBrains Mono,
       Material Design Icons,
       monospace;
     font-size: 13px;
