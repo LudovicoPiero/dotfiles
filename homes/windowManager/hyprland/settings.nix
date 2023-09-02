@@ -201,9 +201,10 @@ in {
     "$mod , E  , exec , emacsclient -c -a 'nvim'"
     "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
 
-    ", print , exec , wl-ocr"
-    "CTRL  , Print , exec , grimblast save area - | ${lib.getExe pkgs.swappy} -f -"
-    "$mod , Print , exec , sharenix --selection"
+    ", print, exec , wl-ocr"
+    "CTRL   , Print , exec , grimblast save area - | ${lib.getExe pkgs.swappy} -f -"
+    "ALT    , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
+    "$mod   , Print , exec , sharenix --selection"
 
     # Dwindle Keybind
     "$mod , h , resizeactive , -20 0"
