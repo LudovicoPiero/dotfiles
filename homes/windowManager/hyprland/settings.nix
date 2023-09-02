@@ -93,11 +93,6 @@ in {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
     rounding = 0;
-    blurls = [
-      "launcher" # Fuzzel
-      "lockscreen"
-      "notifications" # Dunst
-    ];
 
     dim_inactive = false;
     dim_strength = 0.7;
@@ -143,6 +138,15 @@ in {
     vrr = 0;
     render_titles_in_groupbar = false;
   };
+
+  layerrule = [
+    "blur, notifications"
+    "blur, launcher"
+    "blur, lockscreen"
+    "ignorealpha 0.69, notifications"
+    "ignorealpha 0.69, launcher"
+    "ignorealpha 0.69, lockscreen"
+  ];
 
   windowrulev2 = [
     "workspace 9, class:^(Mailspring)$"
