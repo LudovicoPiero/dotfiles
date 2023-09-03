@@ -13,6 +13,5 @@ _: {
     ./fuzzel
     ./gtk
     ./spotify
-    ./tmux
   ];
 }
