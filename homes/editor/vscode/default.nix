@@ -11,12 +11,12 @@
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     userSettings = {
-      "C_Cpp.intelliSenseEngine" = "Disabled";
+      "C_Cpp.intelliSenseEngine" = "disabled";
       "editor.cursorBlinking" = "phase";
       "editor.cursorSmoothCaretAnimation" = "on";
       "editor.fontFamily" = "'JetBrains Mono', 'Material Design Icons', monospace";
       "editor.fontSize" = 18;
-      "editor.formatOnSave" = true;
+      "editor.formatOnSave" = false;
       "editor.minimap.enabled" = false;
       "editor.renderWhitespace" = "none";
       "editor.scrollbar.vertical" = "hidden";
@@ -27,11 +27,11 @@
       "gitlens.hovers.currentLine.over" = "line";
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "${lib.getExe pkgs.nil}";
-      "nix.serverSettings" = {
-        "formatting" = {
-          "command" = "${lib.getExe pkgs.alejandra}";
-        };
-      };
+      # "nix.serverSettings" = {
+      #   "formatting" = {
+      #     "command" = "${lib.getExe pkgs.alejandra}";
+      #   };
+      # };
       "update.mode" = "none";
       "vscord.status.details.text.editing" = "In {full_directory_name}";
       "vscord.status.idle.check" = false;
