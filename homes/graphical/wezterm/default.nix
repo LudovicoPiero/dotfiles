@@ -85,10 +85,10 @@ in {
               SplitVertical = { domain = "CurrentPaneDomain" },
             }),
           },
-        
+
           -- close tabs
           -- { key = "w", mods = "CTRL", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
-        
+
           -- screen/tmux compat
           { key = "c", mods = "LEADER",      action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
           { key = "1", mods = "LEADER",      action = wezterm.action({ ActivateTab = 0 }) },
