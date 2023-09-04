@@ -6,6 +6,7 @@
   "browser.bookmarks.showMobileBookmarks" = true;
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   "browser.privatebrowsing.vpnpromourl" = "";
+  "browser.tabs.firefox-view" = false; # Disable Firefox View
 
   # DOH
   /*
