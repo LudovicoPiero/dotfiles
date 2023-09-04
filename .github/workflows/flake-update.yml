@@ -17,7 +17,6 @@ jobs:
         id: update
         uses: DeterminateSystems/update-flake-lock@v20
         with:
-          inputs: unstable home-manager nur hyprland hy3 hyprland-contrib xdph spicetify-nix
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
             dependencies
