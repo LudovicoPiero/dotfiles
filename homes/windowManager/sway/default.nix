@@ -60,8 +60,8 @@ in {
         ];
       };
       gaps = {
-        inner = 3;
-        outer = 3;
+        inner = 0;
+        outer = 0;
       };
       fonts = {
         names = ["JetBrains Mono"];
@@ -70,12 +70,8 @@ in {
       startup = [
         {command = "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
         {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
-        {command = "systemctl --user stop xdg-desktop-portal-wlr";}
         {command = "dunst";}
-        {
-          command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";
-          always = true;
-        }
+        {command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";}
       ];
       modifier = "Mod4";
       terminal = "${pkgs.wezterm}/bin/wezterm";
