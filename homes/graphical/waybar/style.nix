@@ -19,13 +19,13 @@ in ''
 
   #workspaces {
     background-color: #${colors.base00};
-    margin: 5px;
-    margin-left: 10px;
+    margin: 2px;
+    margin-left: 5px;
     border-radius: 0px;
   }
 
   #workspaces button {
-    padding: 5px 10px;
+    padding: 5px;
     color: #${colors.base05};
   }
 
@@ -63,8 +63,8 @@ in ''
   #pulseaudio,
   #network {
     background-color: #${colors.base00};
-    padding: 5px 10px;
-    margin: 5px 0px;
+    padding: 5px;
+    margin: 2px;
   }
 
   #custom-date {
@@ -73,8 +73,7 @@ in ''
 
   #clock {
     color: #${colors.base0B};
-    border-radius: 0px 0px 0px 0px;
-    margin-right: 10px;
+    margin-right: 5px;
   }
 
   #battery {
