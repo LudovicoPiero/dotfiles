@@ -19,7 +19,7 @@
       "editor.formatOnSave" = false;
       "editor.minimap.enabled" = false;
       "editor.renderWhitespace" = "none";
-      "editor.scrollbar.vertical" = "hidden";
+      "editor.scrollbar.vertical" = "visible";
       "editor.smoothScrolling" = true;
       "extensions.autoCheckUpdates" = false;
       "files.autoSave" = "onWindowChange";
