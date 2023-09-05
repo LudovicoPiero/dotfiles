@@ -67,6 +67,15 @@ in
       };
 
       interactiveShellInit = ''
+        set hydro_color_prompt "#94e2d5"
+        set hydro_color_duration "#94e2d5"
+        set hydro_color_error "#f38ba8"
+        set hydro_color_pwd "#94e2d5"
+        set hydro_color_git "#cba6f7"
+        set hydro_symbol_prompt "λ"
+        set hydro_fetch false
+        set hydro_multiline true
+
         ${_ any-nix-shell} fish --info-right | source
         ${_ zoxide} init fish | source
         ${_ direnv} hook fish | source
@@ -98,12 +107,12 @@ in
 
       plugins = [
         {
-          name = "pure";
+          name = "hydro";
           src = pkgs.fetchFromGitHub {
-            owner = "pure-fish";
-            repo = "pure";
-            rev = "fff46b1257bd2122121d02813740a45903ea8593";
-            hash = "sha256-5Rx7ba4OWLnNGL+GVwKlWqy0VQxhBg2MC+HntkgeZn0=";
+            owner = "jorgebucaran";
+            repo = "hydro";
+            rev = "41b46a05c84a15fe391b9d43ecb71c7a243b5703";
+            hash = "sha256-zmEa/GJ9jtjzeyJUWVNSz/wYrU2FtqhcHdgxzi6ANHg=";
           };
         }
       ];
