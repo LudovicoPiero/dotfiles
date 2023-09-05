@@ -7,7 +7,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
 ![GitHub repo size](https://img.shields.io/github/repo-size/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
-[![NixOS Master](https://img.shields.io/badge/NixOS-master-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea)](https://nixos.org)
+[![NixOS Unstable](https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea)](https://nixos.org)
 
 </div>
 

@@ -7,7 +7,7 @@
 ![GitHub リポジトリのスター数](https://img.shields.io/github/stars/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
 ![GitHub 最終コミット日](https://img.shields.io/github/last-commit/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
 ![GitHub リポジトリのサイズ](https://img.shields.io/github/repo-size/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
-[![NixOS マスター](https://img.shields.io/badge/NixOS-master-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea)](https://nixos.org)
+[![NixOS マスター](https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea)](https://nixos.org)
 
 </div>
 
