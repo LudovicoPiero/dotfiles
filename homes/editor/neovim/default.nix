@@ -5,24 +5,9 @@
     viAlias = true;
     vimdiffAlias = true;
 
-    # I use coc only for coc-discord-rpc
-    coc = {
-      enable = true;
-      settings = {
-        # Disable coc suggestion
-        definitions.languageserver.enable = false;
-        suggest.autoTrigger = "none";
-
-        # :CocInstall coc-discord-rpc
-        # coc-discord-rpc
-        rpc = {
-          checkIdle = false;
-          detailsViewing = "In {workspace_folder}";
-          detailsEditing = "{workspace_folder}";
-          lowerDetailsEditing = "Working on {file_name}";
-        };
-      };
-    };
+    withNodeJs = true;
+    withRuby = true;
+    withPython3 = true;
 
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter.withAllGrammars
