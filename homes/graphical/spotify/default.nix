@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 in {
   programs.spicetify = {
     enable = true;
