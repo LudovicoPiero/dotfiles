@@ -226,24 +226,6 @@ in {
     "$mod SHIFT , k , movewindow , u"
     "$mod SHIFT , j , movewindow , d"
 
-    # hy3 Keybinding
-    # "$mod , c , hy3:makegroup, v, ephemeral"
-    # "$mod , v , hy3:makegroup, h, ephemeral"
-    #
-    # "$mod , h , hy3:movefocus , left"
-    # "$mod , l , hy3:movefocus , right"
-    # "$mod , k , hy3:movefocus , up"
-    # "$mod , j , hy3:movefocus , down"
-    #
-    # "$mod SHIFT , h , hy3:movewindow , left"
-    # "$mod SHIFT , l , hy3:movewindow , right"
-    # "$mod SHIFT , k , hy3:movewindow , up"
-    # "$mod SHIFT , j , hy3:movewindow , down"
-    # "$mod , left , hy3:movewindow , l"
-    # "$mod , right , hy3:movewindow , r"
-    # "$mod , up , hy3:movewindow , u"
-    # "$mod , down , hy3:movewindow , d"
-
     "$mod , 1 , workspace , 1"
     "$mod , 2 , workspace , 2"
     "$mod , 3 , workspace , 3"
