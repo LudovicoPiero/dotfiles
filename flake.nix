@@ -144,7 +144,7 @@
     };
 
     devshell.url = "github:numtide/devshell";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    # emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/nur";
