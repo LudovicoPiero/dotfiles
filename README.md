@@ -25,11 +25,11 @@ This is my personal NixOS configuration. It is a work in progress. I am using th
 
 - Wayland compositor: [Hyprland](https://hyprland.org)
 - Wayland bar: [Waybar](https://github.com/Alexays/Waybar)
-- Notification manager: [dunst](https://dunst-project.org)
-- Editor: [Doomemacs](https://github.com/doomemacs/doomemacs)
-- Terminal: [wezterm](https://github.com/wez/wezterm)
-- Shell: [fish](https://fishshell.com)
-- Browser: [firefox](https://www.mozilla.org/en-US/firefox)
+- Notification manager: [Dunst](https://dunst-project.org)
+- Editor: [Neovim](https://neovim.io/)
+- Terminal: [Wezterm](https://github.com/wez/wezterm)
+- Shell: [Fish](https://fishshell.com)
+- Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
 
 ## **Acknowledgment:**
 

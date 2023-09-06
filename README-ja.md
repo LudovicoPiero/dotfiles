@@ -23,11 +23,11 @@
 
 - Wayland コンポジター: [Hyprland](https://hyprland.org)
 - Wayland バー: [Waybar](https://github.com/Alexays/Waybar)
-- 通知マネージャー: [dunst](https://dunst-project.org)
-- エディター: [Doomemacs](https://github.com/doomemacs/doomemacs)
-- ターミナル: [wezterm](https://github.com/wez/wezterm)
-- シェル: [fish](https://fishshell.com)
-- ブラウザー: [firefox](https://www.mozilla.org/en-US/firefox)
+- 通知マネージャー: [Dunst](https://dunst-project.org)
+- エディター: [Neovim](https://neovim.io/)
+- ターミナル: [Wezterm](https://github.com/wez/wezterm)
+- シェル: [Fish](https://fishshell.com)
+- ブラウザー: [Firefox](https://www.mozilla.org/en-US/firefox)
 
 ## **謝辞:**
 
