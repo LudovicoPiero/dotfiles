@@ -410,6 +410,9 @@ local serverConfigs = {
   lua_ls = {
     settings = {
       Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
         workspace = {
           checkThirdParty = false,
         },
