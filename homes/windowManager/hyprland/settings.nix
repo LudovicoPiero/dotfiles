@@ -52,7 +52,6 @@ in {
   exec-once = [
     "waybar"
     "${lib.getExe swayidle}"
-    "sleep 3;systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
   ];
 
   input = {
