@@ -47,6 +47,12 @@ require("lazy").setup({
     -- Autocompletion
     "hrsh7th/nvim-cmp",
     dependencies = {
+      -- Show buffer text
+      "hrsh7th/cmp-buffer",
+
+      -- Show path
+      "hrsh7th/cmp-path",
+
       -- Snippet Engine & its associated nvim-cmp source
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
@@ -422,7 +428,15 @@ local serverConfigs = {
   rust_analyzer = {},
   zk = {},
   clangd = {},
-  nil_ls = {},
+  nil_ls = {
+    settings = {
+      ["nil"] = {
+        formatting = {
+          command = { "alejandra" },
+        },
+      },
+    },
+  },
 }
 
 for server, config in pairs(serverConfigs) do
@@ -483,6 +497,8 @@ cmp.setup({
   }),
   sources = {
     { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "path" },
     { name = "luasnip" },
   },
 })
