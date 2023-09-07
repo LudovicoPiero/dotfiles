@@ -13,5 +13,6 @@ _: {
     ./gtk
     ./spotify
     ./webcord
+    ./qt
   ];
 }
