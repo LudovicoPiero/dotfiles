@@ -92,6 +92,7 @@
     hyprland = {
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.xdph.follows = "xdph";
     };
 
     hyprland-contrib = {
