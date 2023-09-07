@@ -23,7 +23,7 @@ in {
           "hyprland/workspaces"
           "tray"
         ];
-        modules-right =  [
+        modules-right = [
           "network"
           "custom/wireguard"
           "custom/teavpn"
