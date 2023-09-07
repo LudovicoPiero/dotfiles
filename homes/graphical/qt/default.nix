@@ -17,7 +17,7 @@ in {
     platformTheme = "qtct";
   };
 
-  ### TODO: Replace hardcoded path with substituteAll 
+  ### TODO: Replace hardcoded path with substituteAll
   xdg.configFile = {
     ### Kvantum
     "Kvantum/Catppuccin-Mocha-Pink".source = "${catppuccin-kvantum}/src/Catppuccin-Mocha-Pink";
