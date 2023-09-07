@@ -67,29 +67,14 @@ in {
         keys = {
           { key = "UpArrow",   mods = "SHIFT",  action = wezterm.action({ ScrollToPrompt = -1 }) },
           { key = "DownArrow", mods = "SHIFT",  action = wezterm.action({ ScrollToPrompt = 1 }) },
-          { key = "h",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
-          { key = "l",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
-          { key = "j",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
-          { key = "k",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-          {
-            key = ";",
-            mods = "LEADER",
-            action = wezterm.action({
-              SplitHorizontal = { domain = "CurrentPaneDomain" },
-            }),
-          },
-          {
-            key = "v",
-            mods = "LEADER",
-            action = wezterm.action({
-              SplitVertical = { domain = "CurrentPaneDomain" },
-            }),
-          },
-
-          -- close tabs
-          -- { key = "w", mods = "CTRL", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
+          { key = "h",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+          { key = "l",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+          { key = "j",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+          { key = "k",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
 
           -- screen/tmux compat
+          { key = "v", mods = "LEADER",      action = wezterm.action({ SplitVertical   = { domain = "CurrentPaneDomain" }, }) },
+          { key = ";", mods = "LEADER",      action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" }, }) },
           { key = "c", mods = "LEADER",      action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
           { key = "1", mods = "LEADER",      action = wezterm.action({ ActivateTab = 0 }) },
           { key = "2", mods = "LEADER",      action = wezterm.action({ ActivateTab = 1 }) },
