@@ -8,7 +8,7 @@ in ''
       JetBrains Mono,
       Material Design Icons,
       monospace;
-    font-size: 13px;
+    font-size: 12px;
     min-height: 0;
   }
 
@@ -20,12 +20,12 @@ in ''
   #workspaces {
     background-color: #${colors.base00};
     margin: 2px;
-    margin-left: 5px;
+    margin-left: 2px;
     border-radius: 0px;
   }
 
   #workspaces button {
-    padding: 5px;
+    padding: 0px 5px;
     color: #${colors.base05};
   }
 
@@ -63,7 +63,7 @@ in ''
   #pulseaudio,
   #network {
     background-color: #${colors.base00};
-    padding: 5px;
+    padding: 0px 5px;
     margin: 2px;
   }
 
@@ -73,7 +73,7 @@ in ''
 
   #clock {
     color: #${colors.base0B};
-    margin-right: 5px;
+    margin-right: 2px;
   }
 
   #battery {

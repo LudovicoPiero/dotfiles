@@ -23,7 +23,7 @@ in {
           "hyprland/workspaces"
           "tray"
         ];
-        modules-right = [
+        modules-right =  [
           "network"
           "custom/wireguard"
           "custom/teavpn"
@@ -33,7 +33,7 @@ in {
           "clock"
         ];
         "pulseaudio" = {
-          "format" = "{icon} {volume}%";
+          "format" = "{icon}{volume}%";
           "format-muted" = "󰖁";
           "on-click" = "amixer -q set Master toggle-mute";
           "format-icons" = ["󰕿" "󰖀" "󰕾"];
@@ -62,9 +62,9 @@ in {
         };
         "network" = {
           interface = "wlp4s0";
-          format-wifi = "󰖩 Connected";
+          format-wifi = "󰖩Connected";
           format-linked = "{ifname} (No IP)";
-          format-disconnected = "󰖪 Disconnected";
+          format-disconnected = "󰖪Disconnected";
           tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
         };
         "custom/wireguard" = {
@@ -105,12 +105,12 @@ in {
           ];
         };
         "custom/date" = {
-          format = "󰭦 {}";
+          format = "󰭦{}";
           interval = 3600;
           exec = "${lib.getExe waybar-date}";
         };
         "clock" = {
-          format = "󰅐 {:%I:%M %p}";
+          format = "󰅐{:%I:%M %p}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
       };
