@@ -19,11 +19,6 @@
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "zfs";
-  };
-
   boot = {
     # Lanzaboote currently replaces the systemd-boot module.
     # This setting is usually set to true in configuration.nix
