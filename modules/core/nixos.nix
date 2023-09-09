@@ -66,6 +66,7 @@
 
       # Utils for nixpkgs stuff
       nixpkgs-review
+      nixpkgs-lint-community
       # haskellPackages.nixpkgs-update #FIXME: remove comment if fixed upstream
     ];
 
