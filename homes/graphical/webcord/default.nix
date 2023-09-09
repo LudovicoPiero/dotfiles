@@ -5,8 +5,8 @@
 }: {
   imports = [inputs.arrpc.homeManagerModules.default];
 
-  home.packages = [
-    inputs.nixpkgs.legacyPackages.${pkgs.system}.webcord-vencord
+  home.packages = with pkgs; [
+    webcord-vencord
   ];
 
   services.arrpc.enable = true;
