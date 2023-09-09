@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   inherit (config.colorScheme) colors;
@@ -47,7 +48,9 @@
     before-sleep '${_ swaylock}' \
     lock '${_ swaylock}}'
   '';
-  webcord-wrapped = "${_ pkgs.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
+
+  webcord = "${_ inputs.nixpkgs.legacyPackages.${pkgs.system}.webcord-vencord}";
+  webcord-wrapped = "${webcord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
 in {
   exec-once = [
     "waybar"
