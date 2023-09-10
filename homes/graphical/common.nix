@@ -47,7 +47,7 @@ in {
       mailspring
       imv
       viewnior
-      nheko
+      element-desktop
       whatsapp-for-linux
       qbittorrent
 
