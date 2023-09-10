@@ -97,7 +97,7 @@ in {
     dim_strength = 0.7;
 
     blur = {
-      enabled = true;
+      enabled = false;
       size = 5;
       passes = 2;
       contrast = 0.8916;
