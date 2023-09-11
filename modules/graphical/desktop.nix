@@ -5,11 +5,13 @@
   ...
 }: {
   security = {
-    pam.services.greetd.gnupg.enable = true;
-    pam.services.greetd.enableGnomeKeyring = true;
-    pam.services.sddm.gnupg.enable = true;
-    pam.services.sddm.enableGnomeKeyring = true;
-    pam.services.swaylock.text = "auth include login";
+    pam = {
+      services.greetd.gnupg.enable = true;
+      services.greetd.enableGnomeKeyring = true;
+      services.sddm.gnupg.enable = true;
+      services.sddm.enableGnomeKeyring = true;
+      services.swaylock.text = "auth include login";
+    };
   };
 
   systemd.services = {

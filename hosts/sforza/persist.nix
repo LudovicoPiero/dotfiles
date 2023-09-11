@@ -1,8 +1,11 @@
 {lib, ...}: {
   # ZFS
-  boot.supportedFilesystems = ["zfs" "ntfs"];
+  boot = {
+    supportedFilesystems = ["zfs" "ntfs"];
+    zfs.devNodes = "/dev/vg/root";
+  };
+
   networking.hostId = "a5d66b54";
-  boot.zfs.devNodes = "/dev/vg/root";
 
   security.sudo.extraConfig = ''
     # rollback results in sudo lectures after each reboot

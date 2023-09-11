@@ -24,16 +24,17 @@
     # This setting is usually set to true in configuration.nix
     # generated at installation time. So we force it to false
     # for now.
-    loader.systemd-boot.enable = lib.mkForce false;
+    loader = {
+      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.configurationLimit = 5;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+    };
 
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-
-    loader.systemd-boot.configurationLimit = 5;
-    loader.efi.canTouchEfiVariables = true;
-    loader.efi.efiSysMountPoint = "/boot";
   };
 
   hardware.bluetooth.enable = true;
@@ -52,8 +53,10 @@
     # extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
   };
 
-  networking.networkmanager.enable = true;
-  networking.hostName = "sforza";
+  networking = {
+    networkmanager.enable = true;
+    hostName = "sforza";
+  };
 
   time.timeZone = "Australia/Melbourne";
 
