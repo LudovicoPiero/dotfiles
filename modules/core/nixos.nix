@@ -8,6 +8,8 @@
     allowBroken = true; # ZFS Stuff
   };
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   security = {
     # polkit.enable = true;
     sudo.enable = true;

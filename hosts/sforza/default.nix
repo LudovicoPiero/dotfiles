@@ -7,7 +7,6 @@
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
-    ./plymouth.nix
   ];
 
   sops.secrets = {
