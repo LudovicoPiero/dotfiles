@@ -15,6 +15,7 @@
       ../modules/secrets
 
       inputs.aagl.nixosModules.default
+      inputs.hyprland.nixosModules.default
       inputs.impermanence.nixosModule
       inputs.nh.nixosModules.default
       inputs.lanzaboote.nixosModules.lanzaboote

@@ -8,7 +8,7 @@
       # wlr disabled because i'm using xdg-desktop-portal-hyprland
       wlr.enable = lib.mkForce false;
       enable = true;
-      extraPortals = lib.mkForce [
+      extraPortals = [
         pkgs.xdg-desktop-portal-gtk
       ];
     };
