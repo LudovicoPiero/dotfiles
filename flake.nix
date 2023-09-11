@@ -91,8 +91,6 @@
 
     hyprland = {
       url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.xdph.follows = "xdph";
     };
 
     hyprland-contrib = {
@@ -109,11 +107,6 @@
       url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-    };
-
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {

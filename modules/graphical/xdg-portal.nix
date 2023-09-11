@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   lib,
   ...
@@ -11,7 +10,6 @@
       enable = true;
       extraPortals = lib.mkForce [
         pkgs.xdg-desktop-portal-gtk
-        inputs.xdph.packages.${pkgs.system}.default
       ];
     };
   };
