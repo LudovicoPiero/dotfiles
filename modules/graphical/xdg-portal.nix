@@ -11,11 +11,7 @@
       enable = true;
       extraPortals = lib.mkForce [
         pkgs.xdg-desktop-portal-gtk
-        (inputs.xdph.packages.${pkgs.system}.xdg-desktop-portal-hyprland.override {
-          hyprland-share-picker = inputs.xdph.packages.${pkgs.system}.hyprland-share-picker.override {
-            inherit (inputs.hyprland.packages.${pkgs.system}) hyprland;
-          };
-        })
+        inputs.xdph.packages.${pkgs.system}.default
       ];
     };
   };
