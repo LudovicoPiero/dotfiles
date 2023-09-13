@@ -27,7 +27,7 @@
         home-manager.users.ludovico = {
           imports = [self.homeModules.ludovico];
 
-          home.stateVersion = "22.11";
+          home.stateVersion = "23.11";
         };
       }
     ];
