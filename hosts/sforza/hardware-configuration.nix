@@ -25,6 +25,12 @@
     "/" = {
       device = "/dev/nvme0n1p3:/dev/sda1";
       fsType = "bcachefs";
+      options = [
+        # foreground compression with zstd
+        "compression=zstd"
+        # background compression with zstd
+        "background_compression=zstd"
+      ];
     };
 
     "/boot" = {
