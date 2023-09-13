@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./persist.nix
+    #./persist.nix
   ];
 
   sops.secrets = {

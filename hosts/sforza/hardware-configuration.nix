@@ -10,23 +10,12 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "bcache"];
+    kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
     initrd.kernelModules = ["amdgpu" "dm-snapshot"];
     kernelModules = ["kvm-amd"];
-    kernelParams = [
-      "amd_pstate=passive"
-      "initcall_blacklist=acpi_cpufreq_init"
-      "nohibernate"
-      "zfs.zfs_arc_max=12884901888"
-    ];
     extraModulePackages = [];
-    zfs.enableUnstable = true;
-  };
-  services.fstrim.enable = true;
-  services.zfs = {
-    autoScrub.enable = true;
-    trim.enable = true;
+    supportedFilesystems = ["bcachefs" "ntfs"];
   };
 
   fileSystems = let
@@ -34,30 +23,13 @@
     userHome = "/home/${username}";
   in {
     "/" = {
-      device = "tank/local/root";
-      fsType = "zfs";
+      device = "/dev/nvme0n1p3:/dev/sda1";
+      fsType = "bcachefs";
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/4FA8-A596";
+      device = "/dev/disk/by-uuid/C908-2F13";
       fsType = "vfat";
-    };
-
-    "/nix" = {
-      device = "tank/local/nix";
-      fsType = "zfs";
-    };
-
-    "/home" = {
-      device = "tank/safe/home";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
-
-    "/persist" = {
-      device = "tank/safe/persist";
-      fsType = "zfs";
-      neededForBoot = true;
     };
 
     "${userHome}/WinE" = {
@@ -65,22 +37,10 @@
       fsType = "ntfs";
       options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
     };
-
-    "${userHome}/WinD" = {
-      device = "/dev/disk/by-uuid/01D95CDF9A689D70";
-      fsType = "ntfs";
-      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    };
-
-    # "${userHome}/WinC" = {
-    #   device = "/dev/disk/by-uuid/0454A86454A859E6";
-    #   fsType = "ntfs";
-    #   options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    # };
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/2d66abab-93a2-4e86-897b-cbcdb7969c7a";}
+    {device = "/dev/disk/by-uuid/fff70114-e482-4f51-8624-f1a35705e737";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
