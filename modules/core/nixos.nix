@@ -12,7 +12,16 @@
 
   security = {
     # polkit.enable = true;
-    sudo.enable = true;
+    sudo = {
+      enable = true;
+      extraConfig = ''
+        # rollback results in sudo lectures after each reboot
+        Defaults lecture = never
+
+        # Show asterisk when typing password
+        Defaults pwfeedback
+      '';
+    };
     doas = {
       enable = false;
       extraRules = [
