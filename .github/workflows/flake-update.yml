@@ -3,7 +3,7 @@ name: Update Flakes
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 12 * * SAT" # At 12:00 on Saturday (UTC)
+    - cron: "0 12 * * SAT,TUE" # At 12:00 on Saturday & Tuesday (UTC)
 
 jobs:
   update-multiple-inputs:
