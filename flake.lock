@@ -67,16 +67,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1694671636,
-        "narHash": "sha256-kCmX3euYplopqmqnAyjJT/WocQcCkt5udSEnh32Q9MM=",
-        "owner": "ludovicopiero",
+        "lastModified": 1694699685,
+        "narHash": "sha256-hpMcG10m3sEoUAIt203CVYF7pd4Ilgx0XXZG0iwgm/Y=",
+        "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "2c89b7a449cd4174ca19a50ff6fc5db0712edc9c",
+        "rev": "f14219938d08f27ff35300384501a2d4d78e68f0",
         "type": "github"
       },
       "original": {
-        "owner": "ludovicopiero",
-        "ref": "cachyos-bcachefs",
+        "owner": "chaotic-cx",
+        "ref": "nyxpkgs-unstable",
         "repo": "nyx",
         "type": "github"
       }
