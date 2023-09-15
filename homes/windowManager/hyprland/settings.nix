@@ -51,12 +51,12 @@
 in {
   exec-once = [
     "waybar"
+    "fcitx5 -d --replace"
     "${lib.getExe swayidle}"
   ];
 
   input = {
     kb_layout = "us";
-    kb_options = "ctrl:nocaps";
     follow_mouse = 1;
     repeat_rate = 30;
     repeat_delay = 300;

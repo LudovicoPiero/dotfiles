@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: {
   imports = [
@@ -57,23 +56,6 @@
     hostName = "sforza";
   };
 
-  time.timeZone = "Australia/Melbourne";
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "en_AU.UTF-8";
-      LC_IDENTIFICATION = "en_AU.UTF-8";
-      LC_MEASUREMENT = "en_AU.UTF-8";
-      LC_MONETARY = "en_AU.UTF-8";
-      LC_NAME = "en_AU.UTF-8";
-      LC_NUMERIC = "en_AU.UTF-8";
-      LC_PAPER = "en_AU.UTF-8";
-      LC_TELEPHONE = "en_AU.UTF-8";
-      LC_TIME = "en_AU.UTF-8";
-    };
-  };
-
   # TLP For Laptop
   services = {
     tlp.enable = lib.mkForce true;
@@ -93,24 +75,24 @@
     displayManager.lightdm.enable = false;
   };
 
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      autostart = false;
-      address = ["10.66.66.3/32" "fd42:42:42::3/128"];
-      dns = ["1.1.1.1" "1.0.0.1"];
-      privateKeyFile = config.sops.secrets.wgPrivKey.path;
-
-      peers = [
-        {
-          publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
-          presharedKeyFile = config.sops.secrets.wgPreKey.path;
-          allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "103.235.73.71:50935";
-          persistentKeepalive = 25;
-        }
-      ];
-    };
-  };
+  # networking.wg-quick.interfaces = {
+  #   wg0 = {
+  #     autostart = false;
+  #     address = ["10.66.66.3/32" "fd42:42:42::3/128"];
+  #     dns = ["1.1.1.1" "1.0.0.1"];
+  #     privateKeyFile = config.sops.secrets.wgPrivKey.path;
+  #
+  #     peers = [
+  #       {
+  #         publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
+  #         presharedKeyFile = config.sops.secrets.wgPreKey.path;
+  #         allowedIPs = ["0.0.0.0/0" "::/0"];
+  #         endpoint = "103.235.73.71:50935";
+  #         persistentKeepalive = 25;
+  #       }
+  #     ];
+  #   };
+  # };
 
   system.stateVersion = "23.11";
 }
