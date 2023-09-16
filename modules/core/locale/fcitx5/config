@@ -1,11 +1,11 @@
 [Hotkey]
-# Enumerate when press trigger key repeatedly
+# トリガーキーを押すたびに切り替える
 EnumerateWithTriggerKeys=True
-# Skip first input method while enumerating
+# 切り替え時は第1入力メソッドをスキップする
 EnumerateSkipFirst=False
-# Activate Input Method
+# 入力メソッドを有効にする
 ActivateKeys=
-# Deactivate Input Method
+# 入力メソッドをオフにする
 DeactivateKeys=
 
 [Hotkey/TriggerKeys]
@@ -42,25 +42,25 @@ DeactivateKeys=
 0=Control+Alt+P
 
 [Behavior]
-# Active By Default
+# デフォルトで有効にする
 ActiveByDefault=True
-# Share Input State
+# 入力状態を共有する
 ShareInputState=No
-# Show preedit in application
+# アプリケーションにプリエディットを表示する
 PreeditEnabledByDefault=True
-# Show Input Method Information when switch input method
+# 入力メソッドを切り替える際に入力メソッドの情報を表示する
 ShowInputMethodInformation=True
-# Show Input Method Information when changing focus
+# フォーカスを変更する際に入力メソッドの情報を表示する
 showInputMethodInformationWhenFocusIn=False
-# Show compact input method information
+# 入力メソッドの情報をコンパクトに表示する
 CompactInputMethodInformation=True
-# Show first input method information
+# 第1入力メソッドの情報を表示する
 ShowFirstInputMethodInformation=True
-# Default page size
+# デフォルトのページサイズ
 DefaultPageSize=5
-# Override Xkb Option
+# XKB オプションより優先する
 OverrideXkbOption=False
-# Custom Xkb Option
+# カスタム XKB オプション
 CustomXkbOption=
 # Force Enabled Addons
 EnabledAddons=
