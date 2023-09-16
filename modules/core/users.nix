@@ -30,10 +30,10 @@
   users = {
     mutableUsers = false;
     users = {
-      root.passwordFile = config.sops.secrets."rootPassword".path;
+      root.hashedPasswordFile = config.sops.secrets."rootPassword".path;
       ludovico = {
         shell = pkgs.fish;
-        passwordFile = config.sops.secrets."userPassword".path;
+        hashedPasswordFile = config.sops.secrets."userPassword".path;
         isNormalUser = true;
         extraGroups =
           ["seat" "wheel"]
