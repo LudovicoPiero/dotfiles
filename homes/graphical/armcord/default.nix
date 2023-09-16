@@ -6,7 +6,7 @@
   imports = [inputs.arrpc.homeManagerModules.default];
 
   home.packages = with pkgs; [
-    webcord-vencord
+    armcord
   ];
 
   services.arrpc.enable = true;

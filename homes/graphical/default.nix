@@ -5,6 +5,7 @@ _: {
     ./services.nix
 
     ./i3status-rs
+    ./armcord
     ./gammastep
     ./dunst
     ./waybar
@@ -12,7 +13,6 @@ _: {
     ./fuzzel
     ./gtk
     ./spotify
-    ./webcord
     ./qt
   ];
 }
