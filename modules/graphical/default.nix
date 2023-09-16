@@ -8,5 +8,6 @@ _: {
     ./pipewire.nix
     ./desktop.nix
     ./thunar.nix
+    ./waydroid.nix
   ];
 }
