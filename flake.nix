@@ -65,7 +65,7 @@
     master.url = "github:nixos/nixpkgs/master";
     stable.url = "github:nixos/nixpkgs/release-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "unstable";
+    nixpkgs.follows = "master";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -91,6 +91,7 @@
 
     hyprland = {
       url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland-contrib = {
@@ -137,7 +138,11 @@
       inputs.base16-schemes.follows = "base16-schemes";
     };
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     devshell.url = "github:numtide/devshell";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
