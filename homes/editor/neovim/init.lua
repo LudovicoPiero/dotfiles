@@ -446,6 +446,7 @@ local serverConfigs = {
   rust_analyzer = {},
   zk = {},
   clangd = {},
+  typst_lsp = {},
   nil_ls = {
     settings = {
       ["nil"] = {

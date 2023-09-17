@@ -1,9 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
+
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
 
     withNodeJs = true;
     withRuby = true;

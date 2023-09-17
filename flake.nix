@@ -120,10 +120,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # neovim-flake = {
-    #   url = "github:notashelf/neovim-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-super = {
       url = "github:privatevoid-net/nix-super";
