@@ -108,6 +108,13 @@
       # Prevent impurities in builds
       sandbox = true;
 
+      experimental-features = "nix-command flakes ca-derivations";
+
+      keep-derivations = true;
+      keep-outputs = true;
+
+      fallback = true;
+
       # Give root user and wheel group special Nix privileges.
       trusted-users = ["root" "@wheel"];
       allowed-users = ["@wheel"];
@@ -128,14 +135,6 @@
       default.flake = inputs.master;
       nixpkgs.flake = inputs.master;
     };
-
-    extraOptions = ''
-      min-free = 536870912
-      keep-outputs = true
-      keep-derivations = true
-      fallback = true
-      experimental-features = nix-command flakes ca-derivations
-    '';
 
     # Improve nix store disk usage
     # Disable this because i'm using nh.
