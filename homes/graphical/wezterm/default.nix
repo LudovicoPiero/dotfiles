@@ -9,10 +9,10 @@ in {
         ansi = [
           "${colors.base00}"
           "${colors.base08}"
-          "${colors.base0B}"
           "${colors.base0A}"
           "${colors.base0D}"
           "${colors.base0E}"
+          "${colors.base0C}"
           "${colors.base0C}"
           "${colors.base05}"
         ];
@@ -26,13 +26,41 @@ in {
           "${colors.base0C}"
           "${colors.base07}"
         ];
+        tab_bar = {
+          background = "#${colors.base01}";
+          inactive_tab_edge = "#${colors.base01}";
+          active_tab = {
+            bg_color = "#${colors.base03}";
+            fg_color = "#${colors.base05}";
+          };
+          inactive_tab = {
+            bg_color = "#${colors.base00}";
+            fg_color = "#${colors.base05}";
+          };
+          inactive_tab_hover = {
+            bg_color = "#${colors.base05}";
+            fg_color = "#${colors.base00}";
+          };
+          new_tab = {
+            bg_color = "#${colors.base00}";
+            fg_color = "#${colors.base05}";
+          };
+          new_tab_hover = {
+            bg_color = "#${colors.base05}";
+            fg_color = "#${colors.base00}";
+          };
+        };
         foreground = "#${colors.base05}";
         background = "#${colors.base00}";
-        cursor = "#${colors.base05}";
+        cursor_fg = "#${colors.base05}";
         cursor_bg = "#${colors.base05}";
+        compuse_cursor = "${colors.base06}";
+        scrollbar_thumb = "${colors.base01}";
         cursor_border = "#${colors.base05}";
         selection_fg = "#${colors.base00}";
         selection_bg = "#${colors.base05}";
+        split = "${colors.base03}";
+        visual_bell = "${colors.base09}";
       };
     };
     extraConfig = ''
@@ -46,22 +74,41 @@ in {
         window_background_opacity = 1.0,
         color_scheme = "${colorScheme.slug}",
         enable_scroll_bar = false,
-        -- enable_tab_bar = false,
+        check_for_updates = false,
+        default_cursor_style = "SteadyBlock",
+        enable_tab_bar = true,
         hide_tab_bar_if_only_one_tab = true,
         scrollback_lines = 10000,
         adjust_window_size_when_changing_font_size = false,
         audible_bell = "Disabled",
+        use_fancy_tab_bar = false,
         clean_exit_codes = { 130 },
-
-        window_padding = {
-          left = 5,
-          right = 5,
-          top = 5,
-          bottom = 5,
+        window_frame = {
+          active_titlebar_bg = "${colors.base03}",
+          active_titlebar_fg = "${colors.base05}",
+          active_titlebar_border_bottom = "${colors.base03}",
+          border_left_color = "${colors.base01}",
+          border_right_color = "${colors.base01}",
+          border_bottom_color = "${colors.base01}",
+          border_top_color = "${colors.base01}",
+          button_bg = "${colors.base01}",
+          button_fg = "${colors.base05}",
+          button_hover_bg = "${colors.base05}",
+          button_hover_fg = "${colors.base03}",
+          inactive_titlebar_bg = "${colors.base01}",
+          inactive_titlebar_fg = "${colors.base05}",
+          inactive_titlebar_border_bottom = "${colors.base03}",
         },
+        command_palette_bg_color = "${colors.base01}",
+        command_palette_fg_color = "${colors.base05}",
+        command_palette_font_size = 12.0,
 
-        check_for_updates = false,
-        default_cursor_style = "SteadyBlock",
+        --window_padding = {
+        --  left = 5,
+        --  right = 5,
+        --  top = 5,
+        --  bottom = 5,
+        --},
 
         leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
         keys = {

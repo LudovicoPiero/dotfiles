@@ -22,7 +22,7 @@ in {
         transparency = 20;
         background = "#${colors.base00}";
         frame_color = "#${colors.base05}"; # border
-        separator_color = "#${colors.base05}";
+        separator_color = "#${colors.base02}";
         font = "JetBrains Mono 10";
         notification_limit = 5;
         layer = "overlay"; # bottom, top or overlay
@@ -33,16 +33,19 @@ in {
       urgency_low = {
         background = "#${colors.base01}";
         foreground = "#${colors.base05}";
+        frame_color = "#${colors.base0B}";
         timeout = 3;
       };
       urgency_normal = {
-        background = "#${colors.base02}";
+        background = "#${colors.base01}";
         foreground = "#${colors.base05}";
+        frame_color = "#${colors.base0B}";
         timeout = 5;
       };
       urgency_critical = {
-        background = "#${colors.base08}";
-        foreground = "#${colors.base01}";
+        background = "#${colors.base01}";
+        foreground = "#${colors.base05}";
+        frame_color = "#${colors.base0B}";
         timeout = 8;
       };
     };
