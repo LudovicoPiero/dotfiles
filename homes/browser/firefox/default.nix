@@ -15,6 +15,8 @@
             bitwarden
             duckduckgo-privacy-essentials
             i-dont-care-about-cookies
+            notifier-for-github
+            sponsorblock
             to-deepl
             ublock-origin
             # fastforward
