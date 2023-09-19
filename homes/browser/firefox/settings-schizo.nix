@@ -70,7 +70,7 @@
   "loop.enabled" = false;
   "media.mediasource.webm.enabled" = true;
   "network.dns.disableIPv6" = true;
-  "network.dnsCacheEntries" = 10000;
+  "network.dnsCacheEntries" = 1000;
   "network.http.http3.enabled" = true;
   "network.http.max-urgent-start-excessive-connections-per-host" = 6;
   "network.tcp.keepalive.idle_time" = 300;
@@ -104,6 +104,7 @@
   "nglayout.initialpaint.delay_in_oopif" = 0;
   "content.notify.interval" = 100000;
   "browser.startup.preXulSkeletonUI" = false;
+  "dom.security.sanitizer.enable" = true;
 
   /*
   * EXPERIMENTAL **
@@ -143,7 +144,17 @@
   "network.buffer.cache.count" = 128;
   "network.http.max-connections" = 1800;
   "network.http.max-persistent-connections-per-server" = 10;
-  "network.ssl_tokens_cache_capacity" = 32768;
+  "network.ssl_tokens_cache_capacity" = 10240;
+
+  /*
+    ***************************************************************************
+   * SECTION: SMOOTHFOX                                                       *
+  ***************************************************************************
+  */
+
+  "apz.overscroll.enabled" = true;
+  "general.smoothScroll" = true;
+  "mousesheel.default.delta_multiplier_y" = 275;
 
   /*
     ***************************************************************************
@@ -194,6 +205,7 @@
   */
   "network.http.speculative-parallel-limit" = 0;
   "network.dns.disablePrefetch" = true;
+  "network.dns.disablePrefetchFromHTTPS" = true;
   "browser.urlbar.speculativeConnect.enabled" = false;
   "browser.places.speculativeConnect.enabled" = false;
   "network.prefetch-next" = false;
@@ -336,7 +348,7 @@
   "browser.aboutwelcome.enabled" = false;
   "findbar.highlightAll" = true;
   "middlemouse.contentLoadURL" = false;
-  "browser.privatebrowsing.enable-new-indicator" = false;
+  # "browser.privatebrowsing.enable-new-indicator" = false;
 
   /*
   * FULLSCREEN **
