@@ -6,7 +6,7 @@
     LC_IDENTIFICATION = ja;
     LC_MEASUREMENT = ja;
     LC_MONETARY = ja;
-    LC_MESSAGES = ja;
+    LC_MESSAGES = en;
     LC_NAME = ja;
     LC_NUMERIC = ja;
     LC_PAPER = ja;
