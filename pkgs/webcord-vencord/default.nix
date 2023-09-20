@@ -3,9 +3,9 @@
   substituteAll,
   lib,
   vencord-web-extension,
-  electron_24,
+  electron_26,
 }: let
-  electron = electron_24;
+  electron = electron_26;
 in
   (webcord.overrideAttrs (old: {
     pname = "webcord-vencord";
