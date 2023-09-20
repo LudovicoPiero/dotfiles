@@ -137,7 +137,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ludovico-nixpkgs.url = "github:ludovicopiero/nixpackages";
+    ludovico-nixpkgs.url = "github:AkukinKensetsu/nixpackages";
     devshell.url = "github:numtide/devshell";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";

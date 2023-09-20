@@ -470,15 +470,15 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1695227640,
-        "narHash": "sha256-Lms/7BwAM5x0M66nkMBQdsYLeKeYrK6KPxFkkm9XThM=",
-        "owner": "ludovicopiero",
+        "lastModified": 1695232032,
+        "narHash": "sha256-m3s8gFs6nwQL+yOtdG+zZya4599ib4TGxyT08tLggiA=",
+        "owner": "AkukinKensetsu",
         "repo": "nixpackages",
-        "rev": "7fdcc74d2a646e16612cc7da9fdca149745d8ef0",
+        "rev": "0ca4a925cd47bde3dd02e45d409d9f9ff3210fd1",
         "type": "github"
       },
       "original": {
-        "owner": "ludovicopiero",
+        "owner": "AkukinKensetsu",
         "repo": "nixpackages",
         "type": "github"
       }
@@ -716,16 +716,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1694959747,
-        "narHash": "sha256-CXQ2MuledDVlVM5dLC4pB41cFlBWxRw4tCBsFrq3cRk=",
+        "lastModified": 1694948089,
+        "narHash": "sha256-d2B282GmQ9o8klc22/Rbbbj6r99EnELQpOQjWMyv0rU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "970a59bd19eff3752ce552935687100c46e820a5",
+        "rev": "5148520bfab61f99fd25fb9ff7bfbb50dad3c9db",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
