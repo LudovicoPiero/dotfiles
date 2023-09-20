@@ -49,7 +49,7 @@
     before-sleep '${_ swaylock}' \
     lock '${_ swaylock}}'
   '';
-  webcord-wrapped = "${_ inputs.self.packages.${pkgs.system}.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
+  webcord-wrapped = "${_ inputs.ludovico-nixpkgs.packages.${pkgs.system}.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
 in {
   exec-once = [
     "waybar"
