@@ -12,6 +12,8 @@
       spotify = pkgs.callPackage ./spotify {};
 
       TLauncher = pkgs.callPackage ./TLauncher {};
+
+      webcord-vencord = pkgs.callPackage ./webcord-vencord {};
     };
   };
 }

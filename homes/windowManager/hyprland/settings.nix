@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   inherit (config.colorScheme) colors;
@@ -48,7 +49,7 @@
     before-sleep '${_ swaylock}' \
     lock '${_ swaylock}}'
   '';
-  armcord-wrapped = "${_ pkgs.armcord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
+  webcord-wrapped = "${_ inputs.self.packages.${pkgs.system}.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
 in {
   exec-once = [
     "waybar"
@@ -186,7 +187,7 @@ in {
     "$mod SHIFT, C , exit ,"
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
-    "$mod      , D , exec , ${armcord-wrapped}"
+    "$mod      , D , exec , ${webcord-wrapped}"
     "$mod SHIFT, E , exec , [float] thunar"
     "$mod      , F , fullscreen , 0"
     "$mod SHIFT, G , exec , chromium"
