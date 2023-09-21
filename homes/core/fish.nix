@@ -67,14 +67,8 @@ in
       };
 
       interactiveShellInit = ''
-        set hydro_color_prompt "#94e2d5"
-        set hydro_color_duration "#94e2d5"
-        set hydro_color_error "#f38ba8"
-        set hydro_color_pwd "#94e2d5"
-        set hydro_color_git "#cba6f7"
-        set hydro_symbol_prompt "λ"
-        set hydro_fetch false
-        set hydro_multiline true
+        set -g async_prompt_functions _pure_prompt_git
+        set pure_symbol_prompt "λ"
 
         ${_ any-nix-shell} fish --info-right | source
         ${_ zoxide} init fish | source
@@ -107,12 +101,21 @@ in
 
       plugins = [
         {
-          name = "hydro";
+          name = "pure";
           src = pkgs.fetchFromGitHub {
-            owner = "jorgebucaran";
-            repo = "hydro";
-            rev = "41b46a05c84a15fe391b9d43ecb71c7a243b5703";
-            hash = "sha256-zmEa/GJ9jtjzeyJUWVNSz/wYrU2FtqhcHdgxzi6ANHg=";
+            owner = "pure-fish";
+            repo = "pure";
+            rev = "924c1c6a9c88125d8d58f00ffe5816fed57f4d99";
+            hash = "sha256-PudanwWHDzA8a5I/+hQtsBT/NTTJN5pcyVfFP4fJjWU=";
+          };
+        }
+        {
+          name = "fish-async-prompt";
+          src = pkgs.fetchFromGitHub {
+            owner = "acomagu";
+            repo = "fish-async-prompt";
+            rev = "4c732cc043b8dd04e64a169ec6bbf3a9b394819f";
+            hash = "sha256-YgqZINmY4nKphlqwHo2B0NfP4nmSxIIuAMUuoftI9Lg=";
           };
         }
       ];
