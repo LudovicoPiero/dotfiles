@@ -1,9 +1,7 @@
 builds:
   exclude:
     - "checks.*"
-    - "packages.x86_64-linux.activate"
-    - "packages.x86_64-linux.update"
+    - "packages.x86_64-linux.*"
   include:
     - "devShells.x86_64-linux.*"
-    - "packages.x86_64-linux.*"
     - "nixosConfigurations.*"
