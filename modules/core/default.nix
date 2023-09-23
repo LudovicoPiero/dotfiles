@@ -3,8 +3,9 @@ _: {
     ./locale
 
     ./fonts.nix
-    ./nixos.nix
     ./keyring.nix
+    ./nixos.nix
+    ./security.nix
     ./users.nix
   ];
 }
