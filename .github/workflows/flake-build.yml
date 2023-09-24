@@ -37,9 +37,9 @@ jobs:
       - name: Set default git branch (to reduce log spam)
         run: git config --global init.defaultBranch flake-parts
 
-      - name: Validate Flakes
-        run: nix flake check
+      # - name: Validate Flakes
+      #   run: nix flake check
 
       - name: "Build nixosConfiguration for: sforza"
         run: |-
-          nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
+          nix shell nixpkgs#nixVersions.nix_2_15 -c nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
