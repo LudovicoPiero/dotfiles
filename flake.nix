@@ -125,7 +125,7 @@
       inputs.flake-compat.follows = "flake-compat";
     };
 
-    base16-schemes.url = "github:ludovicopiero/base16-schemes/oxocarbon";
+    base16-schemes.url = "github:tinted-theming/base16-schemes";
     base16-schemes.flake = false;
     nix-colors = {
       url = "github:misterio77/nix-colors";
