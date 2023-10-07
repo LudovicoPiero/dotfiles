@@ -4,8 +4,10 @@
   ...
 }: {
   nixpkgs.config = {
+    permittedInsecurePackages = [
+      "mailspring-1.11.0"
+    ];
     allowUnfree = true;
-    allowBroken = true; # ZFS Stuff
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
