@@ -50,6 +50,7 @@
     lock '${_ swaylock}}'
   '';
   webcord-wrapped = "${_ inputs.ludovico-nixpkgs.packages.${pkgs.system}.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
+  vesktop-wrapped = "${_ inputs.ludovico-nixpkgs.packages.${pkgs.system}.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
 in {
   exec-once = [
     "waybar"
@@ -188,6 +189,7 @@ in {
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
     "$mod      , D , exec , ${webcord-wrapped}"
+    "$mod SHIFT, D , exec , ${vesktop-wrapped}"
     "$mod SHIFT, E , exec , [float] thunar"
     "$mod      , F , fullscreen , 0"
     "$mod SHIFT, G , exec , chromium"
