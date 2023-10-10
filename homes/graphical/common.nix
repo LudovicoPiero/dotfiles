@@ -4,17 +4,6 @@
   inputs,
   ...
 }: let
-  sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/sharenix}'';
-
-  # use OCR and copy to clipboard
-  ocrScript = let
-    inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
-    _ = lib.getExe;
-  in
-    pkgs.writeShellScriptBin "wl-ocr" ''
-      ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-      ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
-    '';
 in {
   colorScheme = inputs.nix-colors.colorSchemes.oxocarbon-dark;
 
@@ -40,23 +29,36 @@ in {
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
 
-    packages = with pkgs; [
-      authy
-      tdesktop
-      mpv
-      mailspring
-      imv
-      viewnior
-      element-desktop
-      whatsapp-for-linux
-      qbittorrent
+    packages = lib.attrValues {
+      inherit (inputs.chaotic.packages.${pkgs.system}) telegram-desktop_git;
 
-      libsForQt5.kleopatra # Gui for GPG
+      inherit
+        (pkgs)
+        authy
+        mpv
+        mailspring
+        imv
+        viewnior
+        element-desktop
+        whatsapp-for-linux
+        qbittorrent
+        ;
+
+      inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
 
       # Utils
-      ocrScript
-      sharenix
-    ];
+      sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/sharenix}'';
+
+      # use OCR and copy to clipboard
+      ocrScript = let
+        inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
+        _ = lib.getExe;
+      in
+        pkgs.writeShellScriptBin "wl-ocr" ''
+          ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
+          ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+        '';
+    };
   };
 
   programs.obs-studio = {
