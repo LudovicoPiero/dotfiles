@@ -3,8 +3,7 @@
   lib,
   inputs,
   ...
-}: let
-in {
+}: {
   colorScheme = inputs.nix-colors.colorSchemes.oxocarbon-dark;
 
   home = {
