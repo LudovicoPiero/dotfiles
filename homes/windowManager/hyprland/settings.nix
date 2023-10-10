@@ -58,30 +58,20 @@ in {
     "${lib.getExe swayidle}"
   ];
 
-  input = {
-    kb_layout = "us";
-    follow_mouse = 1;
-    repeat_rate = 30;
-    repeat_delay = 300;
-    touchpad = {
-      natural_scroll = true;
-      disable_while_typing = true;
-    };
-  };
+  animations = {
+    enabled = true;
 
-  general = {
-    sensitivity = 1;
-    gaps_in = 0;
-    gaps_out = 0;
-    border_size = 1;
-    # "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
-    # "col.inactive_border" = "rgb(${colors.base01})";
-    "col.active_border" = "rgb(${colors.base0C})";
-    "col.inactive_border" = "rgb(${colors.base02})";
+    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
 
-    layout = "dwindle";
-    "col.group_border_active" = "rgb(${colors.base0B})";
-    "col.group_border" = "rgb(${colors.base04})";
+    animation = [
+      "windows, 1, 7, myBezier"
+      "windowsOut, 1, 7, default, popin 80%"
+      "windowsMove, 1, 2, default, popin 80%"
+      "border, 1, 10, default"
+      "borderangle, 1, 8, default"
+      "fade, 1, 7, default"
+      "workspaces, 1, 6, default"
+    ];
   };
 
   dwindle = {
@@ -117,20 +107,38 @@ in {
     "col.shadow" = "rgb(f300ff)";
   };
 
-  animations = {
-    enabled = true;
+  general = {
+    sensitivity = 1;
+    gaps_in = 0;
+    gaps_out = 0;
+    border_size = 1;
+    # "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
+    # "col.inactive_border" = "rgb(${colors.base01})";
+    "col.active_border" = "rgb(${colors.base0C})";
+    "col.inactive_border" = "rgb(${colors.base02})";
 
-    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
+    layout = "dwindle";
+  };
 
-    animation = [
-      "windows, 1, 7, myBezier"
-      "windowsOut, 1, 7, default, popin 80%"
-      "windowsMove, 1, 2, default, popin 80%"
-      "border, 1, 10, default"
-      "borderangle, 1, 8, default"
-      "fade, 1, 7, default"
-      "workspaces, 1, 6, default"
-    ];
+  group = {
+    groupbar = {
+      render_titles = false;
+      "col.active" = "rgb(${colors.base0B})";
+      "col.inactive" = "rgb(${colors.base04})";
+    };
+    "col.border_active" = "rgb(${colors.base0B})";
+    "col.border_inactive" = "rgb(${colors.base04})";
+  };
+
+  input = {
+    kb_layout = "us";
+    follow_mouse = 1;
+    repeat_rate = 30;
+    repeat_delay = 300;
+    touchpad = {
+      natural_scroll = true;
+      disable_while_typing = true;
+    };
   };
 
   misc = {
@@ -138,7 +146,6 @@ in {
     force_hypr_chan = false; # Cute
     vfr = true;
     vrr = 0;
-    render_titles_in_groupbar = false;
   };
 
   layerrule = [
