@@ -11,18 +11,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Install Nix
-        uses: nixbuild/nix-quick-install-action@v25
+        uses: cachix/install-nix-action@v22
+        with:
+          install_url: "https://releases.nixos.org/nix/nix-2.17.1/install"
+
       - name: Update flake.lock
-        run: |
-          nix shell nixpkgs#nixVersions.nix_2_15 -c nix flake update --commit-lock-file
-        # id: update
-        # uses: DeterminateSystems/update-flake-lock@v20
-        # with:
-        #   pr-title: "Update flake.lock" # Title of PR to be created
-        #   pr-labels: | # Labels to be set on the PR
-        #     dependencies
-        #     automated
+        id: update
+        uses: DeterminateSystems/update-flake-lock@v20
+        with:
+          pr-title: "Update flake.lock" # Title of PR to be created
+          pr-labels: | # Labels to be set on the PR
+            dependencies
+            automated
+
       - name: merge
         run: |
           gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
