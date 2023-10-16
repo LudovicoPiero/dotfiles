@@ -498,11 +498,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1697416009,
-        "narHash": "sha256-wIwbl50C/jqJMWWiA/HYPgg5L+TNOlQvFuDiccM+xT4=",
+        "lastModified": 1697416851,
+        "narHash": "sha256-cCm/kNdMLyIoSMKERUhxU8+SfqlwGHuSBU7CzemORCU=",
         "owner": "AkukinKensetsu",
         "repo": "nixpackages",
-        "rev": "f453dbb944294aadbe0bfad86451121fa6b2a164",
+        "rev": "cdbd63a0515eba7466779136fb5d9f8530dcb04c",
         "type": "github"
       },
       "original": {
