@@ -1,17 +1,15 @@
-# https://github.com/fortuneteller2k/nix-config/blob/master/.github/workflows/format.yml
-name: "nix-config format check"
+name: Nix Format Checker
+
 on:
   pull_request:
   push:
+
 jobs:
-  tests:
+  format:
+    name: Run Alejandra
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v23
-
+      - uses: DeterminateSystems/nix-installer-action@v6
+      - uses: DeterminateSystems/magic-nix-cache-action@v2
       - run: nix run nixpkgs#alejandra -- --check ./
