@@ -24,8 +24,7 @@ jobs:
         with:
           nix_conf: |
             substituters = https://cache.garnix.io https://nyx.chaotic.cx https://cache.nixos.org/
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8=
-          github_access_token: ${{ secrets.GH_TOKEN }}
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= github_access_token: ${{ secrets.GH_TOKEN }}
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
@@ -42,4 +41,4 @@ jobs:
 
       - name: "Build nixosConfiguration for: sforza"
         run: |-
-          nix shell nixpkgs#nixVersions.nix_2_15 -c nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
+          nix shell nixpkgs#nixVersions.nix_2_18 -c nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
