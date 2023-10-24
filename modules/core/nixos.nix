@@ -133,9 +133,9 @@
     };
 
     registry = {
-      system.flake = inputs.unstable;
-      default.flake = inputs.unstable;
-      nixpkgs.flake = inputs.unstable;
+      system.flake = inputs.master;
+      default.flake = inputs.master;
+      nixpkgs.flake = inputs.master;
     };
 
     # Improve nix store disk usage
