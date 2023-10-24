@@ -6,7 +6,7 @@
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      inputs.ludovico-nixpkgs.packages.${pkgs.system}.san-francisco-pro
+      inputs.self.packages.${pkgs.system}.san-francisco-pro
       jetbrains-mono
       noto-fonts-cjk-sans
 

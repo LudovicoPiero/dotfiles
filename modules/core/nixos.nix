@@ -110,7 +110,16 @@
       # Prevent impurities in builds
       sandbox = true;
 
-      experimental-features = "nix-command flakes ca-derivations";
+      experimental-features = [
+        "auto-allocate-uids"
+        "ca-derivations"
+        "configurable-impure-env"
+        "flakes"
+        "no-url-literals"
+        "nix-command"
+        "parse-toml-timestamps"
+        "read-only-local-store"
+      ];
 
       keep-derivations = true;
       keep-outputs = true;
