@@ -505,11 +505,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1698107162,
-        "narHash": "sha256-WMD94UmjpgOgYyGiejPAnvaKObGt3HBQFS9ItMHClho=",
+        "lastModified": 1698187534,
+        "narHash": "sha256-NCMu4dhpJT/o+OvXGSP5Dxe4nGCIiormdiDKtQh43h8=",
         "owner": "AkukinKensetsu",
         "repo": "nixpackages",
-        "rev": "03d93704059d78c7785fe55b857848b53ad0ca74",
+        "rev": "a72f4388f5c4beb131205e023390460d50167ee2",
         "type": "github"
       },
       "original": {
