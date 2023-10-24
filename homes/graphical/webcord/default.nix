@@ -10,5 +10,5 @@
     inputs.ludovico-nixpkgs.packages.${pkgs.system}.vesktop
   ];
 
-  services.arrpc.enable = true;
+  services.arrpc.enable = false;
 }
