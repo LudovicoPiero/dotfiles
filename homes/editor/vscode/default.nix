@@ -62,7 +62,7 @@
         kamadorueda.alejandra
 
         # Python
-        ms-python.python
+        # ms-python.python
 
         # Go
         golang.go
