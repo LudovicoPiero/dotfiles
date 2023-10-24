@@ -1,9 +1,15 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   inherit (config) colorScheme;
   inherit (colorScheme) colors;
 in {
   programs.wezterm = {
     enable = true;
+    package = inputs.stable.legacyPackages.${pkgs.system}.wezterm;
     colorSchemes = {
       "${colorScheme.slug}" = {
         ansi = [
