@@ -33,6 +33,15 @@
 
       inherit
         (pkgs)
+        swayidle
+        swaylock
+        wf-recorder
+        wl-clipboard
+        wlogout
+        slurp
+        grim
+        swappy
+        playerctl
         authy
         mpv
         mailspring
@@ -44,6 +53,7 @@
         ;
 
       inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
+      inherit (inputs.hyprland-contrib.packages.${pkgs.system}) grimblast;
 
       # Utils
       sharenix = pkgs.writeShellScriptBin "sharenix" ''${builtins.readFile ./scripts/sharenix}'';
