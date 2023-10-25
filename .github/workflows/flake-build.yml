@@ -20,12 +20,12 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - uses: nixbuild/nix-quick-install-action@v25
+      - uses: DeterminateSystems/nix-installer-action@v6
         with:
-          nix_conf: |
+          extra-conf: |
             substituters = https://cache.garnix.io https://nyx.chaotic.cx https://cache.nixos.org/ https://cache.privatevoid.net https://nixpkgs-unfree.cachix.org https://numtide.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg= nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs= numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE=
-          github_access_token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
@@ -37,9 +37,6 @@ jobs:
       - name: Set default git branch (to reduce log spam)
         run: git config --global init.defaultBranch flake-parts
 
-      # - name: Validate Flakes
-      #   run: nix flake check
-
       - name: "Build nixosConfiguration for: sforza"
         run: |-
-          nix shell nixpkgs#nixVersions.nix_2_18 -c nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
+          nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
