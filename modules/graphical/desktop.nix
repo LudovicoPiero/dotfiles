@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   config,
+  lib,
   ...
 }: {
   security = {
@@ -44,8 +45,10 @@
 
   programs = {
     dconf.enable = true;
-    hyprland = {
-      enable = true;
+    hyprland = let
+      hyprlandHMConf = config.home-manager.users.ludovico.wayland.windowManager.hyprland.enable;
+    in {
+      enable = lib.mkIf hyprlandHMConf true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
   };

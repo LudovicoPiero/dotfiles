@@ -5,7 +5,7 @@ _: {
       ./graphical
       ./editor
       ./browser
-      ./windowManager/hyprland
+      # ./windowManager/hyprland
       ./windowManager/sway
 
       inputs.nur.hmModules.nur
