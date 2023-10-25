@@ -10,6 +10,10 @@
       san-francisco-pro = pkgs.callPackage ./san-francisco-pro {};
 
       spotify = pkgs.callPackage ./spotify {};
+
+      vesktop = pkgs.callPackage ./vesktop {};
+
+      webcord-vencord = pkgs.callPackage ./webcord-vencord {};
     };
   };
 }
