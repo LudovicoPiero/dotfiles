@@ -13,6 +13,7 @@
       # Icons
       material-design-icons
       noto-fonts-emoji
+      symbola # for fallback font
     ];
 
     # use fonts specified by user rather than default ones
