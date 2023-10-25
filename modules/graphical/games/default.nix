@@ -1,7 +1,7 @@
 _: {
   imports = [
-    ./aagl.nix
+    # ./aagl.nix
     ./gamemode.nix
-    ./steam.nix
+    # ./steam.nix
   ];
 }
