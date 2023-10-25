@@ -127,11 +127,7 @@
       inputs.base16-schemes.follows = "base16-schemes";
     };
 
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     devshell.url = "github:numtide/devshell";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
