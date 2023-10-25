@@ -7,6 +7,7 @@
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   "browser.privatebrowsing.vpnpromourl" = "";
   "browser.tabs.firefox-view" = false; # Disable Firefox View
+  "browser.tabs.firefox-view-next" = false;
 
   # DOH
   /*

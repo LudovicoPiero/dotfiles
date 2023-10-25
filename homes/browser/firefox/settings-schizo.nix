@@ -287,6 +287,7 @@
   */
   "accessibility.force_disabled" = 1;
   "browser.tabs.firefox-view" = false;
+  "browser.tabs.firefox-view-next" = false;
   "permissions.default.desktop-notification" = 2;
   "permissions.default.geo" = 2;
   "geo.provider.network.url" = "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%";
