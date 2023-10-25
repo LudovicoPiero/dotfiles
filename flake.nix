@@ -64,7 +64,7 @@
     # Main Thing
     master.url = "github:nixos/nixpkgs/master";
     stable.url = "github:nixos/nixpkgs/release-23.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.follows = "unstable";
 
     flake-compat = {
