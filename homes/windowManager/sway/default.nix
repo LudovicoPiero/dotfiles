@@ -23,7 +23,6 @@ in {
 
   wayland.windowManager.sway = {
     enable = true;
-    package = inputs.chaotic.packages.${pkgs.system}.sway_git;
     config = {
       colors = import ./colors.nix {inherit colors;};
       keybindings = import ./keybindings.nix {inherit lib config pkgs;};
