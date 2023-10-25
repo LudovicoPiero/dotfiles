@@ -1,18 +1,19 @@
-{ lib
-, stdenv
-, stdenvNoCC
-, fetchFromGitHub
-, substituteAll
-, makeWrapper
-, makeDesktopItem
-, copyDesktopItems
-, vencord
-, electron
-, pipewire
-, libicns
-, jq
-, moreutils
-, nodePackages
+{
+  lib,
+  stdenv,
+  stdenvNoCC,
+  fetchFromGitHub,
+  substituteAll,
+  makeWrapper,
+  makeDesktopItem,
+  copyDesktopItems,
+  vencord,
+  electron,
+  pipewire,
+  libicns,
+  jq,
+  moreutils,
+  nodePackages,
 }:
 stdenv.mkDerivation rec {
   pname = "vesktop";
@@ -62,7 +63,10 @@ stdenv.mkDerivation rec {
   ];
 
   patches = [
-    (substituteAll { inherit vencord; src = ./use_system_vencord.patch; })
+    (substituteAll {
+      inherit vencord;
+      src = ./use_system_vencord.patch;
+    })
   ];
 
   ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
@@ -90,30 +94,28 @@ stdenv.mkDerivation rec {
 
   # this is consistent with other nixpkgs electron packages and upstream, as far as I am aware
   # yes, upstream really packages it as "vesktop" but uses "vencorddesktop" file names
-  installPhase =
-    let
-      libPath = lib.makeLibraryPath [ pipewire ];
-    in
-    ''
-      runHook preInstall
+  installPhase = let
+    libPath = lib.makeLibraryPath [pipewire];
+  in ''
+    runHook preInstall
 
-      mkdir -p $out/opt/Vesktop/resources
-      cp dist/linux-unpacked/resources/app.asar $out/opt/Vesktop/resources
+    mkdir -p $out/opt/Vesktop/resources
+    cp dist/linux-unpacked/resources/app.asar $out/opt/Vesktop/resources
 
-      pushd build
-      ${libicns}/bin/icns2png -x icon.icns
-      for file in icon_*x32.png; do
-        file_suffix=''${file//icon_}
-        install -Dm0644 $file $out/share/icons/hicolor/''${file_suffix//x32.png}/apps/vencorddesktop.png
-      done
+    pushd build
+    ${libicns}/bin/icns2png -x icon.icns
+    for file in icon_*x32.png; do
+      file_suffix=''${file//icon_}
+      install -Dm0644 $file $out/share/icons/hicolor/''${file_suffix//x32.png}/apps/vencorddesktop.png
+    done
 
-      makeWrapper ${electron}/bin/electron $out/bin/vencorddesktop \
-        --prefix LD_LIBRARY_PATH : ${libPath} \
-        --add-flags $out/opt/Vesktop/resources/app.asar \
-        --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}"
+    makeWrapper ${electron}/bin/electron $out/bin/vencorddesktop \
+      --prefix LD_LIBRARY_PATH : ${libPath} \
+      --add-flags $out/opt/Vesktop/resources/app.asar \
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}"
 
-      runHook postInstall
-    '';
+    runHook postInstall
+  '';
 
   desktopItems = [
     (makeDesktopItem {
@@ -123,7 +125,7 @@ stdenv.mkDerivation rec {
       icon = "vencorddesktop";
       startupWMClass = "VencordDesktop";
       genericName = "Internet Messenger";
-      keywords = [ "discord" "vencord" "electron" "chat" ];
+      keywords = ["discord" "vencord" "electron" "chat"];
     })
   ];
 
@@ -131,7 +133,7 @@ stdenv.mkDerivation rec {
     description = "An alternate client for Discord with Vencord built-in";
     homepage = "https://github.com/Vencord/Vesktop";
     license = licenses.gpl3Only;
-    maintainers = with maintainers; [ getchoo Scrumplex vgskye ];
+    maintainers = with maintainers; [getchoo Scrumplex vgskye];
     platforms = platforms.linux;
     mainProgram = "vencorddesktop";
   };
