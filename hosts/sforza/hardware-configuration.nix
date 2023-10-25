@@ -3,6 +3,7 @@
   pkgs,
   lib,
   modulesPath,
+  inputs,
   ...
 }: {
   imports = [
@@ -16,7 +17,8 @@
 
   boot = {
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "bcache"];
-    kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
+    kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
+    # kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
     initrd.kernelModules = ["amdgpu" "dm-snapshot"];
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
