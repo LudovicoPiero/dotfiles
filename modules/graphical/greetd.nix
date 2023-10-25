@@ -36,7 +36,7 @@
           "--remember-user-session"
           "--asterisks"
           # "--power-shutdown '${pkgs.systemd}/bin/systemctl shutdown'"
-          "--cmd 'Hyprland'"
+          "--cmd 'sway'"
         ];
         inherit user;
       };

@@ -9,7 +9,7 @@
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  discord-wrapped = "${_ pkgs.discord-canary} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
+  vesktop-wrapped = "${_ pkgs.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
   webcord-wrapped = "${_ pkgs.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
 in {
   # Kill focused window
@@ -94,7 +94,7 @@ in {
   "${mod}+Return" = "exec ${cfg.terminal}";
   "${mod}+p" = "exec run-as-service ${cfg.menu}";
   "${mod}+g" = "exec ${pkgs.firefox}/bin/firefox";
-  "${mod}+d" = "exec ${discord-wrapped}";
+  "${mod}+d" = "exec ${vesktop-wrapped}";
   "${mod}+Shift+d" = "exec ${webcord-wrapped}";
   "${mod}+Shift+e" = "exec ${pkgs.xfce.thunar}/bin/thunar";
 
