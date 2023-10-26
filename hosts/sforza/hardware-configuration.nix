@@ -11,9 +11,8 @@
   ];
 
   chaotic = {
-    mesa-git.enable = true;
     nyx.cache.enable = false;
-    nyx.overlay.enable = true;
+    nyx.overlay.enable = false;
   };
 
   boot = {
