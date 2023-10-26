@@ -24,7 +24,7 @@ in {
       "ja_JP.UTF-8/UTF-8"
     ];
     inputMethod = {
-      # enabled = "fcitx5"; # Uncomment to enable this
+      enabled = "fcitx5"; # Uncomment to enable this
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
