@@ -2,10 +2,19 @@
   border = 2;
   titlebar = false;
   commands = [
+    {
+      criteria = {title = "(?:Open|Save) (?:File|Folder|As)";};
+      command = "floating enable, resize set width 800 height 600";
+    }
+
     # hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793
     {
       criteria = {class = "Spotify";};
       command = "move to workspace 5";
+    }
+    {
+      criteria = {app_id = "org.telegram.desktop";};
+      command = "move to workspace 4";
     }
     {
       criteria = {app_id = "WebCord";};
