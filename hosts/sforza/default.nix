@@ -52,8 +52,12 @@
   };
 
   networking = {
-    networkmanager.enable = true;
     hostName = "sforza";
+    nameservers = lib.mkForce [
+      "174.138.21.128"
+      "188.166.206.224"
+    ];
+    networkmanager.enable = true;
   };
 
   # TLP For Laptop
