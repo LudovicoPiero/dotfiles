@@ -120,10 +120,10 @@ in {
         keys = {
           { key = "UpArrow",   mods = "SHIFT",  action = wezterm.action({ ScrollToPrompt = -1 }) },
           { key = "DownArrow", mods = "SHIFT",  action = wezterm.action({ ScrollToPrompt = 1 }) },
-          { key = "h",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
-          { key = "l",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
-          { key = "j",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
-          { key = "k",         mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+          { key = "h",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+          { key = "l",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+          { key = "j",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+          { key = "k",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
 
           -- screen/tmux compat
           { key = "v", mods = "LEADER",      action = wezterm.action({ SplitVertical   = { domain = "CurrentPaneDomain" }, }) },
