@@ -13,7 +13,7 @@ in {
     package = inputs.swayfx.packages.${pkgs.system}.default;
     config = {
       colors = import ./colors.nix {inherit colors;};
-      keybindings = import ./keybindings.nix {inherit lib config pkgs;};
+      keybindings = import ./keybindings.nix {inherit lib inputs config pkgs;};
       bars = import ./bars.nix {inherit colors;};
       window = import ./windows.nix;
       output = {
