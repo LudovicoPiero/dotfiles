@@ -65,7 +65,7 @@
     master.url = "github:nixos/nixpkgs/master";
     stable.url = "github:nixos/nixpkgs/release-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs.follows = "master";
+    nixpkgs.follows = "unstable";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
