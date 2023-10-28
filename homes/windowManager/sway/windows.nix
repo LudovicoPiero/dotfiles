@@ -29,6 +29,10 @@
       command = "move to workspace 3";
     }
     {
+      criteria = {app_id = "VencordDesktop";};
+      command = "move to workspace 3";
+    }
+    {
       criteria = {app_id = "firefox";};
       command = "move to workspace 2";
     }
