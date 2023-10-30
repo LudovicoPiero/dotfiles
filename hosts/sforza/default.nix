@@ -54,8 +54,8 @@
   networking = {
     hostName = "sforza";
     nameservers = lib.mkForce [
-      "174.138.21.128"
-      "188.166.206.224"
+      "1.1.1.1"
+      "1.0.0.1"
     ];
     networkmanager.enable = true;
   };
