@@ -1,6 +1,6 @@
 {config, ...}: let
   browser = ["firefox.desktop"];
-  mailspring = ["Mailspring.desktop"];
+  thunderbird = ["thunderbird.desktop"];
 
   # XDG MIME types
   associations = {
@@ -17,7 +17,6 @@
     "x-scheme-handler/http" = browser;
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
-    "x-scheme-handler/mailspring" = mailspring;
     "inode/directory" = ["thunar.desktop"];
 
     "audio/*" = ["mpv.desktop"];
@@ -28,9 +27,9 @@
     "x-scheme-handler/discord" = ["WebCord.desktop"];
     "x-scheme-handler/spotify" = ["spotify.desktop"];
     "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
-    "x-scheme-handler/mailto" = mailspring;
-    "message/rfc822" = mailspring;
-    "x-scheme-handler/mid" = mailspring;
+    "x-scheme-handler/mailto" = thunderbird;
+    "message/rfc822" = thunderbird;
+    "x-scheme-handler/mid" = thunderbird;
   };
 in {
   xdg = {

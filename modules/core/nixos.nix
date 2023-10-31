@@ -4,9 +4,6 @@
   ...
 }: {
   nixpkgs.config = {
-    permittedInsecurePackages = [
-      "mailspring-1.11.0"
-    ];
     allowUnfree = true;
   };
 

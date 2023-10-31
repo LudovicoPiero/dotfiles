@@ -158,7 +158,7 @@ in {
   ];
 
   windowrulev2 = [
-    "workspace 9, class:^(Mailspring)$"
+    "workspace 9, class:^(thunderbird)$"
     "workspace 8, class:^(whatsapp-for-linux)$"
     "workspace 7, class:^(qBittorrent)$"
     "workspace 6, class:^(steam)$"
@@ -202,7 +202,7 @@ in {
     "$mod SHIFT, G , exec , chromium"
     "$mod      , G , exec , ${browser} -P Ludovico"
     "$mod SHIFT, G , exec , ${browser} -P Schizo"
-    "$mod      , M , exec , [workspace 9 silent;tile] mailspring"
+    "$mod      , M , exec , [workspace 9 silent;tile] thunderbirthunderbird"
     "$mod      , P , exec , run-as-service ${launcher}"
     "$mod      , Space , togglefloating ,"
     "$mod      , R , togglegroup ,"

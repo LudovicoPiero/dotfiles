@@ -44,7 +44,7 @@
         playerctl
         authy
         mpv
-        mailspring
+        thunderbird
         imv
         viewnior
         element-desktop

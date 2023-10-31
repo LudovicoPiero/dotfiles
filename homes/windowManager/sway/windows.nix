@@ -8,7 +8,7 @@
     }
 
     {
-      criteria = {class = "Mailspring";};
+      criteria = {app_id = "thunderbird";};
       command = "move to workspace 9";
     }
     # hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793
