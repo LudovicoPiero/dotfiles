@@ -7,6 +7,10 @@
       command = "floating enable, resize set width 800 height 600";
     }
 
+    {
+      criteria = {class = "Mailspring";};
+      command = "move to workspace 9";
+    }
     # hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793
     {
       criteria = {class = "Spotify";};
