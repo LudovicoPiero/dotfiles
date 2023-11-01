@@ -4,13 +4,15 @@
   config,
   lib,
   ...
-}: {
+}: let
+  homeManagerConfig = config.home-manager.users.ludovico;
+in {
   security = {
     pam = {
       services.greetd.gnupg.enable = true;
       services.greetd.enableGnomeKeyring = true;
-      services.sddm.gnupg.enable = true;
-      services.sddm.enableGnomeKeyring = true;
+      # services.sddm.gnupg.enable = true;
+      # services.sddm.enableGnomeKeyring = true;
       services.swaylock.text = "auth include login";
     };
   };
@@ -30,10 +32,15 @@
   };
 
   services = {
-    xserver.displayManager.sessionPackages = [
-      inputs.hyprland.packages.${pkgs.system}.default
-      config.programs.sway.package
-    ];
+    xserver.displayManager.sessionPackages =
+      # Useful for Display Manager like SDDM
+      []
+      ++ lib.optionals homeManagerConfig.wayland.windowManager.hyprland.enable [
+        inputs.hyprland.packages.${pkgs.system}.default
+      ]
+      ++ lib.optionals homeManagerConfig.wayland.windowManager.sway.enable [
+        pkgs.sway
+      ];
     geoclue2 = {
       enable = true;
       appConfig.gammastep = {
@@ -45,10 +52,8 @@
 
   programs = {
     dconf.enable = true;
-    hyprland = let
-      hyprlandHMConf = config.home-manager.users.ludovico.wayland.windowManager.hyprland.enable;
-    in {
-      enable = lib.mkIf hyprlandHMConf true;
+    hyprland = {
+      enable = lib.mkIf homeManagerConfig.wayland.windowManager.hyprland.enable true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
   };
