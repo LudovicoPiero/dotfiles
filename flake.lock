@@ -69,19 +69,18 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1698254895,
-        "narHash": "sha256-fRH0EehNCeu8KqXhkpac9J6vjNxR7hzgiPsbJ8Rb4H0=",
-        "ref": "nyxpkgs-unstable",
-        "rev": "f5c745cb0de77e3c75218f10c46dda62094af90d",
-        "revCount": 669,
-        "type": "git",
-        "url": "https://github.com/chaotic-cx/nyx"
+        "lastModified": 1698408349,
+        "narHash": "sha256-V5MgR0TebGDBO/hpf1lq91hROt2q+qMqLj3tOAw4/nQ=",
+        "owner": "chaotic-cx",
+        "repo": "nyx",
+        "rev": "8d38933443c55b647669893316c71d766c9e2d66",
+        "type": "github"
       },
       "original": {
+        "owner": "chaotic-cx",
         "ref": "nyxpkgs-unstable",
-        "rev": "f5c745cb0de77e3c75218f10c46dda62094af90d",
-        "type": "git",
-        "url": "https://github.com/chaotic-cx/nyx"
+        "repo": "nyx",
+        "type": "github"
       }
     },
     "compare-to": {

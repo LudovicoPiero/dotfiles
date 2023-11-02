@@ -127,7 +127,7 @@
       inputs.base16-schemes.follows = "base16-schemes";
     };
 
-    chaotic.url = "git+https://github.com/chaotic-cx/nyx?ref=nyxpkgs-unstable&rev=f5c745cb0de77e3c75218f10c46dda62094af90d";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     devshell.url = "github:numtide/devshell";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-parts.url = "github:hercules-ci/flake-parts";
