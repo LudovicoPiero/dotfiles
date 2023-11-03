@@ -6,6 +6,8 @@
   environment = {
     etc."greetd/environments".text = ''
       Hyprland
+      river
+      sway
       fish
     '';
   };
@@ -36,7 +38,7 @@
           "--remember-user-session"
           "--asterisks"
           # "--power-shutdown '${pkgs.systemd}/bin/systemctl shutdown'"
-          "--cmd 'sway'"
+          "--cmd 'river'"
         ];
         inherit user;
       };

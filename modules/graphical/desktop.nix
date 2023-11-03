@@ -33,8 +33,9 @@ in {
 
   services = {
     xserver.displayManager.sessionPackages =
+      [inputs.chaotic.packages.${pkgs.system}.river_git]
       # Useful for Display Manager like SDDM
-      lib.optionals homeManagerConfig.wayland.windowManager.hyprland.enable [
+      ++ lib.optionals homeManagerConfig.wayland.windowManager.hyprland.enable [
         inputs.hyprland.packages.${pkgs.system}.default
       ]
       ++ lib.optionals homeManagerConfig.wayland.windowManager.sway.enable [

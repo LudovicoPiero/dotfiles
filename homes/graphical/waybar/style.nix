@@ -41,9 +41,40 @@ in ''
     border-radius: 0px;
   }
 
-  #tray {
+  #tags {
+    background-color: #${colors.base00};
+    margin: 2px;
+    margin-left: 2px;
+    border-radius: 0px;
+  }
+
+  #tags button {
+    padding: 0px 5px;
+    color: #${colors.base05};
+  }
+
+  #tags button.focused {
+    color: #${colors.base00};
+    background-color: #${colors.base0D};
+    border-radius: 0px;
+  }
+
+  #tags button:hover {
+    background-color: #${colors.base0D};
     color: #${colors.base00};
     border-radius: 0px;
+  }
+
+  #tray {
+    border-radius: 0px;
+  }
+  #tray > .passive {
+      -gtk-icon-effect: dim;
+  }
+  #tray > .needs-attention {
+      -gtk-icon-effect: highlight;
+  }
+  #tray > .active {
   }
 
   #custom-wireguard {

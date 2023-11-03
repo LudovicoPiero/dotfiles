@@ -21,6 +21,7 @@ in {
         height = 25;
         modules-left = [
           "hyprland/workspaces"
+          "river/tags"
           "tray"
         ];
         modules-right = [
@@ -56,6 +57,9 @@ in {
             # "active" = "";
             "default" = "";
           };
+        };
+        "river/tags" = {
+          "num-tags" = 9;
         };
         "tray" = {
           spacing = 5;
