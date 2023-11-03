@@ -5,6 +5,7 @@ _: {
     ./services.nix
 
     ./i3status-rs
+    ./foot
     ./gammastep
     ./dunst
     ./waybar
