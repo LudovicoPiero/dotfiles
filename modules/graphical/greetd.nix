@@ -38,7 +38,7 @@
           "--remember-user-session"
           "--asterisks"
           # "--power-shutdown '${pkgs.systemd}/bin/systemctl shutdown'"
-          "--cmd 'river'"
+          "--cmd 'sway'"
         ];
         inherit user;
       };
