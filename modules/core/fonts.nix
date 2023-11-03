@@ -6,6 +6,7 @@
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
+      inputs.self.packages.${pkgs.system}.geist-font
       inputs.self.packages.${pkgs.system}.san-francisco-pro
       jetbrains-mono
       noto-fonts-cjk-sans
@@ -43,7 +44,7 @@
         	<alias binding="strong">
         		<family>monospace</family>
         		<prefer>
-        			<family>SF Pro Rounded</family>
+                                <family>Geist SemiBold</family>
         		</prefer>
         	</alias>
         	<!-- Default system-ui font -->
