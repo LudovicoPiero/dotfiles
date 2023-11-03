@@ -3,6 +3,8 @@
 
   perSystem = {pkgs, ...}: {
     packages = {
+      geist-font = pkgs.callPackage ./geist-font {};
+
       multicolor-sddm-theme = pkgs.callPackage ./multicolor-sddm-theme {};
 
       iosevka-q = pkgs.callPackage ./iosevka-q {};
