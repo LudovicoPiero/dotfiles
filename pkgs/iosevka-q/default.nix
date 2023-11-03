@@ -123,14 +123,6 @@ assert (extraParameters != null) -> set != null;
       '';
       license = licenses.ofl;
       platforms = platforms.all;
-      maintainers = with maintainers; [
-        cstrahan
-        jfrankenau
-        ttuegel
-        babariviere
-        rileyinman
-        AluisioASG
-        lunik1
-      ];
+      maintainers = with maintainers; [ludovicopiero];
     };
   }

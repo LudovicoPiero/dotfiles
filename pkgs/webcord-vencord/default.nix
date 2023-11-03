@@ -18,6 +18,6 @@ webcord.overrideAttrs (old: {
     old.meta
     // {
       description = "Webcord with Vencord web extension";
-      maintainers = with maintainers; [FlafyDev NotAShelf];
+      maintainers = with maintainers; [ludovicopiero];
     };
 })

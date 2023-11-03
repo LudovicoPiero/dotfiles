@@ -210,7 +210,7 @@ in
       description = "Play music from the Spotify music service";
       sourceProvenance = with sourceTypes; [binaryNativeCode];
       # license = licenses.unfree;
-      maintainers = with maintainers; [eelco ftrvxmtrx sheenobu mudri timokau ma27];
+      maintainers = with maintainers; [ludovicopiero];
       platforms = ["x86_64-linux"];
     };
   }
