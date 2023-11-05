@@ -8,7 +8,9 @@
     packages = with pkgs; [
       inputs.self.packages.${pkgs.system}.geist-font
       inputs.self.packages.${pkgs.system}.san-francisco-pro
-      jetbrains-mono
+      inputs.self.packages.${pkgs.system}.iosevka-q
+
+      # CJK
       noto-fonts-cjk-sans
 
       # Icons

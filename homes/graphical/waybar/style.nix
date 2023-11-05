@@ -5,7 +5,7 @@ in ''
     border: none;
     border-radius: 0;
     font-family:
-      JetBrains Mono,
+      Iosevka q,
       Material Design Icons,
       monospace;
     font-size: 12px;

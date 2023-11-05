@@ -66,7 +66,7 @@ in {
     extraConfig = ''
       return {
         font = wezterm.font_with_fallback({
-          "JetBrains Mono SemiBold",
+          "Iosevka q SemiBold",
           "Material Design Icons",
           "Noto Color Emoji",
         }),

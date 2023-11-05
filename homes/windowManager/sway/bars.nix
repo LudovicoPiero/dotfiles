@@ -2,10 +2,10 @@
   {
     statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
     fonts = {
-      names = ["JetBrains Mono" "Material Design Icons"];
+      names = ["Iosevka q" "Material Design Icons"];
       size = 9.0;
     };
-    position = "bottom";
+    position = "top";
     colors = {
       background = "#${colors.base00}";
       separator = "#${colors.base01}";

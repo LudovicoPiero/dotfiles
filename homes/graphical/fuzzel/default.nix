@@ -5,7 +5,7 @@ in {
     enable = true;
     settings = {
       main = {
-        font = "JetBrains Mono-16";
+        font = "Iosevka q-16";
         terminal = "wezterm";
         icon-theme = "${config.gtk.iconTheme.name}";
         prompt = "->";

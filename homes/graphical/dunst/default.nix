@@ -23,7 +23,7 @@ in {
         background = "#${colors.base00}";
         frame_color = "#${colors.base05}"; # border
         separator_color = "#${colors.base02}";
-        font = "JetBrains Mono 10";
+        font = "Iosevka q 10";
         notification_limit = 5;
         layer = "overlay"; # bottom, top or overlay
         fullscreen = "pushback";
