@@ -90,7 +90,7 @@ in {
     dim_strength = 0.7;
 
     blur = {
-      enabled = false;
+      enabled = true;
       size = 5;
       passes = 2;
       contrast = 0.8916;
@@ -109,8 +109,8 @@ in {
 
   general = {
     sensitivity = 1;
-    gaps_in = 0;
-    gaps_out = 0;
+    gaps_in = 2;
+    gaps_out = 2;
     border_size = 1;
     # "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
     # "col.inactive_border" = "rgb(${colors.base01})";

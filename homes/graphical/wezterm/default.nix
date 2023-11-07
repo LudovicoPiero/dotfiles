@@ -77,7 +77,7 @@ in {
           "Noto Color Emoji",
         }),
         font_size = 12.0,
-        window_background_opacity = 1.0,
+        window_background_opacity = 0.88,
         color_scheme = "${colorScheme.slug}",
         enable_scroll_bar = false,
         check_for_updates = false,
