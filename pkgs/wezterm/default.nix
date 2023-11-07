@@ -20,11 +20,13 @@
   xcbutilwm,
   wayland,
   zlib,
+  zstd,
   CoreGraphics,
   Cocoa,
   Foundation,
   System,
   libiconv,
+  oniguruma,
   UserNotifications,
   nixosTests,
   runCommand,
@@ -69,7 +71,9 @@ rustPlatform.buildRustPackage rec {
   buildInputs =
     [
       fontconfig
+      oniguruma
       zlib
+      zstd
     ]
     ++ lib.optionals stdenv.isLinux [
       libX11
