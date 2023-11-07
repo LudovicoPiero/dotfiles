@@ -62,7 +62,7 @@ in {
         {command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";}
       ];
       modifier = "Mod4";
-      terminal = "${pkgs.wezterm}/bin/wezterm";
+      terminal = "${inputs.self.packages.${pkgs.system}.wezterm}/bin/wezterm";
       menu = "${pkgs.fuzzel}/bin/fuzzel";
     };
     extraConfig = ''

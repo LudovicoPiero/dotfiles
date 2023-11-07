@@ -7,7 +7,7 @@
 }: let
   inherit (config.colorScheme) colors;
   _ = lib.getExe;
-  terminal = "${_ pkgs.wezterm}";
+  terminal = "${_ inputs.self.packages.${pkgs.system}.wezterm}";
   launcher = "${_ pkgs.fuzzel}";
   browser = "${_ pkgs.firefox}";
   powermenu = "${_ pkgs.wlogout}";
