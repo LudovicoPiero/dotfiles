@@ -16,6 +16,10 @@
       vesktop = pkgs.callPackage ./vesktop {};
 
       webcord-vencord = pkgs.callPackage ./webcord-vencord {};
+
+      wezterm = pkgs.darwin.apple_sdk_11_0.callPackage ./wezterm {
+        inherit (pkgs.darwin.apple_sdk_11_0.frameworks) Cocoa CoreGraphics Foundation UserNotifications System;
+      };
     };
   };
 }
