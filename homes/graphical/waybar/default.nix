@@ -109,12 +109,12 @@ in {
           ];
         };
         "custom/date" = {
-          format = "󰭦{}";
+          format = "󰃭 {}";
           interval = 3600;
           exec = "${lib.getExe waybar-date}";
         };
         "clock" = {
-          format = "󰅐{:%I:%M %p}";
+          format = "󰅐 {:%I:%M %p}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
       };

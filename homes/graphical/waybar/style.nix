@@ -5,10 +5,10 @@ in ''
     border: none;
     border-radius: 0;
     font-family:
-      Iosevka q,
-      Material Design Icons,
+      "Iosevka q SemiBold",
+      "Material Design Icons",
       monospace;
-    font-size: 12px;
+    font-size: 14px;
     min-height: 0;
   }
 
