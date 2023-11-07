@@ -5,9 +5,9 @@ _: {
       ./graphical
       ./editor
       ./browser
-      # ./windowManager/hyprland
+      ./windowManager/hyprland
       # ./windowManager/river
-      ./windowManager/sway
+      # ./windowManager/sway
 
       inputs.nur.hmModules.nur
       inputs.nix-colors.homeManagerModules.default
