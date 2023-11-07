@@ -18,16 +18,7 @@
       inherits = "ss14"
 
         [buildPlans.iosevka-q.variants.design]
-        punctuation-dot = "round"
-        tilde = "low"
-        underscore = "high"
-        caret = "low"
-        paren = "flat-arc"
         brace = "curly-flat-boundary"
-        ampersand = "closed"
-        dollar = "open-cap"
-        bar = "natural-slope"
-        cent = "open"
 
       [buildPlans.iosevka-q.ligations]
       inherits = "dlig"
@@ -42,16 +33,16 @@ assert (extraParameters != null) -> set != null;
       if set != null
       then "iosevka-${set}"
       else "iosevka";
-    version = "27.3.1";
+    version = "27.3.4";
 
     src = fetchFromGitHub {
       owner = "be5invis";
       repo = "iosevka";
       rev = "v${version}";
-      hash = "sha256-7ndJDdgDn5tnnUeB4etQ8bBZnH7NuiYoNQ9CrF2HtwQ=";
+      hash = "sha256-JsK2jzXyAACh9e3P2y0YLky2XQuR/dKyEbRpFUSnJdM=";
     };
 
-    npmDepsHash = "sha256-MNlT8VJTIvoZDAAdEs0Fa8gqO7dWhRR9I4Kw4qlW5Ig=";
+    npmDepsHash = "sha256-uchJ+1NWbo4FpNOjOO3luhIdZyQZLToZ1UCMLdGzjkY=";
 
     nativeBuildInputs =
       [
