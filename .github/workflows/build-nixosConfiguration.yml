@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Do not run unless i run it manually
 
 jobs:
-  build-linux:
+  build-nixosConfiguration:
     runs-on: ubuntu-latest
     steps:
       - uses: easimon/maximize-build-space@v8
