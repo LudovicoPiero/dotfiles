@@ -134,6 +134,8 @@
       allowed-users = ["@wheel"];
 
       substituters = [
+        # Lower priority value = higher priority
+        "https://cache.nixos.org?priority=1"
         "https://cache.garnix.io?priority=30"
         "https://dotfiles-pkgs.cachix.org?priority=20"
         "https://sforza-config.cachix.org?priority=10"
