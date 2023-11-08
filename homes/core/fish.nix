@@ -2,17 +2,17 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }: let
   _ = lib.getExe;
 in
   with pkgs; {
     home.packages = [
-      zoxide
-      inputs.stable.legacyPackages.${pkgs.system}.fzf # https://github.com/NixOS/nixpkgs/issues/261777
-      fd
       bat
+      commitizen
+      fd
+      fzf
+      zoxide
     ];
 
     programs.fish = {
