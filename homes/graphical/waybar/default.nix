@@ -72,14 +72,14 @@ in {
           tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
         };
         "custom/wireguard" = {
-          "format" = " Wireguard";
+          "format" = "󰌾Wireguard";
           "exec" = "echo '{\"class\": \"connected\"}'";
           "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
           "return-type" = "json";
           "interval" = 5;
         };
         "custom/teavpn" = {
-          "format" = " TeaVPN";
+          "format" = "󰌾TeaVPN";
           "exec" = "echo '{\"class\": \"connected\"}'";
           "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
           "return-type" = "json";
