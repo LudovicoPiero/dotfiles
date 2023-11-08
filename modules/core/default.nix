@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./locale
+    # ./locale
 
     ./fonts.nix
     ./keyring.nix

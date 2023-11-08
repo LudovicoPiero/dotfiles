@@ -14,14 +14,12 @@
     LC_TIME = ja;
   };
 in {
-  time.timeZone = "Asia/Tokyo";
-
   i18n = {
     inherit extraLocaleSettings;
     defaultLocale = en;
     supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-      "ja_JP.UTF-8/UTF-8"
+      en
+      ja
     ];
     inputMethod = {
       enabled = "fcitx5"; # Uncomment to enable this
