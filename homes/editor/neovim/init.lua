@@ -66,7 +66,7 @@ require("lazy").setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { "folke/which-key.nvim", opts = {} },
+  { "folke/which-key.nvim",  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -136,10 +136,12 @@ require("lazy").setup({
     "lukas-reineke/indent-blankline.nvim",
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-    opts = {
-      char = "┊",
-      show_trailing_blankline_indent = false,
-    },
+    config = function()
+      require("ibl").setup({
+        indent = { char = "┊" },
+        whitespace = { remove_blankline_trail = true },
+      })
+    end,
   },
 
   -- "gc" to comment visual regions/lines
@@ -148,7 +150,7 @@ require("lazy").setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.2",
+    tag = "0.1.4",
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
