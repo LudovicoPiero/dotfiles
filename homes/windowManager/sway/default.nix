@@ -16,7 +16,7 @@ in {
       bars = import ./bars.nix {inherit colors;};
       window = import ./windows.nix;
       output = {
-        "*" = {bg = "${self}/assets/anime-nix-wallpaper.png fill";};
+        "*" = {bg = "#808080";};
       };
       input = {
         "type:touchpad" = {
