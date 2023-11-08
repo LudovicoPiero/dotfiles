@@ -15,13 +15,14 @@
     nyx.overlay.enable = false;
   };
 
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "bcache" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
+
   boot = {
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "bcache"];
     kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
-    # kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
-    initrd.kernelModules = ["amdgpu" "dm-snapshot"];
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    #kernelModules = ["kvm-amd"];
     supportedFilesystems = ["bcachefs" "ntfs"];
   };
 
@@ -30,7 +31,7 @@
     userHome = "/home/${username}";
   in {
     "/" = {
-      device = "/dev/nvme0n1p3:/dev/sda1";
+      device = "/dev/disk/by-uuid/78ce32bd-36a6-4792-87bd-78179f8556c1";
       fsType = "bcachefs";
       options = [
         # foreground compression with zstd
@@ -41,19 +42,24 @@
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/C908-2F13";
+      device = "/dev/disk/by-uuid/3AD1-3D42";
       fsType = "vfat";
     };
 
-    "${userHome}/WinE" = {
-      device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
-      fsType = "ntfs";
-      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    "/home" = {
+      device = "/dev/nvme0n1p4:/dev/sda1";
+      fsType = "bcachefs";
     };
+
+    #"${userHome}/WinE" = {
+    #  device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+    #  fsType = "ntfs";
+    #  options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    #};
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/fff70114-e482-4f51-8624-f1a35705e737";}
+    {device = "/dev/disk/by-uuid/accd67d4-8eec-4244-8d65-11c2869e4ee0";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
