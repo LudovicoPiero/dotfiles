@@ -15,7 +15,7 @@
     nyx.overlay.enable = false;
   };
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "bcache"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
@@ -26,40 +26,64 @@
     supportedFilesystems = ["bcachefs" "ntfs"];
   };
 
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/3d92d49c-4003-4490-bea9-d8661d53af29";
+
   fileSystems = let
     username = "ludovico";
     userHome = "/home/${username}";
   in {
     "/" = {
-      device = "/dev/disk/by-uuid/78ce32bd-36a6-4792-87bd-78179f8556c1";
-      fsType = "bcachefs";
-      options = [
-        # foreground compression with zstd
-        "compression=zstd"
-        # background compression with zstd
-        "background_compression=zstd"
-      ];
+      device = "/dev/disk/by-uuid/b1a16576-fc61-44cb-9abe-8c1f534c363f";
+      fsType = "btrfs";
+      options = ["subvol=root" "compress=zstd" "noatime"];
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/3AD1-3D42";
+      device = "/dev/disk/by-uuid/9466-2507";
       fsType = "vfat";
     };
 
-    "/home" = {
-      device = "/dev/nvme0n1p4:/dev/sda1";
-      fsType = "bcachefs";
+    "/nix" = {
+      device = "/dev/disk/by-uuid/b1a16576-fc61-44cb-9abe-8c1f534c363f";
+      fsType = "btrfs";
+      options = ["subvol=nix"];
     };
 
-    #"${userHome}/WinE" = {
-    #  device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
-    #  fsType = "ntfs";
-    #  options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    #};
+    "/persist" = {
+      device = "/dev/disk/by-uuid/b1a16576-fc61-44cb-9abe-8c1f534c363f";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = ["subvol=persist" "compress=zstd" "noatime"];
+    };
+
+    "/var/log" = {
+      device = "/dev/disk/by-uuid/b1a16576-fc61-44cb-9abe-8c1f534c363f";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = ["subvol=log" "compress=zstd" "noatime"];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-uuid/b1a16576-fc61-44cb-9abe-8c1f534c363f";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = ["subvol=home" "compress=zstd" "noatime"];
+    };
+
+    "/Media" = {
+      device = "/dev/disk/by-uuid/d62efbea-9c4c-43e2-b13c-b3ec65741167";
+      fsType = "btrfs";
+    };
+
+    "${userHome}/WinE" = {
+      device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+      fsType = "ntfs";
+      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
+    };
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/accd67d4-8eec-4244-8d65-11c2869e4ee0";}
+    {device = "/dev/disk/by-uuid/75691d44-7af8-4bb9-b256-288764e79d7a";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
