@@ -1,4 +1,4 @@
-{pkgs,lib, ...}: {
+{lib, ...}: {
   # Configure LUKS
   # blkid --match-tag UUID --output value "$DISK-part2"
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/aca877d2-a02d-47e4-a29c-51cca04e30ac";
