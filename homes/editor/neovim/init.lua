@@ -82,22 +82,31 @@ require("lazy").setup({
       on_attach = function(bufnr)
         vim.keymap.set(
           "n",
-          "<leader>gp",
-          require("gitsigns").prev_hunk,
-          { buffer = bufnr, desc = "[G]o to [P]revious Hunk" }
-        )
-        vim.keymap.set(
-          "n",
-          "<leader>gn",
-          require("gitsigns").next_hunk,
-          { buffer = bufnr, desc = "[G]o to [N]ext Hunk" }
-        )
-        vim.keymap.set(
-          "n",
-          "<leader>ph",
+          "<leader>hp",
           require("gitsigns").preview_hunk,
-          { buffer = bufnr, desc = "[P]review [H]unk" }
+          { buffer = bufnr, desc = "Preview git hunk" }
         )
+
+        -- don't override the built-in and fugitive keymaps
+        local gs = package.loaded.gitsigns
+        vim.keymap.set({ "n", "v" }, "]c", function()
+          if vim.wo.diff then
+            return "]c"
+          end
+          vim.schedule(function()
+            gs.next_hunk()
+          end)
+          return "<Ignore>"
+        end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+        vim.keymap.set({ "n", "v" }, "[c", function()
+          if vim.wo.diff then
+            return "[c"
+          end
+          vim.schedule(function()
+            gs.prev_hunk()
+          end)
+          return "<Ignore>"
+        end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
       end,
     },
   },
@@ -250,6 +259,12 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Diagnostic keymaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -277,6 +292,42 @@ require("telescope").setup({
 -- Enable telescope fzf native, if installed
 pcall(require("telescope").load_extension, "fzf")
 
+-- Telescope live_grep in git root
+-- Function to find the git root directory based on the current buffer's path
+local function find_git_root()
+  -- Use the current buffer's path as the starting point for the git search
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_dir
+  local cwd = vim.fn.getcwd()
+  -- If the buffer is not associated with a file, return nil
+  if current_file == "" then
+    current_dir = cwd
+  else
+    -- Extract the directory from the current file's path
+    current_dir = vim.fn.fnamemodify(current_file, ":h")
+  end
+
+  -- Find the Git root directory from the current file's path
+  local git_root = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
+  if vim.v.shell_error ~= 0 then
+    print("Not a git repository. Searching on current working directory")
+    return cwd
+  end
+  return git_root
+end
+
+-- Custom live_grep function to search in git root
+local function live_grep_git_root()
+  local git_root = find_git_root()
+  if git_root then
+    require("telescope.builtin").live_grep({
+      search_dirs = { git_root },
+    })
+  end
+end
+
+vim.api.nvim_create_user_command("LiveGrepGitRoot", live_grep_git_root, {})
+
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
@@ -293,6 +344,7 @@ vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { des
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>sG", ":LiveGrepGitRoot<cr>", { desc = "[S]earch by [G]rep on Git Root" })
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- [[ Configure Treesitter ]]
@@ -378,20 +430,12 @@ require("nvim-treesitter.configs").setup({
 -- [[ Configure Keymaps ]]
 vim.keymap.set("n", ";", ":")
 
--- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
-  --
-  -- NOTE Need to Install LSPSaga.
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
@@ -403,18 +447,18 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap("<leader>rn", "<cmd>Lspsaga rename<cr>", "[R]e[n]ame")
-  nmap("<leader>ca", "<cmd>Lspsaga code_action<cr>", "[C]ode [A]ction")
+  nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+  nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-  nmap("gd", "<cmd>Lspsaga peek_definition<cr>", "[G]oto [D]efinition")
+  nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
   nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-  nmap("gI", "<cmd>Lspsaga finder imp<cr>", "[G]oto [I]mplementation")
-  nmap("<leader>D", "<cmd>Lspsaga peek_type_definition<cr>", "Type [D]efinition")
+  nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+  nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
   nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
   -- See `:help K` for why this keymap
-  nmap("K", "<cmd>Lspsaga hover_doc<cr>", "Hover Documentation")
+  nmap("K", vim.lsp.buf.hover, "Hover Documentation")
   nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
   -- Lesser used LSP functionality
@@ -430,6 +474,18 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = "Format current buffer with LSP" })
 end
+
+-- document existing key chains
+require("which-key").register({
+  ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+  ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+  ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
+  ["<leader>h"] = { name = "More git", _ = "which_key_ignore" },
+  ["<leader>p"] = { name = "[P]review", _ = "which_key_ignore" },
+  ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+  ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+  ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+})
 
 -- Setup neovim lua configuration
 require("neodev").setup()
