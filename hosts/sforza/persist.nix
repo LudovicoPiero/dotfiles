@@ -20,6 +20,14 @@
     zfs rollback -r tank/local/root@blank
   '';
 
+  services.zfs = {
+    autoScrub = {
+      enable = true;
+      pools = ["tank"];
+      interval = "weekly";
+    };
+  };
+
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
