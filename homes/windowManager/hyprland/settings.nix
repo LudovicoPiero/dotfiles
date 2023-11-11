@@ -58,6 +58,11 @@ in {
     "${lib.getExe swayidle}"
   ];
 
+  monitor = [
+    ",highrr,auto,1"
+    "HDMI-A-1, highrr, auto, 1.5"
+  ];
+
   animations = {
     enabled = true;
 
