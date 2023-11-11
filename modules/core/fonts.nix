@@ -1,23 +1,31 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [
-      inputs.self.packages.${pkgs.system}.geist-font
-      inputs.self.packages.${pkgs.system}.san-francisco-pro
-      inputs.self.packages.${pkgs.system}.iosevka-q
+    packages = lib.attrValues {
+      inherit
+        (inputs.self.packages.${pkgs.system})
+        san-francisco-pro
+        iosevka-q
+        ;
 
-      # CJK
-      noto-fonts-cjk-sans
+      inherit
+        (inputs.master.legacyPackages.${pkgs.system})
+        monaspace
+        ;
 
-      # Icons
-      material-design-icons
-      noto-fonts-emoji
-      symbola # for fallback font
-    ];
+      inherit
+        (pkgs)
+        noto-fonts-cjk-sans
+        material-design-icons
+        noto-fonts-emoji
+        symbola
+        ;
+    };
 
     # use fonts specified by user rather than default ones
     enableDefaultPackages = false;
@@ -43,7 +51,7 @@
         ];
 
         monospace = [
-          "Geist SemiBold"
+          "SF Pro Rounded"
           "Noto Sans Mono CJK JP"
           "Noto Sans Mono CJK KR"
           "Noto Sans Mono CJK SC"

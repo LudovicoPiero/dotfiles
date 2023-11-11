@@ -72,7 +72,11 @@ in {
     extraConfig = ''
       return {
         font = wezterm.font_with_fallback({
-          "Iosevka q SemiBold",
+          {
+            family = 'Monaspace Neon',
+            weight = 'Medium',
+            harfbuzz_features = {'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'},
+          },
           "Material Design Icons",
           "Noto Color Emoji",
         }),

@@ -6,7 +6,7 @@ in {
     settings = {
       main = {
         term = "xterm-256color";
-        font = "Iosevka q SemiBold:size=13,Material Design Icons:size=13,Noto Color Emoji:size=13";
+        font = "Monaspace Neon:size=13,Material Design Icons:size=13,Noto Color Emoji:size=13";
         dpi-aware = "yes";
         initial-window-size-chars = "82x23";
         initial-window-mode = "windowed";
