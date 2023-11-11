@@ -50,6 +50,7 @@
         element-desktop
         whatsapp-for-linux
         qbittorrent
+        yazi # Terminal File Manager
         ;
 
       inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
