@@ -188,6 +188,7 @@ in {
     "noblur, title:^(.*(Disc|WebC)ord.*)$"
     "noblur, title:^(Open File)$"
     "nofullscreenrequest, class:^(firefox)$, title:^(.*Extension: \(Bitwarden - Free Password Manager\).*)$"
+    "nomaximizerequest, class:^(firefox)$, title:^(.*Extension: \(Bitwarden - Free Password Manager\).*)$"
     "noshadow, class:^(firefox)$"
     "noshadow, class:^(Chromium-browser)$" # xwayland
     "noshadow, class:^(chromium-browser)$" # wayland
