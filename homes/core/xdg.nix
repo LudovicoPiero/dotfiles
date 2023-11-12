@@ -26,7 +26,7 @@
     "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
     "x-scheme-handler/discord" = ["WebCord.desktop"];
     "x-scheme-handler/spotify" = ["spotify.desktop"];
-    "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
+    "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
     "x-scheme-handler/mailto" = thunderbird;
     "message/rfc822" = thunderbird;
     "x-scheme-handler/mid" = thunderbird;
