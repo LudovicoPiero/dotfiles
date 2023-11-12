@@ -14,13 +14,13 @@
           extensions = with config.nur.repos.rycee.firefox-addons; [
             bitwarden
             duckduckgo-privacy-essentials
+            fastforwardteam
             i-dont-care-about-cookies
             notifier-for-github
             refined-github
             sponsorblock
             to-deepl
             ublock-origin
-            # fastforward
           ];
           bookmarks = import ./bookmarks.nix;
           search = import ./search.nix {inherit pkgs;};
@@ -41,10 +41,10 @@
           name = "Schizo";
           extensions = with config.nur.repos.rycee.firefox-addons; [
             bitwarden
-            # bypass-paywalls-clean
             i-dont-care-about-cookies
             skip-redirect
             ublock-origin
+            fastforwardteam
           ];
           search = import ./search.nix {inherit pkgs;};
         }
