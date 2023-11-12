@@ -252,11 +252,6 @@ with lib; let
     };
   });
 
-  usePackageStr = name: pkgConfStr: ''
-    (use-package ${name}
-      ${pkgConfStr})
-  '';
-
   mkRecommendedOption = type: extraDescription:
     mkOption {
       type = types.bool;
@@ -510,7 +505,7 @@ in {
         else optional (isString v && hasAttr v epkgs) epkgs.${v};
 
       packages =
-        concatMap (v: getPkg (v.package))
+        concatMap (v: getPkg v.package)
         (filter (getAttr "enable") (builtins.attrValues cfg.usePackage));
     in [
       (epkgs.trivialBuild {

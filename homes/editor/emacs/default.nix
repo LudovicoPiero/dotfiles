@@ -9,12 +9,6 @@
   # https://git.sr.ht/~rycee/configurations/tree/master/item/user/emacs.nix
 
   imports = [
-    /*
-    FIXMEEEEEEEEE
-    I got infinite recursion when using
-    config.nur.repos.rycee.hmModules.emacs-init
-    pls help T_T
-    */
     ./modules/emacs-init.nix
   ];
 
@@ -26,7 +20,6 @@
 
   programs.emacs = {
     enable = true;
-    package = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git;
 
     init = {
       enable = true;
