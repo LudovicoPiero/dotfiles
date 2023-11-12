@@ -82,6 +82,7 @@ in
       '';
 
       shellAliases = {
+        "c" = "${_ commitizen} commit -- -s"; # Commit with Signed-off
         "cat" = "${_ bat}";
         "config" = "cd ~/.config/nixos";
         "ls" = "${_ eza} --icons";
