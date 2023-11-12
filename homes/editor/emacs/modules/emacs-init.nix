@@ -219,7 +219,7 @@ with lib; let
         mkFunctions = vs: optional (vs != []) ":functions (${toString vs})";
         mkBind = mkBindHelper "bind" "";
         mkBindLocal = bs: let
-          mkMap = n: mkBindHelper "bind" ":map ${n}";
+          mkMap = n: v: mkBindHelper "bind" ":map ${n}" v;
         in
           flatten (mapAttrsToList mkMap bs);
         mkBindKeyMap = mkBindHelper "bind-keymap" "";
@@ -251,6 +251,11 @@ with lib; let
         + ")";
     };
   });
+
+  usePackageStr = name: pkgConfStr: ''
+    (use-package ${name}
+      ${pkgConfStr})
+  '';
 
   mkRecommendedOption = type: extraDescription:
     mkOption {
@@ -505,12 +510,13 @@ in {
         else optional (isString v && hasAttr v epkgs) epkgs.${v};
 
       packages =
-        concatMap (v: getPkg v.package)
+        concatMap (v: getPkg (v.package))
         (filter (getAttr "enable") (builtins.attrValues cfg.usePackage));
     in [
       (epkgs.trivialBuild {
         pname = "hm-early-init";
         src = pkgs.writeText "hm-early-init.el" earlyInitFile;
+        version = "0.1.0";
         packageRequires = packages;
         preferLocalBuild = true;
         allowSubstitutes = false;
@@ -519,6 +525,7 @@ in {
       (epkgs.trivialBuild {
         pname = "hm-init";
         src = pkgs.writeText "hm-init.el" initFile;
+        version = "0.1.0";
         packageRequires =
           [epkgs.use-package]
           ++ packages
