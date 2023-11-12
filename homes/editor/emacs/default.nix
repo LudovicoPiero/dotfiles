@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   # REFERENCES
   # https://gitlab.com/rycee/nur-expressions
   # https://github.com/Denommus/nix-configurations
@@ -50,6 +46,14 @@
         evil = {
           enable = true;
           command = ["evil-mode"];
+          config = ''
+            (define-key evil-motion-state-map " " nil)
+            (define-key evil-motion-state-map (kbd "SPC f") 'lsp-format-buffer)
+            (define-key evil-motion-state-map (kbd "SPC h") 'evil-window-left)
+            (define-key evil-motion-state-map (kbd "SPC j") 'evil-window-down)
+            (define-key evil-motion-state-map (kbd "SPC k") 'evil-window-up)
+            (define-key evil-motion-state-map (kbd "SPC l") 'evil-window-right)
+          '';
         };
 
         evil-collection = {

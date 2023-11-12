@@ -9,7 +9,7 @@
   '(inhibit-startup-screen t))
 ;; Set a font
 (add-to-list 'default-frame-alist
-              '(font . "Monaspace Neon 15"))
+              '(font . "Iosevka q 15"))
 (column-number-mode 1)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
