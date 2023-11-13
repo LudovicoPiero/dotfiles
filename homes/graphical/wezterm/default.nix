@@ -60,7 +60,7 @@ in {
         background = "#${colors.base00}";
         cursor_fg = "#${colors.base05}";
         cursor_bg = "#${colors.base05}";
-        compuse_cursor = "${colors.base06}";
+        compose_cursor = "${colors.base06}";
         scrollbar_thumb = "${colors.base01}";
         cursor_border = "#${colors.base05}";
         selection_fg = "#${colors.base00}";
