@@ -17,6 +17,9 @@
 
   boot = {
     kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
+    kernelParams = [
+      "quiet"
+    ];
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
     initrd.kernelModules = ["dm-snapshot"];
     kernelModules = ["kvm-amd"];
