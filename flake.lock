@@ -502,9 +502,7 @@
     },
     "nix-colors": {
       "inputs": {
-        "base16-schemes": [
-          "base16-schemes"
-        ],
+        "base16-schemes": "base16-schemes",
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
@@ -765,7 +763,6 @@
       "inputs": {
         "aagl": "aagl",
         "arrpc": "arrpc",
-        "base16-schemes": "base16-schemes",
         "chaotic": "chaotic",
         "devshell": "devshell",
         "flake-compat": "flake-compat",
