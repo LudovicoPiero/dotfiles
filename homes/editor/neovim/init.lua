@@ -123,6 +123,12 @@ require("lazy").setup({
     end,
   },
 
+  -- nvim-scrollbar
+  {
+    "petertriho/nvim-scrollbar",
+    opts = {},
+  },
+
   {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
