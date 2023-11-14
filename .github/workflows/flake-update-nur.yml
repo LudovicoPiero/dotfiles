@@ -1,12 +1,12 @@
-name: Update Flakes
+name: Update Nur
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 12 * * 0" # At 12:00 on Sunday
+    - cron: "0 12 * * 1-6" # At 12:00 on every day-of-week from Monday through Saturday
 
 jobs:
-  update-multiple-inputs:
+  update-nur-repository:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -21,7 +21,8 @@ jobs:
         id: update
         uses: DeterminateSystems/update-flake-lock@v20
         with:
-          pr-title: "Update flake.lock" # Title of PR to be created
+          inputs: nur
+          pr-title: "Update Nur Repository" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
             dependencies
             automated
