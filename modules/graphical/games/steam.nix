@@ -1,16 +1,7 @@
-{
-  pkgs,
-  # config,
-  ...
-}: {
+{pkgs, ...}: {
   programs.steam = {
     enable = true;
     package = pkgs.steam;
-    # package = pkgs.steam-small.override {
-    #   extraEnv = {
-    #     AMD_VULKAN_ICD = config.environment.sessionVariables.AMD_VULKAN_ICD;
-    #   };
-    # };
   };
 
   /*

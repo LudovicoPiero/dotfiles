@@ -1,28 +1,5 @@
 {
   "nodes": {
-    "aagl": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1699926970,
-        "narHash": "sha256-UXyGs95Bkqc4R9kiHopyowrUxieP9ZgKUlfqXcjjdAE=",
-        "owner": "ezKEa",
-        "repo": "aagl-gtk-on-nix",
-        "rev": "d401d281cf8acb7272712d79fc1bf1d8accf13ee",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ezKEa",
-        "repo": "aagl-gtk-on-nix",
-        "type": "github"
-      }
-    },
     "arrpc": {
       "inputs": {
         "nixpkgs": [
@@ -761,7 +738,6 @@
     },
     "root": {
       "inputs": {
-        "aagl": "aagl",
         "arrpc": "arrpc",
         "chaotic": "chaotic",
         "devshell": "devshell",
