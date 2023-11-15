@@ -112,8 +112,8 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "pure-fish";
             repo = "pure";
-            rev = "924c1c6a9c88125d8d58f00ffe5816fed57f4d99";
-            hash = "sha256-PudanwWHDzA8a5I/+hQtsBT/NTTJN5pcyVfFP4fJjWU=";
+            rev = "f1b2c7049de3f5cb45e29c57a6efef005e3d03ff";
+            hash = "sha256-MnlqKRmMNVp6g9tet8sr5Vd8LmJAbZqLIGoDE5rlu8E=";
           };
         }
         {
