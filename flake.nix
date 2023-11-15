@@ -114,12 +114,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    base16-schemes.url = "github:tinted-theming/base16-schemes";
+    base16-schemes.flake = false;
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+      inputs.base16-schemes.follows = "base16-schemes";
+    };
+
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     devshell.url = "github:numtide/devshell";
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/nur";
-    nix-colors.url = "github:misterio77/nix-colors";
     nix-super.url = "github:privatevoid-net/nix-super";
     nixos-flake.url = "github:srid/nixos-flake";
     treefmt-nix.url = "github:numtide/treefmt-nix";
