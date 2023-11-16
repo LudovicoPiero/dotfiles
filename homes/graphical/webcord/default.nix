@@ -10,5 +10,5 @@
     vesktop
   ];
 
-  services.arrpc.enable = false;
+  services.arrpc.enable = true;
 }
