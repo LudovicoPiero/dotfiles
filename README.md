@@ -1,19 +1,17 @@
 <div align="center">
-
-<img alt="NixOS" src="assets/nix-snowflake.svg" width="120px"/>
-
-# ❖ Ludovico's Dotfiles ❖
-
-![GitHub Repo stars](https://img.shields.io/github/stars/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
-![GitHub last commit](https://img.shields.io/github/last-commit/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
-![GitHub repo size](https://img.shields.io/github/repo-size/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea)
-[![NixOS Unstable](https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea)](https://nixos.org)
-
+    <img alt="NixOS" src="assets/nix-snowflake.svg" width="120px"/>
+    <h1>❖ Ludovico's Dotfiles ❖</h1>
+    <img src="https://img.shields.io/github/stars/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea" alt="GitHub Repo stars"/>
+    <img src="https://img.shields.io/github/last-commit/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea" alt="GitHub last commit"/>
+    <img src="https://img.shields.io/github/repo-size/ludovicopiero/dotfiles?style=for-the-badge&labelColor=1B2330&color=ef65ea" alt="GitHub repo size"/>
+    <a href="https://nixos.org" target="_blank">
+        <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1B2330&logo=NixOS&logoColor=white&color=ef65ea" alt="NixOS Unstable"/>
+    </a>
 </div>
 
-This is my personal NixOS configuration. It is a work in progress. I am using this configuration to learn Nix and to learn how to use NixOS to manage my personal computers. This configuration is based on [nixos-flake](https://github.com/srid/nixos-flake).
+This is my personal NixOS configuration, a work in progress. I'm using this setup to learn Nix and manage my personal computers with NixOS, based on [nixos-flake](https://github.com/srid/nixos-flake).
 
-> **Any damage caused by this configuration is not my responsibility. Use at your own risk.**
+> **Disclaimer: Any damage caused by this configuration is not my responsibility. Use at your own risk.**
 
 [README-ja](README-ja.md)
 
@@ -31,20 +29,22 @@ This is my personal NixOS configuration. It is a work in progress. I am using th
 - Shell: [Fish](https://fishshell.com)
 - Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
 
-## **Acknowledgment:**
+## **Acknowledgment**
 
-These are the people who have helped me learn Nix and NixOS. I would not have been able to do this without them.
+Special thanks to those who helped me learn Nix and NixOS:
 
 - [fufexan](https://github.com/fufexan)
 - [misterio77](https://github.com/misterio77)
 - [hlissner](https://github.com/hlissner)
 - [sweenu](https://github.com/sweenu)
 
+Also, a big shoutout to everyone I can't mention individually, but your support is greatly appreciated.
+
 ## **Resources**
 
-Here are some resources for learning Nix/NixOS
+Explore these resources to learn more about Nix/NixOS:
 
+- [flakular](https://flakular.in/)
 - [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/)
 - [nix-pills](https://nixos.org/guides/nix-pills/)
 - [thiscute](https://nixos-and-flakes.thiscute.world/preface)
-- [zero-to-flakes](https://zero-to-flakes.com/)
