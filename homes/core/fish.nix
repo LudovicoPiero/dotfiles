@@ -91,8 +91,8 @@ in
         "l" = "${_ eza} -lbF --git --icons";
         "ll" = "${_ eza} -lbGF --git --icons";
         "llm" = "${_ eza} -lbGF --git --sort=modified --icons";
-        "la" = "${_ eza} -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
-        "lx" = "${_ eza} -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --icons";
+        "la" = "${_ eza} -lbhHigUmuSa --time-style=long-iso --git --icons";
+        "lx" = "${_ eza} -lbhHigUmuSa@ --time-style=long-iso --git --icons";
         "t" = "${_ eza} --tree --icons";
         "tree" = "${_ eza} --tree --icons";
         "lg" = "lazygit";
