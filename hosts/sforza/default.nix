@@ -54,11 +54,22 @@
   time.timeZone = "Asia/Tokyo";
 
   networking = {
+    defaultGateway = "192.168.1.1";
     hostName = "sforza";
+    useDHCP = false;
     nameservers = lib.mkForce [
       "1.1.1.1"
       "1.0.0.1"
     ];
+    interfaces.enp3s0.useDHCP = lib.mkDefault true;
+    interfaces.wlp4s0 = {
+      ipv4.addresses = [
+        {
+          address = "192.168.1.69";
+          prefixLength = 24;
+        }
+      ];
+    };
     networkmanager.enable = true;
   };
 
