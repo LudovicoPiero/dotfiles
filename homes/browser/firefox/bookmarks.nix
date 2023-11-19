@@ -64,7 +64,7 @@
   }
   {
     name = "lol";
-    toolbar = true;
+    toolbar = false;
     bookmarks = [
       {
         name = "Google";

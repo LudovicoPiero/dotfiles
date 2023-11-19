@@ -13,11 +13,9 @@
           name = "Ludovico";
           extensions = with config.nur.repos.rycee.firefox-addons; [
             bitwarden
-            duckduckgo-privacy-essentials
-            fastforwardteam
-            i-dont-care-about-cookies
             notifier-for-github
             refined-github
+            skip-redirect
             sponsorblock
             to-deepl
             ublock-origin
