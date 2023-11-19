@@ -11,8 +11,8 @@
     family = "Iosevka q"
     spacing = "term"
     serifs = "sans"
-    no-cv-ss = true
-    export-glyph-names = false
+    noCvSs = true
+    exportGlyphNames = false
 
       [buildPlans.iosevka-q.variants]
       inherits = "ss14"
@@ -33,16 +33,16 @@ assert (extraParameters != null) -> set != null;
       if set != null
       then "iosevka-${set}"
       else "iosevka";
-    version = "27.3.4";
+    version = "28.0.0-alpha.1";
 
     src = fetchFromGitHub {
       owner = "be5invis";
       repo = "iosevka";
       rev = "v${version}";
-      hash = "sha256-JsK2jzXyAACh9e3P2y0YLky2XQuR/dKyEbRpFUSnJdM=";
+      hash = "sha256-TgZ1JcUONkKjzbIcbSnoyD7N3QcJN/xgAicV3bXEzV8=";
     };
 
-    npmDepsHash = "sha256-uchJ+1NWbo4FpNOjOO3luhIdZyQZLToZ1UCMLdGzjkY=";
+    npmDepsHash = "sha256-IJoXNATJe9TWJ/n1445VjXRci1iKBvxpvhZg6Lswnm8=";
 
     nativeBuildInputs =
       [
@@ -97,7 +97,7 @@ assert (extraParameters != null) -> set != null;
       runHook preInstall
       fontdir="$out/share/fonts/truetype"
       install -d "$fontdir"
-      install "dist/$pname/ttf"/* "$fontdir"
+      install "dist/$pname/TTF"/* "$fontdir"
       runHook postInstall
     '';
 
