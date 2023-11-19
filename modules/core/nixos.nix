@@ -110,7 +110,7 @@
       experimental-features = [
         "auto-allocate-uids"
         "ca-derivations"
-        "configurable-impure-env"
+        # "configurable-impure-env"
         "flakes"
         "no-url-literals"
         "nix-command"
