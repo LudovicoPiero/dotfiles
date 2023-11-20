@@ -18,13 +18,13 @@
   boot = {
     kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
     kernelParams = [
-      "quiet"
+      # "quiet"
     ];
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
     initrd.kernelModules = ["dm-snapshot"];
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
-    supportedFilesystems = ["bcachefs" "ntfs" "xfs"];
+    supportedFilesystems = ["btrfs" "ntfs" "xfs"];
   };
 
   fileSystems = let
@@ -32,46 +32,60 @@
     userHome = "/home/${username}";
   in {
     "${userHome}/Media" = {
-      device = "/dev/disk/by-uuid/7fe1c09f-a018-45e7-a7d7-bbc2958a30df";
+      device = "/dev/disk/by-label/Media";
       fsType = "xfs";
     };
 
     "${userHome}/WinE" = {
-      device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
+      device = "/dev/disk/by-label/WinE";
       fsType = "ntfs";
       options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
     };
 
     "/" = {
-      device = "tank/local/root";
-      fsType = "zfs";
+      device = "none";
+      fsType = "tmpfs";
+      options = ["defaults" "size=2G" "mode=755"];
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/1253-75DB";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
     "/nix" = {
-      device = "tank/local/nix";
-      fsType = "zfs";
+      device = "/dev/disk/by-label/store";
+      fsType = "btrfs";
+      options = ["autodefrag" "compress-force=zstd" "discard=async" "noatime" "space_cache=v2" "ssd"];
     };
 
     "/home" = {
-      device = "tank/safe/home";
-      fsType = "zfs";
+      device = "/dev/disk/by-label/Home";
+      fsType = "xfs";
       neededForBoot = true;
     };
 
     "/persist" = {
-      device = "tank/safe/persist";
-      fsType = "zfs";
+      device = "/dev/disk/by-label/Persist";
+      fsType = "xfs";
       neededForBoot = true;
+    };
+
+    "/etc/nixos" = {
+      device = "/persist/etc/nixos";
+      fsType = "none";
+      options = ["bind"];
+    };
+
+    "/var/log" = {
+      device = "/persist/var/log";
+      fsType = "none";
+      options = ["bind"];
     };
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/c186e5b4-bdba-46fd-8523-d484ebcb7108";}
+    {device = "/dev/disk/by-label/Swap";}
   ];
 
   nix.settings.max-jobs = lib.mkDefault 4;
