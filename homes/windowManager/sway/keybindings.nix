@@ -10,8 +10,8 @@
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  vesktop-wrapped = "${_ inputs.self.packages.${pkgs.system}.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
-  webcord-wrapped = "${_ inputs.self.packages.${pkgs.system}.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
+  vesktop-wrapped = "${_ inputs.master.legacyPackages.${pkgs.system}.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
+  webcord-wrapped = "${_ inputs.master.legacyPackages.${pkgs.system}.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
 in {
   # Kill focused window
   "${mod}+w" = "kill";

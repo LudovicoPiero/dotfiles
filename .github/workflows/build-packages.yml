@@ -40,4 +40,4 @@ jobs:
 
       - name: "Build Packages"
         run: |-
-          nix build --print-build-logs .#geist-font .#multicolor-sddm-theme .#iosevka-q .#san-francisco-pro .#spotify .#vesktop .#webcord-vencord .#wezterm
+          nix build --print-build-logs .#geist-font .#multicolor-sddm-theme .#iosevka-q .#san-francisco-pro .#spotify .#wezterm

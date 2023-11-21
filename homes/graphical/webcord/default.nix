@@ -5,7 +5,7 @@
 }: {
   imports = [inputs.arrpc.homeManagerModules.default];
 
-  home.packages = with inputs.self.packages.${pkgs.system}; [
+  home.packages = with inputs.master.legacyPackages.${pkgs.system}; [
     webcord-vencord
     vesktop
   ];
