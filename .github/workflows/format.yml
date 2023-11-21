@@ -1,8 +1,16 @@
 name: Nix Format Checker
 
 on:
-  pull_request:
   push:
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.lua"
+      - "**/*.el"
+  pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.lua"
+      - "**/*.el"
 
 jobs:
   format:
