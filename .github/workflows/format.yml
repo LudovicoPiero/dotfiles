@@ -18,6 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v7
+      - uses: DeterminateSystems/nix-installer-action@v8
       - uses: DeterminateSystems/magic-nix-cache-action@v2
       - run: nix run nixpkgs#alejandra -- --check ./
