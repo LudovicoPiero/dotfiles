@@ -37,6 +37,9 @@
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
     dbus.packages = [pkgs.gcr];
+
+    # Enable periodic SSD TRIM of mounted partitions in background
+    fstrim.enable = true;
   };
 
   environment = {
