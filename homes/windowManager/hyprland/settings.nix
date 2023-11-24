@@ -165,7 +165,7 @@ in {
   windowrulev2 = [
     "workspace 9, class:^(thunderbird)$"
     "workspace 8, class:^(whatsapp-for-linux)$"
-    "workspace 7, class:^(qBittorrent)$"
+    "workspace 7, class:^(qBittorrent|org.qbittorrent.qBittorrent)$"
     "workspace 6, class:^(steam)$"
     "workspace 6, title:^(Sign in to Steam)$"
     "workspace 5, title:(Spotify)"
