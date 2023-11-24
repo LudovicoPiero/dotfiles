@@ -6,28 +6,49 @@ on:
     - cron: "0 12 * * SAT,TUE" # At 12:00 on Saturday & Tuesday (UTC)
 
 jobs:
-  update-multiple-inputs:
+  get-flakes:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.get-flakes.outputs.matrix }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v23
+      - uses: actions/checkout@v4.1.1
+      - uses: cachix/install-nix-action@v23
         with:
           install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
-
-      - name: Update flake.lock
-        id: update
-        uses: DeterminateSystems/update-flake-lock@v20
-        with:
-          pr-title: "Update flake.lock" # Title of PR to be created
-          pr-labels: | # Labels to be set on the PR
-            dependencies
-            automated
-
-      - name: merge
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.MAXI_TOKEN }}
+            experimental-features = nix-command flakes recursive-nix
+      - name: generate flake matrix
+        id: get-flakes
         run: |
-          gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          set -euo pipefail
+
+          flakes="$(nix flake metadata --json | jq -rcM '.locks.nodes.root.inputs | {flake: keys}')"
+          echo "matrix=$flakes" >> "$GITHUB_OUTPUT"
+
+  update-flake:
+    name: update-${{ matrix.flake }}
+    runs-on: ubuntu-latest
+    needs: get-flakes
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.get-flakes.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: cachix/install-nix-action@v23
+        with:
+          install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.MAXI_TOKEN }}
+            experimental-features = nix-command flakes recursive-nix
+      - run: git config --global user.email "59017537+MaximilianSforza@users.noreply.github.com"
+      - run: git config --global user.name "Maximilian"
+      - uses: cpcloud/flake-update-action@v1.0.4
+        with:
+          dependency: ${{ matrix.flake }}
+          pull-request-token: ${{ secrets.PR_TOKEN }}
+          pull-request-author: Maximilian <59017537+MaximilianSforza@users.noreply.github.com>
+          github-token: ${{ secrets.GH_TOKEN }}
+          delete-branch: true
+          pull-request-branch-prefix: "flake/update-"
+          automerge: true
