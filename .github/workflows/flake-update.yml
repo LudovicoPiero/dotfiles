@@ -3,7 +3,7 @@ name: Update Flakes
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 12 * * SAT,TUE" # At 12:00 on Saturday & Tuesday (UTC)
+    - cron: "0 0 * * *" # At 00:00
 
 jobs:
   get-flakes:
