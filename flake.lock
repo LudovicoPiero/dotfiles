@@ -762,7 +762,6 @@
         "nur": "nur",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
-        "stable": "stable",
         "treefmt-nix": "treefmt-nix",
         "unstable": "unstable"
       }
@@ -831,22 +830,6 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "type": "github"
-      }
-    },
-    "stable": {
-      "locked": {
-        "lastModified": 1700655232,
-        "narHash": "sha256-cr9w7Co6qLP2wuRIOszjrWxVAljUeEOxjZ08RQps0Xg=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "53127ebc35f86437506288d19b0ff9f702cef35c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "release-23.05",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
