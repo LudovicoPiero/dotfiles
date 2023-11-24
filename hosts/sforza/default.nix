@@ -17,6 +17,12 @@
     };
   };
 
+  services.jellyfin = {
+    enable = true;
+    user = "ludovico";
+    openFirewall = true;
+  };
+
   boot = {
     # Lanzaboote currently replaces the systemd-boot module.
     # This setting is usually set to true in configuration.nix
