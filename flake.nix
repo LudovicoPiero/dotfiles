@@ -55,19 +55,14 @@
           programs = {
             alejandra.enable = true;
             deadnix.enable = true;
-            shellcheck.enable = true;
             statix.enable = true;
             statix.disabled-lints = ["repeated_keys"];
-            rustfmt.enable = true;
             stylua.enable = true;
-            shfmt = {
-              enable = true;
-              indent_size = 2;
-            };
             prettier = {
               enable = true;
               includes = [
                 "*.json"
+                "*.yml"
                 "*.yaml"
                 "*.md"
               ];
