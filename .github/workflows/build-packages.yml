@@ -1,15 +1,15 @@
 name: build-packages-and-populate
 on:
-  push:
-    paths-ignore:
-      - "**/*.md"
-      - "**/*.lua"
-      - "**/*.el"
-  pull_request:
-    paths-ignore:
-      - "**/*.md"
-      - "**/*.lua"
-      - "**/*.el"
+  # push:
+  #   paths-ignore:
+  #     - "**/*.md"
+  #     - "**/*.lua"
+  #     - "**/*.el"
+  # pull_request:
+  #   paths-ignore:
+  #     - "**/*.md"
+  #     - "**/*.lua"
+  #     - "**/*.el"
   workflow_dispatch:
 
 jobs:
