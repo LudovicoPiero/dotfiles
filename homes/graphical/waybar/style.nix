@@ -18,7 +18,7 @@ in ''
   }
 
   #workspaces {
-    background-color: #${colors.base00};
+    background-color: #${colors.base0C};
     margin: 2px;
     margin-left: 2px;
     border-radius: 0px;
@@ -26,19 +26,27 @@ in ''
 
   #workspaces button {
     padding: 0px 5px;
-    color: #${colors.base05};
+    background-color: #${colors.base00};
+    border-radius: 0px;
+  }
+
+  #workspaces button.empty {
+    color: #${colors.base0C};
+    background-color: #${colors.base00};
+  }
+
+  #workspaces button.visible {
+    color: #${colors.base0B};
   }
 
   #workspaces button.active {
     color: #${colors.base00};
-    background-color: #${colors.base0D};
-    border-radius: 0px;
+    background-color: #${colors.base09};
   }
 
   #workspaces button:hover {
-    background-color: #${colors.base0D};
     color: #${colors.base00};
-    border-radius: 0px;
+    background-color: #${colors.base0A};
   }
 
   #tags {
