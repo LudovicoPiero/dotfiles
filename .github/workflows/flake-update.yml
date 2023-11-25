@@ -48,7 +48,6 @@ jobs:
           dependency: ${{ matrix.flake }}
           pull-request-token: ${{ secrets.PR_TOKEN }}
           pull-request-author: Maximilian <59017537+MaximilianSforza@users.noreply.github.com>
-          pull-request-merge-method: "merge"
           github-token: ${{ secrets.GH_TOKEN }}
           pull-request-labels: automated,uwu
           delete-branch: true
