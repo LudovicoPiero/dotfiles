@@ -49,7 +49,7 @@
         viewnior
         element-desktop
         whatsapp-for-linux
-        qbittorrent-qt5
+        qbittorrent
         yazi # Terminal File Manager
         ;
 
