@@ -538,11 +538,11 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1700687412,
-        "narHash": "sha256-XJ/qOgzABDeSQnJkNfkg7AFVpdHnAvbxQtX6DEd57RA=",
+        "lastModified": 1700941252,
+        "narHash": "sha256-2c8miJcsG24YEtXOSjvgW0ES1ND5DpY+ymGPq3S56YE=",
         "owner": "privatevoid-net",
         "repo": "nix-super",
-        "rev": "4f4d3a538eb78a8232bc4cb4c9df6747a6703b2a",
+        "rev": "c076362db8b438c921d9bbe196ede50205f788c6",
         "type": "github"
       },
       "original": {
