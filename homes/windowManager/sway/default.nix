@@ -3,20 +3,20 @@
   pkgs,
   inputs,
   lib,
-  self,
   ...
 }: let
   inherit (config.colorScheme) colors;
 in {
   wayland.windowManager.sway = {
     enable = true;
+    package = inputs.chaotic.packages.${pkgs.system}.sway_git;
     config = {
       colors = import ./colors.nix {inherit colors;};
       keybindings = import ./keybindings.nix {inherit lib inputs config pkgs;};
       bars = import ./bars.nix {inherit colors;};
       window = import ./windows.nix;
       output = {
-        "*" = {bg = "#808080";};
+        "*" = {bg = "#808080 solid_color";};
       };
       input = {
         "type:touchpad" = {
