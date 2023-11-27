@@ -59,7 +59,7 @@ in {
         {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
         {command = "fcitx5 -d --replace";}
         {command = "dunst";}
-        {command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";}
+        {command = "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";}
       ];
       modifier = "Mod4";
       terminal = "${inputs.self.packages.${pkgs.system}.wezterm}/bin/wezterm";
