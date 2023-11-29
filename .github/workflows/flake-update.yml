@@ -12,11 +12,7 @@ jobs:
       matrix: ${{ steps.get-flakes.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v23
-        with:
-          install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
-          extra_nix_config: |
-            experimental-features = nix-command flakes recursive-nix
+      - uses: DeterminateSystems/nix-installer-action@v8
       - name: generate flake matrix
         id: get-flakes
         run: |
@@ -34,11 +30,7 @@ jobs:
       matrix: ${{ fromJson(needs.get-flakes.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v23
-        with:
-          install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
-          extra_nix_config: |
-            experimental-features = nix-command flakes recursive-nix
+      - uses: DeterminateSystems/nix-installer-action@v8
       - run: git config --global user.email "59017537+MaximilianSforza@users.noreply.github.com"
       - run: git config --global user.name "Maximilian"
       - uses: cpcloud/flake-update-action@main
