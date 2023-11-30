@@ -17,6 +17,8 @@
   programs.emacs = {
     enable = true;
 
+    package = pkgs.emacs29-pgtk;
+
     init = {
       enable = true;
       recommendedGcSettings = true;
