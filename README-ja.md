@@ -44,7 +44,4 @@ NixとNixOSを学ぶのに助けてくれた方々に特に感謝します:
 
 Nix/NixOSについてもっと学ぶためのリソース:
 
-- [flakular](https://flakular.in/)
 - [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/)
-- [nix-pills](https://nixos.org/guides/nix-pills/)
-- [thiscute](https://nixos-and-flakes.thiscute.world/preface)

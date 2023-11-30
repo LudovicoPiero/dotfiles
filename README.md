@@ -44,7 +44,4 @@ Also, a big shoutout to everyone I can't mention individually, but your support 
 
 Explore these resources to learn more about Nix/NixOS:
 
-- [flakular](https://flakular.in/)
 - [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/)
-- [nix-pills](https://nixos.org/guides/nix-pills/)
-- [thiscute](https://nixos-and-flakes.thiscute.world/preface)
