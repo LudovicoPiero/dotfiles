@@ -10,7 +10,7 @@ in {
   programs.spicetify = {
     enable = true;
     spotifyPackage = inputs.self.packages.${pkgs.system}.spotify;
-    theme = spicePkgs.themes.Dribbblish;
+    theme = spicePkgs.themes.fluent;
     colorScheme = "custom";
     customColorScheme = {
       text = "${colors.base04}";
