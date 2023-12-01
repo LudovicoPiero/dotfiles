@@ -185,6 +185,8 @@
 
       # Float firefox screenshare indicator
       riverctl rule-add -title 'Firefox — Sharing Indicator' float
+      riverctl rule-add -title 'Open Files' float
+      riverctl rule-add -title 'File Upload' float
 
       # Make specific applications use server-side decorations
       riverctl rule-add -app-id firefox ssd
