@@ -6,8 +6,8 @@
 }: {
   environment = {
     etc."greetd/environments".text = ''
-      Hyprland
       river
+      Hyprland
       sway
       fish
     '';
