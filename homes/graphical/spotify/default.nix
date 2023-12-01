@@ -5,7 +5,6 @@
   ...
 }: let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  inherit (config.colorScheme) colors;
 in {
   programs.spicetify = {
     enable = true;

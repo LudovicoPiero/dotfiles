@@ -61,8 +61,15 @@ in ''
     color: #${colors.base05};
   }
 
+  #tags button.occupied {
+    color: #${colors.base01};
+    background-color: #${colors.base07};
+    border-radius: 0px;
+  }
+
+
   #tags button.focused {
-    color: #${colors.base00};
+    color: #${colors.base01};
     background-color: #${colors.base0D};
     border-radius: 0px;
   }

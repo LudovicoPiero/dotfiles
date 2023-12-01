@@ -22,7 +22,7 @@
       dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
       ${_ pkgs.waybar} &
       ${_ pkgs.dunst} &
-      systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
+      systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
       fcitx5 -d --replace
 
       # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
@@ -31,6 +31,22 @@
 
       # Super+P to start an instance of fuzzel
       riverctl map normal Super P spawn ${_ pkgs.fuzzel}
+
+      # Super+D to start an instance of Vesktop ( Discord Vencord )
+      riverctl map normal Super D spawn "${_ inputs.master.legacyPackages.${pkgs.system}.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime"
+
+      # Super+G to start an instance of firefox
+      riverctl map normal Super G spawn "${_ pkgs.firefox} -P Ludovico"
+      riverctl map normal Super+Shift G spawn "${_ pkgs.firefox} -P Schizo"
+
+      # Super+S to start an instance of spotify
+      riverctl map normal Super S spawn spotify
+
+      # Screenshot
+      riverctl map normal Control Print spawn "grimblast save area - | ${_ pkgs.swappy} -f -"
+      riverctl map normal Alt Print spawn "grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
+      riverctl map normal Super Print spawn "sharenix --selection"
+      riverctl map normal Super+Shift Print spawn "wl-ocr"
 
       # Super+W to close the focused view
       riverctl map normal Super W close
@@ -166,6 +182,23 @@
 
       # Make all views with app-id "bar" and any title use client-side decorations
       riverctl rule-add -app-id "bar" csd
+
+      # Float firefox screenshare indicator
+      riverctl rule-add -title 'Firefox — Sharing Indicator' float
+
+      # Make specific applications use server-side decorations
+      riverctl rule-add -app-id firefox ssd
+      riverctl rule-add -app-id VencordDesktop ssd
+      riverctl rule-add -app-id org.wezfurlong.wezterm ssd
+      riverctl rule-add -app-id thunderbird ssd
+
+      riverctl rule-add -app-id "firefox" tags $((1 << 1))
+      riverctl rule-add -app-id "VencordDesktop" tags $((1 << 2))
+      riverctl rule-add -app-id "org.telegram.desktop" tags $((1 << 3))
+      riverctl rule-add -app-id "Spotify" tags $((1 << 4))
+      riverctl rule-add -app-id "steam" tags $((1 << 5))
+      riverctl rule-add -app-id "org.qbittorrent.qBittorrent" tags $((1 << 6))
+      riverctl rule-add -app-id "thunderbird" tags $((1 << 8))
 
       # Set the default layout generator to be rivertile and start it.
       # River will send the process group of the init executable SIGTERM on exit.

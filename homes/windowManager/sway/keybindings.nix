@@ -100,10 +100,9 @@ in {
   "${mod}+Shift+e" = "exec ${pkgs.xfce.thunar}/bin/thunar";
 
   ### Screenshot
-  "Print" = "exec sharenix --selection";
-  "${mod}+Print" = "exec grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
+  "${mod}+Print" = "sharenix --selection";
   "${mod}+Shift+Print" = "exec wl-ocr";
-  "CTRL+Print" = "exec grimblast --notify copy area";
+  "CTRL+Print" = "exec grimblast save area - | ${lib.getExe pkgs.swappy} -f -";
 
   # Volume
   # (un)mute output
