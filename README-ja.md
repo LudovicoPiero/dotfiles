@@ -23,7 +23,7 @@
 
 - Waylandコンポジター: [Hyprland](https://hyprland.org)
 - Waylandバー: [Waybar](https://github.com/Alexays/Waybar)
-- 通知マネージャー: [Dunst](https://dunst-project.org)
+- 通知マネージャー: [Mako](https://github.com/emersion/mako)
 - エディタ: [Neovim](https://neovim.io/)
 - ターミナル: [Kitty](https://github.com/kovidgoyal/kitty)
 - シェル: [Fish](https://fishshell.com)

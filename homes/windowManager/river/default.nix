@@ -21,7 +21,7 @@
       systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
       dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
       ${_ pkgs.waybar} &
-      ${_ pkgs.dunst} &
+      ${_ pkgs.mako} &
       systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
       fcitx5 -d --replace
 

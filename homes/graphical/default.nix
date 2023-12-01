@@ -4,7 +4,7 @@ _: {
     ./run-as-service.nix
     ./services.nix
 
-    ./dunst
+    ./mako
     ./foot
     ./fuzzel
     ./gammastep
