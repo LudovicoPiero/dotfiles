@@ -27,7 +27,7 @@
 
       # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
       # Super+Return to start an instance of foot
-      riverctl map normal Super Return spawn ${_ inputs.self.packages.${pkgs.system}.wezterm}
+      riverctl map normal Super Return spawn ${_ pkgs.foot}
 
       # Super+P to start an instance of fuzzel
       riverctl map normal Super P spawn ${_ pkgs.fuzzel}
