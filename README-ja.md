@@ -25,7 +25,7 @@
 - Waylandバー: [Waybar](https://github.com/Alexays/Waybar)
 - 通知マネージャー: [Dunst](https://dunst-project.org)
 - エディタ: [Neovim](https://neovim.io/)
-- ターミナル: [Wezterm](https://github.com/wez/wezterm)
+- ターミナル: [Kitty](https://github.com/kovidgoyal/kitty)
 - シェル: [Fish](https://fishshell.com)
 - ブラウザ: [Firefox](https://www.mozilla.org/en-US/firefox)
 

@@ -14,10 +14,6 @@
       spotify = pkgs.callPackage ./spotify {};
 
       wavefox = pkgs.callPackage ./wavefox {};
-
-      wezterm = pkgs.darwin.apple_sdk_11_0.callPackage ./wezterm {
-        inherit (pkgs.darwin.apple_sdk_11_0.frameworks) Cocoa CoreGraphics Foundation UserNotifications System;
-      };
     };
   };
 }

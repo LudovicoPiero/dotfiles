@@ -14,7 +14,6 @@ _: {
     ./qt
     ./spotify
     ./waybar
-    ./wezterm
     ./webcord
   ];
 }

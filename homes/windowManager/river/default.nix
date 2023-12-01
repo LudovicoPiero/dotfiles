@@ -26,8 +26,8 @@
       fcitx5 -d --replace
 
       # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
-      # Super+Return to start an instance of foot
-      riverctl map normal Super Return spawn ${_ pkgs.foot}
+      # Super+Return to start an instance of Kitty
+      riverctl map normal Super Return spawn ${_ pkgs.kitty}
 
       # Super+P to start an instance of fuzzel
       riverctl map normal Super P spawn ${_ pkgs.fuzzel}
@@ -191,7 +191,7 @@
       # Make specific applications use server-side decorations
       riverctl rule-add -app-id firefox ssd
       riverctl rule-add -app-id VencordDesktop ssd
-      riverctl rule-add -app-id org.wezfurlong.wezterm ssd
+      riverctl rule-add -app-id kitty ssd
       riverctl rule-add -app-id thunderbird ssd
 
       riverctl rule-add -app-id "firefox" tags $((1 << 1))
