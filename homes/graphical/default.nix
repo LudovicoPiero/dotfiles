@@ -5,15 +5,16 @@ _: {
     ./services.nix
 
     ./i3status-rs
-    ./foot
-    ./gammastep
     ./dunst
+    ./foot
+    ./fuzzel
+    ./gammastep
+    ./gtk
+    ./kitty
+    ./qt
+    ./spotify
     ./waybar
     ./wezterm
-    ./fuzzel
-    ./gtk
-    ./spotify
-    ./qt
     ./webcord
   ];
 }
