@@ -4,7 +4,6 @@ _: {
     ./run-as-service.nix
     ./services.nix
 
-    ./i3status-rs
     ./dunst
     ./foot
     ./fuzzel

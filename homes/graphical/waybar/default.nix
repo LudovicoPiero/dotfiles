@@ -32,6 +32,7 @@ in {
         modules-left = [
           "hyprland/workspaces"
           "river/tags"
+          "sway/workspaces"
           "tray"
         ];
         modules-right = [
@@ -73,13 +74,28 @@ in {
             "8" = "8";
             "9" = "9";
             "10" = "10";
-            # "active" = "󰝥";
             "default" = "󰝥";
             "special" = "󰦥";
           };
         };
         "river/tags" = {
           "num-tags" = 9;
+        };
+        "sway/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "8" = "8";
+            "9" = "9";
+            "10" = "10";
+            "default" = "󰝥";
+          };
         };
         "tray" = {
           spacing = 5;

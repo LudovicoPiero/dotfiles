@@ -13,7 +13,7 @@ in {
     config = {
       colors = import ./colors.nix {inherit colors;};
       keybindings = import ./keybindings.nix {inherit lib inputs config pkgs;};
-      bars = import ./bars.nix {inherit colors;};
+      bars = [];
       window = import ./windows.nix;
       output = {
         "*" = {bg = "#808080 solid_color";};
@@ -59,6 +59,7 @@ in {
         {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
         {command = "fcitx5 -d --replace";}
         {command = "dunst";}
+        {command = "waybar";}
         {command = "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";}
       ];
       modifier = "Mod4";
