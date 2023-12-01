@@ -40,12 +40,12 @@ in {
           "format-icons" = ["󰕿" "󰖀" "󰕾"];
         };
         "hyprland/workspaces" = {
-          active-only = false;
+          # active-only = false;
           show-special = true;
           on-scroll-up = "hyprctl dispatch workspace r-1";
           on-scroll-down = "hyprctl dispatch workspace r+1";
           format = "{icon}";
-          persistent-workspaces = {"*" = 5;};
+          # persistent-workspaces = {"*" = 5;};
           format-icons = {
             "1" = "1";
             "2" = "2";
