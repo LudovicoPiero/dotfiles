@@ -100,6 +100,10 @@ in ''
     color: #${colors.base09};
   }
 
+  #privacy {
+    color: #${colors.base0D};
+  }
+
   #tray,
   #custom-date,
   #custom-wireguard,
@@ -107,6 +111,7 @@ in ''
   #clock,
   #battery,
   #pulseaudio,
+  #privacy,
   #network {
     background-color: #${colors.base00};
     padding: 0px 5px;

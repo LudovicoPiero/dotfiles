@@ -14,6 +14,16 @@ in {
 
   programs.waybar = {
     enable = true;
+
+    package = pkgs.waybar.overrideAttrs (_: {
+      src = pkgs.fetchFromGitHub {
+        owner = "alexays";
+        repo = "waybar";
+        rev = "1572bc8c75007b633b647a124b6ec6623e7bae0b";
+        hash = "sha256-YdUZBLREmQuRvzwckkdI86Vo0iC8NZgcOXCy7agV+0w=";
+      };
+    });
+
     settings = {
       mainBar = {
         position = "bottom";
@@ -25,6 +35,7 @@ in {
           "tray"
         ];
         modules-right = [
+          "privacy"
           "network"
           "custom/wireguard"
           "custom/teavpn"
@@ -33,6 +44,11 @@ in {
           "custom/date"
           "clock"
         ];
+        "privacy" = {
+          "icon-spacing" = 4;
+          "icon-size" = 18;
+          "transition-duration" = 250;
+        };
         "pulseaudio" = {
           "format" = "{icon}{volume}%";
           "format-muted" = "󰖁";
