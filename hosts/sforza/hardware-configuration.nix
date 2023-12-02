@@ -22,7 +22,7 @@
       # "quiet"
     ];
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-    initrd.kernelModules = ["dm-snapshot"];
+    initrd.kernelModules = ["amdgpu" "dm-snapshot"];
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     supportedFilesystems = ["btrfs" "ntfs" "xfs"];
