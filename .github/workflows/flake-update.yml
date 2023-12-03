@@ -42,4 +42,4 @@ jobs:
           pull-request-labels: automated,uwu
           delete-branch: true
           pull-request-branch-prefix: "flake/update-"
-          automerge: true
+          automerge: false
