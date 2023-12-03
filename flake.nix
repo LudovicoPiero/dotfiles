@@ -78,11 +78,6 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs.follows = "unstable";
 
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
-
     # For Webcord
     arrpc = {
       url = "github:NotAShelf/arrpc-flake";
