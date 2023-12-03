@@ -17,7 +17,6 @@ jobs:
         id: get-flakes
         run: |
           set -euo pipefail
-
           flakes="$(nix flake metadata --json | jq -rcM '.locks.nodes.root.inputs | {flake: keys}')"
           echo "matrix=$flakes" >> "$GITHUB_OUTPUT"
 
@@ -42,4 +41,4 @@ jobs:
           pull-request-labels: automated,uwu
           delete-branch: true
           pull-request-branch-prefix: "flake/update-"
-          automerge: false
+          automerge: true
