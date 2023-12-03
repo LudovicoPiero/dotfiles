@@ -1,7 +1,0 @@
-pull_request_rules:
-  - name: automatic update of pull requests where more 2 commits behind
-    conditions:
-      - base=flake-parts
-      - "#commits-behind>2"
-    actions:
-      update:
