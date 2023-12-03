@@ -1,7 +1,7 @@
 pull_request_rules:
-  - name: "Automatic merge when CI passes and approved"
+  - name: automatic update of pull requests where more 2 commits behind
     conditions:
-      - "check-success=nixosConfig sforza"
-      - "base=flake-parts"
+      - base=flake-parts
+      - "#commits-behind>2"
     actions:
-      merge:
+      update:
