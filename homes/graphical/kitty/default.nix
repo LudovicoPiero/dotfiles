@@ -5,6 +5,11 @@ in {
   programs.kitty = {
     enable = true;
 
+    keybindings = {
+      "ctrl+shift+enter" = "new_window_with_cwd";
+      "ctrl+shift+t" = "new_tab_with_cwd";
+    };
+
     settings = {
       font_family = "Iosevka q SemiBold";
       bold_font = "auto";
