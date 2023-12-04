@@ -51,7 +51,7 @@ in {
         outer = 3;
       };
       fonts = {
-        names = ["Monaspace Neon"];
+        names = ["Iosevka q"];
         size = 10.0;
       };
       startup = [

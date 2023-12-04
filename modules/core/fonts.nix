@@ -14,11 +14,6 @@
         ;
 
       inherit
-        (inputs.master.legacyPackages.${pkgs.system})
-        monaspace
-        ;
-
-      inherit
         (pkgs)
         noto-fonts-cjk-sans
         material-design-icons

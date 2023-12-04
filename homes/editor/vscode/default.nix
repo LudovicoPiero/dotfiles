@@ -14,8 +14,8 @@
       "C_Cpp.intelliSenseEngine" = "disabled";
       "editor.cursorBlinking" = "phase";
       "editor.cursorSmoothCaretAnimation" = "on";
-      "editor.fontFamily" = "'Monaspace Neon', 'Material Design Icons', monospace";
-      "editor.fontLigatures" = "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'";
+      "editor.fontFamily" = "'Iosevka q', 'Material Design Icons', monospace";
+      # "editor.fontLigatures" = "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'";
       "editor.fontSize" = 18;
       "editor.formatOnSave" = false;
       "editor.minimap.enabled" = false;
