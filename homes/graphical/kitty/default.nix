@@ -12,6 +12,8 @@ in {
       bold_italic_font = "auto";
       font_size = 14;
 
+      cursor_shape = "block";
+      disable_ligatures = "cursor";
       scrollback_lines = 5000;
       enable_audio_bell = false;
       update_check_interval = 0;
