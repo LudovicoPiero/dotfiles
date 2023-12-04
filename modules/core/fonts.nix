@@ -20,6 +20,8 @@
         noto-fonts-emoji
         symbola
         ;
+
+      nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
     };
 
     # use fonts specified by user rather than default ones
