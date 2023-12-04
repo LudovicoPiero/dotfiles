@@ -12,13 +12,15 @@
     spacing = "term"
     serifs = "sans"
     noCvSs = true
-    exportGlyphNames = false
+    exportGlyphNames = true
 
       [buildPlans.iosevka-q.variants]
       inherits = "ss14"
 
         [buildPlans.iosevka-q.variants.design]
+        underscore = "low"
         brace = "curly-flat-boundary"
+        dollar = "open"
 
       [buildPlans.iosevka-q.ligations]
       inherits = "dlig"
