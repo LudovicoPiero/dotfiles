@@ -38,14 +38,9 @@
             inherit (devshell) env;
             name = "Devshell";
             commands = devshell.shellCommands;
-            packages = with pkgs; [
+            packages = [
               inputs'.sops-nix.packages.default
               config.treefmt.build.wrapper
-              nil
-              alejandra
-              git
-              statix
-              deadnix
             ];
           };
 
@@ -56,18 +51,11 @@
             alejandra.enable = true;
             deadnix.enable = true;
             statix.enable = true;
-            statix.disabled-lints = ["repeated_keys"];
+            # statix.disabled-lints = ["repeated_keys"];
             stylua.enable = true;
-            prettier = {
-              enable = true;
-              includes = [
-                "*.json"
-                "*.yml"
-                "*.yaml"
-                "*.md"
-              ];
-            };
           };
+
+          settings.formatter.stylua.options = ["--indent-type" "Spaces" "--indent-width" "2" "--quote-style" "ForceDouble"];
         };
       };
     };
