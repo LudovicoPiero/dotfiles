@@ -24,13 +24,20 @@
       lua-language-server
       stylua
 
+      # Python
+      nodePackages.pyright
+      isort
+      black
+
       # C/C++
       gcc
       clang
       clang-tools # for headers stuff
 
-      # Etc
+      # Rust
       rust-analyzer
+
+      # Etc
       ripgrep
       fd
     ];

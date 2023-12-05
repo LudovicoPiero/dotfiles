@@ -250,12 +250,6 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
-
--- For Hop.nvim
-vim.api.nvim_set_keymap("n", "s", ":HopWord <CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "S", ":HopLine <CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<C-s>", ":HopPattern <CR>", { silent = true, noremap = true })
-
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -478,15 +472,24 @@ local on_attach = function(_, bufnr)
   end, "[W]orkspace [L]ist Folders")
 
   -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-    vim.lsp.buf.format()
-  end, { desc = "Format current buffer with LSP" })
+  vim.api.nvim_create_user_command("Format", function(args)
+    local range = nil
+    if args.count ~= -1 then
+      local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+      range = {
+        start = { args.line1, 0 },
+        ["end"] = { args.line2, end_line:len() },
+      }
+    end
+    require("conform").format({ async = true, lsp_fallback = true, range = range })
+  end, { range = true })
 end
 
 -- document existing key chains
 require("which-key").register({
   ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
   ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+  ["<leader>f"] = { name = "[F]ormat", _ = "which_key_ignore" },
   ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
   ["<leader>h"] = { name = "More git", _ = "which_key_ignore" },
   ["<leader>p"] = { name = "[P]review", _ = "which_key_ignore" },
@@ -523,10 +526,9 @@ local serverConfigs = {
       },
     },
   },
+  pyright = {},
   rust_analyzer = {},
-  zk = {},
   clangd = {},
-  typst_lsp = {},
   nil_ls = {
     settings = {
       ["nil"] = {
