@@ -4,7 +4,7 @@
   inputs,
   ...
 }: {
-  colorScheme = inputs.nix-colors.colorSchemes.oxocarbon-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = {
     sessionVariables = {

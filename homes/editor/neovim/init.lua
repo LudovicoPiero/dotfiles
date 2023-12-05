@@ -113,13 +113,10 @@ require("lazy").setup({
 
   {
     -- Theme inspired by Atom
-    "glyh/oxocarbon.nvim",
-    branch = "lualine-support",
-    lazy = false,
+    "catppuccin/nvim",
     priority = 1000,
     config = function()
-      vim.opt.background = "dark"
-      vim.cmd.colorscheme("oxocarbon")
+      vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
 
@@ -136,7 +133,7 @@ require("lazy").setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = "oxocarbon",
+        theme = "catppuccin",
         component_separators = "|",
         section_separators = "",
         refresh = {

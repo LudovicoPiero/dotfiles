@@ -156,9 +156,9 @@
           command = ["pkg-info-version-info"];
         };
 
-        dracula-theme = {
+        catppuccin-theme = {
           enable = true;
-          init = "(load-theme 'dracula t)";
+          init = "(load-theme 'catppuccin t)";
         };
 
         # Configure magit, a nice mode for the git SCM.
