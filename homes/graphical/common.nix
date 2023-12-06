@@ -8,9 +8,6 @@
 
   home = {
     sessionVariables = {
-      # Colorific GCC.
-      GCC_COLORS = "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01";
-
       # https://ayats.org/blog/channels-to-flakes/
       NIX_PATH = "nixpkgs=flake:nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
 
