@@ -121,6 +121,8 @@
         "read-only-local-store"
       ];
 
+      accept-flake-config = true;
+      auto-optimise-store = true;
       keep-derivations = true;
       keep-outputs = true;
 
