@@ -2,7 +2,7 @@ _: {
   services.dnscrypt-proxy2 = {
     enable = true;
     settings = {
-      server_names = ["doh.tiar.app" "doh.tiar.app-doh" "doh.tiar.app-ipv6" "doh.tiar.app-doh-ipv6"];
+      server_names = ["doh.tiar.app" "doh.tiar.app-doh" "sby-limotelu" "sby-doh-limotelu" "doh.tiar.app-ipv6" "doh.tiar.app-doh-ipv6"];
       max_clients = 250;
 
       # Use servers reachable over IPv4
