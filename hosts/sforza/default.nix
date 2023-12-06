@@ -62,10 +62,6 @@
   networking = {
     hostName = "sforza";
     useDHCP = lib.mkForce true;
-    nameservers = lib.mkForce [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
     networkmanager.enable = true;
   };
 
