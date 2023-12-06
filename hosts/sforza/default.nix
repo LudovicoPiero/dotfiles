@@ -74,7 +74,7 @@
     tlp.enable = lib.mkForce true;
     tlp.settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       RADEON_DPM_STATE_ON_AC = "performance";
       RADEON_DPM_STATE_ON_BAT = "balanced";
       NMI_WATCHDOG = "0";
