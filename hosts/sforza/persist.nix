@@ -7,6 +7,7 @@ _: {
       "/etc/secureboot"
       "/var/lib/bluetooth"
       "/var/lib/docker"
+      "/var/lib/dnscrypt-proxy2"
       "/var/lib/jellyfin"
       "/var/lib/libvirt"
       "/var/lib/nixos"
