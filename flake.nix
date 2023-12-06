@@ -41,6 +41,7 @@
             packages = [
               inputs'.sops-nix.packages.default
               config.treefmt.build.wrapper
+              pkgs.sops
             ];
           };
 
