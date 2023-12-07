@@ -20,7 +20,7 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - uses: DeterminateSystems/nix-installer-action@v8
+      - uses: DeterminateSystems/nix-installer-action@v9
         with:
           extra-conf: |
             substituters = https://cache.garnix.io https://nyx.chaotic.cx https://cache.nixos.org/ https://cache.privatevoid.net https://nixpkgs-unfree.cachix.org https://numtide.cachix.org https://dotfiles-pkgs.cachix.org
