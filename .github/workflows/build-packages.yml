@@ -16,7 +16,7 @@ jobs:
   build-packages:
     runs-on: ubuntu-latest
     steps:
-      - uses: easimon/maximize-build-space@v9
+      - uses: easimon/maximize-build-space@v10
         with:
           overprovision-lvm: true
           remove-android: true
