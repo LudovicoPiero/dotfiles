@@ -1,0 +1,22 @@
+name: Nix Format Checker
+
+on:
+  push:
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.lua"
+      - "**/*.el"
+  pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.lua"
+      - "**/*.el"
+
+jobs:
+  format:
+    name: Run Alejandra
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v9
+      - run: nix fmt
