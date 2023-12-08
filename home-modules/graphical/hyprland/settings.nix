@@ -1,11 +1,10 @@
 { pkgs
 , lib
-  # , config
-  # , inputs
+, config
 , ...
 }:
 let
-  # inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) colors;
   _ = lib.getExe;
   terminal = "${_ pkgs.kitty}";
   launcher = "${_ pkgs.fuzzel}";
@@ -118,12 +117,8 @@ in
     gaps_in = 2;
     gaps_out = 2;
     border_size = 1;
-    # "col.active_border" = "rgb(${colors.base0D}) rgb(${colors.base08}) rgb(${colors.base0A}) 45deg";
-    # "col.inactive_border" = "rgb(${colors.base01})";
-    # "col.active_border" = "rgb(${colors.base0C})";
-    # "col.inactive_border" = "rgb(${colors.base02})";
-    "col.active_border" = "rgb(94e2d5)";
-    "col.inactive_border" = "rgb(313244)";
+    "col.active_border" = "rgb(${colors.base0C})";
+    "col.inactive_border" = "rgb(${colors.base02})";
 
     layout = "dwindle";
   };
@@ -131,10 +126,8 @@ in
   group = {
     groupbar = {
       render_titles = false;
-      # "col.active" = "rgb(${colors.base0B})";
-      # "col.inactive" = "rgb(${colors.base04})";
-      "col.active" = "rgb(a6e3a1)";
-      "col.inactive" = "rgb(585b70)";
+      "col.active" = "rgb(${colors.base0B})";
+      "col.inactive" = "rgb(${colors.base04})";
     };
     "col.border_active" = "rgb(a6e3a1)";
     "col.border_inactive" = "rgb(585b70)";
