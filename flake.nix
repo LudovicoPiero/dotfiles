@@ -42,6 +42,7 @@
     };
 
     devshell.url = "github:numtide/devshell";
+    nix-super.url = "github:privatevoid-net/nix-super";
     nix-colors.url = "github:misterio77/nix-colors";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nur.url = "github:nix-community/nur";
