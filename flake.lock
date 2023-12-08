@@ -503,11 +503,11 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1701818053,
-        "narHash": "sha256-rEGJx36jULHRIT71ie3lErCawSUaNKqL9+y7toa5EmU=",
+        "lastModified": 1701958654,
+        "narHash": "sha256-ZhXujNwvwTDLmCpYb7h2bTDdZG4h97hEYjzBmKP8p2U=",
         "owner": "privatevoid-net",
         "repo": "nix-super",
-        "rev": "cb968c096f50441b50539666f65a7389a47d37a4",
+        "rev": "661b025c79eac08beda593ede47b41b2052e8ebf",
         "type": "github"
       },
       "original": {
