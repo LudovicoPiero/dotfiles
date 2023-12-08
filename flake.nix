@@ -51,7 +51,7 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, devshell, treefmt-nix, flake-parts, ez-configs, ... }:
+    inputs@{ self, nixpkgs, devshell, treefmt-nix, flake-parts, ez-configs, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ez-configs.flakeModule
@@ -71,7 +71,7 @@
         {
           root = ./.;
           globalArgs = {
-            inherit inputs username;
+            inherit self inputs username;
           };
         };
 
