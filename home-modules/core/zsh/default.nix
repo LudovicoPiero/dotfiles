@@ -37,35 +37,74 @@ in
 
       history = {
         expireDuplicatesFirst = true;
-        path = "${config.xdg.dataHome}/zsh_history";
+        path = "$ZDOTDIR/.zsh_history";
+        ignorePatterns = [ "rm *" "pkill *" ];
       };
 
       initExtra = ''
-          # search history based on what's typed in the prompt
-          autoload -U history-search-end
-          zle -N history-beginning-search-backward-end history-search-end
-          zle -N history-beginning-search-forward-end history-search-end
-          bindkey "^[OA" history-beginning-search-backward-end
-          bindkey "^[OB" history-beginning-search-forward-end
+        # search history based on what's typed in the prompt
+        autoload -U history-search-end
+        zle -N history-beginning-search-backward-end history-search-end
+        zle -N history-beginning-search-forward-end history-search-end
+        bindkey "^[OA" history-beginning-search-backward-end
+        bindkey "^[OB" history-beginning-search-forward-end
 
-          # case insensitive tab completion
-          zstyle ':completion:*' completer _complete _ignored _approximate
-          zstyle ':completion:*' list-colors '\'
-          zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-          zstyle ':completion:*' menu select
-          zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-          zstyle ':completion:*' verbose true
-          _comp_options+=(globdots)
+        # case insensitive tab completion
+        zstyle ':completion:*' completer _complete _ignored _approximate
+        zstyle ':completion:*' list-colors '\'
+        zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+        zstyle ':completion:*' menu select
+        zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+        zstyle ':completion:*' verbose true
+        _comp_options+=(globdots)
 
-        ${lib.optionalString config.services.gpg-agent.enable ''
-          gnupg_path=$(ls $XDG_RUNTIME_DIR/gnupg)
-          export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/$gnupg_path/S.gpg-agent.ssh"
-        ''}
+        function bs() {
+          pushd ~/.config/nixos
+          nh os switch .
+            if [[ $? -eq 0 ]]; then
+              notify-send "Rebuild Switch" "Build successful!"
+            else
+              notify-send "Rebuild Switch" "Build failed!"
+            fi
+          popd
+        }
+
+        function bb() {
+          pushd ~/.config/nixos
+          nh os boot .
+            if [[ $? -eq 0 ]]; then
+              notify-send "Rebuild Boot" "Build successful!"
+            else
+              notify-send "Rebuild Boot" "Build failed!"
+            fi
+          popd
+        }
+
+        function hs() {
+          pushd ~/.config/nixos
+          nh home switch .
+            if [[ $? -eq 0 ]]; then
+              notify-send "Home-Manager Switch" "Build successful!"
+            else
+              notify-send "Home-Manager Switch" "Build failed!"
+            fi
+          popd
+        }
+
+        function fe() {
+          selected_file=$(rg --files ''$argv[1] | fzf --preview "bat -f {}")
+
+          if [ -n "$selected_file" ]; then
+            echo "$selected_file" | xargs $EDITOR
+          fi
+        }
+
+        function run() { nix run nixpkgs#$@[1] -- $@[2,-1] }
       '';
 
       dirHashes = {
-        cfg = "$HOME/ez"; #FIXME
+        cfg = "$HOME/.config/nixos";
         docs = "$HOME/Documents";
         vids = "$HOME/Videos";
         dl = "$HOME/Downloads";
@@ -75,8 +114,7 @@ in
         let
           _ = lib.getExe;
         in
-        with pkgs;
-        {
+        with pkgs; {
           "c" = "${_ commitizen} commit -- -s"; # Commit with Signed-off
           "cat" = "${_ bat}";
           "dla" = "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '${config.home.homeDirectory}/Media/Audios'"; # Download Audio
