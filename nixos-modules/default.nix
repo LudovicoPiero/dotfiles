@@ -143,12 +143,6 @@
       keep-derivations = true;
       keep-outputs = true;
 
-      /*
-      If set to true, Nix will conform to the XDG Base Directory Specification
-      for files in $HOME.
-      */
-      use-xdg-base-directories = true;
-
       # Whether to warn about dirty Git/Mercurial trees.
       warn-dirty = false;
 
