@@ -17,6 +17,7 @@
     ./graphical/mako
     ./graphical/fuzzel
     ./graphical/hyprland
+    ./graphical/services
     ./graphical/kitty
   ];
 
