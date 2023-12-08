@@ -41,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     devshell.url = "github:numtide/devshell";
     nix-super.url = "github:privatevoid-net/nix-super";
     nix-colors.url = "github:misterio77/nix-colors";

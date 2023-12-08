@@ -18,6 +18,7 @@
     ./graphical/fuzzel
     ./graphical/hyprland
     ./graphical/services
+    ./graphical/spotify
     ./graphical/kitty
   ];
 
