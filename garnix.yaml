@@ -1,0 +1,6 @@
+builds:
+  include:
+    - "devShells.x86_64-linux.*"
+    - "nixosConfigurations.*"
+    - "homeConfigurations.*"
+    - "packages.x86_64-linux.*"
