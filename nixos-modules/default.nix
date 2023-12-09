@@ -36,7 +36,7 @@
       fd
       sbctl # For debugging and troubleshooting Secure boot.
 
-      pwvucontrol
+      pavucontrol
       git
       bottom
       jq
@@ -57,6 +57,17 @@
     ];
 
     sessionVariables = {
+      NIXOS_OZONE_WL = "0";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      TERM = "screen-256color";
+      BROWSER = "firefox";
+      XCURSOR_SIZE = "24";
+      DIRENV_LOG_FORMAT = "";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      "_JAVA_AWT_WM_NONREPARENTING" = "1";
       FLAKE = "${config.users.users.${username}.home}/.config/nixos"; # For NH ( https://github.com/viperML/nh/ )
     };
   };
@@ -119,7 +130,7 @@
   };
 
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # https://ayats.org/blog/channels-to-flakes/
+    nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
 
     package = inputs.nix-super.packages.${pkgs.system}.nix;
 

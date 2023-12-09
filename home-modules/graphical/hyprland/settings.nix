@@ -223,9 +223,8 @@ in
     "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
 
     ", print, exec , wl-ocr"
-    "CTRL   , Print , exec , grimblast save area - | ${lib.getExe pkgs.swappy} -f -"
-    "ALT    , Print , exec , grimblast --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
-    "$mod   , Print , exec , sharenix --selection"
+    "CTRL   , Print , exec , ${lib.getExe pkgs.grimblast} save area - | ${lib.getExe pkgs.swappy} -f -"
+    "ALT    , Print , exec , ${lib.getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
 
     # Dwindle Keybind
     "$mod , h , resizeactive , -20 0"

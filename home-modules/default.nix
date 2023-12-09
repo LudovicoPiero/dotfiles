@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, ... }: {
+{ inputs, pkgs, config, lib, ... }: {
   imports = [
     inputs.nur.hmModules.nur
     inputs.nix-colors.homeManagerModules.default
@@ -24,13 +24,37 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   systemd.user.startServices = "sd-switch";
+  nix.registry.nixpkgs.flake = inputs.nixpkgs; # https://ayats.org/blog/channels-to-flakes/
 
-  home.packages = with pkgs;[
-    vscode
-    # vscodium
-    nil
-    nixpkgs-fmt
-  ];
+
+  home = {
+    packages = lib.attrValues {
+      inherit (inputs.chaotic.packages.${pkgs.system}) telegram-desktop_git;
+
+      inherit
+        (pkgs)
+        authy
+        mpv
+        thunderbird
+        imv
+        viewnior
+        qbittorrent
+        yazi;
+
+      inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
+
+      # use OCR and copy to clipboard
+      wl-ocr =
+        let
+          inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
+          _ = lib.getExe;
+        in
+        pkgs.writeShellScriptBin "wl-ocr" ''
+          ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
+          ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+        '';
+    };
+  };
 
   xdg =
     let
