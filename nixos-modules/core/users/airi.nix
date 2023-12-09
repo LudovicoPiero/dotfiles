@@ -5,8 +5,10 @@
 , ...
 }:
 {
+  programs.fish.enable = true;
+
   users.users."${username}" = {
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     initialPassword = "changeme";
     isNormalUser = true;
     uid = 1000;

@@ -6,7 +6,7 @@
     ./core/git
     ./core/gpg
     ./core/direnv
-    ./core/zsh
+    ./core/fish
 
     ./editor/nvim
 
