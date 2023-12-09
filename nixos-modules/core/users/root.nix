@@ -1,5 +1,5 @@
 _: {
   users.users.root = {
-    initialPassword = "changeme";
+    hashedPasswordFile = "/persist/users/root";
   };
 }

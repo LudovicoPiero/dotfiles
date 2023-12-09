@@ -9,7 +9,7 @@
 
   users.users."${username}" = {
     shell = pkgs.fish;
-    initialPassword = "changeme";
+    hashedPasswordFile = "/persist/users/airi";
     isNormalUser = true;
     uid = 1000;
     extraGroups =
