@@ -26,7 +26,7 @@
 - 通知マネージャー: [Mako](https://github.com/emersion/mako)
 - エディタ: [Neovim](https://neovim.io/)
 - ターミナル: [Kitty](https://github.com/kovidgoyal/kitty)
-- シェル: [Fish](https://fishshell.com)
+- シェル: [ZSH](https://www.zsh.org/)
 - ブラウザ: [Firefox](https://www.mozilla.org/en-US/firefox)
 
 ## **謝辞:**

@@ -9,6 +9,6 @@
   mine = {
     git.enable = true;
     gpg.enable = true;
-    fish.enable = true;
+    zsh.enable = true;
   };
 }

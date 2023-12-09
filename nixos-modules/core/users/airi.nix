@@ -5,10 +5,10 @@
 , ...
 }:
 {
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
 
   users.users."${username}" = {
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     hashedPasswordFile = "/persist/users/airi";
     isNormalUser = true;
     uid = 1000;

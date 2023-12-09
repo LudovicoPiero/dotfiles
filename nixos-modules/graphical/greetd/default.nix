@@ -26,7 +26,7 @@ in
         Hyprland
         sway
         river
-        fish
+        zsh
       '';
     };
 
