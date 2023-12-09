@@ -23,6 +23,7 @@
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  systemd.user.startServices = "sd-switch";
 
   home.packages = with pkgs;[
     vscode
