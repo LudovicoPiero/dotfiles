@@ -115,29 +115,32 @@ in {
         _ = lib.getExe;
       in
         with pkgs; {
-          "c" = "${_ commitizen} commit -- -s"; # Commit with Signed-off
+          "..." = "cd ../..";
+          ".." = "cd ..";
           "cat" = "${_ bat}";
+          "c" = "${_ commitizen} commit -- -s"; # Commit with Signed-off
+          "cp" = "cp -v";
           "dla" = "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '${config.home.homeDirectory}/Media/Audios'"; # Download Audio
           "dlv" = "${_ yt-dlp} --format 'best[ext=mp4]' -P '${config.home.homeDirectory}/Media/Videos'"; # Download Video
-          "ls" = "${_ eza} --icons";
+          "g" = "git";
           "l" = "${_ eza} -lbF --git --icons";
+          "la" = "${_ eza} -lbhHigUmuSa --time-style=long-iso --git --icons";
+          "lg" = "lazygit";
           "ll" = "${_ eza} -lbGF --git --icons";
           "llm" = "${_ eza} -lbGF --git --sort=modified --icons";
-          "la" = "${_ eza} -lbhHigUmuSa --time-style=long-iso --git --icons";
+          "ls" = "${_ eza} --icons";
           "lx" = "${_ eza} -lbhHigUmuSa@ --time-style=long-iso --git --icons";
-          "t" = "${_ eza} --tree --icons";
-          "tree" = "${_ eza} --tree --icons";
-          "lg" = "lazygit";
+          "mkdir" = "mkdir -p";
+          "mv" = "mv -v";
           "nb" = "nix-build -E \'with import <nixpkgs> { }; callPackage ./default.nix { }\'";
           "nv" = "nvim";
           "nr" = "${_ nixpkgs-review}";
-          "mkdir" = "mkdir -p";
-          "g" = "git";
-          "v" = "nvim";
           "record" = "${_ wl-screenrec} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
           "record-region" = "${_ wl-screenrec} -g \"$(${_ slurp})\" -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
-          "..." = "cd ../..";
-          ".." = "cd ..";
+          "rm" = "rm -i";
+          "t" = "${_ eza} --tree --icons";
+          "tree" = "${_ eza} --tree --icons";
+          "v" = "nvim";
         };
 
       plugins = [
