@@ -13,7 +13,6 @@
           extensions = with config.nur.repos.rycee.firefox-addons; [
             bitwarden
             faststream
-            notifier-for-github
             refined-github
             skip-redirect
             sponsorblock
