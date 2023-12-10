@@ -16,6 +16,7 @@
     fonts.enable = true;
     greetd.enable = true;
     security.enable = true;
+    qemu.enable = true;
   };
 
   hardware.bluetooth.enable = true;
