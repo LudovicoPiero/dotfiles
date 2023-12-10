@@ -31,17 +31,8 @@
 
 ## **謝辞:**
 
-NixとNixOSを学ぶのに助けてくれた方々に特に感謝します:
+Nix および NixOS コミュニティに感謝します。[fufexan](https://github.com/fufexan)、[misterio77](https://github.com/misterio77)、[hlissner](https://github.com/hlissner)、[sweenu](https://github.com/sweenu) など、貴重なサポートをしてくれた皆さんに感謝します。
 
-- [fufexan](https://github.com/fufexan)
-- [misterio77](https://github.com/misterio77)
-- [hlissner](https://github.com/hlissner)
-- [sweenu](https://github.com/sweenu)
+## **リソース:**
 
-また、個別に言及できない他の全ての皆さんにも大きな感謝を申し上げます。あなた方のサポートは非常に有難いです。
-
-## **リソース**
-
-Nix/NixOSについてもっと学ぶためのリソース:
-
-- [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/)
+[Nixpkgs マニュアル](https://nixos.org/manual/nixpkgs/stable/) を探索して、Nix および NixOS についてもっと学びましょう。

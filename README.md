@@ -29,19 +29,10 @@ This is my personal NixOS configuration, a work in progress. I'm using this setu
 - Shell: [ZSH](https://www.zsh.org/)
 - Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
 
-## **Acknowledgment**
+## **Acknowledgment:**
 
-Special thanks to those who helped me learn Nix and NixOS:
+Thanks to the Nix and NixOS community, including [fufexan](https://github.com/fufexan), [misterio77](https://github.com/misterio77), [hlissner](https://github.com/hlissner), [sweenu](https://github.com/sweenu), and others for their invaluable support.
 
-- [fufexan](https://github.com/fufexan)
-- [misterio77](https://github.com/misterio77)
-- [hlissner](https://github.com/hlissner)
-- [sweenu](https://github.com/sweenu)
+## **Resources:**
 
-Also, a big shoutout to everyone I can't mention individually, but your support is greatly appreciated.
-
-## **Resources**
-
-Explore these resources to learn more about Nix/NixOS:
-
-- [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/)
+Explore [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/) to learn more about Nix and NixOS.
