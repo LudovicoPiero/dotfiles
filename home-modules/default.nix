@@ -39,6 +39,7 @@
         imv
         viewnior
         qbittorrent
+        xdg-utils
         yazi;
 
       inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
