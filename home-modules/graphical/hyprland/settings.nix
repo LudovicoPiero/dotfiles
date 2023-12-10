@@ -55,7 +55,8 @@ in
   exec-once = [
     "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
     "waybar"
-    "fcitx5 -d --replace"
+    # "fcitx5 -d --replace"
+    "${lib.getExe pkgs.dunst}"
     "${lib.getExe swayidle}"
   ];
 
