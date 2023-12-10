@@ -7,6 +7,8 @@
   };
 
   mine = {
+    hyprland.enable = true;
+    gammastep.enable = true;
     git.enable = true;
     gpg.enable = true;
     zsh.enable = true;

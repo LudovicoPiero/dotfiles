@@ -48,7 +48,10 @@
     before-sleep '${_ swaylock}' \
     lock '${_ swaylock}}'
   '';
-  webcord-wrapped = "${_ pkgs.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
+  discord-wrapped = "${pkgs.discord-canary.override {
+    withOpenASAR = true;
+    withVencord = true;
+  }}/bin/discordcanary --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
   vesktop-wrapped = "${_ pkgs.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
 in {
   exec-once = [
@@ -202,7 +205,7 @@ in {
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
     "$mod SHIFT, D , exec , ${vesktop-wrapped}"
-    "$mod      , D , exec , ${webcord-wrapped}"
+    "$mod      , D , exec , ${discord-wrapped}"
     "$mod SHIFT, E , exec , [float] thunar"
     "$mod      , F , fullscreen , 0"
     "$mod SHIFT, G , exec , chromium"
