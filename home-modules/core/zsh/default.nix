@@ -1,13 +1,12 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.mine.zsh;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.zsh = {
     enable = mkOption {
       type = types.bool;
@@ -19,7 +18,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs;[
+    home.packages = with pkgs; [
       fzf
     ];
 
@@ -34,78 +33,76 @@ in
       history = {
         expireDuplicatesFirst = true;
         path = "$ZDOTDIR/.zsh_history";
-        ignorePatterns = [ "rm *" "pkill *" ];
+        ignorePatterns = ["rm *" "pkill *"];
       };
 
       completionInit = "";
 
-      initExtra =
-        let
-          _ = lib.getExe;
-        in
-        ''
-          ${_ pkgs.any-nix-shell} zsh --info-right | source /dev/stdin
-          eval "$(${_ pkgs.direnv} hook zsh)"
-          zstyle :prompt:pure:environment:nix-shell show no
+      initExtra = let
+        _ = lib.getExe;
+      in ''
+        ${_ pkgs.any-nix-shell} zsh --info-right | source /dev/stdin
+        eval "$(${_ pkgs.direnv} hook zsh)"
+        zstyle :prompt:pure:environment:nix-shell show no
 
-          # Search history based on what's typed in the prompt
-          autoload -U history-search-end
-          zle -N history-beginning-search-backward-end history-search-end
-          zle -N history-beginning-search-forward-end history-search-end
-          bindkey "^[OA" history-beginning-search-backward-end
-          bindkey "^[OB" history-beginning-search-forward-end
-          # case insensitive tab completion
-          zstyle ':completion:*' completer _complete _ignored _approximate
-          zstyle ':completion:*' list-colors '\'
-          zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-          zstyle ':completion:*' menu select
-          zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-          zstyle ':completion:*' verbose true
-          _comp_options+=(globdots)
+        # Search history based on what's typed in the prompt
+        autoload -U history-search-end
+        zle -N history-beginning-search-backward-end history-search-end
+        zle -N history-beginning-search-forward-end history-search-end
+        bindkey "^[OA" history-beginning-search-backward-end
+        bindkey "^[OB" history-beginning-search-forward-end
+        # case insensitive tab completion
+        zstyle ':completion:*' completer _complete _ignored _approximate
+        zstyle ':completion:*' list-colors '\'
+        zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+        zstyle ':completion:*' menu select
+        zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+        zstyle ':completion:*' verbose true
+        _comp_options+=(globdots)
 
-          function bs() {
-            pushd ~/.config/nixos
-            nh os switch .
-              if [[ $? -eq 0 ]]; then
-                notify-send "Rebuild Switch" "Build successful!"
-              else
-                notify-send "Rebuild Switch" "Build failed!"
-              fi
-            popd
-          }
-
-          function bb() {
-            pushd ~/.config/nixos
-            nh os boot .
-              if [[ $? -eq 0 ]]; then
-                notify-send "Rebuild Boot" "Build successful!"
-              else
-                notify-send "Rebuild Boot" "Build failed!"
-              fi
-            popd
-          }
-
-          function hs() {
-            pushd ~/.config/nixos
-            nh home switch .
-              if [[ $? -eq 0 ]]; then
-                notify-send "Home-Manager Switch" "Build successful!"
-              else
-                notify-send "Home-Manager Switch" "Build failed!"
-              fi
-            popd
-          }
-
-          function fe() {
-            selected_file=$(rg --files ''$argv[1] | ${_ pkgs.fzf} --preview "${_ pkgs.bat} -f {}")
-            if [ -n "$selected_file" ]; then
-              echo "$selected_file" | xargs $EDITOR
+        function bs() {
+          pushd ~/.config/nixos
+          nh os switch .
+            if [[ $? -eq 0 ]]; then
+              notify-send "Rebuild Switch" "Build successful!"
+            else
+              notify-send "Rebuild Switch" "Build failed!"
             fi
-          }
+          popd
+        }
 
-          function run() { nix run nixpkgs#$@[1] -- $@[2,-1] }
-        '';
+        function bb() {
+          pushd ~/.config/nixos
+          nh os boot .
+            if [[ $? -eq 0 ]]; then
+              notify-send "Rebuild Boot" "Build successful!"
+            else
+              notify-send "Rebuild Boot" "Build failed!"
+            fi
+          popd
+        }
+
+        function hs() {
+          pushd ~/.config/nixos
+          nh home switch .
+            if [[ $? -eq 0 ]]; then
+              notify-send "Home-Manager Switch" "Build successful!"
+            else
+              notify-send "Home-Manager Switch" "Build failed!"
+            fi
+          popd
+        }
+
+        function fe() {
+          selected_file=$(rg --files ''$argv[1] | ${_ pkgs.fzf} --preview "${_ pkgs.bat} -f {}")
+          if [ -n "$selected_file" ]; then
+            echo "$selected_file" | xargs $EDITOR
+          fi
+        }
+
+        function run() { nix run nixpkgs#$@[1] -- $@[2,-1] }
+      '';
 
       dirHashes = {
         c = "$HOME/.config/nixos";
@@ -114,10 +111,9 @@ in
         dl = "$HOME/Downloads";
       };
 
-      shellAliases =
-        let
-          _ = lib.getExe;
-        in
+      shellAliases = let
+        _ = lib.getExe;
+      in
         with pkgs; {
           "c" = "${_ commitizen} commit -- -s"; # Commit with Signed-off
           "cat" = "${_ bat}";
@@ -168,4 +164,3 @@ in
     };
   };
 }
-

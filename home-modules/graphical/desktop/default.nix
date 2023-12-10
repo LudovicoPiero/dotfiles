@@ -1,5 +1,11 @@
-{ pkgs, username, config, lib, inputs, ... }:
-let
+{
+  pkgs,
+  username,
+  config,
+  lib,
+  inputs,
+  ...
+}: let
   font = {
     name = "SF Pro Rounded";
     size = 11;
@@ -56,10 +62,9 @@ let
       --wait \
       bash -lc "exec ${apply-hm-env} $@"
   '';
-in
-{
+in {
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-  home.packages = with pkgs; [ run-as-service apple-cursor ];
+  home.packages = with pkgs; [run-as-service apple-cursor];
 
   gtk = {
     enable = true;
@@ -80,20 +85,18 @@ in
     '';
 
     gtk3 = {
-      bookmarks =
-        let
-          inherit username;
-        in
-        [
-          "file:///home/${username}/Code"
-          "file:///home/${username}/Documents"
-          "file:///home/${username}/Downloads"
-          "file:///home/${username}/Games"
-          "file:///home/${username}/Music"
-          "file:///home/${username}/Pictures"
-          "file:///home/${username}/Videos"
-          "file:///home/${username}/WinE"
-        ];
+      bookmarks = let
+        inherit username;
+      in [
+        "file:///home/${username}/Code"
+        "file:///home/${username}/Documents"
+        "file:///home/${username}/Downloads"
+        "file:///home/${username}/Games"
+        "file:///home/${username}/Music"
+        "file:///home/${username}/Pictures"
+        "file:///home/${username}/Videos"
+        "file:///home/${username}/WinE"
+      ];
 
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;

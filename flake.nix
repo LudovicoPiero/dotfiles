@@ -55,71 +55,74 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
-  outputs =
-    inputs@{ self, nixpkgs, devshell, treefmt-nix, flake-parts, ez-configs, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    devshell,
+    treefmt-nix,
+    flake-parts,
+    ez-configs,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         ez-configs.flakeModule
         devshell.flakeModule
         treefmt-nix.flakeModule
 
-
         ./pkgs
       ];
 
-      systems = [ "x86_64-linux" ];
+      systems = ["x86_64-linux"];
 
-      ezConfigs =
-        let
-          username = "airi";
+      ezConfigs = let
+        username = "airi";
+      in {
+        root = ./.;
+        globalArgs = {
+          inherit self inputs username;
+        };
+      };
+
+      perSystem = {
+        config,
+        pkgs,
+        system,
+        inputs',
+        ...
+      }: {
+        # This sets `pkgs` to a nixpkgs with allowUnfree option set.
+        _module.args.pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        # configure devshell
+        devShells.default = let
+          devshell = import ./parts/devshell;
         in
-        {
-          root = ./.;
-          globalArgs = {
-            inherit self inputs username;
+          inputs'.devshell.legacyPackages.mkShell {
+            inherit (devshell) env;
+            name = "Devshell";
+            commands = devshell.shellCommands;
+            packages = [
+              config.treefmt.build.wrapper
+            ];
           };
+
+        # configure treefmt
+        treefmt = {
+          projectRootFile = "flake.nix";
+          programs = {
+            alejandra.enable = true;
+            deadnix.enable = true;
+            statix.enable = true;
+            # statix.disabled-lints = ["repeated_keys"];
+            stylua.enable = true;
+          };
+
+          settings.formatter.stylua.options = ["--indent-type" "Spaces" "--indent-width" "2" "--quote-style" "ForceDouble"];
         };
-
-      perSystem =
-        { config
-        , pkgs
-        , system
-        , inputs'
-        , ...
-        }: {
-          # This sets `pkgs` to a nixpkgs with allowUnfree option set.
-          _module.args.pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-
-          # configure devshell
-          devShells.default =
-            let
-              devshell = import ./parts/devshell;
-            in
-            inputs'.devshell.legacyPackages.mkShell {
-              inherit (devshell) env;
-              name = "Devshell";
-              commands = devshell.shellCommands;
-              packages = [
-                config.treefmt.build.wrapper
-              ];
-            };
-
-          # configure treefmt
-          treefmt = {
-            projectRootFile = "flake.nix";
-            programs = {
-              nixpkgs-fmt.enable = true;
-              deadnix.enable = true;
-              statix.enable = true;
-              # statix.disabled-lints = ["repeated_keys"];
-              stylua.enable = true;
-            };
-
-            settings.formatter.stylua.options = [ "--indent-type" "Spaces" "--indent-width" "2" "--quote-style" "ForceDouble" ];
-          };
-        };
+      };
     };
 }

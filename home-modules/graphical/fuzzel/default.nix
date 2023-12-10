@@ -1,8 +1,6 @@
-{ config, ... }:
-let
+{config, ...}: let
   inherit (config.colorScheme) colors;
-in
-{
+in {
   programs.fuzzel = {
     enable = true;
     settings = {

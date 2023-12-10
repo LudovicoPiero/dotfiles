@@ -1,13 +1,12 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.mine.keyring;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.keyring = {
     enable = mkOption {
       type = types.bool;
@@ -23,9 +22,9 @@ in
     systemd = {
       user.services.pantheon-agent-polkit = {
         description = "pantheon-agent-polkit";
-        wantedBy = [ "graphical-session.target" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
+        wantedBy = ["graphical-session.target"];
+        wants = ["graphical-session.target"];
+        after = ["graphical-session.target"];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.pantheon.pantheon-agent-polkit}/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit";

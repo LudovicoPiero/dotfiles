@@ -1,9 +1,7 @@
-{ config, ... }:
-let
+{config, ...}: let
   inherit (config) colorScheme;
   inherit (colorScheme) colors;
-in
-{
+in {
   programs.kitty = {
     enable = true;
 

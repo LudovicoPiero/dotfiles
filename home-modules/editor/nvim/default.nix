@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -15,10 +15,10 @@
 
     extraPackages = with pkgs; [
       # Nix
+      alejandra
       nil
       deadnix
       statix
-      nixpkgs-fmt
 
       # Lua
       lua-language-server

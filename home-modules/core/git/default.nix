@@ -1,12 +1,11 @@
-{ config
-, lib
-, ...
-}:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.mine.git;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.git = {
     enable = mkOption {
       type = types.bool;

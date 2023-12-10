@@ -1,10 +1,10 @@
-{ config
-, pkgs
-, lib
-, username
-, ...
-}:
 {
+  config,
+  pkgs,
+  lib,
+  username,
+  ...
+}: {
   programs.zsh.enable = true;
 
   users.users."${username}" = {

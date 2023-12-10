@@ -1,13 +1,12 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.mine.games.lutris;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.games.lutris = {
     enable = mkOption {
       type = types.bool;

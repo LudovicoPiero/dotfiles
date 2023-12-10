@@ -16,7 +16,7 @@
     {
       help = "The Uncompromising Nix Code Formatter";
       name = "ale";
-      command = "nixpkgs-fmt";
+      command = "alejandra";
       category = "devos";
     }
     {

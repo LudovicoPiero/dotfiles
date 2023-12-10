@@ -1,4 +1,4 @@
-{ username, ... }: {
+{username, ...}: {
   home = {
     inherit username;
     homeDirectory = "/home/airi";

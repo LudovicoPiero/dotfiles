@@ -1,5 +1,9 @@
-{ pkgs, lib, username, ... }:
 {
+  pkgs,
+  lib,
+  username,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./persist.nix

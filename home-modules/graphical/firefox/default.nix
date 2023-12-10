@@ -1,6 +1,7 @@
-{ pkgs
-, config
-, ...
+{
+  pkgs,
+  config,
+  ...
 }: {
   programs.firefox = {
     enable = true;
@@ -20,14 +21,13 @@
             ublock-origin
           ];
           bookmarks = import ./bookmarks.nix;
-          search = import ./search.nix { inherit pkgs; };
+          search = import ./search.nix {inherit pkgs;};
           settings = import ./settings.nix;
         }
         // (
           let
             inherit (config.nur.repos.federicoschonborn) firefox-gnome-theme;
-          in
-          {
+          in {
             userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
             userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
             extraConfig = builtins.readFile "${firefox-gnome-theme}/configuration/user.js";
@@ -46,7 +46,7 @@
             ublock-origin
             fastforwardteam
           ];
-          search = import ./search.nix { inherit pkgs; };
+          search = import ./search.nix {inherit pkgs;};
         }
         // (
           let
@@ -57,8 +57,7 @@
               rev = "119.0";
               hash = "sha256-FX5y7fmxTcyB5aVb1IDOwhZPRB/VyqPaIVabMuiOrv8=";
             };
-          in
-          {
+          in {
             userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
             userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
             extraConfig = ''

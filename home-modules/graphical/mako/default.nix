@@ -1,12 +1,11 @@
-{ pkgs
-, config
-, ...
-}:
-let
-  inherit (config.colorScheme) colors;
-in
 {
-  home.packages = [ pkgs.libnotify ];
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.colorScheme) colors;
+in {
+  home.packages = [pkgs.libnotify];
   services.mako = {
     enable = true;
 

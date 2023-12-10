@@ -1,12 +1,12 @@
-{ config
-, pkgs
-, lib
-, modulesPath
-, inputs
-, username
-, ...
-}:
 {
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  inputs,
+  username,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
 
@@ -32,7 +32,7 @@
     };
 
     kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
-    kernelParams = [ "quiet" ];
+    kernelParams = ["quiet"];
     initrd.availableKernelModules = [
       "nvme"
       "xhci_pci"
@@ -45,8 +45,8 @@
       "amdgpu"
       "dm-snapshot"
     ];
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
     supportedFilesystems = [
       "btrfs"
       "ntfs"
@@ -54,85 +54,83 @@
     ];
   };
 
-  fileSystems =
-    let
-      inherit username;
-      userHome = "/home/${username}";
-    in
-    {
-      "${userHome}/Media" = {
-        device = "/dev/disk/by-label/Media";
-        fsType = "xfs";
-      };
-
-      "${userHome}/WinE" = {
-        device = "/dev/disk/by-label/WinE";
-        fsType = "ntfs";
-        options = [
-          "uid=1000"
-          "gid=100"
-          "rw"
-          "user"
-          "exec"
-          "umask=000"
-          "nofail"
-        ];
-      };
-
-      "/" = {
-        device = "none";
-        fsType = "tmpfs";
-        options = [
-          "defaults"
-          "size=2G"
-          "mode=755"
-        ];
-      };
-
-      "/boot" = {
-        device = "/dev/disk/by-label/BOOT";
-        fsType = "vfat";
-      };
-
-      "/nix" = {
-        device = "/dev/disk/by-label/store";
-        fsType = "btrfs";
-        options = [
-          "autodefrag"
-          "compress-force=zstd"
-          "discard=async"
-          "noatime"
-          "space_cache=v2"
-          "ssd"
-        ];
-      };
-
-      "/home" = {
-        device = "/dev/disk/by-label/Home";
-        fsType = "xfs";
-        neededForBoot = true;
-      };
-
-      "/persist" = {
-        device = "/dev/disk/by-label/Persist";
-        fsType = "xfs";
-        neededForBoot = true;
-      };
-
-      "/etc/nixos" = {
-        device = "/persist/etc/nixos";
-        fsType = "none";
-        options = [ "bind" ];
-      };
-
-      "/var/log" = {
-        device = "/persist/var/log";
-        fsType = "none";
-        options = [ "bind" ];
-      };
+  fileSystems = let
+    inherit username;
+    userHome = "/home/${username}";
+  in {
+    "${userHome}/Media" = {
+      device = "/dev/disk/by-label/Media";
+      fsType = "xfs";
     };
 
-  swapDevices = [{ device = "/dev/disk/by-label/Swap"; }];
+    "${userHome}/WinE" = {
+      device = "/dev/disk/by-label/WinE";
+      fsType = "ntfs";
+      options = [
+        "uid=1000"
+        "gid=100"
+        "rw"
+        "user"
+        "exec"
+        "umask=000"
+        "nofail"
+      ];
+    };
+
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-label/store";
+      fsType = "btrfs";
+      options = [
+        "autodefrag"
+        "compress-force=zstd"
+        "discard=async"
+        "noatime"
+        "space_cache=v2"
+        "ssd"
+      ];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-label/Home";
+      fsType = "xfs";
+      neededForBoot = true;
+    };
+
+    "/persist" = {
+      device = "/dev/disk/by-label/Persist";
+      fsType = "xfs";
+      neededForBoot = true;
+    };
+
+    "/etc/nixos" = {
+      device = "/persist/etc/nixos";
+      fsType = "none";
+      options = ["bind"];
+    };
+
+    "/var/log" = {
+      device = "/persist/var/log";
+      fsType = "none";
+      options = ["bind"];
+    };
+  };
+
+  swapDevices = [{device = "/dev/disk/by-label/Swap";}];
 
   nix.settings.max-jobs = lib.mkDefault 4;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

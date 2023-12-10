@@ -1,7 +1,8 @@
-{ lib
-, stdenvNoCC
-, fetchFromGitHub
-, ...
+{
+  lib,
+  stdenvNoCC,
+  fetchFromGitHub,
+  ...
 }:
 stdenvNoCC.mkDerivation {
   pname = "San-Francisco-Pro-Fonts";
@@ -29,7 +30,7 @@ stdenvNoCC.mkDerivation {
     description = "San Francisco Pro Fonts";
     homepage = "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts";
     license = licenses.unfree;
-    maintainers = with maintainers; [ ludovicopiero ];
+    maintainers = with maintainers; [ludovicopiero];
     platforms = platforms.all;
   };
 }

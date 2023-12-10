@@ -1,13 +1,12 @@
-{ pkgs
-, lib
-, ...
-} @ args:
-let
+{
+  pkgs,
+  lib,
+  ...
+} @ args: let
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     date "+%a %d %b %Y"
   '';
-in
-{
+in {
   home.packages = with pkgs; [
     alsa-utils
     waybar-date
@@ -55,7 +54,7 @@ in
           "format" = "{icon}{volume}%";
           "format-muted" = "󰖁";
           "on-click" = "amixer -q set Master toggle-mute";
-          "format-icons" = [ "󰕿" "󰖀" "󰕾" ];
+          "format-icons" = ["󰕿" "󰖀" "󰕾"];
         };
         "hyprland/workspaces" = {
           # active-only = false;

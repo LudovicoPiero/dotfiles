@@ -1,9 +1,9 @@
-{ pkgs
-, lib
-, config
-, ...
-}:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (config.colorScheme) colors;
   _ = lib.getExe;
   terminal = "${_ pkgs.kitty}";
@@ -50,8 +50,7 @@ let
   '';
   webcord-wrapped = "${_ pkgs.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
   vesktop-wrapped = "${_ pkgs.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
-in
-{
+in {
   exec-once = [
     "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
     "waybar"
@@ -68,7 +67,7 @@ in
   animations = {
     enabled = true;
 
-    bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
+    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
 
     animation = [
       "windows, 1, 7, myBezier"

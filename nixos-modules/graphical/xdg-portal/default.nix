@@ -1,13 +1,12 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.mine.xdg-portal;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.xdg-portal = {
     enable = mkOption {
       type = types.bool;

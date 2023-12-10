@@ -1,4 +1,12 @@
-{ modulesPath, pkgs, inputs, lib, config, username, ... }: {
+{
+  modulesPath,
+  pkgs,
+  inputs,
+  lib,
+  config,
+  username,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
 
@@ -21,7 +29,7 @@
   time.timeZone = "Asia/Tokyo";
 
   environment = {
-    pathsToLink = [ "/share/zsh" ];
+    pathsToLink = ["/share/zsh"];
     systemPackages = with pkgs; [
       teavpn2
       dosfstools
@@ -101,7 +109,7 @@
   services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
-    dbus.packages = [ pkgs.gcr ];
+    dbus.packages = [pkgs.gcr];
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
@@ -131,7 +139,7 @@
   };
 
   nix = {
-    nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
+    nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
 
     package = inputs.nix-super.packages.${pkgs.system}.nix;
 
@@ -159,8 +167,8 @@
       warn-dirty = false;
 
       # Give root user and wheel group special Nix privileges.
-      trusted-users = [ "root" "@wheel" ];
-      allowed-users = [ "@wheel" ];
+      trusted-users = ["root" "@wheel"];
+      allowed-users = ["@wheel"];
 
       substituters = [
         # Lower priority value = higher priority

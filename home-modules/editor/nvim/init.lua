@@ -530,7 +530,7 @@ local serverConfigs = {
     settings = {
       ["nil"] = {
         formatting = {
-          command = { "nixpkgs-fmt" },
+          command = { "alejandra" },
         },
       },
     },

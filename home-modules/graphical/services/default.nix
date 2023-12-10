@@ -1,16 +1,15 @@
-{ lib
-, pkgs
-, self
-, ...
-}:
-let
-  mkService = lib.recursiveUpdate {
-    Unit.PartOf = [ "graphical-session.target" ];
-    Unit.After = [ "graphical-session.target" ];
-    Install.WantedBy = [ "graphical-session.target" ];
-  };
-in
 {
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
+  mkService = lib.recursiveUpdate {
+    Unit.PartOf = ["graphical-session.target"];
+    Unit.After = ["graphical-session.target"];
+    Install.WantedBy = ["graphical-session.target"];
+  };
+in {
   # User Services
   systemd.user.services = {
     swaybg = mkService {
