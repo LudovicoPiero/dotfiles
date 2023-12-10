@@ -1,4 +1,4 @@
-{ pkgs, username, config, lib, ... }:
+{ pkgs, username, config, lib, inputs, ... }:
 let
   font = {
     name = "SF Pro Rounded";
@@ -58,6 +58,7 @@ let
   '';
 in
 {
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   home.packages = with pkgs; [ run-as-service apple-cursor ];
 
   gtk = {
