@@ -14,6 +14,7 @@
     ./graphical/greetd
     ./graphical/thunar
     ./graphical/xdg-portal
+    ./graphical/qemu
   ];
 
   nixpkgs.config.allowUnfree = true;
