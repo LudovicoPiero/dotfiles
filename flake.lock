@@ -26,11 +26,11 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1702125071,
-        "narHash": "sha256-oeUGnIlNoLl/YSf20h4BcohYzyDXvT6IHlIWaAJiias=",
+        "lastModified": 1702219081,
+        "narHash": "sha256-IWVWzm4vSxgqYmvp1cO6wA1jxnlZRL1sSQrnKfRgUzA=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "2f378909c9ff9308719f0d5ce32ec54b875780ad",
+        "rev": "d16bc3c5f3ca14067c5326a22d4b7c5ff1c6e475",
         "type": "github"
       },
       "original": {
@@ -268,12 +268,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1702110869,
-        "narHash": "sha256-hgbzPjIMLYJf3Ekq9qZCpDcIZn1BZmOp7d6PMkIWknU=",
-        "rev": "7db6291d95693374d408f4877c265ec7481f222b",
-        "revCount": 3172,
+        "lastModified": 1702203126,
+        "narHash": "sha256-4BhN2Vji19MzRC7SUfPZGmtZ2WZydQeUk/ogfRBIZMs=",
+        "rev": "defbb9c5857e157703e8fc7cf3c2ceb01cb95883",
+        "revCount": 3178,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3172%2Brev-7db6291d95693374d408f4877c265ec7481f222b/018c4db8-c78d-7dce-9d1f-dc4e65ae3cf4/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3178%2Brev-defbb9c5857e157703e8fc7cf3c2ceb01cb95883/018c5337-b35a-70f9-ab26-b36c9064d16c/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -287,11 +287,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1702159252,
-        "narHash": "sha256-4mYOL1EhOmt92OtYsHXRViWrSHvR5obLfCllMmQsUzY=",
+        "lastModified": 1702203126,
+        "narHash": "sha256-4BhN2Vji19MzRC7SUfPZGmtZ2WZydQeUk/ogfRBIZMs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e6b7303bd149723c57ca23f5a9428482d6b07306",
+        "rev": "defbb9c5857e157703e8fc7cf3c2ceb01cb95883",
         "type": "github"
       },
       "original": {
@@ -311,11 +311,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1702147292,
-        "narHash": "sha256-6M+OEv8WEV4v5fkZCRhXde1h6iBMI91zCE4JfJLYmnU=",
+        "lastModified": 1702225808,
+        "narHash": "sha256-wgkXZB43dWNb3TLwjXIrisgGj9R+aHEenWgAlsrpVOM=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "af6aae4e12b96fff701d8ae8fcb48ea8bb51009f",
+        "rev": "0c10b8ab2dad9851b00c0e99bb1fde3f01d5478c",
         "type": "github"
       },
       "original": {
@@ -578,11 +578,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1702161390,
-        "narHash": "sha256-jyIIiNDyzFoeS6HeizkzEnhwaqqnEndGLnyTaEL32rg=",
+        "lastModified": 1702206267,
+        "narHash": "sha256-g9dZfQyCQnkIgz6WeBfUjDWz4Fz6mJvuosr1+KMXAek=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "82787a00628b1c5cabd0d43a657c6304b8451620",
+        "rev": "1f8d62a69936dd899d0e7c955537b2f4ca5bc623",
         "type": "github"
       },
       "original": {
@@ -610,11 +610,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1702079139,
-        "narHash": "sha256-P60Q83fiXY4x+pq0mbNAdT5AdiJEpeFLaUZK+hArYVg=",
+        "lastModified": 1702226788,
+        "narHash": "sha256-/V9TxMu1apAoVfCgXDwq/ayN1TLyrfp5fXqWOBVM/Zc=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "eeb0b84c55657be1575872467aa5a40835af2dcd",
+        "rev": "8b2db25a3a8a03abca25979e8fb49c4d0d9c1a1f",
         "type": "github"
       },
       "original": {
@@ -784,11 +784,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1701958734,
-        "narHash": "sha256-3h3EH1FXQkIeAuzaWB+nK0XK54uSD46pp+dMD3gAcB4=",
+        "lastModified": 1702212301,
+        "narHash": "sha256-Rvl8BD7mnHZC1Qz6TxT120UyjsGUEdcsthHbEY+1vnU=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "e8cea581dd2b7c9998c1e6662db2c1dc30e7fdb0",
+        "rev": "afdd5e48a0869b389027307652a658051c0d2f96",
         "type": "github"
       },
       "original": {
