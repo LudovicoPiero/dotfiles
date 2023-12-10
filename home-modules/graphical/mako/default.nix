@@ -30,7 +30,7 @@ in {
       borderRadius = 0;
       borderSize = 2;
       padding = "20";
-      defaultTimeout = 3000;
+      defaultTimeout = 5000;
       font = "Iosevka q 10";
       layer = "top";
       height = 100;
