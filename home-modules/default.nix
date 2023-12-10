@@ -29,7 +29,6 @@
   ];
 
   systemd.user.startServices = "sd-switch";
-  nix.registry.nixpkgs.flake = inputs.nixpkgs; # https://ayats.org/blog/channels-to-flakes/
 
   home = {
     packages = lib.attrValues {
