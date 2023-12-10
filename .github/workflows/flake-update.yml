@@ -29,7 +29,14 @@ jobs:
       matrix: ${{ fromJson(needs.get-flakes.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v24
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable-small
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GH_TOKEN }}
+
       - run: git config --global user.email "59017537+MaximilianSforza@users.noreply.github.com"
       - run: git config --global user.name "Maximilian"
       - uses: cpcloud/flake-update-action@main
