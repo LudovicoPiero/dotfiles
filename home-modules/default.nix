@@ -92,6 +92,7 @@
       "x-scheme-handler/mailto" = thunderbird;
       "message/rfc822" = thunderbird;
       "x-scheme-handler/mid" = thunderbird;
+      "x-scheme-handler/mailspring" = ["Mailspring.desktop"];
     };
   in {
     enable = true;
