@@ -13,10 +13,10 @@
     inputs.nh.nixosModules.default
 
     ./core/dnscrypt
-    ./core/keyring
     ./core/security
     ./core/users
     ./core/fonts
+    ./core/gnome
 
     ./graphical/games
     ./graphical/greetd

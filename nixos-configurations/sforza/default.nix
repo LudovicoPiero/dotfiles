@@ -15,8 +15,11 @@
       lutris.enable = true;
       steam.enable = true;
     };
+    gnome = {
+      enable = true;
+      keyring.enable = true;
+    };
     dnscrypt.enable = true;
-    keyring.enable = true;
     fonts.enable = true;
     greetd.enable = true;
     security.enable = true;
