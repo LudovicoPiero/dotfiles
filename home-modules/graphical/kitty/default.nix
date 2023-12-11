@@ -26,14 +26,18 @@ in {
         "ctrl+shift+t" = "new_tab_with_cwd";
       };
 
+      shellIntegration.mode = "no-cursor";
+
       settings = {
         font_family = "Iosevka q SemiBold";
         bold_font = "auto";
         italic_font = "auto";
         bold_italic_font = "auto";
         font_size = 14;
+        background_opacity = toString 0.88;
 
         cursor_shape = "block";
+        cursor_blink_interval = 0;
         disable_ligatures = "cursor";
         scrollback_lines = 5000;
         enable_audio_bell = false;
