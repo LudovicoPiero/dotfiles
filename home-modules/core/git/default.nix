@@ -46,7 +46,7 @@ in {
         co = "checkout";
         cob = "checkout -b";
         f = "fetch -p";
-        c = "commit -s";
+        c = "commit -s -v";
         cl = "clone";
         ba = "branch -a";
         bd = "branch -d";
