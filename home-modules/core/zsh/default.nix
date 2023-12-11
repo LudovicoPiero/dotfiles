@@ -2,11 +2,14 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   cfg = config.mine.zsh;
   inherit (lib) mkIf mkOption types;
 in {
+  imports = [inputs.nix-index-database.hmModules.nix-index];
+
   options.mine.zsh = {
     enable = mkOption {
       type = types.bool;
@@ -18,9 +21,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      fzf
-    ];
+    programs.nix-index-database.comma.enable = true;
+    programs.nix-index.enable = true;
 
     programs.zsh = {
       enable = true;

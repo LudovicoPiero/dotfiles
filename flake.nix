@@ -46,6 +46,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     devshell.url = "github:numtide/devshell";
     nix-super.url = "github:privatevoid-net/nix-super";
     nix-colors.url = "github:misterio77/nix-colors";

@@ -37,6 +37,7 @@
       inherit
         (pkgs)
         authy
+        fzf
         mpv
         thunderbird
         imv
