@@ -1,3 +1,7 @@
 builds:
   include:
-    - "*.x86_64-linux.*"
+    - "checks.*"
+    - "devShells.x86_64-linux.*"
+    - "nixosConfigurations.*"
+    - "homeConfigurations.*"
+    - "packages.x86_64-linux.*"
