@@ -7,6 +7,7 @@
 }: let
   cfg = config.mine.zsh;
   inherit (lib) mkIf mkOption types;
+  inherit (config.colorscheme) colors;
 in {
   imports = [inputs.nix-index-database.hmModules.nix-index];
 
@@ -27,6 +28,7 @@ in {
     programs.zsh = {
       enable = true;
       enableAutosuggestions = true;
+      enableCompletion = true;
       autocd = true;
       syntaxHighlighting.enable = true;
       defaultKeymap = "emacs";
@@ -38,7 +40,7 @@ in {
         ignorePatterns = ["rm *" "pkill *"];
       };
 
-      completionInit = "";
+      localVariables.PURE_PROMPT_SYMBOL = "λ";
 
       initExtra = let
         _ = lib.getExe;
@@ -46,6 +48,7 @@ in {
         ${_ pkgs.any-nix-shell} zsh --info-right | source /dev/stdin
         eval "$(${_ pkgs.direnv} hook zsh)"
         zstyle :prompt:pure:environment:nix-shell show no
+        zstyle :prompt:pure:prompt:success color '#${colors.base0E}'
 
         # Search history based on what's typed in the prompt
         autoload -U history-search-end
