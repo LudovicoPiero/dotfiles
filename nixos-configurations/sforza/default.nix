@@ -9,6 +9,7 @@
     ./persist.nix
   ];
 
+  # My own modules
   mine = {
     games = {
       gamemode.enable = true;
@@ -27,20 +28,26 @@
     qemu.enable = true;
   };
 
-  hardware.bluetooth.enable = true;
+  services.logind = {
+    powerKey = "suspend";
+    lidSwitch = "suspend-then-hibernate";
+  };
 
   # OpenGL
   environment.sessionVariables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      # amdvlk
-      rocmPackages.clr.icd
-      rocmPackages.clr
-    ];
-    # extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+  hardware = {
+    bluetooth.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        # amdvlk
+        rocmPackages.clr.icd
+        rocmPackages.clr
+      ];
+      # extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+    };
   };
 
   networking = {
