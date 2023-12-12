@@ -206,7 +206,7 @@ in {
     "$mod SHIFT, Q, movetoworkspace, special"
     "$mod SHIFT, D , exec , ${vesktop-wrapped}"
     "$mod      , D , exec , ${discord-wrapped}"
-    "$mod SHIFT, E , exec , [float] thunar"
+    "$mod SHIFT, E , exec , [float] nautilus"
     "$mod      , F , fullscreen , 0"
     "$mod SHIFT, G , exec , chromium"
     "$mod      , G , exec , ${browser} -P Ludovico"

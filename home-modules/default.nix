@@ -80,7 +80,7 @@
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
       "x-scheme-handler/unknown" = browser;
-      "inode/directory" = ["thunar.desktop"];
+      "inode/directory" = ["org.gnome.Nautilus.desktop"];
 
       "audio/*" = ["mpv.desktop"];
       "video/*" = ["mpv.dekstop"];
