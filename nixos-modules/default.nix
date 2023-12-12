@@ -20,7 +20,6 @@
 
     ./graphical/games
     ./graphical/greetd
-    ./graphical/thunar
     ./graphical/xdg-portal
     ./graphical/qemu
   ];

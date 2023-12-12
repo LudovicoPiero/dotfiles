@@ -18,6 +18,7 @@
     gnome = {
       enable = true;
       keyring.enable = true;
+      nautilus.enable = true;
     };
     dnscrypt.enable = true;
     fonts.enable = true;

@@ -25,6 +25,16 @@ in {
         '';
       };
     };
+
+    nautilus = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Enable Nautilus ( GNOME File Manager ).
+        '';
+      };
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -52,6 +62,15 @@ in {
             TimeoutStopSec = 10;
           };
         };
+      };
+    })
+    (mkIf cfg.nautilus.enable {
+      environment.systemPackages = [pkgs.gnome.nautilus];
+
+      services = {
+        gvfs.enable = true; # Mount, trash, and other functionalities
+        tumbler.enable = true; # Thumbnail support for images
+        gnome.sushi.enable = true; # Quick previewer for nautilus
       };
     })
   ]);
