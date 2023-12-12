@@ -8,6 +8,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = false;
+    shellInit = ''
+     . /persist/github/stuff
+    '';
   };
 
   users.users."${username}" = {
