@@ -58,12 +58,6 @@
 
   # TLP For Laptop
   services = {
-    jellyfin = {
-      enable = true;
-      user = username;
-      openFirewall = true;
-    };
-
     xserver = {
       layout = "us"; # Configure keymap
       libinput.enable = true;
