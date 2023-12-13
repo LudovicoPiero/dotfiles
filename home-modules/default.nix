@@ -12,6 +12,7 @@
     ./core/git
     ./core/gpg
     ./core/direnv
+    ./core/ssh
     ./core/zsh
 
     ./editor/nvim

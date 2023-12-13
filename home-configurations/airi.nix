@@ -12,6 +12,7 @@
     kitty.enable = true;
     hyprland.enable = true;
     mako.enable = true;
+    ssh.enable = true;
     gammastep.enable = true;
     git.enable = true;
     gpg.enable = true;
