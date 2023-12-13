@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   username,
   ...
 }: let
@@ -23,15 +22,13 @@ in {
     environment = {
       etc."greetd/environments".text = ''
         Hyprland
-        sway
-        river
         zsh
       '';
     };
 
     services.greetd = let
       user = username;
-      sway = "${lib.getExe inputs.chaotic.packages.${pkgs.system}.sway_git}";
+      sway = "${lib.getExe pkgs.sway}";
       swayConf = pkgs.writeText "greetd-sway-config" ''
         output * background #000000 solid_color
         exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
