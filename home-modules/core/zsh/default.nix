@@ -31,7 +31,6 @@ in {
       enableCompletion = true;
       autocd = true;
       syntaxHighlighting.enable = true;
-      defaultKeymap = "emacs";
       dotDir = ".config/zsh";
 
       history = {
@@ -166,6 +165,15 @@ in {
             repo = "pure";
             rev = "87e6f5dd4c793f6d980532205aaefe196780606f";
             hash = "sha256-TR4CyBZ+KoZRs9XDmWE5lJuUXXU1J8E2Z63nt+FS+5w=";
+          };
+        }
+        {
+          name = "zsh-vi-mode";
+          src = pkgs.fetchFromGitHub {
+            owner = "jeffreytse";
+            repo = "zsh-vi-mode";
+            rev = "ea1f58ab9b1f3eac50e2cde3e3bc612049ef683b";
+            hash = "sha256-xbchXJTFWeABTwq6h4KWLh+EvydDrDzcY9AQVK65RS8=";
           };
         }
       ];
