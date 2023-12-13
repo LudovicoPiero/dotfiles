@@ -9,7 +9,7 @@
     enable = true;
     enableCompletion = false;
     shellInit = ''
-     . /persist/github/stuff
+      . /persist/github/stuff
     '';
   };
 
