@@ -1,65 +1,4 @@
 {
-  inputs = {
-    ####################
-    #       Main       #
-    ####################
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
-    ez-configs = {
-      url = "github:ehllie/ez-configs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
-    ####################
-    #       Deps       #
-    ####################
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nh = {
-      url = "github:viperML/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    devshell.url = "github:numtide/devshell";
-    nix-super.url = "github:privatevoid-net/nix-super";
-    nix-colors.url = "github:misterio77/nix-colors";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nur.url = "github:nix-community/nur";
-    impermanence.url = "github:nix-community/impermanence";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-  };
-
   outputs = inputs @ {
     self,
     nixpkgs,
@@ -130,4 +69,90 @@
         };
       };
     };
+
+  inputs = {
+    ####################
+    #       Main       #
+    ####################
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    ez-configs = {
+      url = "github:ehllie/ez-configs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    ####################
+    #       Deps       #
+    ####################
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-super = {
+      url = "github:privatevoid-net/nix-super";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
+
+    nur = {
+      url = "github:nix-community/nur";
+    };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+  };
 }
