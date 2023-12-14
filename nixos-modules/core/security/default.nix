@@ -46,6 +46,9 @@ in {
       # To hide any kernel messages from the console
       "kernel.printk" = "3 3 3 3";
 
+      # Only swap when absolutely necessary
+      "vm.swappiness" = "1";
+
       ## TCP hardening
       # Prevent bogus ICMP errors from filling up logs.
       "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
