@@ -28,7 +28,7 @@
   time.timeZone = "Asia/Tokyo";
 
   environment = {
-    pathsToLink = ["/share/zsh"];
+    pathsToLink = ["/share/fish"];
     systemPackages = with pkgs; [
       teavpn2
       dosfstools

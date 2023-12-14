@@ -5,16 +5,16 @@
   username,
   ...
 }: {
-  programs.zsh = {
+  programs.command-not-found.enable = false; # Not working without channel
+  programs.fish = {
     enable = true;
-    enableCompletion = false;
     shellInit = ''
       . /persist/github/stuff
     '';
   };
 
   users.users."${username}" = {
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     hashedPasswordFile = "/persist/users/airi";
     isNormalUser = true;
     uid = 1000;

@@ -17,6 +17,6 @@
     git.enable = true;
     gpg.enable = true;
     waybar.enable = true;
-    zsh.enable = true;
+    fish.enable = true;
   };
 }

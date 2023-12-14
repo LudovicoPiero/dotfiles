@@ -13,7 +13,7 @@
     ./core/gpg
     ./core/direnv
     ./core/ssh
-    ./core/zsh
+    ./core/fish
 
     ./editor/nvim
 

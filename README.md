@@ -26,7 +26,7 @@ This is my personal NixOS configuration, a work in progress. I'm using this setu
 - Notification manager: [Mako](https://github.com/emersion/mako)
 - Editor: [Neovim](https://neovim.io/)
 - Terminal: [Kitty](https://github.com/kovidgoyal/kitty)
-- Shell: [ZSH](https://www.zsh.org/)
+- Shell: [Fish](https://fishshell.com/)
 - Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
 
 ## **Acknowledgment:**
