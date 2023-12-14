@@ -40,6 +40,12 @@ in {
       # Disable it, since we don't need it, and is a potential security concern.
       "kernel.sysrq" = 0;
 
+      # Disable NMI watchdog
+      "kernel.nmi_watchdog" = 0;
+
+      # To hide any kernel messages from the console
+      "kernel.printk" = "3 3 3 3";
+
       ## TCP hardening
       # Prevent bogus ICMP errors from filling up logs.
       "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
