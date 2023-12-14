@@ -9,7 +9,7 @@
   mine = {
     direnv.enable = true;
     fuzzel.enable = true;
-    kitty.enable = true;
+    wezterm.enable = true;
     hyprland.enable = true;
     mako.enable = true;
     ssh.enable = true;
