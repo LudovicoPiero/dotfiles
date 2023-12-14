@@ -66,6 +66,7 @@
 
     sessionVariables = {
       NIXOS_OZONE_WL = "0";
+      NIXPKGS_ALLOW_UNFREE = "1";
       EDITOR = "nvim";
       VISUAL = "nvim";
       TERM = "screen-256color";
