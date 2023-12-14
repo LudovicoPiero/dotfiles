@@ -101,12 +101,14 @@ in {
 
     blur = {
       enabled = true;
-      size = 5;
-      passes = 2;
-      contrast = 0.8916;
-      brightness = 0.8172;
+      size = 6;
+      passes = 4;
+      # contrast = 0.8916;
+      # brightness = 0.8172;
+      vibrancy = 0.4;
       new_optimizations = true;
       ignore_opacity = true;
+      xray = true;
       special = true;
     };
 
