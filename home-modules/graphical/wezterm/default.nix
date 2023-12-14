@@ -28,23 +28,23 @@ in {
         "${colorScheme.slug}" = {
           ansi = [
             "${colors.base00}"
-            "${colors.base08}"
             "${colors.base0A}"
+            "${colors.base07}"
             "${colors.base0D}"
+            "${colors.base0B}"
             "${colors.base0E}"
-            "${colors.base0C}"
-            "${colors.base0C}"
+            "${colors.base0F}"
             "${colors.base05}"
           ];
           brights = [
             "${colors.base03}"
-            "${colors.base08}"
-            "${colors.base0B}"
             "${colors.base0A}"
-            "${colors.base0D}"
+            "${colors.base08}"
+            "${colors.base0A}"
+            "${colors.base09}"
             "${colors.base0E}"
-            "${colors.base0C}"
-            "${colors.base07}"
+            "${colors.base0F}"
+            "${colors.base06}"
           ];
           tab_bar = {
             background = "#${colors.base01}";
@@ -79,7 +79,7 @@ in {
           cursor_border = "#${colors.base05}";
           selection_fg = "#${colors.base00}";
           selection_bg = "#${colors.base05}";
-          split = "${colors.base03}";
+          split = "${colors.base0B}";
           visual_bell = "${colors.base09}";
         };
       };
