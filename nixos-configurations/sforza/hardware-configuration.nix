@@ -11,7 +11,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
 
     inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.chaotic.nixosModules.default
   ];
 
   boot = {
