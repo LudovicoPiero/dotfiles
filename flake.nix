@@ -143,8 +143,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    base16-schemes.url = "github:tinted-theming/base16-schemes";
+    base16-schemes.flake = false;
     nix-colors = {
       url = "github:misterio77/nix-colors";
+      inputs.base16-schemes.follows = "base16-schemes";
     };
 
     nur = {

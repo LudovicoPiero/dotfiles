@@ -28,23 +28,23 @@ in {
         "${colorScheme.slug}" = {
           ansi = [
             "${colors.base00}"
-            "${colors.base08}"
             "${colors.base0A}"
             "${colors.base0D}"
-            "${colors.base0E}"
+            "FFE97B"
+            "${colors.base0B}"
             "${colors.base0C}"
-            "${colors.base0C}"
-            "${colors.base05}"
+            "${colors.base08}"
+            "${colors.base04}"
           ];
           brights = [
-            "${colors.base03}"
-            "${colors.base08}"
-            "${colors.base0B}"
+            "${colors.base02}"
             "${colors.base0A}"
             "${colors.base0D}"
-            "${colors.base0E}"
+            "FFE97B"
+            "${colors.base0B}"
             "${colors.base0C}"
-            "${colors.base07}"
+            "${colors.base08}"
+            "${colors.base06}"
           ];
           tab_bar = {
             background = "#${colors.base01}";
@@ -70,31 +70,27 @@ in {
               fg_color = "#${colors.base00}";
             };
           };
-          foreground = "#${colors.base05}";
-          background = "#${colors.base00}";
-          cursor_fg = "#${colors.base05}";
-          cursor_bg = "#${colors.base05}";
+          foreground = "${colors.base05}";
+          background = "${colors.base00}";
+          cursor_fg = "${colors.base00}";
+          cursor_bg = "${colors.base05}";
           compose_cursor = "${colors.base06}";
           scrollbar_thumb = "${colors.base01}";
           cursor_border = "#${colors.base05}";
           selection_fg = "#${colors.base00}";
-          selection_bg = "#${colors.base05}";
-          split = "${colors.base03}";
+          selection_bg = "#${colors.base0F}";
+          split = "${colors.base0B}";
           visual_bell = "${colors.base09}";
         };
       };
       extraConfig = ''
         return {
           font = wezterm.font_with_fallback({
-            {
-              family = 'Monaspace Neon',
-              weight = 'Medium',
-              harfbuzz_features = {'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'},
-            },
+            "Iosevka q SemiBold",
             "Material Design Icons",
             "Noto Color Emoji",
           }),
-          font_size = 12.0,
+          font_size = 14.0,
           window_background_opacity = 0.88,
           color_scheme = "${colorScheme.slug}",
           enable_scroll_bar = false,
