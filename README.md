@@ -25,7 +25,7 @@ This is my personal NixOS configuration, a work in progress. I'm using this setu
 - Wayland bar: [Waybar](https://github.com/Alexays/Waybar)
 - Notification manager: [Mako](https://github.com/emersion/mako)
 - Editor: [Neovim](https://neovim.io/)
-- Terminal: [Kitty](https://github.com/kovidgoyal/kitty)
+- Terminal: [WezTerm](https://github.com/wez/wezterm)
 - Shell: [Fish](https://fishshell.com/)
 - Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
 

@@ -26,7 +26,7 @@
     ./graphical/hyprland
     ./graphical/services
     ./graphical/spotify
-    ./graphical/kitty
+    ./graphical/wezterm
   ];
 
   systemd.user.startServices = "sd-switch";
