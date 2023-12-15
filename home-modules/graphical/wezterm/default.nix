@@ -94,6 +94,7 @@ in {
           window_background_opacity = 0.88,
           color_scheme = "${colorScheme.slug}",
           enable_scroll_bar = false,
+          enable_kitty_keyboard = true,
           check_for_updates = false,
           default_cursor_style = "SteadyBlock",
           enable_tab_bar = true,
