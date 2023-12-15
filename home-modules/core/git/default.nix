@@ -20,6 +20,21 @@ in {
     programs.git = {
       enable = true;
 
+      delta = {
+        enable = true;
+        options = {
+          decorations = {
+            commit-decoration-style = "bold yellow box ul";
+            file-decoration-style = "none";
+            file-style = "bold yellow ul";
+          };
+          features = "decorations";
+          true-color = "always";
+          line-numbers = "true";
+          whitespace-error-style = "22 reverse";
+        };
+      };
+
       userEmail = "lewdovico@gnuweeb.org";
       userName = "Ludovico Piero";
 
@@ -30,6 +45,7 @@ in {
 
       extraConfig = {
         init.defaultBranch = "main";
+        merge.conflictstyle = "diff3";
       };
 
       ignores = [
