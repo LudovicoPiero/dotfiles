@@ -225,8 +225,8 @@ in {
     "$mod      , X , exec , ${powermenu}"
     "$mod      , Return , exec , run-as-service ${terminal}"
 
-    "$mod , E  , exec , emacsclient -c -a 'nvim'"
-    "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
+    # "$mod , E  , exec , emacsclient -c -a 'nvim'"
+    # "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
 
     ", print, exec , wl-ocr"
     "CTRL   , Print , exec , ${lib.getExe pkgs.grimblast} save area - | ${lib.getExe pkgs.swappy} -f -"
