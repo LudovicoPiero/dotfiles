@@ -68,7 +68,7 @@ in {
         '';
 
         fe = ''
-          set selected_file (rg --files ''$argv[1] | fzf --preview "bat -f {}")
+          set selected_file (${lib.getExe' ripgrep "rg"} --files ''$argv[1] | fzf --preview "${_ bat} -f {}")
           if [ -n "$selected_file" ]
               echo "$selected_file" | xargs $EDITOR
           end
