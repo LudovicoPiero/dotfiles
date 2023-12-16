@@ -35,6 +35,7 @@ in {
       layer = "top";
       height = 100;
       width = 300;
+      format = "<b>%s</b>\\n%b";
 
       extraConfig = ''
         [urgency=low]
@@ -46,6 +47,9 @@ in {
         background-color=#${colors.base01}
         border-color=#${colors.base0B}
         default-timeout=10000
+
+        [mode=dnd]
+        invisible=1
       '';
     };
   };

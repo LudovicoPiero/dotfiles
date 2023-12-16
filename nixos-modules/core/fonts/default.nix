@@ -22,11 +22,15 @@ in {
     fonts = {
       fontDir.enable = true;
       packages = lib.attrValues {
-        inherit (inputs.self.packages.${pkgs.system}) san-francisco-pro iosevka-q;
+        inherit
+          (inputs.self.packages.${pkgs.system})
+          san-francisco-pro
+          sarasa-gothic
+          iosevka-q
+          ;
 
         inherit
           (pkgs)
-          noto-fonts-cjk-sans
           material-design-icons
           noto-fonts-emoji
           symbola
@@ -42,28 +46,34 @@ in {
         defaultFonts = {
           serif = [
             "SF Pro"
-            "Noto Sans CJK JP"
-            "Noto Sans CJK KR"
-            "Noto Sans CJK SC"
-            "Noto Sans CJK TC"
+            "Sarasa Gothic J"
+            "Sarasa Gothic K"
+            "Sarasa Gothic SC"
+            "Sarasa Gothic TC"
+            "Sarasa Gothic HC"
+            "Sarasa Gothic CL"
             "Symbola"
           ];
 
           sansSerif = [
             "SF Pro"
-            "Noto Sans CJK JP"
-            "Noto Sans CJK KR"
-            "Noto Sans CJK SC"
-            "Noto Sans CJK TC"
+            "Sarasa Gothic J"
+            "Sarasa Gothic K"
+            "Sarasa Gothic SC"
+            "Sarasa Gothic TC"
+            "Sarasa Gothic HC"
+            "Sarasa Gothic CL"
             "Symbola"
           ];
 
           monospace = [
             "SF Pro Rounded"
-            "Noto Sans Mono CJK JP"
-            "Noto Sans Mono CJK KR"
-            "Noto Sans Mono CJK SC"
-            "Noto Sans Mono CJK TC"
+            "Sarasa Mono J"
+            "Sarasa Mono K"
+            "Sarasa Mono SC"
+            "Sarasa Mono TC"
+            "Sarasa Mono HC"
+            "Sarasa Mono CL"
             "Symbola"
           ];
 

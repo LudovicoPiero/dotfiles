@@ -7,6 +7,8 @@
 
       san-francisco-pro = pkgs.callPackage ./san-francisco-pro {};
 
+      sarasa-gothic = pkgs.callPackage ./sarasa-gothic {};
+
       spotify = pkgs.callPackage ./spotify {};
 
       wezterm = pkgs.darwin.apple_sdk_11_0.callPackage ./wezterm {

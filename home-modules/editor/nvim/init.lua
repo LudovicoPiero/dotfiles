@@ -113,12 +113,11 @@ require("lazy").setup({
 
   {
     -- Theme inspired by Atom
-    "nyoom-engineering/oxocarbon.nvim",
+    "Mofiqul/dracula.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.opt.background = "dark"
-      vim.cmd.colorscheme("oxocarbon")
+      vim.cmd.colorscheme("dracula")
     end,
   },
 
@@ -135,7 +134,7 @@ require("lazy").setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = "oxocarbon",
+        theme = "dracula",
         component_separators = "|",
         section_separators = "",
         refresh = {
