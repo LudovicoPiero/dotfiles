@@ -27,58 +27,17 @@ in {
     programs.nix-index.enable = true;
     programs.zoxide.enable = true;
 
+    programs.lsd = {
+      enable = true;
+      enableAliases = false;
+      colors = import ./lsd-colors.nix;
+      settings = import ./lsd-settings.nix;
+    };
+
     programs.fish = with pkgs; {
       enable = true;
-
-      functions = {
-        gitignore = "curl -sL https://www.gitignore.io/api/$argv";
-        fish_greeting = ""; # disable welcome text
-
-        bs = ''
-          pushd ~/.config/nixos
-          nh os switch .
-            if test $status -eq 0
-              notify-send "Rebuild Switch" "Build successful!"
-            else
-              notify-send "Rebuild Switch" "Build failed!"
-            end
-          popd
-        '';
-
-        bb = ''
-          pushd ~/.config/nixos
-          nh os boot .
-            if test $status -eq 0
-              notify-send "Rebuild Boot" "Build successful!"
-            else
-              notify-send "Rebuild Boot" "Build failed!"
-            end
-          popd
-        '';
-
-        hs = ''
-          pushd ~/.config/nixos
-          nh home switch .
-            if test $status -eq 0
-              notify-send "Home-Manager Switch" "Build successful!"
-            else
-              notify-send "Home-Manager Switch" "Build failed!"
-            end
-          popd
-        '';
-
-        fe = ''
-          set selected_file (${lib.getExe' ripgrep "rg"} --files ''$argv[1] | fzf --preview "${_ bat} -f {}")
-          if [ -n "$selected_file" ]
-              echo "$selected_file" | xargs $EDITOR
-          end
-        '';
-
-        run = "nix run nixpkgs#$argv[1] -- $argv[2..-1]";
-        "watchLive" = let
-          args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
-        in "${_ streamlink} --player ${_ mpv} --twitch-disable-hosting --twitch-low-latency --player-args \"${args}\" --player-continuous-http --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 --retry-streams 15 $argv";
-      };
+      functions = import ./fish-functions.nix {inherit lib pkgs;};
+      shellAliases = import ./fish-aliases.nix {inherit config lib pkgs;};
 
       interactiveShellInit = ''
         set -g async_prompt_functions _pure_prompt_git
@@ -89,33 +48,6 @@ in {
         ${_ zoxide} init fish | source
         ${_ direnv} hook fish | source
       '';
-
-      shellAliases = {
-        "c" = "${_ commitizen} commit -- -s"; # Commit with Signed-off
-        "cat" = "${_ bat}";
-        "config" = "cd ~/.config/nixos";
-        "dla" = "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '${config.home.homeDirectory}/Media/Audios'"; # Download Audio
-        "dlv" = "${_ yt-dlp} --format 'best[ext=mp4]' -P '${config.home.homeDirectory}/Media/Videos'"; # Download Video
-        "ls" = "${_ eza} --icons";
-        "l" = "${_ eza} -lbF --git --icons";
-        "ll" = "${_ eza} -lbGF --git --icons";
-        "llm" = "${_ eza} -lbGF --git --sort=modified --icons";
-        "la" = "${_ eza} -lbhHigUmuSa --time-style=long-iso --git --icons";
-        "lx" = "${_ eza} -lbhHigUmuSa@ --time-style=long-iso --git --icons";
-        "t" = "${_ eza} --tree --icons";
-        "tree" = "${_ eza} --tree --icons";
-        "lg" = "lazygit";
-        "nb" = "nix-build -E \'with import <nixpkgs> { }; callPackage ./default.nix { }\'";
-        "nv" = "nvim";
-        "nr" = "${_ nixpkgs-review}";
-        "mkdir" = "mkdir -p";
-        "g" = "git";
-        "v" = "vim";
-        "record" = "${_ wl-screenrec} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
-        "record-region" = "${_ wl-screenrec} -g \"$(${_ slurp})\" -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
-        "..." = "cd ../..";
-        ".." = "cd ..";
-      };
 
       plugins = [
         {
