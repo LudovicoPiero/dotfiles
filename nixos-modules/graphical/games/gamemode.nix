@@ -31,12 +31,14 @@ in {
         export HYPRLAND_INSTANCE_SIGNATURE=$(ls -w1 /tmp/hypr | tail -1)
         hyprctl --batch 'keyword decoration:blur:enabled 0 ; keyword animations:enabled 0'
         ${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations activated'
+        ${lib.getExe' pkgs.mako "makoctl"} mode -a dnd
       '';
 
       endscript = pkgs.writeShellScript "gamemode-end" ''
         export PATH=$PATH:${programs}
         export HYPRLAND_INSTANCE_SIGNATURE=$(ls -w1 /tmp/hypr | tail -1)
         hyprctl --batch 'keyword decoration:blur:enabled 1 ; keyword animations:enabled 1'
+        ${lib.getExe' pkgs.mako "makoctl"} mode -r dnd
         ${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'
       '';
     in {
