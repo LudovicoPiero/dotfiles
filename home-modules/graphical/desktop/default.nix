@@ -50,7 +50,7 @@
       bash -lc "exec ${apply-hm-env} $@"
   '';
 in {
-  colorScheme = inputs.nix-colors.colorSchemes.oxocarbon-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
   home.packages = with pkgs; [run-as-service apple-cursor];
 
   gtk = {
