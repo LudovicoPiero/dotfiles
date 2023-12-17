@@ -5,7 +5,7 @@ in ''
     border: none;
     border-radius: 0;
     font-family:
-      "Iosevka q SemiBold",
+      "Iosevka q Semibold",
       "Material Design Icons",
       monospace;
     font-size: 14px;
