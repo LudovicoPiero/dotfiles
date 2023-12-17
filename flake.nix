@@ -2,7 +2,6 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    devshell,
     treefmt-nix,
     flake-parts,
     ez-configs,
@@ -11,7 +10,6 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         ez-configs.flakeModule
-        devshell.flakeModule
         treefmt-nix.flakeModule
 
         ./pkgs
@@ -42,17 +40,21 @@
         };
 
         # configure devshell
-        devShells.default = let
-          devshell = import ./parts/devshell;
-        in
-          inputs'.devshell.legacyPackages.mkShell {
-            inherit (devshell) env;
-            name = "Devshell";
-            commands = devshell.shellCommands;
-            packages = [
-              config.treefmt.build.wrapper
-            ];
-          };
+        devShells.default = pkgs.mkShell {
+          name = "Dooots";
+          packages = [
+            config.treefmt.build.wrapper
+            inputs'.nix-super.packages.default
+            (pkgs.writeShellApplication {
+              name = "fmt";
+              text = "treefmt";
+            })
+          ];
+
+          # This will add The development shell with treefmt
+          # and its underlying programs ( alejandra, deadnix, etc )
+          inputsFrom = [config.treefmt.build.devShell];
+        };
 
         # configure treefmt
         treefmt = {
@@ -61,7 +63,7 @@
             alejandra.enable = true;
             deadnix.enable = true;
             statix.enable = true;
-            # statix.disabled-lints = ["repeated_keys"];
+            statix.disabled-lints = ["repeated_keys"];
             stylua.enable = true;
           };
 
@@ -120,11 +122,6 @@
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    devshell = {
-      url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
