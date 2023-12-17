@@ -5,7 +5,6 @@
   username,
   ...
 }: {
-  programs.command-not-found.enable = false; # Not working without channel
   programs.fish = {
     enable = true;
     shellInit = ''

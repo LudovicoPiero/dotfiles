@@ -26,6 +26,7 @@
 
   nixpkgs.config.allowUnfree = true;
   time.timeZone = "Asia/Tokyo";
+  programs.command-not-found.enable = false; # Not working without channel
 
   environment = {
     pathsToLink = ["/share/fish"];
