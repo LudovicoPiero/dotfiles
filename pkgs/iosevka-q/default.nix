@@ -7,22 +7,62 @@
   remarshal,
   ttfautohint-nox,
   privateBuildPlan ? ''
-    [buildPlans.iosevka-q]
+    [buildPlans.IosevkaQ]
     family = "Iosevka q"
-    spacing = "term"
-    serifs = "sans"
+    spacing = "Terminal"
+    serifs = "Sans"
     noCvSs = true
-    exportGlyphNames = true
+    exportGlyphNames = false
 
-      [buildPlans.iosevka-q.variants]
+      [buildPlans.IosevkaQ.variants]
       inherits = "ss14"
 
-        [buildPlans.iosevka-q.variants.design]
-        underscore = "low"
+        [buildPlans.IosevkaQ.variants.design]
+        capital-l = "serifless"
+        capital-q = "straight"
+        zero = "tall-slashed"
+        tilde = "low"
+        asterisk = "penta-high"
+        caret = "medium"
+        ascii-grave = "raised-turn-comma"
+        ascii-single-quote = "straight"
+        paren = "flat-arc"
         brace = "curly-flat-boundary"
-        dollar = "open"
+        guillemet = "straight"
+        number-sign = "slanted"
+        lig-equal-chain = "without-notch"
 
-      [buildPlans.iosevka-q.ligations]
+        [buildPlans.IosevkaQ.variants.italic]
+        capital-l = "serifless"
+        capital-q = "straight"
+        zero = "tall-slashed"
+        tilde = "low"
+        asterisk = "penta-high"
+        caret = "medium"
+        ascii-grave = "raised-turn-comma"
+        ascii-single-quote = "straight"
+        paren = "flat-arc"
+        brace = "curly-flat-boundary"
+        guillemet = "straight"
+        number-sign = "slanted"
+        lig-equal-chain = "without-notch"
+
+        [buildPlans.IosevkaQ.variants.oblique]
+        capital-l = "serifless"
+        capital-q = "straight"
+        zero = "tall-slashed"
+        tilde = "low"
+        asterisk = "penta-high"
+        caret = "medium"
+        ascii-grave = "raised-turn-comma"
+        ascii-single-quote = "straight"
+        paren = "flat-arc"
+        brace = "curly-flat-boundary"
+        guillemet = "straight"
+        number-sign = "slanted"
+        lig-equal-chain = "without-notch"
+
+      [buildPlans.IosevkaQ.ligations]
       inherits = "dlig"
   '',
   extraParameters ? null,
@@ -33,18 +73,18 @@ assert (extraParameters != null) -> set != null;
   buildNpmPackage rec {
     pname =
       if set != null
-      then "iosevka-${set}"
-      else "iosevka";
-    version = "28.0.0";
+      then "Iosevka${lib.strings.toUpper set}"
+      else "Iosevka";
+    version = "28.0.1";
 
     src = fetchFromGitHub {
       owner = "be5invis";
       repo = "iosevka";
       rev = "v${version}";
-      hash = "sha256-xicXPIIsaYouYc6yzaH36R5d6+73wkSCpJzSXV6ekHI=";
+      hash = "sha256-ecUmSsMo94lVc9R9Y8GziukGrL6Q+b46/Uv/iLlUy/c=";
     };
 
-    npmDepsHash = "sha256-9FSG8pnEVb5K4wR0Xsr9Cq+dnorP8rxPwraKWBBDlCA=";
+    npmDepsHash = "sha256-UgCULIxxLHiS57Ut3zwpZW7hxHmeBUWWcXI2yn/Wxb4=";
 
     nativeBuildInputs =
       [
