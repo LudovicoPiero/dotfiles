@@ -6,12 +6,12 @@
       {
         name = "ANIMEPAHE";
         keyword = "ah";
-        url = "https://animepahe.com";
+        url = "https://animepahe.ru";
       }
       {
         name = "KICKASSANIME";
         keyword = "kaa";
-        url = "https://kickassanime.ro";
+        url = "https://kickassanime.am";
       }
       {
         name = "ANIWAVE";
@@ -37,7 +37,7 @@
       {
         name = "Home-Manager";
         keyword = "hm";
-        url = "https://rycee.gitlab.io/home-manager/options.html";
+        url = "https://nix-community.github.io/home-manager/options.xhtml";
       }
     ];
   }
