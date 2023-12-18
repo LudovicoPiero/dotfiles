@@ -9,8 +9,8 @@
   privateBuildPlan ? ''
     [buildPlans.IosevkaQ]
     family = "Iosevka q"
-    spacing = "Terminal"
-    serifs = "Sans"
+    spacing = "term"
+    serifs = "sans"
     noCvSs = true
     exportGlyphNames = false
 
@@ -20,60 +20,114 @@
         [buildPlans.IosevkaQ.variants.design]
         capital-l = "serifless"
         capital-q = "straight"
+        capital-z = "straight-serifless"
+        l = "serifed-flat-tailed"
+        z = "straight-serifless"
+        lower-alpha = "crossing"
         zero = "tall-slashed"
+        punctuation-dot = "round"
         tilde = "low"
-        asterisk = "penta-high"
+        asterisk = "penta-low"
+        underscore = "high"
         caret = "medium"
         ascii-grave = "raised-turn-comma"
-        ascii-single-quote = "straight"
+        ascii-single-quote = "raised-comma"
         paren = "flat-arc"
         brace = "curly-flat-boundary"
         guillemet = "straight"
         number-sign = "slanted"
+        at = "fourfold"
+        dollar = "through"
+        cent = "through"
+        percent = "rings-segmented-slash"
+        bar = "natural-slope"
+        question = "smooth"
+        lig-ltgteq = "slanted"
+        lig-neq = "slightly-slanted"
         lig-equal-chain = "without-notch"
+        lig-hyphen-chain = "without-notch"
+        lig-plus-chain = "without-notch"
+        lig-double-arrow-bar = "without-notch"
+        lig-single-arrow-bar = "without-notch"
 
         [buildPlans.IosevkaQ.variants.italic]
         capital-l = "serifless"
         capital-q = "straight"
+        capital-z = "straight-serifless"
+        l = "serifed-flat-tailed"
+        z = "straight-serifless"
+        lower-alpha = "crossing"
         zero = "tall-slashed"
+        punctuation-dot = "round"
         tilde = "low"
-        asterisk = "penta-high"
+        asterisk = "penta-low"
+        underscore = "high"
         caret = "medium"
         ascii-grave = "raised-turn-comma"
-        ascii-single-quote = "straight"
+        ascii-single-quote = "raised-comma"
         paren = "flat-arc"
         brace = "curly-flat-boundary"
         guillemet = "straight"
         number-sign = "slanted"
+        at = "fourfold"
+        dollar = "through"
+        cent = "through"
+        percent = "rings-segmented-slash"
+        bar = "natural-slope"
+        question = "smooth"
+        lig-ltgteq = "slanted"
+        lig-neq = "slightly-slanted"
         lig-equal-chain = "without-notch"
+        lig-hyphen-chain = "without-notch"
+        lig-plus-chain = "without-notch"
+        lig-double-arrow-bar = "without-notch"
+        lig-single-arrow-bar = "without-notch"
 
         [buildPlans.IosevkaQ.variants.oblique]
         capital-l = "serifless"
         capital-q = "straight"
+        capital-z = "straight-serifless"
+        l = "serifed-flat-tailed"
+        z = "straight-serifless"
+        lower-alpha = "crossing"
         zero = "tall-slashed"
+        punctuation-dot = "round"
         tilde = "low"
-        asterisk = "penta-high"
+        asterisk = "penta-low"
+        underscore = "high"
         caret = "medium"
         ascii-grave = "raised-turn-comma"
-        ascii-single-quote = "straight"
+        ascii-single-quote = "raised-comma"
         paren = "flat-arc"
         brace = "curly-flat-boundary"
         guillemet = "straight"
         number-sign = "slanted"
+        at = "fourfold"
+        dollar = "through"
+        cent = "through"
+        percent = "rings-segmented-slash"
+        bar = "natural-slope"
+        question = "smooth"
+        lig-ltgteq = "slanted"
+        lig-neq = "slightly-slanted"
         lig-equal-chain = "without-notch"
+        lig-hyphen-chain = "without-notch"
+        lig-plus-chain = "without-notch"
+        lig-double-arrow-bar = "without-notch"
+        lig-single-arrow-bar = "without-notch"
 
       [buildPlans.IosevkaQ.ligations]
       inherits = "dlig"
   '',
   extraParameters ? null,
-  set ? "q",
+  set ? "Q",
 }:
 assert (privateBuildPlan != null) -> set != null;
 assert (extraParameters != null) -> set != null;
   buildNpmPackage rec {
     pname =
       if set != null
-      then "Iosevka${lib.strings.toUpper set}"
+      then "Iosevka${set}"
       else "Iosevka";
     version = "28.0.1";
 
