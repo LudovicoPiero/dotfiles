@@ -23,6 +23,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
+          install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
           nix_path: nixpkgs=channel:nixos-unstable-small
           extra_nix_config: |
             substituters = https://cache.garnix.io https://nyx.chaotic.cx https://cache.nixos.org/ https://cache.privatevoid.net https://nixpkgs-unfree.cachix.org https://numtide.cachix.org https://dotfiles-pkgs.cachix.org
