@@ -131,6 +131,9 @@
 
   swapDevices = [{device = "/dev/disk/by-label/Swap";}];
 
+  # slows down boot time
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   nix.settings.max-jobs = lib.mkDefault 4;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
