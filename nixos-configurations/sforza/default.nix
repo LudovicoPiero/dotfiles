@@ -1,11 +1,14 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
+
+    inputs.chaotic.nixosModules.default
   ];
 
   # My own modules
@@ -27,13 +30,28 @@
     qemu.enable = true;
   };
 
+  # Chaotic stuff
+  environment = {
+    variables = {
+      RADV_PERFTEST = "aco,gpl";
+      AMD_VULKAN_ICD = lib.mkDefault "RADV";
+    };
+  };
+  chaotic = {
+    mesa-git.enable = true;
+    steam.extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom];
+    nyx = {
+      cache.enable = false; # added manualy
+      overlay.enable = true;
+    };
+  };
+
   services.logind = {
     powerKey = "suspend";
     lidSwitch = "suspend-then-hibernate";
   };
 
   # OpenGL
-  environment.sessionVariables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
   hardware = {
     bluetooth.enable = true;
     opengl = {

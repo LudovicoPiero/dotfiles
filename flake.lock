@@ -21,9 +21,7 @@
         "compare-to": "compare-to",
         "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs",
         "systems": "systems",
         "yafas": "yafas"
       },
@@ -473,18 +471,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1702855317,
-        "narHash": "sha256-5EXeUkoWvrfbZQQLVRn7Ebb9LOt3DkVm6T0M31/VhtM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "3a16c6447466f4034c2d75fe7014477142c9513e",
-        "type": "github"
+        "lastModified": 1702830618,
+        "narHash": "sha256-lvhwIvRwhOLgzbRuYkqHy4M5cQHYs4ktL6/hyuBS6II=",
+        "rev": "91a00709aebb3602f172a0bf47ba1ef013e34835",
+        "revCount": 560622,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.560622%2Brev-91a00709aebb3602f172a0bf47ba1ef013e34835/018c7f74-d252-77e4-bb90-e9f27b9d7549/source.tar.gz"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz"
       }
     },
     "nixpkgs-lib": {
@@ -530,6 +526,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1702855317,
+        "narHash": "sha256-5EXeUkoWvrfbZQQLVRn7Ebb9LOt3DkVm6T0M31/VhtM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3a16c6447466f4034c2d75fe7014477142c9513e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -594,7 +606,7 @@
         "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
         "nix-super": "nix-super",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "spicetify-nix": "spicetify-nix",
         "treefmt-nix": "treefmt-nix"
