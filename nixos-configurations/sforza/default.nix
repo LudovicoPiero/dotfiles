@@ -46,6 +46,13 @@
     };
   };
 
+  documentation = {
+    enable = true;
+    doc.enable = false;
+    man.enable = true;
+    dev.enable = false;
+  };
+
   services.logind = {
     powerKey = "suspend";
     lidSwitch = "suspend-then-hibernate";
