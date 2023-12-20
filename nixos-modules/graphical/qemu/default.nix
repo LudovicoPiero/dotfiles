@@ -21,6 +21,8 @@ in {
     virtualisation = {
       libvirtd = {
         enable = true;
+        onBoot = "ignore";
+        onShutdown = "shutdown";
         qemu = {
           verbatimConfig = ''
             nvram = [ "${pkgs.OVMF}/FV/OVMF.fd:${pkgs.OVMF}/FV/OVMF_VARS.fd" ]
