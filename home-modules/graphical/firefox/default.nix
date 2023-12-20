@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: {
   programs.firefox = {
@@ -26,7 +27,7 @@
         }
         // (
           let
-            inherit (config.nur.repos.federicoschonborn) firefox-gnome-theme;
+            inherit (inputs.self.packages.${pkgs.system}) firefox-gnome-theme;
           in {
             userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
             userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
@@ -50,7 +51,7 @@
         }
         // (
           let
-            inherit (config.nur.repos.federicoschonborn) firefox-gnome-theme;
+            inherit (inputs.self.packages.${pkgs.system}) firefox-gnome-theme;
             betterfox = pkgs.fetchFromGitHub {
               owner = "yokoffing";
               repo = "Betterfox";
