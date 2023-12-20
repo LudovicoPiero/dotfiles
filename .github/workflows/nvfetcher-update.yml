@@ -1,0 +1,39 @@
+name: "Nvfetcher Update"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  Nvfetcher-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.GH_TOKEN }}"
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v24
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Git config
+        run: |
+          git config --global user.email "lewdovico@gnuweeb.org"
+          git config --global user.name "Ludovico Piero"
+
+      - name: Run nvfetcher
+        run: |
+          pushd pkgs
+          nix run nixpkgs#nvfetcher -- --commit-changes
+          popd
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: "${{ secrets.GH_TOKEN }}"
+          delete-branch: true

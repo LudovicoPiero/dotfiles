@@ -1,19 +1,10 @@
 {
   lib,
   stdenvNoCC,
-  fetchFromGitHub,
-  ...
+  sources,
 }:
 stdenvNoCC.mkDerivation {
-  pname = "San-Francisco-Pro-Fonts";
-  version = "unstable-2021-06-23";
-
-  src = fetchFromGitHub {
-    owner = "sahibjotsaggu";
-    repo = "San-Francisco-Pro-Fonts";
-    rev = "8bfea09aa6f1139479f80358b2e1e5c6dc991a58";
-    hash = "sha256-8XVzzBDKnezRElyCwDQJ5VZP7ARuDxyi0Z8TFNGz2p0";
-  };
+  inherit (sources.san-francisco-pro) pname version src;
 
   buildPhase = ''
     runHook preBuild

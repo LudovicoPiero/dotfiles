@@ -45,6 +45,7 @@
           packages = [
             config.treefmt.build.wrapper
             inputs'.nix-super.packages.default
+            pkgs.nvfetcher
             (pkgs.writeShellApplication {
               name = "fmt";
               text = "treefmt";
@@ -67,6 +68,9 @@
             stylua.enable = true;
           };
 
+          settings.formatter.alejandra.excludes = ["generated.nix"];
+          settings.formatter.deadnix.excludes = ["generated.nix"];
+          settings.formatter.statix.excludes = ["generated.nix"];
           settings.formatter.stylua.options = ["--indent-type" "Spaces" "--indent-width" "2" "--quote-style" "ForceDouble"];
         };
       };

@@ -1,0 +1,78 @@
+{
+    "firefox-gnome-theme": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "firefox-gnome-theme",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "v121",
+            "sha256": "sha256-M+Cw6vh7xCDmIhyVuEPNmaNVUwpmdFQq8zlsXZTKees=",
+            "type": "git",
+            "url": "https://github.com/rafaelmardojai/firefox-gnome-theme"
+        },
+        "version": "v121"
+    },
+    "san-francisco-pro": {
+        "cargoLocks": null,
+        "date": "2021-06-22",
+        "extract": null,
+        "name": "san-francisco-pro",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "8bfea09aa6f1139479f80358b2e1e5c6dc991a58",
+            "sha256": "sha256-mAXExj8n8gFHq19HfGy4UOJYKVGPYgarGd/04kUIqX4=",
+            "type": "git",
+            "url": "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts"
+        },
+        "version": "8bfea09aa6f1139479f80358b2e1e5c6dc991a58"
+    },
+    "waybar": {
+        "cargoLocks": null,
+        "date": "2023-12-18",
+        "extract": null,
+        "name": "waybar",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "f5370fcff585419dcce67712b561217d33e8b65e",
+            "sha256": "sha256-jg/c93FhoZNcd7OiCihtLGSOvDMqqQFJO79hYg7CY3g=",
+            "type": "git",
+            "url": "https://github.com/alexays/waybar"
+        },
+        "version": "f5370fcff585419dcce67712b561217d33e8b65e"
+    },
+    "wezterm": {
+        "cargoLocks": null,
+        "date": "2023-12-03",
+        "extract": null,
+        "name": "wezterm",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": true,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "e3cd2e93d0ee5f3af7f3fe0af86ffad0cf8c7ea8",
+            "sha256": "sha256-sj3S1fWC6j9Q/Yc+4IpLbKC3lttUWFk65ROyCdQt+Zc=",
+            "type": "git",
+            "url": "https://github.com/wez/wezterm"
+        },
+        "version": "e3cd2e93d0ee5f3af7f3fe0af86ffad0cf8c7ea8"
+    }
+}
