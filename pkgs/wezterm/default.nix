@@ -2,7 +2,6 @@
   stdenv,
   rustPlatform,
   lib,
-  fetchFromGitHub,
   ncurses,
   perl,
   pkg-config,
@@ -31,18 +30,10 @@
   nixosTests,
   runCommand,
   vulkan-loader,
+  sources,
 }:
 rustPlatform.buildRustPackage rec {
-  pname = "wezterm";
-  version = "unstable-2023-12-04";
-
-  src = fetchFromGitHub {
-    owner = "wez";
-    repo = pname;
-    rev = "e3cd2e93d0ee5f3af7f3fe0af86ffad0cf8c7ea8";
-    fetchSubmodules = true;
-    hash = "sha256-sj3S1fWC6j9Q/Yc+4IpLbKC3lttUWFk65ROyCdQt+Zc=";
-  };
+  inherit (sources.wezterm) pname version src;
 
   postPatch = ''
     echo ${version} > .tag
