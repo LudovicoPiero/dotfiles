@@ -76,7 +76,19 @@
 
   networking = {
     hostName = "sforza";
-    useDHCP = lib.mkForce true;
+    useDHCP = false;
+    defaultGateway = {
+      address = "192.168.1.1";
+      interface = "wlp4s0";
+    };
+    interfaces.wlp4s0 = {
+      ipv4.addresses = [
+        {
+          address = "192.168.1.99";
+          prefixLength = 24;
+        }
+      ];
+    };
     networkmanager.enable = true;
   };
 
