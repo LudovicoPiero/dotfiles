@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 } @ args: let
   cfg = config.mine.waybar;
@@ -29,14 +30,7 @@ in {
     programs.waybar = {
       enable = true;
 
-      package = pkgs.waybar.overrideAttrs (_: {
-        src = pkgs.fetchFromGitHub {
-          owner = "alexays";
-          repo = "waybar";
-          rev = "1572bc8c75007b633b647a124b6ec6623e7bae0b";
-          hash = "sha256-YdUZBLREmQuRvzwckkdI86Vo0iC8NZgcOXCy7agV+0w=";
-        };
-      });
+      package = inputs.self.packages.${pkgs.system}.waybar;
 
       settings = {
         mainBar = {
