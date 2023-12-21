@@ -6,7 +6,7 @@ on:
     - cron: "0 20 * * *"
 
 jobs:
-  Nvfetcher-update:
+  nvfetcher-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,3 +37,24 @@ jobs:
         with:
           token: "${{ secrets.GH_TOKEN }}"
           delete-branch: true
+
+  automerge:
+    needs: nvfetcher-update
+
+    name: Enable automerge on dependabot PRs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable automerge on dependabot PRs
+        uses: daneden/enable-automerge-action@v1
+        with:
+          # A personal access token that you have generated and saved in the
+          # repo or org’s encrypted secrets
+          github-token: ${{ secrets.GH_TOKEN }}
+
+          # The name of the PR author to enable automerge for
+          # Defaults to dependabot[bot]
+          allowed-author: "Ludovico Piero"
+
+          # Allowed values: MERGE | SQUASH | REBASE
+          # Defaults to MERGE
+          merge-method: MERGE
