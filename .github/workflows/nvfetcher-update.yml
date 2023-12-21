@@ -3,7 +3,7 @@ name: "Nvfetcher Update"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 20 * * *"
 
 jobs:
   Nvfetcher-update:
