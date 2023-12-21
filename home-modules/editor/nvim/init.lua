@@ -112,33 +112,19 @@ require("lazy").setup({
   },
 
   {
-    "marko-cerovac/material.nvim",
+    -- Theme inspired by Atom
+    "Mofiqul/dracula.nvim",
     lazy = false,
     priority = 1000,
-    opts = {
-      styles = { -- Give comments style such as bold, italic, underline etc.
-        comments = { italic = true },
-      },
-
-      plugins = { -- Uncomment the plugins that you use to highlight them
-        "dashboard",
-        "indent-blankline",
-        "nvim-web-devicons",
-        "telescope",
-        "which-key",
-      },
-
-      disable = {
-        background = true, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
-      },
-
-      lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-      async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
-    },
     config = function()
-      vim.g.material_style = "palenight"
-      vim.cmd("colorscheme material")
+      vim.cmd.colorscheme("dracula")
     end,
+  },
+
+  -- nvim-scrollbar
+  {
+    "petertriho/nvim-scrollbar",
+    opts = {},
   },
 
   {
@@ -148,7 +134,7 @@ require("lazy").setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = "material",
+        theme = "dracula",
         component_separators = "|",
         section_separators = "",
         refresh = {
