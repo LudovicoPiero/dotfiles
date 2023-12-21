@@ -41,8 +41,13 @@ jobs:
           body: "BOOMP BOOMP"
           delete-branch: true
 
+  automerge:
+    runs-on: ubuntu-latest
+    needs: nvfetcher-update
+    if: ${{ success() && needs.nvfetcher-update.outputs.pr.outputs.pull-request-number }}
+    steps:
       - name: automerge
         run: |
-          gh pr merge ${{ steps.pr.outputs.pull-request-number }} --auto --merge --delete-branch
+          gh pr merge ${{ needs.nvfetcher-update.outputs.pr.outputs.pull-request-number }} --auto --merge --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.PR_TOKEN }}
