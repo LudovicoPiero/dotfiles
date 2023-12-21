@@ -6,7 +6,7 @@ on:
     - cron: "0 20 * * *"
 
 jobs:
-  Nvfetcher-update:
+  nvfetcher-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,3 +37,9 @@ jobs:
         with:
           token: "${{ secrets.GH_TOKEN }}"
           delete-branch: true
+
+      - name: automerge
+        run: |
+          gh pr merge ${{ steps.update.outputs.pull-request-number }} --auto --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

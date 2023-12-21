@@ -26,8 +26,8 @@ jobs:
             uwu
             automated
 
-      - name: merge
+      - name: automerge
         run: |
-          gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
+          gh pr merge ${{ steps.update.outputs.pull-request-number }} --auto --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
