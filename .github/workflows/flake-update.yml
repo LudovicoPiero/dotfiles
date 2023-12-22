@@ -21,6 +21,7 @@ jobs:
         id: update
         uses: DeterminateSystems/update-flake-lock@v20
         with:
+          branch: "flake-update"
           git-author-name: 'Maximilian'
           git-author-email: '59017537+MaximilianSforza@users.noreply.github.com'
           git-committer-name: 'Maximilian'
