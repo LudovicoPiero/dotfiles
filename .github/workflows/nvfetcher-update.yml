@@ -41,6 +41,7 @@ jobs:
           token: "${{ secrets.PR_TOKEN }}"
           title: "Nvfetcher update"
           body: "BOOMP BOOMP"
+          branch: "nvfetcher-update"
           delete-branch: true
 
       - name: automerge
