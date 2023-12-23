@@ -7,6 +7,7 @@
   };
 
   mine = {
+    discord.enable = true;
     direnv.enable = true;
     fuzzel.enable = true;
     wezterm.enable = true;

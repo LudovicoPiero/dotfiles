@@ -18,6 +18,7 @@
     ./editor/nvim
 
     ./graphical/desktop
+    ./graphical/discord
     ./graphical/firefox
     ./graphical/gammastep
     ./graphical/waybar

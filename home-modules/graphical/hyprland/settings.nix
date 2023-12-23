@@ -49,11 +49,6 @@
     before-sleep '${_ swaylock}' \
     lock '${_ swaylock}}'
   '';
-  discord-wrapped = "${pkgs.discord-canary.override {
-    withOpenASAR = true;
-    withVencord = true;
-  }}/bin/discordcanary --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
-  vesktop-wrapped = "${_ pkgs.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime";
 in {
   exec-once = [
     "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
@@ -207,8 +202,7 @@ in {
     "$mod SHIFT, C , exit ,"
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
-    "$mod SHIFT, D , exec , ${vesktop-wrapped}"
-    "$mod      , D , exec , ${discord-wrapped}"
+    "$mod      , D , exec , vencorddesktop"
     "$mod SHIFT, E , exec , [float] nautilus"
     "$mod      , F , fullscreen , 0"
     "$mod SHIFT, G , exec , chromium"
