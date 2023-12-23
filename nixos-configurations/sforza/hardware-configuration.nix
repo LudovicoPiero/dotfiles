@@ -92,7 +92,7 @@
     };
 
     "/nix" = {
-      device = "/dev/disk/by-label/store";
+      device = "/dev/disk/by-label/Store";
       fsType = "btrfs";
       options = [
         "autodefrag"
@@ -106,7 +106,15 @@
 
     "/home" = {
       device = "/dev/disk/by-label/Home";
-      fsType = "xfs";
+      fsType = "btrfs";
+      options = [
+        "autodefrag"
+        "compress-force=zstd"
+        "discard=async"
+        "noatime"
+        "space_cache=v2"
+        "ssd"
+      ];
       neededForBoot = true;
     };
 
