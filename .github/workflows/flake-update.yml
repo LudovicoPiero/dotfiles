@@ -8,8 +8,6 @@ on:
 jobs:
   update-multiple-inputs:
     runs-on: ubuntu-latest
-    outputs:
-      id: update
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,31 +22,17 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@v20
         with:
           branch: "flake-update"
-          git-author-name: "Maximilian"
-          git-author-email: "59017537+MaximilianSforza@users.noreply.github.com"
-          git-committer-name: "Maximilian"
-          git-committer-email: "59017537+MaximilianSforza@users.noreply.github.com"
+          git-author-name: 'Maximilian'
+          git-author-email: '59017537+MaximilianSforza@users.noreply.github.com'
+          git-committer-name: 'Maximilian'
+          git-committer-email: '59017537+MaximilianSforza@users.noreply.github.com'
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
             uwu
             automated
 
-      - name: Save pull request number to file
-        run: echo "PULL_REQUEST_NUMBER=${{ steps.update.outputs.pull-request-number }}" >> $GITHUB_ENV
-
-  automerge-if-pr-created:
-    needs: update-multiple-inputs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check if pull request is created
-        id: check-pr
-        run: echo "PR_CREATED=$(if [ -n "$(gh pr list --json number)" ]; then echo "true"; else echo "false"; fi)" >> $GITHUB_ENV
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-      - name: Automerge if pull request is created
-        if: ${{ env.PR_CREATED == 'true' }}
+      - name: automerge
         run: |
-          gh pr merge ${{ needs.update-multiple-inputs.outputs.pull-request-number }} --auto --merge --delete-branch
+          gh pr merge ${{ steps.update.outputs.pull-request-number }} --auto --merge --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
