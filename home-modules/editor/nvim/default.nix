@@ -1,50 +1,62 @@
-{pkgs, ...}: {
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    viAlias = true;
-    vimdiffAlias = true;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.mine.nvim;
+  inherit (lib) mkEnableOption mkIf;
+in {
+  options.mine.nvim.enable = mkEnableOption "nvim";
 
-    withNodeJs = true;
-    withRuby = true;
-    withPython3 = true;
+  config = mkIf cfg.enable {
+    programs.neovim = {
+      enable = true;
+      vimAlias = true;
+      viAlias = true;
+      vimdiffAlias = true;
 
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-    ];
+      withNodeJs = true;
+      withRuby = true;
+      withPython3 = true;
 
-    extraPackages = with pkgs; [
-      # Nix
-      alejandra
-      nil
-      deadnix
-      statix
+      plugins = with pkgs.vimPlugins; [
+        nvim-treesitter.withAllGrammars
+      ];
 
-      # Lua
-      lua-language-server
-      stylua
+      extraPackages = with pkgs; [
+        # Nix
+        alejandra
+        nil
+        deadnix
+        statix
 
-      # Python
-      nodePackages.pyright
-      isort
-      black
+        # Lua
+        lua-language-server
+        stylua
 
-      # C/C++
-      gcc
-      clang
-      clang-tools # for headers stuff
+        # Python
+        nodePackages.pyright
+        isort
+        black
 
-      # Rust
-      rust-analyzer
+        # C/C++
+        gcc
+        clang
+        clang-tools # for headers stuff
 
-      # Etc
-      ripgrep
-      fd
-    ];
-  };
+        # Rust
+        rust-analyzer
 
-  xdg.configFile."nvim" = {
-    source = ./.;
-    recursive = true;
+        # Etc
+        ripgrep
+        fd
+      ];
+    };
+
+    xdg.configFile."nvim" = {
+      source = ./.;
+      recursive = true;
+    };
   };
 }
