@@ -546,12 +546,9 @@ local serverConfigs = {
   lua_ls = {
     settings = {
       Lua = {
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          checkThirdParty = false,
-        },
+        telemetry = { enable = false },
+        diagnostics = { globals = { "vim" } },
+        workspace = { checkThirdParty = false },
         format = {
           enable = true,
           defaultConfig = {
