@@ -22,10 +22,10 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@v20
         with:
           branch: "flake-update"
-          git-author-name: 'Maximilian'
-          git-author-email: '59017537+MaximilianSforza@users.noreply.github.com'
-          git-committer-name: 'Maximilian'
-          git-committer-email: '59017537+MaximilianSforza@users.noreply.github.com'
+          git-author-name: "Maximilian"
+          git-author-email: "59017537+MaximilianSforza@users.noreply.github.com"
+          git-committer-name: "Maximilian"
+          git-committer-email: "59017537+MaximilianSforza@users.noreply.github.com"
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
             uwu
