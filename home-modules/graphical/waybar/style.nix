@@ -36,7 +36,8 @@ in ''
   }
 
   #workspaces button.visible {
-    color: #${colors.base0B};
+    color: #${colors.base00};
+    background-color: #${colors.base09};
   }
 
   #workspaces button.active {
