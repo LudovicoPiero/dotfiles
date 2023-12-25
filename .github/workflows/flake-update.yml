@@ -46,8 +46,8 @@ jobs:
           pull-request-token: ${{ secrets.PR_TOKEN }}
           pull-request-author: Maximilian <59017537+MaximilianSforza@users.noreply.github.com>
           github-token: ${{ secrets.GH_TOKEN }}
-          pull-request-labels: automated,uwu
+          pull-request-labels: automated,uwu, keep-up-to-date
           delete-branch: true
           pull-request-branch-prefix: "flake/update-"
           pull-request-merge-method: "merge"
-          automerge: true
+          automerge: false

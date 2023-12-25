@@ -41,11 +41,6 @@ jobs:
           token: "${{ secrets.PR_TOKEN }}"
           title: "Nvfetcher update"
           body: "BOOMP BOOMP"
+          labels: automated,uwu, keep-up-to-date
           branch: "nvfetcher-update"
           delete-branch: true
-
-      - name: automerge
-        run: |
-          gh pr merge ${{ steps.create-pr.outputs.pull-request-number }} --auto --merge --delete-branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

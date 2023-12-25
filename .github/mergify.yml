@@ -1,0 +1,17 @@
+# When a pull request is not a draft, and has the label keep-up-to-date,
+# it will be automatically updated with its base branch.
+pull_request_rules:
+  - name: automatic update for PR marked as “keep-up-to-date“
+    conditions:
+      - -draft # filter-out draft PRs
+      - label="keep-up-to-date"
+    actions:
+      update:
+
+  - name: Automatic merge when CI passes and reviews approve
+    conditions:
+      - check-success=nixosConfig sforza.
+      - check-success=nixosConfig sforza
+    actions:
+      merge:
+        method: merge
