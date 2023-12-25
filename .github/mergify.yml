@@ -15,3 +15,30 @@ pull_request_rules:
     actions:
       merge:
         method: merge
+
+  - name: Warn on conflicts
+    conditions:
+      - conflict
+    actions:
+      comment:
+        message: "@{{author}} this pull request is now in conflict 😩"
+      label:
+        toggle:
+          - conflict
+
+  - name: Toggle labels based on CI state
+    conditions:
+      - check-failure=nixosConfig sforza
+      - check-failure=homeConfig airi@sforza
+    actions:
+      label:
+        toggle:
+          - "CI:fail"
+
+  - name: Add "WIP" label when the title contains "WIP"
+    conditions:
+      - title~=WIP
+    actions:
+      label:
+        toggle:
+          - WIP
