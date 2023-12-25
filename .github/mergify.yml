@@ -8,10 +8,10 @@ pull_request_rules:
     actions:
       update:
 
-  - name: Automatic merge when CI passes and reviews approve
+  - name: Automatic merge when CI passes
     conditions:
-      - check-success=nixosConfig sforza.
       - check-success=nixosConfig sforza
+      - check-success=homeConfig airi@sforza
     actions:
       merge:
         method: merge
