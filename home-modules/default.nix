@@ -26,6 +26,7 @@
     ./graphical/mako
     ./graphical/fuzzel
     ./graphical/hyprland
+    ./graphical/sway
     ./graphical/services
     ./graphical/spotify
     ./graphical/wezterm

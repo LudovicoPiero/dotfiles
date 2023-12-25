@@ -11,12 +11,18 @@
     nvim.enable = true;
     emacs.enable = true;
 
+    # WM
+    hyprland.enable = true;
+    sway = {
+      enable = true;
+      useSwayFX = true;
+    };
+
     # Graphical
     discord.enable = true;
     direnv.enable = true;
     fuzzel.enable = true;
     wezterm.enable = true;
-    hyprland.enable = true;
     mako.enable = true;
     ssh.enable = true;
     gammastep.enable = true;
