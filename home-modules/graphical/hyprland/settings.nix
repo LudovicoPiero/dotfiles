@@ -54,8 +54,8 @@ in {
     "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
     "waybar"
     # "fcitx5 -d --replace"
-    "${lib.getExe pkgs.mako}"
-    "${lib.getExe swayidle}"
+    "${_ pkgs.mako}"
+    "${_ swayidle}"
   ];
 
   monitor = [
@@ -223,8 +223,8 @@ in {
     # "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
 
     ", print, exec , wl-ocr"
-    "CTRL   , Print , exec , ${lib.getExe pkgs.grimblast} save area - | ${lib.getExe pkgs.swappy} -f -"
-    "ALT    , Print , exec , ${lib.getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
+    "CTRL   , Print , exec , ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
+    "ALT    , Print , exec , ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
 
     # Dwindle Keybind
     "$mod , h , resizeactive , -20 0"
