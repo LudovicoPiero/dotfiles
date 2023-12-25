@@ -18,7 +18,7 @@ in {
   "${mod}+Shift+r" = "reload";
 
   # Wlogout
-  "${mod}+x" = "exec wlogout";
+  "${mod}+x" = "exec ${_ pkgs.wlogout}";
 
   # Exit sway
   "${mod}+Shift+c" = "exit";
@@ -92,9 +92,9 @@ in {
   ### Apps
   "${mod}+Return" = "exec ${cfg.terminal}";
   "${mod}+p" = "exec run-as-service ${cfg.menu}";
-  "${mod}+g" = "exec ${pkgs.firefox}/bin/firefox";
+  "${mod}+g" = "exec ${_ pkgs.firefox}";
   "${mod}+d" = "exec vencorddesktop";
-  "${mod}+Shift+e" = "exec ${pkgs.xfce.thunar}/bin/thunar";
+  "${mod}+Shift+e" = "exec ${_ pkgs.gnome.nautilus}";
 
   ### Screenshot
   "${mod}+Print" = "sharenix --selection";
