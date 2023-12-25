@@ -16,6 +16,7 @@
     ./core/fish
 
     ./editor/nvim
+    ./editor/emacs
 
     ./graphical/desktop
     ./graphical/discord

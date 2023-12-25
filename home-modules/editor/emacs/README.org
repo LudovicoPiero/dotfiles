@@ -1,0 +1,2 @@
+* Emacs config powered by Rycee's nur-expressions
+  Can be found [[https://git.sr.ht/~rycee/nur-expressions][here]]

@@ -7,6 +7,11 @@
   };
 
   mine = {
+    # Editor
+    nvim.enable = true;
+    emacs.enable = true;
+
+    # Graphical
     discord.enable = true;
     direnv.enable = true;
     fuzzel.enable = true;
