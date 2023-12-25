@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: home-manager.users.${config.vars.username}
+# key: hmuu
+# uuid: hmuu
+# --
+home-manager.users.\${config.vars.username} = {
+  $1
+};
