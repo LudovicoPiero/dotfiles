@@ -15,8 +15,9 @@
 (column-number-mode 1)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
+(setq-default indent-tabs-mode nil
+	      tab-width 4
+	      display-line-numbers 'relative)
 (setq-default whitespace-style
               '(face
                 tabs

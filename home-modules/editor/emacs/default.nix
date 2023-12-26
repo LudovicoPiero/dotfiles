@@ -92,8 +92,8 @@ in {
             };
             config = ''
               (projectile-mode)
-              (setq projectile-indexing-method 'alien)
-              (setq projectile-mode-line "Projectile")
+              (setq projectile-indexing-method 'alien
+                    projectile-mode-line "Projectile")
             '';
           };
 
@@ -138,10 +138,7 @@ in {
             config = ''
               ;; Only check buffer when mode is enabled or buffer is saved.
               (setq flycheck-check-syntax-automatically '(mode-enabled save)
-              flycheck-markdown-mdl-executable "${pkgs.mdl}/bin/mdl")
-
-              ;; Enable flycheck in all eligible buffers.
-              (global-flycheck-mode)
+                    flycheck-markdown-mdl-executable "${pkgs.mdl}/bin/mdl")
             '';
           };
 
@@ -224,15 +221,16 @@ in {
             '';
             config = ''
               (setq lsp-diagnostics-provider :flycheck
-              lsp-eldoc-render-all nil
-              lsp-headerline-breadcrumb-enable nil
-              lsp-modeline-code-actions-enable nil
-              lsp-modeline-diagnostics-enable nil
-              lsp-modeline-workspace-status-enable nil
-              lsp-lens-enable t)
+                    lsp-eldoc-render-all nil
+                    lsp-headerline-breadcrumb-enable t
+                    lsp-modeline-code-actions-enable nil
+                    lsp-modeline-diagnostics-enable nil
+                    lsp-modeline-workspace-status-enable nil
+                    lsp-lens-enable t)
               (setq lsp-rust-server 'rust-analyzer
-              lsp-nix-server 'nil
-              lsp-nix-nil-formatter ["alejandra"])
+                    lsp-nix-server "nil"
+                    lsp-nix-nil-server-path "${pkgs.nil}/bin/nil"
+                    lsp-nix-nil-formatter ["alejandra"])
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
             '';
           };
@@ -255,15 +253,16 @@ in {
             };
             config = ''
               (setq lsp-ui-sideline-enable t
-              lsp-ui-sideline-show-symbol nil
-              lsp-ui-sideline-show-hover t
-              lsp-ui-doc-enable nil
-              lsp-ui-sideline-show-code-actions nil
-              lsp-ui-sideline-update-mode 'point)
+                    lsp-ui-sideline-show-symbol nil
+                    lsp-ui-sideline-show-hover t
+                    lsp-ui-doc-enable t
+                    lsp-ui-doc-show-with-mouse nil
+                    lsp-ui-sideline-show-code-actions nil
+                    lsp-ui-sideline-update-mode 'point)
               (setq lsp-ui-doc-enable nil
-              lsp-ui-doc-position 'at-point
-              lsp-ui-doc-max-width 125
-              lsp-ui-doc-max-height 18)
+                    lsp-ui-doc-position 'at-point
+                    lsp-ui-doc-max-width 125
+                    lsp-ui-doc-max-height 18)
             '';
           };
 
@@ -276,7 +275,10 @@ in {
             enable = true;
             after = ["lsp-mode"];
             config = ''
-              (setq lsp-completion-enable-additional-text-edit nil)
+              (setq lsp-completion-enable-additional-text-edit nil
+                    lsp-completion-provider :company-mode
+                    lsp-completion-show-detail t
+                    lsp-completion-item-kind t)
             '';
           };
 
@@ -367,23 +369,23 @@ in {
             config = ''
               ;; Some general stuff.
               (setq org-reverse-note-order t
-              org-use-fast-todo-selection t
-              org-adapt-indentation nil
-              org-hide-leading-stars t
-              org-hide-emphasis-markers t
-              org-ctrl-k-protect-subtree t
-              org-pretty-entities t
-              org-ellipsis "…")
+                    org-use-fast-todo-selection t
+                    org-adapt-indentation nil
+                    org-hide-leading-stars t
+                    org-hide-emphasis-markers t
+                    org-ctrl-k-protect-subtree t
+                    org-pretty-entities t
+                    org-ellipsis "…")
 
               ;; Add some todo keywords.
               (setq org-todo-keywords
-              '((sequence "TODO(t)"
-              "STARTED(s!)"
-              "WAITING(w@/!)"
-              "DELEGATED(@!)"
-              "|"
-              "DONE(d!)"
-              "CANCELED(c@!)")))
+                    '((sequence "TODO(t)"
+                    "STARTED(s!)"
+                    "WAITING(w@/!)"
+                    "DELEGATED(@!)"
+                    "|"
+                    "DONE(d!)"
+                    "CANCELED(c@!)")))
 
               ;; Unfortunately org-mode tends to take over keybindings that
               ;; start with C-c.
@@ -400,11 +402,11 @@ in {
             config = ''
               ;; Set up agenda view.
               (setq org-agenda-span 5
-              org-deadline-warning-days 14
-              org-agenda-show-all-dates t
-              org-agenda-skip-deadline-if-done t
-              org-agenda-skip-scheduled-if-done t
-              org-agenda-start-on-weekday nil)
+                    org-deadline-warning-days 14
+                    org-agenda-show-all-dates t
+                    org-agenda-skip-deadline-if-done t
+                    org-agenda-skip-scheduled-if-done t
+                    org-agenda-start-on-weekday nil)
             '';
           };
 
@@ -541,7 +543,7 @@ in {
             demand = true;
             config = ''
               (dashboard-setup-startup-hook)
-              (setq dashboard-banner-logo-title "Ludovico Sforza"
+              (setq dashboard-banner-logo-title "Airiiiiii"
                     dashboard-center-content t)
             '';
           };
@@ -620,11 +622,6 @@ in {
               };
             };
             config = ''
-              ;; uncomment for less flashiness
-              ;; (setq lsp-eldoc-hook nil)
-              ;; (setq lsp-enable-symbol-highlighting nil)
-              ;; (setq lsp-signature-auto-activate nil)
-
               ;; comment to disable rustfmt on save
               (setq rustic-format-on-save t)
               (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook)
