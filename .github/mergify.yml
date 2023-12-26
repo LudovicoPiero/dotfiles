@@ -1,10 +1,9 @@
-# When a pull request is not a draft, and has the label keep-up-to-date,
-# it will be automatically updated with its base branch.
 pull_request_rules:
   - name: automatic update for PR marked as “keep-up-to-date“
     conditions:
       - -draft # filter-out draft PRs
       - label="keep-up-to-date"
+      - "label!=CI:fail"   # exclude PRs with "CI::fail" label
     actions:
       update:
 
