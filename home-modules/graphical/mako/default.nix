@@ -27,7 +27,7 @@ in {
       backgroundColor = "#${colors.base00}";
       borderColor = "#${colors.base0E}";
       textColor = "#${colors.base05}";
-      borderRadius = 0;
+      borderRadius = 5;
       borderSize = 2;
       padding = "20";
       defaultTimeout = 5000;
