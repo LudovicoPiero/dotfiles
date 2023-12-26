@@ -3,7 +3,7 @@ pull_request_rules:
     conditions:
       - -draft # filter-out draft PRs
       - label="keep-up-to-date"
-      - "!label=CI::fail"  # exclude PRs with "CI::fail" label
+      - "label!=CI:fail"   # exclude PRs with "CI::fail" label
     actions:
       update:
 
