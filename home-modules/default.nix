@@ -20,6 +20,7 @@
 
     ./graphical/desktop
     ./graphical/discord
+    ./graphical/chromium
     ./graphical/firefox
     ./graphical/gammastep
     ./graphical/waybar
