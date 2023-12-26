@@ -4,10 +4,12 @@
   pkgs,
   username,
   ...
-}: let
+}:
+let
   cfg = config.mine.greetd;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.greetd = {
     enable = mkOption {
       type = types.bool;
@@ -27,25 +29,27 @@ in {
       '';
     };
 
-    services.greetd = let
-      user = username;
-      sway = "${lib.getExe pkgs.sway}";
-      swayConf = pkgs.writeText "greetd-sway-config" ''
-        output * background #000000 solid_color
-        exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
-        xwayland disable
+    services.greetd =
+      let
+        user = username;
+        sway = "${lib.getExe pkgs.sway}";
+        swayConf = pkgs.writeText "greetd-sway-config" ''
+          output * background #000000 solid_color
+          exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
+          xwayland disable
 
-        exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
-      '';
-    in {
-      enable = true;
-      vt = 7;
-      settings = {
-        default_session = {
-          command = "${sway} --config ${swayConf}";
-          inherit user;
+          exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+        '';
+      in
+      {
+        enable = true;
+        vt = 7;
+        settings = {
+          default_session = {
+            command = "${sway} --config ${swayConf}";
+            inherit user;
+          };
         };
       };
-    };
   };
 }

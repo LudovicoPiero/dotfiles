@@ -62,7 +62,8 @@
   wireplumberSupport ? true,
   withMediaPlayer ? mprisSupport && false,
   sources,
-}: let
+}:
+let
   # Derived from subprojects/cava.wrap
   libcava.src = fetchFromGitHub {
     owner = "LukashonakV";
@@ -71,7 +72,8 @@
     hash = "sha256-FnRJJV0poRmw+y4nt1X7Z0ipX86LRK1TJhNKHFk0rTw=";
   };
 in
-  stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (
+  finalAttrs: {
     inherit (sources.waybar) pname version src;
 
     postUnpack = lib.optional cavaSupport ''
@@ -81,15 +83,13 @@ in
       popd
     '';
 
-    nativeBuildInputs =
-      [
-        meson
-        ninja
-        pkg-config
-        scdoc
-        wrapGAppsHook
-      ]
-      ++ lib.optional withMediaPlayer gobject-introspection;
+    nativeBuildInputs = [
+      meson
+      ninja
+      pkg-config
+      scdoc
+      wrapGAppsHook
+    ] ++ lib.optional withMediaPlayer gobject-introspection;
 
     propagatedBuildInputs = lib.optionals withMediaPlayer [
       glib
@@ -136,7 +136,7 @@ in
       ++ lib.optional wireplumberSupport wireplumber
       ++ lib.optional (!stdenv.isLinux) libinotify-kqueue;
 
-    nativeCheckInputs = [catch2_3];
+    nativeCheckInputs = [ catch2_3 ];
     doCheck = runTests;
 
     mesonFlags =
@@ -174,7 +174,8 @@ in
       changelog = "https://github.com/alexays/waybar/releases/tag/${finalAttrs.version}";
       license = lib.licenses.mit;
       mainProgram = "waybar";
-      maintainers = with lib.maintainers; [ludovicopiero];
+      maintainers = with lib.maintainers; [ ludovicopiero ];
       inherit (wlroots.meta) platforms;
     };
-  })
+  }
+)

@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config, lib, ... }:
+let
   cfg = config.mine.security;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.security = {
     enable = mkOption {
       type = types.bool;
@@ -83,7 +81,7 @@ in {
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
     };
-    boot.kernelModules = ["tcp_bbr"];
+    boot.kernelModules = [ "tcp_bbr" ];
 
     boot.blacklistedKernelModules = [
       # Obscure network protocols

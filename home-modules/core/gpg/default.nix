@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config, lib, ... }:
+let
   cfg = config.mine.gpg;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.gpg = {
     enable = mkOption {
       type = types.bool;

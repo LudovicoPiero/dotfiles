@@ -1,8 +1,10 @@
 {
+  inputs,
   pkgs,
   username,
   ...
-}: {
+}:
+{
   home = {
     inherit username;
     homeDirectory = "/home/airi";
@@ -12,7 +14,7 @@
 
   home.packages = with pkgs; [
     nil
-    alejandra
+    inputs.chaotic.packages.${pkgs.system}.nixfmt_rfc166
   ];
 
   mine = {

@@ -5,7 +5,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.programs.emacs.init;
 
   packageFunctionType = mkOptionType {
@@ -15,244 +16,255 @@ with lib; let
     merge = mergeOneOption;
   };
 
-  usePackageType = types.submodule ({
-    name,
-    config,
-    ...
-  }: {
-    options = {
-      enable = mkEnableOption "Emacs package ${name}";
+  usePackageType = types.submodule (
+    { name, config, ... }:
+    {
+      options = {
+        enable = mkEnableOption "Emacs package ${name}";
 
-      package = mkOption {
-        type =
-          types.either (types.str // {description = "name of package";})
-          packageFunctionType;
-        default = name;
-        description = ''
-          The package to use for this module. Either the package name
-          within the Emacs package set or a function taking the Emacs
-          package set and returning a package.
-        '';
-      };
-
-      defer = mkOption {
-        type = types.either types.bool types.ints.positive;
-        default = false;
-        description = ''
-          The <option>:defer</option> setting.
-        '';
-      };
-
-      defines = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = ''
-          The entries to use for <option>:defines</option>.
-        '';
-      };
-
-      demand = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          The <option>:demand</option> setting.
-        '';
-      };
-
-      diminish = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = ''
-          The entries to use for <option>:diminish</option>.
-        '';
-      };
-
-      chords = mkOption {
-        type = types.attrsOf types.str;
-        default = {};
-        example = {
-          "jj" = "ace-jump-char-mode";
-          "jk" = "ace-jump-word-mode";
+        package = mkOption {
+          type = types.either (types.str // { description = "name of package"; }) packageFunctionType;
+          default = name;
+          description = ''
+            The package to use for this module. Either the package name
+            within the Emacs package set or a function taking the Emacs
+            package set and returning a package.
+          '';
         };
-        description = ''
-          The entries to use for <option>:chords</option>.
-        '';
-      };
 
-      functions = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = ''
-          The entries to use for <option>:functions</option>.
-        '';
-      };
-
-      mode = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = ''
-          The entries to use for <option>:mode</option>.
-        '';
-      };
-
-      after = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = ''
-          The entries to use for <option>:after</option>.
-        '';
-      };
-
-      bind = mkOption {
-        type = types.attrsOf types.str;
-        default = {};
-        example = {
-          "M-<up>" = "drag-stuff-up";
-          "M-<down>" = "drag-stuff-down";
+        defer = mkOption {
+          type = types.either types.bool types.ints.positive;
+          default = false;
+          description = ''
+            The <option>:defer</option> setting.
+          '';
         };
-        description = ''
-          The entries to use for <option>:bind</option>.
-        '';
-      };
 
-      bindLocal = mkOption {
-        type = types.attrsOf (types.attrsOf types.str);
-        default = {};
-        example = {
-          helm-command-map = {"C-c h" = "helm-execute-persistent-action";};
+        defines = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = ''
+            The entries to use for <option>:defines</option>.
+          '';
         };
-        description = ''
-          The entries to use for local keymaps in <option>:bind</option>.
-        '';
+
+        demand = mkOption {
+          type = types.bool;
+          default = false;
+          description = ''
+            The <option>:demand</option> setting.
+          '';
+        };
+
+        diminish = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = ''
+            The entries to use for <option>:diminish</option>.
+          '';
+        };
+
+        chords = mkOption {
+          type = types.attrsOf types.str;
+          default = { };
+          example = {
+            "jj" = "ace-jump-char-mode";
+            "jk" = "ace-jump-word-mode";
+          };
+          description = ''
+            The entries to use for <option>:chords</option>.
+          '';
+        };
+
+        functions = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = ''
+            The entries to use for <option>:functions</option>.
+          '';
+        };
+
+        mode = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = ''
+            The entries to use for <option>:mode</option>.
+          '';
+        };
+
+        after = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = ''
+            The entries to use for <option>:after</option>.
+          '';
+        };
+
+        bind = mkOption {
+          type = types.attrsOf types.str;
+          default = { };
+          example = {
+            "M-<up>" = "drag-stuff-up";
+            "M-<down>" = "drag-stuff-down";
+          };
+          description = ''
+            The entries to use for <option>:bind</option>.
+          '';
+        };
+
+        bindLocal = mkOption {
+          type = types.attrsOf (types.attrsOf types.str);
+          default = { };
+          example = {
+            helm-command-map = {
+              "C-c h" = "helm-execute-persistent-action";
+            };
+          };
+          description = ''
+            The entries to use for local keymaps in <option>:bind</option>.
+          '';
+        };
+
+        bindKeyMap = mkOption {
+          type = types.attrsOf types.str;
+          default = { };
+          example = {
+            "C-c p" = "projectile-command-map";
+          };
+          description = ''
+            The entries to use for <option>:bind-keymap</option>.
+          '';
+        };
+
+        command = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = ''
+            The entries to use for <option>:commands</option>.
+          '';
+        };
+
+        config = mkOption {
+          type = types.lines;
+          default = "";
+          description = ''
+            Code to place in the <option>:config</option> section.
+          '';
+        };
+
+        extraConfig = mkOption {
+          type = types.lines;
+          default = "";
+          description = ''
+            Additional lines to place in the use-package configuration.
+          '';
+        };
+
+        hook = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = ''
+            The entries to use for <option>:hook</option>.
+          '';
+        };
+
+        earlyInit = mkOption {
+          type = types.lines;
+          default = "";
+          description = ''
+            Lines to add to <option>programs.emacs.init.earlyInit</option> when
+            this package is enabled.
+            </para><para>
+            Note, the package is not automatically loaded so you will have to
+            <literal>require</literal> the necessary features yourself.
+          '';
+        };
+
+        init = mkOption {
+          type = types.lines;
+          default = "";
+          description = ''
+            The entries to use for <option>:init</option>.
+          '';
+        };
+
+        extraPackages = mkOption {
+          type = types.listOf types.package;
+          default = [ ];
+          description = ''
+            Extra packages to add to <option>home.packages</option>.
+          '';
+        };
+
+        assembly = mkOption {
+          type = types.lines;
+          readOnly = true;
+          internal = true;
+          description = "The final use-package code.";
+        };
       };
 
-      bindKeyMap = mkOption {
-        type = types.attrsOf types.str;
-        default = {};
-        example = {"C-c p" = "projectile-command-map";};
-        description = ''
-          The entries to use for <option>:bind-keymap</option>.
-        '';
+      config = mkIf config.enable {
+        assembly =
+          let
+            quoted = v: ''"${escape [ ''"'' ] v}"'';
+            mkBindHelper =
+              cmd: prefix: bs:
+              optionals (bs != { }) (
+                [ ":${cmd} (${prefix}" ] ++ mapAttrsToList (n: v: "  (${quoted n} . ${v})") bs ++ [ ")" ]
+              );
+
+            mkAfter = vs: optional (vs != [ ]) ":after (${toString vs})";
+            mkCommand = vs: optional (vs != [ ]) ":commands (${toString vs})";
+            mkDefines = vs: optional (vs != [ ]) ":defines (${toString vs})";
+            mkDiminish = vs: optional (vs != [ ]) ":diminish (${toString vs})";
+            mkMode = map (v: ":mode ${v}");
+            mkFunctions = vs: optional (vs != [ ]) ":functions (${toString vs})";
+            mkBind = mkBindHelper "bind" "";
+            mkBindLocal =
+              bs:
+              let
+                mkMap = n: v: mkBindHelper "bind" ":map ${n}" v;
+              in
+              flatten (mapAttrsToList mkMap bs);
+            mkBindKeyMap = mkBindHelper "bind-keymap" "";
+            mkChords = mkBindHelper "chords" "";
+            mkHook = map (v: ":hook ${v}");
+            mkDefer = v: if isBool v then optional v ":defer t" else [ ":defer ${toString v}" ];
+            mkDemand = v: optional v ":demand t";
+          in
+          concatStringsSep "\n  " (
+            [ "(use-package ${name}" ]
+            ++ mkAfter config.after
+            ++ mkBind config.bind
+            ++ mkBindKeyMap config.bindKeyMap
+            ++ mkBindLocal config.bindLocal
+            ++ mkChords config.chords
+            ++ mkCommand config.command
+            ++ mkDefer config.defer
+            ++ mkDefines config.defines
+            ++ mkFunctions config.functions
+            ++ mkDemand config.demand
+            ++ mkDiminish config.diminish
+            ++ mkHook config.hook
+            ++ mkMode config.mode
+            ++ optionals (config.init != "") [
+              ":init"
+              config.init
+            ]
+            ++ optionals (config.config != "") [
+              ":config"
+              config.config
+            ]
+            ++ optional (config.extraConfig != "") config.extraConfig
+          )
+          + ")";
       };
+    }
+  );
 
-      command = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = ''
-          The entries to use for <option>:commands</option>.
-        '';
-      };
-
-      config = mkOption {
-        type = types.lines;
-        default = "";
-        description = ''
-          Code to place in the <option>:config</option> section.
-        '';
-      };
-
-      extraConfig = mkOption {
-        type = types.lines;
-        default = "";
-        description = ''
-          Additional lines to place in the use-package configuration.
-        '';
-      };
-
-      hook = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        description = ''
-          The entries to use for <option>:hook</option>.
-        '';
-      };
-
-      earlyInit = mkOption {
-        type = types.lines;
-        default = "";
-        description = ''
-          Lines to add to <option>programs.emacs.init.earlyInit</option> when
-          this package is enabled.
-          </para><para>
-          Note, the package is not automatically loaded so you will have to
-          <literal>require</literal> the necessary features yourself.
-        '';
-      };
-
-      init = mkOption {
-        type = types.lines;
-        default = "";
-        description = ''
-          The entries to use for <option>:init</option>.
-        '';
-      };
-
-      extraPackages = mkOption {
-        type = types.listOf types.package;
-        default = [];
-        description = ''
-          Extra packages to add to <option>home.packages</option>.
-        '';
-      };
-
-      assembly = mkOption {
-        type = types.lines;
-        readOnly = true;
-        internal = true;
-        description = "The final use-package code.";
-      };
-    };
-
-    config = mkIf config.enable {
-      assembly = let
-        quoted = v: ''"${escape [''"''] v}"'';
-        mkBindHelper = cmd: prefix: bs:
-          optionals (bs != {}) ([":${cmd} (${prefix}"]
-            ++ mapAttrsToList (n: v: "  (${quoted n} . ${v})") bs
-            ++ [")"]);
-
-        mkAfter = vs: optional (vs != []) ":after (${toString vs})";
-        mkCommand = vs: optional (vs != []) ":commands (${toString vs})";
-        mkDefines = vs: optional (vs != []) ":defines (${toString vs})";
-        mkDiminish = vs: optional (vs != []) ":diminish (${toString vs})";
-        mkMode = map (v: ":mode ${v}");
-        mkFunctions = vs: optional (vs != []) ":functions (${toString vs})";
-        mkBind = mkBindHelper "bind" "";
-        mkBindLocal = bs: let
-          mkMap = n: v: mkBindHelper "bind" ":map ${n}" v;
-        in
-          flatten (mapAttrsToList mkMap bs);
-        mkBindKeyMap = mkBindHelper "bind-keymap" "";
-        mkChords = mkBindHelper "chords" "";
-        mkHook = map (v: ":hook ${v}");
-        mkDefer = v:
-          if isBool v
-          then optional v ":defer t"
-          else [":defer ${toString v}"];
-        mkDemand = v: optional v ":demand t";
-      in
-        concatStringsSep "\n  " (["(use-package ${name}"]
-          ++ mkAfter config.after
-          ++ mkBind config.bind
-          ++ mkBindKeyMap config.bindKeyMap
-          ++ mkBindLocal config.bindLocal
-          ++ mkChords config.chords
-          ++ mkCommand config.command
-          ++ mkDefer config.defer
-          ++ mkDefines config.defines
-          ++ mkFunctions config.functions
-          ++ mkDemand config.demand
-          ++ mkDiminish config.diminish
-          ++ mkHook config.hook
-          ++ mkMode config.mode
-          ++ optionals (config.init != "") [":init" config.init]
-          ++ optionals (config.config != "") [":config" config.config]
-          ++ optional (config.extraConfig != "") config.extraConfig)
-        + ")";
-    };
-  });
-
-  mkRecommendedOption = type: extraDescription:
+  mkRecommendedOption =
+    type: extraDescription:
     mkOption {
       type = types.bool;
       default = false;
@@ -303,26 +315,22 @@ with lib; let
   '';
 
   # Whether the configuration makes use of `:diminish`.
-  hasDiminish = any (p: p.diminish != []) (attrValues cfg.usePackage);
+  hasDiminish = any (p: p.diminish != [ ]) (attrValues cfg.usePackage);
 
   # Whether the configuration makes use of `:bind`.
-  hasBind =
-    any (p: p.bind != {} || p.bindLocal != {} || p.bindKeyMap != {})
-    (attrValues cfg.usePackage);
+  hasBind = any (p: p.bind != { } || p.bindLocal != { } || p.bindKeyMap != { }) (
+    attrValues cfg.usePackage
+  );
 
   # Whether the configuration makes use of `:chords`.
-  hasChords = any (p: p.chords != {}) (attrValues cfg.usePackage);
+  hasChords = any (p: p.chords != { }) (attrValues cfg.usePackage);
 
   usePackageSetup =
     ''
       (eval-when-compile
         (require 'use-package)
         ;; To help fixing issues during startup.
-        (setq use-package-verbose ${
-        if cfg.usePackageVerbose
-        then "t"
-        else "nil"
-      }))
+        (setq use-package-verbose ${if cfg.usePackageVerbose then "t" else "nil"}))
 
     ''
     + optionalString hasDiminish ''
@@ -381,8 +389,9 @@ with lib; let
 
       ${usePackageSetup}
     ''
-    + concatStringsSep "\n\n" (map (getAttr "assembly")
-      (filter (getAttr "enable") (attrValues cfg.usePackage)))
+    + concatStringsSep "\n\n" (
+      map (getAttr "assembly") (filter (getAttr "enable") (attrValues cfg.usePackage))
+    )
     + ''
 
       ${cfg.postlude}
@@ -390,8 +399,9 @@ with lib; let
       (provide 'hm-init)
       ;; hm-init.el ends here
     '';
-in {
-  imports = [./emacs-init-defaults.nix];
+in
+{
+  imports = [ ./emacs-init-defaults.nix ];
 
   options.programs.emacs.init = {
     enable = mkEnableOption "Emacs configuration";
@@ -451,7 +461,7 @@ in {
 
     usePackage = mkOption {
       type = types.attrsOf usePackageType;
-      default = {};
+      default = { };
       example = literalExpression ''
         {
           dhall-mode = {
@@ -468,88 +478,89 @@ in {
   config = mkIf (config.programs.emacs.enable && cfg.enable) {
     # Collect the extra packages that should be included in the user profile.
     # These are typically tools called by Emacs packages.
-    home.packages =
-      concatMap (v: v.extraPackages)
-      (filter (getAttr "enable") (builtins.attrValues cfg.usePackage));
+    home.packages = concatMap (v: v.extraPackages) (
+      filter (getAttr "enable") (builtins.attrValues cfg.usePackage)
+    );
 
-    programs.emacs.init.earlyInit = let
-      standardEarlyInit = mkBefore ''
-        ${optionalString cfg.recommendedGcSettings gcSettings}
+    programs.emacs.init.earlyInit =
+      let
+        standardEarlyInit = mkBefore ''
+          ${optionalString cfg.recommendedGcSettings gcSettings}
 
-        ${
-          if cfg.packageQuickstart
-          then ''
-            (setq package-quickstart t
-                  package-quickstart-file "hm-package-quickstart.el")
-          ''
-          else ''
-            (setq package-enable-at-startup nil)
-          ''
-        }
+          ${if cfg.packageQuickstart then
+            ''
+              (setq package-quickstart t
+                    package-quickstart-file "hm-package-quickstart.el")
+            ''
+          else
+            ''
+              (setq package-enable-at-startup nil)
+            ''}
 
-        ;; Avoid expensive frame resizing. Inspired by Doom Emacs.
-        (setq frame-inhibit-implied-resize t)
-      '';
-
-      # Collect the early initialization strings for each package.
-      packageEarlyInits =
-        map (p: p.earlyInit)
-        (filter (p: p.earlyInit != "") (builtins.attrValues cfg.usePackage));
-    in
-      mkMerge ([standardEarlyInit] ++ packageEarlyInits);
-
-    programs.emacs.extraPackages = epkgs: let
-      getPkg = v:
-        if isFunction v
-        then [(v epkgs)]
-        else optional (isString v && hasAttr v epkgs) epkgs.${v};
-
-      packages =
-        concatMap (v: getPkg v.package)
-        (filter (getAttr "enable") (builtins.attrValues cfg.usePackage));
-    in [
-      (epkgs.trivialBuild {
-        pname = "hm-early-init";
-        src = pkgs.writeText "hm-early-init.el" earlyInitFile;
-        version = "0.1.0";
-        packageRequires = packages;
-        preferLocalBuild = true;
-        allowSubstitutes = false;
-      })
-
-      (epkgs.trivialBuild {
-        pname = "hm-init";
-        src = pkgs.writeText "hm-init.el" initFile;
-        version = "0.1.0";
-        packageRequires =
-          [epkgs.use-package]
-          ++ packages
-          ++ optional hasBind epkgs.bind-key
-          ++ optional hasDiminish epkgs.diminish
-          ++ optional hasChords epkgs.use-package-chords;
-        preferLocalBuild = true;
-        allowSubstitutes = false;
-        preBuild = ''
-          # Do a bit of basic formatting of the generated init file.
-          emacs -Q --batch \
-            --eval '(find-file "hm-init.el")' \
-            --eval '(let ((indent-tabs-mode nil) (lisp-indent-offset 2)) (indent-region (point-min) (point-max)))' \
-            --eval '(write-file "hm-init.el")'
-
-          ${optionalString cfg.packageQuickstart ''
-            # Generate a package quickstart file to make autoloads and such
-            # available.
-            emacs -Q --batch \
-              --eval "(require 'package)" \
-              --eval "(setq package-quickstart-file \"hm-package-quickstart.el\")" \
-              --eval "(package-quickstart-refresh)"
-
-            # We know what we're doing?
-            sed -i '/no-byte-compile: t/d' hm-package-quickstart.el
-          ''}
+          ;; Avoid expensive frame resizing. Inspired by Doom Emacs.
+          (setq frame-inhibit-implied-resize t)
         '';
-      })
-    ];
+
+        # Collect the early initialization strings for each package.
+        packageEarlyInits = map (p: p.earlyInit) (
+          filter (p: p.earlyInit != "") (builtins.attrValues cfg.usePackage)
+        );
+      in
+      mkMerge ([ standardEarlyInit ] ++ packageEarlyInits);
+
+    programs.emacs.extraPackages =
+      epkgs:
+      let
+        getPkg =
+          v: if isFunction v then [ (v epkgs) ] else optional (isString v && hasAttr v epkgs) epkgs.${v};
+
+        packages = concatMap (v: getPkg v.package) (
+          filter (getAttr "enable") (builtins.attrValues cfg.usePackage)
+        );
+      in
+      [
+        (epkgs.trivialBuild {
+          pname = "hm-early-init";
+          src = pkgs.writeText "hm-early-init.el" earlyInitFile;
+          version = "0.1.0";
+          packageRequires = packages;
+          preferLocalBuild = true;
+          allowSubstitutes = false;
+        })
+
+        (epkgs.trivialBuild {
+          pname = "hm-init";
+          src = pkgs.writeText "hm-init.el" initFile;
+          version = "0.1.0";
+          packageRequires =
+            [ epkgs.use-package ]
+            ++ packages
+            ++ optional hasBind epkgs.bind-key
+            ++ optional hasDiminish epkgs.diminish
+            ++ optional hasChords epkgs.use-package-chords;
+          preferLocalBuild = true;
+          allowSubstitutes = false;
+          preBuild = ''
+            # Do a bit of basic formatting of the generated init file.
+            emacs -Q --batch \
+              --eval '(find-file "hm-init.el")' \
+              --eval '(let ((indent-tabs-mode nil) (lisp-indent-offset 2)) (indent-region (point-min) (point-max)))' \
+              --eval '(write-file "hm-init.el")'
+
+            ${optionalString cfg.packageQuickstart ''
+              # Generate a package quickstart file to make autoloads and such
+              # available.
+              emacs -Q --batch \
+                --eval "(require 'package)" \
+                --eval "(setq package-quickstart-file \"hm-package-quickstart.el\")" \
+                --eval "(package-quickstart-refresh)"
+
+              # We know what we're doing?
+              sed -i '/no-byte-compile: t/d' hm-package-quickstart.el
+            ''}
+          '';
+        })
+      ];
 
     home.file = {
       ".emacs.d/early-init.el".text = ''

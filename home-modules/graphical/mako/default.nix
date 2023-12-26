@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mine.mako;
   inherit (lib) mkIf mkOption types;
   inherit (config.colorScheme) colors;
-in {
+in
+{
   options.mine.mako = {
     enable = mkOption {
       type = types.bool;
@@ -19,7 +21,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.libnotify];
+    home.packages = [ pkgs.libnotify ];
     services.mako = {
       enable = true;
 

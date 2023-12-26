@@ -4,7 +4,8 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (config.colorScheme) colors;
   _ = lib.getExe;
   terminal = "${_ inputs.self.packages.${pkgs.system}.wezterm}";
@@ -49,7 +50,8 @@
     before-sleep '${_ swaylock}' \
     lock '${_ swaylock}}'
   '';
-in {
+in
+{
   exec-once = [
     "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
     "waybar"
@@ -66,7 +68,7 @@ in {
   animations = {
     enabled = true;
 
-    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
+    bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
 
     animation = [
       "windows, 1, 7, myBezier"
@@ -83,7 +85,7 @@ in {
     force_split = 2;
     pseudotile = true;
     preserve_split = true;
-    no_gaps_when_only = 2; #(default: disabled - 0) no border - 1, with border - 2
+    no_gaps_when_only = 2; # (default: disabled - 0) no border - 1, with border - 2
   };
 
   decoration = {

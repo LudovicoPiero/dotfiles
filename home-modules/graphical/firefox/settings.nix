@@ -10,10 +10,9 @@
   "browser.tabs.firefox-view-next" = false;
 
   # DOH
-  /*
-  trr.mode 5 is no DOH.
-  2 is enable DOH.
-  3 is no failback to system dns
+  /* trr.mode 5 is no DOH.
+     2 is enable DOH.
+     3 is no failback to system dns
   */
   "network.trr.mode" = 3;
   "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";

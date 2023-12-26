@@ -6,7 +6,8 @@
   inputs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
 
@@ -31,7 +32,10 @@
     };
 
     kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
-    kernelParams = lib.mkForce ["quiet" "loglevel=0"];
+    kernelParams = lib.mkForce [
+      "quiet"
+      "loglevel=0"
+    ];
     initrd.availableKernelModules = [
       "nvme"
       "xhci_pci"
@@ -44,8 +48,8 @@
       "amdgpu"
       "dm-snapshot"
     ];
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
     supportedFilesystems = [
       "btrfs"
       "ntfs"
@@ -53,91 +57,93 @@
     ];
   };
 
-  fileSystems = let
-    inherit username;
-    userHome = "/home/${username}";
-  in {
-    "${userHome}/Media" = {
-      device = "/dev/disk/by-label/Media";
-      fsType = "xfs";
+  fileSystems =
+    let
+      inherit username;
+      userHome = "/home/${username}";
+    in
+    {
+      "${userHome}/Media" = {
+        device = "/dev/disk/by-label/Media";
+        fsType = "xfs";
+      };
+
+      "${userHome}/WinE" = {
+        device = "/dev/disk/by-label/WinE";
+        fsType = "ntfs";
+        options = [
+          "uid=1000"
+          "gid=100"
+          "rw"
+          "user"
+          "exec"
+          "umask=000"
+          "nofail"
+        ];
+      };
+
+      "/" = {
+        device = "none";
+        fsType = "tmpfs";
+        options = [
+          "defaults"
+          "size=2G"
+          "mode=755"
+        ];
+      };
+
+      "/boot" = {
+        device = "/dev/disk/by-label/BOOT";
+        fsType = "vfat";
+      };
+
+      "/nix" = {
+        device = "/dev/disk/by-label/Store";
+        fsType = "btrfs";
+        options = [
+          "autodefrag"
+          "compress-force=zstd"
+          "discard=async"
+          "noatime"
+          "space_cache=v2"
+          "ssd"
+        ];
+      };
+
+      "/home" = {
+        device = "/dev/disk/by-label/Home";
+        fsType = "btrfs";
+        options = [
+          "autodefrag"
+          "compress-force=zstd"
+          "discard=async"
+          "noatime"
+          "space_cache=v2"
+          "ssd"
+        ];
+        neededForBoot = true;
+      };
+
+      "/persist" = {
+        device = "/dev/disk/by-label/Persist";
+        fsType = "xfs";
+        neededForBoot = true;
+      };
+
+      "/etc/nixos" = {
+        device = "/persist/etc/nixos";
+        fsType = "none";
+        options = [ "bind" ];
+      };
+
+      "/var/log" = {
+        device = "/persist/var/log";
+        fsType = "none";
+        options = [ "bind" ];
+      };
     };
 
-    "${userHome}/WinE" = {
-      device = "/dev/disk/by-label/WinE";
-      fsType = "ntfs";
-      options = [
-        "uid=1000"
-        "gid=100"
-        "rw"
-        "user"
-        "exec"
-        "umask=000"
-        "nofail"
-      ];
-    };
-
-    "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-        "defaults"
-        "size=2G"
-        "mode=755"
-      ];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-    };
-
-    "/nix" = {
-      device = "/dev/disk/by-label/Store";
-      fsType = "btrfs";
-      options = [
-        "autodefrag"
-        "compress-force=zstd"
-        "discard=async"
-        "noatime"
-        "space_cache=v2"
-        "ssd"
-      ];
-    };
-
-    "/home" = {
-      device = "/dev/disk/by-label/Home";
-      fsType = "btrfs";
-      options = [
-        "autodefrag"
-        "compress-force=zstd"
-        "discard=async"
-        "noatime"
-        "space_cache=v2"
-        "ssd"
-      ];
-      neededForBoot = true;
-    };
-
-    "/persist" = {
-      device = "/dev/disk/by-label/Persist";
-      fsType = "xfs";
-      neededForBoot = true;
-    };
-
-    "/etc/nixos" = {
-      device = "/persist/etc/nixos";
-      fsType = "none";
-      options = ["bind"];
-    };
-
-    "/var/log" = {
-      device = "/persist/var/log";
-      fsType = "none";
-      options = ["bind"];
-    };
-  };
-
-  swapDevices = [{device = "/dev/disk/by-label/Swap";}];
+  swapDevices = [ { device = "/dev/disk/by-label/Swap"; } ];
 
   # slows down boot time
   systemd.services.NetworkManager-wait-online.enable = false;

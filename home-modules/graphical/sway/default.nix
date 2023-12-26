@@ -4,11 +4,13 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mine.sway;
   inherit (config.colorScheme) colors;
   inherit (lib) mkEnableOption mkIf optionalString;
-in {
+in
+{
   options.mine.sway = {
     enable = mkEnableOption "sway";
     useSwayFX = mkEnableOption "sway with SwayFX";
@@ -17,17 +19,16 @@ in {
   config = mkIf cfg.enable {
     wayland.windowManager.sway = {
       enable = true;
-      package =
-        if cfg.useSwayFX
-        then pkgs.swayfx
-        else inputs.chaotic.packages.${pkgs.system}.sway_git;
+      package = if cfg.useSwayFX then pkgs.swayfx else inputs.chaotic.packages.${pkgs.system}.sway_git;
       config = {
-        colors = import ./colors.nix {inherit colors;};
-        keybindings = import ./keybindings.nix {inherit lib config pkgs;};
-        bars = []; # Use waybar
+        colors = import ./colors.nix { inherit colors; };
+        keybindings = import ./keybindings.nix { inherit lib config pkgs; };
+        bars = [ ]; # Use waybar
         window = import ./windows.nix;
         output = {
-          "*" = {bg = "#808080 solid_color";};
+          "*" = {
+            bg = "#808080 solid_color";
+          };
         };
         input = {
           "type:touchpad" = {
@@ -45,16 +46,16 @@ in {
           border = 2;
           titlebar = true;
           criteria = [
-            {window_role = "pop-up";}
-            {window_role = "bubble";}
-            {window_role = "dialog";}
-            {window_type = "dialog";}
-            {app_id = "lutris";}
-            {app_id = "thunar";}
-            {app_id = "pavucontrol";}
-            {class = ".*.exe";} # Wine apps
-            {class = "steam_app.*";} # Steam games
-            {class = "^Steam$";} # Steam itself
+            { window_role = "pop-up"; }
+            { window_role = "bubble"; }
+            { window_role = "dialog"; }
+            { window_type = "dialog"; }
+            { app_id = "lutris"; }
+            { app_id = "thunar"; }
+            { app_id = "pavucontrol"; }
+            { class = ".*.exe"; } # Wine apps
+            { class = "steam_app.*"; } # Steam games
+            { class = "^Steam$"; } # Steam itself
           ];
         };
         gaps = {
@@ -62,16 +63,22 @@ in {
           outer = 3;
         };
         fonts = {
-          names = ["Iosevka q"];
+          names = [ "Iosevka q" ];
           size = 10.0;
         };
         startup = [
-          {command = "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
-          {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
-          {command = "fcitx5 -d --replace";}
-          {command = "mako";}
-          {command = "waybar";}
-          {command = "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";}
+          {
+            command = "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";
+          }
+          {
+            command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";
+          }
+          { command = "fcitx5 -d --replace"; }
+          { command = "mako"; }
+          { command = "waybar"; }
+          {
+            command = "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";
+          }
         ];
         modifier = "Mod4";
         terminal = "${lib.getExe inputs.self.packages.${pkgs.system}.wezterm}";

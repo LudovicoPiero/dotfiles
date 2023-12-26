@@ -3,7 +3,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
@@ -39,7 +40,10 @@
   };
   chaotic = {
     mesa-git.enable = false;
-    steam.extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom];
+    steam.extraCompatPackages = with pkgs; [
+      luxtorpeda
+      proton-ge-custom
+    ];
     nyx = {
       cache.enable = false; # added manualy
       overlay.enable = true;

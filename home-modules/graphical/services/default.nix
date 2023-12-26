@@ -3,13 +3,24 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   mkService = lib.recursiveUpdate {
-    Unit.PartOf = ["hyprland-session.target" "sway-session.target"];
-    Unit.After = ["hyprland-session.target" "sway-session.target"];
-    Install.WantedBy = ["hyprland-session.target" "sway-session.target"];
+    Unit.PartOf = [
+      "hyprland-session.target"
+      "sway-session.target"
+    ];
+    Unit.After = [
+      "hyprland-session.target"
+      "sway-session.target"
+    ];
+    Install.WantedBy = [
+      "hyprland-session.target"
+      "sway-session.target"
+    ];
   };
-in {
+in
+{
   # User Services
   systemd.user.services = {
     swaybg = mkService {

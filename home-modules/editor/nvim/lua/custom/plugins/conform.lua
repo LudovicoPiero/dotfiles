@@ -17,7 +17,7 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
-      nix = { "alejandra" },
+      nix = { "nixfmt" },
       lua = { "stylua" },
       python = { "isort", "black" },
       -- Use the "_" filetype to run formatters on filetypes that don't

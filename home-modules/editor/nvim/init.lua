@@ -567,7 +567,7 @@ local serverConfigs = {
     settings = {
       ["nil"] = {
         formatting = {
-          command = { "alejandra" },
+          command = { "nixfmt" },
         },
       },
     },

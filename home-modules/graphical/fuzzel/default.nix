@@ -1,12 +1,10 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config, lib, ... }:
+let
   cfg = config.mine.fuzzel;
   inherit (config.colorScheme) colors;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.fuzzel = {
     enable = mkOption {
       type = types.bool;

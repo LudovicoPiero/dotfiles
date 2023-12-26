@@ -1,12 +1,15 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mine.nvim;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.mine.nvim.enable = mkEnableOption "nvim";
 
   config = mkIf cfg.enable {
@@ -20,13 +23,11 @@ in {
       withRuby = true;
       withPython3 = true;
 
-      plugins = with pkgs.vimPlugins; [
-        nvim-treesitter.withAllGrammars
-      ];
+      plugins = with pkgs.vimPlugins; [ nvim-treesitter.withAllGrammars ];
 
       extraPackages = with pkgs; [
         # Nix
-        alejandra
+        inputs.chaotic.packages.${pkgs.system}.nixfmt_rfc166
         nil
         deadnix
         statix

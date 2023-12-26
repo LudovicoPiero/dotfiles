@@ -4,21 +4,25 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mine.discord;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.mine.discord.enable = mkEnableOption "discord";
 
   config = mkIf cfg.enable {
     home.packages = [
-      (pkgs.vesktop.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [./readonlyFix.patch];
-        postFixup = ''
-          wrapProgram $out/bin/vencorddesktop \
-            --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime"
-        '';
-      }))
+      (pkgs.vesktop.overrideAttrs (
+        old: {
+          patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ];
+          postFixup = ''
+            wrapProgram $out/bin/vencorddesktop \
+              --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime"
+          '';
+        }
+      ))
     ];
 
     xdg.configFile."VencordDesktop/VencordDesktop/settings.json".text = builtins.toJSON {
@@ -300,7 +304,7 @@ in {
         OpenInApp = {
           enabled = false;
         };
-        "Party mode \ud83c\udf89" = {
+        "Party mode ud83cudf89" = {
           enabled = false;
         };
         PermissionsViewer = {

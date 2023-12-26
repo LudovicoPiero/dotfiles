@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mine.chromium;
   inherit (lib) mkEnableOption mkIf;
 
@@ -26,9 +27,7 @@
     "VaapiVideoDecoder"
   ];
 
-  aestheticsFlags = [
-    "--force-dark-mode"
-  ];
+  aestheticsFlags = [ "--force-dark-mode" ];
 
   performanceFlags = [
     "--enable-gpu-rasterization"
@@ -41,7 +40,8 @@
     "--ozone-platform=wayland"
     "--enable-features=UseOzonePlatform"
   ];
-in {
+in
+{
   options.mine.chromium.enable = mkEnableOption "chromium";
 
   config = mkIf cfg.enable {
@@ -50,9 +50,8 @@ in {
       package = pkgs.ungoogled-chromium;
 
       commandLineArgs =
-        []
-        ++ ungoogledFlags
-        ++  ["--enable-features=${lib.concatStringsSep "," experimentalFeatures}"]
+        ungoogledFlags
+        ++ [ "--enable-features=${lib.concatStringsSep "," experimentalFeatures}" ]
         ++ aestheticsFlags
         ++ waylandFlags
         ++ performanceFlags;

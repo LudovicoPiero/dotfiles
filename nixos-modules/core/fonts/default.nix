@@ -4,10 +4,12 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.mine.fonts;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.fonts = {
     enable = mkOption {
       type = types.bool;
@@ -22,21 +24,11 @@ in {
     fonts = {
       fontDir.enable = true;
       packages = lib.attrValues {
-        inherit
-          (inputs.self.packages.${pkgs.system})
-          san-francisco-pro
-          sarasa-gothic
-          iosevka-q
-          ;
+        inherit (inputs.self.packages.${pkgs.system}) san-francisco-pro sarasa-gothic iosevka-q;
 
-        inherit
-          (pkgs)
-          material-design-icons
-          noto-fonts-emoji
-          symbola
-          ;
+        inherit (pkgs) material-design-icons noto-fonts-emoji symbola;
 
-        nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
+        nerdfonts = pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; };
       };
 
       # use fonts specified by user rather than default ones

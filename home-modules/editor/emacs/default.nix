@@ -4,11 +4,13 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.mine.emacs;
   inherit (lib) mkEnableOption mkIf;
-in {
-  imports = [./modules/emacs-init.nix];
+in
+{
+  imports = [ ./modules/emacs-init.nix ];
 
   options.mine.emacs.enable = mkEnableOption "emacs";
 
@@ -18,7 +20,7 @@ in {
     # https://github.com/Denommus/nix-configurations
     # https://git.sr.ht/~rycee/configurations/tree/master/item/user/emacs.nix
 
-    nixpkgs.overlays = [inputs.emacs-overlay.overlays.default];
+    nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
     home.file = {
       ".emacs.d/snippets".source = ./snippets;
@@ -46,18 +48,16 @@ in {
         usePackage = {
           doom-modeline = {
             enable = true;
-            hook = ["(after-init . doom-modeline-mode)"];
+            hook = [ "(after-init . doom-modeline-mode)" ];
             config = ''
               (setq doom-modeline-minor-modes t)
             '';
           };
 
-          /*
-          Evil Mode
-          */
+          # Evil Mode
           evil = {
             enable = true;
-            command = ["evil-mode"];
+            command = [ "evil-mode" ];
             config = ''
               (define-key evil-motion-state-map " " nil)
               (define-key evil-motion-state-map (kbd "SPC f") 'lsp-format-buffer)
@@ -70,8 +70,8 @@ in {
 
           evil-collection = {
             enable = true;
-            command = ["evil-collection-init"];
-            after = ["evil"];
+            command = [ "evil-collection-init" ];
+            after = [ "evil" ];
             config = ''
               (evil-collection-init)
             '';
@@ -83,8 +83,8 @@ in {
 
           projectile = {
             enable = true;
-            diminish = ["projectile-mode"];
-            command = ["projectile-mode"];
+            diminish = [ "projectile-mode" ];
+            command = [ "projectile-mode" ];
             init = "(require 'tramp)";
             demand = true;
             bindKeyMap = {
@@ -119,7 +119,7 @@ in {
 
           flyspell = {
             enable = true;
-            after = ["helm-flyspell"];
+            after = [ "helm-flyspell" ];
             bindLocal = {
               flyspell-mode-map = {
                 "C-;" = "helm-flyspell-correct";
@@ -129,7 +129,7 @@ in {
 
           flycheck = {
             enable = true;
-            command = ["global-flycheck-mode"];
+            command = [ "global-flycheck-mode" ];
             defer = 1;
             bind = {
               "M-n" = "flycheck-next-error";
@@ -144,13 +144,16 @@ in {
 
           flycheck-projectile = {
             enable = true;
-            after = ["flycheck" "projectile"];
+            after = [
+              "flycheck"
+              "projectile"
+            ];
           };
 
           # Needed by flycheck
           pkg-info = {
             enable = true;
-            command = ["pkg-info-version-info"];
+            command = [ "pkg-info-version-info" ];
           };
 
           catppuccin-theme = {
@@ -161,8 +164,10 @@ in {
           # Configure magit, a nice mode for the git SCM.
           magit = {
             enable = true;
-            command = ["magit-project-status"];
-            bind = {"C-c g" = "magit-status";};
+            command = [ "magit-project-status" ];
+            bind = {
+              "C-c g" = "magit-status";
+            };
             config = ''
               (setq forge-add-pullreq-refspec 'ask)
               (add-to-list 'git-commit-style-convention-checks
@@ -198,8 +203,11 @@ in {
 
           lsp-mode = {
             enable = true;
-            command = ["lsp" "lsp-deferred"];
-            after = ["flycheck"];
+            command = [
+              "lsp"
+              "lsp-deferred"
+            ];
+            after = [ "flycheck" ];
             bindLocal = {
               lsp-mode-map = {
                 "C-c f r" = "lsp-find-references";
@@ -230,20 +238,20 @@ in {
               (setq lsp-rust-server 'rust-analyzer
                     lsp-nix-server "nil"
                     lsp-nix-nil-server-path "${pkgs.nil}/bin/nil"
-                    lsp-nix-nil-formatter ["alejandra"])
+                    lsp-nix-nil-formatter ["nixfmt"])
               (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
             '';
           };
 
           lsp-treemacs = {
             enable = true;
-            after = ["lsp-mode"];
-            command = ["lsp-treemacs-errors-list"];
+            after = [ "lsp-mode" ];
+            command = [ "lsp-treemacs-errors-list" ];
           };
 
           lsp-ui = {
             enable = true;
-            command = ["lsp-ui-mode"];
+            command = [ "lsp-ui-mode" ];
             bindLocal = {
               lsp-mode-map = {
                 "C-c r d" = "lsp-ui-doc-toggle";
@@ -268,12 +276,15 @@ in {
 
           lsp-ui-flycheck = {
             enable = true;
-            after = ["flycheck" "lsp-ui"];
+            after = [
+              "flycheck"
+              "lsp-ui"
+            ];
           };
 
           lsp-completion = {
             enable = true;
-            after = ["lsp-mode"];
+            after = [ "lsp-mode" ];
             config = ''
               (setq lsp-completion-enable-additional-text-edit nil
                     lsp-completion-provider :company-mode
@@ -284,17 +295,17 @@ in {
 
           lsp-diagnostics = {
             enable = true;
-            after = ["lsp-mode"];
+            after = [ "lsp-mode" ];
           };
 
           lsp-lens = {
             enable = true;
-            command = ["lsp-lens--enable"];
-            after = ["lsp-mode"];
+            command = [ "lsp-lens--enable" ];
+            after = [ "lsp-mode" ];
           };
 
           lsp-nix = {
-            after = ["lsp-mode"];
+            after = [ "lsp-mode" ];
             demand = true;
           };
 
@@ -307,17 +318,19 @@ in {
 
           pandoc-mode = {
             enable = true;
-            after = ["markdown-mode"];
-            hook = ["markdown-mode"];
+            after = [ "markdown-mode" ];
+            hook = [ "markdown-mode" ];
             bindLocal = {
-              markdown-mode-map = {"C-c C-c" = "pandoc-run-pandoc";};
+              markdown-mode-map = {
+                "C-c C-c" = "pandoc-run-pandoc";
+              };
             };
           };
 
           undo-tree = {
             enable = true;
             defer = 1;
-            command = ["global-undo-tree-mode"];
+            command = [ "global-undo-tree-mode" ];
             config = ''
               (setq undo-tree-visualizer-relative-timestamps t
                     undo-tree-visualizer-timestamps t
@@ -330,8 +343,8 @@ in {
           nix-mode = {
             enable = true;
             demand = true;
-            mode = ["\\.nix\\"];
-            hook = ["(nix-mode . lsp-deferred)"];
+            mode = [ "\\.nix\\" ];
+            hook = [ "(nix-mode . lsp-deferred)" ];
             bindLocal = {
               nix-mode-map = {
                 "C-c f f" = "nix-mode-format";
@@ -341,12 +354,15 @@ in {
 
           ripgrep = {
             enable = true;
-            command = ["ripgrep-regexp"];
+            command = [ "ripgrep-regexp" ];
           };
 
           vertico = {
             enable = true;
-            command = ["vertico-mode" "vertico-next"];
+            command = [
+              "vertico-mode"
+              "vertico-next"
+            ];
             init = "(vertico-mode)";
           };
 
@@ -397,7 +413,7 @@ in {
 
           org-agenda = {
             enable = true;
-            after = ["org"];
+            after = [ "org" ];
             defer = true;
             config = ''
               ;; Set up agenda view.
@@ -420,9 +436,11 @@ in {
 
           org-roam = {
             enable = true;
-            command = ["org-roam-db-autosync-mode"];
-            defines = ["org-roam-v2-ack"];
-            bind = {"C-' f" = "org-roam-node-find";};
+            command = [ "org-roam-db-autosync-mode" ];
+            defines = [ "org-roam-v2-ack" ];
+            bind = {
+              "C-' f" = "org-roam-node-find";
+            };
             bindLocal = {
               org-mode-map = {
                 "C-' b" = "org-roam-buffer-toggle";
@@ -440,31 +458,32 @@ in {
 
           org-table = {
             enable = true;
-            after = ["org"];
-            command = ["orgtbl-to-generic"];
-            functions = ["org-combine-plists"];
-            hook = [
-              # For orgtbl mode, add a radio table translator function for
-              # taking a table to a psql internal variable.
-              ''
-                (orgtbl-mode
-                . (lambda ()
-                (defun rah-orgtbl-to-psqlvar (table params)
-                "Converts an org table to an SQL list inside a psql internal variable"
-                (let* ((params2
-                (list
-                :tstart (concat "\\set " (plist-get params :var-name) " '(")
-                :tend ")'"
-                :lstart "("
-                :lend "),"
-                :sep ","
-                :hline ""))
-                (res (orgtbl-to-generic table (org-combine-plists params2 params))))
-                (replace-regexp-in-string ",)'$"
-                ")'"
-                (replace-regexp-in-string "\n" "" res))))))
-              ''
-            ];
+            after = [ "org" ];
+            command = [ "orgtbl-to-generic" ];
+            functions = [ "org-combine-plists" ];
+            hook =
+              [
+                # For orgtbl mode, add a radio table translator function for
+                # taking a table to a psql internal variable.
+                ''
+                  (orgtbl-mode
+                  . (lambda ()
+                  (defun rah-orgtbl-to-psqlvar (table params)
+                  "Converts an org table to an SQL list inside a psql internal variable"
+                  (let* ((params2
+                  (list
+                  :tstart (concat "\\set " (plist-get params :var-name) " '(")
+                  :tend ")'"
+                  :lstart "("
+                  :lend "),"
+                  :sep ","
+                  :hline ""))
+                  (res (orgtbl-to-generic table (org-combine-plists params2 params))))
+                  (replace-regexp-in-string ",)'$"
+                  ")'"
+                  (replace-regexp-in-string "\n" "" res))))))
+                ''
+              ];
             config = ''
               (unbind-key "C-c SPC" orgtbl-mode-map)
               (unbind-key "C-c w" orgtbl-mode-map)
@@ -473,13 +492,16 @@ in {
 
           org-capture = {
             enable = true;
-            after = ["org"];
+            after = [ "org" ];
           };
 
           smartparens = {
             enable = true;
             defer = 3;
-            command = ["smartparens-global-mode" "show-smartparens-global-mode"];
+            command = [
+              "smartparens-global-mode"
+              "show-smartparens-global-mode"
+            ];
             bindLocal = {
               smartparens-mode-map = {
                 "C-M-f" = "sp-forward-sexp";
@@ -496,17 +518,22 @@ in {
 
           yasnippet = {
             enable = true;
-            command = ["yas-global-mode" "yas-minor-mode" "yas-expand-snippet"];
-            hook = [
-              # Yasnippet interferes with tab completion in ansi-term.
-              "(term-mode . (lambda () (yas-minor-mode -1)))"
+            command = [
+              "yas-global-mode"
+              "yas-minor-mode"
+              "yas-expand-snippet"
             ];
+            hook =
+              [
+                # Yasnippet interferes with tab completion in ansi-term.
+                "(term-mode . (lambda () (yas-minor-mode -1)))"
+              ];
             config = "(yas-global-mode 1)";
           };
 
           yasnippet-snippets = {
             enable = true;
-            after = ["yasnippet"];
+            after = [ "yasnippet" ];
           };
 
           consult = {
@@ -583,7 +610,10 @@ in {
 
           nix-sandbox = {
             enable = true;
-            command = ["nix-current-sandbox" "nix-shell-command"];
+            command = [
+              "nix-current-sandbox"
+              "nix-shell-command"
+            ];
           };
 
           multiple-cursors = {
@@ -599,7 +629,7 @@ in {
           lsp-rust = {
             enable = true;
             defer = true;
-            hook = ["(rust-mode . lsp-deferred)"];
+            hook = [ "(rust-mode . lsp-deferred)" ];
             config = ''
               (setq rust-format-on-save t)
             '';

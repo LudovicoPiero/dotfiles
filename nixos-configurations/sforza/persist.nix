@@ -1,5 +1,6 @@
-{inputs, ...}: {
-  imports = [inputs.impermanence.nixosModules.impermanence];
+{ inputs, ... }:
+{
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   environment.persistence."/persist" = {
     hideMounts = true;
@@ -16,7 +17,7 @@
       "/var/lib/pipewire"
       "/var/lib/systemd/coredump"
     ];
-    files = ["/etc/machine-id"];
+    files = [ "/etc/machine-id" ];
   };
 
   systemd.tmpfiles.rules = [

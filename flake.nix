@@ -1,13 +1,14 @@
 {
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    treefmt-nix,
-    flake-parts,
-    ez-configs,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      treefmt-nix,
+      flake-parts,
+      ez-configs,
+      ...
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ez-configs.flakeModule
         treefmt-nix.flakeModule
@@ -15,65 +16,77 @@
         ./pkgs
       ];
 
-      systems = ["x86_64-linux"];
+      systems = [ "x86_64-linux" ];
 
-      ezConfigs = let
-        username = "airi";
-      in {
-        root = ./.;
-        globalArgs = {
-          inherit self inputs username;
-        };
-      };
-
-      perSystem = {
-        config,
-        pkgs,
-        system,
-        inputs',
-        ...
-      }: {
-        # This sets `pkgs` to a nixpkgs with allowUnfree option set.
-        _module.args.pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
+      ezConfigs =
+        let
+          username = "airi";
+        in
+        {
+          root = ./.;
+          globalArgs = {
+            inherit self inputs username;
+          };
         };
 
-        # configure devshell
-        devShells.default = pkgs.mkShell {
-          name = "Dooots";
-          packages = [
-            config.treefmt.build.wrapper
-            inputs'.nix-super.packages.default
-            pkgs.nvfetcher
-            (pkgs.writeShellApplication {
-              name = "fmt";
-              text = "treefmt";
-            })
-          ];
-
-          # This will add The development shell with treefmt
-          # and its underlying programs ( alejandra, deadnix, etc )
-          inputsFrom = [config.treefmt.build.devShell];
-        };
-
-        # configure treefmt
-        treefmt = {
-          projectRootFile = "flake.nix";
-          programs = {
-            alejandra.enable = true;
-            deadnix.enable = true;
-            statix.enable = true;
-            statix.disabled-lints = ["repeated_keys"];
-            stylua.enable = true;
+      perSystem =
+        {
+          config,
+          pkgs,
+          system,
+          inputs',
+          ...
+        }:
+        {
+          # This sets `pkgs` to a nixpkgs with allowUnfree option set.
+          _module.args.pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
           };
 
-          settings.formatter.alejandra.excludes = ["generated.nix"];
-          settings.formatter.deadnix.excludes = ["generated.nix"];
-          settings.formatter.statix.excludes = ["generated.nix"];
-          settings.formatter.stylua.options = ["--indent-type" "Spaces" "--indent-width" "2" "--quote-style" "ForceDouble"];
+          # configure devshell
+          devShells.default = pkgs.mkShell {
+            name = "Dooots";
+            packages = [
+              config.treefmt.build.wrapper
+              inputs'.nix-super.packages.default
+              pkgs.nvfetcher
+              (pkgs.writeShellApplication {
+                name = "fmt";
+                text = "treefmt";
+              })
+            ];
+
+            # This will add The development shell with treefmt
+            # and its underlying programs ( nixfmt, deadnix, etc )
+            inputsFrom = [ config.treefmt.build.devShell ];
+          };
+
+          # configure treefmt
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs = {
+              nixfmt.enable = true;
+              nixfmt.package = inputs.chaotic.packages.${pkgs.system}.nixfmt_rfc166;
+              deadnix.enable = true;
+              statix.enable = true;
+              statix.disabled-lints = [ "repeated_keys" ];
+              stylua.enable = true;
+            };
+
+            settings.formatter.nixfmt.excludes = [ "generated.nix" ];
+            settings.formatter.deadnix.excludes = [ "generated.nix" ];
+            settings.formatter.statix.excludes = [ "generated.nix" ];
+            settings.formatter.stylua.options = [
+              "--indent-type"
+              "Spaces"
+              "--indent-width"
+              "2"
+              "--quote-style"
+              "ForceDouble"
+            ];
+          };
         };
-      };
     };
 
   inputs = {

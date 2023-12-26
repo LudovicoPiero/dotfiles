@@ -4,13 +4,15 @@
   pkgs,
   inputs,
   ...
-} @ args: let
+}@args:
+let
   cfg = config.mine.waybar;
   inherit (lib) mkIf mkOption types;
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     date "+%a %d %b %Y"
   '';
-in {
+in
+{
   options.mine.waybar = {
     enable = mkOption {
       type = types.bool;
@@ -62,7 +64,11 @@ in {
             "format" = "{icon}{volume}%";
             "format-muted" = "󰖁";
             "on-click" = "amixer -q set Master toggle-mute";
-            "format-icons" = ["󰕿" "󰖀" "󰕾"];
+            "format-icons" = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
           };
           "hyprland/workspaces" = {
             # active-only = false;
@@ -159,7 +165,9 @@ in {
           };
           "clock" = {
             format = "󰅐 {:%I:%M %p}";
-            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            tooltip-format = ''
+              <big>{:%Y %B}</big>
+              <tt><small>{calendar}</small></tt>'';
           };
         };
       };
