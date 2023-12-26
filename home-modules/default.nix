@@ -67,7 +67,7 @@
   };
 
   xdg = let
-    browser = ["firefox.desktop"];
+    browser = ["chromium-browser.desktop"];
     thunderbird = ["thunderbird.desktop"];
 
     # XDG MIME types
@@ -80,7 +80,7 @@
       "application/xhtml+xml" = browser;
       "text/html" = browser;
       "x-scheme-handler/about" = browser;
-      "x-scheme-handler/chrome" = ["chromium-browser.desktop"];
+      "x-scheme-handler/chrome" = browser;
       "x-scheme-handler/ftp" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
@@ -91,8 +91,8 @@
       "video/*" = ["mpv.dekstop"];
       "image/*" = ["imv.desktop"];
       "application/json" = browser;
-      "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
-      "x-scheme-handler/discord" = ["WebCord.desktop"];
+      "application/pdf" = ["org.pwmt.zathura.desktop"];
+      "x-scheme-handler/discord" = ["vencorddesktop.desktop"];
       "x-scheme-handler/spotify" = ["spotify.desktop"];
       "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
       "x-scheme-handler/mailto" = thunderbird;
