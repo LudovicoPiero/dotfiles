@@ -169,7 +169,7 @@ in {
           };
 
           treemacs = {
-            enable = false;
+            enable = true;
             bind = {
               "C-c t f" = "treemacs-find-file";
               "C-c t t" = "treemacs";
@@ -233,7 +233,7 @@ in {
           };
 
           lsp-treemacs = {
-            enable = false;
+            enable = true;
             after = ["lsp-mode"];
             command = ["lsp-treemacs-errors-list"];
           };
