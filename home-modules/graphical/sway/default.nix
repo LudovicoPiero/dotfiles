@@ -23,7 +23,7 @@ in {
         else inputs.chaotic.packages.${pkgs.system}.sway_git;
       config = {
         colors = import ./colors.nix {inherit colors;};
-        keybindings = import ./keybindings.nix {inherit lib inputs config pkgs;};
+        keybindings = import ./keybindings.nix {inherit lib config pkgs;};
         bars = []; # Use waybar
         window = import ./windows.nix;
         output = {

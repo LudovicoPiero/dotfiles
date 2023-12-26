@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
 }: let
   _ = lib.getExe;
   cfg = config.wayland.windowManager.sway.config;
