@@ -1,10 +1,19 @@
-{username, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   home = {
     inherit username;
     homeDirectory = "/home/airi";
 
     stateVersion = "23.11";
   };
+
+  home.packages = with pkgs; [
+    nil
+    alejandra
+  ];
 
   mine = {
     # Editor
