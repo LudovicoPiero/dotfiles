@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   cfg = config.mine.emacs;
@@ -17,12 +18,16 @@ in {
     # https://github.com/Denommus/nix-configurations
     # https://git.sr.ht/~rycee/configurations/tree/master/item/user/emacs.nix
 
+    nixpkgs.overlays = [inputs.emacs-overlay.overlays.default];
+
     home.file = {
       ".emacs.d/snippets".source = ./snippets;
     };
 
     programs.emacs = {
       enable = true;
+
+      package = pkgs.emacs-unstable-pgtk;
 
       init = {
         enable = true;
