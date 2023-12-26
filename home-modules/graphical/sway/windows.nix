@@ -13,7 +13,7 @@
     }
     # hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793
     {
-      criteria = {class = "Spotify";};
+      criteria = {title = "Spotify";};
       command = "move to workspace 5";
     }
     {
