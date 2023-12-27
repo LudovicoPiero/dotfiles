@@ -93,8 +93,7 @@ in
   ### Apps
   "${mod}+Return" = "exec ${cfg.terminal}";
   "${mod}+p" = "exec run-as-service ${cfg.menu}";
-  "${mod}+g" = "exec chromium";
-  "${mod}+Shift+g" = "exec firefox";
+  "${mod}+g" = "exec firefox";
   "${mod}+d" = "exec vencorddesktop";
   "${mod}+Shift+e" = "exec ${_ pkgs.gnome.nautilus}";
 

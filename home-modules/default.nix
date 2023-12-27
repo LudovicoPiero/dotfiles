@@ -21,7 +21,6 @@
 
     ./graphical/desktop
     ./graphical/discord
-    ./graphical/chromium
     ./graphical/firefox
     ./graphical/gammastep
     ./graphical/waybar
@@ -75,7 +74,7 @@
 
   xdg =
     let
-      browser = [ "chromium-browser.desktop" ];
+      browser = [ "firefox.desktop" ];
       thunderbird = [ "thunderbird.desktop" ];
 
       # XDG MIME types
@@ -88,7 +87,7 @@
         "application/xhtml+xml" = browser;
         "text/html" = browser;
         "x-scheme-handler/about" = browser;
-        "x-scheme-handler/chrome" = browser;
+        "x-scheme-handler/chrome" = [ "chromium-browser.desktop" ];
         "x-scheme-handler/ftp" = browser;
         "x-scheme-handler/http" = browser;
         "x-scheme-handler/https" = browser;
