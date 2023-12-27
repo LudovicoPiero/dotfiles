@@ -30,17 +30,7 @@ in
         config.common.default = "*";
         extraPortals = [
           pkgs.xdg-desktop-portal-gtk
-          # FIXME: remove overrideAttrs if nixpkgs pr didn't fail
-          (pkgs.xdg-desktop-portal-hyprland.overrideAttrs rec {
-            version = "1.2.6";
-
-            src = pkgs.fetchFromGitHub {
-              owner = "hyprwm";
-              repo = "xdg-desktop-portal-hyprland";
-              rev = "v${version}";
-              hash = "sha256-VRr5Xc4S/VPr/gU3fiOD3vSIL2+GJ+LUrmFTWTwnTz4=";
-            };
-          })
+          pkgs.xdg-desktop-portal-hyprland
         ];
       };
     };
