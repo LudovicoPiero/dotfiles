@@ -5,18 +5,18 @@
         "extract": null,
         "name": "firefox-gnome-theme",
         "passthru": null,
-        "pinned": false,
+        "pinned": true,
         "src": {
             "deepClone": false,
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "v121",
-            "sha256": "sha256-M+Cw6vh7xCDmIhyVuEPNmaNVUwpmdFQq8zlsXZTKees=",
+            "rev": "54433bfc7bce3cfffb5071e20bc167cea0e65b0e",
+            "sha256": "sha256-5Rkw94KNw1zs/2OsLSre0CXutoNLBvtACoRm4GMMoII=",
             "type": "git",
             "url": "https://github.com/rafaelmardojai/firefox-gnome-theme"
         },
-        "version": "v121"
+        "version": "54433bfc7bce3cfffb5071e20bc167cea0e65b0e"
     },
     "san-francisco-pro": {
         "cargoLocks": null,

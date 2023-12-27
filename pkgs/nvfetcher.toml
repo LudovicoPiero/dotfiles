@@ -12,5 +12,7 @@ src.git = "https://github.com/alexays/waybar"
 fetch.git = "https://github.com/alexays/waybar"
 
 [firefox-gnome-theme]
-src.github = "rafaelmardojai/firefox-gnome-theme"
+# src.github = "rafaelmardojai/firefox-gnome-theme"
+src.manual = "54433bfc7bce3cfffb5071e20bc167cea0e65b0e"
 fetch.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
+pinned = true
