@@ -1,11 +1,20 @@
 pull_request_rules:
-  - name: automatic update for PR marked as “keep-up-to-date“
+  - name: automatic rebase for PR marked as “keep-up-to-date“
     conditions:
       - -draft # filter-out draft PRs
       - label="keep-up-to-date"
-      - "label!=CI:fail"   # exclude PRs with "CI::fail" label
+      - "label!=CI:fail" # exclude PRs with "CI::fail" label
     actions:
-      update:
+      rebase:
+
+  - name: Rebase pull requests once when it's labeled with `rebase`
+    conditions:
+      - label=rebase
+    actions:
+      rebase: {}
+      label:
+        remove:
+          - rebase
 
   - name: Automatic merge when CI passes
     conditions:
