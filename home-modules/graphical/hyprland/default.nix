@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }@args:
 let
@@ -29,7 +28,7 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.default;
+      package = pkgs.hyprland;
       settings = import ./settings.nix args;
     };
   };
