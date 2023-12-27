@@ -5,7 +5,7 @@ pull_request_rules:
       - label="keep-up-to-date"
       - "label!=CI:fail" # exclude PRs with "CI::fail" label
     actions:
-      rebase:
+      update:
 
   - name: Rebase pull requests once when it's labeled with `rebase`
     conditions:
