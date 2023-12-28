@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   _ = lib.getExe;
+  __ = lib.getExe';
 in
 with pkgs; {
   gitignore = "curl -sL https://www.gitignore.io/api/$argv";
@@ -28,6 +29,54 @@ with pkgs; {
     popd
   '';
 
+  ex = ''
+    if test -f $argv[1]
+        switch $argv[1]
+            case *.tar.bz2
+                ${_ gnutar} xjf $argv[1]
+                ;;
+            case *.tar.gz
+                ${_ gnutar} xzf $argv[1]
+                ;;
+            case *.tar.xz
+                ${_ gnutar} xJf $argv[1]
+                ;;
+            case *.bz2
+                ${__ bzip2 "bunzip2"} $argv[1]
+                ;;
+            case *.rar
+                ${_ unrar} x $argv[1]
+                ;;
+            case *.gz
+                ${__ gzip "gunzip"} $argv[1]
+                ;;
+            case *.tar
+                ${_ gnutar} xf $argv[1]
+                ;;
+            case *.tbz2
+                ${_ gnutar} xjf $argv[1]
+                ;;
+            case *.tgz
+                ${_ gnutar} xzf $argv[1]
+                ;;
+            case *.zip
+                ${__ unzip "unzip"} $argv[1]
+                ;;
+            case *.Z
+                ${_ gzip} $argv[1]
+                ;;
+            case *.7z
+                ${__ p7zip "7z"} x $argv[1]
+                ;;
+            case '*'
+                echo "'$argv[1]' cannot be extracted via ex()"
+                ;;
+        end
+    else
+        echo "'$argv[1]' is not a valid file"
+    end
+  '';
+
   hs = ''
     pushd ~/.config/nixos
     nh home switch .
@@ -46,7 +95,26 @@ with pkgs; {
     end
   '';
 
+  paste = ''
+    # https://github.com/ptr1337/dotfiles/blob/master/scripts/misc/paste-cachyos
+    set URL "https://paste.cachyos.org"
+
+    set FILEPATH $argv[1]
+    set FILENAME (basename -- $FILEPATH)
+    set EXTENSION (string match -r '\.(.*)$' $FILENAME; and echo $argv[1] ; or echo "")
+
+    set RESPONSE (curl --data-binary @$FILEPATH --url $URL)
+    set PASTELINK "$URL$RESPONSE"
+
+    if test -z "$EXTENSION"
+        echo "$PASTELINK"
+    else
+        echo "$PASTELINK$EXTENSION"
+    end
+  '';
+
   run = "nix run nixpkgs#$argv[1] -- $argv[2..-1]";
+
   "watchLive" =
     let
       args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
