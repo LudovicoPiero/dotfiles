@@ -27,7 +27,10 @@ in
         window = import ./windows.nix;
         output = {
           "*" = {
-            bg = "#808080 solid_color";
+            adaptive_sync = "on";
+          };
+          "HDMI-A-1" = {
+            scale = "1.5";
           };
         };
         input = {
