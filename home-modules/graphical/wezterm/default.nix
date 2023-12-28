@@ -93,6 +93,7 @@ in
             "Noto Color Emoji",
           }),
           font_size = 14.0,
+          enable_wayland = true,
           window_background_opacity = 0.88,
           color_scheme = "${colorScheme.slug}",
           enable_scroll_bar = false,
@@ -128,8 +129,8 @@ in
 
           leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
           keys = {
-            { key = "UpArrow",   mods = "SHIFT",  action = wezterm.action({ ScrollToPrompt = -1 }) },
-            { key = "DownArrow", mods = "SHIFT",  action = wezterm.action({ ScrollToPrompt = 1 }) },
+            { key = "UpArrow",   mods = "SHIFT",  action = wezterm.action({ ScrollByLine = -1 }) },
+            { key = "DownArrow", mods = "SHIFT",  action = wezterm.action({ ScrollByLine = 1 }) },
             { key = "h",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
             { key = "l",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
             { key = "j",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
