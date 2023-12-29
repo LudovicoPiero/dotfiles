@@ -108,7 +108,7 @@ in
   # increase output volume
   XF86AudioRaiseVolume = "exec ${amixer} -q set Master 5%+";
   # decrease output volume
-  XF86AudioLowerVolume = "exec ${amixer} -q set Master 5%+";
+  XF86AudioLowerVolume = "exec ${amixer} -q set Master 5%-";
 
   # Media control
   XF86AudioPlay = "exec ${playerctl} play-pause";
@@ -118,5 +118,5 @@ in
 
   # Brightness
   XF86MonBrightnessUp = "exec ${brightnessctl} set 5%+";
-  XF86MonBrightnessDown = "exec ${brightnessctl}/bin/brightnessctl set 5%-";
+  XF86MonBrightnessDown = "exec ${brightnessctl} set 5%-";
 }
