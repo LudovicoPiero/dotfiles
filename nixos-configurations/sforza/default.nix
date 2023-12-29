@@ -28,7 +28,7 @@
     fonts.enable = true;
     greetd.enable = true;
     security.enable = true;
-    qemu.enable = true;
+    qemu.enable = false;
   };
 
   # Chaotic stuff
