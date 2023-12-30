@@ -229,6 +229,10 @@ require("lazy").setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Show line
 vim.o.colorcolumn = "80"
 
