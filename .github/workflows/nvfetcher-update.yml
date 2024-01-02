@@ -3,7 +3,7 @@ name: "Nvfetcher Update"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 20 * * *"
+    - cron: "0 20 * * 0" # At 20:00 on Sunday.
 
 jobs:
   nvfetcher-update:
@@ -31,6 +31,7 @@ jobs:
       - name: Run nvfetcher
         run: |
           pushd pkgs
+          rm -r _sources/wezterm-*
           nix run nixpkgs#nvfetcher -- --commit-changes
           popd
 
