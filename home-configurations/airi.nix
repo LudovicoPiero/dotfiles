@@ -20,7 +20,7 @@
   mine = {
     # Editor
     nvim.enable = true;
-    emacs.enable = true;
+    emacs.enable = false;
 
     # WM
     hyprland.enable = true;
