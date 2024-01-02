@@ -46,6 +46,10 @@ require("lazy").setup({
   {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
+
+    -- load cmp on InsertEnter
+    event = "InsertEnter",
+
     dependencies = {
       -- Show buffer text
       "hrsh7th/cmp-buffer",
@@ -67,6 +71,11 @@ require("lazy").setup({
 
   -- Useful plugin to show you pending keybinds.
   { "folke/which-key.nvim", opts = {} },
+
+  -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
+  -- So for api plugins like devicons, we can always set lazy=true
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -143,7 +152,6 @@ require("lazy").setup({
   },
 
   {
-    -- Theme inspired by Atom
     "Mofiqul/dracula.nvim",
     lazy = false,
     priority = 1000,
@@ -180,11 +188,32 @@ require("lazy").setup({
     "lukas-reineke/indent-blankline.nvim",
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-    main = "ibl",
-    opts = {
-      indent = { char = "┊" },
-      whitespace = { remove_blankline_trail = true },
-    },
+    config = function()
+      local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      }
+
+      local hooks = require("ibl.hooks")
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      require("ibl").setup({ indent = { highlight = highlight } })
+    end,
   },
 
   -- "gc" to comment visual regions/lines
@@ -376,6 +405,7 @@ vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { des
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>sm", require("telescope.builtin").man_pages, { desc = "[S]earch [M]anpages Entries" })
 vim.keymap.set("n", "<leader>sG", ":LiveGrepGitRoot<cr>", { desc = "[S]earch by [G]rep on Git Root" })
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
