@@ -30,25 +30,13 @@
     }
     {
       criteria = {
-        app_id = "WebCord";
-      };
-      command = "move to workspace 3";
-    }
-    {
-      criteria = {
         app_id = "chromium-browser";
       };
       command = "move to workspace 2";
     }
     {
       criteria = {
-        app_id = "discord";
-      };
-      command = "move to workspace 3";
-    }
-    {
-      criteria = {
-        app_id = "VencordDesktop";
+        app_id = "(?:WebCord|discord|VencordDesktop)";
       };
       command = "move to workspace 3";
     }
