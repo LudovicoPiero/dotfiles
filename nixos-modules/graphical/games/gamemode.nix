@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -24,7 +25,7 @@ in
       let
         programs = lib.makeBinPath (
           with pkgs; [
-            hyprland
+            inputs.hyprland.packages.${pkgs.system}.hyprland
             gojq
             systemd
           ]

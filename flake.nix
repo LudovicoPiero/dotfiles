@@ -169,5 +169,10 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
