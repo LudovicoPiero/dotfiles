@@ -93,6 +93,7 @@ in
   ### Apps
   "${mod}+Return" = "exec ${cfg.terminal}";
   "${mod}+p" = "exec run-as-service ${cfg.menu}";
+  "${mod}+Shift+p" = "exec run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}";
   "${mod}+g" = "exec firefox";
   "${mod}+d" = "exec vencorddesktop";
   "${mod}+Shift+e" = "exec ${_ pkgs.gnome.nautilus}";

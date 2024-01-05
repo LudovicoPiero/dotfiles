@@ -210,6 +210,7 @@ in
     "$mod      , G , exec , ${browser} -P Ludovico"
     "$mod      , M , exec , [workspace 9 silent;tile] thunderbird"
     "$mod      , P , exec , run-as-service ${launcher}"
+    "$mod SHIFT, P , exec , run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}"
     "$mod      , Space , togglefloating ,"
     "$mod      , R , togglegroup ,"
     "$mod SHIFT, J , changegroupactive, f"
