@@ -63,7 +63,7 @@ with pkgs; {
                 ${__ unzip "unzip"} $argv[1]
                 ;;
             case *.Z
-                ${_ gzip} $argv[1]
+                ${__ gzip "uncompress"} $argv[1]
                 ;;
             case *.7z
                 ${__ p7zip "7z"} x $argv[1]
