@@ -15,6 +15,7 @@
     ./core/direnv
     ./core/ssh
     ./core/fish
+    ./core/pass
 
     ./editor/nvim
     ./editor/emacs

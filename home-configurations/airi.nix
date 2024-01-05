@@ -42,5 +42,6 @@
     gpg.enable = true;
     waybar.enable = true;
     fish.enable = true;
+    pass.enable = true;
   };
 }
