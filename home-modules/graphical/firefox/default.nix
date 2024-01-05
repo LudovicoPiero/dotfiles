@@ -15,6 +15,8 @@ in
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      package = inputs.chaotic.packages.${pkgs.system}.firefox_nightly;
+
       profiles = {
         ludovico =
           {
