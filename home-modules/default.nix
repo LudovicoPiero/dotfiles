@@ -32,6 +32,7 @@
     ./graphical/services
     ./graphical/spotify
     ./graphical/wezterm
+    ./graphical/xdg-portal
   ];
 
   systemd.user.startServices = "sd-switch";

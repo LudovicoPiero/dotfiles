@@ -21,7 +21,6 @@
 
     ./graphical/games
     ./graphical/greetd
-    ./graphical/xdg-portal
     ./graphical/qemu
   ];
 
