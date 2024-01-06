@@ -23,8 +23,8 @@ in
   config = mkIf cfg.enable {
     environment = {
       etc."greetd/environments".text = ''
-        sway
         Hyprland
+        sway
         fish
       '';
     };
