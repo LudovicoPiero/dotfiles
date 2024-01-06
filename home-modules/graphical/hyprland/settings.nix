@@ -205,7 +205,7 @@ in
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
     "$mod      , D , exec , vencorddesktop"
-    "$mod SHIFT, E , exec , [float] nautilus"
+    "$mod SHIFT, E , exec , [float] run-as-service thunar"
     "$mod      , F , fullscreen , 0"
     "$mod      , G , exec , ${browser} -P Ludovico"
     "$mod      , M , exec , [workspace 9 silent;tile] thunderbird"

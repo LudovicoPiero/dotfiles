@@ -21,6 +21,7 @@
 
     ./graphical/games
     ./graphical/greetd
+    ./graphical/thunar
     ./graphical/qemu
   ];
 

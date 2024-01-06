@@ -96,7 +96,7 @@ in
   "${mod}+Shift+p" = "exec run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}";
   "${mod}+g" = "exec firefox";
   "${mod}+d" = "exec vencorddesktop";
-  "${mod}+Shift+e" = "exec ${_ pkgs.gnome.nautilus}";
+  "${mod}+Shift+e" = "exec run-as-service thunar";
 
   ### Screenshot
   "${mod}+Print" = "sharenix --selection";
