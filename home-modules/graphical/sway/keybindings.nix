@@ -95,6 +95,7 @@ in
   "${mod}+p" = "exec run-as-service ${cfg.menu}";
   "${mod}+Shift+p" = "exec run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}";
   "${mod}+g" = "exec run-as-service firefox";
+  "${mod}+Shift+g" = "exec run-as-service chromium";
   "${mod}+d" = "exec run-as-service vencorddesktop";
   "${mod}+Shift+e" = "exec run-as-service thunar";
 

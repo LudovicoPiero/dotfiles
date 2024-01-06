@@ -207,6 +207,7 @@ in
     "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
     "$mod      , G , exec , run-as-service firefox"
+    "$mod SHIFT, G , exec , run-as-service chromium"
     "$mod      , M , exec , [workspace 9 silent;tile] thunderbird"
     "$mod      , P , exec , run-as-service ${launcher}"
     "$mod SHIFT, P , exec , run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}"
