@@ -91,11 +91,11 @@ in
   "${mod}+Space" = "floating toggle";
 
   ### Apps
-  "${mod}+Return" = "exec ${cfg.terminal}";
+  "${mod}+Return" = "exec run-as-service ${cfg.terminal}";
   "${mod}+p" = "exec run-as-service ${cfg.menu}";
   "${mod}+Shift+p" = "exec run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}";
-  "${mod}+g" = "exec firefox";
-  "${mod}+d" = "exec vencorddesktop";
+  "${mod}+g" = "exec run-as-service firefox";
+  "${mod}+d" = "exec run-as-service vencorddesktop";
   "${mod}+Shift+e" = "exec run-as-service thunar";
 
   ### Screenshot

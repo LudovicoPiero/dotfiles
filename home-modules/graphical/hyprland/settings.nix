@@ -10,7 +10,6 @@ let
   _ = lib.getExe;
   terminal = "${_ inputs.self.packages.${pkgs.system}.wezterm}";
   launcher = "${_ pkgs.fuzzel}";
-  browser = "${_ pkgs.firefox}";
   powermenu = "${_ pkgs.wlogout}";
   swaylock = pkgs.writeShellScriptBin "swaylock-script" ''
     ${_ pkgs.swaylock-effects} \
@@ -204,10 +203,10 @@ in
     "$mod SHIFT, C , exit ,"
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
-    "$mod      , D , exec , vencorddesktop"
-    "$mod SHIFT, E , exec , [float] run-as-service thunar"
+    "$mod      , D , exec , run-as-service vencorddesktop"
+    "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
-    "$mod      , G , exec , ${browser} -P Ludovico"
+    "$mod      , G , exec , run-as-service firefox"
     "$mod      , M , exec , [workspace 9 silent;tile] thunderbird"
     "$mod      , P , exec , run-as-service ${launcher}"
     "$mod SHIFT, P , exec , run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}"
@@ -215,7 +214,7 @@ in
     "$mod      , R , togglegroup ,"
     "$mod SHIFT, J , changegroupactive, f"
     "$mod SHIFT, K , changegroupactive, b"
-    "$mod      , S , exec , [workspace 5 silent;tile] spotify"
+    "$mod      , S , exec , run-as-service spotify"
     "$mod      , W , killactive ,"
     "$mod      , X , exec , ${powermenu}"
     "$mod      , Return , exec , run-as-service ${terminal}"
