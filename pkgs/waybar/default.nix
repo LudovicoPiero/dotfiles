@@ -107,6 +107,7 @@ stdenv.mkDerivation (
         jsoncpp
         libsigcxx
         libxkbcommon
+        pipewire
         spdlog
         wayland
         wlroots
@@ -117,7 +118,6 @@ stdenv.mkDerivation (
         fftw
         iniparser
         ncurses
-        pipewire
         portaudio
       ]
       ++ lib.optional evdevSupport libevdev
