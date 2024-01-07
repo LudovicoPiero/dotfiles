@@ -1,7 +1,17 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.mine.security;
   inherit (lib) mkIf mkOption types;
+
+  hosts = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
+    hash = "sha256-E2uIKSNxhkJ5TeB/2zWozClZmsyKw1no5JuYD0UYmkg=";
+  };
 in
 {
   options.mine.security = {
@@ -15,6 +25,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    networking.extraHosts = builtins.readFile hosts;
+
     # sets hidepid=2 on /proc (make process info visible only to owning user)
     # NOTE Was removed on nixpkgs-unstable because it doesn't do anything
     # security.hideProcessInformation = true;
