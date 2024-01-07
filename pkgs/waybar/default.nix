@@ -42,7 +42,7 @@
   wireplumber,
   wlroots,
   wrapGAppsHook,
-  cavaSupport ? true,
+  cavaSupport ? false,
   evdevSupport ? true,
   experimentalPatches ? true,
   hyprlandSupport ? true,
@@ -53,7 +53,7 @@
   nlSupport ? true,
   pulseSupport ? true,
   rfkillSupport ? true,
-  runTests ? true,
+  runTests ? false,
   sndioSupport ? true,
   swaySupport ? false,
   traySupport ? true,
@@ -107,6 +107,7 @@ stdenv.mkDerivation (
         jsoncpp
         libsigcxx
         libxkbcommon
+        pipewire
         spdlog
         wayland
         wlroots
@@ -117,7 +118,6 @@ stdenv.mkDerivation (
         fftw
         iniparser
         ncurses
-        pipewire
         portaudio
       ]
       ++ lib.optional evdevSupport libevdev
