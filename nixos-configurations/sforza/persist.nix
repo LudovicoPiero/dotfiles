@@ -21,10 +21,7 @@
         "/var/lib/systemd/coredump"
       ]
       ++ lib.optionals config.virtualisation.docker.enable [ "/var/lib/docker" ]
-      ++ lib.optionals config.mine.dnscrypt.enable [
-        "/var/cache/dnscrypt-proxy"
-        "/var/lib/dnscrypt-proxy2"
-      ]
+      ++ lib.optionals config.mine.dnscrypt.enable [ "/var/lib/dnscrypt-proxy2" ]
       ++ lib.optionals config.services.jellyfin.enable [ "/var/lib/jellyfin" ]
       ++ lib.optionals config.mine.greetd.enable [ "/var/cache/regreet" ];
     files = [ "/etc/machine-id" ];
