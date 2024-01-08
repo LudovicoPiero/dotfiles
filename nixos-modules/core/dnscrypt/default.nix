@@ -19,10 +19,10 @@ in
       enable = true;
       settings = {
         server_names = [
-          "doh.tiar.app"
-          "doh.tiar.app-doh"
-          "doh.tiar.app-ipv6"
-          "doh.tiar.app-doh-ipv6"
+          # "doh.tiar.app"
+          # "doh.tiar.app-doh"
+          # "doh.tiar.app-ipv6"
+          # "doh.tiar.app-doh-ipv6"
           "sby-limotelu"
           "sby-doh-limotelu"
         ];
