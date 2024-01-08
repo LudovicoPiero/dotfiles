@@ -102,8 +102,6 @@
     };
 
     pam = {
-      services.greetd.gnupg.enable = true;
-      services.greetd.enableGnomeKeyring = true;
       services.swaylock.text = "auth include login";
     };
   };

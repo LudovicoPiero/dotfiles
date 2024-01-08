@@ -3,6 +3,7 @@
   lib,
   pkgs,
   username,
+  self,
   ...
 }:
 let
@@ -27,6 +28,24 @@ in
         sway
         fish
       '';
+    };
+
+    security.pam = {
+      services.greetd.gnupg.enable = true;
+      services.greetd.enableGnomeKeyring = true;
+    };
+
+    programs.regreet = {
+      enable = true;
+      settings = {
+        background = "${self}/assets/Minato-Aqua-Dark.png";
+        GTK = {
+          cursor_theme_name = "macOS-BigSur";
+          font_name = "SF Pro Rounded 16";
+          icon_theme_name = "WhiteSur";
+          theme_name = "WhiteSur-Dark";
+        };
+      };
     };
 
     services.greetd =
