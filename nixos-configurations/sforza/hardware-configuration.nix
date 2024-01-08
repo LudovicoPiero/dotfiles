@@ -52,6 +52,7 @@
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     supportedFilesystems = [
+      "bcachefs"
       "btrfs"
       "ntfs"
       "xfs"
@@ -65,8 +66,16 @@
     in
     {
       "${userHome}/Media" = {
-        device = "/dev/disk/by-label/Media";
-        fsType = "xfs";
+        device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
+        fsType = "bcachefs";
+        options = [
+          # Enable discard/TRIM support
+          "discard"
+          # foreground compression with zstd
+          "compression=zstd"
+          # background compression with zstd
+          "background_compression=zstd"
+        ];
       };
 
       "${userHome}/WinE" = {
