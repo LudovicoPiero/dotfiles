@@ -1,22 +1,32 @@
-{ inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   environment.persistence."/persist" = {
     hideMounts = true;
-    directories = [
-      "/etc/NetworkManager/system-connections"
-      "/etc/nix"
-      "/etc/secureboot"
-      "/var/lib/bluetooth"
-      "/var/lib/docker"
-      "/var/lib/dnscrypt-proxy2"
-      "/var/lib/jellyfin"
-      "/var/lib/libvirt"
-      "/var/lib/nixos"
-      "/var/lib/pipewire"
-      "/var/lib/systemd/coredump"
-    ];
+    directories =
+      [
+        "/etc/NetworkManager/system-connections"
+        "/etc/nix"
+        "/etc/secureboot"
+        "/var/lib/bluetooth"
+        "/var/lib/libvirt"
+        "/var/lib/nixos"
+        "/var/lib/pipewire"
+        "/var/lib/systemd/coredump"
+      ]
+      ++ lib.optionals config.virtualisation.docker.enable [ "/var/lib/docker" ]
+      ++ lib.optionals config.mine.dnscrypt.enable [
+        "/var/cache/dnscrypt-proxy"
+        "/var/lib/dnscrypt-proxy2"
+      ]
+      ++ lib.optionals config.services.jellyfin.enable [ "/var/lib/jellyfin" ]
+      ++ lib.optionals config.mine.greetd.enable [ "/var/cache/regreet" ];
     files = [ "/etc/machine-id" ];
   };
 
