@@ -442,6 +442,21 @@
         "type": "github"
       }
     },
+    "master": {
+      "locked": {
+        "lastModified": 1704719832,
+        "narHash": "sha256-EbPdQL/pn8OY5PTcQMLqtem9fHOXZTz3yWSyE/JeOtQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b43946170e3b176b6bfcf6b4df8a051b337b0394",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nh": {
       "inputs": {
         "nixpkgs": [
@@ -693,6 +708,7 @@
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
+        "master": "master",
         "nh": "nh",
         "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
