@@ -49,7 +49,7 @@ in
         vt = 7;
         settings = {
           default_session = {
-            command = "${__ pkgs.dbus "dbus-run-session"} ${_ pkgs.cage} -- ${_ pkgs.greetd.gtkgreet} -l";
+            command = "${__ pkgs.dbus "dbus-run-session"} ${_ pkgs.cage} -s -- ${_ config.programs.regreet.package}";
             inherit user;
           };
         };
