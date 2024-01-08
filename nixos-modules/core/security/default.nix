@@ -96,6 +96,12 @@ in
     boot.kernelModules = [ "tcp_bbr" ];
 
     boot.blacklistedKernelModules = [
+      # Novideo
+      "nvidia"
+      "nvidia-drm"
+      "nvidia-modeset"
+      "nouveau"
+
       # Obscure network protocols
       "ax25"
       "netrom"
