@@ -55,7 +55,7 @@ let
   '';
 in
 {
-  colorScheme = inputs.nix-colors.colorSchemes.dracula;
+  colorScheme = inputs.nix-colors.colorSchemes.ayu-dark;
   home.packages = with pkgs; [
     run-as-service
     apple-cursor

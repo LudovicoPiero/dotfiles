@@ -152,11 +152,11 @@ require("lazy").setup({
   },
 
   {
-    "Mofiqul/dracula.nvim",
+    "Shatur/neovim-ayu",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("dracula")
+      vim.cmd("colorscheme ayu-dark")
     end,
   },
 
@@ -173,7 +173,7 @@ require("lazy").setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = "dracula",
+        theme = "auto",
         component_separators = "|",
         section_separators = "",
         refresh = {
