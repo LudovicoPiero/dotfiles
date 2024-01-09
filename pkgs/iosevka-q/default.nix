@@ -142,11 +142,10 @@ buildNpmPackage rec {
       remarshal
       ttfautohint-nox
     ]
-    ++ lib.optionals stdenv.isDarwin
-      [
-        # libtool
-        darwin.cctools
-      ];
+    ++ lib.optionals stdenv.isDarwin [
+      # libtool
+      darwin.cctools
+    ];
 
   buildPlan =
     if builtins.isAttrs privateBuildPlan then

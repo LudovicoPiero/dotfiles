@@ -21,11 +21,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages =
-      [
-        # Utils
-        pkgs.grimblast
-      ];
+    home.packages = [
+      # Utils
+      pkgs.grimblast
+    ];
 
     wayland.windowManager.hyprland = {
       enable = true;

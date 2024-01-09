@@ -461,29 +461,28 @@ in
             after = [ "org" ];
             command = [ "orgtbl-to-generic" ];
             functions = [ "org-combine-plists" ];
-            hook =
-              [
-                # For orgtbl mode, add a radio table translator function for
-                # taking a table to a psql internal variable.
-                ''
-                  (orgtbl-mode
-                  . (lambda ()
-                  (defun rah-orgtbl-to-psqlvar (table params)
-                  "Converts an org table to an SQL list inside a psql internal variable"
-                  (let* ((params2
-                  (list
-                  :tstart (concat "\\set " (plist-get params :var-name) " '(")
-                  :tend ")'"
-                  :lstart "("
-                  :lend "),"
-                  :sep ","
-                  :hline ""))
-                  (res (orgtbl-to-generic table (org-combine-plists params2 params))))
-                  (replace-regexp-in-string ",)'$"
-                  ")'"
-                  (replace-regexp-in-string "\n" "" res))))))
-                ''
-              ];
+            hook = [
+              # For orgtbl mode, add a radio table translator function for
+              # taking a table to a psql internal variable.
+              ''
+                (orgtbl-mode
+                . (lambda ()
+                (defun rah-orgtbl-to-psqlvar (table params)
+                "Converts an org table to an SQL list inside a psql internal variable"
+                (let* ((params2
+                (list
+                :tstart (concat "\\set " (plist-get params :var-name) " '(")
+                :tend ")'"
+                :lstart "("
+                :lend "),"
+                :sep ","
+                :hline ""))
+                (res (orgtbl-to-generic table (org-combine-plists params2 params))))
+                (replace-regexp-in-string ",)'$"
+                ")'"
+                (replace-regexp-in-string "\n" "" res))))))
+              ''
+            ];
             config = ''
               (unbind-key "C-c SPC" orgtbl-mode-map)
               (unbind-key "C-c w" orgtbl-mode-map)
@@ -523,11 +522,10 @@ in
               "yas-minor-mode"
               "yas-expand-snippet"
             ];
-            hook =
-              [
-                # Yasnippet interferes with tab completion in ansi-term.
-                "(term-mode . (lambda () (yas-minor-mode -1)))"
-              ];
+            hook = [
+              # Yasnippet interferes with tab completion in ansi-term.
+              "(term-mode . (lambda () (yas-minor-mode -1)))"
+            ];
             config = "(yas-global-mode 1)";
           };
 

@@ -3,7 +3,6 @@
   lib,
   pkgs,
   username,
-  self,
   ...
 }:
 let
