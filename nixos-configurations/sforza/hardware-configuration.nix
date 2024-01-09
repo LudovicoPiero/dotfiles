@@ -31,8 +31,8 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    # FIXME: use non master if https://nixpk.gs/pr-tracker.html?pr=279531 merged
-    kernelPackages = lib.mkForce inputs.master.legacyPackages.${pkgs.system}.linuxPackages_latest;
+    kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
+    # kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
     kernelParams = lib.mkForce [
       "quiet"
       "loglevel=0"
