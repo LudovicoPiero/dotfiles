@@ -84,18 +84,18 @@
       # XDG MIME types
       associations = {
         "x-scheme-handler/chrome" = chromium-browser;
-        "application/x-extension-htm" = chromium-browser;
-        "application/x-extension-html" = chromium-browser;
-        "application/x-extension-shtml" = chromium-browser;
-        "application/x-extension-xht" = chromium-browser;
-        "application/x-extension-xhtml" = chromium-browser;
-        "application/xhtml+xml" = chromium-browser;
-        "text/html" = chromium-browser;
-        "x-scheme-handler/about" = chromium-browser;
-        "x-scheme-handler/ftp" = chromium-browser;
-        "x-scheme-handler/http" = chromium-browser;
-        "x-scheme-handler/https" = chromium-browser;
-        "x-scheme-handler/unknown" = chromium-browser;
+        "application/x-extension-htm" = browser;
+        "application/x-extension-html" = browser;
+        "application/x-extension-shtml" = browser;
+        "application/x-extension-xht" = browser;
+        "application/x-extension-xhtml" = browser;
+        "application/xhtml+xml" = browser;
+        "text/html" = browser;
+        "x-scheme-handler/about" = browser;
+        "x-scheme-handler/ftp" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "x-scheme-handler/unknown" = browser;
         "inode/directory" = [ "thunar.desktop" ];
 
         "audio/*" = [ "mpv.desktop" ];
