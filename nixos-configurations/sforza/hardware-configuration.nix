@@ -47,6 +47,8 @@
     ];
     initrd.kernelModules = [
       "amdgpu"
+      "btrfs"
+      "bcachefs"
       "dm-snapshot"
     ];
     kernelModules = [ "kvm-amd" ];
