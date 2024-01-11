@@ -47,7 +47,6 @@
     ];
     initrd.kernelModules = [
       "amdgpu"
-      "btrfs"
       "bcachefs"
       "dm-snapshot"
     ];
