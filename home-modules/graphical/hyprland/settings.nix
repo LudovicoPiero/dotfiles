@@ -117,9 +117,9 @@ in
 
   general = {
     sensitivity = 1;
-    gaps_in = 2;
-    gaps_out = 2;
-    border_size = 1;
+    gaps_in = 3;
+    gaps_out = 3;
+    border_size = 2;
     "col.active_border" = "rgb(${colors.base0C})";
     "col.inactive_border" = "rgb(${colors.base02})";
 
