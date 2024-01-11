@@ -28,7 +28,7 @@
     greetd.enable = true;
     security.enable = true;
     thunar.enable = true;
-    qemu.enable = false;
+    qemu.enable = true;
   };
 
   # Chaotic stuff
