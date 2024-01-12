@@ -54,7 +54,6 @@
     extraModulePackages = [ ];
     supportedFilesystems = [
       "bcachefs"
-      "btrfs"
       "ntfs"
       "xfs"
     ];
@@ -109,28 +108,28 @@
       };
 
       "/nix" = {
-        device = "/dev/disk/by-label/Store";
-        fsType = "btrfs";
+        device = "/dev/disk/by-partlabel/Store";
+        fsType = "bcachefs";
         options = [
-          "autodefrag"
-          "compress-force=zstd"
-          "discard=async"
-          "noatime"
-          "space_cache=v2"
-          "ssd"
+          # Enable discard/TRIM support
+          "discard"
+          # foreground compression with zstd
+          "compression=zstd"
+          # background compression with zstd
+          "background_compression=zstd"
         ];
       };
 
       "/home" = {
-        device = "/dev/disk/by-label/Home";
-        fsType = "btrfs";
+        device = "/dev/disk/by-partlabel/Home";
+        fsType = "bcachefs";
         options = [
-          "autodefrag"
-          "compress-force=zstd"
-          "discard=async"
-          "noatime"
-          "space_cache=v2"
-          "ssd"
+          # Enable discard/TRIM support
+          "discard"
+          # foreground compression with zstd
+          "compression=zstd"
+          # background compression with zstd
+          "background_compression=zstd"
         ];
         neededForBoot = true;
       };
