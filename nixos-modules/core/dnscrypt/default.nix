@@ -15,6 +15,14 @@ in
   };
 
   config = mkIf cfg.enable {
+    networking = {
+      networkmanager.dns = "none";
+      nameservers = [
+        "127.0.0.1"
+        "::1"
+      ];
+    };
+
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {
