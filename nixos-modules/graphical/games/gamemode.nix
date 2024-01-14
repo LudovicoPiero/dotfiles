@@ -24,7 +24,8 @@ in
     programs.gamemode =
       let
         programs = lib.makeBinPath (
-          with pkgs; [
+          with pkgs;
+          [
             inputs.hyprland.packages.${pkgs.system}.hyprland
             gojq
             systemd

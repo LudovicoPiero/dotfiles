@@ -3,7 +3,8 @@ let
   _ = lib.getExe;
   __ = lib.getExe';
 in
-with pkgs; {
+with pkgs;
+{
   gitignore = "curl -sL https://www.gitignore.io/api/$argv";
   fish_greeting = ""; # disable welcome text
 
