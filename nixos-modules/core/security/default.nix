@@ -10,7 +10,7 @@ let
 
   hosts = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
-    hash = "sha256-E2uIKSNxhkJ5TeB/2zWozClZmsyKw1no5JuYD0UYmkg=";
+    hash = "sha256-+YsCCz1ce655MzvHQCX+a/Gtw6tVD65x8mNh0S8Ku+k=";
   };
 in
 {
