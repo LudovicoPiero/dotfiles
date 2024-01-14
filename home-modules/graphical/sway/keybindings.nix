@@ -102,7 +102,8 @@ in
   ### Screenshot
   "${mod}+Print" = "sharenix --selection";
   "${mod}+Shift+Print" = "exec wl-ocr";
-  "CTRL+Print" = "exec grimblast save area - | ${lib.getExe pkgs.swappy} -f -";
+  "CTRL+Print" = "exec grimblast save area - | ${_ pkgs.swappy} -f -";
+  "ALT+Print" = "exec ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
 
   # Volume
   # (un)mute output
