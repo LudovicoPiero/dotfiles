@@ -33,7 +33,6 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
-          install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
           nix_path: nixpkgs=channel:nixos-unstable-small
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GH_TOKEN }}
