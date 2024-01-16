@@ -31,40 +31,50 @@
 
   environment = {
     pathsToLink = [ "/share/fish" ];
-    systemPackages = with pkgs; [
-      teavpn2
-      dosfstools
-      gptfdisk
-      iputils
-      usbutils
-      utillinux
-      binutils
-      coreutils
-      curl
-      direnv
-      dnsutils
-      fd
-      sbctl # For debugging and troubleshooting Secure boot.
+    systemPackages = lib.attrValues {
+      inherit (pkgs)
+        teavpn2
+        dosfstools
+        gptfdisk
+        iputils
+        usbutils
+        utillinux
+        binutils
+        coreutils
+        curl
+        direnv
+        dnsutils
+        fd
+        sbctl # For debugging and troubleshooting Secure boot.
 
-      pavucontrol
-      git
-      bottom
-      jq
-      moreutils
-      neovim
-      nix-index
-      nmap
-      skim
-      ripgrep
-      tealdeer
-      whois
-      wl-clipboard
-      wget
-      unzip
+        pavucontrol
+        git
+        bottom
+        jq
+        moreutils
+        neovim
+        nix-index
+        nmap
+        skim
+        ripgrep
+        tealdeer
+        whois
+        wl-clipboard
+        wget
+        unzip
 
-      # Utils for nixpkgs stuff
-      nixpkgs-review
-    ];
+        # Utils for nixpkgs stuff
+        nixpkgs-review
+        ;
+
+      # For SCX Scheduler
+      /* TODO: make modules for chaotic stuff
+         - kernelPackages
+         - Overlays
+         - Mesa, etc
+      */
+      inherit (inputs.chaotic.packages.${pkgs.system}) scx;
+    };
 
     sessionVariables = {
       NIXOS_OZONE_WL = "0";
