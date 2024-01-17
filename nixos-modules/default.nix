@@ -100,6 +100,16 @@
         Defaults pwfeedback
       '';
     };
+    doas = {
+      enable = true;
+      extraRules = [
+        {
+          users = [ "airi" ];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
+    };
 
     pam = {
       services.swaylock.text = "auth include login";
