@@ -3,15 +3,11 @@
   pkgs,
   inputs,
   lib,
-  config,
-  username,
   ...
 }:
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-
-    inputs.nh.nixosModules.default
 
     ./core/dnscrypt
     ./core/security
@@ -79,7 +75,6 @@
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
       "_JAVA_AWT_WM_NONREPARENTING" = "1";
-      FLAKE = "${config.users.users.${username}.home}/.config/nixos"; # For NH ( https://github.com/viperML/nh/ )
     };
   };
 
@@ -91,7 +86,7 @@
     rtkit.enable = true;
 
     sudo = {
-      enable = true;
+      enable = false;
       extraConfig = ''
         # rollback results in sudo lectures after each reboot
         Defaults lecture = never
@@ -140,12 +135,6 @@
         isSystem = false;
       };
     };
-  };
-
-  nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 3d --keep 3";
   };
 
   nix = {
@@ -214,11 +203,10 @@
     };
 
     # Improve nix store disk usage
-    # Disable this because i'm using nh.
-    # gc = {
-    #   automatic = true;
-    #   options = "--delete-older-than 3d";
-    # };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
     optimise.automatic = true;
   };
 

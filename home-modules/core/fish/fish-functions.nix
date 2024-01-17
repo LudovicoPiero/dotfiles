@@ -10,7 +10,7 @@ with pkgs;
 
   bs = ''
     pushd ~/.config/nixos
-    nh os switch .
+    nix system apply .
       if test $status -eq 0
         notify-send "Rebuild Switch" "Build successful!"
       else
@@ -21,7 +21,7 @@ with pkgs;
 
   bb = ''
     pushd ~/.config/nixos
-    nh os boot .
+    nix system boot .
       if test $status -eq 0
         notify-send "Rebuild Boot" "Build successful!"
       else
@@ -80,7 +80,7 @@ with pkgs;
 
   hs = ''
     pushd ~/.config/nixos
-    nh home switch .
+    nix home apply .#$argv[1]
       if test $status -eq 0
         notify-send "Home-Manager Switch" "Build successful!"
       else
