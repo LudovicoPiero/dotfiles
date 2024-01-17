@@ -2,12 +2,13 @@
   inputs,
   pkgs,
   username,
+  osConfig,
   ...
 }:
 {
   home = {
     inherit username;
-    homeDirectory = "/home/airi";
+    homeDirectory = osConfig.users.users.airi.home;
 
     stateVersion = "23.11";
   };
