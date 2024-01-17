@@ -14,7 +14,16 @@ let
 
   theme = {
     name = "WhiteSur-Dark";
-    package = pkgs.whitesur-gtk-theme;
+    package = pkgs.whitesur-gtk-theme.overrideAttrs (
+      o: {
+        src = pkgs.fetchFromGitHub {
+          owner = "vinceliuice";
+          repo = "WhiteSur-gtk-theme";
+          rev = "63930d177f9c0baf66f7288a62d4cbd5f438ac7d";
+          hash = "sha256-QyG4IhWX2oPQ3OmhrcH6yfrzmzy7VOWlGvGgQDs80wA=";
+        };
+      }
+    );
   };
 
   cursorTheme = {
@@ -24,7 +33,7 @@ let
   };
 
   iconsTheme = {
-    name = "WhiteSur";
+    name = "WhiteSur-dark";
     package = pkgs.whitesur-icon-theme;
   };
 
@@ -131,7 +140,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme = "gtk3";
   };
 
   home.file.".icons/default/index.theme".text = ''
@@ -139,6 +148,13 @@ in
     Name=Default
     Comment=Default Cursor Theme
     Inherits=${cursorTheme.name}
+
+    [X-GNOME-Metatheme]
+    GtkTheme=${theme.name}
+    MetacityTheme=${theme.name}
+    IconTheme=${iconsTheme.name}
+    CursorTheme=${cursorTheme.name}
+    ButtonLayout=close,minimize,maximize:menu
   '';
 
   dconf.settings = {
