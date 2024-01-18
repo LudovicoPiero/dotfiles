@@ -14,15 +14,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = [
-      (pkgs.vesktop.overrideAttrs (
-        old: {
-          patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ];
-          postFixup = ''
-            wrapProgram $out/bin/vencorddesktop \
-              --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime"
-          '';
-        }
-      ))
+      (pkgs.vesktop.overrideAttrs (old: { patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ]; }))
     ];
 
     xdg.configFile."VencordDesktop/VencordDesktop/settings.json".text = builtins.toJSON {
