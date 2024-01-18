@@ -103,7 +103,7 @@
         "image/*" = [ "imv.desktop" ];
         "application/json" = browser;
         "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-        "x-scheme-handler/discord" = [ "vencorddesktop.desktop" ];
+        "x-scheme-handler/discord" = [ "vesktop.desktop" ];
         "x-scheme-handler/spotify" = [ "spotify.desktop" ];
         "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
         "x-scheme-handler/mailto" = thunderbird;

@@ -172,6 +172,7 @@ in
     "workspace 5, title:(Spotify)"
     "workspace 4, class:^(org.telegram.desktop)$"
     "workspace 3, title:^(.*(Disc|ArmC|WebC)ord.*)$"
+    "workspace 3, class:^(vesktop)$"
     "workspace 2, class:^(firefox)$"
     "workspace 2, class:^(Chromium-browser)$" # xwayland
     "workspace 2, class:^(chromium-browser)$" # wayland
@@ -203,7 +204,7 @@ in
     "$mod SHIFT, C , exit ,"
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
-    "$mod      , D , exec , run-as-service vencorddesktop"
+    "$mod      , D , exec , run-as-service vesktop"
     "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
     "$mod      , G , exec , run-as-service firefox"

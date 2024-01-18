@@ -17,7 +17,7 @@ in
       (pkgs.vesktop.overrideAttrs (old: { patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ]; }))
     ];
 
-    xdg.configFile."VencordDesktop/VencordDesktop/settings.json".text = builtins.toJSON {
+    xdg.configFile."vesktop/settings.json".text = builtins.toJSON {
       discordBranch = "canary";
       firstLaunch = false;
       minimizeToTray = false;
@@ -28,7 +28,7 @@ in
       staticTitle = false;
     };
 
-    xdg.configFile."VencordDesktop/VencordDesktop/settings/settings.json".text = builtins.toJSON {
+    xdg.configFile."vesktop/settings/settings.json".text = builtins.toJSON {
       notifyAboutUpdates = false;
       autoUpdate = false;
       autoUpdateNotification = false;

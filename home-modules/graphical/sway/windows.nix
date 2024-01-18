@@ -36,7 +36,7 @@
     }
     {
       criteria = {
-        app_id = "(?:WebCord|discord|VencordDesktop)";
+        app_id = "(?:WebCord|discord|vesktop)";
       };
       command = "move to workspace 3";
     }
