@@ -26,6 +26,7 @@ with pkgs;
   "nv" = "nvim";
   "nr" = "${_ nixpkgs-review}";
   "mkdir" = "mkdir -p";
+  "sudo" = "doas";
   "g" = "git";
   "v" = "vim";
   "record" = "${_ wl-screenrec} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
