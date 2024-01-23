@@ -20,6 +20,9 @@ return {
       nix = { "nixfmt" },
       lua = { "stylua" },
       python = { "isort", "black" },
+      javascript = { "prettier" },
+      md = { "prettier" },
+      sh = { "shfmt" },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
       ["_"] = { "trim_whitespace" },

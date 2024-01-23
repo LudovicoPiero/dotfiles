@@ -52,6 +52,8 @@ in
         # Etc
         ripgrep
         fd
+        nodePackages.prettier
+        shfmt
       ];
     };
 
