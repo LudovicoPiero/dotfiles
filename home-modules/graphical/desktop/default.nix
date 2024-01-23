@@ -15,7 +15,7 @@ let
   theme = {
     name = "WhiteSur-Dark";
     package = pkgs.whitesur-gtk-theme.overrideAttrs (
-      o: {
+      _o: {
         src = pkgs.fetchFromGitHub {
           owner = "vinceliuice";
           repo = "WhiteSur-gtk-theme";
@@ -64,7 +64,7 @@ let
   '';
 in
 {
-  colorScheme = inputs.nix-colors.colorSchemes.ayu-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.oxocarbon-dark;
   home.packages = with pkgs; [
     run-as-service
     apple-cursor

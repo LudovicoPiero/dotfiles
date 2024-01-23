@@ -2,10 +2,10 @@
 {
   background = "#${colors.base00}";
   focused = {
-    background = "#${colors.base0D}";
+    background = "#${colors.base0E}";
     border = "#${colors.base05}";
-    childBorder = "#${colors.base0D}";
-    indicator = "#${colors.base0D}";
+    childBorder = "#${colors.base0E}";
+    indicator = "#${colors.base0E}";
     text = "#${colors.base00}";
   };
   focusedInactive = {
@@ -30,10 +30,10 @@
     text = "#${colors.base05}";
   };
   urgent = {
-    background = "#${colors.base08}";
-    border = "#${colors.base08}";
-    childBorder = "#${colors.base08}";
-    indicator = "#${colors.base08}";
+    background = "#${colors.base0A}";
+    border = "#${colors.base0A}";
+    childBorder = "#${colors.base0A}";
+    indicator = "#${colors.base0A}";
     text = "#${colors.base00}";
   };
 }

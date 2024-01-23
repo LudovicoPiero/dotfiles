@@ -120,7 +120,7 @@ in
     gaps_in = 3;
     gaps_out = 3;
     border_size = 2;
-    "col.active_border" = "rgb(${colors.base0C})";
+    "col.active_border" = "rgb(${colors.base0E})";
     "col.inactive_border" = "rgb(${colors.base02})";
 
     layout = "dwindle";
@@ -130,7 +130,7 @@ in
     groupbar = {
       render_titles = false;
       "col.active" = "rgb(${colors.base0B})";
-      "col.inactive" = "rgb(${colors.base04})";
+      "col.inactive" = "rgb(${colors.base03})";
     };
     "col.border_active" = "rgb(a6e3a1)";
     "col.border_inactive" = "rgb(585b70)";
