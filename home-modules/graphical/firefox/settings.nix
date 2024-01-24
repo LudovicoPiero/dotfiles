@@ -14,11 +14,11 @@
      2 is enable DOH.
      3 is no failback to system dns
   */
-  "network.trr.mode" = 3;
-  "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
-  "network.trr.uri" = "https://doh.tiarap.org/dns-query";
-  "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
-  "network.trr.bootstrapAddress" = "1.1.1.1";
+  "network.trr.mode" = 0;
+  # "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
+  # "network.trr.uri" = "https://doh.tiarap.org/dns-query";
+  # "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
+  # "network.trr.bootstrapAddress" = "1.1.1.1";
 
   # Disable telemetry
   "browser.newtabpage.activity-stream.feeds.telemetry" = false;
