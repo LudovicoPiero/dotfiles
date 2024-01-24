@@ -27,7 +27,6 @@ in
               bitwarden
               faststream
               refined-github
-              skip-redirect
               sponsorblock
               to-deepl
               ublock-origin
