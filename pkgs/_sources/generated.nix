@@ -3,16 +3,16 @@
 {
   firefox-gnome-theme = {
     pname = "firefox-gnome-theme";
-    version = "eb7c43d11abc157f97d032018115c9f7b04ca4de";
+    version = "ba893aec06b8be8b8dbe33332ef631735e5ecc5c";
     src = fetchgit {
       url = "https://github.com/rafaelmardojai/firefox-gnome-theme";
-      rev = "eb7c43d11abc157f97d032018115c9f7b04ca4de";
+      rev = "ba893aec06b8be8b8dbe33332ef631735e5ecc5c";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-gpUrma8XjAnHULRmD5RRVVZJNvxFrIEyGQLx6oEE9D4=";
+      sha256 = "sha256-VDm5zOGMWOW1DUHUp+TcK9GxfUSy3y1I/3a13Dr9QN8=";
     };
-    date = "2024-01-14";
+    date = "2024-01-25";
   };
   san-francisco-pro = {
     pname = "san-francisco-pro";
@@ -29,34 +29,34 @@
   };
   waybar = {
     pname = "waybar";
-    version = "0948a407d0789fbd49a688d861ec17f638e1ea98";
+    version = "5f115785cf94599a57e5d396e71b3f6f85d56cfd";
     src = fetchgit {
       url = "https://github.com/alexays/waybar";
-      rev = "0948a407d0789fbd49a688d861ec17f638e1ea98";
+      rev = "5f115785cf94599a57e5d396e71b3f6f85d56cfd";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-tJEonNmCCadn2YVhLxaB7igjeyQ+EAH/3aL5UB/bSfI=";
+      sha256 = "sha256-yjA2vPca3X3ku50L8zrShPdBAnCKQmdfgw/U/IJFKEo=";
     };
-    date = "2024-01-23";
+    date = "2024-01-25";
   };
   wezterm = {
     pname = "wezterm";
-    version = "1ca3d48cfa5b70d012dbd03d134198a1f1969bef";
+    version = "1f9f3f2a5d3a594d1a70d5d443defc65c94c5ccb";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "1ca3d48cfa5b70d012dbd03d134198a1f1969bef";
+      rev = "1f9f3f2a5d3a594d1a70d5d443defc65c94c5ccb";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-5sjS91J8f0dt9k/vwThHOZc+gx5Y1JlA9nmHOmLrbMI=";
+      sha256 = "sha256-xKuT/8vXpClNqlPI5NKre+FBVrbe03BT/t22Kn5GKNo=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-1ca3d48cfa5b70d012dbd03d134198a1f1969bef/Cargo.lock;
+      lockFile = ./wezterm-1f9f3f2a5d3a594d1a70d5d443defc65c94c5ccb/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
       };
     };
-    date = "2024-01-24";
+    date = "2024-01-25";
   };
 }
