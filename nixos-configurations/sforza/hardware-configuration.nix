@@ -31,8 +31,8 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    # kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
-    kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
+    kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
+    # kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
     kernelParams = lib.mkForce [
       "quiet"
       "loglevel=0"
