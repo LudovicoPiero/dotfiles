@@ -303,19 +303,17 @@
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "systems": "systems_3",
         "wlroots": "wlroots",
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1706401974,
-        "narHash": "sha256-37ij7WuV+xlJlnJu1uHLG6T0yQ8Fga8KiStc5klL7xY=",
+        "lastModified": 1706410805,
+        "narHash": "sha256-uRSL+r0nt172K/29IE2JfabH039UjkMcJ/o93EA2lic=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "3e93fdf7794416272430300426a62497d9d0b835",
+        "rev": "df990c80e211553fc63136072b0e518860172f2f",
         "type": "github"
       },
       "original": {
@@ -590,6 +588,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1706191920,
+        "narHash": "sha256-eLihrZAPZX0R6RyM5fYAWeKVNuQPYjAkCUBr+JNvtdE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ae5c332cbb5827f6b1f02572496b141021de335f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1706275741,
         "narHash": "sha256-53O2JHFdDTWHzTfLkZRAZVAk9ntChFhcTTnAtj6bJKE=",
         "owner": "NixOS",
@@ -664,7 +678,7 @@
         "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
         "nix-super": "nix-super",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nur": "nur",
         "spicetify-nix": "spicetify-nix",
         "treefmt-nix": "treefmt-nix"
