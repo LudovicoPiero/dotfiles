@@ -29,34 +29,34 @@
   };
   waybar = {
     pname = "waybar";
-    version = "5f115785cf94599a57e5d396e71b3f6f85d56cfd";
+    version = "ddad6ce136304f68d627a05da2755554efdee381";
     src = fetchgit {
       url = "https://github.com/alexays/waybar";
-      rev = "5f115785cf94599a57e5d396e71b3f6f85d56cfd";
+      rev = "ddad6ce136304f68d627a05da2755554efdee381";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-yjA2vPca3X3ku50L8zrShPdBAnCKQmdfgw/U/IJFKEo=";
+      sha256 = "sha256-BNceyfJIKvsxPF3NR/GnMxUgkZrubBDPLi6exNnMCHU=";
     };
-    date = "2024-01-25";
+    date = "2024-01-28";
   };
   wezterm = {
     pname = "wezterm";
-    version = "11c1dd65275ef5aa7996f7443eacc25193fc9f08";
+    version = "3a66f67fa0c4cb06d595b4e2942c4ed3203fcb58";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "11c1dd65275ef5aa7996f7443eacc25193fc9f08";
+      rev = "3a66f67fa0c4cb06d595b4e2942c4ed3203fcb58";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-B0tTHxF8sHEbbCnmeKFS+pOJrzWs3SqsKA3/mOI5YCU=";
+      sha256 = "sha256-SwyaYpHXxTw5IRus3D5GhsDsRtfWF9usbLyIIxbOCpI=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-11c1dd65275ef5aa7996f7443eacc25193fc9f08/Cargo.lock;
+      lockFile = ./wezterm-3a66f67fa0c4cb06d595b4e2942c4ed3203fcb58/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
       };
     };
-    date = "2024-01-27";
+    date = "2024-01-28";
   };
 }
