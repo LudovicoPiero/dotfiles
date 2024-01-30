@@ -14,16 +14,7 @@ let
 
   theme = {
     name = "WhiteSur-Dark";
-    package = pkgs.whitesur-gtk-theme.overrideAttrs (
-      _o: {
-        src = pkgs.fetchFromGitHub {
-          owner = "vinceliuice";
-          repo = "WhiteSur-gtk-theme";
-          rev = "63930d177f9c0baf66f7288a62d4cbd5f438ac7d";
-          hash = "sha256-QyG4IhWX2oPQ3OmhrcH6yfrzmzy7VOWlGvGgQDs80wA=";
-        };
-      }
-    );
+    package = inputs.self.packages.${pkgs.system}.whitesur-gtk-theme;
   };
 
   cursorTheme = {
