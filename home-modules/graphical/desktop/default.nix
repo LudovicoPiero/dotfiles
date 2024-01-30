@@ -165,5 +165,8 @@ in
       gtk-theme = theme.name;
       icon-theme = iconsTheme.name;
     };
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "close,minimize,maximize:icon";
+    };
   };
 }
