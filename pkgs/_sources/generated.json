@@ -39,7 +39,7 @@
     },
     "waybar": {
         "cargoLocks": null,
-        "date": "2024-01-28",
+        "date": "2024-01-30",
         "extract": null,
         "name": "waybar",
         "passthru": null,
@@ -49,17 +49,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "5534fc48b1141a645ba2d4a1188d2bdefc7e441a",
-            "sha256": "sha256-xHOkU2DKF5wIKArYvZ28QoByDqtuRFbu8BcWP2VHCMQ=",
+            "rev": "fb6658e8fdae97ef1e1d6042b7fd15287ed046bc",
+            "sha256": "sha256-iO+lV7IFk312Q1c/adwSHhh4gvD1xmoQGKoPSg66ITA=",
             "type": "git",
             "url": "https://github.com/alexays/waybar"
         },
-        "version": "5534fc48b1141a645ba2d4a1188d2bdefc7e441a"
+        "version": "fb6658e8fdae97ef1e1d6042b7fd15287ed046bc"
     },
     "wezterm": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-0621c1f19c7e6d0b74627e9516bca0965b50fb0f/Cargo.lock",
+                "./wezterm-47f647cadcaa0f06df107999221c661a0ff5017d/Cargo.lock",
                 {
                     "xcb-imdkit-0.3.0": "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI="
                 }
@@ -75,11 +75,11 @@
             "fetchSubmodules": true,
             "leaveDotGit": false,
             "name": null,
-            "rev": "0621c1f19c7e6d0b74627e9516bca0965b50fb0f",
-            "sha256": "sha256-G7A4bcEWrLChz6DqexVN03DtG3tXxRC6sibT4VhNFJU=",
+            "rev": "47f647cadcaa0f06df107999221c661a0ff5017d",
+            "sha256": "sha256-tS24MBhLW9E9gFl6s1CwQuTESet+Gp0Ak/CBXrno7xs=",
             "type": "git",
             "url": "https://github.com/wez/wezterm"
         },
-        "version": "0621c1f19c7e6d0b74627e9516bca0965b50fb0f"
+        "version": "47f647cadcaa0f06df107999221c661a0ff5017d"
     }
 }
