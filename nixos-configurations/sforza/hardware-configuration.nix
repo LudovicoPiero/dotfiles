@@ -32,11 +32,7 @@
     };
 
     kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
-    # kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
-    kernelParams = lib.mkForce [
-      "quiet"
-      "loglevel=0"
-    ];
+
     initrd.availableKernelModules = [
       "nvme"
       "xhci_pci"
