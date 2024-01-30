@@ -30,6 +30,11 @@
             ;
           inherit sources;
         };
+
+        whitesur-gtk-theme = pkgs.callPackage ./whitesur-gtk-theme {
+          inherit (pkgs.gnome) gnome-shell;
+          inherit sources;
+        };
       };
     };
 }

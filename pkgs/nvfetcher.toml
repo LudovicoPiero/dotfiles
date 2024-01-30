@@ -16,3 +16,8 @@ fetch.git = "https://github.com/alexays/waybar"
 [firefox-gnome-theme]
 src.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
 fetch.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
+
+[whitesur-gtk-theme]
+src.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
+fetch.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
+
