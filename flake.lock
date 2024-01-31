@@ -107,11 +107,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700606599,
-        "narHash": "sha256-Guoclq1HJAQ67hkQMVDMVss8E4HHVEgB61e2nno8qNA=",
+        "lastModified": 1706611666,
+        "narHash": "sha256-N+SyoAEqf3QIXMYZ81kuxrOP6b0692M+hbGLHU9wf1I=",
         "owner": "ehllie",
         "repo": "ez-configs",
-        "rev": "fa75b68c677d71aa17ec0efacd09aa0f69d5a4a3",
+        "rev": "84c60a73eba0b5405943580d52b1581de5b1ee7c",
         "type": "github"
       },
       "original": {
