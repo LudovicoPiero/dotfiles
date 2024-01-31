@@ -114,7 +114,7 @@
       };
     };
     xserver = {
-      layout = "us"; # Configure keymap
+      xkb.layout = "us"; # Configure keymap
       libinput.enable = true;
     };
   };
