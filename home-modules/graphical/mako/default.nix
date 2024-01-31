@@ -7,7 +7,7 @@
 let
   cfg = config.mine.mako;
   inherit (lib) mkIf mkOption types;
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
 in
 {
   options.mine.mako = {
@@ -26,9 +26,9 @@ in
       enable = true;
 
       anchor = "top-right";
-      backgroundColor = "#${colors.base00}";
-      borderColor = "#${colors.base0E}";
-      textColor = "#${colors.base05}";
+      backgroundColor = "#${palette.base00}";
+      borderColor = "#${palette.base0E}";
+      textColor = "#${palette.base05}";
       borderRadius = 5;
       borderSize = 2;
       padding = "20";
@@ -41,13 +41,13 @@ in
 
       extraConfig = ''
         [urgency=low]
-        border-color=#${colors.base0B}
-        background-color=#${colors.base01}
+        border-color=#${palette.base0B}
+        background-color=#${palette.base01}
         default-timeout=3000
 
         [urgency=high]
-        background-color=#${colors.base01}
-        border-color=#${colors.base0B}
+        background-color=#${palette.base01}
+        border-color=#${palette.base0B}
         default-timeout=10000
 
         [mode=dnd]

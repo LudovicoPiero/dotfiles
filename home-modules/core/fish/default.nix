@@ -9,7 +9,7 @@ let
   cfg = config.mine.fish;
   _ = lib.getExe;
   inherit (lib) mkIf mkOption types;
-  inherit (config.colorscheme) colors;
+  inherit (config.colorScheme) palette;
 in
 {
   imports = [ inputs.nix-index-database.hmModules.nix-index ];
@@ -44,7 +44,7 @@ in
       interactiveShellInit = ''
         set -g async_prompt_functions _pure_prompt_git
         set pure_symbol_prompt "❯"
-        set pure_color_success '#${colors.base0E}'
+        set pure_color_success '#${palette.base0E}'
 
         ${_ any-nix-shell} fish --info-right | source
         ${_ zoxide} init fish | source

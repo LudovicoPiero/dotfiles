@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.mine.sway;
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
   inherit (lib) mkEnableOption mkIf optionalString;
 in
 {
@@ -21,7 +21,7 @@ in
       enable = true;
       package = if cfg.useSwayFX then pkgs.swayfx else inputs.chaotic.packages.${pkgs.system}.sway_git;
       config = {
-        colors = import ./colors.nix { inherit colors; };
+        colors = import ./colors.nix { inherit palette; };
         keybindings = import ./keybindings.nix { inherit lib config pkgs; };
         bars = [ ]; # Use waybar
         window = import ./windows.nix;

@@ -1,39 +1,39 @@
-{ colors, ... }:
+{ palette, ... }:
 {
-  background = "#${colors.base00}";
+  background = "#${palette.base00}";
   focused = {
-    background = "#${colors.base0E}";
-    border = "#${colors.base05}";
-    childBorder = "#${colors.base0E}";
-    indicator = "#${colors.base0E}";
-    text = "#${colors.base00}";
+    background = "#${palette.base0E}";
+    border = "#${palette.base05}";
+    childBorder = "#${palette.base0E}";
+    indicator = "#${palette.base0E}";
+    text = "#${palette.base00}";
   };
   focusedInactive = {
-    background = "#${colors.base01}";
-    border = "#${colors.base01}";
-    childBorder = "#${colors.base01}";
-    indicator = "#${colors.base03}";
-    text = "#${colors.base05}";
+    background = "#${palette.base01}";
+    border = "#${palette.base01}";
+    childBorder = "#${palette.base01}";
+    indicator = "#${palette.base03}";
+    text = "#${palette.base05}";
   };
   placeholder = {
-    background = "#${colors.base00}";
-    border = "#${colors.base00}";
-    childBorder = "#${colors.base00}";
-    indicator = "#${colors.base00}";
-    text = "#${colors.base05}";
+    background = "#${palette.base00}";
+    border = "#${palette.base00}";
+    childBorder = "#${palette.base00}";
+    indicator = "#${palette.base00}";
+    text = "#${palette.base05}";
   };
   unfocused = {
-    background = "#${colors.base00}";
-    border = "#${colors.base01}";
-    childBorder = "#${colors.base01}";
-    indicator = "#${colors.base01}";
-    text = "#${colors.base05}";
+    background = "#${palette.base00}";
+    border = "#${palette.base01}";
+    childBorder = "#${palette.base01}";
+    indicator = "#${palette.base01}";
+    text = "#${palette.base05}";
   };
   urgent = {
-    background = "#${colors.base0A}";
-    border = "#${colors.base0A}";
-    childBorder = "#${colors.base0A}";
-    indicator = "#${colors.base0A}";
-    text = "#${colors.base00}";
+    background = "#${palette.base0A}";
+    border = "#${palette.base0A}";
+    childBorder = "#${palette.base0A}";
+    indicator = "#${palette.base0A}";
+    text = "#${palette.base00}";
   };
 }

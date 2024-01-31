@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.mine.fuzzel;
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
   inherit (lib) mkIf mkOption types;
 in
 {
@@ -36,13 +36,13 @@ in
         };
 
         colors = {
-          background = "${colors.base00}f2";
-          text = "${colors.base05}ff";
-          match = "${colors.base0A}ff";
-          selection = "${colors.base03}ff";
-          selection-text = "${colors.base05}ff";
-          selection-match = "${colors.base0A}ff";
-          border = "${colors.base0D}ff";
+          background = "${palette.base00}f2";
+          text = "${palette.base05}ff";
+          match = "${palette.base0A}ff";
+          selection = "${palette.base03}ff";
+          selection-text = "${palette.base05}ff";
+          selection-match = "${palette.base0A}ff";
+          border = "${palette.base0D}ff";
         };
       };
     };

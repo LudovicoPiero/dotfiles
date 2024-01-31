@@ -8,7 +8,7 @@
 let
   cfg = config.mine.wezterm;
   inherit (config) colorScheme;
-  inherit (colorScheme) colors;
+  inherit (colorScheme) palette;
   inherit (lib) mkOption mkIf types;
 in
 {
@@ -29,60 +29,60 @@ in
       colorSchemes = {
         "${colorScheme.slug}" = {
           ansi = [
-            "${colors.base00}"
-            "${colors.base0A}"
-            "${colors.base0D}"
+            "${palette.base00}"
+            "${palette.base0A}"
+            "${palette.base0D}"
             "FFE97B"
-            "${colors.base0B}"
-            "${colors.base0C}"
-            "${colors.base08}"
-            "${colors.base04}"
+            "${palette.base0B}"
+            "${palette.base0C}"
+            "${palette.base08}"
+            "${palette.base04}"
           ];
           brights = [
-            "${colors.base02}"
-            "${colors.base0A}"
-            "${colors.base0D}"
+            "${palette.base02}"
+            "${palette.base0A}"
+            "${palette.base0D}"
             "FFE97B"
-            "${colors.base0B}"
-            "${colors.base0C}"
-            "${colors.base08}"
-            "${colors.base06}"
+            "${palette.base0B}"
+            "${palette.base0C}"
+            "${palette.base08}"
+            "${palette.base06}"
           ];
           tab_bar = {
-            background = "#${colors.base01}";
-            inactive_tab_edge = "#${colors.base01}";
+            background = "#${palette.base01}";
+            inactive_tab_edge = "#${palette.base01}";
             active_tab = {
-              bg_color = "#${colors.base03}";
-              fg_color = "#${colors.base05}";
+              bg_color = "#${palette.base03}";
+              fg_color = "#${palette.base05}";
             };
             inactive_tab = {
-              bg_color = "#${colors.base00}";
-              fg_color = "#${colors.base05}";
+              bg_color = "#${palette.base00}";
+              fg_color = "#${palette.base05}";
             };
             inactive_tab_hover = {
-              bg_color = "#${colors.base05}";
-              fg_color = "#${colors.base00}";
+              bg_color = "#${palette.base05}";
+              fg_color = "#${palette.base00}";
             };
             new_tab = {
-              bg_color = "#${colors.base00}";
-              fg_color = "#${colors.base05}";
+              bg_color = "#${palette.base00}";
+              fg_color = "#${palette.base05}";
             };
             new_tab_hover = {
-              bg_color = "#${colors.base05}";
-              fg_color = "#${colors.base00}";
+              bg_color = "#${palette.base05}";
+              fg_color = "#${palette.base00}";
             };
           };
-          foreground = "${colors.base05}";
-          background = "${colors.base00}";
-          cursor_fg = "${colors.base00}";
-          cursor_bg = "${colors.base05}";
-          compose_cursor = "${colors.base06}";
-          scrollbar_thumb = "${colors.base01}";
-          cursor_border = "#${colors.base05}";
-          selection_fg = "#${colors.base00}";
-          selection_bg = "#${colors.base0F}";
-          split = "${colors.base0B}";
-          visual_bell = "${colors.base09}";
+          foreground = "${palette.base05}";
+          background = "${palette.base00}";
+          cursor_fg = "${palette.base00}";
+          cursor_bg = "${palette.base05}";
+          compose_cursor = "${palette.base06}";
+          scrollbar_thumb = "${palette.base01}";
+          cursor_border = "#${palette.base05}";
+          selection_fg = "#${palette.base00}";
+          selection_bg = "#${palette.base0F}";
+          split = "${palette.base0B}";
+          visual_bell = "${palette.base09}";
         };
       };
       extraConfig = ''
@@ -108,23 +108,23 @@ in
           use_fancy_tab_bar = false,
           clean_exit_codes = { 130 },
           window_frame = {
-            active_titlebar_bg = "${colors.base03}",
-            active_titlebar_fg = "${colors.base05}",
-            active_titlebar_border_bottom = "${colors.base03}",
-            border_left_color = "${colors.base01}",
-            border_right_color = "${colors.base01}",
-            border_bottom_color = "${colors.base01}",
-            border_top_color = "${colors.base01}",
-            button_bg = "${colors.base01}",
-            button_fg = "${colors.base05}",
-            button_hover_bg = "${colors.base05}",
-            button_hover_fg = "${colors.base03}",
-            inactive_titlebar_bg = "${colors.base01}",
-            inactive_titlebar_fg = "${colors.base05}",
-            inactive_titlebar_border_bottom = "${colors.base03}",
+            active_titlebar_bg = "${palette.base03}",
+            active_titlebar_fg = "${palette.base05}",
+            active_titlebar_border_bottom = "${palette.base03}",
+            border_left_color = "${palette.base01}",
+            border_right_color = "${palette.base01}",
+            border_bottom_color = "${palette.base01}",
+            border_top_color = "${palette.base01}",
+            button_bg = "${palette.base01}",
+            button_fg = "${palette.base05}",
+            button_hover_bg = "${palette.base05}",
+            button_hover_fg = "${palette.base03}",
+            inactive_titlebar_bg = "${palette.base01}",
+            inactive_titlebar_fg = "${palette.base05}",
+            inactive_titlebar_border_bottom = "${palette.base03}",
           },
-          command_palette_bg_color = "${colors.base01}",
-          command_palette_fg_color = "${colors.base05}",
+          command_palette_bg_color = "${palette.base01}",
+          command_palette_fg_color = "${palette.base05}",
           command_palette_font_size = 12.0,
 
           leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },

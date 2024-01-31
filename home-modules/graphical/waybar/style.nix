@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
 in
 ''
   * {
@@ -15,12 +15,12 @@ in
   }
 
   window#waybar {
-    background-color: #${colors.base00};
-    /* color: #${colors.base05}; */
+    background-color: #${palette.base00};
+    /* color: #${palette.base05}; */
   }
 
   #workspaces {
-    background-color: #${colors.base0C};
+    background-color: #${palette.base0C};
     margin: 2px;
     margin-left: 2px;
     border-radius: 0px;
@@ -28,32 +28,32 @@ in
 
   #workspaces button {
     padding: 0px 5px;
-    background-color: #${colors.base00};
+    background-color: #${palette.base00};
     border-radius: 0px;
   }
 
   #workspaces button.empty {
-    color: #${colors.base0C};
-    background-color: #${colors.base00};
+    color: #${palette.base0C};
+    background-color: #${palette.base00};
   }
 
   #workspaces button.visible {
-    color: #${colors.base00};
-    background-color: #${colors.base09};
+    color: #${palette.base00};
+    background-color: #${palette.base09};
   }
 
   #workspaces button.active {
-    color: #${colors.base00};
-    background-color: #${colors.base09};
+    color: #${palette.base00};
+    background-color: #${palette.base09};
   }
 
   #workspaces button:hover {
-    color: #${colors.base00};
-    background-color: #${colors.base0A};
+    color: #${palette.base00};
+    background-color: #${palette.base0A};
   }
 
   #tags {
-    background-color: #${colors.base00};
+    background-color: #${palette.base00};
     margin: 2px;
     margin-left: 2px;
     border-radius: 0px;
@@ -61,25 +61,25 @@ in
 
   #tags button {
     padding: 0px 5px;
-    color: #${colors.base05};
+    color: #${palette.base05};
   }
 
   #tags button.occupied {
-    color: #${colors.base01};
-    background-color: #${colors.base07};
+    color: #${palette.base01};
+    background-color: #${palette.base07};
     border-radius: 0px;
   }
 
 
   #tags button.focused {
-    color: #${colors.base01};
-    background-color: #${colors.base0D};
+    color: #${palette.base01};
+    background-color: #${palette.base0D};
     border-radius: 0px;
   }
 
   #tags button:hover {
-    background-color: #${colors.base0D};
-    color: #${colors.base00};
+    background-color: #${palette.base0D};
+    color: #${palette.base00};
     border-radius: 0px;
   }
 
@@ -96,15 +96,15 @@ in
   }
 
   #custom-wireguard {
-    color: #${colors.base09};
+    color: #${palette.base09};
   }
 
   #custom-teavpn {
-    color: #${colors.base09};
+    color: #${palette.base09};
   }
 
   #privacy {
-    color: #${colors.base0D};
+    color: #${palette.base0D};
   }
 
   #tray,
@@ -116,40 +116,40 @@ in
   #pulseaudio,
   #privacy,
   #network {
-    background-color: #${colors.base00};
+    background-color: #${palette.base00};
     padding: 0px 5px;
     margin: 2px;
   }
 
   #custom-date {
-    color: #${colors.base0A};
+    color: #${palette.base0A};
   }
 
   #clock {
-    color: #${colors.base0B};
+    color: #${palette.base0B};
     margin-right: 2px;
   }
 
   #battery {
-    color: #${colors.base0E};
+    color: #${palette.base0E};
   }
 
   #battery.charging {
-    color: #${colors.base0B};
+    color: #${palette.base0B};
   }
 
   #battery.warning:not(.charging) {
-    background-color: #${colors.base00};
-    color: #${colors.base08};
+    background-color: #${palette.base00};
+    color: #${palette.base08};
     border-radius: 0px 0px 0px 0px;
   }
 
   #network {
-    color: #${colors.base0C};
+    color: #${palette.base0C};
     border-radius: 0px 0px 0px 0px;
   }
 
   #pulseaudio {
-    color: #${colors.base08};
+    color: #${palette.base08};
   }
 ''

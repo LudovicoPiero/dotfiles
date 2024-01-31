@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
   _ = lib.getExe;
   terminal = "${_ inputs.self.packages.${pkgs.system}.wezterm}";
   launcher = "${_ pkgs.fuzzel}";
@@ -120,8 +120,8 @@ in
     gaps_in = 3;
     gaps_out = 3;
     border_size = 2;
-    "col.active_border" = "rgb(${colors.base0E})";
-    "col.inactive_border" = "rgb(${colors.base02})";
+    "col.active_border" = "rgb(${palette.base0E})";
+    "col.inactive_border" = "rgb(${palette.base02})";
 
     layout = "dwindle";
   };
@@ -129,8 +129,8 @@ in
   group = {
     groupbar = {
       render_titles = false;
-      "col.active" = "rgb(${colors.base0B})";
-      "col.inactive" = "rgb(${colors.base03})";
+      "col.active" = "rgb(${palette.base0B})";
+      "col.inactive" = "rgb(${palette.base03})";
     };
     "col.border_active" = "rgb(a6e3a1)";
     "col.border_inactive" = "rgb(585b70)";
