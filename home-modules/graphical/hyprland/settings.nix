@@ -149,7 +149,7 @@ in
 
   misc = {
     disable_splash_rendering = true; # Text below the wallpaper
-    force_hypr_chan = false; # Cute
+    force_default_wallpaper = false;
     vfr = true;
     vrr = 0;
   };
