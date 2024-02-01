@@ -23,7 +23,8 @@
       enable = true;
       keyring.enable = true;
     };
-    dnscrypt.enable = true;
+    dnscrypt.enable = false;
+    stubby.enable = true;
     fonts.enable = true;
     greetd.enable = true;
     security.enable = true;

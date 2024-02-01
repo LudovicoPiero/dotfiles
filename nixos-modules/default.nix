@@ -10,6 +10,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
 
     ./core/dnscrypt
+    ./core/stubby
     ./core/security
     ./core/users
     ./core/fonts
