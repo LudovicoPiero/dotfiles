@@ -9,8 +9,7 @@ cargo_locks = ["Cargo.lock"]
 git.fetchSubmodules = true
 
 [waybar]
-# src.git = "https://github.com/alexays/waybar"
-src.manual = "5534fc48b1141a645ba2d4a1188d2bdefc7e441a"
+src.git = "https://github.com/alexays/waybar"
 fetch.git = "https://github.com/alexays/waybar"
 
 [firefox-gnome-theme]
