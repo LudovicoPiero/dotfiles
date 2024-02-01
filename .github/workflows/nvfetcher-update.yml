@@ -39,8 +39,6 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v6
         with:
-          author: "Maximilian <59017537+MaximilianSforza@users.noreply.github.com>"
-          committer: "Maximilian <59017537+MaximilianSforza@users.noreply.github.com>"
           token: "${{ secrets.PR_TOKEN }}"
           title: "Nvfetcher update"
           body: "BOOMP BOOMP"
