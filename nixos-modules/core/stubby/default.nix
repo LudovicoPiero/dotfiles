@@ -36,6 +36,26 @@ in
             tls_auth_name = "dot.tiar.app";
             tls_port = 853;
           }
+          {
+            address_data = "1.1.1.1";
+            tls_auth_name = "cloudflare-dns.com";
+            tls_pubkey_pinset = [
+              {
+                digest = "sha256";
+                value = "HdDBgtnj07/NrKNmLCbg5rxK78ZehdHZ/Uoutx4iHzY=";
+              }
+            ];
+          }
+          {
+            address_data = "1.0.0.1";
+            tls_auth_name = "cloudflare-dns.com";
+            tls_pubkey_pinset = [
+              {
+                digest = "sha256";
+                value = "HdDBgtnj07/NrKNmLCbg5rxK78ZehdHZ/Uoutx4iHzY=";
+              }
+            ];
+          }
         ];
       };
     };
