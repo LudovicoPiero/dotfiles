@@ -156,6 +156,7 @@
         "nix-command"
         "parse-toml-timestamps"
         "read-only-local-store"
+        "recursive-nix"
       ];
 
       accept-flake-config = true;
