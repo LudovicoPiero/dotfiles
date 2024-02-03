@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.mine.git;
   inherit (lib) mkIf mkOption types;
@@ -17,6 +22,7 @@ in
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
+      package = pkgs.gitFull;
 
       difftastic = {
         enable = true;
@@ -36,6 +42,15 @@ in
       extraConfig = {
         init.defaultBranch = "main";
         merge.conflictstyle = "diff3";
+        format.signOff = "yes";
+
+        sendemail = {
+          smtpencryption = "tls";
+          smtpserver = "mail1.gnuweeb.org";
+          smtpuser = "lewdovico@gnuweeb.org";
+          smtpserverport = 587;
+          # smtpPass = ""; #TODO: agenix(?)
+        };
       };
 
       ignores = [
