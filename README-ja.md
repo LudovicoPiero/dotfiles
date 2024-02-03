@@ -29,10 +29,10 @@
 - シェル: [Fish](https://fishshell.com/)
 - ブラウザ: [Firefox](https://www.mozilla.org/en-US/firefox)
 
-## **謝辞:**
+## **謝辞**
 
 Nix および NixOS コミュニティに感謝します。[fufexan](https://github.com/fufexan)、[misterio77](https://github.com/misterio77)、[hlissner](https://github.com/hlissner)、[sweenu](https://github.com/sweenu) など、貴重なサポートをしてくれた皆さんに感謝します。
 
-## **リソース:**
+## **リソース**
 
 [Nixpkgs マニュアル](https://nixos.org/manual/nixpkgs/stable/) を探索して、Nix および NixOS についてもっと学びましょう。
