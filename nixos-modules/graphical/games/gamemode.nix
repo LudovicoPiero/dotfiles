@@ -26,7 +26,6 @@ in
         programs = lib.makeBinPath (
           with pkgs;
           [
-            inputs.hyprland.packages.${pkgs.system}.hyprland
             gojq
             systemd
           ]
