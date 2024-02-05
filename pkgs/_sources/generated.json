@@ -1,7 +1,7 @@
 {
     "firefox-gnome-theme": {
         "cargoLocks": null,
-        "date": "2024-01-30",
+        "date": "2024-02-04",
         "extract": null,
         "name": "firefox-gnome-theme",
         "passthru": null,
@@ -11,12 +11,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "7c372d58b61b56b1e4890f25ee99979eb5c53a7c",
-            "sha256": "sha256-3/vqVpPkzJIZToPFRqUstMGBGtPq52qUdt2VMBEG80w=",
+            "rev": "d7db6e546d13de55fd70dc3204bd99195eb004c4",
+            "sha256": "sha256-QZk/qZQVt1X53peCqB2qmWhpA3xtAVgY95pebSKaTFU=",
             "type": "git",
             "url": "https://github.com/rafaelmardojai/firefox-gnome-theme"
         },
-        "version": "7c372d58b61b56b1e4890f25ee99979eb5c53a7c"
+        "version": "d7db6e546d13de55fd70dc3204bd99195eb004c4"
     },
     "san-francisco-pro": {
         "cargoLocks": null,
@@ -59,7 +59,7 @@
     "wezterm": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-bed5141d6e07f2e82ad68cb73feb7b7949460aad/Cargo.lock",
+                "./wezterm-b03b833a4d48ceb8ac2a9d21a6a25a6e5816601c/Cargo.lock",
                 {
                     "xcb-imdkit-0.3.0": "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI="
                 }
@@ -75,12 +75,12 @@
             "fetchSubmodules": true,
             "leaveDotGit": false,
             "name": null,
-            "rev": "bed5141d6e07f2e82ad68cb73feb7b7949460aad",
-            "sha256": "sha256-/3KsPx3BYNXu6ZVGLJQF4MaElpkG26Ley1CUql0Rsnw=",
+            "rev": "b03b833a4d48ceb8ac2a9d21a6a25a6e5816601c",
+            "sha256": "sha256-JCVeFLCFNJflZWuFr2i1n4DYsCa09aZB7W9yiu2D6S0=",
             "type": "git",
             "url": "https://github.com/wez/wezterm"
         },
-        "version": "bed5141d6e07f2e82ad68cb73feb7b7949460aad"
+        "version": "b03b833a4d48ceb8ac2a9d21a6a25a6e5816601c"
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,
