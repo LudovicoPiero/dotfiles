@@ -42,17 +42,17 @@
   };
   wezterm = {
     pname = "wezterm";
-    version = "5d190c2b7a11203139fd58c2fcd57f34cf5fd301";
+    version = "4f123a461bffdd8ac2e21c0697d02c5c992abd29";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "5d190c2b7a11203139fd58c2fcd57f34cf5fd301";
+      rev = "4f123a461bffdd8ac2e21c0697d02c5c992abd29";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-bUkQQflLCjF2zgQqG88Ph+fUQBQuq3fGNsIb6e+crfs=";
+      sha256 = "sha256-A5wF+9vWMekMmm164idNxYJRcT1J9jCIwJGvhH0SOzI=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-5d190c2b7a11203139fd58c2fcd57f34cf5fd301/Cargo.lock;
+      lockFile = ./wezterm-4f123a461bffdd8ac2e21c0697d02c5c992abd29/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
       };
