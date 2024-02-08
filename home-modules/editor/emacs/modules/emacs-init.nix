@@ -318,9 +318,9 @@ let
   hasDiminish = any (p: p.diminish != [ ]) (attrValues cfg.usePackage);
 
   # Whether the configuration makes use of `:bind`.
-  hasBind = any (
-    p: p.bind != { } || p.bindLocal != { } || p.bindKeyMap != { }
-  ) (attrValues cfg.usePackage);
+  hasBind = any (p: p.bind != { } || p.bindLocal != { } || p.bindKeyMap != { }) (
+    attrValues cfg.usePackage
+  );
 
   # Whether the configuration makes use of `:chords`.
   hasChords = any (p: p.chords != { }) (attrValues cfg.usePackage);
@@ -478,9 +478,9 @@ in
   config = mkIf (config.programs.emacs.enable && cfg.enable) {
     # Collect the extra packages that should be included in the user profile.
     # These are typically tools called by Emacs packages.
-    home.packages = concatMap (
-      v: v.extraPackages
-    ) (filter (getAttr "enable") (builtins.attrValues cfg.usePackage));
+    home.packages = concatMap (v: v.extraPackages) (
+      filter (getAttr "enable") (builtins.attrValues cfg.usePackage)
+    );
 
     programs.emacs.init.earlyInit =
       let
@@ -514,9 +514,9 @@ in
         getPkg =
           v: if isFunction v then [ (v epkgs) ] else optional (isString v && hasAttr v epkgs) epkgs.${v};
 
-        packages = concatMap (
-          v: getPkg v.package
-        ) (filter (getAttr "enable") (builtins.attrValues cfg.usePackage));
+        packages = concatMap (v: getPkg v.package) (
+          filter (getAttr "enable") (builtins.attrValues cfg.usePackage)
+        );
       in
       [
         (epkgs.trivialBuild {
