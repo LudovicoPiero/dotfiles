@@ -59,13 +59,13 @@
     "wezterm": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-a7d9cfd25f992c94b8cf03ba41711047c72da87d/Cargo.lock",
+                "./wezterm-b61c49fa67c609683a86a8297ae62c5752b9afe5/Cargo.lock",
                 {
                     "xcb-imdkit-0.3.0": "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI="
                 }
             ]
         },
-        "date": "2024-02-08",
+        "date": "2024-02-11",
         "extract": null,
         "name": "wezterm",
         "passthru": null,
@@ -75,12 +75,12 @@
             "fetchSubmodules": true,
             "leaveDotGit": false,
             "name": null,
-            "rev": "a7d9cfd25f992c94b8cf03ba41711047c72da87d",
-            "sha256": "sha256-BfsA3G4DpkFaxXtdqOAb7P6HscC6UexVl4GQY4tzwYs=",
+            "rev": "b61c49fa67c609683a86a8297ae62c5752b9afe5",
+            "sha256": "sha256-mjprdtxGOl5cwNEgYtlaiKo7NZicR+Hx4Y1Ex7WirFs=",
             "type": "git",
             "url": "https://github.com/wez/wezterm"
         },
-        "version": "a7d9cfd25f992c94b8cf03ba41711047c72da87d"
+        "version": "b61c49fa67c609683a86a8297ae62c5752b9afe5"
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,
