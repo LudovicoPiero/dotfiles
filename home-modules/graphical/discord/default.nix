@@ -14,7 +14,9 @@ in
 
   config = mkIf cfg.enable {
     home.packages = [
-      (pkgs.vesktop.overrideAttrs (old: { patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ]; }))
+      (pkgs.vesktop.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ];
+      }))
     ];
 
     xdg.configFile."vesktop/settings.json".text = builtins.toJSON {
