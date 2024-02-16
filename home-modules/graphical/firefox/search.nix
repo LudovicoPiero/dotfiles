@@ -15,7 +15,7 @@
     };
 
     "GitHub" = {
-      urls = [ { template = "https://github.com/search?q={searchTerms}"; } ];
+      urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
       definedAliases = [ "gh" ];
     };
 
