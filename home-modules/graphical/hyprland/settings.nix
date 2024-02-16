@@ -138,7 +138,7 @@ in
 
   input = {
     kb_layout = "us";
-    follow_mouse = 2;
+    follow_mouse = 1;
     repeat_rate = 30;
     repeat_delay = 300;
     touchpad = {
