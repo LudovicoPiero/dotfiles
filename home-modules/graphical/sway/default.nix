@@ -96,12 +96,12 @@ in
         + optionalString cfg.useSwayFX ''
           # SwayFX stuff
           # window corner radius in px
-          corner_radius 0
+          corner_radius 5
 
           blur enable
           blur_xray disable
-          blur_passes 1
-          blur_radius 2
+          blur_passes 2
+          blur_radius 5
 
           shadows off
           shadows_on_csd off
