@@ -107,6 +107,15 @@ in
           blur_passes 2
           blur_radius 5
 
+          # default is 0.02
+          blur_noise 0.2 
+          # default is 0.9
+          blur_brightness 0.9
+          # default is 0.9
+          blur_contrast 0.9
+          # default is 1.1
+          blur_saturation 1.1
+
           shadows off
           shadows_on_csd off
           shadow_blur_radius 20
