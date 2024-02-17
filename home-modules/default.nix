@@ -40,12 +40,11 @@
 
   home = {
     packages = lib.attrValues {
-      inherit (inputs.chaotic.packages.${pkgs.system}) telegram-desktop_git;
-
       inherit (pkgs)
         authy
         fzf
         mpv
+        telegram-desktop
         thunderbird
         imv
         viewnior
