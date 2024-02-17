@@ -27,6 +27,19 @@
     };
     date = "2021-06-22";
   };
+  swayfx = {
+    pname = "swayfx";
+    version = "2bd366f3372d6f94f6633e62b7f7b06fcf316943";
+    src = fetchgit {
+      url = "https://github.com/WillPower3309/swayfx";
+      rev = "2bd366f3372d6f94f6633e62b7f7b06fcf316943";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "sha256-kRWXQnUkMm5HjlDX9rBq8lowygvbK9+ScAOhiySR3KY=";
+    };
+    date = "2024-02-15";
+  };
   waybar = {
     pname = "waybar";
     version = "3cd311819be3af40f3aaec76917018a93d18c70f";
@@ -61,15 +74,15 @@
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
-    version = "aab74d3cbc8922352a80df34b5af33ceffed274f";
+    version = "758546f81402fcdca4de961e61fb62d138c9878a";
     src = fetchgit {
       url = "https://github.com/vinceliuice/WhiteSur-gtk-theme";
-      rev = "aab74d3cbc8922352a80df34b5af33ceffed274f";
+      rev = "758546f81402fcdca4de961e61fb62d138c9878a";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-A0/mzdUSH8EupO5uhdQzksezNrNqz0B+3NI0ZUyxa+w=";
+      sha256 = "sha256-KOSSULc1AWIkp6zgMC6PipIazHe+APiUQ7cAsXILlzc=";
     };
-    date = "2024-02-15";
+    date = "2024-02-17";
   };
 }

@@ -37,6 +37,25 @@
         },
         "version": "8bfea09aa6f1139479f80358b2e1e5c6dc991a58"
     },
+    "swayfx": {
+        "cargoLocks": null,
+        "date": "2024-02-15",
+        "extract": null,
+        "name": "swayfx",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "2bd366f3372d6f94f6633e62b7f7b06fcf316943",
+            "sha256": "sha256-kRWXQnUkMm5HjlDX9rBq8lowygvbK9+ScAOhiySR3KY=",
+            "type": "git",
+            "url": "https://github.com/WillPower3309/swayfx"
+        },
+        "version": "2bd366f3372d6f94f6633e62b7f7b06fcf316943"
+    },
     "waybar": {
         "cargoLocks": null,
         "date": "2024-02-16",
@@ -84,7 +103,7 @@
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,
-        "date": "2024-02-15",
+        "date": "2024-02-17",
         "extract": null,
         "name": "whitesur-gtk-theme",
         "passthru": null,
@@ -94,11 +113,11 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "aab74d3cbc8922352a80df34b5af33ceffed274f",
-            "sha256": "sha256-A0/mzdUSH8EupO5uhdQzksezNrNqz0B+3NI0ZUyxa+w=",
+            "rev": "758546f81402fcdca4de961e61fb62d138c9878a",
+            "sha256": "sha256-KOSSULc1AWIkp6zgMC6PipIazHe+APiUQ7cAsXILlzc=",
             "type": "git",
             "url": "https://github.com/vinceliuice/WhiteSur-gtk-theme"
         },
-        "version": "aab74d3cbc8922352a80df34b5af33ceffed274f"
+        "version": "758546f81402fcdca4de961e61fb62d138c9878a"
     }
 }

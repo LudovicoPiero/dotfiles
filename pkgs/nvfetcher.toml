@@ -20,3 +20,6 @@ fetch.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
 src.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
 fetch.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
 
+[swayfx]
+src.git = "https://github.com/WillPower3309/swayfx"
+fetch.git = "https://github.com/WillPower3309/swayfx"

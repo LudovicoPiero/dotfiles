@@ -16,6 +16,8 @@
 
         sarasa-gothic = pkgs.callPackage ./sarasa-gothic { };
 
+        swayfx = pkgs.callPackage ./swayfx { inherit sources; };
+
         spotify = pkgs.callPackage ./spotify { };
 
         waybar = pkgs.callPackage ./waybar { inherit sources; };

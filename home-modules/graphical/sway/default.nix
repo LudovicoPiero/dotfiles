@@ -19,7 +19,11 @@ in
   config = mkIf cfg.enable {
     wayland.windowManager.sway = {
       enable = true;
-      package = if cfg.useSwayFX then pkgs.swayfx else inputs.chaotic.packages.${pkgs.system}.sway_git;
+      package =
+        if cfg.useSwayFX then
+          inputs.self.packages.${pkgs.system}.swayfx
+        else
+          inputs.chaotic.packages.${pkgs.system}.sway_git;
       config = {
         colors = import ./colors.nix { inherit palette; };
         keybindings = import ./keybindings.nix { inherit lib config pkgs; };
