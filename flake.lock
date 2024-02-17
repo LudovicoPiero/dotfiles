@@ -778,9 +778,7 @@
         "flake-compat": "flake-compat_3",
         "libgit2": "libgit2",
         "lowdown-src": "lowdown-src",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
@@ -908,6 +906,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1705033721,
+        "narHash": "sha256-K5eJHmL1/kev6WuqyqqbS1cdNnSidIZ3jeqJ7GbrYnQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a1982c92d8980a0114372973cbdfe0a307f1bdea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.05-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1707347693,
         "narHash": "sha256-/MxX1WUwKui2dWtKghN+8qIKf8X7hHPD1KCeDXoApEI=",
         "owner": "NixOS",
@@ -982,7 +996,7 @@
         "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
         "nix-super": "nix-super",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nur": "nur",
         "spicetify-nix": "spicetify-nix",
         "treefmt-nix": "treefmt-nix"
