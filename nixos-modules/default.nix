@@ -87,7 +87,7 @@
     rtkit.enable = true;
 
     sudo = {
-      enable = false;
+      enable = true;
       extraConfig = ''
         # rollback results in sudo lectures after each reboot
         Defaults lecture = never
@@ -97,7 +97,7 @@
       '';
     };
     doas = {
-      enable = true;
+      enable = false;
       extraRules = [
         {
           users = [ "airi" ];
