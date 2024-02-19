@@ -99,7 +99,10 @@
 
         "audio/*" = [ "mpv.desktop" ];
         "video/*" = [ "mpv.dekstop" ];
+        "video/mp4" = [ "umpv.dekstop" ];
         "image/*" = [ "imv.desktop" ];
+        "image/jpeg" = [ "imv.desktop" ];
+        "image/png" = [ "imv.desktop" ];
         "application/json" = browser;
         "application/pdf" = [ "org.pwmt.zathura.desktop" ];
         "x-scheme-handler/discord" = [ "vesktop.desktop" ];

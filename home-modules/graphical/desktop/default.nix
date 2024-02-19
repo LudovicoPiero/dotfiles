@@ -84,6 +84,7 @@ in
         in
         [
           "file:///home/${username}/Code"
+          "file:///home/${username}/Media"
           "file:///home/${username}/Documents"
           "file:///home/${username}/Downloads"
           "file:///home/${username}/Games"
