@@ -403,6 +403,14 @@ vim.keymap.set("n", "<leader>/", function()
   }))
 end, { desc = "[/] Fuzzily search in current buffer" })
 
+local function telescope_live_grep_open_files()
+  require("telescope.builtin").live_grep({
+    grep_open_files = true,
+    prompt_title = "Live Grep in Open Files",
+  })
+end
+vim.keymap.set("n", "<leader>s/", telescope_live_grep_open_files, { desc = "[S]earch [/] in Open Files" })
+vim.keymap.set("n", "<leader>ss", require("telescope.builtin").builtin, { desc = "[S]earch [S]elect Telescope" })
 vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
@@ -424,6 +432,15 @@ vim.defer_fn(function()
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
+
+    -- Install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    -- List of parsers to ignore installing
+    ignore_install = {},
+
+    -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
+    modules = {},
 
     highlight = { enable = true },
     indent = { enable = true },
@@ -504,7 +521,9 @@ local on_attach = function(_, bufnr)
   end
 
   nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-  nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  nmap("<leader>ca", function()
+    vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } })
+  end, "[C]ode [A]ction")
 
   nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
   nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
