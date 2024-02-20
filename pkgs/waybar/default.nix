@@ -142,7 +142,6 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.mapAttrsToList lib.mesonEnable {
       "cava" = cavaSupport;
       "dbusmenu-gtk" = traySupport;
-      "gtk-layer-shell" = true;
       "jack" = jackSupport;
       "libinput" = inputSupport;
       "libnl" = nlSupport;
