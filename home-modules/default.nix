@@ -16,6 +16,7 @@
     ./core/ssh
     ./core/fish
     ./core/pass
+    ./core/lazygit
 
     ./editor/nvim
     ./editor/emacs
