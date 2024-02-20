@@ -24,11 +24,8 @@ in
       enable = true;
       package = pkgs.gitFull;
 
-      difftastic = {
+      diff-so-fancy = {
         enable = true;
-        background = "dark";
-        color = "always";
-        display = "side-by-side";
       };
 
       userEmail = "lewdovico@gnuweeb.org";
@@ -40,6 +37,20 @@ in
       };
 
       extraConfig = {
+        color = {
+          ui = true;
+          diff-highlight.oldNormal = "red bold";
+          diff-highlight.oldHighlight = "red bold 52";
+          diff-highlight.newNormal = "green bold";
+          diff-highlight.newHighlight = "green bold 22";
+          diff.meta = "11";
+          diff.frag = "magenta bold";
+          diff.func = "146 bold";
+          diff.commit = "yellow bold";
+          diff.old = "red bold";
+          diff.new = "green bold";
+          diff.whitespace = "red reverse";
+        };
         init.defaultBranch = "main";
         merge.conflictstyle = "diff3";
         format.signOff = "yes";
