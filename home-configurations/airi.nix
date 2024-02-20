@@ -45,5 +45,6 @@
     waybar.enable = true;
     fish.enable = true;
     pass.enable = true;
+    lazygit.enable = true;
   };
 }
