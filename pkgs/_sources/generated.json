@@ -58,7 +58,7 @@
     },
     "waybar": {
         "cargoLocks": null,
-        "date": "2024-02-20",
+        "date": "2024-02-21",
         "extract": null,
         "name": "waybar",
         "passthru": null,
@@ -68,23 +68,23 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "1606dce62ed1b373e60f617e3686f3229169da03",
-            "sha256": "sha256-9KHQTOy/B0Pkec/8/xotN/vS/pgP8QLpAUlCQ1PRxDM=",
+            "rev": "977c66e7c5a034e8e86489fb0c2f184ddc0356f2",
+            "sha256": "sha256-AsMu4Z+kqg7q0FL5WUVcNrLhGsrfS5HuDk17EMdWp5Y=",
             "type": "git",
             "url": "https://github.com/alexays/waybar"
         },
-        "version": "1606dce62ed1b373e60f617e3686f3229169da03"
+        "version": "977c66e7c5a034e8e86489fb0c2f184ddc0356f2"
     },
     "wezterm": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-85fb1ad2106d2351588718e6873a65ff498d9afb/Cargo.lock",
+                "./wezterm-95581d8697f3749f84ccb1402ac94ea6582b227f/Cargo.lock",
                 {
                     "xcb-imdkit-0.3.0": "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI="
                 }
             ]
         },
-        "date": "2024-02-18",
+        "date": "2024-02-21",
         "extract": null,
         "name": "wezterm",
         "passthru": null,
@@ -94,16 +94,16 @@
             "fetchSubmodules": true,
             "leaveDotGit": false,
             "name": null,
-            "rev": "85fb1ad2106d2351588718e6873a65ff498d9afb",
-            "sha256": "sha256-W61E9ekbCrSKCRCEdkeN2JXd2PmgZ4ozJm1Q1Oe7/g8=",
+            "rev": "95581d8697f3749f84ccb1402ac94ea6582b227f",
+            "sha256": "sha256-Ygs7y02eMgp/uVpc6YjmNgjC8dS1Phrv62WR5Qp/9g4=",
             "type": "git",
             "url": "https://github.com/wez/wezterm"
         },
-        "version": "85fb1ad2106d2351588718e6873a65ff498d9afb"
+        "version": "95581d8697f3749f84ccb1402ac94ea6582b227f"
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,
-        "date": "2024-02-18",
+        "date": "2024-02-21",
         "extract": null,
         "name": "whitesur-gtk-theme",
         "passthru": null,
@@ -113,11 +113,11 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "5e42b1f0488902b55959278727e25c5ea7e6c18b",
-            "sha256": "sha256-NCPhtNAFBXgI+5sTr1gPZJKd+SJEu+RpQSAmtZSbG68=",
+            "rev": "fe10a629bb2e9ce71bea275da97acfbae55c0ef1",
+            "sha256": "sha256-70BCLizcozzVtK+YhgTSs3BWEmi1Eo9ngE+rSZDVVB0=",
             "type": "git",
             "url": "https://github.com/vinceliuice/WhiteSur-gtk-theme"
         },
-        "version": "5e42b1f0488902b55959278727e25c5ea7e6c18b"
+        "version": "fe10a629bb2e9ce71bea275da97acfbae55c0ef1"
     }
 }

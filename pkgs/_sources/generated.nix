@@ -42,47 +42,47 @@
   };
   waybar = {
     pname = "waybar";
-    version = "1606dce62ed1b373e60f617e3686f3229169da03";
+    version = "977c66e7c5a034e8e86489fb0c2f184ddc0356f2";
     src = fetchgit {
       url = "https://github.com/alexays/waybar";
-      rev = "1606dce62ed1b373e60f617e3686f3229169da03";
+      rev = "977c66e7c5a034e8e86489fb0c2f184ddc0356f2";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-9KHQTOy/B0Pkec/8/xotN/vS/pgP8QLpAUlCQ1PRxDM=";
+      sha256 = "sha256-AsMu4Z+kqg7q0FL5WUVcNrLhGsrfS5HuDk17EMdWp5Y=";
     };
-    date = "2024-02-20";
+    date = "2024-02-21";
   };
   wezterm = {
     pname = "wezterm";
-    version = "85fb1ad2106d2351588718e6873a65ff498d9afb";
+    version = "95581d8697f3749f84ccb1402ac94ea6582b227f";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "85fb1ad2106d2351588718e6873a65ff498d9afb";
+      rev = "95581d8697f3749f84ccb1402ac94ea6582b227f";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-W61E9ekbCrSKCRCEdkeN2JXd2PmgZ4ozJm1Q1Oe7/g8=";
+      sha256 = "sha256-Ygs7y02eMgp/uVpc6YjmNgjC8dS1Phrv62WR5Qp/9g4=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-85fb1ad2106d2351588718e6873a65ff498d9afb/Cargo.lock;
+      lockFile = ./wezterm-95581d8697f3749f84ccb1402ac94ea6582b227f/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
       };
     };
-    date = "2024-02-18";
+    date = "2024-02-21";
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
-    version = "5e42b1f0488902b55959278727e25c5ea7e6c18b";
+    version = "fe10a629bb2e9ce71bea275da97acfbae55c0ef1";
     src = fetchgit {
       url = "https://github.com/vinceliuice/WhiteSur-gtk-theme";
-      rev = "5e42b1f0488902b55959278727e25c5ea7e6c18b";
+      rev = "fe10a629bb2e9ce71bea275da97acfbae55c0ef1";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "sha256-NCPhtNAFBXgI+5sTr1gPZJKd+SJEu+RpQSAmtZSbG68=";
+      sha256 = "sha256-70BCLizcozzVtK+YhgTSs3BWEmi1Eo9ngE+rSZDVVB0=";
     };
-    date = "2024-02-18";
+    date = "2024-02-21";
   };
 }
