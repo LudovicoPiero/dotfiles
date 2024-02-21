@@ -83,6 +83,7 @@ in
           { command = "fcitx5 -d --replace"; }
           { command = "mako"; }
           { command = "waybar"; }
+          { command = "swayidle-script"; }
           {
             command = "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";
           }

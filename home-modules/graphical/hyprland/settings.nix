@@ -11,44 +11,6 @@ let
   terminal = "${_ inputs.self.packages.${pkgs.system}.wezterm}";
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wlogout}";
-  swaylock = pkgs.writeShellScriptBin "swaylock-script" ''
-    ${_ pkgs.swaylock-effects} \
-    --screenshots \
-    --clock \
-    --indicator \
-    --indicator-radius 100 \
-    --indicator-thickness 7 \
-    --effect-blur 7x5 \
-    --effect-vignette 0.5:0.5 \
-    --ring-color bb00cc \
-    --key-hl-color 880033 \
-    --line-color 00000000 \
-    --inside-color 00000088 \
-    --separator-color 00000000 \
-    --grace 0 \
-    --fade-in 0.2 \
-    --font 'Noto Sans CJK' \
-    -f
-  '';
-
-  swayidle = pkgs.writeShellScriptBin "swayidle-script" ''
-    ${_ pkgs.swayidle} -w \
-    timeout 300 '${_ swaylock}' \
-    timeout 360 'hyprctl dispatch dpms off eDP-1 && hyprctl dispatch dpms off DP-1' \
-    resume '
-     hyprctl monitors | grep HDMI
-     ret=$?
-
-     if [ $ret -eq 0 ]
-     then
-       hyprctl dispatch dpms on DP-1
-     else
-       hyprctl dispatch dpms on eDP-1
-     fi
-     ' \
-    before-sleep '${_ swaylock}' \
-    lock '${_ swaylock}}'
-  '';
 in
 {
   exec-once = [
@@ -56,7 +18,7 @@ in
     "waybar"
     # "fcitx5 -d --replace"
     "${_ pkgs.mako}"
-    "${_ swayidle}"
+    "swayidle-script"
   ];
 
   monitor = [
