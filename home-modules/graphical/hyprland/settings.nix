@@ -46,13 +46,12 @@ in
     force_split = 2;
     pseudotile = true;
     preserve_split = true;
-    no_gaps_when_only = 2; # (default: disabled - 0) no border - 1, with border - 2
+    no_gaps_when_only = 0; # (default: disabled - 0) no border - 1, with border - 2
   };
 
   decoration = {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-    rounding = 0;
+    rounding = 5;
 
     dim_inactive = false;
     dim_strength = 0.7;
@@ -79,8 +78,8 @@ in
 
   general = {
     sensitivity = 1;
-    gaps_in = 3;
-    gaps_out = 3;
+    gaps_in = 5;
+    gaps_out = 5;
     border_size = 2;
     "col.active_border" = "rgb(${palette.base0E})";
     "col.inactive_border" = "rgb(${palette.base02})";

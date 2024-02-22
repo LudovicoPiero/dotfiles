@@ -66,8 +66,8 @@ in
           ];
         };
         gaps = {
-          inner = 3;
-          outer = 3;
+          inner = 5;
+          outer = 5;
         };
         fonts = {
           names = [ "Iosevka q" ];
