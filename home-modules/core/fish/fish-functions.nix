@@ -30,54 +30,6 @@ with pkgs;
     popd
   '';
 
-  ex = ''
-    if test -f $argv[1]
-        switch $argv[1]
-            case *.tar.bz2
-                ${_ gnutar} xjf $argv[1]
-                ;;
-            case *.tar.gz
-                ${_ gnutar} xzf $argv[1]
-                ;;
-            case *.tar.xz
-                ${_ gnutar} xJf $argv[1]
-                ;;
-            case *.bz2
-                ${__ bzip2 "bunzip2"} $argv[1]
-                ;;
-            case *.rar
-                ${_ unrar} x $argv[1]
-                ;;
-            case *.gz
-                ${__ gzip "gunzip"} $argv[1]
-                ;;
-            case *.tar
-                ${_ gnutar} xf $argv[1]
-                ;;
-            case *.tbz2
-                ${_ gnutar} xjf $argv[1]
-                ;;
-            case *.tgz
-                ${_ gnutar} xzf $argv[1]
-                ;;
-            case *.zip
-                ${__ unzip "unzip"} $argv[1]
-                ;;
-            case *.Z
-                ${__ gzip "uncompress"} $argv[1]
-                ;;
-            case *.7z
-                ${__ p7zip "7z"} x $argv[1]
-                ;;
-            case '*'
-                echo "'$argv[1]' cannot be extracted via ex()"
-                ;;
-        end
-    else
-        echo "'$argv[1]' is not a valid file"
-    end
-  '';
-
   hs = ''
     pushd ~/Media/nixos
     nh home switch .
