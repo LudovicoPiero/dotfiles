@@ -9,7 +9,7 @@ with pkgs;
   fish_greeting = ""; # disable welcome text
 
   bs = ''
-    pushd ~/.config/nixos
+    pushd ~/Media/nixos
     nh os switch .
       if test $status -eq 0
         notify-send "Rebuild Switch" "Build successful!"
@@ -20,7 +20,7 @@ with pkgs;
   '';
 
   bb = ''
-    pushd ~/.config/nixos
+    pushd ~/Media/nixos
     nh os boot .
       if test $status -eq 0
         notify-send "Rebuild Boot" "Build successful!"
@@ -79,7 +79,7 @@ with pkgs;
   '';
 
   hs = ''
-    pushd ~/.config/nixos
+    pushd ~/Media/nixos
     nh home switch .
       if test $status -eq 0
         notify-send "Home-Manager Switch" "Build successful!"

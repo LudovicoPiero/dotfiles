@@ -10,7 +10,7 @@ in
 with pkgs;
 {
   "cat" = "${_ bat}";
-  "config" = "cd ~/.config/nixos";
+  "config" = "cd ~/Media/nixos";
   "dla" = "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '${config.home.homeDirectory}/Media/Audios'"; # Download Audio
   "dlv" = "${_ yt-dlp} --format 'best[ext=mp4]' -P '${config.home.homeDirectory}/Media/Videos'"; # Download Video
   "ls" = "${_ lsd}";
