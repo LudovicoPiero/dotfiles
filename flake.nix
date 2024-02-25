@@ -50,7 +50,7 @@
             packages = [
               config.treefmt.build.wrapper
               inputs'.nix-super.packages.default
-              pkgs.nvfetcher
+              # pkgs.nvfetcher
               (pkgs.writeShellApplication {
                 name = "fmt";
                 text = "treefmt";
