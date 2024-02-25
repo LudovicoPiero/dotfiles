@@ -32,7 +32,7 @@ jobs:
         run: |
           pushd pkgs
           rm -r _sources/wezterm-*
-          nix run github:berberman/nvfetcher#nvfetcher -- --commit-changes
+          nix run github:berberman/nvfetcher -- --commit-changes
           popd
 
       - name: Create Pull Request
