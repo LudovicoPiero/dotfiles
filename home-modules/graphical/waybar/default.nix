@@ -115,11 +115,13 @@ in
             spacing = 5;
           };
           "network" = {
-            interface = "wlp4s0";
+            # interface = "wlp4s0";
+            format-ethernet = "󰈀Connected";
             format-wifi = "󰖩Connected";
             format-linked = "{ifname} (No IP)";
-            format-disconnected = "󰖪Disconnected";
+            format-disconnected = "";
             tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
+            tooltip-format-disconnected = "Disconnected";
           };
           "custom/wireguard" = {
             "format" = "󰌾Wireguard";
