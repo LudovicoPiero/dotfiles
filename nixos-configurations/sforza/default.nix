@@ -86,6 +86,7 @@
       address = "192.168.1.1";
       interface = "wlp4s0";
     };
+    interfaces.enp3s0.useDHCP = true; # will override networking.useDHCP
     interfaces.wlp4s0 = {
       ipv4.addresses = [
         {
