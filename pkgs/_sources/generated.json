@@ -1,7 +1,7 @@
 {
     "firefox-gnome-theme": {
         "cargoLocks": null,
-        "date": "2024-02-04",
+        "date": "2024-02-26",
         "extract": null,
         "name": "firefox-gnome-theme",
         "passthru": null,
@@ -11,12 +11,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "d7db6e546d13de55fd70dc3204bd99195eb004c4",
-            "sha256": "sha256-QZk/qZQVt1X53peCqB2qmWhpA3xtAVgY95pebSKaTFU=",
+            "rev": "4e966509c180f93ba8665cd73cad8456bf44baab",
+            "sha256": "sha256-gIBZCPB0sA8Gagrxd8w4+y9uUkWBnXJBmq9Ur5BYTQU=",
             "type": "git",
             "url": "https://github.com/rafaelmardojai/firefox-gnome-theme"
         },
-        "version": "d7db6e546d13de55fd70dc3204bd99195eb004c4"
+        "version": "4e966509c180f93ba8665cd73cad8456bf44baab"
     },
     "san-francisco-pro": {
         "cargoLocks": null,
@@ -68,12 +68,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "3a33c0b29036981a10dcb83d7ef587340c1b23f0",
-            "sha256": "sha256-KVhIB8g46t4d18fKBjt6jLiCrKCWjWmUNQflT0sSUCA=",
+            "rev": "6703adc37fec45431eaa383a1fe8a4d6893d9b55",
+            "sha256": "sha256-170cuq5JRVRlxQF3uSs4w6oFQpyU3NaHvY5NvmgBeCY=",
             "type": "git",
             "url": "https://github.com/alexays/waybar"
         },
-        "version": "3a33c0b29036981a10dcb83d7ef587340c1b23f0"
+        "version": "6703adc37fec45431eaa383a1fe8a4d6893d9b55"
     },
     "wezterm": {
         "cargoLocks": {
