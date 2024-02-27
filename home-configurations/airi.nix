@@ -32,6 +32,7 @@
 
     # Graphical
     chromium.enable = true;
+    foot.enable = true;
     firefox.enable = true;
     discord.enable = true;
     direnv.enable = true;

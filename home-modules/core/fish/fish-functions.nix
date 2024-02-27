@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 let
   _ = lib.getExe;
-  __ = lib.getExe';
 in
 with pkgs;
 {
