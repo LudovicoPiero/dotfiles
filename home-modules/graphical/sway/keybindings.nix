@@ -92,6 +92,7 @@ in
 
   ### Apps
   "${mod}+Return" = "exec run-as-service ${cfg.terminal}";
+  "${mod}+Shift+Return" = "exec run-as-service foot";
   "${mod}+p" = "exec run-as-service ${cfg.menu}";
   "${mod}+Shift+p" = "exec run-as-service ${lib.getExe' pkgs.pass-wayland "passmenu"}";
   "${mod}+g" = "exec run-as-service firefox";
