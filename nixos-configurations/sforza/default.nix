@@ -15,9 +15,9 @@
   # My own modules
   mine = {
     games = {
-      gamemode.enable = true;
-      lutris.enable = true;
-      steam.enable = true;
+      gamemode.enable = false;
+      lutris.enable = false;
+      steam.enable = false;
     };
     gnome = {
       enable = true;
