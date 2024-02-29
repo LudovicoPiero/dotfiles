@@ -33,6 +33,7 @@ in
         italic_font = "auto";
         bold_italic_font = "auto";
         font_size = 14;
+        window_margin_width = 5;
 
         cursor_shape = "block";
         disable_ligatures = "cursor";
