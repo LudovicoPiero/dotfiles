@@ -25,6 +25,7 @@ in
       etc."greetd/environments".text = ''
         Hyprland
         sway
+        niri
         fish
       '';
     };
