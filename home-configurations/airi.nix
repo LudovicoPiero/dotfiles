@@ -21,7 +21,7 @@
   mine = {
     # Editor
     nvim.enable = true;
-    emacs.enable = false;
+    emacs.enable = true;
 
     # WM
     hyprland.enable = true;
