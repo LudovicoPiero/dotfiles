@@ -8,6 +8,9 @@
 let
   cfg = config.mine.niri;
   inherit (lib) mkIf mkOption types;
+  amixer = "${pkgs.alsa-utils}/bin/amixer";
+  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
 in
 {
   imports = [ inputs.niri.homeModules.config ];
@@ -41,8 +44,8 @@ in
 
               // You can set the keyboard repeat parameters. The defaults match wlroots and sway.
               // Delay is in milliseconds before the repeat starts. Rate is in characters per second.
-              repeat-delay 600
-              repeat-rate 25
+              repeat-delay 300
+              repeat-rate 30
 
               // Niri can remember the keyboard layout globally (the default) or per-window.
               // - "global" - layout change is global for all windows.
@@ -204,19 +207,23 @@ in
       // Add lines like this to spawn processes at startup.
       // Note that running niri as a session supports xdg-desktop-autostart,
       // which may be more convenient to use.
-      // spawn-at-startup "alacritty" "-e" "fish"
+      spawn-at-startup "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
+      spawn-at-startup "waybar"
+      spawn-at-startup "${lib.getExe pkgs.mako}"
+      spawn-at-startup "swayidle-script"
+
 
       cursor {
           // Change the theme and size of the cursor as well as set the
           // `XCURSOR_THEME` and `XCURSOR_SIZE` env variables.
-          // xcursor-theme "default"
-          // xcursor-size 24
+          xcursor-theme "macOS-BigSur"
+          xcursor-size 24
       }
 
       // Uncomment this line to ask the clients to omit their client-side decorations if possible.
       // If the client will specifically ask for CSD, the request will be honored.
       // Additionally, clients will be informed that they are tiled, removing some rounded corners.
-      // prefer-no-csd
+      prefer-no-csd
 
       // You can change the path where screenshots are saved.
       // A ~ at the front will be expanded to the home directory.
@@ -245,16 +252,32 @@ in
           Mod+Shift+Slash { show-hotkey-overlay; }
 
           // Suggested binds for running programs: terminal, app launcher, screen locker.
-          Mod+Return { spawn "wezterm"; }
-          Mod+P { spawn "fuzzel"; }
-          Mod+Alt+L { spawn "swaylock"; }
+          Mod+Return { spawn "${lib.getExe pkgs.foot}"; }
+          Mod+P { spawn "${lib.getExe pkgs.fuzzel}"; }
+          Mod+D { spawn "vesktop --ozone-platform=wayland"; }
+          Mod+G { spawn "firefox"; }
+          Mod+X { spawn "${lib.getExe pkgs.wlogout}"; }
+          Mod+S { spawn "spotify"; }
 
           // You can also use a shell:
           // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 
           // Example volume keys mappings for PipeWire & WirePlumber.
-          XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-          XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+          XF86AudioMute { spawn "${amixer}" "set" "Master" "toggle"; }
+          // increase output volume
+          XF86AudioRaiseVolume {spawn "${amixer}" "-q" "set" "Master" "5%+"; }
+          // decrease output volume
+          XF86AudioLowerVolume { spawn "${amixer}" "-q" "set" "Master" "5%-"; }
+
+          // Media control
+          XF86AudioPlay { spawn  "${playerctl}" "play-pause"; }
+          XF86AudioNext { spawn  "${playerctl}" "next"; }
+          XF86AudioPrev { spawn  "${playerctl}" "previous"; }
+          XF86AudioStop { spawn  "${playerctl}" "stop"; }
+
+          // Brightness
+          XF86MonBrightnessUp   { spawn "${brightnessctl}" "set" "5%+"; }
+          XF86MonBrightnessDown { spawn "${brightnessctl}" "set" "5%-"; }
 
           Mod+W { close-window; }
 
@@ -337,15 +360,15 @@ in
           Mod+7 { focus-workspace 7; }
           Mod+8 { focus-workspace 8; }
           Mod+9 { focus-workspace 9; }
-          Mod+Ctrl+1 { move-column-to-workspace 1; }
-          Mod+Ctrl+2 { move-column-to-workspace 2; }
-          Mod+Ctrl+3 { move-column-to-workspace 3; }
-          Mod+Ctrl+4 { move-column-to-workspace 4; }
-          Mod+Ctrl+5 { move-column-to-workspace 5; }
-          Mod+Ctrl+6 { move-column-to-workspace 6; }
-          Mod+Ctrl+7 { move-column-to-workspace 7; }
-          Mod+Ctrl+8 { move-column-to-workspace 8; }
-          Mod+Ctrl+9 { move-column-to-workspace 9; }
+          Mod+Shift+1 { move-column-to-workspace 1; }
+          Mod+Shift+2 { move-column-to-workspace 2; }
+          Mod+Shift+3 { move-column-to-workspace 3; }
+          Mod+Shift+4 { move-column-to-workspace 4; }
+          Mod+Shift+5 { move-column-to-workspace 5; }
+          Mod+Shift+6 { move-column-to-workspace 6; }
+          Mod+Shift+7 { move-column-to-workspace 7; }
+          Mod+Shift+8 { move-column-to-workspace 8; }
+          Mod+Shift+9 { move-column-to-workspace 9; }
 
           // Alternatively, there are commands to move just a single window:
           // Mod+Ctrl+1 { move-window-to-workspace 1; }
