@@ -252,7 +252,7 @@ in
           Mod+Shift+Slash { show-hotkey-overlay; }
 
           // Suggested binds for running programs: terminal, app launcher, screen locker.
-          Mod+Return { spawn "${lib.getExe pkgs.foot}"; }
+          Mod+Return { spawn "${lib.getExe pkgs.kitty}"; }
           Mod+P { spawn "${lib.getExe pkgs.fuzzel}"; }
           Mod+D { spawn "vesktop --ozone-platform=wayland"; }
           Mod+G { spawn "firefox"; }

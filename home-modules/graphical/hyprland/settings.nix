@@ -181,7 +181,7 @@ in
     "$mod      , W , killactive ,"
     "$mod      , X , exec , ${powermenu}"
     "$mod      , Return , exec , run-as-service ${terminal}"
-    "$mod SHIFT, Return , exec , run-as-service foot"
+    "$mod SHIFT, Return , exec , run-as-service kitty"
 
     # "$mod , E  , exec , emacsclient -c -a 'nvim'"
     # "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
