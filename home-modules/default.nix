@@ -26,6 +26,7 @@
     ./graphical/discord
     ./graphical/firefox
     ./graphical/foot
+    ./graphical/kitty
     ./graphical/gammastep
     ./graphical/waybar
     ./graphical/mako
