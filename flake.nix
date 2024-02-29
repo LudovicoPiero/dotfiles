@@ -162,6 +162,10 @@
       inputs.base16-schemes.follows = "base16-schemes";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
+
     nur = {
       url = "github:nix-community/nur";
     };
