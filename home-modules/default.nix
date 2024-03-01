@@ -81,7 +81,7 @@
 
       swayidle-script = pkgs.writeShellScriptBin "swayidle-script" ''
         ${lib.getExe pkgs.swayidle} -w \
-        timeout 300 '${swaylock}/bin/swaylock-script' \
+        timeout 900 '${swaylock}/bin/swaylock-script' \
         before-sleep '${swaylock}/bin/swaylock-script' \
         lock '${swaylock}/bin/swaylock-script'
       '';
