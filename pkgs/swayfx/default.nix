@@ -21,7 +21,7 @@
 
   wlroots = wlroots_0_16;
 }).overrideAttrs
-  (oldAttrs: {
+  (_oldAttrs: {
     inherit (sources.swayfx) pname version src;
 
     meta = with lib; {
