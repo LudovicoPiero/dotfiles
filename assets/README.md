@@ -2,3 +2,4 @@
 - AQUA-DARK: https://t.me/GNUWeeb/833285
 - Anime-Nixos: https://www.reddit.com/r/NixOS/comments/166r8n7/anime_nix_wallpaper_i_created/
 - Bocchi: https://wall.alphacoders.com/big.php?i=1294333
+- Hypr: https://discord.com/channels/961691461554950145/961691461554950148/1196731135577829498
