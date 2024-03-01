@@ -20,34 +20,33 @@
 
   mine = {
     # Editor
-    nvim.enable = true;
     emacs.enable = true;
+    nvim.enable = true;
 
     # WM
     hyprland.enable = true;
-    niri.enable = true;
+    niri.enable = false;
     sway = {
-      enable = true;
+      enable = false;
       useSwayFX = true;
     };
 
     # Graphical
     chromium.enable = true;
-    foot.enable = false;
-    kitty.enable = true;
-    firefox.enable = true;
     discord.enable = true;
     direnv.enable = true;
+    fish.enable = true;
+    firefox.enable = true;
     fuzzel.enable = true;
-    wezterm.enable = true;
-    mako.enable = true;
-    ssh.enable = true;
     gammastep.enable = true;
     git.enable = true;
     gpg.enable = true;
-    waybar.enable = true;
-    fish.enable = true;
-    pass.enable = true;
+    kitty.enable = true;
     lazygit.enable = true;
+    mako.enable = true;
+    pass.enable = true;
+    ssh.enable = true;
+    waybar.enable = true;
+    wezterm.enable = true;
   };
 }
