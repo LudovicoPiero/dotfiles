@@ -3,6 +3,7 @@
   lib,
   pkgs,
   username,
+  inputs,
   ...
 }:
 let
@@ -22,12 +23,16 @@ in
 
   config = mkIf cfg.enable {
     environment = {
-      etc."greetd/environments".text = ''
-        Hyprland
-        sway
-        niri
-        fish
-      '';
+      etc."greetd/environments".text =
+        let
+          inherit (lib.strings) concatStrings optionalString;
+          inherit (inputs.self.homeConfigurations."airi@sforza".config) mine;
+        in
+        concatStrings [
+          (optionalString mine.hyprland.enable "hyprland\n")
+          (optionalString mine.sway.enable "sway\n")
+          (optionalString mine.niri.enable "niri\n")
+        ];
     };
 
     security.pam = {
