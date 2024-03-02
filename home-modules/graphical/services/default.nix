@@ -26,7 +26,7 @@ in
     swaybg = mkService {
       Unit.Description = "Swaybg Services";
       Service = {
-        ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${self}/assets/Minato-Aqua-Dark.png";
+        ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${self}/assets/anime-nix-wallpaper.png";
         Restart = "on-failure";
       };
     };
