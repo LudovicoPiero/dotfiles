@@ -946,23 +946,6 @@
         "type": "github"
       }
     },
-    "niri-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1708141626,
-        "narHash": "sha256-vO6ak5rT6ntBC20vYC36zcEcHv7Cki9y8A+c7ThfsUg=",
-        "owner": "YaLTeR",
-        "repo": "niri",
-        "rev": "62892d636112230dc16778b91331fbe97576b005",
-        "type": "github"
-      },
-      "original": {
-        "owner": "YaLTeR",
-        "ref": "v0.1.2",
-        "repo": "niri",
-        "type": "github"
-      }
-    },
     "niri-stable": {
       "flake": false,
       "locked": {
@@ -983,11 +966,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1709399882,
-        "narHash": "sha256-wbJlcvx+mSQWdW9F3HhAX5jBnE6inx7cUBfvg0kBVv0=",
+        "lastModified": 1709453425,
+        "narHash": "sha256-WKS15r4G1Wm5GdGP2K4kZXFefsVdLsA12YupUKiOr2U=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "1548db56ce7cdfcc3bbda4a4cf3603b546f69433",
+        "rev": "c4145b014af59ea13760663755e9410b19501d0f",
         "type": "github"
       },
       "original": {
@@ -1000,17 +983,16 @@
       "inputs": {
         "crate2nix": "crate2nix",
         "flake-parts": "flake-parts_3",
-        "niri-src": "niri-src",
         "niri-stable": "niri-stable",
         "niri-unstable": "niri-unstable",
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1709403721,
-        "narHash": "sha256-QYPYHmTgW5sn0wit8dLYpvvgVrvqM9Vgwnd8j/pj0sk=",
+        "lastModified": 1709474681,
+        "narHash": "sha256-UbCY9GCcqSypiEhCsm82XAoSjxEXMhn21x6QmcU2x6Y=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "867dd18206e85994266385459ba0eaf442a9509b",
+        "rev": "88015deda2b62fd82f9d156bc000f40e3bcd5dd6",
         "type": "github"
       },
       "original": {
