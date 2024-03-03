@@ -207,6 +207,7 @@ in
       // Add lines like this to spawn processes at startup.
       // Note that running niri as a session supports xdg-desktop-autostart,
       // which may be more convenient to use.
+      spawn-at-startup "${lib.getExe' pkgs.dbus "dbus-update-activation-environment"} --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       spawn-at-startup "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
       spawn-at-startup "waybar"
       spawn-at-startup "${lib.getExe pkgs.mako}"
