@@ -255,7 +255,7 @@ in
           // Suggested binds for running programs: terminal, app launcher, screen locker.
           Mod+Return { spawn "${lib.getExe pkgs.kitty}"; }
           Mod+P { spawn "${lib.getExe pkgs.fuzzel}"; }
-          Mod+D { spawn "vesktop --ozone-platform=wayland"; }
+          Mod+D { spawn "vesktop"; }
           Mod+G { spawn "firefox"; }
           Mod+X { spawn "${lib.getExe pkgs.wlogout}"; }
           Mod+S { spawn "spotify"; }
