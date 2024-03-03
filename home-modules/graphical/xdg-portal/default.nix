@@ -34,7 +34,13 @@ in
 
         extraPortals = [
           pkgs.xdg-desktop-portal-gtk
-          pkgs.xdg-desktop-portal-hyprland
+          (pkgs.xdg-desktop-portal-hyprland.overrideAttrs {
+            postPatch = ''
+              substituteInPlace hyprland.portal --replace \
+                'UseIn=wlroots;Hyprland;sway;Wayfire;river;' \
+                'UseIn=wlroots;Hyprland;sway;Wayfire;river;niri;'
+            '';
+          })
         ];
       };
     };
