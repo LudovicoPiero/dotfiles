@@ -7,15 +7,22 @@
 }:
 let
   cfg = config.mine.discord;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkOption mkIf;
 in
 {
-  options.mine.discord.enable = mkEnableOption "discord";
+  options.mine.discord = {
+    enable = mkEnableOption "discord";
+    package = mkOption { default = pkgs.vesktop; };
+  };
 
   config = mkIf cfg.enable {
     home.packages = [
       (pkgs.vesktop.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ];
+        postFixup = ''
+          wrapProgram $out/bin/${cfg.package.meta.mainProgram or (lib.getName cfg.package)} \
+            --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime"
+        '';
       }))
     ];
 
