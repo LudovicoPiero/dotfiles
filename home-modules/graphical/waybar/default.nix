@@ -51,7 +51,10 @@ in
             "wlr/taskbar"
           ];
 
-          "modules-center" = [ "hyprland/workspaces" ];
+          "modules-center" = [
+            "hyprland/workspaces"
+            "sway/workspaces"
+          ];
 
           "modules-right" = [
             "tray"
@@ -89,6 +92,12 @@ in
             "format" = "{}  ";
             "tooltip" = false;
             "on-click" = "kitty";
+          };
+
+          "sway/workspaces" = {
+            "all-outputs" = true;
+            "disable-scroll" = false;
+            "format" = "{name}";
           };
 
           "hyprland/workspaces" = {
