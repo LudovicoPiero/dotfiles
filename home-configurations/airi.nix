@@ -24,10 +24,10 @@
     nvim.enable = true;
 
     # WM
-    hyprland.enable = true;
+    hyprland.enable = false;
     niri.enable = false;
     sway = {
-      enable = false;
+      enable = true;
       useSwayFX = true;
     };
 
