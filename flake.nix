@@ -10,7 +10,7 @@
     fu.url = "github:numtide/flake-utils";
 
     nixos.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    stable.url = "github:nixos/nixpkgs/nixos-23.11";
     master.url = "github:nixos/nixpkgs";
 
     aagl = {
@@ -25,7 +25,7 @@
     };
 
     digga = {
-      url = "github:ludovicopiero/digga";
+      url = "github:divnix/digga";
       inputs.nixpkgs.follows = "nixos";
       inputs.nixlib.follows = "nixos";
       inputs.home-manager.follows = "home";
