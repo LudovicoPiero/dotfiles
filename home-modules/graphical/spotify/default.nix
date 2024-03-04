@@ -9,7 +9,6 @@ in
     spotifyPackage = inputs.self.packages.${pkgs.system}.spotify;
 
     theme = spicePkgs.themes.text;
-    colorScheme = "mocha";
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay
