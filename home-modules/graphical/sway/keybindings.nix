@@ -102,9 +102,9 @@ in
   "${mod}+Shift+e" = "exec run-as-service thunar";
 
   ### Screenshot
+  "Print" = "exec wl-ocr";
   "${mod}+Print" = "sharenix --selection";
-  "${mod}+Shift+Print" = "exec wl-ocr";
-  "CTRL+Print" = "exec grimblast save area - | ${_ pkgs.swappy} -f -";
+  "CTRL+Print" = "exec ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -";
   "ALT+Print" = "exec ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
 
   # Volume
