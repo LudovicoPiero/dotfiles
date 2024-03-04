@@ -50,8 +50,6 @@
 
     nix-super = {
       url = "github:privatevoid-net/nix-super";
-      inputs.nixpkgs.follows = "nixos";
-      inputs.flake-compat.follows = "flake-compat";
     };
 
     xdph = {

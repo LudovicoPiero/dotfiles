@@ -17,9 +17,7 @@ let
     "VaapiVideoDecoder"
   ];
 
-  aestheticsFlags = [
-    "--force-dark-mode"
-  ];
+  aestheticsFlags = [ "--force-dark-mode" ];
 
   performanceFlags = [
     "--enable-gpu-rasterization"
@@ -34,26 +32,26 @@ let
     "--enable-features=UseOzonePlatform"
   ];
 in
-  final: prev: {
-    ungoogled-chromium = prev.ungoogled-chromium.override {
-      nss = final.nss_latest;
-      commandLineArgs = toString (
-        ungoogledFlags
-        ++ ["--enable-features=${final.lib.concatStringsSep "," experimentalFeatures}"]
-        ++ aestheticsFlags
-        ++ performanceFlags
-        ++ waylandFlags
-      );
-    };
+final: prev: {
+  ungoogled-chromium = prev.ungoogled-chromium.override {
+    nss = final.nss_latest;
+    commandLineArgs = toString (
+      ungoogledFlags
+      ++ [ "--enable-features=${final.lib.concatStringsSep "," experimentalFeatures}" ]
+      ++ aestheticsFlags
+      ++ performanceFlags
+      ++ waylandFlags
+    );
+  };
 
-    google-chrome-dev = prev.google-chrome-dev.override {
-      nss = final.nss_latest;
-      commandLineArgs = toString (
-        ungoogledFlags
-        ++ ["--enable-features=${final.lib.concatStringsSep "," experimentalFeatures}"]
-        ++ aestheticsFlags
-        ++ performanceFlags
-        ++ waylandFlags
-      );
-    };
-  }
+  google-chrome = prev.google-chrome.override {
+    nss = final.nss_latest;
+    commandLineArgs = toString (
+      ungoogledFlags
+      ++ [ "--enable-features=${final.lib.concatStringsSep "," experimentalFeatures}" ]
+      ++ aestheticsFlags
+      ++ performanceFlags
+      ++ waylandFlags
+    );
+  };
+}
