@@ -169,12 +169,14 @@ buildNpmPackage rec {
       (builtins.isString privateBuildPlan && (!lib.hasPrefix builtins.storeDir privateBuildPlan))
       ''
         cp "$buildPlanPath" private-build-plans.toml
-      ''}
+      ''
+    }
     ${lib.optionalString
       (builtins.isString privateBuildPlan && (lib.hasPrefix builtins.storeDir privateBuildPlan))
       ''
         cp "$buildPlan" private-build-plans.toml
-      ''}
+      ''
+    }
     ${lib.optionalString (extraParameters != null) ''
       echo -e "\n" >> params/parameters.toml
       cat "$extraParametersPath" >> params/parameters.toml

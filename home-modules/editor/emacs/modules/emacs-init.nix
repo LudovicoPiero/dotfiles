@@ -487,15 +487,17 @@ in
         standardEarlyInit = mkBefore ''
           ${optionalString cfg.recommendedGcSettings gcSettings}
 
-          ${if cfg.packageQuickstart then
-            ''
-              (setq package-quickstart t
-                    package-quickstart-file "hm-package-quickstart.el")
-            ''
-          else
-            ''
-              (setq package-enable-at-startup nil)
-            ''}
+          ${
+            if cfg.packageQuickstart then
+              ''
+                (setq package-quickstart t
+                      package-quickstart-file "hm-package-quickstart.el")
+              ''
+            else
+              ''
+                (setq package-enable-at-startup nil)
+              ''
+          }
 
           ;; Avoid expensive frame resizing. Inspired by Doom Emacs.
           (setq frame-inhibit-implied-resize t)
