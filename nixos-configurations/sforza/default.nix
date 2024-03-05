@@ -24,7 +24,7 @@
       keyring.enable = true;
     };
     dnscrypt.enable = false;
-    stubby.enable = true;
+    stubby.enable = false;
     fonts.enable = true;
     greetd.enable = true;
     security.enable = true;
