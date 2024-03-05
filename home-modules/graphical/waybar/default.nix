@@ -8,6 +8,9 @@
 let
   cfg = config.mine.waybar;
   inherit (lib) mkIf mkOption types;
+  waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
+    date "+%a %d %b %Y"
+  '';
 in
 {
   options.mine.waybar = {
@@ -62,9 +65,11 @@ in
             "custom/separator#line"
             "wireplumber"
             "custom/separator#line"
-            "network#speed"
+            "network"
             "custom/separator#line"
             "clock"
+            "custom/separator#line"
+            "custom/date"
             "custom/separator#line"
             "battery"
             "custom/separator#line"
@@ -178,7 +183,7 @@ in
 
           "clock" = {
             "interval" = 1;
-            "format" = " {:%H:%M:%S}";
+            "format" = " {:%I:%M %p}";
             "format-alt" = " {:%H:%M   %Y; %d %B, %A}";
             "tooltip-format" = "<tt><small>{calendar}</small></tt>";
             "calendar" = {
@@ -219,6 +224,12 @@ in
               "█"
             ];
             "on-click-right" = "gnome-system-monitor";
+          };
+
+          "custom/date" = {
+            format = "󰸗 {}";
+            interval = 3600;
+            exec = "${lib.getExe waybar-date}";
           };
 
           "disk" = {

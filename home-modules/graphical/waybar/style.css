@@ -148,6 +148,7 @@ tooltip label {
 #workspaces,
 #custom-backlight,
 #custom-cycle_wall,
+#custom-date,
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
@@ -188,6 +189,10 @@ tooltip label {
 
 #custom-updater {
   color: #7287fd;
+}
+
+#custom-date {
+  color: @accent6;
 }
 
 #battery {
