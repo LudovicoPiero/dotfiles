@@ -43,8 +43,6 @@ in
           "ipc" = true;
 
           "modules-left" = [
-            "custom/menu"
-            "custom/separator#line"
             "custom/app#discord"
             "custom/app#steam"
             "custom/app#term"
@@ -52,6 +50,10 @@ in
             "custom/app#vscode"
             "custom/separator#line"
             "wlr/taskbar"
+            "custom/separator#line"
+            "custom/teavpn"
+            "custom/wireguard"
+            "privacy"
           ];
 
           "modules-center" = [
@@ -61,7 +63,6 @@ in
 
           "modules-right" = [
             "tray"
-            "privacy"
             "custom/separator#line"
             "wireplumber"
             "custom/separator#line"
@@ -97,6 +98,22 @@ in
             "format" = "{}  ";
             "tooltip" = false;
             "on-click" = "kitty";
+          };
+
+          "custom/teavpn" = {
+            "format" = "󰌾 TeaVPN";
+            "exec" = "echo '{\"class\": \"connected\"}'";
+            "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
+            "return-type" = "json";
+            "interval" = 5;
+          };
+
+          "custom/wireguard" = {
+            "format" = "󰌾 Wireguard";
+            "exec" = "echo '{\"class\": \"connected\"}'";
+            "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+            "return-type" = "json";
+            "interval" = 5;
           };
 
           "sway/workspaces" = {
@@ -364,6 +381,8 @@ in
             "ignore-list" = [
               "wofi"
               "rofi"
+              "org.wezfurlong.wezterm"
+              "Spotify"
             ];
           };
 

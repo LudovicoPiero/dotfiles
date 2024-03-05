@@ -114,7 +114,6 @@ tooltip label {
   transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
-
 #workspaces button.urgent {
   background-color: #eb4d4b;
 }
@@ -157,6 +156,7 @@ tooltip label {
 #custom-power_vertical,
 #custom-power,
 #custom-swaync,
+#custom-teavpn,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -168,7 +168,8 @@ tooltip label {
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
-#custom-weather.sunnyDay {
+#custom-weather.sunnyDay,
+#custom-wireguard {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-right: 6px;
@@ -225,6 +226,16 @@ label:focus {
 }
 
 #custom-menu {
+  color: #ffffff;
+  /*padding: 3px;*/
+}
+
+#custom-wireguard {
+  color: #ffffff;
+  /*padding: 3px;*/
+}
+
+#custom-teavpn {
   color: #ffffff;
   /*padding: 3px;*/
 }
