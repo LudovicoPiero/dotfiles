@@ -102,8 +102,7 @@
         autostart = true;
         address = [ "10.66.66.2/32" ];
         dns = [
-          "1.1.1.1"
-          "1.0.0.1"
+          "45.76.145.144"
         ];
         privateKeyFile = "/persist/wireguard/privateKey";
 
