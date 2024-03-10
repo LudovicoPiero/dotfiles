@@ -23,7 +23,7 @@ in
     # Fix pass
     services.gpg-agent = {
       enable = true;
-      pinentryFlavor = "gtk2";
+      pinentryFlavor = "gnome2";
       extraConfig = ''
         allow-emacs-pinentry
         allow-loopback-pinentry
