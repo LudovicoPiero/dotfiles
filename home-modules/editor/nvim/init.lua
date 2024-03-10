@@ -149,9 +149,8 @@ require("lazy").setup({
 
   {
     "nyoom-engineering/oxocarbon.nvim",
-    lazy = false,
     priority = 1000,
-    config = function()
+    init = function()
       vim.opt.background = "dark"
       vim.cmd("colorscheme oxocarbon")
       vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
