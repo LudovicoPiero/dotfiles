@@ -101,9 +101,7 @@
       wg0 = {
         autostart = true;
         address = [ "10.66.66.2/32" ];
-        dns = [
-          "45.76.145.144"
-        ];
+        dns = [ "45.76.145.144" ];
         privateKeyFile = "/persist/wireguard/privateKey";
 
         peers = [
