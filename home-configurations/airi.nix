@@ -25,7 +25,6 @@
 
     # WM
     hyprland.enable = false;
-    niri.enable = false;
     sway = {
       enable = true;
       useSwayFX = true;
