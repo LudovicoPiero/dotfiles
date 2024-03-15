@@ -116,11 +116,6 @@
     ####################
     #       Deps       #
     ####################
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -160,10 +155,6 @@
     nix-colors = {
       url = "github:misterio77/nix-colors";
       inputs.base16-schemes.follows = "base16-schemes";
-    };
-
-    niri = {
-      url = "github:sodiboo/niri-flake";
     };
 
     nur = {

@@ -31,7 +31,6 @@ in
         concatStrings [
           (optionalString mine.hyprland.enable "Hyprland\n")
           (optionalString mine.sway.enable "sway\n")
-          (optionalString mine.niri.enable "niri\n")
         ];
     };
 
