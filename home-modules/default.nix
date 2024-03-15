@@ -32,7 +32,6 @@
     ./graphical/mako
     ./graphical/fuzzel
     ./graphical/hyprland
-    ./graphical/niri
     ./graphical/sway
     ./graphical/services
     ./graphical/spotify
