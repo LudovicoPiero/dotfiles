@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -19,8 +18,6 @@ in
     # https://gitlab.com/rycee/nur-expressions
     # https://github.com/Denommus/nix-configurations
     # https://git.sr.ht/~rycee/configurations/tree/master/item/user/emacs.nix
-
-    nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
     home.file = {
       ".emacs.d/snippets".source = ./snippets;
