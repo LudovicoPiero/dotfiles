@@ -26,8 +26,6 @@ in
     programs.emacs = {
       enable = true;
 
-      package = pkgs.emacs-unstable-pgtk;
-
       init = {
         enable = true;
         recommendedGcSettings = true;
