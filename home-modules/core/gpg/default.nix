@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.mine.gpg;
   inherit (lib) mkIf mkOption types;
@@ -23,7 +28,11 @@ in
     # Fix pass
     services.gpg-agent = {
       enable = true;
-      pinentryFlavor = "gnome2";
+      /*
+        Make sure to add this
+        services.dbus.packages = [ pkgs.gcr ];
+      */
+      pinentryPackage = pkgs.pinentry-gnome3;
       extraConfig = ''
         allow-emacs-pinentry
         allow-loopback-pinentry
