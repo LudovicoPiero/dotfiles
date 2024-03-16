@@ -1,0 +1,123 @@
+{
+    "firefox-gnome-theme": {
+        "cargoLocks": null,
+        "date": "2024-02-26",
+        "extract": null,
+        "name": "firefox-gnome-theme",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "4e966509c180f93ba8665cd73cad8456bf44baab",
+            "sha256": "sha256-gIBZCPB0sA8Gagrxd8w4+y9uUkWBnXJBmq9Ur5BYTQU=",
+            "type": "git",
+            "url": "https://github.com/rafaelmardojai/firefox-gnome-theme"
+        },
+        "version": "4e966509c180f93ba8665cd73cad8456bf44baab"
+    },
+    "san-francisco-pro": {
+        "cargoLocks": null,
+        "date": "2021-06-22",
+        "extract": null,
+        "name": "san-francisco-pro",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "8bfea09aa6f1139479f80358b2e1e5c6dc991a58",
+            "sha256": "sha256-mAXExj8n8gFHq19HfGy4UOJYKVGPYgarGd/04kUIqX4=",
+            "type": "git",
+            "url": "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts"
+        },
+        "version": "8bfea09aa6f1139479f80358b2e1e5c6dc991a58"
+    },
+    "swayfx": {
+        "cargoLocks": null,
+        "date": "2024-02-15",
+        "extract": null,
+        "name": "swayfx",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "2bd366f3372d6f94f6633e62b7f7b06fcf316943",
+            "sha256": "sha256-kRWXQnUkMm5HjlDX9rBq8lowygvbK9+ScAOhiySR3KY=",
+            "type": "git",
+            "url": "https://github.com/WillPower3309/swayfx"
+        },
+        "version": "2bd366f3372d6f94f6633e62b7f7b06fcf316943"
+    },
+    "waybar": {
+        "cargoLocks": null,
+        "date": "2024-03-05",
+        "extract": null,
+        "name": "waybar",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "4c46d7d245a6c06644d6a0e8857f7140556202ce",
+            "sha256": "sha256-9zUqV1wxUAuRRBMQCUZEf5FjIKMeTEhWTLOfL4+9EiE=",
+            "type": "git",
+            "url": "https://github.com/alexays/waybar"
+        },
+        "version": "4c46d7d245a6c06644d6a0e8857f7140556202ce"
+    },
+    "wezterm": {
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./wezterm-22424c3280cb21af43317cb58ef7bc34a8cbcc91/Cargo.lock",
+                {
+                    "xcb-imdkit-0.3.0": "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI="
+                }
+            ]
+        },
+        "date": "2024-02-26",
+        "extract": null,
+        "name": "wezterm",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": true,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "22424c3280cb21af43317cb58ef7bc34a8cbcc91",
+            "sha256": "sha256-EQb0gNAb98e4IFwBv5XODtq9Er519wM/h5EglD8Lrhc=",
+            "type": "git",
+            "url": "https://github.com/wez/wezterm"
+        },
+        "version": "22424c3280cb21af43317cb58ef7bc34a8cbcc91"
+    },
+    "whitesur-gtk-theme": {
+        "cargoLocks": null,
+        "date": "2024-02-26",
+        "extract": null,
+        "name": "whitesur-gtk-theme",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "5a52172d2f27437555cc58c7dad15d06af74553d",
+            "sha256": "sha256-9HYsORTd5n0jUYmwiObPZ90mOGhR2j+tzs6Y1NNnrn4=",
+            "type": "git",
+            "url": "https://github.com/vinceliuice/WhiteSur-gtk-theme"
+        },
+        "version": "5a52172d2f27437555cc58c7dad15d06af74553d"
+    }
+}
