@@ -71,13 +71,17 @@
           treefmt = {
             projectRootFile = "flake.nix";
             programs = {
-              alejandra.enable = true;
+              nixfmt.enable = true;
+              nixfmt.package = inputs.chaotic.packages.${pkgs.system}.nixfmt_rfc166;
               deadnix.enable = true;
               statix.enable = true;
-              # statix.disabled-lints = ["repeated_keys"];
+              statix.disabled-lints = [ "repeated_keys" ];
               stylua.enable = true;
             };
 
+            settings.formatter.nixfmt.excludes = [ "generated.nix" ];
+            settings.formatter.deadnix.excludes = [ "generated.nix" ];
+            settings.formatter.statix.excludes = [ "generated.nix" ];
             settings.formatter.stylua.options = [
               "--indent-type"
               "Spaces"

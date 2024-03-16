@@ -136,13 +136,13 @@
         CPU_MAX_PERF_ON_BAT = 50;
       };
     };
+    desktopManager.plasma6.enable = true; # FIXME: plasma
     power-profiles-daemon.enable = lib.mkForce false; # FIXME: plasma
     xserver = {
       enable = true;
       xkb.layout = "us"; # Configure keymap
       libinput.enable = true;
       displayManager.sddm.enable = true;
-      desktopManager.plasma6.enable = true; # FIXME: plasma
     };
   };
   programs.dconf.enable = true; # FIXME: plasma
