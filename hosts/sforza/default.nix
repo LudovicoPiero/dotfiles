@@ -136,14 +136,34 @@
         CPU_MAX_PERF_ON_BAT = 50;
       };
     };
-    desktopManager.plasma6.enable = true; # FIXME: plasma
-    power-profiles-daemon.enable = lib.mkForce false; # FIXME: plasma
+    power-profiles-daemon.enable = lib.mkForce false; # FIXME: gnome
     xserver = {
       enable = true;
       xkb.layout = "us"; # Configure keymap
       libinput.enable = true;
-      displayManager.sddm.enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true; # FIXME: gnome
     };
   };
-  programs.dconf.enable = true; # FIXME: plasma
+
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      gnome-photos
+      gnome-tour
+      gedit # text editor
+    ])
+    ++ (with pkgs.gnome; [
+      cheese # webcam tool
+      gnome-music
+      epiphany # web browser
+      geary # email reader
+      evince # document viewer
+      gnome-characters
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+    ]);
+  programs.dconf.enable = true; # FIXME: gnome
 }
