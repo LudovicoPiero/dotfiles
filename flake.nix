@@ -18,12 +18,9 @@
     };
   };
 
-  outputs = inputs @ {
-    nixpkgs,
-    flake-parts,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs@{ nixpkgs, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         # To import a flake module
         # 1. Add foo to inputs
@@ -43,51 +40,54 @@
         # "x86_64-darwin"
       ];
 
-      perSystem = {
-        config,
-        pkgs,
-        system,
-        inputs',
-        ...
-      }: {
-        # This sets `pkgs` to a nixpkgs with allowUnfree option set.
-        _module.args.pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-
-        # configure devshell
-        devShells.default = let
-          devshell = import ./parts/devshell;
-        in
-          inputs'.devshell.legacyPackages.mkShell {
-            inherit (devshell) env;
-            name = "Devshell";
-            commands = devshell.shellCommands;
-            packages = [config.treefmt.build.wrapper];
+      perSystem =
+        {
+          config,
+          pkgs,
+          system,
+          inputs',
+          ...
+        }:
+        {
+          # This sets `pkgs` to a nixpkgs with allowUnfree option set.
+          _module.args.pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
           };
 
-        # configure treefmt
-        treefmt = {
-          projectRootFile = "flake.nix";
-          programs = {
-            alejandra.enable = true;
-            deadnix.enable = true;
-            statix.enable = true;
-            # statix.disabled-lints = ["repeated_keys"];
-            stylua.enable = true;
-          };
+          # configure devshell
+          devShells.default =
+            let
+              devshell = import ./parts/devshell;
+            in
+            inputs'.devshell.legacyPackages.mkShell {
+              inherit (devshell) env;
+              name = "Devshell";
+              commands = devshell.shellCommands;
+              packages = [ config.treefmt.build.wrapper ];
+            };
 
-          settings.formatter.stylua.options = [
-            "--indent-type"
-            "Spaces"
-            "--indent-width"
-            "2"
-            "--quote-style"
-            "ForceDouble"
-          ];
+          # configure treefmt
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs = {
+              alejandra.enable = true;
+              deadnix.enable = true;
+              statix.enable = true;
+              # statix.disabled-lints = ["repeated_keys"];
+              stylua.enable = true;
+            };
+
+            settings.formatter.stylua.options = [
+              "--indent-type"
+              "Spaces"
+              "--indent-width"
+              "2"
+              "--quote-style"
+              "ForceDouble"
+            ];
+          };
         };
-      };
 
       flake = {
         # The usual flake attributes can be defined here, including system-

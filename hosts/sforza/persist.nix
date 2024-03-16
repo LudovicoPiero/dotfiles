@@ -3,8 +3,9 @@
   lib,
   inputs,
   ...
-}: {
-  imports = [inputs.impermanence.nixosModules.impermanence];
+}:
+{
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   environment.persistence."/persist" = {
     hideMounts = true;
@@ -19,12 +20,12 @@
         "/var/lib/pipewire"
         "/var/lib/systemd/coredump"
       ]
-      ++ lib.optionals config.virtualisation.docker.enable ["/var/lib/docker"]
+      ++ lib.optionals config.virtualisation.docker.enable [ "/var/lib/docker" ]
       # ++ lib.optionals config.mine.dnscrypt.enable [ "/var/lib/dnscrypt-proxy2" ]
-      ++ lib.optionals config.services.jellyfin.enable ["/var/lib/jellyfin"]
-      # ++ lib.optionals config.mine.greetd.enable [ "/var/cache/regreet" ]
-      ;
-    files = ["/etc/machine-id"];
+      ++ lib.optionals config.services.jellyfin.enable [ "/var/lib/jellyfin" ]
+    # ++ lib.optionals config.mine.greetd.enable [ "/var/cache/regreet" ]
+    ;
+    files = [ "/etc/machine-id" ];
   };
 
   systemd.tmpfiles.rules = [

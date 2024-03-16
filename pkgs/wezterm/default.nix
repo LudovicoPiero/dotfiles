@@ -44,14 +44,12 @@ rustPlatform.buildRustPackage rec {
 
   cargoLock = sources.wezterm.cargoLock."Cargo.lock";
 
-  nativeBuildInputs =
-    [
-      installShellFiles
-      ncurses # tic for terminfo
-      pkg-config
-      python3
-    ]
-    ++ lib.optional stdenv.isDarwin perl;
+  nativeBuildInputs = [
+    installShellFiles
+    ncurses # tic for terminfo
+    pkg-config
+    python3
+  ] ++ lib.optional stdenv.isDarwin perl;
 
   buildInputs =
     [
@@ -80,7 +78,7 @@ rustPlatform.buildRustPackage rec {
       UserNotifications
     ];
 
-  buildFeatures = ["distro-defaults"];
+  buildFeatures = [ "distro-defaults" ];
 
   env.NIX_LDFLAGS = lib.optionalString stdenv.isDarwin "-framework System";
 
@@ -122,7 +120,7 @@ rustPlatform.buildRustPackage rec {
       all-terminfo = nixosTests.allTerminfo;
       terminal-emulators = nixosTests.terminal-emulators.wezterm;
     };
-    terminfo = runCommand "wezterm-terminfo" {nativeBuildInputs = [ncurses];} ''
+    terminfo = runCommand "wezterm-terminfo" { nativeBuildInputs = [ ncurses ]; } ''
       mkdir -p $out/share/terminfo $out/nix-support
       tic -x -o $out/share/terminfo ${src}/termwiz/data/wezterm.terminfo
     '';
@@ -133,6 +131,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://wezfurlong.org/wezterm";
     license = licenses.mit;
     mainProgram = "wezterm";
-    maintainers = with maintainers; [ludovicopiero];
+    maintainers = with maintainers; [ ludovicopiero ];
   };
 }
