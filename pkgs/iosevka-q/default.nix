@@ -126,16 +126,16 @@ assert (privateBuildPlan != null) -> set != null;
 assert (extraParameters != null) -> set != null;
 buildNpmPackage rec {
   pname = if set != null then "Iosevka${set}" else "Iosevka";
-  version = "29.0.1";
+  version = "29.0.2";
 
   src = fetchFromGitHub {
     owner = "be5invis";
     repo = "iosevka";
     rev = "v${version}";
-    hash = "sha256-deAJQAV77l9OwOSy3iSrIU1lZadAZm40uvxEwQtPeLA=";
+    hash = "sha256-lCxWybPMeTDRlGCBtZ5R8KrTZl6jyQtW+F2PQoaN10E=";
   };
 
-  npmDepsHash = "sha256-lOK8QmLfyjWbaT1MwnUsvGCiZBnKhzd2pkcD45UhoKw=";
+  npmDepsHash = "sha256-wdELLh7EfvDm5trySAnx1HkqA5wVYtSEofLaZi1GZSY=";
 
   nativeBuildInputs =
     [
@@ -187,15 +187,17 @@ buildNpmPackage rec {
   buildPhase = ''
     export HOME=$TMPDIR
     runHook preBuild
-    npm run build --no-update-notifier -- --jCmd=$NIX_BUILD_CORES --verbose=9 ttf::$pname
+    npm run build --no-update-notifier --targets ttf::$pname -- --jCmd=$NIX_BUILD_CORES --verbose=9 ttf::$pname
     runHook postBuild
   '';
 
   installPhase = ''
     runHook preInstall
+
     fontdir="$out/share/fonts/truetype"
     install -d "$fontdir"
     install "dist/$pname/TTF"/* "$fontdir"
+
     runHook postInstall
   '';
 
