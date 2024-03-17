@@ -12,7 +12,25 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
     nh.url = "github:viperml/nh";
+    nur.url = "github:nix-community/nur";
     nix-super.url = "github:privatevoid-net/nix-super";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    base16-schemes.url = "github:LudovicoPiero/base16-schemes";
+    base16-schemes.flake = false;
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+      inputs.base16-schemes.follows = "base16-schemes";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";

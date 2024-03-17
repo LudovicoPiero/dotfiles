@@ -23,6 +23,32 @@
       enable = true;
       keyring.enable = true;
     };
+    emacs.enable = true;
+    nvim.enable = true;
+
+    # WM
+    hyprland.enable = false;
+    sway = {
+      enable = true;
+      useSwayFX = true;
+    };
+
+    chromium.enable = true;
+    discord.enable = true;
+    direnv.enable = true;
+    # fish.enable = true;
+    firefox.enable = true;
+    fuzzel.enable = true;
+    gammastep.enable = true;
+    git.enable = true;
+    gpg.enable = true;
+    kitty.enable = true;
+    lazygit.enable = true;
+    mako.enable = true;
+    pass.enable = true;
+    ssh.enable = true;
+    waybar.enable = true;
+    wezterm.enable = true;
     dnscrypt.enable = false;
     stubby.enable = false;
     fonts.enable = true;

@@ -14,7 +14,6 @@ in
       modules = [
         # This module could be moved into a separate file; otherwise we might
         # as well have used ctx.config.packages directly.
-        inputs.home-manager.nixosModules.home-manager
         commonModules
 
         ./sforza
