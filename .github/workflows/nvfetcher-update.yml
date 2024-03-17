@@ -1,0 +1,48 @@
+name: "Nvfetcher Update"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 20 * * *" # At 20:00 everyday.
+
+jobs:
+  nvfetcher-update:
+    if: github.repository == 'ludovicopiero/dotfiles' # Don't do this in forks
+    runs-on: ubuntu-latest
+    outputs:
+      id: pr
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.PR_TOKEN }}"
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v26
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Git config
+        run: |
+          git config --global user.email "lewdovico@gnuweeb.org"
+          git config --global user.name "Ludovico Piero"
+
+      - name: Run nvfetcher
+        run: |
+          pushd pkgs
+          rm -r _sources/wezterm-*
+          nix run github:berberman/nvfetcher -- --commit-changes
+          popd
+
+      - name: Create Pull Request
+        id: create-pr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: "${{ secrets.PR_TOKEN }}"
+          title: "Nvfetcher update"
+          body: "BOOMP BOOMP"
+          labels: automated,uwu, keep-up-to-date
+          branch: "nvfetcher-update"
+          delete-branch: true

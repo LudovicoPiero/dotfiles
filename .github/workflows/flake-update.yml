@@ -1,0 +1,54 @@
+name: Update Flakes
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0" # At 00:00 on Sunday.
+
+jobs:
+  get-flakes:
+    if: github.repository == 'ludovicopiero/dotfiles' # Don't do this in forks
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.get-flakes.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: DeterminateSystems/nix-installer-action@v10
+      - name: generate flake matrix
+        id: get-flakes
+        run: |
+          set -euo pipefail
+          flakes="$(nix flake metadata --json | jq -rcM '.locks.nodes.root.inputs | {flake: keys}')"
+          echo "matrix=$flakes" >> "$GITHUB_OUTPUT"
+
+  update-flake:
+    if: github.repository == 'ludovicopiero/dotfiles' # Don't do this in forks
+    name: update-${{ matrix.flake }}
+    runs-on: ubuntu-latest
+    needs: get-flakes
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.get-flakes.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4.1.1
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable-small
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GH_TOKEN }}
+
+      - run: git config --global user.email "59017537+MaximilianSforza@users.noreply.github.com"
+      - run: git config --global user.name "Maximilian"
+      - uses: cpcloud/flake-update-action@main
+        with:
+          dependency: ${{ matrix.flake }}
+          pull-request-token: ${{ secrets.PR_TOKEN }}
+          pull-request-author: Maximilian <59017537+MaximilianSforza@users.noreply.github.com>
+          github-token: ${{ secrets.GH_TOKEN }}
+          pull-request-labels: automated,uwu, keep-up-to-date
+          delete-branch: true
+          pull-request-branch-prefix: "flake/update-"
+          pull-request-merge-method: "merge"
+          automerge: false
