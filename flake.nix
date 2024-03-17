@@ -11,6 +11,8 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
+    nh.url = "github:viperml/nh";
+    nix-super.url = "github:privatevoid-net/nix-super";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -92,11 +94,5 @@
             ];
           };
         };
-
-      flake = {
-        # The usual flake attributes can be defined here, including system-
-        # agnostic ones like nixosModule and system-enumerating ones, although
-        # those are more easily expressed in perSystem.
-      };
     };
 }

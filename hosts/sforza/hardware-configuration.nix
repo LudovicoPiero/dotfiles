@@ -1,9 +1,10 @@
 {
   config,
-  pkgs,
   lib,
   modulesPath,
   inputs,
+  inputs',
+  userName,
   ...
 }:
 {
@@ -30,7 +31,7 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
+    kernelPackages = lib.mkForce inputs'.chaotic.packages.linuxPackages_cachyos;
 
     initrd.availableKernelModules = [
       "nvme"
@@ -56,8 +57,7 @@
 
   fileSystems =
     let
-      username = "airi";
-      userHome = "/home/${username}";
+      userHome = "/home/${userName}";
     in
     {
       "${userHome}/Media" = {

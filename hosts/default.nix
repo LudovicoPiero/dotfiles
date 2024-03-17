@@ -1,4 +1,7 @@
 { withSystem, inputs, ... }:
+let
+  commonModules = ../modules;
+in
 {
   flake.nixosConfigurations.sforza = withSystem "x86_64-linux" (
     { config, inputs', ... }:
@@ -6,18 +9,15 @@
       specialArgs = {
         inherit (config) packages;
         inherit inputs inputs';
+        userName = "airi";
       };
       modules = [
         # This module could be moved into a separate file; otherwise we might
         # as well have used ctx.config.packages directly.
-        (
-          { ... }:
-          {
-            # TODO: Setup home-manager
-            imports = [ ./sforza ];
-            system.stateVersion = "23.11";
-          }
-        )
+        inputs.home-manager.nixosModules.home-manager
+        commonModules
+
+        ./sforza
       ];
     }
   );

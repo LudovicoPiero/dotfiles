@@ -2,10 +2,10 @@
   config,
   pkgs,
   lib,
+  userName,
   ...
 }:
 {
-  #TODO: move this somewhere else
   programs.fish = {
     enable = true;
     shellInit = ''
@@ -13,11 +13,7 @@
     '';
   };
 
-  users.mutableUsers = false;
-  users.users.root = {
-    hashedPasswordFile = "/persist/users/root";
-  };
-  users.users.airi = {
+  users.users."${userName}" = {
     shell = pkgs.fish;
     hashedPasswordFile = "/persist/users/airi";
     isNormalUser = true;

@@ -8,31 +8,29 @@
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
-    ./users.nix
 
     inputs.chaotic.nixosModules.default
   ];
 
   # My own modules
-  # FIXME:
-  # mine = {
-  #   games = {
-  #     gamemode.enable = false;
-  #     lutris.enable = false;
-  #     steam.enable = false;
-  #   };
-  #   gnome = {
-  #     enable = true;
-  #     keyring.enable = true;
-  #   };
-  #   dnscrypt.enable = false;
-  #   stubby.enable = false;
-  #   fonts.enable = true;
-  #   greetd.enable = true;
-  #   security.enable = true;
-  #   thunar.enable = true;
-  #   qemu.enable = true;
-  # };
+  mine = {
+    games = {
+      gamemode.enable = false;
+      lutris.enable = false;
+      steam.enable = false;
+    };
+    gnome = {
+      enable = true;
+      keyring.enable = true;
+    };
+    dnscrypt.enable = false;
+    stubby.enable = false;
+    fonts.enable = true;
+    greetd.enable = false; # FIXME
+    security.enable = true;
+    thunar.enable = true;
+    qemu.enable = true;
+  };
 
   # Chaotic stuff
   environment = {
@@ -119,6 +117,7 @@
     };
   };
 
+  hardware.pulseaudio.enable = lib.mkForce false; # FIXME: gnome
   # TLP For Laptop
   services = {
     tlp = {
