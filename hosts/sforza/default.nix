@@ -5,15 +5,12 @@
   self,
   lib,
   ...
-}: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./persist.nix
-    ]
-    ++ suites.desktop
-    ++ suites.hyprland
-    ++ suites.sway;
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./persist.nix
+  ] ++ suites.desktop ++ suites.hyprland ++ suites.sway;
   # ++ suites.gnome;
 
   age = {
@@ -21,7 +18,7 @@
       wgPresharedKey.file = "${self}/secrets/wgPresharedKey.age";
       wgPrivKey.file = "${self}/secrets/wgPrivKey.age";
     };
-    identityPaths = ["${config.vars.home}/.ssh/id_ed25519"];
+    identityPaths = [ "${config.vars.home}/.ssh/id_ed25519" ];
   };
 
   boot = {
@@ -34,14 +31,13 @@
   hardware.bluetooth.enable = true;
 
   # AAGL
-  programs.honkers-railway-launcher.enable = true;
+  programs.honkers-railway-launcher.enable = false;
 
   # OpenGL
   environment.variables.AMD_VULKAN_ICD = lib.mkDefault "RADV";
   boot = {
-    initrd.kernelModules = ["amdgpu"];
-    kernelParams = ["amd_pstate=passive" "initcall_blacklist=acpi_cpufreq_init"];
-    kernelModules = ["amd-pstate"];
+    initrd.kernelModules = [ "amdgpu" ];
+    kernelModules = [ "amd-pstate" ];
   };
   hardware.opengl = {
     enable = true;
@@ -92,30 +88,6 @@
     };
   };
 
-  # services.greetd = let
-  #   user = "ludovico";
-  #   greetd = "${pkgs.greetd.greetd}/bin/greetd";
-  #   gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-  #
-  #   sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
-  #     output * bg #000000 solid_color
-  #     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-  #
-  #     # Just in case if greetd not working properly
-  #     bindsym Mod4+Return exec wezterm
-  #     exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
-  #   ''}";
-  # in {
-  #   enable = true;
-  #   vt = 7;
-  #   settings = {
-  #     default_session = {
-  #       command = sway-kiosk "${gtkgreet} -l -c 'Hyprland'";
-  #       inherit user;
-  #     };
-  #   };
-  # };
-
   environment.etc."greetd/environments".text = ''
     sway
     Hyprland
@@ -143,24 +115,33 @@
     };
   };
 
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      autostart = true;
-      address = ["10.66.66.3/32" "fd42:42:42::3/128"];
-      dns = ["1.1.1.1" "1.0.0.1"];
-      privateKeyFile = config.age.secrets.wgPrivKey.path;
-
-      peers = [
-        {
-          publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
-          presharedKeyFile = config.age.secrets.wgPresharedKey.path;
-          allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "103.235.73.71:50935";
-          persistentKeepalive = 25;
-        }
-      ];
-    };
-  };
+  # networking.wg-quick.interfaces = {
+  #   wg0 = {
+  #     autostart = true;
+  #     address = [
+  #       "10.66.66.3/32"
+  #       "fd42:42:42::3/128"
+  #     ];
+  #     dns = [
+  #       "1.1.1.1"
+  #       "1.0.0.1"
+  #     ];
+  #     privateKeyFile = config.age.secrets.wgPrivKey.path;
+  #
+  #     peers = [
+  #       {
+  #         publicKey = "6c2tFt3lF9+/UiSuxwrKBypON0U2y7wYGn9DWEBmi2A=";
+  #         presharedKeyFile = config.age.secrets.wgPresharedKey.path;
+  #         allowedIPs = [
+  #           "0.0.0.0/0"
+  #           "::/0"
+  #         ];
+  #         endpoint = "103.235.73.71:50935";
+  #         persistentKeepalive = 25;
+  #       }
+  #     ];
+  #   };
+  # };
 
   system.stateVersion = "${config.vars.stateVersion}";
 }

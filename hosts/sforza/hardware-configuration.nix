@@ -6,77 +6,124 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   services.fstrim.enable = true;
 
   boot = {
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usb_storage"
+      "usbhid"
+      "sd_mod"
+    ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    initrd.kernelModules = ["dm-snapshot"];
-    kernelModules = ["kvm-amd"];
-    kernelParams = ["nohibernate" "zfs.zfs_arc_max=12884901888"];
-    extraModulePackages = [];
-  };
-  boot.zfs.enableUnstable = true;
-  services.zfs = {
-    autoScrub.enable = true;
-    trim.enable = true;
+    initrd.kernelModules = [ "dm-snapshot" ];
+    kernelModules = [ "kvm-amd" ];
+    kernelParams = [
+      "nohibernate"
+    ];
+    extraModulePackages = [ ];
   };
 
-  fileSystems = let
-    inherit (config.vars) username;
-    userHome = "/home/${username}";
-  in {
-    "/" = {
-      device = "tank/local/root";
-      fsType = "zfs";
+
+  fileSystems =
+    let
+      inherit (config.vars) username;
+      userHome = "/home/${username}";
+    in
+    {
+      "${userHome}/Media" = {
+        device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
+        fsType = "bcachefs";
+        options = [
+          # Enable discard/TRIM support
+          "discard"
+          # foreground compression with zstd
+          "compression=zstd"
+          # background compression with zstd
+          "background_compression=zstd"
+        ];
+      };
+
+      # "${userHome}/WinE" = {
+      #   device = "/dev/disk/by-label/WinE";
+      #   fsType = "ntfs";
+      #   options = [
+      #     "uid=1000"
+      #     "gid=100"
+      #     "rw"
+      #     "user"
+      #     "exec"
+      #     "umask=000"
+      #     "nofail"
+      #   ];
+      # };
+
+      "/" = {
+        device = "none";
+        fsType = "tmpfs";
+        options = [
+          "defaults"
+          "size=2G"
+          "mode=755"
+        ];
+      };
+
+      "/boot" = {
+        device = "/dev/disk/by-label/BOOT";
+        fsType = "vfat";
+      };
+
+      "/nix" = {
+        device = "/dev/disk/by-partlabel/Store";
+        fsType = "bcachefs";
+        options = [
+          # Enable discard/TRIM support
+          "discard"
+          # foreground compression with zstd
+          "compression=zstd"
+          # background compression with zstd
+          "background_compression=zstd"
+        ];
+      };
+
+      "/home" = {
+        device = "/dev/disk/by-partlabel/Home";
+        fsType = "bcachefs";
+        options = [
+          # Enable discard/TRIM support
+          "discard"
+          # foreground compression with zstd
+          "compression=zstd"
+          # background compression with zstd
+          "background_compression=zstd"
+        ];
+        neededForBoot = true;
+      };
+
+      "/persist" = {
+        device = "/dev/disk/by-label/Persist";
+        fsType = "xfs";
+        neededForBoot = true;
+      };
+
+      "/etc/nixos" = {
+        device = "/persist/etc/nixos";
+        fsType = "none";
+        options = [ "bind" ];
+      };
+
+      "/var/log" = {
+        device = "/persist/var/log";
+        fsType = "none";
+        options = [ "bind" ];
+      };
     };
 
-    "/boot" = {
-      device = "/dev/disk/by-uuid/4FA8-A596";
-      fsType = "vfat";
-    };
-
-    "/nix" = {
-      device = "tank/local/nix";
-      fsType = "zfs";
-    };
-
-    "/home" = {
-      device = "tank/safe/home";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
-
-    "/persist" = {
-      device = "tank/safe/persist";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
-
-    "${userHome}/WinE" = {
-      device = "/dev/disk/by-uuid/01D95CE318FF5AE0";
-      fsType = "ntfs";
-      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    };
-
-    "${userHome}/WinD" = {
-      device = "/dev/disk/by-uuid/01D95CDF9A689D70";
-      fsType = "ntfs";
-      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    };
-
-    "${userHome}/WinC" = {
-      device = "/dev/disk/by-uuid/0454A86454A859E6";
-      fsType = "ntfs";
-      options = ["uid=1000" "gid=100" "rw" "user" "exec" "umask=000" "nofail"];
-    };
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/2d66abab-93a2-4e86-897b-cbcdb7969c7a";}
-  ];
+  swapDevices = [ { device = "/dev/disk/by-label/Swap"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
