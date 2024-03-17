@@ -1,4 +1,4 @@
-{lib}:
+{ lib }:
 lib.makeExtensible (_self: rec {
   ## Define your own library functions here!
   #id = x: x;

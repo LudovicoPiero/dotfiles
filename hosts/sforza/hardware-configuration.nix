@@ -22,12 +22,9 @@
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     initrd.kernelModules = [ "dm-snapshot" ];
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [
-      "nohibernate"
-    ];
+    kernelParams = [ "nohibernate" ];
     extraModulePackages = [ ];
   };
-
 
   fileSystems =
     let

@@ -22,7 +22,7 @@ stdenv.mkDerivation {
     description = "DT's SDDM Theme";
     homepage = "https://gitlab.com/dwt1/multicolor-sddm-theme";
     license = licenses.gpl3Only;
-    maintainers = with maintainers; [ludovicopiero];
+    maintainers = with maintainers; [ ludovicopiero ];
     platforms = platforms.linux;
   };
 }

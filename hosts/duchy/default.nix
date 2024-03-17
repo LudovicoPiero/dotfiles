@@ -1,11 +1,6 @@
+{ config, suites, ... }:
 {
-  config,
-  suites,
-  ...
-}: {
-  imports =
-    [./configuration.nix]
-    ++ suites.base;
+  imports = [ ./configuration.nix ] ++ suites.base;
 
   wsl = {
     enable = true;

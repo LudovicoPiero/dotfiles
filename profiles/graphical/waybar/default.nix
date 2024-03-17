@@ -4,11 +4,13 @@
   lib,
   inputs,
   ...
-} @ args: let
+}@args:
+let
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     date "+%a %d %b %Y"
   '';
-in {
+in
+{
   home-manager.users."${config.vars.username}" = {
     home.packages = with pkgs; [
       alsa-utils
@@ -24,9 +26,9 @@ in {
         '';
         postFixup = ''
           wrapProgram $out/bin/waybar \
-            --suffix PATH : ${lib.makeBinPath [inputs.hyprland.packages.${pkgs.system}.hyprland]}
+            --suffix PATH : ${lib.makeBinPath [ inputs.hyprland.packages.${pkgs.system}.hyprland ]}
         '';
-        mesonFlags = old.mesonFlags ++ ["-Dexperimental=true"];
+        mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
       });
       settings = {
         mainBar = {
@@ -62,7 +64,11 @@ in {
             "format" = "{icon} {volume}%";
             "format-muted" = "󰝟";
             "on-click" = "amixer -q set Master toggle-mute";
-            "format-icons" = ["" "" ""];
+            "format-icons" = [
+              ""
+              ""
+              ""
+            ];
           };
           "cpu" = {
             "interval" = 10;

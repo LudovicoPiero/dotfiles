@@ -1,13 +1,10 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   /*
-  Beware that pinentry-gnome3 may not work on non-Gnome
-  systems.
+    Beware that pinentry-gnome3 may not work on non-Gnome
+    systems.
   */
-  services.dbus.packages = [pkgs.gcr];
+  services.dbus.packages = [ pkgs.gcr ];
 
   home-manager.users."${config.vars.username}" = {
     programs.gpg = {

@@ -7,13 +7,15 @@
   config,
   inputs,
   ...
-} @ args: let
+}@args:
+let
   mkService = lib.recursiveUpdate {
-    Unit.PartOf = ["hyprland-session.target"];
-    Unit.After = ["hyprland-session.target"];
-    Install.WantedBy = ["hyprland-session.target"];
+    Unit.PartOf = [ "hyprland-session.target" ];
+    Unit.After = [ "hyprland-session.target" ];
+    Install.WantedBy = [ "hyprland-session.target" ];
   };
-in {
+in
+{
   systemd.services = {
     seatd = {
       enable = true;
@@ -24,7 +26,7 @@ in {
         Restart = "always";
         RestartSec = 1;
       };
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
     };
   };
 

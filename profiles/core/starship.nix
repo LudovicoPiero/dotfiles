@@ -1,8 +1,5 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   home-manager.users."${config.vars.username}" = {
     programs.starship = {
       enable = true;

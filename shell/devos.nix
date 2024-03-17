@@ -4,9 +4,9 @@
   lib,
   inputs,
   ...
-}: let
-  inherit
-    (pkgs)
+}:
+let
+  inherit (pkgs)
     alejandra
     cachix
     editorconfig-checker
@@ -20,12 +20,16 @@
   inherit (inputs.ragenix.packages.x86_64-linux) ragenix;
   inherit (inputs.nix-super.packages.x86_64-linux) nix;
 
-  pkgWithCategory = category: package: {inherit package category;};
+  pkgWithCategory = category: package: { inherit package category; };
   devos = pkgWithCategory "devos";
   formatter = pkgWithCategory "linter";
   secrets = pkgWithCategory "secrets";
-in {
-  imports = ["${extraModulesPath}/git/hooks.nix" ./hooks];
+in
+{
+  imports = [
+    "${extraModulesPath}/git/hooks.nix"
+    ./hooks
+  ];
 
   packages = [
     alejandra
@@ -41,10 +45,6 @@ in {
       (formatter treefmt)
       (secrets ragenix)
     ]
-    ++ lib.optionals (!pkgs.stdenv.buildPlatform.isi686) [
-      (devos cachix)
-    ]
-    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-      (devos nixos-generators)
-    ];
+    ++ lib.optionals (!pkgs.stdenv.buildPlatform.isi686) [ (devos cachix) ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ (devos nixos-generators) ];
 }

@@ -4,16 +4,18 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   hmConf = config.home-manager.users."${config.vars.username}";
   apply-hm-env = pkgs.writeShellScript "apply-hm-env" ''
-    ${lib.optionalString (hmConf.home.sessionPath != []) ''
+    ${lib.optionalString (hmConf.home.sessionPath != [ ]) ''
       export PATH=${builtins.concatStringsSep ":" hmConf.home.sessionPath}:$PATH
     ''}
-    ${builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: ''
+    ${builtins.concatStringsSep "\n" (
+      lib.mapAttrsToList (k: v: ''
         export ${k}=${toString v}
-      '')
-      hmConf.home.sessionVariables)}
+      '') hmConf.home.sessionVariables
+    )}
     ${hmConf.home.sessionVariablesExtra}
     exec "$@"
   '';
@@ -27,8 +29,9 @@
       --wait \
       bash -lc "exec ${apply-hm-env} $@"
   '';
-in {
+in
+{
   home-manager.users.${config.vars.username} = {
-    home.packages = [run-as-service];
+    home.packages = [ run-as-service ];
   };
 }

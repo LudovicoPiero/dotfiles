@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (config.vars.colorScheme) colors;
   _ = lib.getExe;
   terminal = "${config.vars.terminalBin}";
@@ -19,7 +20,8 @@
   '';
   discord-wrapped = "${_ pkgs.discord-canary} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
   webcord-wrapped = "${_ pkgs.webcord-vencord} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
-in {
+in
+{
   exec-once = [
     "waybar"
     "${lib.getExe swayidle}"

@@ -3,11 +3,10 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   home-manager.users.${config.vars.username} = {
-    home.packages = [
-      inputs.nil.packages.${pkgs.system}.default
-    ];
+    home.packages = [ inputs.nil.packages.${pkgs.system}.default ];
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium.override {
@@ -51,7 +50,8 @@
         "workbench.sideBar.location" = "right";
         "workbench.startupEditor" = "none";
       };
-      extensions = with pkgs.vscode-extensions;
+      extensions =
+        with pkgs.vscode-extensions;
         [
           # Theme & flair
           catppuccin.catppuccin-vsc

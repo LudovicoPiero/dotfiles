@@ -4,9 +4,10 @@
   lib,
   inputs,
   ...
-}: let
-  browser = ["firefox.desktop"];
-  mailspring = ["Mailspring.desktop"];
+}:
+let
+  browser = [ "firefox.desktop" ];
+  mailspring = [ "Mailspring.desktop" ];
 
   # XDG MIME types
   associations = {
@@ -18,27 +19,28 @@
     "application/xhtml+xml" = browser;
     "text/html" = browser;
     "x-scheme-handler/about" = browser;
-    "x-scheme-handler/chrome" = ["chromium-browser.desktop"];
+    "x-scheme-handler/chrome" = [ "chromium-browser.desktop" ];
     "x-scheme-handler/ftp" = browser;
     "x-scheme-handler/http" = browser;
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
     "x-scheme-handler/mailspring" = mailspring;
-    "inode/directory" = ["thunar.desktop"];
+    "inode/directory" = [ "thunar.desktop" ];
 
-    "audio/*" = ["mpv.desktop"];
-    "video/*" = ["mpv.dekstop"];
-    "image/*" = ["imv.desktop"];
+    "audio/*" = [ "mpv.desktop" ];
+    "video/*" = [ "mpv.dekstop" ];
+    "image/*" = [ "imv.desktop" ];
     "application/json" = browser;
-    "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
-    "x-scheme-handler/discord" = ["WebCord.desktop"];
-    "x-scheme-handler/spotify" = ["spotify.desktop"];
-    "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
+    "application/pdf" = [ "org.pwmt.zathura.desktop.desktop" ];
+    "x-scheme-handler/discord" = [ "WebCord.desktop" ];
+    "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+    "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
     "x-scheme-handler/mailto" = mailspring;
     "message/rfc822" = mailspring;
     "x-scheme-handler/mid" = mailspring;
   };
-in {
+in
+{
   xdg = {
     portal = {
       # wlr disabled because i'm using xdg-desktop-portal-hyprland

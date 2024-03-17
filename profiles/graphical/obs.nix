@@ -1,10 +1,7 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   home-manager.users.${config.vars.username}.programs.obs-studio = {
     enable = true;
-    plugins = [pkgs.obs-studio-plugins.wlrobs];
+    plugins = [ pkgs.obs-studio-plugins.wlrobs ];
   };
 }

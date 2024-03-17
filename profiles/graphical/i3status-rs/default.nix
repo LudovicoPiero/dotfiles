@@ -1,12 +1,10 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config, lib, ... }:
+let
   inherit (config.vars.colorScheme) colors;
   cfg = config.home-manager.users.${config.vars.username};
   sway = cfg.wayland.windowManager.sway.enable;
-in {
+in
+{
   home-manager.users.${config.vars.username} = {
     programs.i3status-rust = {
       enable = lib.mkIf sway true;

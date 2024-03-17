@@ -1,7 +1,6 @@
-{pkgs, ...}: {
-  imports = [
-    ./common.nix
-  ];
+{ pkgs, ... }:
+{
+  imports = [ ./common.nix ];
 
   security = {
     # polkit.enable = true;
@@ -10,7 +9,7 @@
       enable = true;
       extraRules = [
         {
-          users = ["ludovico"];
+          users = [ "ludovico" ];
           keepEnv = true;
           persist = true;
         }
@@ -20,7 +19,7 @@
 
   environment = {
     # completion for system packages (e.g. systemd).
-    pathsToLink = ["/share/fish"];
+    pathsToLink = [ "/share/fish" ];
     # Selection of sysadmin tools that can come in handy
     systemPackages = with pkgs; [
       dosfstools
@@ -44,8 +43,11 @@
       sandbox = true;
 
       # Give root user and wheel group special Nix privileges.
-      trusted-users = ["root" "@wheel"];
-      allowed-users = ["@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+      allowed-users = [ "@wheel" ];
     };
 
     # Improve nix store disk usage

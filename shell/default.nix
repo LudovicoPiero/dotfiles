@@ -1,6 +1,5 @@
-{inputs, ...}: {
-  modules = with inputs; [];
-  exportedModules = [
-    ./devos.nix
-  ];
+{ inputs, ... }:
+{
+  modules = with inputs; [ ];
+  exportedModules = [ ./devos.nix ];
 }

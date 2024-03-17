@@ -4,7 +4,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   vars = rec {
     email = "ludovicopiero@pm.me";
     username = "ludovico";

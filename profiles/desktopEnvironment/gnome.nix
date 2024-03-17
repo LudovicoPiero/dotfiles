@@ -1,8 +1,5 @@
+{ pkgs, lib, ... }:
 {
-  pkgs,
-  lib,
-  ...
-}: {
   services.xserver.desktopManager.gnome.enable = true;
   # Systray
   environment.systemPackages = with pkgs; [
@@ -10,8 +7,8 @@
     gnomeExtensions.appindicator
     xclip
   ];
-  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-  services.dbus.packages = with pkgs; [gnome2.GConf];
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.dbus.packages = with pkgs; [ gnome2.GConf ];
 
   services.power-profiles-daemon.enable = lib.mkForce false;
   hardware.pulseaudio.enable = lib.mkForce false;

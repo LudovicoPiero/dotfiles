@@ -9,7 +9,8 @@
   withSteamRun ? true,
   pname ? "TLauncher",
   source ? null,
-} @ args: let
+}@args:
+let
   version = "2.86";
 
   src = fetchurl rec {
@@ -24,27 +25,28 @@
     inherit icon;
     comment = "Minecraft Launcher";
     desktopName = "TLauncher";
-    categories = ["Game"];
+    categories = [ "Game" ];
   };
 
   icon = ./TLauncher.svg;
 
   script = writeShellScriptBin pname ''
     ${
-      if withSteamRun
-      then steam-run + "/bin/steam-run"
-      else ""
+      if withSteamRun then steam-run + "/bin/steam-run" else ""
     } ${jdk}/bin/java -jar ${args.source or src}
   '';
 in
-  symlinkJoin {
-    name = "${pname}-${version}";
-    paths = [desktopItems script];
+symlinkJoin {
+  name = "${pname}-${version}";
+  paths = [
+    desktopItems
+    script
+  ];
 
-    meta = {
-      description = "Minecraft Launcher";
-      homepage = "https://tlaun.ch";
-      maintainers = [lib.maintainers.fufexan];
-      platforms = lib.platforms.linux;
-    };
-  }
+  meta = {
+    description = "Minecraft Launcher";
+    homepage = "https://tlaun.ch";
+    maintainers = [ lib.maintainers.fufexan ];
+    platforms = lib.platforms.linux;
+  };
+}

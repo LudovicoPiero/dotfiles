@@ -1,13 +1,12 @@
-{
-  config,
-  pkgs,
-}: let
+{ config, pkgs }:
+let
   cfg = config.home-manager.users."${config.vars.username}".wayland.windowManager.sway.config;
   mod = cfg.modifier;
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-in rec {
+in
+rec {
   # Kill focused window
   "${mod}+w" = "kill";
 

@@ -1,12 +1,10 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{ pkgs, config, ... }:
+let
   inherit (config.vars.colorScheme) colors;
-in {
+in
+{
   home-manager.users."${config.vars.username}" = {
-    home.packages = [pkgs.libnotify];
+    home.packages = [ pkgs.libnotify ];
     services.dunst = {
       enable = true;
       iconTheme = {

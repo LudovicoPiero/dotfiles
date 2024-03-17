@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config.vars.colorScheme) colors;
-in {
+in
+{
   home-manager.users.${config.vars.username} = {
     programs.kitty = {
       enable = true;

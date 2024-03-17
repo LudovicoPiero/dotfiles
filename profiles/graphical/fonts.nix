@@ -1,8 +1,5 @@
+{ inputs, pkgs, ... }:
 {
-  inputs,
-  pkgs,
-  ...
-}: {
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
@@ -13,7 +10,7 @@
       font-awesome
       sarasa-gothic
       noto-fonts-emoji
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
 
     # use fonts specified by user rather than default ones
@@ -42,7 +39,7 @@
           "Sarasa Mono K"
         ];
 
-        emoji = ["Noto Color Emoji"];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };

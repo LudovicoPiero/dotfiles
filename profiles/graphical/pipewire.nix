@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   security.rtkit.enable = true;
   services.pipewire = {
     enable = lib.mkForce true;

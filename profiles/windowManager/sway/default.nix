@@ -3,9 +3,11 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (config.vars.colorScheme) colors;
-in {
+in
+{
   programs.sway.enable = true; # Enable nixos modules
 
   home-manager.users.${config.vars.username} = {
@@ -28,12 +30,14 @@ in {
       enable = true;
       # package = pkgs.swayfx; # Grabbed from overlays/overrides.nix
       config = {
-        colors = import ./colors.nix {inherit colors;};
-        keybindings = import ./keybindings.nix {inherit config pkgs;};
-        bars = import ./bars.nix {inherit colors;};
+        colors = import ./colors.nix { inherit colors; };
+        keybindings = import ./keybindings.nix { inherit config pkgs; };
+        bars = import ./bars.nix { inherit colors; };
         window = import ./windows.nix;
         output = {
-          "*" = {bg = "#2e2b2b solid_color";};
+          "*" = {
+            bg = "#2e2b2b solid_color";
+          };
           # "*" = {bg = "${./Wallpaper/wallpaper.jpg} fill";};
         };
         input = {
@@ -52,16 +56,16 @@ in {
           border = 2;
           titlebar = true;
           criteria = [
-            {window_role = "pop-up";}
-            {window_role = "bubble";}
-            {window_role = "dialog";}
-            {window_type = "dialog";}
-            {app_id = "lutris";}
-            {app_id = "thunar";}
-            {app_id = "pavucontrol";}
-            {class = ".*.exe";} # Wine apps
-            {class = "steam_app.*";} # Steam games
-            {class = "^Steam$";} # Steam itself
+            { window_role = "pop-up"; }
+            { window_role = "bubble"; }
+            { window_role = "dialog"; }
+            { window_type = "dialog"; }
+            { app_id = "lutris"; }
+            { app_id = "thunar"; }
+            { app_id = "pavucontrol"; }
+            { class = ".*.exe"; } # Wine apps
+            { class = "steam_app.*"; } # Steam games
+            { class = "^Steam$"; } # Steam itself
           ];
         };
         gaps = {
@@ -69,14 +73,18 @@ in {
           outer = 3;
         };
         fonts = {
-          names = ["Iosevka q"];
+          names = [ "Iosevka q" ];
           size = 10.0;
         };
         startup = [
-          {command = "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
-          {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";}
-          {command = "systemctl --user stop xdg-desktop-portal-wlr";}
-          {command = "dunst";}
+          {
+            command = "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";
+          }
+          {
+            command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";
+          }
+          { command = "systemctl --user stop xdg-desktop-portal-wlr"; }
+          { command = "dunst"; }
           {
             command = "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";
             always = true;

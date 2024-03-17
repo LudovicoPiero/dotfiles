@@ -1,8 +1,14 @@
-{colors}: [
+{ colors }:
+[
   {
     statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
     fonts = {
-      names = ["Iosevka q" "Symbols Nerd Font" "Font Awesome 6 Free" "Font Awesome 6 Brands"];
+      names = [
+        "Iosevka q"
+        "Symbols Nerd Font"
+        "Font Awesome 6 Free"
+        "Font Awesome 6 Brands"
+      ];
       size = 9.0;
     };
     position = "bottom";

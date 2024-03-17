@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   programs.steam.enable = true;
   programs.gamemode = {
     enable = true;
@@ -15,7 +16,8 @@
     };
   };
   home-manager.users.${config.vars.username} = {
-    home.packages = with inputs.nix-gaming.packages.${pkgs.system};
+    home.packages =
+      with inputs.nix-gaming.packages.${pkgs.system};
       [
         # wine-tkg
         # osu-lazer-bin

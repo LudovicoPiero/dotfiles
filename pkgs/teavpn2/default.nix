@@ -16,9 +16,9 @@ stdenv.mkDerivation rec {
     hash = "sha256-jEDiCioaWr5Lh0mR5R3rKFUo5HIU9S9FwHw5UAXBuFk=";
   };
 
-  nativeBuildInputs = [gnumake];
+  nativeBuildInputs = [ gnumake ];
 
-  patches = [./nix.patch];
+  patches = [ ./nix.patch ];
 
   buildPhase = ''
     make -j$(nproc);
@@ -33,7 +33,7 @@ stdenv.mkDerivation rec {
     description = "An open source VPN Software";
     homepage = "https://github.com/TeaInside/teavpn2";
     license = licenses.gpl2Plus;
-    maintainers = with maintainers; [ludovicopiero];
+    maintainers = with maintainers; [ ludovicopiero ];
     platforms = platforms.linux;
   };
 }

@@ -1,8 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   home-manager.users.${config.vars.username} = {
     programs.neovim = {
       enable = true;
@@ -77,26 +74,27 @@
       ];
 
       # https://github.com/fufexan/dotfiles/blob/main/home/editors/neovim/default.nix#L41
-      extraConfig = let
-        luaRequire = module:
-          builtins.readFile (builtins.toString
-            ./lua
-            + "/${module}.lua");
-        luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-          "cmp"
-          "colorizer"
-          "keybind"
-          "settings"
-          "theme"
-          "ui"
-          "which-key"
-        ]);
-      in ''
-        set guicursor=n-v-c-i:block
-        lua << EOF
-        ${luaConfig}
-        EOF
-      '';
+      extraConfig =
+        let
+          luaRequire = module: builtins.readFile (builtins.toString ./lua + "/${module}.lua");
+          luaConfig = builtins.concatStringsSep "\n" (
+            map luaRequire [
+              "cmp"
+              "colorizer"
+              "keybind"
+              "settings"
+              "theme"
+              "ui"
+              "which-key"
+            ]
+          );
+        in
+        ''
+          set guicursor=n-v-c-i:block
+          lua << EOF
+          ${luaConfig}
+          EOF
+        '';
     };
   };
 }

@@ -1,9 +1,6 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
-  age.identityPaths = ["${config.vars.home}/.ssh/id_ed25519"];
+  age.identityPaths = [ "${config.vars.home}/.ssh/id_ed25519" ];
   hardware.opengl.enable = true;
 
   environment.systemPackages = with pkgs; [

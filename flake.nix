@@ -12,6 +12,7 @@
     nixos.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-23.11";
     master.url = "github:nixos/nixpkgs";
+    nixpkgs.follows = "nixos";
 
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
@@ -116,20 +117,20 @@
     };
   };
 
-  outputs = {
-    self,
-    digga,
-    nixos,
-    ragenix,
-    aagl,
-    home,
-    hyprland,
-    impermanence,
-    nur,
-    ...
-  } @ inputs:
-    digga.lib.mkFlake
+  outputs =
     {
+      self,
+      digga,
+      nixos,
+      ragenix,
+      aagl,
+      home,
+      hyprland,
+      impermanence,
+      nur,
+      ...
+    }@inputs:
+    digga.lib.mkFlake {
       inherit self inputs;
 
       channelsConfig = {
@@ -139,22 +140,20 @@
 
       channels = {
         nixos = {
-          imports = [(digga.lib.importOverlays ./overlays)];
-          overlays = [];
+          imports = [ (digga.lib.importOverlays ./overlays) ];
+          overlays = [ ];
         };
         master = {
-          imports = [(digga.lib.importOverlays ./overlays)];
+          imports = [ (digga.lib.importOverlays ./overlays) ];
         };
       };
 
-      lib = import ./lib {lib = digga.lib // nixos.lib;};
+      lib = import ./lib { lib = digga.lib // nixos.lib; };
 
       sharedOverlays = [
         (_final: prev: {
           __dontExport = true;
-          lib = prev.lib.extend (_lfinal: _lprev: {
-            our = self.lib;
-          });
+          lib = prev.lib.extend (_lfinal: _lprev: { our = self.lib; });
         })
         (import ./pkgs)
       ];
@@ -163,9 +162,9 @@
         hostDefaults = {
           system = "x86_64-linux";
           channelName = "nixos";
-          imports = [(digga.lib.importExportableModules ./modules)];
+          imports = [ (digga.lib.importExportableModules ./modules) ];
           modules = [
-            {lib.our = self.lib;}
+            { lib.our = self.lib; }
             ragenix.nixosModules.default
             digga.nixosModules.bootstrapIso
             digga.nixosModules.nixConfig
@@ -174,7 +173,7 @@
           ];
         };
 
-        imports = [(digga.lib.importHosts ./hosts)];
+        imports = [ (digga.lib.importHosts ./hosts) ];
         hosts = {
           sforza = {
             channelName = "nixos";
@@ -186,25 +185,33 @@
             ];
           };
           duchy = {
-            modules = [
-              inputs.nixos-wsl.nixosModules.wsl
-            ];
+            modules = [ inputs.nixos-wsl.nixosModules.wsl ];
           };
         };
         importables = rec {
           profiles = digga.lib.rakeLeaves ./profiles;
-          suites = with builtins; let
-            explodeAttrs = set: map (a: getAttr a set) (attrNames set);
-          in
-            with profiles; rec {
-              base = (explodeAttrs core) ++ (explodeAttrs editor) ++ (explodeAttrs virtualisation) ++ [security vars];
+          suites =
+            with builtins;
+            let
+              explodeAttrs = set: map (a: getAttr a set) (attrNames set);
+            in
+            with profiles;
+            rec {
+              base =
+                (explodeAttrs core)
+                ++ (explodeAttrs editor)
+                ++ (explodeAttrs virtualisation)
+                ++ [
+                  security
+                  vars
+                ];
               desktop = base ++ (explodeAttrs graphical) ++ (explodeAttrs browser);
 
-              hyprland = [windowManager.hyprland];
-              sway = [windowManager.sway];
-              cinnamon = [desktopEnvironment.cinnamon];
-              kde = [desktopEnvironment.kde];
-              gnome = [desktopEnvironment.gnome];
+              hyprland = [ windowManager.hyprland ];
+              sway = [ windowManager.sway ];
+              cinnamon = [ desktopEnvironment.cinnamon ];
+              kde = [ desktopEnvironment.kde ];
+              gnome = [ desktopEnvironment.gnome ];
             };
         };
       };

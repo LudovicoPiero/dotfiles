@@ -3,10 +3,12 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   gitUrl = "https://github.com";
   doomUrl = "${gitUrl}/doomemacs/doomemacs";
-in {
+in
+{
   home-manager.users."${config.vars.username}" = {
     home.file.".emacs.d/snippets".source = ./snippets;
   };
@@ -35,12 +37,11 @@ in {
     };
   };
 
-  fonts.fonts = with pkgs; [emacs-all-the-icons-fonts];
+  fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];
 
   environment.systemPackages = with pkgs; [
     # 28.2 + native-comp
-    ((emacsPackagesFor emacsNativeComp).emacsWithPackages
-      (epkgs: [epkgs.vterm]))
+    ((emacsPackagesFor emacsNativeComp).emacsWithPackages (epkgs: [ epkgs.vterm ]))
     inputs.nil.packages.${pkgs.system}.default
     # nodejs-16_x # for copilot
     lua-language-server

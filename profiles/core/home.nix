@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   browser = "firefox";
-in {
+in
+{
   home-manager.users."${config.vars.username}" = {
     home = {
       username = "${config.vars.username}";

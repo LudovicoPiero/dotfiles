@@ -1,8 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   font = {
     name = "SF Pro Rounded";
     size = 11;
@@ -23,9 +20,10 @@
     name = "WhiteSur";
     package = pkgs.whitesur-icon-theme;
   };
-in {
+in
+{
   home-manager.users."${config.vars.username}" = {
-    home.packages = with pkgs; [apple-cursor];
+    home.packages = with pkgs; [ apple-cursor ];
     gtk = {
       enable = true;
 
@@ -45,20 +43,22 @@ in {
       '';
 
       gtk3 = {
-        bookmarks = let
-          inherit (config.vars) username;
-        in [
-          "file:///home/${username}/Code"
-          "file:///home/${username}/Documents"
-          "file:///home/${username}/Downloads"
-          "file:///home/${username}/Games"
-          "file:///home/${username}/Music"
-          "file:///home/${username}/Pictures"
-          "file:///home/${username}/Videos"
-          "file:///home/${username}/WinC"
-          "file:///home/${username}/WinD"
-          "file:///home/${username}/WinE"
-        ];
+        bookmarks =
+          let
+            inherit (config.vars) username;
+          in
+          [
+            "file:///home/${username}/Code"
+            "file:///home/${username}/Documents"
+            "file:///home/${username}/Downloads"
+            "file:///home/${username}/Games"
+            "file:///home/${username}/Music"
+            "file:///home/${username}/Pictures"
+            "file:///home/${username}/Videos"
+            "file:///home/${username}/WinC"
+            "file:///home/${username}/WinD"
+            "file:///home/${username}/WinE"
+          ];
 
         extraConfig = {
           gtk-application-prefer-dark-theme = 1;

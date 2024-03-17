@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   home-manager.users."${config.vars.username}".programs.git = {
     enable = true;
 
