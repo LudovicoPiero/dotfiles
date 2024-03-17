@@ -1,0 +1,52 @@
+pull_request_rules:
+  - name: automatic rebase for PR marked as “keep-up-to-date“
+    conditions:
+      - -draft # filter-out draft PRs
+      - label="keep-up-to-date"
+      - "label!=CI:fail" # exclude PRs with "CI::fail" label
+    actions:
+      update:
+
+  - name: Rebase pull requests once when it's labeled with `rebase`
+    conditions:
+      - label=rebase
+    actions:
+      rebase: {}
+      label:
+        remove:
+          - rebase
+
+  - name: Automatic merge when CI passes
+    conditions:
+      - check-success=nixosConfig sforza
+      - check-success=homeConfig airi@sforza
+    actions:
+      merge:
+        method: rebase
+
+  - name: Warn on conflicts
+    conditions:
+      - conflict
+    actions:
+      comment:
+        message: "@{{author}} this pull request is now in conflict 😩"
+      label:
+        toggle:
+          - conflict
+
+  - name: Toggle labels based on CI state
+    conditions:
+      - check-failure=nixosConfig sforza
+      - check-failure=homeConfig airi@sforza
+    actions:
+      label:
+        toggle:
+          - "CI:fail"
+
+  - name: Add "WIP" label when the title contains "WIP"
+    conditions:
+      - title~=WIP
+    actions:
+      label:
+        toggle:
+          - WIP
