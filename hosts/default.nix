@@ -6,18 +6,18 @@
       specialArgs = {
         inherit (config) packages;
         inherit inputs inputs';
+        userName = "airi";
       };
       modules = [
         # This module could be moved into a separate file; otherwise we might
         # as well have used ctx.config.packages directly.
-        (
-          { ... }:
-          {
-            # TODO: Setup home-manager
-            imports = [ ./sforza ];
-            system.stateVersion = "23.11";
-          }
-        )
+        inputs.home-manager.nixosModules.home-manager
+        inputs.self.nixosModules.sforza
+        {
+          imports = [ ./sforza ];
+          nixpkgs.config.allowUnfree = true;
+          system.stateVersion = "23.11";
+        }
       ];
     }
   );

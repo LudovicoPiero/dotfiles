@@ -8,31 +8,29 @@
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
-    ./users.nix
 
     inputs.chaotic.nixosModules.default
   ];
 
   # My own modules
-  # FIXME:
-  # mine = {
-  #   games = {
-  #     gamemode.enable = false;
-  #     lutris.enable = false;
-  #     steam.enable = false;
-  #   };
-  #   gnome = {
-  #     enable = true;
-  #     keyring.enable = true;
-  #   };
-  #   dnscrypt.enable = false;
-  #   stubby.enable = false;
-  #   fonts.enable = true;
-  #   greetd.enable = true;
-  #   security.enable = true;
-  #   thunar.enable = true;
-  #   qemu.enable = true;
-  # };
+  mine = {
+    games = {
+      gamemode.enable = false;
+      lutris.enable = false;
+      steam.enable = false;
+    };
+    gnome = {
+      enable = true;
+      keyring.enable = true;
+    };
+    dnscrypt.enable = false;
+    stubby.enable = false;
+    fonts.enable = true;
+    greetd.enable = false; # FIXME: i3
+    security.enable = true;
+    thunar.enable = true;
+    qemu.enable = false;
+  };
 
   # Chaotic stuff
   environment = {
@@ -136,34 +134,31 @@
         CPU_MAX_PERF_ON_BAT = 50;
       };
     };
-    power-profiles-daemon.enable = lib.mkForce false; # FIXME: gnome
     xserver = {
       enable = true;
       xkb.layout = "us"; # Configure keymap
       libinput.enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true; # FIXME: gnome
     };
   };
 
-  environment.gnome.excludePackages =
-    (with pkgs; [
-      gnome-photos
-      gnome-tour
-      gedit # text editor
-    ])
-    ++ (with pkgs.gnome; [
-      cheese # webcam tool
-      gnome-music
-      epiphany # web browser
-      geary # email reader
-      evince # document viewer
-      gnome-characters
-      totem # video player
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
-    ]);
-  programs.dconf.enable = true; # FIXME: gnome
+  # FIXME: i3
+  environment.pathsToLink = [ "/libexec" ];
+  services.xserver = {
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    displayManager = {
+      defaultSession = "none+i3";
+    };
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu # application launcher most people use
+        i3status # gives you the default i3 status bar
+      ];
+    };
+  };
+  programs.dconf.enable = true;
 }
