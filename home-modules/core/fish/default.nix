@@ -4,15 +4,13 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   cfg = config.mine.fish;
   _ = lib.getExe;
   inherit (lib) mkIf mkOption types;
   inherit (config.colorScheme) palette;
-in
-{
-  imports = [ inputs.nix-index-database.hmModules.nix-index ];
+in {
+  imports = [inputs.nix-index-database.hmModules.nix-index];
 
   options.mine.fish = {
     enable = mkOption {
@@ -38,8 +36,8 @@ in
 
     programs.fish = with pkgs; {
       enable = true;
-      functions = import ./fish-functions.nix { inherit lib pkgs; };
-      shellAliases = import ./fish-aliases.nix { inherit config lib pkgs; };
+      functions = import ./fish-functions.nix {inherit lib pkgs;};
+      shellAliases = import ./fish-aliases.nix {inherit config lib pkgs;};
 
       interactiveShellInit = ''
         set -g async_prompt_functions _pure_prompt_git

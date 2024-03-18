@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.mine.direnv;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.direnv = {
     enable = mkOption {
       type = types.bool;

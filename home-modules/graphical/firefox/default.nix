@@ -4,12 +4,10 @@
   config,
   inputs,
   ...
-}:
-let
+}: let
   cfg = config.mine.firefox;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.mine.firefox.enable = mkEnableOption "firefox";
 
   config = mkIf cfg.enable {
@@ -31,7 +29,7 @@ in
               ublock-origin
             ];
             bookmarks = import ./bookmarks.nix;
-            search = import ./search.nix { inherit pkgs; };
+            search = import ./search.nix {inherit pkgs;};
             settings = import ./settings.nix;
           }
           // (
@@ -43,8 +41,7 @@ in
                 rev = "120.0";
                 hash = "sha256-ciNP1TLpxs/W08UhJg38tjPxtzhnRcjMyh+BwUsN2wA=";
               };
-            in
-            {
+            in {
               userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
               userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
               extraConfig = ''

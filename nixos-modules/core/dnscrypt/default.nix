@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.mine.dnscrypt;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.dnscrypt = {
     enable = mkOption {
       type = types.bool;

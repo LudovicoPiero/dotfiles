@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.mine.xdg-portal;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.xdg-portal = {
     enable = mkOption {
       type = types.bool;
@@ -27,8 +25,8 @@ in
         config = {
           common = {
             # uses the first portal implementation found in lexicographical order
-            default = [ "*" ];
-            "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+            default = ["*"];
+            "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
           };
         };
 

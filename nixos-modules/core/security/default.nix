@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.mine.security;
   inherit (lib) mkIf mkOption types;
 
@@ -12,8 +11,7 @@ let
     url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
     hash = "sha256-AytQnmLXIi76dETWg6FFtStLMUv29xomiYYvKnk9v6g=";
   };
-in
-{
+in {
   options.mine.security = {
     enable = mkOption {
       type = types.bool;
@@ -93,7 +91,7 @@ in
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
     };
-    boot.kernelModules = [ "tcp_bbr" ];
+    boot.kernelModules = ["tcp_bbr"];
 
     boot.blacklistedKernelModules = [
       # Novideo

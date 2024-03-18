@@ -4,8 +4,7 @@
   lib,
   username,
   ...
-}:
-{
+}: {
   programs.fish = {
     enable = true;
     shellInit = ''

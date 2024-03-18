@@ -3,8 +3,7 @@
   pkgs,
   self,
   ...
-}:
-let
+}: let
   mkService = lib.recursiveUpdate {
     Unit.PartOf = [
       "hyprland-session.target"
@@ -19,8 +18,7 @@ let
       "sway-session.target"
     ];
   };
-in
-{
+in {
   # User Services
   systemd.user.services = {
     swaybg = mkService {

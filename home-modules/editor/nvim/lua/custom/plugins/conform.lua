@@ -17,7 +17,7 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
-      nix = { "nixfmt" },
+      nix = { "alejandra" },
       lua = { "stylua" },
       python = { "isort", "black" },
       javascript = { "prettier" },

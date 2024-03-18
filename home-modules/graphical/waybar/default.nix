@@ -4,15 +4,13 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   cfg = config.mine.waybar;
   inherit (lib) mkIf mkOption types;
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     date "+%a %d %b %Y"
   '';
-in
-{
+in {
   options.mine.waybar = {
     enable = mkOption {
       type = types.bool;
@@ -24,7 +22,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ alsa-utils ];
+    home.packages = with pkgs; [alsa-utils];
 
     programs.waybar = {
       enable = true;
@@ -131,11 +129,11 @@ in
             "on-scroll-up" = "hyprctl dispatch workspace e-1";
             "on-scroll-down" = "hyprctl dispatch workspace e+1";
             "persistent-workspaces" = {
-              "1" = [ ];
-              "2" = [ ];
-              "3" = [ ];
-              "4" = [ ];
-              "5" = [ ];
+              "1" = [];
+              "2" = [];
+              "3" = [];
+              "4" = [];
+              "5" = [];
             };
             "format-icons" = {
               "1" = "1";
