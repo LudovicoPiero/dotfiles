@@ -6,8 +6,7 @@
   config,
   username,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
 
@@ -31,7 +30,7 @@
   programs.command-not-found.enable = false; # Not working without channel
 
   environment = {
-    pathsToLink = [ "/share/fish" ];
+    pathsToLink = ["/share/fish"];
     systemPackages = with pkgs; [
       teavpn2
       dosfstools
@@ -105,7 +104,7 @@
       enable = false;
       extraRules = [
         {
-          users = [ "airi" ];
+          users = ["airi"];
           keepEnv = true;
           persist = true;
         }
@@ -120,7 +119,7 @@
   services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
-    dbus.packages = [ pkgs.gcr ];
+    dbus.packages = [pkgs.gcr];
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
@@ -150,7 +149,7 @@
   };
 
   nix = {
-    nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
+    nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
 
     package = inputs.nix-super.packages.${pkgs.system}.nix;
 
@@ -183,7 +182,7 @@
         "root"
         "@wheel"
       ];
-      allowed-users = [ "@wheel" ];
+      allowed-users = ["@wheel"];
 
       substituters = [
         # Lower priority value = higher priority

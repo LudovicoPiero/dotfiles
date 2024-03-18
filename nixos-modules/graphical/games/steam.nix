@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.mine.games.steam;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.games.steam = {
     enable = mkOption {
       type = types.bool;
@@ -26,8 +24,8 @@ in
     };
 
     /*
-      Enable udev rules for Steam hardware such as the Steam Controller,
-      other supported controllers and the HTC Vive
+    Enable udev rules for Steam hardware such as the Steam Controller,
+    other supported controllers and the HTC Vive
     */
     hardware.steam-hardware.enable = true;
   };

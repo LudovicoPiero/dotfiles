@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.mine.chromium;
   inherit (lib) mkEnableOption mkIf;
 
@@ -43,8 +42,7 @@ let
     "--ozone-platform=wayland"
     "--enable-features=UseOzonePlatform"
   ];
-in
-{
+in {
   options.mine.chromium.enable = mkEnableOption "chromium";
 
   config = mkIf cfg.enable {
@@ -54,7 +52,7 @@ in
 
       commandLineArgs =
         ungoogledFlags
-        ++ [ "--enable-features=${lib.concatStringsSep "," experimentalFeatures}" ]
+        ++ ["--enable-features=${lib.concatStringsSep "," experimentalFeatures}"]
         ++ aestheticsFlags
         ++ waylandFlags
         ++ performanceFlags;

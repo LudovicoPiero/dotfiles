@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.mine.pass;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.mine.pass.enable = mkEnableOption "password-store";
 
   config = mkIf cfg.enable {

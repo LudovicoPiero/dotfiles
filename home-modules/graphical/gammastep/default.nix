@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.mine.gammastep;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.gammastep = {
     enable = mkOption {
       type = types.bool;

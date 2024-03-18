@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.mine.qemu;
   inherit (lib) mkIf mkOption types;
-in
-{
+in {
   options.mine.qemu = {
     enable = mkOption {
       type = types.bool;
