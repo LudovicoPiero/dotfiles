@@ -157,8 +157,9 @@
       inputs.base16-schemes.follows = "base16-schemes";
     };
 
-    nur = {
-      url = "github:nix-community/nur";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     impermanence = {

@@ -23,9 +23,8 @@ in
             id = 0;
             isDefault = true;
             name = "Ludovico";
-            extensions = with config.nur.repos.rycee.firefox-addons; [
+            extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
               bitwarden
-              faststream
               refined-github
               sponsorblock
               to-deepl

@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    inputs.nur.hmModules.nur
     inputs.nix-colors.homeManagerModules.default
 
     ./core/git
