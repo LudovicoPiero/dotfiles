@@ -35,4 +35,4 @@ Thanks to the Nix and NixOS community, including [fufexan](https://github.com/fu
 
 ## **Resources**
 
-Explore [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/) to learn more about Nix and NixOS.
+Explore [nixos-manual](https://nixos.org/manual/nixos/stable/) & [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/) to learn more about Nix and NixOS.
