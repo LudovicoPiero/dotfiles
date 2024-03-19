@@ -18,7 +18,7 @@
 
   mine = {
     # Editor
-    emacs.enable = true;
+    emacs.enable = false;
     nvim.enable = true;
 
     # WM
