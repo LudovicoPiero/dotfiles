@@ -12,8 +12,9 @@
   };
 
   home.packages = with pkgs; [
-    nil
     alejandra
+    fluffychat
+    nil
   ];
 
   mine = {
