@@ -1,10 +1,10 @@
 {
-  inputs,
   pkgs,
   username,
   osConfig,
   ...
-}: {
+}:
+{
   home = {
     inherit username;
     homeDirectory = osConfig.users.users.airi.home;
