@@ -1,13 +1,11 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config, lib, ... }:
+let
   cfg = config.mine.foot;
   inherit (config) colorScheme;
   inherit (colorScheme) palette;
   inherit (lib) mkOption mkIf types;
-in {
+in
+{
   options.mine.foot = {
     enable = mkOption {
       type = types.bool;

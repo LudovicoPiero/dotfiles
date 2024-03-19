@@ -3,10 +3,12 @@
   lib,
   username,
   ...
-}: let
+}:
+let
   cfg = config.mine.ssh;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.ssh = {
     enable = mkOption {
       type = types.bool;

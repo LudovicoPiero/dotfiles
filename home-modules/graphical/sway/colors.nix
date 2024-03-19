@@ -1,4 +1,5 @@
-{palette, ...}: {
+{ palette, ... }:
+{
   background = "#${palette.base00}";
   focused = {
     background = "#${palette.base0E}";

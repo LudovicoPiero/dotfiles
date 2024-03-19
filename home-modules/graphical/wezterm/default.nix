@@ -4,12 +4,14 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.mine.wezterm;
   inherit (config) colorScheme;
   inherit (colorScheme) palette;
   inherit (lib) mkOption mkIf types;
-in {
+in
+{
   options.mine.wezterm = {
     enable = mkOption {
       type = types.bool;

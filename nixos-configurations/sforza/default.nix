@@ -3,7 +3,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
@@ -99,15 +100,15 @@
     wg-quick.interfaces = {
       wg0 = {
         autostart = true;
-        address = ["10.66.66.2/32"];
-        dns = ["45.76.145.144"];
+        address = [ "10.66.66.2/32" ];
+        dns = [ "45.76.145.144" ];
         privateKeyFile = "/persist/wireguard/privateKey";
 
         peers = [
           {
             publicKey = "hOxW74kF//JpljARxf4+lu+cbwgn8OtB+lXT2Tqoyhk=";
             presharedKeyFile = "/persist/wireguard/presharedKey";
-            allowedIPs = ["0.0.0.0/0"];
+            allowedIPs = [ "0.0.0.0/0" ];
             endpoint = "45.76.145.144:51820";
             persistentKeepalive = 25;
           }

@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config, lib, ... }:
+let
   cfg = config.mine.lazygit;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.lazygit = {
     enable = mkOption {
       type = types.bool;
@@ -38,17 +36,17 @@ in {
               "green"
               "bold"
             ];
-            inactiveBorderColor = ["white"];
+            inactiveBorderColor = [ "white" ];
             searchingActiveBorderColor = [
               "cyan"
               "bold"
             ];
-            optionsTextColor = ["blue"];
-            selectedLineBgColor = ["blue"];
-            cherryPickedCommitBgColor = ["cyan"];
-            cherryPickedCommitFgColor = ["blue"];
-            unstagedChangesColor = ["red"];
-            defaultFgColor = ["default"];
+            optionsTextColor = [ "blue" ];
+            selectedLineBgColor = [ "blue" ];
+            cherryPickedCommitBgColor = [ "cyan" ];
+            cherryPickedCommitFgColor = [ "blue" ];
+            unstagedChangesColor = [ "red" ];
+            defaultFgColor = [ "default" ];
           };
           commitLength = {
             show = true;

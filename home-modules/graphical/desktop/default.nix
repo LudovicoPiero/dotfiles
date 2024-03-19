@@ -5,7 +5,8 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   font = {
     name = "SF Pro Rounded";
     size = 11;
@@ -29,14 +30,13 @@
 
   # Borrowed from fuf's dotfiles
   apply-hm-env = pkgs.writeShellScript "apply-hm-env" ''
-    ${lib.optionalString (config.home.sessionPath != []) ''
+    ${lib.optionalString (config.home.sessionPath != [ ]) ''
       export PATH=${builtins.concatStringsSep ":" config.home.sessionPath}:$PATH
     ''}
     ${builtins.concatStringsSep "\n" (
       lib.mapAttrsToList (k: v: ''
         export ${k}=${toString v}
-      '')
-      config.home.sessionVariables
+      '') config.home.sessionVariables
     )}
     ${config.home.sessionVariablesExtra}
     exec "$@"
@@ -51,7 +51,8 @@
       --wait \
       bash -lc "exec ${apply-hm-env} $@"
   '';
-in {
+in
+{
   colorScheme = inputs.nix-colors.colorSchemes.oxocarbon-dark;
   home.packages = with pkgs; [
     run-as-service
@@ -77,19 +78,21 @@ in {
     '';
 
     gtk3 = {
-      bookmarks = let
-        inherit username;
-      in [
-        "file:///home/${username}/Code"
-        "file:///home/${username}/Media"
-        "file:///home/${username}/Documents"
-        "file:///home/${username}/Downloads"
-        "file:///home/${username}/Games"
-        "file:///home/${username}/Music"
-        "file:///home/${username}/Pictures"
-        "file:///home/${username}/Videos"
-        "file:///home/${username}/WinE"
-      ];
+      bookmarks =
+        let
+          inherit username;
+        in
+        [
+          "file:///home/${username}/Code"
+          "file:///home/${username}/Media"
+          "file:///home/${username}/Documents"
+          "file:///home/${username}/Downloads"
+          "file:///home/${username}/Games"
+          "file:///home/${username}/Music"
+          "file:///home/${username}/Pictures"
+          "file:///home/${username}/Videos"
+          "file:///home/${username}/WinE"
+        ];
 
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;

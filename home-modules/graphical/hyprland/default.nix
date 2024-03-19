@@ -4,10 +4,12 @@
   pkgs,
   inputs,
   ...
-} @ args: let
+}@args:
+let
   cfg = config.mine.hyprland;
   inherit (lib) mkIf mkOption types;
-in {
+in
+{
   options.mine.hyprland = {
     enable = mkOption {
       type = types.bool;
