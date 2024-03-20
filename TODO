@@ -1,2 +1,0 @@
-- Stop using ezconfigs, use pure flake.parts.
-- Mix NixOS options & Home-Manager options in 1 file, just like in the 'digga' branch. ( Use Home-Manager NixOS Modules )
