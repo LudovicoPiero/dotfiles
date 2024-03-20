@@ -6,11 +6,12 @@
       hive,
       ...
     }@inputs:
-    let
-      inherit (inputs.nixpkgs-unstable) lib;
-    in
     hive.growOn {
       inherit inputs;
+
+      nixpkgsConfig = {
+        allowUnfree = true;
+      };
 
       cellsFrom = ./cells;
       cellBlocks =

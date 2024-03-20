@@ -24,6 +24,7 @@ in
     wezterm
     element-desktop
     kitty
+    spotify
   ];
   hardware.pulseaudio.enable = lib.mkForce false;
   services.power-profiles-daemon.enable = lib.mkForce false; # Conflict with TLP
