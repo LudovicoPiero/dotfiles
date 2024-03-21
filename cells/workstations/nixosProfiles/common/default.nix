@@ -1,53 +1,22 @@
 {
-  pkgs,
   lib,
   config,
   inputs,
 }:
+let
+  inherit (inputs) nixpkgs;
+in
 {
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      . /persist/github/stuff
-    '';
-  };
-
   hardware.enableRedistributableFirmware = lib.mkDefault true;
-
-  /*
-    If set to false, the contents of the user and group files will simply be replaced on system activation.
-    This also holds for the user passwords; all changed passwords will be reset according to the
-    users.users configuration on activation.
-  */
-  users.mutableUsers = false;
-  users.users = {
-    root = {
-      initialHashedPassword = "$y$j9T$zO8KlDu.ytfp5fXpKCfhs.$zX9lJfycTysyfsDvBoS9TgGbdXL7UJy9yLtITUPSpm7";
-    };
-    airi = {
-      shell = pkgs.fish;
-      initialHashedPassword = "$y$j9T$JCK0DAtEZLYkdj3OPJNOk0$4U63jpiNEpgW/GsJ/yG51TjiczM/mEaR6kFkRqtDZN.";
-      isNormalUser = true;
-      uid = 1000;
-      extraGroups =
-        [
-          "seat"
-          "wheel"
-          "video"
-        ]
-        ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd"
-        ++ lib.optional config.virtualisation.docker.enable "docker"
-        ++ lib.optional config.networking.networkmanager.enable "networkmanager";
-    };
-  };
 
   time.timeZone = "Asia/Tokyo";
   programs.command-not-found.enable = false; # Not working without channel
 
   environment = {
     pathsToLink = [ "/share/fish" ];
-    systemPackages = with pkgs; [
+    systemPackages = with nixpkgs; [
       teavpn2
+      gnome.adwaita-icon-theme
       dosfstools
       gptfdisk
       iputils
@@ -61,7 +30,6 @@
       fd
       sbctl # For debugging and troubleshooting Secure boot.
 
-      pavucontrol
       git
       bottom
       jq
@@ -102,8 +70,6 @@
   };
 
   security = {
-    rtkit.enable = true;
-
     sudo = {
       enable = true;
       extraConfig = ''
@@ -123,18 +89,10 @@
   services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
-    dbus.packages = [ pkgs.gcr ];
+    dbus.packages = [ nixpkgs.gcr ];
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
-
-    pipewire = {
-      enable = lib.mkForce true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      wireplumber.enable = true;
-    };
 
     # Location for gammastep
     geoclue2 = {
@@ -149,7 +107,7 @@
   nix = {
     nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
 
-    package = inputs.nix-super.packages.${pkgs.system}.nix;
+    package = inputs.nix-super.packages.${nixpkgs.system}.nix;
 
     settings = {
       # Prevent impurities in builds
