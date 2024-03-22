@@ -33,7 +33,6 @@ in
       bottom
       jq
       moreutils
-      neovim
       nix-index
       nmap
       skim

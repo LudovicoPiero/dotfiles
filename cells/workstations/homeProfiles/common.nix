@@ -23,7 +23,6 @@
         qbittorrent
         xdg-utils
         yazi
-        neovim
         kitty
         element-desktop
         vscodium

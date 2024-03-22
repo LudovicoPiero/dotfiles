@@ -13,26 +13,34 @@ rec {
     fish
   ];
 
-  graphical = base ++ [
-    theme
-
-    # Windows Manager / Compositor
-    hyprland
-    fuzzel
-    kitty
-    waybar
-    wezterm
-
-    # Browser
+  commonGraphic = [
     firefox
-
-    # Etc
-    discord
     mako
-    spotify
-    gammastep
     xdg-portal
   ];
+
+  editor = [ nvim ];
+
+  graphical =
+    base
+    ++ commonGraphic
+    ++ editor
+    ++ [
+      theme
+
+      # Windows Manager / Compositor
+      hyprland
+      fuzzel
+      kitty
+      waybar
+      wezterm
+
+      # Etc
+      discord
+      mako
+      spotify
+      gammastep
+    ];
 
   airi = graphical;
 }
