@@ -942,11 +942,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1711035218,
-        "narHash": "sha256-+BnkuaWlus+MV4/rH6+A2zA1m4pU4kdYLVsQVaUrcrI=",
+        "lastModified": 1711147678,
+        "narHash": "sha256-vSmRBBeMP337VkI1gCeQJ8YkHv9Mu7UYnSOSopWQwPo=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "d4ad820b89df5fa8ee4056de53947ff51023a1c6",
+        "rev": "c27b7a239d623c45099b62067b35535300824253",
         "type": "github"
       },
       "original": {
