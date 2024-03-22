@@ -22,10 +22,11 @@
 
           # Profiles
           (functions "hardwareProfiles")
+          (functions "homeProfiles")
           (functions "nixosProfiles")
-          (functions "home")
 
           # Suites
+          (functions "homeSuites")
           (functions "nixosSuites")
 
           # Configurations
@@ -58,12 +59,31 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
     devshell.url = "github:numtide/devshell";
+    impermanence.url = "github:nix-community/impermanence";
+    lanzaboote.url = "github:nix-community/lanzaboote";
+    nix-super.url = "github:privatevoid-net/nix-super";
+    spicetify-nix.url = "github:gerg-l/spicetify-nix";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
-    lanzaboote.url = "github:nix-community/lanzaboote";
-    nix-super.url = "github:privatevoid-net/nix-super";
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    base16-schemes.url = "github:LudovicoPiero/base16-schemes";
+    base16-schemes.flake = false;
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+      inputs.base16-schemes.follows = "base16-schemes";
+    };
   };
 }

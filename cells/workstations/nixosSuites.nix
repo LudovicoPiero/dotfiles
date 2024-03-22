@@ -10,6 +10,7 @@ rec {
   ];
 
   graphical = [
+    greetd
     fonts
     keyring
     gamemode

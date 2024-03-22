@@ -8,7 +8,8 @@ let
   inherit (inputs) nixpkgs;
   inherit (cell)
     bee
-    home
+    homeProfiles
+    homeSuites
     hardwareProfiles
     nixosProfiles
     nixosSuites
@@ -32,41 +33,21 @@ in
     useGlobalPkgs = true;
     users = {
       root = {
-        home.stateVersion = "23.11";
+        imports = [ homeProfiles.common ];
       };
       airi = {
-        imports = [ home.common ];
-        home.stateVersion = "23.11";
+        imports =
+          let
+            profiles = with homeProfiles; [ ];
+            suites = with homeSuites; airi;
+          in
+          lib.concatLists [
+            profiles
+            suites
+          ];
       };
     };
   };
-
-  #TODO:
-  hardware.pulseaudio.enable = lib.mkForce false;
-  services.power-profiles-daemon.enable = lib.mkForce false; # Conflict with TLP
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages =
-    (with nixpkgs; [
-      gnome-photos
-      gnome-tour
-      gedit # text editor
-    ])
-    ++ (with nixpkgs.gnome; [
-      cheese # webcam tool
-      gnome-music
-      gnome-terminal
-      epiphany # web browser
-      geary # email reader
-      evince # document viewer
-      gnome-characters
-      totem # video player
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
-    ]);
 
   documentation = {
     enable = true;

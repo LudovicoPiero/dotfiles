@@ -30,7 +30,6 @@ in
       fd
       sbctl # For debugging and troubleshooting Secure boot.
 
-      git
       bottom
       jq
       moreutils
