@@ -6,6 +6,11 @@
       hive,
       ...
     }@inputs:
+    let
+      myCollect = hive.collect // {
+        renamer = cell: target: "${target}";
+      };
+    in
     hive.growOn {
       inherit inputs;
 
@@ -32,7 +37,7 @@
           # Configurations
           nixosConfigurations
         ];
-    } { nixosConfigurations = hive.collect self "nixosConfigurations"; };
+    } { nixosConfigurations = myCollect self "nixosConfigurations"; };
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
