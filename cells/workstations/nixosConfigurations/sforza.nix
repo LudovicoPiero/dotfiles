@@ -32,9 +32,6 @@ in
     useUserPackages = true;
     useGlobalPkgs = true;
     users = {
-      root = {
-        imports = [ homeProfiles.common ];
-      };
       airi = {
         imports =
           let
