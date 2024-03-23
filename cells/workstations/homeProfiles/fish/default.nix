@@ -86,6 +86,7 @@ in {
     };
 
     shellAliases = {
+      "c" = "${_ commitizen} c -- -s";
       "cat" = "${_ bat}";
       "config" = "cd ~/Media/nixos";
       "dla" = "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '${config.home.homeDirectory}/Media/Audios'"; # Download Audio
