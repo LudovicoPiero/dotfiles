@@ -1,5 +1,7 @@
-{ inputs, cell }:
 {
+  inputs,
+  cell,
+}: {
   services.gammastep = {
     enable = true;
     provider = "geoclue2";

@@ -4,15 +4,13 @@
   config,
   inputs,
   ...
-}:
-let
+}: let
   inherit (config.colorScheme) palette;
   _ = lib.getExe;
   terminal = "${_ inputs.ludovico-nixpkgs.packages.${pkgs.system}.wezterm}";
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wlogout}";
-in
-{
+in {
   exec-once = [
     "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
     "waybar"
@@ -29,7 +27,7 @@ in
   animations = {
     enabled = true;
 
-    bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
+    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
 
     animation = [
       "windows, 1, 7, myBezier"

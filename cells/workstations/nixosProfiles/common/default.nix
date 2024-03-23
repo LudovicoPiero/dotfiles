@@ -2,18 +2,16 @@
   lib,
   config,
   inputs,
-}:
-let
+}: let
   inherit (inputs) nixpkgs;
-in
-{
+in {
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   time.timeZone = "Asia/Tokyo";
   programs.command-not-found.enable = false; # Not working without channel
 
   environment = {
-    pathsToLink = [ "/share/fish" ];
+    pathsToLink = ["/share/fish"];
     systemPackages = with nixpkgs; [
       teavpn2
       gnome.adwaita-icon-theme
@@ -87,7 +85,7 @@ in
   services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
-    dbus.packages = [ nixpkgs.gcr ];
+    dbus.packages = [nixpkgs.gcr];
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
@@ -103,7 +101,7 @@ in
   };
 
   nix = {
-    nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
+    nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
 
     package = inputs.nix-super.packages.${nixpkgs.system}.nix;
 
@@ -136,7 +134,7 @@ in
         "root"
         "@wheel"
       ];
-      allowed-users = [ "@wheel" ];
+      allowed-users = ["@wheel"];
 
       substituters = [
         # Lower priority value = higher priority

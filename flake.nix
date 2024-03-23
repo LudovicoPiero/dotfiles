@@ -1,16 +1,16 @@
 {
-  outputs =
-    {
-      self,
-      std,
-      hive,
-      ...
-    }@inputs:
-    let
-      myCollect = hive.collect // {
+  outputs = {
+    self,
+    std,
+    hive,
+    ...
+  } @ inputs: let
+    myCollect =
+      hive.collect
+      // {
         renamer = cell: target: "${target}";
       };
-    in
+  in
     hive.growOn {
       inherit inputs;
 
@@ -19,25 +19,23 @@
       };
 
       cellsFrom = ./cells;
-      cellBlocks =
-        with hive.blockTypes;
-        with std.blockTypes;
-        [
-          (functions "bee")
+      cellBlocks = with hive.blockTypes;
+      with std.blockTypes; [
+        (functions "bee")
 
-          # Profiles
-          (functions "hardwareProfiles")
-          (functions "homeProfiles")
-          (functions "nixosProfiles")
+        # Profiles
+        (functions "hardwareProfiles")
+        (functions "homeProfiles")
+        (functions "nixosProfiles")
 
-          # Suites
-          (functions "homeSuites")
-          (functions "nixosSuites")
+        # Suites
+        (functions "homeSuites")
+        (functions "nixosSuites")
 
-          # Configurations
-          nixosConfigurations
-        ];
-    } { nixosConfigurations = myCollect self "nixosConfigurations"; };
+        # Configurations
+        nixosConfigurations
+      ];
+    } {nixosConfigurations = myCollect self "nixosConfigurations";};
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";

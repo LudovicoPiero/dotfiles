@@ -1,15 +1,12 @@
 {
   config,
-
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   inherit (config) colorScheme;
   inherit (colorScheme) palette;
-in
-{
+in {
   programs.wezterm = {
     enable = true;
     package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.wezterm;

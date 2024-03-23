@@ -3,11 +3,9 @@
   config,
   inputs,
   ...
-}:
-let
+}: let
   inherit (inputs) nixpkgs;
-in
-{
+in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.lanzaboote.nixosModules.lanzaboote
@@ -42,8 +40,8 @@ in
       "bcachefs"
       "dm-snapshot"
     ];
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
     supportedFilesystems = [
       "bcachefs"
       "ntfs"
@@ -51,101 +49,99 @@ in
     ];
   };
 
-  fileSystems =
-    let
-      username = "airi";
-      userHome = "/home/${username}";
-    in
-    {
-      "${userHome}/Media" = {
-        device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
-        fsType = "bcachefs";
-        options = [
-          # Enable discard/TRIM support
-          "discard"
-          # foreground compression with zstd
-          "compression=zstd"
-          # background compression with zstd
-          "background_compression=zstd"
-        ];
-      };
-
-      # "${userHome}/WinE" = {
-      #   device = "/dev/disk/by-label/WinE";
-      #   fsType = "ntfs";
-      #   options = [
-      #     "uid=1000"
-      #     "gid=100"
-      #     "rw"
-      #     "user"
-      #     "exec"
-      #     "umask=000"
-      #     "nofail"
-      #   ];
-      # };
-
-      "/" = {
-        device = "none";
-        fsType = "tmpfs";
-        options = [
-          "defaults"
-          "size=2G"
-          "mode=755"
-        ];
-      };
-
-      "/boot" = {
-        device = "/dev/disk/by-label/BOOT";
-        fsType = "vfat";
-      };
-
-      "/nix" = {
-        device = "/dev/disk/by-partlabel/Store";
-        fsType = "bcachefs";
-        options = [
-          # Enable discard/TRIM support
-          "discard"
-          # foreground compression with zstd
-          "compression=zstd"
-          # background compression with zstd
-          "background_compression=zstd"
-        ];
-      };
-
-      "/home" = {
-        device = "/dev/disk/by-partlabel/Home";
-        fsType = "bcachefs";
-        options = [
-          # Enable discard/TRIM support
-          "discard"
-          # foreground compression with zstd
-          "compression=zstd"
-          # background compression with zstd
-          "background_compression=zstd"
-        ];
-        neededForBoot = true;
-      };
-
-      "/persist" = {
-        device = "/dev/disk/by-label/Persist";
-        fsType = "xfs";
-        neededForBoot = true;
-      };
-
-      "/etc/nixos" = {
-        device = "/persist/etc/nixos";
-        fsType = "none";
-        options = [ "bind" ];
-      };
-
-      "/var/log" = {
-        device = "/persist/var/log";
-        fsType = "none";
-        options = [ "bind" ];
-      };
+  fileSystems = let
+    username = "airi";
+    userHome = "/home/${username}";
+  in {
+    "${userHome}/Media" = {
+      device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
+      fsType = "bcachefs";
+      options = [
+        # Enable discard/TRIM support
+        "discard"
+        # foreground compression with zstd
+        "compression=zstd"
+        # background compression with zstd
+        "background_compression=zstd"
+      ];
     };
 
-  swapDevices = [ { device = "/dev/disk/by-label/Swap"; } ];
+    # "${userHome}/WinE" = {
+    #   device = "/dev/disk/by-label/WinE";
+    #   fsType = "ntfs";
+    #   options = [
+    #     "uid=1000"
+    #     "gid=100"
+    #     "rw"
+    #     "user"
+    #     "exec"
+    #     "umask=000"
+    #     "nofail"
+    #   ];
+    # };
+
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-partlabel/Store";
+      fsType = "bcachefs";
+      options = [
+        # Enable discard/TRIM support
+        "discard"
+        # foreground compression with zstd
+        "compression=zstd"
+        # background compression with zstd
+        "background_compression=zstd"
+      ];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-partlabel/Home";
+      fsType = "bcachefs";
+      options = [
+        # Enable discard/TRIM support
+        "discard"
+        # foreground compression with zstd
+        "compression=zstd"
+        # background compression with zstd
+        "background_compression=zstd"
+      ];
+      neededForBoot = true;
+    };
+
+    "/persist" = {
+      device = "/dev/disk/by-label/Persist";
+      fsType = "xfs";
+      neededForBoot = true;
+    };
+
+    "/etc/nixos" = {
+      device = "/persist/etc/nixos";
+      fsType = "none";
+      options = ["bind"];
+    };
+
+    "/var/log" = {
+      device = "/persist/var/log";
+      fsType = "none";
+      options = ["bind"];
+    };
+  };
+
+  swapDevices = [{device = "/dev/disk/by-label/Swap";}];
 
   # slows down boot time
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -170,9 +166,9 @@ in
       ]
       # ++ lib.optionals config.mine.dnscrypt.enable [ "/var/lib/dnscrypt-proxy2" ]
       # ++ lib.optionals config.mine.greetd.enable [ "/var/cache/regreet" ]
-      ++ lib.optionals config.virtualisation.docker.enable [ "/var/lib/docker" ]
-      ++ lib.optionals config.services.jellyfin.enable [ "/var/lib/jellyfin" ];
-    files = [ "/etc/machine-id" ];
+      ++ lib.optionals config.virtualisation.docker.enable ["/var/lib/docker"]
+      ++ lib.optionals config.services.jellyfin.enable ["/var/lib/jellyfin"];
+    files = ["/etc/machine-id"];
   };
 
   systemd.tmpfiles.rules = [

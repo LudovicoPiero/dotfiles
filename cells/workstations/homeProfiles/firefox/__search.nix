@@ -1,22 +1,21 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   default = "DuckDuckGo";
   force = true;
   engines = {
     "Brave" = {
-      urls = [ { template = "https://search.brave.com/search?q={searchTerms}"; } ];
-      definedAliases = [ "b" ];
+      urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
+      definedAliases = ["b"];
       icon = "${pkgs.brave}/share/icons/hicolor/64x64/apps/brave-browser.png";
     };
 
     "DuckDuckGo" = {
-      urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
-      definedAliases = [ "d" ];
+      urls = [{template = "https://duckduckgo.com/?q={searchTerms}";}];
+      definedAliases = ["d"];
     };
 
     "GitHub" = {
-      urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
-      definedAliases = [ "gh" ];
+      urls = [{template = "https://github.com/search?q={searchTerms}&type=code";}];
+      definedAliases = ["gh"];
     };
 
     "Nix Packages" = {
@@ -41,12 +40,12 @@
       ];
 
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      definedAliases = [ "np" ];
+      definedAliases = ["np"];
     };
 
     "Home-Manager" = {
-      urls = [ { template = "https://rycee.gitlab.io/home-manager/options.html"; } ];
-      definedAliases = [ "hm" ];
+      urls = [{template = "https://rycee.gitlab.io/home-manager/options.html";}];
+      definedAliases = ["hm"];
     };
 
     "NixOS Options" = {
@@ -71,18 +70,18 @@
       ];
 
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      definedAliases = [ "no" ];
+      definedAliases = ["no"];
     };
 
     "NixOS Wiki" = {
-      urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
+      urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      definedAliases = [ "nw" ];
+      definedAliases = ["nw"];
     };
 
     "YouTube" = {
-      urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
-      definedAliases = [ "yt" ];
+      urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
+      definedAliases = ["yt"];
     };
 
     "Bing".metaData.hidden = true;

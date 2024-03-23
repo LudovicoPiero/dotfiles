@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   hyprlandPackage = "${pkgs.hyprland}/bin/Hyprland";
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   username = "airi";
-in
-{
+in {
   services.greetd = {
     enable = true;
     settings = {

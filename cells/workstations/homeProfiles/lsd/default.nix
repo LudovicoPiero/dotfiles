@@ -1,5 +1,7 @@
-{ inputs, cell }:
 {
+  inputs,
+  cell,
+}: {
   programs.lsd = {
     enable = true;
     enableAliases = false;

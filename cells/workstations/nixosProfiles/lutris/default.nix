@@ -1,8 +1,6 @@
-{ inputs }:
-let
+{inputs}: let
   inherit (inputs) nixpkgs;
-in
-{
+in {
   environment.systemPackages = with nixpkgs; [
     (lutris.override {
       extraPkgs = pkgs: [

@@ -1,6 +1,8 @@
-{ pkgs, inputs, ... }:
 {
-
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.firefox = {
     enable = true;
     # package = inputs.chaotic.packages.${pkgs.system}.firefox_nightly;
@@ -19,7 +21,7 @@
             ublock-origin
           ];
           bookmarks = import ./__bookmarks.nix;
-          search = import ./__search.nix { inherit pkgs; };
+          search = import ./__search.nix {inherit pkgs;};
           settings = import ./__settings.nix;
         }
         // (
@@ -31,8 +33,7 @@
               rev = "120.0";
               hash = "sha256-ciNP1TLpxs/W08UhJg38tjPxtzhnRcjMyh+BwUsN2wA=";
             };
-          in
-          {
+          in {
             userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
             userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
             extraConfig = ''

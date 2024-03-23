@@ -1,12 +1,4 @@
-{
-
-  inputs,
-
-  pkgs,
-  ...
-}:
-
-{
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -17,11 +9,11 @@
     withRuby = true;
     withPython3 = true;
 
-    plugins = with pkgs.vimPlugins; [ nvim-treesitter.withAllGrammars ];
+    plugins = with pkgs.vimPlugins; [nvim-treesitter.withAllGrammars];
 
     extraPackages = with pkgs; [
       # Nix
-      inputs.chaotic.packages.${pkgs.system}.nixfmt_rfc166
+      alejandra
       nil
       deadnix
       statix

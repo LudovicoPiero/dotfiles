@@ -3,10 +3,10 @@
   cell,
   lib,
   config,
-}:
-let
+}: let
   inherit (inputs) nixpkgs;
-  inherit (cell)
+  inherit
+    (cell)
     bee
     homeProfiles
     homeSuites
@@ -14,15 +14,13 @@ let
     nixosProfiles
     nixosSuites
     ;
-in
-{
+in {
   inherit bee;
 
-  imports =
-    let
-      profiles = with nixosProfiles; [ hardwareProfiles.sforza ];
-      suites = with nixosSuites; sforza;
-    in
+  imports = let
+    profiles = with nixosProfiles; [hardwareProfiles.sforza];
+    suites = with nixosSuites; sforza;
+  in
     lib.concatLists [
       profiles
       suites
@@ -33,11 +31,10 @@ in
     useGlobalPkgs = true;
     users = {
       airi = {
-        imports =
-          let
-            profiles = with homeProfiles; [ ];
-            suites = with homeSuites; airi;
-          in
+        imports = let
+          profiles = with homeProfiles; [];
+          suites = with homeSuites; airi;
+        in
           lib.concatLists [
             profiles
             suites
@@ -95,15 +92,15 @@ in
     wg-quick.interfaces = {
       wg0 = {
         autostart = true;
-        address = [ "10.66.66.2/32" ];
-        dns = [ "45.76.145.144" ];
+        address = ["10.66.66.2/32"];
+        dns = ["45.76.145.144"];
         privateKeyFile = "/persist/wireguard/privateKey";
 
         peers = [
           {
             publicKey = "hOxW74kF//JpljARxf4+lu+cbwgn8OtB+lXT2Tqoyhk=";
             presharedKeyFile = "/persist/wireguard/presharedKey";
-            allowedIPs = [ "0.0.0.0/0" ];
+            allowedIPs = ["0.0.0.0/0"];
             endpoint = "45.76.145.144:51820";
             persistentKeepalive = 25;
           }

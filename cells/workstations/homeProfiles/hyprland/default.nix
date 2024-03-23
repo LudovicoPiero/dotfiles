@@ -4,8 +4,7 @@
   config,
   inputs,
   ...
-}:
-{
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;

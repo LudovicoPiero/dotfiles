@@ -1,8 +1,9 @@
-{ inputs, cell }:
-let
-  inherit (inputs) nixpkgs;
-in
 {
+  inputs,
+  cell,
+}: let
+  inherit (inputs) nixpkgs;
+in {
   virtualisation = {
     libvirtd = {
       enable = true;

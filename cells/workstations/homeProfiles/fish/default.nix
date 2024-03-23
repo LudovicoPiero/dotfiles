@@ -4,12 +4,10 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   _ = lib.getExe;
-in
-{
-  imports = [ inputs.nix-index-database.hmModules.nix-index ];
+in {
+  imports = [inputs.nix-index-database.hmModules.nix-index];
 
   programs.nix-index-database.comma.enable = true;
   programs.nix-index.enable = true;
@@ -80,11 +78,9 @@ in
         end
       '';
 
-      "watchLive" =
-        let
-          args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
-        in
-        ''${_ streamlink} --player ${_ mpv} --twitch-disable-hosting --twitch-low-latency --player-args "${args}" --player-continuous-http --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 --retry-streams 15 $argv'';
+      "watchLive" = let
+        args = "--hwdec=dxva2 --gpu-context=d3d11 --no-keepaspect-window --keep-open=no --force-window=yes --force-seekable=yes --hr-seek=yes --hr-seek-framedrop=yes";
+      in ''${_ streamlink} --player ${_ mpv} --twitch-disable-hosting --twitch-low-latency --player-args "${args}" --player-continuous-http --player-no-close --hls-live-edge 2 --stream-segment-threads 2 --retry-open 15 --retry-streams 15 $argv'';
     };
 
     shellAliases = {
@@ -114,19 +110,17 @@ in
       ".." = "cd ..";
     };
 
-    interactiveShellInit =
-      let
-        inherit (config.colorScheme) palette;
-      in
-      ''
-        set -g async_prompt_functions _pure_prompt_git
-        set pure_symbol_prompt "❯"
-        set pure_color_success '#${palette.base0E}'
+    interactiveShellInit = let
+      inherit (config.colorScheme) palette;
+    in ''
+      set -g async_prompt_functions _pure_prompt_git
+      set pure_symbol_prompt "❯"
+      set pure_color_success '#${palette.base0E}'
 
-        ${_ any-nix-shell} fish --info-right | source
-        ${_ zoxide} init fish | source
-        ${_ direnv} hook fish | source
-      '';
+      ${_ any-nix-shell} fish --info-right | source
+      ${_ zoxide} init fish | source
+      ${_ direnv} hook fish | source
+    '';
 
     plugins = [
       {
