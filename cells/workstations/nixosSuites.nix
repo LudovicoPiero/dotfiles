@@ -8,6 +8,7 @@ in
     base = [
       common
       users
+      security
     ];
 
     graphical = [
