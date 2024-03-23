@@ -16,6 +16,7 @@ A:
   # inherit (inputs.nixpkgs) lib;
   inherit (inputs.std.data) configs;
   inherit (inputs.std.lib.dev) mkNixago;
+  inherit (inputs.nixpkgs) lib;
 in {
   # Tool Homepage: https://editorconfig.org/
   editorconfig = (mkNixago configs.editorconfig) {
@@ -69,6 +70,24 @@ in {
   # Tool Homepage: https://github.com/evilmartians/lefthook
   lefthook = (mkNixago configs.lefthook) {
     # see defaults at https://github.com/divnix/std/blob/main/src/data/configs/lefthook.nix
-    data = {};
+    data = {
+      commit-msg = {
+        commands = {
+          conform = {
+            # allow WIP, fixup!/squash! commits locally
+            run = ''
+              [[ "$(head -n 1 {1})" =~ ^WIP(:.*)?$|^wip(:.*)?$|fixup\!.*|squash\!.* ]] ||
+              ${lib.getExe inputs.nixpkgs.conform} enforce --commit-msg-file {1}'';
+          };
+        };
+      };
+      pre-commit = {
+        commands = {
+          treefmt = {
+            run = "${lib.getExe inputs.nixpkgs.treefmt} --fail-on-change {staged_files}";
+          };
+        };
+      };
+    };
   };
 }
