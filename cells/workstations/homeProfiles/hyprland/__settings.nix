@@ -56,8 +56,8 @@ in {
 
     blur = {
       enabled = true;
-      size = 6;
-      passes = 4;
+      size = 2;
+      passes = 1;
       # contrast = 0.8916;
       # brightness = 0.8172;
       vibrancy = 0.4;
