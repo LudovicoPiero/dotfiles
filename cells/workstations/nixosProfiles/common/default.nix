@@ -121,6 +121,7 @@ in {
         "recursive-nix"
       ];
 
+      commit-lockfile-summary = "feat: Update flake.lock";
       accept-flake-config = true;
       auto-optimise-store = true;
       keep-derivations = true;
