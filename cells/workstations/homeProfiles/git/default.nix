@@ -18,17 +18,21 @@
     extraConfig = {
       color = {
         ui = true;
-        diff-highlight.oldNormal = "red bold";
-        diff-highlight.oldHighlight = "red bold 52";
-        diff-highlight.newNormal = "green bold";
-        diff-highlight.newHighlight = "green bold 22";
-        diff.meta = "11";
-        diff.frag = "magenta bold";
-        diff.func = "146 bold";
-        diff.commit = "yellow bold";
-        diff.old = "red bold";
-        diff.new = "green bold";
-        diff.whitespace = "red reverse";
+        diff-highlight = {
+          oldNormal = "red bold";
+          oldHighlight = "red bold 52";
+          newNormal = "green bold";
+          newHighlight = "green bold 22";
+        };
+        diff = {
+          meta = "11";
+          frag = "magenta bold";
+          func = "146 bold";
+          commit = "yellow bold";
+          old = "red bold";
+          new = "green bold";
+          whitespace = "red reverse";
+        };
       };
       init.defaultBranch = "main";
       merge.conflictstyle = "diff3";

@@ -4,12 +4,14 @@
 }: let
   inherit (inputs) nixpkgs;
 in {
+  environment.systemPackages = [nixpkgs.libsecret];
   programs.dconf.enable = true;
   # Fixes the org.a11y.Bus not provided by .service file error
-  services.gnome.at-spi2-core.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  environment.systemPackages = [nixpkgs.libsecret];
-  services.dbus.packages = [nixpkgs.gnome.seahorse];
+  services = {
+    gnome.at-spi2-core.enable = true;
+    gnome.gnome-keyring.enable = true;
+    dbus.packages = [nixpkgs.gnome.seahorse];
+  };
 
   systemd = {
     user.services.pantheon-agent-polkit = {

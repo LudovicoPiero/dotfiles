@@ -9,9 +9,11 @@
 in {
   imports = [inputs.nix-index-database.hmModules.nix-index];
 
-  programs.nix-index-database.comma.enable = true;
-  programs.nix-index.enable = true;
-  programs.zoxide.enable = true;
+  programs = {
+    nix-index-database.comma.enable = true;
+    nix-index.enable = true;
+    zoxide.enable = true;
+  };
 
   programs.fish = with pkgs; {
     enable = true;
