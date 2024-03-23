@@ -1,4 +1,6 @@
 {
+  description = "Ludovico's dotfiles powered by Nix Flakes + Hive";
+
   outputs = {
     self,
     std,
@@ -32,10 +34,20 @@
         (functions "homeSuites")
         (functions "nixosSuites")
 
+        # Devshells
+        (nixago "configs")
+        (devshells "shells")
+
         # Configurations
         nixosConfigurations
       ];
-    } {nixosConfigurations = myCollect self "nixosConfigurations";};
+    } {
+      nixosConfigurations = myCollect self "nixosConfigurations";
+      devShells = std.harvest self [
+        "repo"
+        "devshells"
+      ];
+    };
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
@@ -43,17 +55,19 @@
     nixpkgs.follows = "nixpkgs-unstable";
 
     # Hive
+    nixago = {
+      url = "github:nix-community/nixago";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hive = {
       url = "github:divnix/hive";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     std = {
       url = "github:divnix/std";
       inputs = {
         devshell.follows = "devshell";
-        devshell.inputs.nixpkgs.follows = "nixpkgs";
+        nixago.follows = "nixago";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -61,11 +75,15 @@
     # Deps
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
-    devshell.url = "github:numtide/devshell";
     impermanence.url = "github:nix-community/impermanence";
     lanzaboote.url = "github:nix-community/lanzaboote";
     nix-super.url = "github:privatevoid-net/nix-super";
     spicetify-nix.url = "github:gerg-l/spicetify-nix";
+
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
