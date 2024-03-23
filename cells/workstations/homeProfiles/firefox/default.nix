@@ -30,8 +30,8 @@
             betterfox = pkgs.fetchFromGitHub {
               owner = "yokoffing";
               repo = "Betterfox";
-              rev = "120.0";
-              hash = "sha256-ciNP1TLpxs/W08UhJg38tjPxtzhnRcjMyh+BwUsN2wA=";
+              rev = "122.1";
+              hash = "sha256-eHocB5vC6Zjz7vsvGOTGazuaUybqigODEIJV9K/h134=";
             };
           in {
             userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
