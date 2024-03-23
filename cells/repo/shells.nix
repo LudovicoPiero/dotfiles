@@ -28,7 +28,6 @@ in
         editorconfig
         lefthook
         treefmt
-        githubsettings
       ];
 
       packages = with inputs.nixpkgs; [

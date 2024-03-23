@@ -71,25 +71,4 @@ in {
     # see defaults at https://github.com/divnix/std/blob/main/src/data/configs/lefthook.nix
     data = {};
   };
-  githubsettings = (mkNixago configs.githubsettings) {
-    # see defaults at https://github.com/divnix/std/blob/main/src/data/configs/githubsettings.nix
-    data = {
-      repository = {
-        name = "dotfiles";
-        inherit (import (inputs.self + /flake.nix)) description;
-        homepage = "https://github.com/LudovicoPiero/dotfiles";
-        topics = "nixos";
-        default_branch = "main";
-        allow_squash_merge = true;
-        allow_merge_commit = true;
-        allow_rebase_merge = true;
-        delete_branch_on_merge = true;
-        private = false;
-        has_issues = false;
-        has_projects = false;
-        has_wiki = false;
-        has_downloads = false;
-      };
-    };
-  };
 }
