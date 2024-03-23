@@ -141,6 +141,7 @@ in {
     "fakefullscreen, class:^(code-url-handler)$"
     "float, class:^(DiscordCanary)$" # Discord File Picker
     "float, title:^(Steam - News)$"
+    "float, class:^(electron)$,title:^(Open Files)$"
     "float, class:^(steam)$,title:^(Special Offers)$"
     "noblur, class:^(waybar)$"
     "noblur, class:^(firefox)$"
