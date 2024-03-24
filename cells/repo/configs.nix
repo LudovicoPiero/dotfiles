@@ -60,7 +60,15 @@ in {
   # Tool Homepage: https://numtide.github.io/treefmt/
   treefmt = (mkNixago configs.treefmt) {
     # see defaults at https://github.com/divnix/std/blob/main/src/data/configs/treefmt.nix
-    data = {};
+    data = {
+      formatter = {
+        stylua = {
+          command = lib.getExe inputs.nixpkgs.stylua;
+          includes = ["*.lua"];
+          options = ["--indent-type" "Spaces" "--indent-width" "2" "--quote-style" "ForceDouble"];
+        };
+      };
+    };
   };
 
   conform = (mkNixago configs.conform) {
