@@ -249,7 +249,7 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
     event = "VimEnter",
-    tag = "0.1.x",
+    branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -308,6 +308,9 @@ require("lazy").setup({
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
+
+-- Make cursor block in all mode
+vim.o.guicursor = "a:block"
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
@@ -412,7 +415,15 @@ require("telescope").setup({
   --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
   --   },
   -- },
-  -- pickers = {}
+  pickers = {
+    find_files = { theme = "ivy", previewer = false },
+    live_grep = { theme = "ivy" },
+    buffers = {
+      theme = "dropdown",
+      sort_lastused = true,
+      previewer = false,
+    },
+  },
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_ivy(),
@@ -463,6 +474,8 @@ vim.api.nvim_create_user_command("LiveGrepGitRoot", live_grep_git_root, {})
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>;", ":Telescope commands<cr>", { desc = "[;] Run command" })
+vim.keymap.set("n", "<leader>:", ":Telescope command_history<cr>", { desc = "[:] View command history" })
 vim.keymap.set("n", "<leader>/", function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
