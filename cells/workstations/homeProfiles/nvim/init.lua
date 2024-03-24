@@ -54,23 +54,68 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
 
       -- Snippet Engine & its associated nvim-cmp source
-      "L3MON4D3/LuaSnip",
+      {
+        "L3MON4D3/LuaSnip",
+        build = (function()
+          -- Build Step is needed for regex support in snippets
+          -- This step is not supported in many windows environments
+          -- Remove the below condition to re-enable on windows
+          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+            return
+          end
+          return "make install_jsregexp"
+        end)(),
+        dependencies = {
+          -- `friendly-snippets` contains a variety of premade snippets.
+          --    See the README about individual language/framework/plugin snippets:
+          --    https://github.com/rafamadriz/friendly-snippets
+          {
+            "rafamadriz/friendly-snippets",
+            config = function()
+              require("luasnip.loaders.from_vscode").lazy_load()
+            end,
+          },
+        },
+      },
       "saadparwaiz1/cmp_luasnip",
 
       -- Adds LSP completion capabilities
       "hrsh7th/cmp-nvim-lsp",
-
-      -- Adds a number of user-friendly snippets
-      "rafamadriz/friendly-snippets",
     },
   },
 
   -- Useful plugin to show you pending keybinds.
-  { "folke/which-key.nvim", opts = {} },
+  {
+    "folke/which-key.nvim",
+    event = "VimEnter", -- Sets the loading event to 'VimEnter'
+    config = function()
+      require("which-key").setup()
+      -- document existing key chains
+      require("which-key").register({
+        ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+        ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+        ["<leader>f"] = { name = "[F]ormat", _ = "which_key_ignore" },
+        ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
+        ["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
+        ["<leader>p"] = { name = "[P]review", _ = "which_key_ignore" },
+        ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+        ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+        ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
+        ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+      })
+
+      -- register which-key VISUAL mode
+      -- required for visual <leader>hs (hunk stage) to work
+      require("which-key").register({
+        ["<leader>"] = { name = "VISUAL <leader>" },
+        ["<leader>h"] = { "Git [H]unk" },
+      }, { mode = "v" })
+    end,
+  },
 
   -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
   -- So for api plugins like devicons, we can always set lazy=true
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -165,23 +210,6 @@ require("lazy").setup({
   },
 
   {
-    -- Set lualine as statusline
-    "nvim-lualine/lualine.nvim",
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = "auto",
-        component_separators = "|",
-        section_separators = "",
-        refresh = {
-          statusline = 200,
-        },
-      },
-    },
-  },
-
-  {
     -- Add indentation guides even on blank lines
     "lukas-reineke/indent-blankline.nvim",
     -- Enable `lukas-reineke/indent-blankline.nvim`
@@ -220,7 +248,8 @@ require("lazy").setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.4",
+    event = "VimEnter",
+    tag = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -235,6 +264,7 @@ require("lazy").setup({
           return vim.fn.executable("make") == 1
         end,
       },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
   },
 
@@ -250,11 +280,34 @@ require("lazy").setup({
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   { import = "custom.plugins" },
-}, {})
+}, {
+  ui = {
+    -- If you are using a Nerd Font: set icons to an empty table which will use the
+    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      require = "🌙",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
+    },
+  },
+})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+
+-- Set to true if you have a Nerd Font installed
+vim.g.have_nerd_font = true
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
@@ -270,7 +323,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 2
 vim.o.shiftround = true
 vim.o.expandtab = true
-vim.o.scrolloff = 3
+vim.o.scrolloff = 5
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -302,6 +355,19 @@ vim.wo.signcolumn = "yes"
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Sets how neovim will display certain whitespace in the editor.
+--  See :help 'list'
+--  and :help 'listchars'
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -338,18 +404,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require("telescope").setup({
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-u>"] = false,
-        ["<C-d>"] = false,
-      },
+  -- You can put your default mappings / updates / etc. in here
+  --  All the info you're looking for is in `:help telescope.setup()`
+  --
+  -- defaults = {
+  --   mappings = {
+  --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+  --   },
+  -- },
+  -- pickers = {}
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_ivy(),
     },
   },
 })
 
--- Enable telescope fzf native, if installed
+-- Enable Telescope extensions if they are installed
 pcall(require("telescope").load_extension, "fzf")
+pcall(require("telescope").load_extension, "ui-select")
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
@@ -553,33 +626,18 @@ local on_attach = function(_, bufnr)
   end, { range = true })
 end
 
--- document existing key chains
-require("which-key").register({
-  ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-  ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-  ["<leader>f"] = { name = "[F]ormat", _ = "which_key_ignore" },
-  ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-  ["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
-  ["<leader>p"] = { name = "[P]review", _ = "which_key_ignore" },
-  ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-  ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-  ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-  ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-})
-
--- register which-key VISUAL mode
--- required for visual <leader>hs (hunk stage) to work
-require("which-key").register({
-  ["<leader>"] = { name = "VISUAL <leader>" },
-  ["<leader>h"] = { "Git [H]unk" },
-}, { mode = "v" })
-
 -- Setup neovim lua configuration
 require("neodev").setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  vim.lsp.protocol.make_client_capabilities(),
+  require("cmp_nvim_lsp").default_capabilities(),
+  -- File watching is disabled by default for neovim.
+  -- See: https://github.com/neovim/neovim/pull/22405
+  { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
+)
 
 local serverConfigs = {
   lua_ls = {
@@ -588,6 +646,9 @@ local serverConfigs = {
         telemetry = { enable = false },
         diagnostics = { globals = { "vim" } },
         workspace = { checkThirdParty = false },
+        completion = {
+          callSnippet = "Replace",
+        },
         format = {
           enable = true,
           defaultConfig = {

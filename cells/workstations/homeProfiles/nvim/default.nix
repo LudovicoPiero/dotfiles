@@ -40,6 +40,7 @@
       fd
       nodePackages.prettier
       shfmt
+      gnumake
     ];
   };
 
