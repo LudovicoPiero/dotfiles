@@ -34,6 +34,9 @@
         (functions "homeSuites")
         (functions "nixosSuites")
 
+        # Secrets
+        (functions "secrets")
+
         # Devshells
         (nixago "configs")
         (devshells "shells")
@@ -106,5 +109,12 @@
       url = "github:misterio77/nix-colors";
       inputs.base16-schemes.follows = "base16-schemes";
     };
+  };
+
+  # Secrets
+  inputs.sops-nix = {
+    url = "github:Mic92/sops-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.nixpkgs-stable.follows = "nixpkgs-stable";
   };
 }

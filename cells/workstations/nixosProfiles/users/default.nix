@@ -2,12 +2,36 @@
   lib,
   config,
   pkgs,
+  cell,
+  inputs,
   ...
-}: {
+}: let
+  inherit (cell) secrets;
+in {
+  imports = [secrets.users];
+
+  sops.secrets = {
+    "rootPassword" = {
+      mode = "0440";
+      neededForUsers = true;
+      sopsFile = "${inputs.self}/cells/workstations/secrets/users.yaml";
+    };
+    "userPassword" = {
+      mode = "0440";
+      neededForUsers = true;
+      sopsFile = "${inputs.self}/cells/workstations/secrets/users.yaml";
+    };
+    "githubToken" = {
+      mode = "0444";
+      owner = "airi";
+      sopsFile = "${inputs.self}/cells/workstations/secrets/users.yaml";
+    };
+  };
+
   programs.fish = {
     enable = true;
     shellInit = ''
-      . /persist/github/stuff
+      . ${config.sops.secrets.githubToken.path}
     '';
   };
 
@@ -19,11 +43,11 @@
   users.mutableUsers = false;
   users.users = {
     root = {
-      initialHashedPassword = "$y$j9T$zO8KlDu.ytfp5fXpKCfhs.$zX9lJfycTysyfsDvBoS9TgGbdXL7UJy9yLtITUPSpm7";
+      hashedPasswordFile = config.sops.secrets.rootPassword.path;
     };
     airi = {
       shell = pkgs.fish;
-      initialHashedPassword = "$y$j9T$JCK0DAtEZLYkdj3OPJNOk0$4U63jpiNEpgW/GsJ/yG51TjiczM/mEaR6kFkRqtDZN.";
+      hashedPasswordFile = config.sops.secrets.userPassword.path;
       isNormalUser = true;
       uid = 1000;
       extraGroups =

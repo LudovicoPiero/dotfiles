@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: {
+  imports = [inputs.sops-nix.nixosModules.sops];
+
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   time.timeZone = "Asia/Tokyo";

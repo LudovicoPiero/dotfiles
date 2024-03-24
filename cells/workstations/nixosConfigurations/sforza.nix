@@ -17,7 +17,7 @@ in {
   inherit bee;
 
   imports = let
-    profiles = with nixosProfiles; [hardwareProfiles.sforza];
+    profiles = with nixosProfiles; [wireguard hardwareProfiles.sforza];
     suites = with nixosSuites; sforza;
   in
     lib.concatLists [
@@ -94,25 +94,6 @@ in {
       ];
     };
     networkmanager.enable = true;
-
-    wg-quick.interfaces = {
-      wg0 = {
-        autostart = true;
-        address = ["10.66.66.2/32"];
-        dns = ["45.76.145.144"];
-        privateKeyFile = "/persist/wireguard/privateKey";
-
-        peers = [
-          {
-            publicKey = "hOxW74kF//JpljARxf4+lu+cbwgn8OtB+lXT2Tqoyhk=";
-            presharedKeyFile = "/persist/wireguard/presharedKey";
-            allowedIPs = ["0.0.0.0/0"];
-            endpoint = "45.76.145.144:51820";
-            persistentKeepalive = 25;
-          }
-        ];
-      };
-    };
   };
 
   # TLP For Laptop
