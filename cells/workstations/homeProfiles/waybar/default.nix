@@ -45,11 +45,11 @@ in {
           "custom/separator#line"
           "network"
           "custom/separator#line"
-          "clock"
+          "battery"
           "custom/separator#line"
           "custom/date"
           "custom/separator#line"
-          "battery"
+          "clock"
           "custom/separator#line"
           "custom/power"
         ];
