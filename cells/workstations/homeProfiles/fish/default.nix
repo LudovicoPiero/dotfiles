@@ -30,8 +30,6 @@ in {
       set pure_color_success '#${palette.base0E}'
 
       ${_ any-nix-shell} fish --info-right | source
-      ${_ zoxide} init fish | source
-      ${_ direnv} hook fish | source
     '';
 
     plugins = [
