@@ -1,10 +1,9 @@
 {
-  inputs,
   lib,
   config,
-}: let
-  inherit (inputs) nixpkgs;
-in {
+  pkgs,
+  ...
+}: {
   programs.fish = {
     enable = true;
     shellInit = ''
@@ -23,7 +22,7 @@ in {
       initialHashedPassword = "$y$j9T$zO8KlDu.ytfp5fXpKCfhs.$zX9lJfycTysyfsDvBoS9TgGbdXL7UJy9yLtITUPSpm7";
     };
     airi = {
-      shell = nixpkgs.fish;
+      shell = pkgs.fish;
       initialHashedPassword = "$y$j9T$JCK0DAtEZLYkdj3OPJNOk0$4U63jpiNEpgW/GsJ/yG51TjiczM/mEaR6kFkRqtDZN.";
       isNormalUser = true;
       uid = 1000;

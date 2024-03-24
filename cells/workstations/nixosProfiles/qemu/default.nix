@@ -1,15 +1,10 @@
-{
-  inputs,
-  cell,
-}: let
-  inherit (inputs) nixpkgs;
-in {
+{pkgs, ...}: {
   virtualisation = {
     libvirtd = {
       enable = true;
       qemu = {
         verbatimConfig = ''
-          nvram = [ "${nixpkgs.OVMF}/FV/OVMF.fd:${nixpkgs.OVMF}/FV/OVMF_VARS.fd" ]
+          nvram = [ "${pkgs.OVMF}/FV/OVMF.fd:${pkgs.OVMF}/FV/OVMF_VARS.fd" ]
         '';
       };
     };
@@ -17,7 +12,7 @@ in {
   };
 
   environment = {
-    systemPackages = with nixpkgs; [
+    systemPackages = with pkgs; [
       virt-manager
       virt-viewer
       qemu

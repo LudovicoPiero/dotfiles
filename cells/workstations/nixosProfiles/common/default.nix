@@ -1,10 +1,9 @@
 {
   lib,
-  config,
   inputs,
-}: let
-  inherit (inputs) nixpkgs;
-in {
+  pkgs,
+  ...
+}: {
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   time.timeZone = "Asia/Tokyo";
@@ -12,7 +11,7 @@ in {
 
   environment = {
     pathsToLink = ["/share/fish"];
-    systemPackages = with nixpkgs; [
+    systemPackages = with pkgs; [
       teavpn2
       gnome.adwaita-icon-theme
       dosfstools
@@ -85,7 +84,7 @@ in {
   services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
-    dbus.packages = [nixpkgs.gcr];
+    dbus.packages = [pkgs.gcr];
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
@@ -103,7 +102,8 @@ in {
   nix = {
     nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
 
-    package = inputs.nix-super.packages.${nixpkgs.system}.nix;
+    # package = inputs.nix-super.packages.${pkgs.system}.nix;
+    package = pkgs.nix;
 
     settings = {
       # Prevent impurities in builds

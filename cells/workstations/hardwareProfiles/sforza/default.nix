@@ -2,10 +2,9 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
-}: let
-  inherit (inputs) nixpkgs;
-in {
+}: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.lanzaboote.nixosModules.lanzaboote
@@ -25,7 +24,7 @@ in {
       pkiBundle = "/etc/secureboot";
     };
 
-    kernelPackages = lib.mkForce inputs.chaotic.packages.${nixpkgs.system}.linuxPackages_cachyos;
+    kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
 
     initrd.availableKernelModules = [
       "nvme"

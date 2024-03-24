@@ -1,12 +1,7 @@
-{
-  inputs,
-  cell,
-}: let
-  inherit (inputs) nixpkgs;
-in {
-  environment.systemPackages = [nixpkgs.xfce.thunar];
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.xfce.thunar];
 
-  programs.thunar.plugins = with nixpkgs.xfce; [
+  programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin
     thunar-volman
   ];

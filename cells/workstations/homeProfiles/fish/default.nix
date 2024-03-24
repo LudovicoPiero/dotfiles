@@ -18,7 +18,7 @@ in {
   programs.fish = with pkgs; {
     enable = true;
 
-    functions = import ./__functions.nix {inherit lib pkgs config;};
+    functions = import ./__functions.nix {inherit lib pkgs inputs config;};
     shellAliases = import ./__shellAliases.nix {inherit lib pkgs config;};
 
     interactiveShellInit = let

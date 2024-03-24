@@ -1,12 +1,7 @@
-{
-  inputs,
-  cell,
-}: let
-  inherit (inputs) nixpkgs;
-in {
+{pkgs, ...}: {
   programs.steam = {
     enable = true;
-    package = nixpkgs.steam;
+    package = pkgs.steam;
   };
 
   /*

@@ -1,10 +1,9 @@
 {
-  inputs,
   cell,
   lib,
-  config,
+  pkgs,
+  ...
 }: let
-  inherit (inputs) nixpkgs;
   inherit
     (cell)
     bee
@@ -62,7 +61,7 @@ in {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with nixpkgs; [
+      extraPackages = with pkgs; [
         # amdvlk
         rocmPackages.clr.icd
         rocmPackages.clr

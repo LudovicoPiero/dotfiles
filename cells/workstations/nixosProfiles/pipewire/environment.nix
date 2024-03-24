@@ -1,8 +1,3 @@
-{
-  inputs,
-  cell,
-}: let
-  inherit (inputs) nixpkgs;
-in {
-  systemPackages = with nixpkgs; [pavucontrol];
+{pkgs, ...}: {
+  systemPackages = with pkgs; [pavucontrol];
 }

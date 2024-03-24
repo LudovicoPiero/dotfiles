@@ -1,31 +1,30 @@
 {
   lib,
-  inputs,
-}: let
-  inherit (inputs) nixpkgs;
-in {
+  pkgs,
+  ...
+}: {
   programs.gamemode = let
     programs = lib.makeBinPath (
-      with nixpkgs; [
+      with pkgs; [
         gojq
         systemd
       ]
     );
 
-    startscript = nixpkgs.writeShellScript "gamemode-start" ''
+    startscript = pkgs.writeShellScript "gamemode-start" ''
       export PATH=$PATH:${programs}
       export HYPRLAND_INSTANCE_SIGNATURE=$(ls -w1 /tmp/hypr | tail -1)
       hyprctl --batch 'keyword decoration:blur:enabled 0 ; keyword animations:enabled 0'
-      ${nixpkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations activated'
-      ${lib.getExe' nixpkgs.mako "makoctl"} mode -a dnd
+      ${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations activated'
+      ${lib.getExe' pkgs.mako "makoctl"} mode -a dnd
     '';
 
-    endscript = nixpkgs.writeShellScript "gamemode-end" ''
+    endscript = pkgs.writeShellScript "gamemode-end" ''
       export PATH=$PATH:${programs}
       export HYPRLAND_INSTANCE_SIGNATURE=$(ls -w1 /tmp/hypr | tail -1)
       hyprctl --batch 'keyword decoration:blur:enabled 1 ; keyword animations:enabled 1'
-      ${lib.getExe' nixpkgs.mako "makoctl"} mode -r dnd
-      ${nixpkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'
+      ${lib.getExe' pkgs.mako "makoctl"} mode -r dnd
+      ${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'
     '';
   in {
     enable = true;

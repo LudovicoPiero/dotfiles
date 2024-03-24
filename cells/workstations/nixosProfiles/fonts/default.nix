@@ -1,22 +1,22 @@
 {
   inputs,
   lib,
-}: let
-  inherit (inputs) nixpkgs;
-in {
+  pkgs,
+  ...
+}: {
   fonts = {
     fontDir.enable = true;
     packages = lib.attrValues {
       inherit
-        (inputs.ludovico-nixpkgs.packages.${nixpkgs.system})
+        (inputs.ludovico-nixpkgs.packages.${pkgs.system})
         san-francisco-pro
         sarasa-gothic
         iosevka-q
         ;
 
-      inherit (nixpkgs) material-design-icons noto-fonts-emoji symbola;
+      inherit (pkgs) material-design-icons noto-fonts-emoji symbola;
 
-      nerdfonts = nixpkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
+      nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
     };
 
     # use fonts specified by user rather than default ones

@@ -1,7 +1,5 @@
-{inputs}: let
-  inherit (inputs) nixpkgs;
-in {
-  environment.systemPackages = with nixpkgs; [
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
     (lutris.override {
       extraPkgs = pkgs: [
         pkgs.wineWowPackages.staging

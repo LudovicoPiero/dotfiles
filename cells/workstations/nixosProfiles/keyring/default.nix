@@ -1,16 +1,11 @@
-{
-  inputs,
-  cell,
-}: let
-  inherit (inputs) nixpkgs;
-in {
-  environment.systemPackages = [nixpkgs.libsecret];
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.libsecret];
   programs.dconf.enable = true;
   # Fixes the org.a11y.Bus not provided by .service file error
   services = {
     gnome.at-spi2-core.enable = true;
     gnome.gnome-keyring.enable = true;
-    dbus.packages = [nixpkgs.gnome.seahorse];
+    dbus.packages = [pkgs.gnome.seahorse];
   };
 
   systemd = {
@@ -21,7 +16,7 @@ in {
       after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${nixpkgs.pantheon.pantheon-agent-polkit}/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit";
+        ExecStart = "${pkgs.pantheon.pantheon-agent-polkit}/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
