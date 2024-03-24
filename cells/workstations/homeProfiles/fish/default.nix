@@ -23,7 +23,7 @@ in {
       run = "nix run nixpkgs#$argv[1] -- $argv[2..-1]";
 
       bs = ''
-        pushd ~/Media/nixos
+        pushd ${config.home.homeDirectory}/Code/nixos
         ${lib.getExe pkgs.nh} os switch .
           if test $status -eq 0
             notify-send "Rebuild Switch" "Build successful!"
@@ -34,7 +34,7 @@ in {
       '';
 
       bb = ''
-        pushd ~/Media/nixos
+        pushd ${config.home.homeDirectory}/Code/nixos
         ${lib.getExe pkgs.nh} os boot .
           if test $status -eq 0
             notify-send "Rebuild Boot" "Build successful!"
@@ -45,7 +45,7 @@ in {
       '';
 
       hs = ''
-        pushd ~/Media/nixos
+        pushd ${config.home.homeDirectory}/Code/nixos
         ${lib.getExe pkgs.nh} home switch .
           if test $status -eq 0
             notify-send "Home-Manager Switch" "Build successful!"
@@ -88,7 +88,7 @@ in {
     shellAliases = {
       "c" = "${_ commitizen} c -- -s";
       "cat" = "${_ bat}";
-      "config" = "cd ~/Media/nixos";
+      "config" = "cd ${config.home.homeDirectory}/Code/nixos";
       "dla" = "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '${config.home.homeDirectory}/Media/Audios'"; # Download Audio
       "dlv" = "${_ yt-dlp} --format 'best[ext=mp4]' -P '${config.home.homeDirectory}/Media/Videos'"; # Download Video
       "ls" = "${_ lsd}";
