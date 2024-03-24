@@ -19,7 +19,6 @@ pull_request_rules:
   - name: Automatic merge when CI passes
     conditions:
       - check-success=nixosConfig sforza
-      - check-success=homeConfig airi@sforza
     actions:
       merge:
         method: rebase
@@ -37,7 +36,6 @@ pull_request_rules:
   - name: Toggle labels based on CI state
     conditions:
       - check-failure=nixosConfig sforza
-      - check-failure=homeConfig airi@sforza
     actions:
       label:
         toggle:
