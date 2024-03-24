@@ -9,7 +9,7 @@
     </a>
 </div>
 
-This is my personal NixOS configuration, a work in progress. I'm using this setup to learn Nix and manage my personal computers with NixOS, based on [ez-configs](https://github.com/ehllie/ez-configs).
+This is my personal NixOS configuration, a work in progress. I'm using this setup to learn Nix and manage my personal computers with NixOS, based on [hive](https://github.com/divnix/hive).
 
 > **Disclaimer: Any damage caused by this configuration is not my responsibility. Use at your own risk.**
 
