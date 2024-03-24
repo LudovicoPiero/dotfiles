@@ -104,8 +104,7 @@
   nix = {
     nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
 
-    # package = inputs.nix-super.packages.${pkgs.system}.nix;
-    package = pkgs.nix;
+    package = inputs.nix-super.packages.${pkgs.system}.nix;
 
     settings = {
       # Prevent impurities in builds
