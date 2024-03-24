@@ -1019,11 +1019,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1711184200,
-        "narHash": "sha256-BAuyblwLj2NFVjTqpcPHRzmSOws0plsqutBW1MbYddM=",
+        "lastModified": 1711311486,
+        "narHash": "sha256-zWeD/vJ2/bvAgsN+hbNcWe1mXnVv4ufcS5e2OTj/IcA=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "2cd93d1a592f73a4a14e02edee13fe12dd95a91b",
+        "rev": "e1993b4618df84d8eea4d554482790d6584a8e96",
         "type": "github"
       },
       "original": {
