@@ -7,14 +7,15 @@ They conveniently also generate config files in their startup hook.
   inputs,
   cell,
 }: let
-  inherit (inputs.std) lib;
+  inherit (inputs.hive) bootstrap;
+  inherit (inputs.std) lib std;
 in
   builtins.mapAttrs (_: lib.dev.mkShell) {
     # Tool Homepage: https://numtide.github.io/devshell/
     default = {
       name = "Hiveland";
 
-      motd = ''
+      motd = inputs.nixpkgs.lib.mkForce ''
         {202}🔨 Welcome to Hiveland{reset}
 
         $(type -p menu &>/dev/null && menu)
@@ -24,11 +25,13 @@ in
       # This is Standard's devshell integration.
       # It runs the startup hook when entering the shell.
       nixago = with cell.configs; [
-        conform
+        (conform {data = {inherit (inputs) cells;};})
         editorconfig
         lefthook
         treefmt
       ];
+
+      imports = [bootstrap.shell.bootstrap std.devshellProfiles.default];
 
       packages = with inputs.nixpkgs; [
         commitizen
@@ -48,7 +51,6 @@ in
           command = "cz c -- -s";
           category = "source control";
         }
-
         {
           help = "Fetch source from origin";
           name = "pl";
@@ -56,7 +58,7 @@ in
           category = "source control";
         }
         {
-          help = "Format source tree and push commited changes to git";
+          help = "Push commited changes to git";
           name = "ps";
           command = "git push";
           category = "source control";
