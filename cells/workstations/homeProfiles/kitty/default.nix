@@ -8,12 +8,20 @@ in {
     shellIntegration.mode = "no-rc no-cursor";
 
     keybindings = {
-      "ctrl+shift+enter" = "new_window_with_cwd";
-      "ctrl+shift+t" = "new_tab_with_cwd";
+      "ctrl+a>c" = "new_tab_with_cwd";
+      "ctrl+a>v" = "new_window_with_cwd";
       "alt+k" = "scroll_line_up";
       "alt+j" = "scroll_line_down";
+      "alt+t" = "new_tab";
       "ctrl+shift+k" = "scroll_page_up";
       "ctrl+shift+j" = "scroll_page_down";
+
+      # Tabs
+      "ctrl+a>1" = "goto_tab 1";
+      "ctrl+a>2" = "goto_tab 2";
+      "ctrl+a>3" = "goto_tab 3";
+      "ctrl+a>4" = "goto_tab 4";
+      "ctrl+a>5" = "goto_tab 5";
     };
 
     settings = {
