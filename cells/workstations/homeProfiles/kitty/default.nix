@@ -10,6 +10,10 @@ in {
     keybindings = {
       "ctrl+shift+enter" = "new_window_with_cwd";
       "ctrl+shift+t" = "new_tab_with_cwd";
+      "alt+k" = "scroll_line_up";
+      "alt+j" = "scroll_line_down";
+      "ctrl+shift+k" = "scroll_page_up";
+      "ctrl+shift+j" = "scroll_page_down";
     };
 
     settings = {
@@ -17,8 +21,9 @@ in {
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
-      font_size = 14;
-      window_margin_width = 5;
+      font_size = 15;
+      window_margin_width = 2;
+      background_opacity = "0.88";
 
       cursor_shape = "block";
       disable_ligatures = "cursor";
@@ -33,23 +38,23 @@ in {
       tab_bar_edge = "bottom";
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";
-      tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
+      tab_title_template = "{index}:{title}";
 
       # Colors
-      active_border_color = "#${palette.base07}";
-      active_tab_background = "#${palette.base0E}";
-      active_tab_foreground = "#11111B";
+      active_border_color = "#${palette.base03}";
+      active_tab_background = "#${palette.base00}";
+      active_tab_foreground = "#${palette.base05}";
       background = "#${palette.base00}";
-      cursor = "#${palette.base06}";
-      cursor_text_color = "#${palette.base00}";
       foreground = "#${palette.base05}";
-      inactive_border_color = "#${palette.base01}";
+      cursor = "#${palette.base05}";
+      # cursor_text_color = "#${palette.base00}";
+      # inactive_border_color = "#${palette.base01}";
       inactive_tab_background = "#${palette.base01}";
-      inactive_tab_foreground = "#${palette.base05}";
-      selection_background = "#${palette.base06}";
+      inactive_tab_foreground = "#${palette.base04}";
+      selection_background = "#${palette.base05}";
       selection_foreground = "#${palette.base00}";
       tab_bar_background = "#${palette.base01}";
-      url_color = "#${palette.base06}";
+      url_color = "#${palette.base04}";
 
       mark1_foreground = "#${palette.base00}";
       mark1_background = "#${palette.base07}";
@@ -58,22 +63,28 @@ in {
       mark3_foreground = "#${palette.base00}";
       mark3_background = "#74C7EC";
 
-      color0 = "#${palette.base03}";
+      color0 = "#${palette.base00}";
       color1 = "#${palette.base08}";
       color2 = "#${palette.base0B}";
       color3 = "#${palette.base0A}";
       color4 = "#${palette.base0D}";
-      color5 = "#F5C2E7";
+      color5 = "#${palette.base0E}";
       color6 = "#${palette.base0C}";
       color7 = "#${palette.base05}";
-      color8 = "#${palette.base04}";
+      color8 = "#${palette.base03}";
       color9 = "#${palette.base08}";
       color10 = "#${palette.base0B}";
       color11 = "#${palette.base0A}";
       color12 = "#${palette.base0D}";
-      color13 = "#F5C2E7";
-      color14 = "#BAC2DE";
-      color15 = "#A6ADC8";
+      color13 = "#${palette.base0E}";
+      color14 = "#${palette.base0C}";
+      color15 = "#${palette.base07}";
+      color16 = "#${palette.base09}";
+      color17 = "#${palette.base0F}";
+      color18 = "#${palette.base01}";
+      color19 = "#${palette.base02}";
+      color20 = "#${palette.base04}";
+      color21 = "#${palette.base06}";
     };
   };
 }
