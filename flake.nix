@@ -54,7 +54,7 @@
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs.follows = "nixpkgs-unstable";
 
     # Hive
