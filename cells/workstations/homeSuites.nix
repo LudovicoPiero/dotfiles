@@ -34,7 +34,6 @@ in
         fuzzel
         kitty
         waybar
-        wezterm
 
         # Etc
         discord

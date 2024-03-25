@@ -25,7 +25,7 @@
 - Waylandバー: [Waybar](https://github.com/Alexays/Waybar)
 - 通知マネージャー: [Mako](https://github.com/emersion/mako)
 - エディター: [Neovim](https://neovim.io/)
-- ターミナル: [WezTerm](https://github.com/wez/wezterm)
+- ターミナル: [Kitty](https://github.com/kovidgoyal/kitty)
 - シェル: [Fish](https://fishshell.com/)
 - ブラウザー: [Firefox](https://www.mozilla.org/en-US/firefox)
 
