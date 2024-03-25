@@ -5,6 +5,7 @@
   ...
 }: let
   _ = lib.getExe;
+  __ = lib.getExe';
 in
   with pkgs; {
     "c" = "${_ commitizen} c -- -s";
@@ -24,7 +25,7 @@ in
     "nv" = "nvim";
     "nr" = "${_ nixpkgs-review}";
     "mkdir" = "mkdir -p";
-    # "sudo" = "doas";
+    "s" = "${__ kitty "kitten"} ssh";
     "g" = "git";
     "v" = "vim";
     "record" = "${_ wl-screenrec} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
