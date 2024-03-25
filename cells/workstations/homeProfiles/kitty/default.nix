@@ -1,6 +1,12 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (config) colorScheme;
   inherit (colorScheme) palette;
+  _ = lib.getExe;
 in {
   programs.kitty = {
     enable = true;
@@ -15,6 +21,7 @@ in {
       "alt+t" = "new_tab";
       "ctrl+shift+k" = "scroll_page_up";
       "ctrl+shift+j" = "scroll_page_down";
+      "ctrl+shift+f" = "launch --type=overlay --stdin-source=@screen_scrollback ${_ pkgs.dash} -c \"${_ pkgs.fzf} --no-sort --no-mouse --exact -i --tac | ${_ pkgs.kitty} +kitten clipboard\"";
 
       # Tabs
       "ctrl+a>1" = "goto_tab 1";
