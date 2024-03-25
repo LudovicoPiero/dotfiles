@@ -124,24 +124,19 @@
       allowed-users = ["@wheel"];
 
       substituters = [
-        # Lower priority value = higher priority
-        "https://cache.nixos.org?priority=1"
-        "https://cache.garnix.io?priority=30"
-        "https://dotfiles-pkgs.cachix.org?priority=20"
-        "https://sforza-config.cachix.org?priority=10"
-        "https://nixpkgs-unfree.cachix.org"
-        "https://numtide.cachix.org"
-        "https://nyx.chaotic.cx/"
+        /*
+        Lower value means higher priority.
+        The default is https://cache.nixos.org, which has a priority of 40.
+        */
+        "https://nix-community.cachix.org?priority=50"
+        "https://nyx.chaotic.cx/?priority=60"
+        "https://cache.garnix.io?priority=70"
       ];
 
       trusted-public-keys = [
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-        "dotfiles-pkgs.cachix.org-1:0TnsAyYE0P2BXv9s7gqqCpkf2SNt4cXKPh/66enbwnk="
-        "sforza-config.cachix.org-1:qQiEQ1JU25VqhRXi1Qr/kA8RT01pd7oeKHr5OORUolM="
-        "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
-        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
 
