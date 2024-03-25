@@ -75,7 +75,7 @@ in {
     useDHCP = false;
     defaultGateway = {
       address = "192.168.1.1";
-      interface = "wlp4s0";
+      interface = "enp3s0";
     };
     interfaces.enp3s0 = {
       ipv4.addresses = [
