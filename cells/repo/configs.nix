@@ -44,6 +44,13 @@ in {
   # Tool Homepage: https://github.com/evilmartians/lefthook
   lefthook = (mkNixago configs.lefthook) {
     # see defaults at https://github.com/divnix/std/blob/main/src/data/configs/lefthook.nix
-    data = {};
+    data = {
+      commit-msg = {
+        parallel = true;
+      };
+      pre-commit = {
+        parallel = true;
+      };
+    };
   };
 }
