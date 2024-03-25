@@ -75,6 +75,21 @@
         '';
     };
 
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      NIXPKGS_ALLOW_UNFREE = "1";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      TERM = "screen-256color";
+      BROWSER = "firefox";
+      XCURSOR_SIZE = "24";
+      # DIRENV_LOG_FORMAT = "";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      "_JAVA_AWT_WM_NONREPARENTING" = "1";
+    };
+
     stateVersion = "23.11";
   };
 
