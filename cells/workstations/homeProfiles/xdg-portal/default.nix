@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   xdg = {
     portal = {
       enable = true;
@@ -13,7 +17,7 @@
 
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-hyprland
+        inputs.xdph.packages.${pkgs.system}.default
       ];
     };
   };

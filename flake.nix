@@ -111,6 +111,20 @@
     };
   };
 
+  # Hyprland
+  inputs = {
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.xdph.follows = "xdph";
+    };
+
+    xdph = {
+      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
   # Secrets
   inputs.sops-nix = {
     url = "github:Mic92/sops-nix";

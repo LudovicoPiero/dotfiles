@@ -7,7 +7,7 @@
 }: {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     settings = import ./__settings.nix {
       inherit
         pkgs
