@@ -31,7 +31,7 @@ in {
     users = {
       airi = {
         imports = let
-          profiles = with homeProfiles; [];
+          profiles = with homeProfiles; [obs-studio];
           suites = with homeSuites; airi;
         in
           lib.concatLists [
