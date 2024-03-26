@@ -73,6 +73,7 @@ in {
   networking = {
     hostName = "sforza";
     useDHCP = false;
+    enableIPv6 = false; # L ISP
     defaultGateway = {
       address = "192.168.1.1";
       interface = "enp3s0";
