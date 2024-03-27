@@ -82,6 +82,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     nix-super.url = "github:privatevoid-net/nix-super";
     spicetify-nix.url = "github:gerg-l/spicetify-nix";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     devshell = {
       url = "github:numtide/devshell";
