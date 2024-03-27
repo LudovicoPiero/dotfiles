@@ -83,8 +83,7 @@
       device = "none";
       fsType = "tmpfs";
       options = [
-        "defaults"
-        "size=2G"
+        "relatime"
         "mode=755"
       ];
     };
