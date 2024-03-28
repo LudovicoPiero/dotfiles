@@ -169,7 +169,6 @@ in {
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
     "$mod      , D , exec , run-as-service vesktop"
-    "$mod      , E , exec , ${emacs}"
     "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
     "$mod      , G , exec , run-as-service firefox"
@@ -186,8 +185,8 @@ in {
     "$mod      , X , exec , ${powermenu}"
     "$mod      , Return , exec , run-as-service kitty"
 
-    # "$mod , E  , exec , emacsclient -c -a 'nvim'"
-    # "ALT   , E , exec , emacsclient -c -eval '(dired nil)'"
+    "$mod      , E , exec , run-as-service \"${emacs}\""
+    "ALT       , E , exec , run-as-service \"emacsclient -c -eval '(dired nil)'\""
 
     ", print, exec , wl-ocr"
     "CTRL   , Print , exec , ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
