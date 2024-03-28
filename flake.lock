@@ -1215,11 +1215,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1711448673,
-        "narHash": "sha256-iVKyiQMHzi/Te1UM1bA3FHrgAxooRwy2P8gm3P6LoyQ=",
+        "lastModified": 1711609579,
+        "narHash": "sha256-HbEUmDudSaT6FfdCLfYcElWIZN1t8zzq8lUXiV/ZTB0=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "cdaeac53b4a7a4e448fb7d9a6bda96f468cb211b",
+        "rev": "09b82e2433fee0d390bf569d0a923d91dc231b79",
         "type": "github"
       },
       "original": {
