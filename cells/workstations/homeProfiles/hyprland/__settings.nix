@@ -8,6 +8,10 @@
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wlogout}";
+  emacs =
+    if config.services.emacs.enable
+    then "emacsclient -c"
+    else "emacs";
 in {
   exec-once = [
     "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
@@ -165,6 +169,7 @@ in {
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
     "$mod      , D , exec , run-as-service vesktop"
+    "$mod      , E , exec , ${emacs}"
     "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
     "$mod      , G , exec , run-as-service firefox"
