@@ -21,7 +21,11 @@
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-git;
+    package = pkgs.emacs-git.override {
+      withTreeSitter = true;
+      withNativeCompilation = true;
+      withPgtk = true;
+    };
     extraPackages = epkgs:
       with epkgs; [
         general
