@@ -28,6 +28,7 @@
     };
     extraPackages = epkgs:
       with epkgs; [
+        all-the-icons
         general
         vterm
         magit

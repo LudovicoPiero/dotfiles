@@ -14,7 +14,7 @@
         iosevka-q
         ;
 
-      inherit (pkgs) material-design-icons noto-fonts-emoji symbola;
+      inherit (pkgs) emacs-all-the-icons-fonts material-design-icons noto-fonts-emoji symbola;
 
       nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
     };
