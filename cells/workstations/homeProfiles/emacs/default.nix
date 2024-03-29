@@ -32,6 +32,7 @@
         general
         vterm
         magit
+        no-littering
       ];
   };
 }
