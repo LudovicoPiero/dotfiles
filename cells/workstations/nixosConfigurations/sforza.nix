@@ -74,6 +74,9 @@ in {
     hostName = "sforza";
     useDHCP = false;
     enableIPv6 = false; # L ISP
+    nameservers = [
+      "1.1.1.1"
+    ];
     defaultGateway = {
       address = "192.168.1.1";
     };
