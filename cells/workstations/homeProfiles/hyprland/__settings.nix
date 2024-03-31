@@ -13,13 +13,18 @@
     then "emacsclient -c"
     else "emacs";
 in {
-  exec-once = [
-    "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
-    "waybar"
-    # "fcitx5 -d --replace"
-    "${_ pkgs.mako}"
-    "swayidle-script"
-  ];
+  exec-once =
+    [
+      "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
+      "waybar"
+      # "fcitx5 -d --replace"
+      "${_ pkgs.mako}"
+      "swayidle-script"
+    ]
+    ++ lib.optionals
+    (config.programs.emacs.enable && !config.services.emacs.enable) [
+      "${_ config.programs.emacs.finalPackage} --fg-daemon"
+    ];
 
   monitor = [
     ",highrr,auto,1"

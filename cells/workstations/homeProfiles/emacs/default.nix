@@ -15,7 +15,7 @@
   '';
 
   services.emacs = {
-    enable = true;
+    enable = false; # Using hyprland's exec-once
     package = config.programs.emacs.finalPackage;
     client.arguments = ["-c"];
   };
