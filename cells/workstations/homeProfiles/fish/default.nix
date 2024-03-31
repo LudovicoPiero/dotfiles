@@ -34,21 +34,20 @@ in {
 
     plugins = [
       {
+        name = "plugin-git";
+        src = pkgs.fishPlugins.plugin-git.src;
+      }
+      {
+        name = "pure";
+        src = pkgs.fishPlugins.pure.src;
+      }
+      {
         name = "fzf.fish";
         src = pkgs.fetchFromGitHub {
           owner = "PatrickF1";
           repo = "fzf.fish";
           rev = "e5d54b93cd3e096ad6c2a419df33c4f50451c900";
           hash = "sha256-5cO5Ey7z7KMF3vqQhIbYip5JR6YiS2I9VPRd6BOmeC8=";
-        };
-      }
-      {
-        name = "pure";
-        src = pkgs.fetchFromGitHub {
-          owner = "pure-fish";
-          repo = "pure";
-          rev = "v4.11.0";
-          hash = "sha256-8zxqPU9N5XGbKc0b3bZYkQ3yH64qcbakMsHIpHZSne4=";
         };
       }
       {
