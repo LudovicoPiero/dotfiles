@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: {
   home.activation.setup-emacs-config = lib.hm.dag.entryBefore ["writeBoundary"] ''
@@ -15,24 +16,64 @@
   '';
 
   services.emacs = {
-    enable = false; # Using hyprland's exec-once
+    enable = true; # Using hyprland's exec-once
     package = config.programs.emacs.finalPackage;
+    socketActivation.enable = true;
     client.arguments = ["-c"];
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-git.override {
-      withTreeSitter = true;
-      withNativeCompilation = true;
-      withPgtk = true;
-    };
-    extraPackages = epkgs:
-      with epkgs; [
-        all-the-icons
-        general
-        vterm
-        magit
-        no-littering
+    package = inputs.wrapper-manager.lib.build {
+      inherit pkgs;
+      modules = [
+        {
+          wrappers.emacs = {
+            basePackage = pkgs.emacs-git.override {
+              withTreeSitter = true;
+              withNativeCompilation = true;
+              withPgtk = true;
+            };
+
+            pathAdd = with pkgs; [
+              # Nix
+              alejandra
+              nil
+              deadnix
+              statix
+
+              # Lua
+              lua-language-server
+              stylua
+
+              # Python
+              nodePackages.pyright
+              isort
+              black
+
+              # C/C++
+              gcc
+              cmake
+              clang
+              clang-tools # for headers stuff
+
+              # Go
+              go
+              gopls
+              gotools
+
+              # Rust
+              rust-analyzer
+
+              # Etc
+              ripgrep
+              fd
+              nodePackages.prettier
+              shfmt
+              gnumake
+            ];
+          };
+        }
       ];
+    };
   };
 }

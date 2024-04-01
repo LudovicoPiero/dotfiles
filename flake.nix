@@ -84,6 +84,11 @@
     spicetify-nix.url = "github:gerg-l/spicetify-nix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
+    wrapper-manager = {
+      url = "github:viperML/wrapper-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";

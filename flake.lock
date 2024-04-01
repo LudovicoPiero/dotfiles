@@ -1910,6 +1910,7 @@
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "std": "std_2",
+        "wrapper-manager": "wrapper-manager",
         "xdph": "xdph"
       }
     },
@@ -2292,6 +2293,26 @@
         "repo": "wlroots",
         "rev": "50eae512d9cecbf0b3b1898bb1f0b40fa05fe19b",
         "type": "gitlab"
+      }
+    },
+    "wrapper-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1702396227,
+        "narHash": "sha256-JTgwZK6m3Lt1LrjgWdl5+9RyDlAI9mzH3QHFMY8RwVY=",
+        "owner": "viperML",
+        "repo": "wrapper-manager",
+        "rev": "3a4c510ffb9f01fc7cab5e23f5ae818d72a66e1a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "viperML",
+        "repo": "wrapper-manager",
+        "type": "github"
       }
     },
     "xdph": {
