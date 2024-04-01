@@ -31,8 +31,6 @@ in {
           "hyprland/workspaces"
           "sway/workspaces"
           "custom/separator#line"
-          "wlr/taskbar"
-          "custom/separator#line"
           "custom/teavpn"
           "custom/wireguard"
           "privacy"
