@@ -129,7 +129,7 @@
         The default is https://cache.nixos.org, which has a priority of 40.
         */
         "https://nix-community.cachix.org?priority=50"
-        "https://nyx.chaotic.cx/?priority=60"
+        "https://nyx.chaotic.cx?priority=60"
         "https://cache.garnix.io?priority=70"
       ];
 
