@@ -1,5 +1,10 @@
-{pkgs, ...}: let
-  hyprlandPackage = "${pkgs.hyprland}/bin/Hyprland";
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
+  hyprlandPackage = "${lib.getExe inputs.hyprland.packages.${pkgs.system}.hyprland}";
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   username = "airi";
 in {
