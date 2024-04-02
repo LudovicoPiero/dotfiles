@@ -4,7 +4,13 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  emacs-git = pkgs.emacs-git.override {
+    withTreeSitter = true;
+    withNativeCompilation = true;
+    withPgtk = true;
+  };
+in {
   home.activation.setup-emacs-config = lib.hm.dag.entryBefore ["writeBoundary"] ''
     CONFIG="${config.xdg.configHome}/emacs"
 
@@ -28,11 +34,9 @@
       modules = [
         {
           wrappers.emacs = {
-            basePackage = pkgs.emacs-git.override {
-              withTreeSitter = true;
-              withNativeCompilation = true;
-              withPgtk = true;
-            };
+            basePackage =
+              (pkgs.emacsPackagesFor emacs-git).emacsWithPackages
+              (epkgs: [epkgs.vterm epkgs.general epkgs.no-littering]);
 
             pathAdd = with pkgs; [
               # Nix
