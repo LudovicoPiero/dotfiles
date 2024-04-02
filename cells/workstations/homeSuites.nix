@@ -34,6 +34,7 @@ in
         fuzzel
         alacritty
         waybar
+        tmux
 
         # Etc
         discord
