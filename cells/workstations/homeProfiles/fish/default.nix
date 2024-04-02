@@ -34,10 +34,6 @@ in {
 
     plugins = [
       {
-        name = "plugin-git";
-        src = pkgs.fishPlugins.plugin-git.src;
-      }
-      {
         name = "pure";
         src = pkgs.fishPlugins.pure.src;
       }
