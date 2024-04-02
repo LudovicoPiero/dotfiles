@@ -25,7 +25,6 @@
         kitty
         element-desktop
         vscodium
-        nil
         ;
 
       inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
