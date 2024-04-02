@@ -33,6 +33,7 @@ in
         hyprland
         fuzzel
         kitty
+        alacritty
         waybar
 
         # Etc
