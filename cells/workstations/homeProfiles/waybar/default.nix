@@ -276,7 +276,6 @@ in {
           "format-alt-click" = "click";
           "tooltip" = true;
           "tooltip-format" = "{used:0.1f}GB/{total:0.1f}G";
-          "on-click-right" = "kitty --title btop sh -c 'btop'";
         };
 
         "network" = {

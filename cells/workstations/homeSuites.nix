@@ -32,7 +32,6 @@ in
         # Windows Manager / Compositor
         hyprland
         fuzzel
-        kitty
         alacritty
         waybar
 
