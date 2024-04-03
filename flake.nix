@@ -76,7 +76,6 @@
     };
 
     # Deps
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
     impermanence.url = "github:nix-community/impermanence";
     lanzaboote.url = "github:nix-community/lanzaboote";

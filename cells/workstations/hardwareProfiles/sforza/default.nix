@@ -24,7 +24,7 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    kernelPackages = lib.mkForce inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     initrd.availableKernelModules = [
       "nvme"

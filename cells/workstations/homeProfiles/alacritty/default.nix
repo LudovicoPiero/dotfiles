@@ -1,16 +1,9 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: let
+{config, ...}: let
   inherit (config) colorScheme;
   inherit (colorScheme) palette;
 in {
   programs.alacritty = {
     enable = true;
-
-    package = inputs.chaotic.packages.${pkgs.system}.alacritty_git;
 
     settings = {
       font = {
