@@ -23,7 +23,7 @@
       {
         plugin = mkTmuxPlugin {
           pluginName = "sensible";
-          version = "unstable-2017-09-05";
+          version = "unstable-2022-08-15";
           src = pkgs.fetchFromGitHub {
             owner = "tmux-plugins";
             repo = "tmux-sensible";
@@ -40,8 +40,8 @@
           src = pkgs.fetchFromGitHub {
             owner = "christoomey";
             repo = "vim-tmux-navigator";
-            rev = "cdd66d6a37d991bba7997d593586fc51a5b37aa8";
-            hash = "sha256-gF1b5aBQTNQm2hCY5aR+RSU4cCNG356Yg6uPnlgqS4o=";
+            rev = "38b1d0402c4600543281dc85b3f51884205674b6";
+            hash = "sha256-4WpY+t4g9mmUrRQgTmUnzpjU8WxtrJOWzIL/vY4wR3I=";
           };
         };
       }
