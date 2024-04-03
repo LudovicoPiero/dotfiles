@@ -32,7 +32,7 @@ in
         # Windows Manager / Compositor
         hyprland
         fuzzel
-        alacritty
+        foot
         waybar
         tmux
 

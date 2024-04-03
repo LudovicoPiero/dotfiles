@@ -6,7 +6,7 @@ in {
     settings = {
       main = {
         font = "Iosevka q SemiBold-16";
-        terminal = "alacritty";
+        terminal = "foot";
         icon-theme = "${config.gtk.iconTheme.name}";
         prompt = "->";
       };
