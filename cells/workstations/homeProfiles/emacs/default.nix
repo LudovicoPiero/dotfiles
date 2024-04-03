@@ -22,9 +22,8 @@ in {
   '';
 
   services.emacs = {
-    enable = true; # Using hyprland's exec-once
+    enable = true; # if False, using hyprland's exec-once
     package = config.programs.emacs.finalPackage;
-    socketActivation.enable = true;
     client.arguments = ["-c"];
   };
   programs.emacs = {
