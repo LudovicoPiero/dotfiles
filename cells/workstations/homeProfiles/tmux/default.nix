@@ -48,12 +48,12 @@
       {
         plugin = mkTmuxPlugin {
           pluginName = "catppuccin";
-          version = "unstable-2023-08-22";
+          version = "unstable-2024-04-04";
           src = pkgs.fetchFromGitHub {
             owner = "ludovicopiero";
             repo = "tmux-cat";
-            rev = "38f8631c5e92255d35500550055ce7d6832fd236";
-            hash = "sha256-6LKh/M5QjCiVONA3u1XsY6eozparYogS9Dy2bRGuPC0=";
+            rev = "92582673775a5e953ff4acb4b8ed4a5390516361";
+            hash = "sha256-eB0vBNmb3zTSlLCMyYtV4CFgZmfqQNhmdZGhGSlPYag=";
           };
           postInstall = ''
             sed -i -e 's|''${PLUGIN_DIR}/catppuccin-selected-theme.tmuxtheme|''${TMUX_TMPDIR}/catppuccin-selected-theme.tmuxtheme|g' $target/catppuccin.tmux
