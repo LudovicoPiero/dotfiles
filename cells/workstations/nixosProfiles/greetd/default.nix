@@ -5,6 +5,7 @@
   ...
 }: let
   hyprlandPackage = "${lib.getExe inputs.hyprland.packages.${pkgs.system}.hyprland}";
+  swayPackage = "${lib.getExe inputs.ludovico-nixpkgs.packages.${pkgs.system}.swayfx}";
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   username = "airi";
 in {
@@ -12,11 +13,11 @@ in {
     enable = true;
     settings = {
       initial_session = {
-        command = "${hyprlandPackage}";
+        command = "${swayPackage}";
         user = "${username}";
       };
       default_session = {
-        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${hyprlandPackage}";
+        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${swayPackage}";
         user = "${username}";
       };
     };

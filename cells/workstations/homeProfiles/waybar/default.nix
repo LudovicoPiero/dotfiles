@@ -2,6 +2,7 @@
   lib,
   pkgs,
   inputs,
+  config,
   ...
 }: let
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
@@ -11,7 +12,7 @@ in {
   home.packages = with pkgs; [alsa-utils];
 
   programs.waybar = {
-    enable = true;
+    enable = lib.mkIf config.wayland.windowManager.hyprland.enable;
     style = ./__style.css;
 
     package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.waybar;
@@ -29,7 +30,6 @@ in {
 
         "modules-left" = [
           "hyprland/workspaces"
-          "sway/workspaces"
           "custom/separator#line"
           "custom/teavpn"
           "custom/wireguard"
@@ -89,12 +89,6 @@ in {
           "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
           "return-type" = "json";
           "interval" = 5;
-        };
-
-        "sway/workspaces" = {
-          "all-outputs" = true;
-          "disable-scroll" = false;
-          "format" = "{name}";
         };
 
         "hyprland/workspaces" = {

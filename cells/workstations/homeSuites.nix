@@ -18,6 +18,11 @@ in
       firefox
       mako
       xdg-portal
+
+      # Etc
+      discord
+      spotify
+      gammastep
     ];
 
     editor = [nvim];
@@ -30,17 +35,13 @@ in
         theme
 
         # Windows Manager / Compositor
-        hyprland
+        # hyprland
+        # waybar
+        sway
+        i3status-rs
         fuzzel
         foot
-        waybar
         tmux
-
-        # Etc
-        discord
-        mako
-        spotify
-        gammastep
       ];
 
     airi = graphical;
