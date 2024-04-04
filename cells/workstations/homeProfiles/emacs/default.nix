@@ -35,7 +35,7 @@ in {
           wrappers.emacs = {
             basePackage =
               (pkgs.emacsPackagesFor emacs-git).emacsWithPackages
-              (epkgs: [epkgs.vterm epkgs.general epkgs.no-littering]);
+              (epkgs: with epkgs; [codeium vterm general no-littering]);
 
             pathAdd = with pkgs; [
               # Nix
