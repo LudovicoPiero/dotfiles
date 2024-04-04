@@ -13,7 +13,6 @@
       ];
       size = 10.0;
     };
-    trayOutput = "primary";
     position = "bottom";
     colors = {
       background = "#${palette.base00}";
