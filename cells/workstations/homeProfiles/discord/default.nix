@@ -1,10 +1,5 @@
 # https://github.com/n3oney/nixus/blob/main/modules/programs/discord/discord.nix
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = [
     (pkgs.vesktop.overrideAttrs (old: {
       patches = (old.patches or []) ++ [./__readonlyFix.patch];
