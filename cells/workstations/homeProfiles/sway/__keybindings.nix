@@ -10,7 +10,6 @@
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   brightnessctl = "${_ pkgs.brightnessctl}";
   playerctl = "${_ pkgs.playerctl}";
-  vesktop-wrapped = "${_ pkgs.vesktop} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer";
 in {
   # Kill focused window
   "${mod}+w" = "kill";
@@ -92,15 +91,15 @@ in {
 
   ### Apps
   "${mod}+Return" = "exec run-as-service '${cfg.terminal} tmux'";
-  "${mod}+p" = "exec run-as-service ${cfg.menu}";
-  "${mod}+g" = "exec ${pkgs.firefox}/bin/firefox";
-  "${mod}+d" = "exec run-as-service '${vesktop-wrapped}'";
-  "${mod}+Shift+e" = "exec run-as-service '${pkgs.xfce.thunar}/bin/thunar'";
+  "${mod}+p" = "exec run-as-service '${cfg.menu}'";
+  "${mod}+g" = "exec '${_ pkgs.firefox}'";
+  "${mod}+d" = "exec run-as-service 'vesktop'";
+  "${mod}+Shift+e" = "exec run-as-service '${_ pkgs.xfce.thunar}'";
 
   ### Screenshot
-  "${mod}+Print" = "sharenix --selection";
-  "${mod}+Shift+Print" = "exec wl-ocr";
-  "CTRL+Print" = "exec grimblast save area - | ${lib.getExe pkgs.swappy} -f -";
+  "Print" = "exec wl-ocr";
+  "CTRL+Print" = "exec ${_ pkgs.grimblast} save area - | ${lib.getExe pkgs.swappy} -f -";
+  "ALT+Print" = "exec ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
 
   # Volume
   # (un)mute output
@@ -108,7 +107,7 @@ in {
   # increase output volume
   XF86AudioRaiseVolume = "exec ${amixer} -q set Master 5%+";
   # decrease output volume
-  XF86AudioLowerVolume = "exec ${amixer} -q set Master 5%+";
+  XF86AudioLowerVolume = "exec ${amixer} -q set Master 5%-";
 
   # Media control
   XF86AudioPlay = "exec ${playerctl} play-pause";
