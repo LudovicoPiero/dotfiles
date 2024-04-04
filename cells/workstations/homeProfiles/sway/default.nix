@@ -16,7 +16,11 @@ in {
       bars = import ./__bars.nix {inherit palette lib pkgs;};
       window = import ./__windows.nix;
       output = {
-        "*" = {bg = "#808080 solid_color";};
+        "eDP-1" = {mode = "1366x768@60Hz";};
+        "HDMI-A-1" = {
+          mode = "1920x1080@60Hz";
+          scale = "1.5";
+        };
       };
       input = {
         "type:touchpad" = {
