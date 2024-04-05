@@ -90,7 +90,7 @@ in {
   "${mod}+Space" = "floating toggle";
 
   ### Apps
-  "${mod}+Return" = "exec run-as-service '${cfg.terminal} tmux'";
+  "${mod}+Return" = "exec run-as-service '${cfg.terminal}'";
   "${mod}+p" = "exec run-as-service '${cfg.menu}'";
   "${mod}+g" = "exec '${_ pkgs.firefox}'";
   "${mod}+d" = "exec run-as-service 'vesktop'";

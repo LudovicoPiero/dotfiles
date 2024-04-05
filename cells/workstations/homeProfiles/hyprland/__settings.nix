@@ -188,7 +188,7 @@ in {
     "$mod      , S , exec , run-as-service spotify"
     "$mod      , W , killactive ,"
     "$mod      , X , exec , ${powermenu}"
-    "$mod      , Return , exec , run-as-service 'foot tmux'"
+    "$mod      , Return , exec , run-as-service 'foot'"
 
     "$mod      , E , exec , run-as-service \"${emacs}\""
     "ALT       , E , exec , run-as-service \"emacsclient -c -eval '(dired nil)'\""
