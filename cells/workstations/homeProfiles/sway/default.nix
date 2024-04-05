@@ -9,7 +9,8 @@
 in {
   wayland.windowManager.sway = {
     enable = true;
-    package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.swayfx;
+    package = pkgs.sway;
+    # package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.swayfx;
     config = {
       colors = import ./__colors.nix {inherit palette;};
       keybindings = import ./__keybindings.nix {inherit lib inputs config pkgs;};

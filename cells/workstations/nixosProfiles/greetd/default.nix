@@ -13,11 +13,11 @@ in {
     enable = true;
     settings = {
       initial_session = {
-        command = "${swayPackage}";
+        command = "${lib.getExe pkgs.sway}";
         user = "${username}";
       };
       default_session = {
-        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${swayPackage}";
+        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${lib.getExe pkgs.sway}";
         user = "${username}";
       };
     };
