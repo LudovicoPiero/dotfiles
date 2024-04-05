@@ -16,8 +16,8 @@
     position = "bottom";
     colors = {
       background = "#${palette.base00}";
-      separator = "#${palette.base01}";
-      statusline = "#${palette.base04}";
+      separator = "#${palette.base04}";
+      statusline = "#${palette.base05}";
       focusedWorkspace = {
         border = "#${palette.base05}";
         background = "#${palette.base0D}";

@@ -56,29 +56,12 @@ in {
           }
           {
             block = "time";
-            format = " $icon $timestamp.datetime(f:'%a %d %b %Y | %I:%M %p') ";
+            format = " $icon $timestamp.datetime(f:'%a %Y-%m-%d | %I:%M %p') ";
           }
         ];
         settings = {
-          theme = {
-            theme = "ctp-mocha";
-            overrides = {
-              idle_bg = "#${palette.base00}";
-              idle_fg = "#${palette.base05}";
-              info_bg = "#${palette.base0C}";
-              info_fg = "#${palette.base00}";
-              good_bg = "#${palette.base0B}";
-              good_fg = "#${palette.base00}";
-              warning_bg = "#${palette.base0A}";
-              warning_fg = "#${palette.base00}";
-              critical_bg = "#${palette.base08}";
-              critical_fg = "#${palette.base00}";
-              separator = "<span font='12'></span>";
-            };
-          };
-          icons = {
-            icons = "material-nf";
-          };
+          theme.theme = "ctp-mocha";
+          icons.icons = "material-nf";
         };
       };
     };
