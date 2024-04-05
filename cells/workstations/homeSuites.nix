@@ -38,7 +38,7 @@ in
         # hyprland
         # waybar
         sway
-        i3status-rs
+        i3status-rust
         fuzzel
         foot
         tmux
