@@ -931,11 +931,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1712350128,
-        "narHash": "sha256-R3sbDv3rCrG5JjGIVSCe3ndoQttI7DYpw0j7t25u+j0=",
+        "lastModified": 1712407843,
+        "narHash": "sha256-kWQmcwaWcflSrKT0XRQ0pA4rEVM+39Os631Nc1Du+rY=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "420be18b50659437c104fb14486852ee8722c3b4",
+        "rev": "46f8ca8c03a4e1b2e0324b5bb857926922ad9199",
         "type": "github"
       },
       "original": {
