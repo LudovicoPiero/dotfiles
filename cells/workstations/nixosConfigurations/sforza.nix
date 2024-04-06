@@ -17,7 +17,10 @@ in {
   inherit bee;
 
   imports = let
-    profiles = with nixosProfiles; [wireguard hardwareProfiles.sforza];
+    profiles = with nixosProfiles; [
+      # wireguard
+      hardwareProfiles.sforza
+    ];
     suites = with nixosSuites; sforza;
   in
     lib.concatLists [
