@@ -39,6 +39,7 @@ in
         # waybar
         sway
         i3status-rust
+        i3status
         fuzzel
         foot
         tmux

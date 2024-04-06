@@ -12,7 +12,7 @@ in {
   home.packages = with pkgs; [alsa-utils];
 
   programs.waybar = {
-    enable = lib.mkIf config.wayland.windowManager.hyprland.enable;
+    enable = config.wayland.windowManager.hyprland.enable;
     style = ./__style.css;
 
     package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.waybar;

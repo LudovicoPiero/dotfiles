@@ -5,18 +5,19 @@
   ...
 }: [
   {
-    statusCommand = "${lib.getExe pkgs.i3status-rust} ~/.config/i3status-rust/config-bottom.toml";
+    statusCommand = "${lib.getExe pkgs.i3status}";
+    # statusCommand = "${lib.getExe pkgs.i3status-rust} ~/.config/i3status-rust/config-bottom.toml";
     fonts = {
       names = [
         "Iosevka q"
         "Symbols Nerd Font"
       ];
-      size = 10.0;
+      size = 8.0;
     };
     position = "bottom";
     colors = {
       background = "#${palette.base00}";
-      separator = "#${palette.base04}";
+      separator = "#${palette.base05}";
       statusline = "#${palette.base05}";
       focusedWorkspace = {
         border = "#${palette.base05}";
