@@ -3,14 +3,16 @@
   pkgs,
   lib,
   inputs,
-}: let
+}:
+let
   _ = lib.getExe;
   cfg = config.wayland.windowManager.sway.config;
   mod = cfg.modifier;
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   brightnessctl = "${_ pkgs.brightnessctl}";
   playerctl = "${_ pkgs.playerctl}";
-in {
+in
+{
   # Kill focused window
   "${mod}+w" = "kill";
 

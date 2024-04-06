@@ -3,12 +3,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   hosts = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
     hash = "sha256-BNOAS05WGYxJM8R/lqTPjXXdsRIYcszaSLdiqBb1Bx8=";
   };
-in {
+in
+{
   networking.extraHosts = builtins.readFile hosts;
 
   # sets hidepid=2 on /proc (make process info visible only to owning user)
@@ -77,7 +79,7 @@ in {
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "cake";
   };
-  boot.kernelModules = ["tcp_bbr"];
+  boot.kernelModules = [ "tcp_bbr" ];
 
   boot.blacklistedKernelModules = [
     # Novideo

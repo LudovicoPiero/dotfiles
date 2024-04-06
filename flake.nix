@@ -1,56 +1,60 @@
 {
   description = "Ludovico's dotfiles powered by Nix Flakes + Hive";
 
-  outputs = {
-    self,
-    std,
-    hive,
-    ...
-  } @ inputs: let
-    myCollect =
-      hive.collect
-      // {
+  outputs =
+    {
+      self,
+      std,
+      hive,
+      ...
+    }@inputs:
+    let
+      myCollect = hive.collect // {
         renamer = cell: target: "${target}";
       };
-  in
-    hive.growOn {
-      inherit inputs;
+    in
+    hive.growOn
+      {
+        inherit inputs;
 
-      nixpkgsConfig = {
-        allowUnfree = true;
+        nixpkgsConfig = {
+          allowUnfree = true;
+        };
+
+        cellsFrom = ./cells;
+        cellBlocks =
+          with hive.blockTypes;
+          with std.blockTypes;
+          [
+            (functions "bee")
+
+            # Profiles
+            (functions "hardwareProfiles")
+            (functions "homeProfiles")
+            (functions "nixosProfiles")
+
+            # Suites
+            (functions "homeSuites")
+            (functions "nixosSuites")
+
+            # Secrets
+            (functions "secrets")
+
+            # Devshells
+            (nixago "configs")
+            (devshells "shells")
+
+            # Configurations
+            nixosConfigurations
+          ];
+      }
+      {
+        nixosConfigurations = myCollect self "nixosConfigurations";
+        devShells = std.harvest self [
+          "repo"
+          "devshells"
+        ];
       };
-
-      cellsFrom = ./cells;
-      cellBlocks = with hive.blockTypes;
-      with std.blockTypes; [
-        (functions "bee")
-
-        # Profiles
-        (functions "hardwareProfiles")
-        (functions "homeProfiles")
-        (functions "nixosProfiles")
-
-        # Suites
-        (functions "homeSuites")
-        (functions "nixosSuites")
-
-        # Secrets
-        (functions "secrets")
-
-        # Devshells
-        (nixago "configs")
-        (devshells "shells")
-
-        # Configurations
-        nixosConfigurations
-      ];
-    } {
-      nixosConfigurations = myCollect self "nixosConfigurations";
-      devShells = std.harvest self [
-        "repo"
-        "devshells"
-      ];
-    };
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";

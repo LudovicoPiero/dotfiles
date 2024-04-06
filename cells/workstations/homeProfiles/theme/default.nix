@@ -4,7 +4,8 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   font = {
     name = "SF Pro Rounded";
     size = 11;
@@ -28,14 +29,13 @@
 
   # Borrowed from fuf's dotfiles
   apply-hm-env = pkgs.writeShellScript "apply-hm-env" ''
-    ${lib.optionalString (config.home.sessionPath != []) ''
+    ${lib.optionalString (config.home.sessionPath != [ ]) ''
       export PATH=${builtins.concatStringsSep ":" config.home.sessionPath}:$PATH
     ''}
     ${builtins.concatStringsSep "\n" (
       lib.mapAttrsToList (k: v: ''
         export ${k}=${toString v}
-      '')
-      config.home.sessionVariables
+      '') config.home.sessionVariables
     )}
     ${config.home.sessionVariablesExtra}
     exec "$@"
@@ -65,8 +65,9 @@
       "sway-session.target"
     ];
   };
-in {
-  imports = [inputs.nix-colors.homeManagerModules.default];
+in
+{
+  imports = [ inputs.nix-colors.homeManagerModules.default ];
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   home.packages = with pkgs; [
     run-as-service

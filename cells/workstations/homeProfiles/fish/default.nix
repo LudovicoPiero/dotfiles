@@ -4,10 +4,12 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   _ = lib.getExe;
-in {
-  imports = [inputs.nix-index-database.hmModules.nix-index];
+in
+{
+  imports = [ inputs.nix-index-database.hmModules.nix-index ];
 
   programs = {
     nix-index-database.comma.enable = true;
@@ -18,19 +20,28 @@ in {
   programs.fish = with pkgs; {
     enable = true;
 
-    functions = import ./__functions.nix {inherit lib pkgs inputs config;};
-    shellAliases = import ./__shellAliases.nix {inherit lib pkgs config;};
+    functions = import ./__functions.nix {
+      inherit
+        lib
+        pkgs
+        inputs
+        config
+        ;
+    };
+    shellAliases = import ./__shellAliases.nix { inherit lib pkgs config; };
 
-    interactiveShellInit = let
-      inherit (config.colorScheme) palette;
-    in ''
-      set --global async_prompt_functions _pure_prompt_git
-      set --universal pure_check_for_new_release false
-      set pure_symbol_prompt "❯"
-      set pure_color_success '#${palette.base0E}'
+    interactiveShellInit =
+      let
+        inherit (config.colorScheme) palette;
+      in
+      ''
+        set --global async_prompt_functions _pure_prompt_git
+        set --universal pure_check_for_new_release false
+        set pure_symbol_prompt "❯"
+        set pure_color_success '#${palette.base0E}'
 
-      ${_ any-nix-shell} fish --info-right | source
-    '';
+        ${_ any-nix-shell} fish --info-right | source
+      '';
 
     plugins = [
       {

@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.xfce.thunar];
+{ pkgs, ... }:
+{
+  environment.systemPackages = [ pkgs.xfce.thunar ];
 
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin

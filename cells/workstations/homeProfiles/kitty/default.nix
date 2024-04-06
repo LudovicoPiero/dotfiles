@@ -3,11 +3,13 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   inherit (config) colorScheme;
   inherit (colorScheme) palette;
   _ = lib.getExe;
-in {
+in
+{
   programs.kitty = {
     enable = true;
 

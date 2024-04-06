@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  systemPackages = with pkgs; [pavucontrol];
+{ pkgs, ... }:
+{
+  systemPackages = with pkgs; [ pavucontrol ];
 }

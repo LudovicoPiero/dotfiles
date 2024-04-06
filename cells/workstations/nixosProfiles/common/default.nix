@@ -3,8 +3,9 @@
   inputs,
   pkgs,
   ...
-}: {
-  imports = [inputs.sops-nix.nixosModules.sops];
+}:
+{
+  imports = [ inputs.sops-nix.nixosModules.sops ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
@@ -12,7 +13,7 @@
   programs.command-not-found.enable = false; # Not working without channel
 
   environment = {
-    pathsToLink = ["/share/fish"];
+    pathsToLink = [ "/share/fish" ];
     systemPackages = with pkgs; [
       teavpn2
       gnome.adwaita-icon-theme
@@ -71,7 +72,7 @@
   services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
-    dbus.packages = [pkgs.gcr];
+    dbus.packages = [ pkgs.gcr ];
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
@@ -87,7 +88,7 @@
   };
 
   nix = {
-    nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
+    nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
 
     package = inputs.nix-super.packages.${pkgs.system}.nix;
 
@@ -121,12 +122,12 @@
         "root"
         "@wheel"
       ];
-      allowed-users = ["@wheel"];
+      allowed-users = [ "@wheel" ];
 
       substituters = [
         /*
-        Lower value means higher priority.
-        The default is https://cache.nixos.org, which has a priority of 40.
+          Lower value means higher priority.
+          The default is https://cache.nixos.org, which has a priority of 40.
         */
         "https://nix-community.cachix.org?priority=50"
         "https://cache.garnix.io?priority=70"

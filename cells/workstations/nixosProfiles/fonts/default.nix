@@ -3,20 +3,21 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   fonts = {
     fontDir.enable = true;
     packages = lib.attrValues {
-      inherit
-        (inputs.ludovico-nixpkgs.packages.${pkgs.system})
-        san-francisco-pro
-        sarasa-gothic
-        iosevka-q
+      inherit (inputs.ludovico-nixpkgs.packages.${pkgs.system}) san-francisco-pro sarasa-gothic iosevka-q;
+
+      inherit (pkgs)
+        emacs-all-the-icons-fonts
+        material-design-icons
+        noto-fonts-emoji
+        symbola
         ;
 
-      inherit (pkgs) emacs-all-the-icons-fonts material-design-icons noto-fonts-emoji symbola;
-
-      nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
+      nerdfonts = pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; };
     };
 
     # use fonts specified by user rather than default ones

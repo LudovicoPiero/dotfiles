@@ -1,8 +1,5 @@
+{ pkgs, inputs, ... }:
 {
-  pkgs,
-  inputs,
-  ...
-}: {
   programs.firefox = {
     enable = true;
 
@@ -20,7 +17,7 @@
             ublock-origin
           ];
           bookmarks = import ./__bookmarks.nix;
-          search = import ./__search.nix {inherit pkgs;};
+          search = import ./__search.nix { inherit pkgs; };
           settings = import ./__settings.nix;
         }
         // (
@@ -32,7 +29,8 @@
               rev = "122.1";
               hash = "sha256-eHocB5vC6Zjz7vsvGOTGazuaUybqigODEIJV9K/h134=";
             };
-          in {
+          in
+          {
             userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
             userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
             extraConfig = ''

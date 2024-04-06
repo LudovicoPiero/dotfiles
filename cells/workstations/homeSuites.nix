@@ -1,49 +1,48 @@
-{
-  inputs,
-  cell,
-}: let
+{ inputs, cell }:
+let
   inherit (cell) homeProfiles;
 in
-  with homeProfiles; rec {
-    base = [
-      common
-      direnv
-      gpg
-      git
-      ssh
-      fish
+with homeProfiles;
+rec {
+  base = [
+    common
+    direnv
+    gpg
+    git
+    ssh
+    fish
+  ];
+
+  commonGraphic = [
+    firefox
+    mako
+    xdg-portal
+
+    # Etc
+    discord
+    spotify
+    gammastep
+  ];
+
+  editor = [ nvim ];
+
+  graphical =
+    base
+    ++ commonGraphic
+    ++ editor
+    ++ [
+      theme
+
+      # Windows Manager / Compositor
+      # hyprland
+      # waybar
+      sway
+      i3status-rust
+      i3status
+      fuzzel
+      foot
+      tmux
     ];
 
-    commonGraphic = [
-      firefox
-      mako
-      xdg-portal
-
-      # Etc
-      discord
-      spotify
-      gammastep
-    ];
-
-    editor = [nvim];
-
-    graphical =
-      base
-      ++ commonGraphic
-      ++ editor
-      ++ [
-        theme
-
-        # Windows Manager / Compositor
-        # hyprland
-        # waybar
-        sway
-        i3status-rust
-        i3status
-        fuzzel
-        foot
-        tmux
-      ];
-
-    airi = graphical;
-  }
+  airi = graphical;
+}

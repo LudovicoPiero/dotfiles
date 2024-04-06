@@ -3,12 +3,14 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   hyprlandPackage = "${lib.getExe inputs.hyprland.packages.${pkgs.system}.hyprland}";
   swayPackage = "${lib.getExe inputs.ludovico-nixpkgs.packages.${pkgs.system}.swayfx}";
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   username = "airi";
-in {
+in
+{
   services.greetd = {
     enable = true;
     settings = {

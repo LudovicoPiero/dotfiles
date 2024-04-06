@@ -1,8 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   programs.gpg = {
     enable = true;
     homedir = "${config.xdg.configHome}/gnupg";
@@ -12,8 +9,8 @@
   services.gpg-agent = {
     enable = true;
     /*
-    Make sure to add this
-    services.dbus.packages = [ pkgs.gcr ];
+      Make sure to add this
+      services.dbus.packages = [ pkgs.gcr ];
     */
     pinentryPackage = pkgs.pinentry-gnome3;
     extraConfig = ''

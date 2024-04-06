@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config, lib, ... }:
+let
   inherit (config.colorScheme) palette;
   sway = config.wayland.windowManager.sway.enable;
-in {
+in
+{
   programs.i3status-rust = {
     enable = lib.mkIf sway true;
     bars = {

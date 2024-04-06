@@ -1,7 +1,9 @@
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config) colorScheme;
   inherit (colorScheme) palette;
-in {
+in
+{
   programs.alacritty = {
     enable = true;
 

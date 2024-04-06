@@ -3,9 +3,9 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit
-    (cell)
+}:
+let
+  inherit (cell)
     bee
     homeProfiles
     homeSuites
@@ -13,16 +13,18 @@
     nixosProfiles
     nixosSuites
     ;
-in {
+in
+{
   inherit bee;
 
-  imports = let
-    profiles = with nixosProfiles; [
-      # wireguard
-      hardwareProfiles.sforza
-    ];
-    suites = with nixosSuites; sforza;
-  in
+  imports =
+    let
+      profiles = with nixosProfiles; [
+        # wireguard
+        hardwareProfiles.sforza
+      ];
+      suites = with nixosSuites; sforza;
+    in
     lib.concatLists [
       profiles
       suites
@@ -33,10 +35,14 @@ in {
     useGlobalPkgs = true;
     users = {
       airi = {
-        imports = let
-          profiles = with homeProfiles; [emacs obs-studio];
-          suites = with homeSuites; airi;
-        in
+        imports =
+          let
+            profiles = with homeProfiles; [
+              emacs
+              obs-studio
+            ];
+            suites = with homeSuites; airi;
+          in
           lib.concatLists [
             profiles
             suites
@@ -69,7 +75,7 @@ in {
         rocmPackages.clr.icd
         rocmPackages.clr
       ];
-      extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
   };
 

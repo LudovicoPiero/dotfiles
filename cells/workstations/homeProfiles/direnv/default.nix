@@ -1,7 +1,5 @@
+{ inputs, cell }:
 {
-  inputs,
-  cell,
-}: {
   programs.direnv = {
     enable = true;
     nix-direnv = {

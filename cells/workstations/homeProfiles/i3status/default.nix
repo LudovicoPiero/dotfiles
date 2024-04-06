@@ -1,4 +1,5 @@
-{config}: {
+{ config }:
+{
   programs.i3status = {
     enable = config.wayland.windowManager.sway.enable;
     enableDefault = false;

@@ -4,12 +4,14 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     date "+%a %d %b %Y"
   '';
-in {
-  home.packages = with pkgs; [alsa-utils];
+in
+{
+  home.packages = with pkgs; [ alsa-utils ];
 
   programs.waybar = {
     enable = config.wayland.windowManager.hyprland.enable;
@@ -100,11 +102,11 @@ in {
           "on-scroll-up" = "hyprctl dispatch workspace e-1";
           "on-scroll-down" = "hyprctl dispatch workspace e+1";
           "persistent-workspaces" = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
+            "1" = [ ];
+            "2" = [ ];
+            "3" = [ ];
+            "4" = [ ];
+            "5" = [ ];
           };
           "format-icons" = {
             "1" = "1";

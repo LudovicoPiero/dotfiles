@@ -3,16 +3,15 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (config.colorScheme) palette;
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wlogout}";
-  emacs =
-    if config.services.emacs.enable
-    then "emacsclient -c"
-    else "emacs";
-in {
+  emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
+in
+{
   exec-once =
     [
       "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
@@ -21,8 +20,7 @@ in {
       "${_ pkgs.mako}"
       "swayidle-script"
     ]
-    ++ lib.optionals
-    (config.programs.emacs.enable && !config.services.emacs.enable) [
+    ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
       "${_ config.programs.emacs.finalPackage} --fg-daemon"
     ];
 
@@ -34,7 +32,7 @@ in {
   animations = {
     enabled = true;
 
-    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
+    bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
 
     animation = [
       "windows, 1, 7, myBezier"

@@ -4,14 +4,16 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   emacs-git = pkgs.emacs-git.override {
     withTreeSitter = true;
     withNativeCompilation = true;
     withPgtk = true;
   };
-in {
-  home.activation.setup-emacs-config = lib.hm.dag.entryBefore ["writeBoundary"] ''
+in
+{
+  home.activation.setup-emacs-config = lib.hm.dag.entryBefore [ "writeBoundary" ] ''
     CONFIG="${config.xdg.configHome}/emacs"
 
     if [ ! -d "$CONFIG" ]; then
@@ -24,7 +26,7 @@ in {
   services.emacs = {
     enable = true; # if False, using hyprland's exec-once
     package = config.programs.emacs.finalPackage;
-    client.arguments = ["-c"];
+    client.arguments = [ "-c" ];
   };
   programs.emacs = {
     enable = true;
@@ -33,9 +35,14 @@ in {
       modules = [
         {
           wrappers.emacs = {
-            basePackage =
-              (pkgs.emacsPackagesFor emacs-git).emacsWithPackages
-              (epkgs: with epkgs; [codeium vterm general no-littering]);
+            basePackage = (pkgs.emacsPackagesFor emacs-git).emacsWithPackages (
+              epkgs: with epkgs; [
+                codeium
+                vterm
+                general
+                no-littering
+              ]
+            );
 
             pathAdd = with pkgs; [
               # Nix
