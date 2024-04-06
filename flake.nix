@@ -75,13 +75,33 @@
       };
     };
 
-    # Deps
-    ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
-    impermanence.url = "github:nix-community/impermanence";
-    lanzaboote.url = "github:nix-community/lanzaboote";
-    nix-super.url = "github:privatevoid-net/nix-super";
-    spicetify-nix.url = "github:gerg-l/spicetify-nix";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    ludovico-nixpkgs = {
+      url = "github:LudovicoPiero/nixpackages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-super = {
+      url = "github:privatevoid-net/nix-super";
+    };
+
+    spicetify-nix = {
+      url = "github:gerg-l/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
@@ -113,6 +133,10 @@
     nix-colors = {
       url = "github:misterio77/nix-colors";
       inputs.base16-schemes.follows = "base16-schemes";
+    };
+
+    nixfmt = {
+      url = "github:nixos/nixfmt";
     };
   };
 

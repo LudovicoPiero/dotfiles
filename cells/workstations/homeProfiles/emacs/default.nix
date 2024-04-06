@@ -39,7 +39,7 @@ in {
 
             pathAdd = with pkgs; [
               # Nix
-              alejandra
+              inputs.nixfmt.packages.${pkgs.system}.nixfmt
               nil
               deadnix
               statix
