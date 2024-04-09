@@ -18,6 +18,19 @@
       # Open panes in current working directory
       bind ';' split-window -h -c "#{pane_current_path}"
       bind v split-window -v -c "#{pane_current_path}"
+
+      # Nvim
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?\.?(view|n?vim?x?)(-wrapped)?(diff)?$'"
+
+      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h' 'select-pane -L'
+      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
+      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
+      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
+
+      bind-key -T copy-mode-vi 'C-h' select-pane -L
+      bind-key -T copy-mode-vi 'C-j' select-pane -D
+      bind-key -T copy-mode-vi 'C-k' select-pane -U
+      bind-key -T copy-mode-vi 'C-l' select-pane -R
     '';
 
     plugins = with pkgs.tmuxPlugins; [
