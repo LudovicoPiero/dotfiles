@@ -18,19 +18,6 @@
       # Open panes in current working directory
       bind ';' split-window -h -c "#{pane_current_path}"
       bind v split-window -v -c "#{pane_current_path}"
-
-      # Nvim
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?\.?(view|n?vim?x?)(-wrapped)?(diff)?$'"
-
-      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h' 'select-pane -L'
-      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
-      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
-      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
-
-      bind-key -T copy-mode-vi 'C-h' select-pane -L
-      bind-key -T copy-mode-vi 'C-j' select-pane -D
-      bind-key -T copy-mode-vi 'C-k' select-pane -U
-      bind-key -T copy-mode-vi 'C-l' select-pane -R
     '';
 
     plugins = with pkgs.tmuxPlugins; [
@@ -50,44 +37,39 @@
         plugin = mkTmuxPlugin {
           pluginName = "vim-tmux-navigator";
           rtpFilePath = "vim-tmux-navigator.tmux";
-          version = "unstable-2022-08-21";
+          version = "unstable-2023-12-24";
           src = pkgs.fetchFromGitHub {
             owner = "christoomey";
             repo = "vim-tmux-navigator";
             rev = "38b1d0402c4600543281dc85b3f51884205674b6";
-            hash = "sha256-4WpY+t4g9mmUrRQgTmUnzpjU8WxtrJOWzIL/vY4wR3I=";
+            hash = "sha256-4WpY+t4g9mmUrRQgTmUnzpjU8WxtrJOWz
+IL/vY4wR3I=";
           };
         };
       }
       {
         plugin = mkTmuxPlugin {
-          pluginName = "catppuccin";
-          version = "unstable-2024-04-04";
+          pluginName = dracula;
+          rtpFilePath = "dracula.tmux";
+          version = "unstable-2024-04-10";
           src = pkgs.fetchFromGitHub {
-            owner = "ludovicopiero";
-            repo = "tmux-cat";
-            rev = "92582673775a5e953ff4acb4b8ed4a5390516361";
-            hash = "sha256-eB0vBNmb3zTSlLCMyYtV4CFgZmfqQNhmdZGhGSlPYag=";
+            owner = "dracula";
+            repo = "tmux";
+            rev = "c2b1d67cbda5c44ea8ee25d2ab307063e6959d0f";
+            hash = "sha256-rP4kiSSz/JN47ogC5S+2h5ACS0tgjvRxCclBc5WQZGk";
           };
-          postInstall = ''
-            sed -i -e 's|''${PLUGIN_DIR}/catppuccin-selected-theme.tmuxtheme|''${TMUX_TMPDIR}/catppuccin-selected-theme.tmuxtheme|g' $target/catppuccin.tmux
+          extraConfig = ''
+            set -g status-position top
+            set -g @dracula-show-powerline true
+            set -g @dracula-fixed-location "Kameoka"
+            set -g @dracula-show-fahrenheit false
+            set -g @dracula-plugins "cpu-usage ram-usage weather"
+            set -g @dracula-refresh-rate 10
           '';
         };
-        extraConfig = ''
-          set -g status-position top
-        '';
       }
       {
-        plugin = mkTmuxPlugin {
-          pluginName = "yank";
-          version = "unstable-2023-07-24";
-          src = pkgs.fetchFromGitHub {
-            owner = "tmux-plugins";
-            repo = "tmux-yank";
-            rev = "acfd36e4fcba99f8310a7dfb432111c242fe7392";
-            hash = "sha256-/5HPaoOx2U2d8lZZJo5dKmemu6hKgHJYq23hxkddXpA=";
-          };
-        };
+        plugin = yank;
         extraConfig = ''
           bind-key -T copy-mode-vi v send-keys -X begin-selection
           bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
