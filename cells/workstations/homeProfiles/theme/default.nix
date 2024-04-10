@@ -68,7 +68,7 @@ let
 in
 {
   imports = [ inputs.nix-colors.homeManagerModules.default ];
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
   home.packages = with pkgs; [
     run-as-service
     apple-cursor
