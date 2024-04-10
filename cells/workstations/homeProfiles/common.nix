@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
@@ -15,8 +16,6 @@
         fd
         fzf
         mpv
-        telegram-desktop
-        thunderbird
         imv
         viewnior
         qbittorrent
@@ -24,10 +23,11 @@
         yazi
         kitty
         element-desktop
-        vscodium
         ;
 
       inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
+
+      inherit (inputs.nixpkgs-master.legacyPackages.${pkgs.system}) thunderbird telegram-desktop vscodium;
 
       swaylock = pkgs.writeShellScriptBin "swaylock-script" ''
         ${lib.getExe pkgs.swaylock-effects} \
