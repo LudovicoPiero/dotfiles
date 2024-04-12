@@ -26,13 +26,18 @@
     bookmarks = [
       {
         name = "Nix Package";
-        keyword = "nw";
+        keyword = "np";
         url = "https://search.nixos.org/packages?channel=unstable";
       }
       {
         name = "Nix Options";
         keyword = "no";
         url = "https://search.nixos.org/options?channel=unstable";
+      }
+      {
+        name = "NixOS Wiki";
+        keyword = "nw";
+        url = "https://wiki.nixos.org/wiki/Linux_kernel";
       }
       {
         name = "Home-Manager";
