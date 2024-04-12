@@ -5,8 +5,7 @@
 */
 { inputs, cell }:
 let
-  inherit (inputs.hive) bootstrap;
-  inherit (inputs.std) lib std;
+  inherit (inputs.std) lib;
 in
 builtins.mapAttrs (_: lib.dev.mkShell) {
   # Tool Homepage: https://numtide.github.io/devshell/
@@ -31,11 +30,6 @@ builtins.mapAttrs (_: lib.dev.mkShell) {
       editorconfig
       lefthook
       treefmt
-    ];
-
-    imports = [
-      bootstrap.shell.bootstrap
-      std.devshellProfiles.default
     ];
 
     packages = with inputs.nixpkgs; [
