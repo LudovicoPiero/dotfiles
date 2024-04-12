@@ -34,9 +34,9 @@ rec {
       theme
 
       # Windows Manager / Compositor
-      # hyprland
-      # waybar
+      hyprland
       sway
+      waybar
       i3status-rust
       i3status
       fuzzel

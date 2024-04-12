@@ -63,10 +63,6 @@
         Defaults pwfeedback
       '';
     };
-
-    pam = {
-      services.swaylock.text = "auth include login";
-    };
   };
 
   services = {
