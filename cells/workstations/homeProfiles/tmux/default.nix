@@ -63,7 +63,7 @@ IL/vY4wR3I=";
             set -g @dracula-show-powerline true
             set -g @dracula-fixed-location "Kameoka"
             set -g @dracula-show-fahrenheit false
-            set -g @dracula-plugins "cpu-usage ram-usage weather"
+            set -g @dracula-plugins "cpu-usage ram-usage"
             set -g @dracula-refresh-rate 10
           '';
         };
