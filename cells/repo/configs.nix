@@ -54,9 +54,27 @@ in
     data = {
       commit-msg = {
         parallel = true;
+        commands = lib.mkForce {
+          conform = {
+            # allow WIP, fixup!/squash! commits locally
+            run = ''
+              [[ "$(head -n 1 {1})" =~ ^WIP(:.*)?$|^wip(:.*)?$|fixup\!.*|squash\!.* ]] ||
+              ${lib.getExe nixpkgs.conform} enforce --commit-msg-file {1}
+            '';
+          };
+        };
       };
       pre-commit = {
         parallel = true;
+        commands = lib.mkForce {
+          treefmt = {
+            run = "${lib.getExe nixpkgs.treefmt} --fail-on-change {staged_files}";
+            skip = [
+              "merge"
+              "rebase"
+            ];
+          };
+        };
       };
     };
   };
