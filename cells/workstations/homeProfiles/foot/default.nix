@@ -8,7 +8,7 @@ in
     settings = {
       main = {
         term = "screen-256color";
-        font = "Iosevka q:size=15,Material Design Icons:size=15,Noto Color Emoji:size=15";
+        font = "Iosevka q:size=15,Material Design Icons:size=15,Noto Color Emoji:size=15,Symbols Nerd Font:size=15";
         dpi-aware = "yes";
         initial-window-size-chars = "82x23";
         initial-window-mode = "windowed";
