@@ -687,11 +687,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712951181,
-        "narHash": "sha256-Am+Jl/pDkVuZxyiBEAw1Ia5/dDRi5HOIYBT/kTT6uKA=",
+        "lastModified": 1713015628,
+        "narHash": "sha256-bB/dALMilF7vC4sE4nNhyUl8pIGSZAfQOqPLQ5kg40I=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "0c513ba91bd73106be99e35b1a020d24e5ae874a",
+        "rev": "9e4b2efe7e24f7b21faefbd50a88f25b5185bc35",
         "type": "github"
       },
       "original": {
