@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let
+  inherit (config.colorScheme) palette;
+in
 {
   programs.tmux = {
     enable = true;
@@ -18,6 +21,16 @@
       # Open panes in current working directory
       bind ';' split-window -h -c "#{pane_current_path}"
       bind v split-window -v -c "#{pane_current_path}"
+
+      # Custom Status Theme
+      set -g status-position bottom
+      set -g status-left ""
+      set -g status-right ""
+      set -g status-justify centre
+      set -g window-status-format '#I:#W'
+      set -g window-status-style bg=default,fg=#${palette.base05}
+      set -g status-style bg=default,fg=#${palette.base05}
+      set -g status-interval 10
     '';
 
     plugins = with pkgs.tmuxPlugins; [
@@ -45,27 +58,6 @@
             hash = "sha256-4WpY+t4g9mmUrRQgTmUnzpjU8WxtrJOWz
 IL/vY4wR3I=";
           };
-        };
-      }
-      {
-        plugin = mkTmuxPlugin {
-          pluginName = dracula;
-          rtpFilePath = "dracula.tmux";
-          version = "unstable-2024-04-10";
-          src = pkgs.fetchFromGitHub {
-            owner = "dracula";
-            repo = "tmux";
-            rev = "c2b1d67cbda5c44ea8ee25d2ab307063e6959d0f";
-            hash = "sha256-rP4kiSSz/JN47ogC5S+2h5ACS0tgjvRxCclBc5WQZGk";
-          };
-          extraConfig = ''
-            set -g status-position top
-            set -g @dracula-show-powerline true
-            set -g @dracula-fixed-location "Kameoka"
-            set -g @dracula-show-fahrenheit false
-            set -g @dracula-plugins "cpu-usage ram-usage"
-            set -g @dracula-refresh-rate 10
-          '';
         };
       }
       {
