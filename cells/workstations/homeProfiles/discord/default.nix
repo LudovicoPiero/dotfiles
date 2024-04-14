@@ -2,7 +2,7 @@
 { pkgs, inputs, ... }:
 {
   home.packages = [
-    (inputs.ludovico-nixpkgs.packages.${pkgs.sysyem}.vesktop.overrideAttrs (old: {
+    (inputs.ludovico-nixpkgs.packages.${pkgs.system}.vesktop.overrideAttrs (old: {
       patches = (old.patches or [ ]) ++ [ ./__readonlyFix.patch ];
       postFixup = ''
         wrapProgram $out/bin/vesktop \
