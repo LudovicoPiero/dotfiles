@@ -44,7 +44,7 @@ jobs:
 
       - run: git config --global user.email "59017537+MaximilianSforza@users.noreply.github.com"
       - run: git config --global user.name "Maximilian"
-      - uses: ludovicopiero/flake-update-action@main
+      - uses: cpcloud/flake-update-action@main
         with:
           dependency: ${{ matrix.flake }}
           pull-request-token: ${{ secrets.PR_TOKEN }}
