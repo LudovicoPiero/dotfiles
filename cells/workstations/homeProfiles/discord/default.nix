@@ -1,8 +1,8 @@
 # https://github.com/n3oney/nixus/blob/main/modules/programs/discord/discord.nix
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = [
-    (pkgs.vesktop.overrideAttrs (old: {
+    (inputs.ludovico-nixpkgs.packages.${pkgs.system}.vesktop.overrideAttrs (old: {
       patches = (old.patches or [ ]) ++ [ ./__readonlyFix.patch ];
       postFixup = ''
         wrapProgram $out/bin/vesktop \
