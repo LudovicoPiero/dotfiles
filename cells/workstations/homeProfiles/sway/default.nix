@@ -12,7 +12,6 @@ in
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.sway;
-    # package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.swayfx;
     config = {
       colors = import ./__colors.nix { inherit palette; };
       keybindings = import ./__keybindings.nix {
@@ -91,28 +90,6 @@ in
       titlebar_border_thickness 1
       title_align center
       titlebar_padding 2
-
-      # # SwayFX stuff
-      # # window corner radius in px
-      # corner_radius 5
-      #
-      # blur enable
-      # blur_xray disable
-      # blur_passes 1
-      # blur_radius 2
-      #
-      # shadows off
-      # shadows_on_csd off
-      # shadow_blur_radius 20
-      # shadow_color #0000007F
-      #
-      # # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
-      # default_dim_inactive 0.0
-      # dim_inactive_colors.unfocused #000000FF
-      # dim_inactive_colors.urgent #900000FF
-      #
-      # # Treat Scratchpad as minimized
-      # scratchpad_minimize disable
     '';
     extraSessionCommands = ''
       export XDG_CURRENT_DESKTOP=sway
