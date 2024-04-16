@@ -18,6 +18,7 @@ rec {
     steam
     pipewire
     thunar
+    xdg-portal
   ];
 
   sforza = base ++ graphical;
