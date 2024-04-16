@@ -14,7 +14,6 @@ in
 {
   exec-once =
     [
-      "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk"
       "waybar"
       # "fcitx5 -d --replace"
       "${_ pkgs.mako}"
