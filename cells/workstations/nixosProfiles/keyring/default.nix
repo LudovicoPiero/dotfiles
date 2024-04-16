@@ -11,6 +11,7 @@
     gnome.gnome-keyring.enable = true;
     dbus.packages = [ pkgs.gnome.seahorse ];
   };
+  security.polkit.enable = true;
 
   systemd = {
     user.services.pantheon-agent-polkit = {

@@ -16,7 +16,6 @@ rec {
   commonGraphic = [
     firefox
     mako
-    xdg-portal
 
     # Etc
     discord
