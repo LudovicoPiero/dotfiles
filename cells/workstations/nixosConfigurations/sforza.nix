@@ -20,7 +20,7 @@ in
   imports =
     let
       profiles = with nixosProfiles; [
-        docker
+        # docker
         # wireguard
         hardwareProfiles.sforza
       ];
