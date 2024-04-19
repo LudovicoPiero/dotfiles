@@ -95,7 +95,7 @@
     };
 
     nix-super = {
-      url = "github:privatevoid-net/nix-super";
+      url = "github:privatevoid-net/nix-super?rev=afffb6659d3672e166f3d541f0656144e1cbbb27";
     };
 
     spicetify-nix = {
