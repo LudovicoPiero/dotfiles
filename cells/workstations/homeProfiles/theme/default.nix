@@ -159,7 +159,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk3";
+    platformTheme.name = "gtk3";
   };
 
   home.file.".icons/default/index.theme".text = ''
