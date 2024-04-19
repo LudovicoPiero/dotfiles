@@ -42,13 +42,13 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GH_TOKEN }}
 
-      - run: git config --global user.email "59017537+MaximilianSforza@users.noreply.github.com"
-      - run: git config --global user.name "Maximilian"
+      - run: git config --global user.email "lewdovico@gnuweeb.org"
+      - run: git config --global user.name "Ludovico Piero"
       - uses: cpcloud/flake-update-action@main
         with:
           dependency: ${{ matrix.flake }}
-          pull-request-token: ${{ secrets.PR_TOKEN }}
-          pull-request-author: Maximilian <59017537+MaximilianSforza@users.noreply.github.com>
+          pull-request-token: ${{ secrets.GH_TOKEN }}
+          pull-request-author: Ludovico Piero <lewdovico@gnuweeb.org>
           github-token: ${{ secrets.GH_TOKEN }}
           pull-request-labels: automated,uwu, keep-up-to-date
           delete-branch: true
