@@ -22,11 +22,6 @@ builtins.mapAttrs (_: lib.dev.mkShell) {
     # This is Standard's devshell integration.
     # It runs the startup hook when entering the shell.
     nixago = with cell.configs; [
-      (conform {
-        data = {
-          inherit (inputs) cells;
-        };
-      })
       editorconfig
       lefthook
       treefmt

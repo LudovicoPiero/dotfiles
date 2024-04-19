@@ -51,22 +51,10 @@ in
   # Tool Homepage: https://github.com/evilmartians/lefthook
   lefthook = (mkNixago configs.lefthook) {
     # see defaults at https://github.com/divnix/std/blob/main/src/data/configs/lefthook.nix
-    data = {
-      commit-msg = {
-        parallel = true;
-        commands = lib.mkForce {
-          conform = {
-            # allow WIP, fixup!/squash! commits locally
-            run = ''
-              [[ "$(head -n 1 {1})" =~ ^WIP(:.*)?$|^wip(:.*)?$|fixup\!.*|squash\!.* ]] ||
-              ${lib.getExe nixpkgs.conform} enforce --commit-msg-file {1}
-            '';
-          };
-        };
-      };
+    data = lib.mkForce {
       pre-commit = {
         parallel = true;
-        commands = lib.mkForce {
+        commands = {
           treefmt = {
             run = "${lib.getExe nixpkgs.treefmt} --fail-on-change {staged_files}";
             skip = [
