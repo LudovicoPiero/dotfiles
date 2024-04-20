@@ -22,7 +22,7 @@ in
   networking.wg-quick.interfaces = {
     wg0 = {
       autostart = true;
-      address = [ "10.66.66.3/32" ];
+      address = [ "10.66.66.2/32" ];
       dns = [
         "174.138.21.128"
         "188.166.206.224"
@@ -32,10 +32,10 @@ in
 
       peers = [
         {
-          publicKey = "w0jyL2xL1T1lLu1IKCDS4EXfEsSOjiJio9dnmkhevws=";
+          publicKey = "xra4ritvDeDyEc5BR2btrKY8hby6MXKWKojZ7meMmE0=";
           presharedKeyFile = config.sops.secrets.presharedKey.path;
           allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "64.176.44.14:51820";
+          endpoint = "139.180.222.226:51820";
           persistentKeepalive = 25;
         }
       ];
