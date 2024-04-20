@@ -21,7 +21,7 @@ in
     let
       profiles = with nixosProfiles; [
         # docker
-        # wireguard
+        wireguard
         hardwareProfiles.sforza
       ];
       suites = with nixosSuites; sforza;
