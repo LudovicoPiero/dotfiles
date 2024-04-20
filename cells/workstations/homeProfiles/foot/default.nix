@@ -17,7 +17,7 @@ in
       };
 
       colors = {
-        alpha = "0.88";
+        # alpha = "0.88";
         foreground = "${palette.base05}"; # Text
         background = "${palette.base00}"; # colors.base
 
