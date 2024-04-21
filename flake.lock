@@ -935,11 +935,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713647762,
-        "narHash": "sha256-ApbJziZZb4soL7OST8CzRaFeshgepXPY0P9nECRpE4c=",
+        "lastModified": 1713662438,
+        "narHash": "sha256-+ekcBsjWg6diWmLIsu1jyWF9kC6COqI3mw0hwh7EUYU=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "fbbada9020864b3980db564d33b346aaaa27e701",
+        "rev": "a6bfa1370aeda5dab2a545c35aa34b3a726ec96a",
         "type": "github"
       },
       "original": {
