@@ -18,8 +18,8 @@
       eachSystem =
         f: inputs.nixpkgs.lib.genAttrs (import systems) (system: f inputs.nixpkgs.legacyPackages.${system});
 
-      # Eval the treefmt modules from ./cells/repo/treefmt.nix
-      treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./cells/repo/treefmt.nix);
+      # Eval the treefmt modules from ./repo/treefmt.nix
+      treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./repo/treefmt.nix);
     in
     hive.growOn
       {
