@@ -6,12 +6,20 @@
       self,
       std,
       hive,
+      systems,
       ...
     }@inputs:
     let
       myCollect = hive.collect // {
-        renamer = cell: target: "${target}";
+        renamer = _cell: target: "${target}";
       };
+
+      # Small tool to iterate over each systems
+      eachSystem =
+        f: inputs.nixpkgs.lib.genAttrs (import systems) (system: f inputs.nixpkgs.legacyPackages.${system});
+
+      # Eval the treefmt modules from ./cells/repo/treefmt.nix
+      treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./cells/repo/treefmt.nix);
     in
     hive.growOn
       {
@@ -50,10 +58,13 @@
       }
       {
         nixosConfigurations = myCollect self "nixosConfigurations";
-        devShells = std.harvest self [
-          "repo"
-          "devshells"
-        ];
+
+        # for `nix fmt`
+        formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+        # for `nix flake check`
+        checks = eachSystem (pkgs: {
+          formatting = treefmtEval.${pkgs.system}.config.build.check self;
+        });
       };
 
   inputs = {
@@ -80,6 +91,8 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     ludovico-nixpkgs = {
       url = "github:LudovicoPiero/nixpackages";
