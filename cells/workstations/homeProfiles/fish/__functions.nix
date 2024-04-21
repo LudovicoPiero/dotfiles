@@ -8,17 +8,17 @@
 let
   _ = lib.getExe;
   __ = lib.getExe';
-  nix-super = inputs.nix-super.packages.${pkgs.system}.nix;
+  nh = pkgs.nh;
 in
 with pkgs;
 {
   gitignore = "curl -sL https://www.gitignore.io/api/$argv";
   fish_greeting = ""; # disable welcome text
-  run = "${_ nix-super} run nixpkgs#$argv[1] -- $argv[2..-1]";
+  run = "${_ nh} run nixpkgs#$argv[1] -- $argv[2..-1]";
 
   bs = ''
     pushd ${config.home.homeDirectory}/Code/nixos
-    ${_ nix-super} system apply .
+    ${_ nh} os apply .
 
     if test $status -eq 0
       ${__ libnotify "notify-send"} "Rebuild Switch" "Build successful!"
@@ -31,7 +31,7 @@ with pkgs;
 
   bb = ''
     pushd ${config.home.homeDirectory}/Code/nixos
-    ${_ nix-super} system boot .
+    ${_ nh} os boot .
 
     if test $status -eq 0
       ${__ libnotify "notify-send"} "Rebuild Boot" "Build successful!"
@@ -44,7 +44,7 @@ with pkgs;
 
   hs = ''
     pushd ${config.home.homeDirectory}/Code/nixos
-    ${_ nix-super} home switch .
+    ${_ nh} home switch .
 
     if test $status -eq 0
       ${__ libnotify "notify-send"} "Home-Manager Switch" "Build successful!"
