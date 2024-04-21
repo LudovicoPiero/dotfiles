@@ -68,19 +68,19 @@
         ];
       };
 
-      "${userHome}/WinE" = {
-        device = "/dev/disk/by-label/WinE";
-        fsType = "ntfs";
-        options = [
-          "uid=1000"
-          "gid=100"
-          "rw"
-          "user"
-          "exec"
-          "umask=000"
-          "nofail"
-        ];
-      };
+      # "${userHome}/WinE" = {
+      #   device = "/dev/disk/by-label/WinE";
+      #   fsType = "ntfs";
+      #   options = [
+      #     "uid=1000"
+      #     "gid=100"
+      #     "rw"
+      #     "user"
+      #     "exec"
+      #     "umask=000"
+      #     "nofail"
+      #   ];
+      # };
 
       "/" = {
         device = "none";
