@@ -6,7 +6,6 @@
 }:
 let
   _ = lib.getExe;
-  __ = lib.getExe';
 in
 with pkgs;
 {
@@ -25,6 +24,7 @@ with pkgs;
   "tree" = "${_ eza} --tree --icons";
   "lg" = "${_ lazygit}";
   "nb" = "nix-build -E 'with import <nixpkgs> { }; callPackage ./default.nix { }'";
+  "ns" = "nix-shell -p";
   "nv" = "nvim";
   "nr" = "${_ nixpkgs-review}";
   "mkdir" = "mkdir -p";
