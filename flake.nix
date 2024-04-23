@@ -48,10 +48,6 @@
             # Secrets
             (functions "secrets")
 
-            # Devshells
-            (nixago "configs")
-            (devshells "shells")
-
             # Configurations
             nixosConfigurations
           ];
