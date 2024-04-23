@@ -6,52 +6,17 @@ on:
     - cron: "0 17 * * 0" # At 17:00 UTC / 2 Midnight JP on Sunday
 
 jobs:
-  get-flakes:
-    if: github.repository == 'ludovicopiero/dotfiles' # Don't do this in forks
+  update-flake-lock:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.get-flakes.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4.1.1
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.3
       - name: Install Nix
-        uses: cachix/install-nix-action@v26
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@main
         with:
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GH_TOKEN }}
-      - name: generate flake matrix
-        id: get-flakes
-        run: |
-          set -euo pipefail
-          flakes="$(nix flake metadata --json | jq -rcM '.locks.nodes.root.inputs | {flake: keys}')"
-          echo "matrix=$flakes" >> "$GITHUB_OUTPUT"
-
-  update-flake:
-    if: github.repository == 'ludovicopiero/dotfiles' # Don't do this in forks
-    name: update-${{ matrix.flake }}
-    runs-on: ubuntu-latest
-    needs: get-flakes
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJson(needs.get-flakes.outputs.matrix) }}
-    steps:
-      - uses: actions/checkout@v4.1.1
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v26
-        with:
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GH_TOKEN }}
-
-      - run: git config --global user.email "lewdovico@gnuweeb.org"
-      - run: git config --global user.name "Ludovico Piero"
-      - uses: cpcloud/flake-update-action@main
-        with:
-          dependency: ${{ matrix.flake }}
-          pull-request-token: ${{ secrets.GH_TOKEN }}
-          pull-request-author: Ludovico Piero <lewdovico@gnuweeb.org>
-          github-token: ${{ secrets.GH_TOKEN }}
-          pull-request-labels: automated,uwu, keep-up-to-date
-          delete-branch: true
-          pull-request-branch-prefix: "flake/update-"
-          pull-request-merge-method: "merge"
-          automerge: false
+          commit-msg: "chore: Update flake.lock" # The message provided with the commit
+          pr-title: "Update flake.lock" # Title of PR to be created
+          pr-labels: | # Labels to be set on the PR
+            automated
