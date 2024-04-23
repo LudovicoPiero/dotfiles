@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  inputs,
   ...
 }:
 let
@@ -18,7 +17,7 @@ with pkgs;
 
   bs = ''
     pushd ${config.home.homeDirectory}/Code/nixos
-    ${_ nh} os apply .
+    ${_ nh} os switch .
 
     if test $status -eq 0
       ${__ libnotify "notify-send"} "Rebuild Switch" "Build successful!"
