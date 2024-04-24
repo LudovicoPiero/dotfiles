@@ -481,6 +481,32 @@ in
           after = [ "yasnippet" ];
         };
 
+        vertico = {
+          enable = true;
+          init = ''
+            (vertico-mode)
+            (setq vertico-count 5)
+            (setq vertico-cycle t)
+          '';
+        };
+
+        # Persist history over Emacs restarts.
+        savehist = {
+          enable = true;
+          init = ''
+            (savehist-mode)
+          '';
+        };
+
+        orderless = {
+          enable = true;
+          init = ''
+            (setq completion-styles '(orderless basic)
+                  completion-category-defaults nil
+                  completion-category-overrides '((file (styles partial-completion))))
+          '';
+        };
+
         magit = {
           enable = true;
           command = [ "magit-project-status" ];
