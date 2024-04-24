@@ -61,6 +61,17 @@
         checks = eachSystem (pkgs: {
           formatting = treefmtEval.${pkgs.system}.config.build.check self;
         });
+
+        devShells = eachSystem (pkgs: {
+          default = pkgs.mkShell {
+            name = "Hiveland";
+            packages = with pkgs; [
+              nil
+              inputs.nixfmt.packages.${pkgs.system}.nixfmt
+              sops
+            ];
+          };
+        });
       };
 
   inputs = {
