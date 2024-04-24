@@ -181,8 +181,21 @@ in
       # Use dconf-editor to get this settings.
       color-scheme = "prefer-dark";
       cursor-theme = cursorTheme.name;
+      cursor-size = cursorTheme.size;
       gtk-theme = theme.name;
       icon-theme = iconsTheme.name;
+      font-name = "${font.name} ${toString font.size}";
+      clock-format = "12h";
+      clock-show-date = true;
+      clock-show-seconds = false;
+      clock-show-weekday = false;
+      enable-animations = true;
+      enable-hot-corners = false;
+      font-antialiasing = "grayscale";
+      font-hinting = "slight";
+      scaling-factor = 1;
+      text-scaling-factor = 1.0;
+      toolbar-style = "text";
     };
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "close,minimize,maximize:icon";
