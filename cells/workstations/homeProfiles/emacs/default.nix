@@ -195,7 +195,7 @@ in
           diminish = [ "company-mode" ];
           config = ''
             (setq company-begin-commands '(self-insert-command))
-            (setq company-idle-delay .5)
+            (setq company-idle-delay 0.1)
             (setq company-minimum-prefix-length 1)
             (setq company-show-numbers t)
             (setq company-tooltip-align-annotations 't)
@@ -460,22 +460,6 @@ in
           hook = [ "(org-mode . (lambda () (org-bullets-mode 1)))" ];
         };
         org-tempo.enable = true;
-
-        # Treesitter
-        tree-sitter = {
-          enable = true;
-          diminish = [ "tree-sitter-mode" ];
-          config = ''
-            (global-tree-sitter-mode)
-          '';
-        };
-        tree-sitter-langs = {
-          enable = true;
-          after = [ "tree-sitter" ];
-          config = ''
-            (add-hook 'prog-mode-hook #'tree-sitter-hl-mode)
-          '';
-        };
 
         # Misc
         yasnippet = {
