@@ -15,7 +15,7 @@ in
   exec-once =
     [
       "waybar"
-      # "fcitx5 -d --replace"
+      "fcitx5 -d --replace"
       "${_ pkgs.mako}"
       "swayidle-script"
       "[workspace 9 silent;noanim] ${_ pkgs.thunderbird}"

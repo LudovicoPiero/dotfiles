@@ -14,6 +14,7 @@ rec {
     greetd
     fonts
     keyring
+    fcitx5
     gamemode
     steam
     pipewire
