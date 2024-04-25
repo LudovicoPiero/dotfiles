@@ -18,6 +18,7 @@ in
       # "fcitx5 -d --replace"
       "${_ pkgs.mako}"
       "swayidle-script"
+      "[workspace 9 silent;noanim] ${_ pkgs.thunderbird}"
     ]
     ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
       "${_ config.programs.emacs.finalPackage} --fg-daemon"
