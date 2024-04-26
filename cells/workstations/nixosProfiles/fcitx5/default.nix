@@ -25,6 +25,7 @@ in
         addons = with pkgs; [
           fcitx5-mozc
           fcitx5-gtk
+          fcitx5-rose-pine # Theme
           libsForQt5.fcitx5-qt
         ];
       };
