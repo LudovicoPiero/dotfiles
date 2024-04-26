@@ -193,20 +193,64 @@ require("lazy").setup({
   },
 
   {
-    "nyoom-engineering/oxocarbon.nvim",
+    "rose-pine/neovim",
     priority = 1000,
     init = function()
-      vim.opt.background = "dark"
-      vim.cmd("colorscheme oxocarbon")
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    end,
-  },
+      require("rose-pine").setup({
+        variant = "auto", -- auto, main, moon, or dawn
+        dark_variant = "main", -- main, moon, or dawn
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
 
-  -- nvim-scrollbar
-  {
-    "petertriho/nvim-scrollbar",
-    opts = {},
+        enable = {
+          terminal = true,
+          legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+          migrations = true, -- Handle deprecated options automatically
+        },
+
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = false,
+        },
+
+        groups = {
+          border = "muted",
+          link = "iris",
+          panel = "surface",
+
+          error = "love",
+          hint = "iris",
+          info = "foam",
+          note = "pine",
+          todo = "rose",
+          warn = "gold",
+
+          git_add = "foam",
+          git_change = "rose",
+          git_delete = "love",
+          git_dirty = "rose",
+          git_ignore = "muted",
+          git_merge = "iris",
+          git_rename = "pine",
+          git_stage = "iris",
+          git_text = "rose",
+          git_untracked = "subtle",
+
+          h1 = "iris",
+          h2 = "foam",
+          h3 = "rose",
+          h4 = "gold",
+          h5 = "pine",
+          h6 = "foam",
+        },
+      })
+
+      -- vim.cmd("colorscheme rose-pine")
+      -- vim.cmd("colorscheme rose-pine-main")
+      vim.cmd("colorscheme rose-pine-moon")
+      -- vim.cmd("colorscheme rose-pine-dawn")
+    end,
   },
 
   {
@@ -417,7 +461,6 @@ require("telescope").setup({
   -- },
   pickers = {
     find_files = { theme = "ivy", previewer = false },
-    live_grep = { theme = "ivy" },
     buffers = {
       theme = "dropdown",
       sort_lastused = true,
@@ -651,6 +694,10 @@ local capabilities = vim.tbl_deep_extend(
   -- See: https://github.com/neovim/neovim/pull/22405
   { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
 )
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 local serverConfigs = {
   lua_ls = {
@@ -705,6 +752,34 @@ end
 -- See `:help cmp`
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local kind_icons = {
+  Text = "󰊄 ",
+  Method = " ",
+  Function = "󰡱 ",
+  Constructor = " ",
+  Field = " ",
+  Variable = "󱀍 ",
+  Class = " ",
+  Interface = " ",
+  Module = "󰕳 ",
+  Property = " ",
+  Unit = " ",
+  Value = " ",
+  Enum = " ",
+  Keyword = " ",
+  Snippet = " ",
+  Color = " ",
+  File = " ",
+  Reference = " ",
+  Folder = " ",
+  EnumMember = " ",
+  Constant = " ",
+  Struct = " ",
+  Event = " ",
+  Operator = " ",
+  TypeParameter = " ",
+}
+
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
 
@@ -746,11 +821,37 @@ cmp.setup({
       end
     end, { "i", "s" }),
   }),
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      vim_item.menu = ({
+        path = "[Path]",
+        nvim_lua = "[NVIM_LUA]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
   sources = {
+    { name = "path" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
-    { name = "path" },
+  },
+  confirm_opts = {
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  experimental = {
+    ghost_text = false,
+    native_menu = false,
   },
 })
 

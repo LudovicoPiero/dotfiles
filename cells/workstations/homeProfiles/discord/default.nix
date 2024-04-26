@@ -67,7 +67,7 @@
       };
       ShikiCodeblocks = {
         enabled = true;
-        theme = "https://raw.githubusercontent.com/shikijs/shiki/0b28ad8ccfbf2615f2d9d38ea8255416b8ac3043/packages/shiki/themes/dracula.json";
+        theme = "https://raw.githubusercontent.com/shikijs/textmate-grammars-themes/main/packages/tm-themes/themes/rose-pine-moon.json";
         tryHljs = "SECONDARY";
         useDevIcon = "COLOR";
         bgOpacity = 100;
