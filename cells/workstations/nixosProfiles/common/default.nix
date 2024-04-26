@@ -84,7 +84,7 @@
   };
 
   nix = {
-    nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     package = lib.mkDefault inputs.nix.packages.${pkgs.system}.nix;
 
