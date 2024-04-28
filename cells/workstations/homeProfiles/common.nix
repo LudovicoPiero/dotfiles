@@ -11,7 +11,6 @@
   home = {
     packages = lib.attrValues rec {
       inherit (pkgs)
-        authy
         bat
         fd
         fzf
