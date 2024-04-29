@@ -1,8 +1,5 @@
+{ pkgs, inputs, ... }:
 {
-  pkgs,
-  inputs,
-  ...
-}: {
   nixpkgs.config = {
     allowUnfree = true;
   };
@@ -25,7 +22,7 @@
       enable = false;
       extraRules = [
         {
-          users = ["ludovico"];
+          users = [ "ludovico" ];
           keepEnv = true;
           persist = true;
         }
@@ -36,7 +33,7 @@
   services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
-    dbus.packages = [pkgs.gcr];
+    dbus.packages = [ pkgs.gcr ];
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
@@ -44,7 +41,7 @@
 
   environment = {
     # completion for system packages (e.g. systemd).
-    pathsToLink = ["/share/fish"];
+    pathsToLink = [ "/share/fish" ];
 
     # Selection of sysadmin tools that can come in handy
     systemPackages = with pkgs; [
@@ -95,14 +92,14 @@
     };
   };
 
-  nh = {
+  programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 3d --keep 3";
   };
 
   nix = {
-    nixPath = ["nixpkgs=flake:nixpkgs"]; # https://ayats.org/blog/channels-to-flakes/
+    nixPath = [ "nixpkgs=flake:nixpkgs" ]; # https://ayats.org/blog/channels-to-flakes/
 
     package = inputs.nix-super.packages.${pkgs.system}.nix;
 
@@ -127,8 +124,8 @@
       keep-outputs = true;
 
       /*
-      If set to true, Nix will conform to the XDG Base Directory Specification
-      for files in $HOME.
+        If set to true, Nix will conform to the XDG Base Directory Specification
+        for files in $HOME.
       */
       use-xdg-base-directories = true;
 
@@ -136,8 +133,11 @@
       warn-dirty = false;
 
       # Give root user and wheel group special Nix privileges.
-      trusted-users = ["root" "@wheel"];
-      allowed-users = ["@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+      allowed-users = [ "@wheel" ];
 
       substituters = [
         # Lower priority value = higher priority

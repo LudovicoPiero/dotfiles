@@ -67,12 +67,6 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs.follows = "unstable";
 
-    # For Webcord
-    arrpc = {
-      url = "github:NotAShelf/arrpc-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

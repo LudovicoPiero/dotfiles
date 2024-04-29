@@ -17,7 +17,6 @@
       inputs.chaotic.nixosModules.default
       inputs.hyprland.nixosModules.default
       inputs.impermanence.nixosModule
-      inputs.nh.nixosModules.default
       inputs.lanzaboote.nixosModules.lanzaboote
       inputs.sops-nix.nixosModules.sops
       self.nixosModules.home-manager
