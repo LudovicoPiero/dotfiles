@@ -46,7 +46,11 @@
       "bcachefs"
       "ntfs"
       "xfs"
+      "zfs"
     ];
+    zfs.devNodes = "/dev/vg/root";
+    # blkid --match-tag UUID --output value "$DISK-part6"
+    initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/90743a6a-c41d-4cbb-ad8c-5258b9c82613";
   };
 
   fileSystems =
@@ -68,58 +72,42 @@
         ];
       };
 
-      # "${userHome}/WinE" = {
-      #   device = "/dev/disk/by-label/WinE";
-      #   fsType = "ntfs";
-      #   options = [
-      #     "uid=1000"
-      #     "gid=100"
-      #     "rw"
-      #     "user"
-      #     "exec"
-      #     "umask=000"
-      #     "nofail"
-      #   ];
-      # };
+      "${userHome}/WinE" = {
+        device = "/dev/disk/by-label/WinE";
+        fsType = "ntfs";
+        options = [
+          "uid=1000"
+          "gid=100"
+          "rw"
+          "user"
+          "exec"
+          "umask=000"
+          "nofail"
+        ];
+      };
 
       "/" = {
-        device = "none";
-        fsType = "tmpfs";
-        options = [
-          "relatime"
-          "mode=755"
-        ];
+        device = "tank/local/root";
+        fsType = "zfs";
       };
 
       "/boot" = {
         device = "/dev/disk/by-label/BOOT";
         fsType = "vfat";
+        options = [
+          "fmask=0022"
+          "dmask=0022"
+        ];
       };
 
       "/nix" = {
-        device = "/dev/disk/by-partlabel/Store";
-        fsType = "bcachefs";
-        options = [
-          # Enable discard/TRIM support
-          "discard"
-          # foreground compression with zstd
-          "compression=zstd"
-          # background compression with zstd
-          "background_compression=zstd"
-        ];
+        device = "tank/local/nix";
+        fsType = "zfs";
       };
 
       "/home" = {
-        device = "/dev/disk/by-partlabel/Home";
-        fsType = "bcachefs";
-        options = [
-          # Enable discard/TRIM support
-          "discard"
-          # foreground compression with zstd
-          "compression=zstd"
-          # background compression with zstd
-          "background_compression=zstd"
-        ];
+        device = "tank/safe/home";
+        fsType = "zfs";
         neededForBoot = true;
       };
 
@@ -128,21 +116,9 @@
         fsType = "xfs";
         neededForBoot = true;
       };
-
-      "/etc/nixos" = {
-        device = "/persist/etc/nixos";
-        fsType = "none";
-        options = [ "bind" ];
-      };
-
-      "/var/log" = {
-        device = "/persist/var/log";
-        fsType = "none";
-        options = [ "bind" ];
-      };
     };
 
-  swapDevices = [ { device = "/dev/disk/by-label/Swap"; } ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/b67da05d-f9dd-4480-a76a-978feb5a5270"; } ];
 
   # slows down boot time
   systemd.services.NetworkManager-wait-online.enable = false;

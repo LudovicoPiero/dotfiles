@@ -31,6 +31,11 @@ in
       suites
     ];
 
+  # Roll back to blank snapshot on boot
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r tank/local/root@blank
+  '';
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -82,6 +87,7 @@ in
 
   networking = {
     hostName = "sforza";
+    hostId = "1a122b84"; # head -c8 /etc/machine-id
     useDHCP = lib.mkDefault true;
     enableIPv6 = false; # L ISP
     networkmanager.enable = true;
