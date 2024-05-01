@@ -15,6 +15,9 @@ in
       bind -n M-H previous-window
       bind -n M-L next-window
 
+      # Fix Color in neovim
+      set-option -sa terminal-features ',screen-256color:RGB'
+
       # Set vi-mode
       set-window-option -g mode-keys vi
 
