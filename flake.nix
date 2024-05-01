@@ -82,6 +82,10 @@
     nixpkgs.follows = "nixpkgs-unstable";
 
     # Hive
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixago = {
       url = "github:nix-community/nixago";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -122,16 +126,6 @@
 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    wrapper-manager = {
-      url = "github:viperML/wrapper-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    devshell = {
-      url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
