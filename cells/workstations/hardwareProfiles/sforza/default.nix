@@ -141,8 +141,11 @@
         "/var/lib/pipewire"
         "/var/lib/systemd/coredump"
       ]
-      # ++ lib.optionals config.mine.dnscrypt.enable [ "/var/lib/dnscrypt-proxy2" ]
-      # ++ lib.optionals config.mine.greetd.enable [ "/var/cache/regreet" ]
+      ++ lib.optionals config.programs.regreet.enable [
+        "/var/empty/.cache"
+        "/var/cache/regreet"
+        "/var/log/regreet"
+      ]
       ++ lib.optionals config.virtualisation.docker.enable [ "/var/lib/docker" ]
       ++ lib.optionals config.services.jellyfin.enable [ "/var/lib/jellyfin" ];
     files = [ "/etc/machine-id" ];
