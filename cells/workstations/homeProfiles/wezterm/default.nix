@@ -12,65 +12,6 @@ in
   programs.wezterm = {
     enable = true;
     package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.wezterm;
-    colorSchemes = {
-      "${colorScheme.slug}" = {
-        ansi = [
-          "${palette.base00}"
-          "${palette.base0A}"
-          "${palette.base0D}"
-          "FFE97B"
-          "${palette.base0B}"
-          "${palette.base0C}"
-          "${palette.base08}"
-          "${palette.base04}"
-        ];
-        brights = [
-          "${palette.base02}"
-          "${palette.base0A}"
-          "${palette.base0D}"
-          "FFE97B"
-          "${palette.base0B}"
-          "${palette.base0C}"
-          "${palette.base08}"
-          "${palette.base06}"
-        ];
-        tab_bar = {
-          background = "#${palette.base01}";
-          inactive_tab_edge = "#${palette.base01}";
-          active_tab = {
-            bg_color = "#${palette.base03}";
-            fg_color = "#${palette.base05}";
-          };
-          inactive_tab = {
-            bg_color = "#${palette.base00}";
-            fg_color = "#${palette.base05}";
-          };
-          inactive_tab_hover = {
-            bg_color = "#${palette.base05}";
-            fg_color = "#${palette.base00}";
-          };
-          new_tab = {
-            bg_color = "#${palette.base00}";
-            fg_color = "#${palette.base05}";
-          };
-          new_tab_hover = {
-            bg_color = "#${palette.base05}";
-            fg_color = "#${palette.base00}";
-          };
-        };
-        foreground = "${palette.base05}";
-        background = "${palette.base00}";
-        cursor_fg = "${palette.base00}";
-        cursor_bg = "${palette.base05}";
-        compose_cursor = "${palette.base06}";
-        scrollbar_thumb = "${palette.base01}";
-        cursor_border = "#${palette.base05}";
-        selection_fg = "#${palette.base00}";
-        selection_bg = "#${palette.base0F}";
-        split = "${palette.base0B}";
-        visual_bell = "${palette.base09}";
-      };
-    };
     extraConfig = ''
       return {
         font = wezterm.font_with_fallback({
@@ -80,7 +21,7 @@ in
         }),
         font_size = 14.0,
         enable_wayland = true,
-        window_background_opacity = 0.88,
+        window_background_opacity = 1,
         color_scheme = "${colorScheme.slug}",
         enable_scroll_bar = false,
         enable_kitty_keyboard = true,
