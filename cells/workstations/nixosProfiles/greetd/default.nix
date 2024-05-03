@@ -21,7 +21,7 @@
 
       swayConf = pkgs.writeText "greetd-sway-config" ''
         output * background #000000 solid_color
-        exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
+        exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         xwayland disable
 
         exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
