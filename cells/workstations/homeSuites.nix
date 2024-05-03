@@ -34,7 +34,7 @@ rec {
 
       # Windows Manager / Compositor
       hyprland
-      # sway
+      sway
       waybar
       i3status-rust
       i3status
