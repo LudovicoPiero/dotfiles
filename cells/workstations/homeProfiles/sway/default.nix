@@ -83,7 +83,7 @@ in
         }
       ];
       modifier = "Mod4";
-      terminal = "${pkgs.foot}/bin/foot";
+      terminal = "wezterm";
       menu = "${pkgs.fuzzel}/bin/fuzzel";
     };
     extraConfig = ''

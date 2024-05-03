@@ -8,7 +8,7 @@ in
     settings = {
       main = {
         font = "Iosevka q SemiBold-16";
-        terminal = "foot";
+        terminal = "wezterm";
         icon-theme = "${config.gtk.iconTheme.name}";
         prompt = "->";
       };
