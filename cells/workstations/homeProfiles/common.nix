@@ -22,11 +22,12 @@
         yazi
         kitty
         element-desktop
+        thunderbird
+        telegram-desktop
+        vscodium
         ;
 
       inherit (pkgs.libsForQt5) kleopatra; # Gui for GPG
-
-      inherit (inputs.nixpkgs-master.legacyPackages.${pkgs.system}) thunderbird telegram-desktop vscodium;
 
       swaylock = pkgs.writeShellScriptBin "swaylock-script" ''
         ${lib.getExe pkgs.swaylock-effects} \
