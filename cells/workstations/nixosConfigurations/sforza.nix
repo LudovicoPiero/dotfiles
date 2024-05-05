@@ -77,11 +77,9 @@ in
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
         rocmPackages.clr.icd
         rocmPackages.clr
       ];
-      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
   };
 
