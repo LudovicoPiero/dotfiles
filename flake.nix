@@ -76,7 +76,7 @@
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs";
     nix.url = "github:nixos/nix";
     nixpkgs.follows = "nixpkgs-unstable";
