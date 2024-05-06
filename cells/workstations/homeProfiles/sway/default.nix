@@ -76,8 +76,9 @@ in
         {
           command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";
         }
-        # {command = "fcitx5 -d --replace";}
         { command = "mako"; }
+        { command = "fcitx5 -d --replace"; }
+        { command = "${lib.getExe pkgs.thunderbird}"; }
         {
           command = "systemctl --user restart swaybg xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk";
         }
