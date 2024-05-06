@@ -17,8 +17,8 @@ in
     enable = config.wayland.windowManager.hyprland.enable;
     style = ./__style.css;
 
-    package = pkgs.waybar;
-    # package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.waybar;
+    # package = pkgs.waybar;
+    package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.waybar;
 
     settings = {
       # Thanks to @chborli on Hyprland's discord server
