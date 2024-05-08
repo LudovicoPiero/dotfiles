@@ -40,7 +40,7 @@ in
       bold_italic_font = "auto";
       font_size = 15;
       window_margin_width = 2;
-      background_opacity = "0.88";
+      background_opacity = "1";
 
       cursor_shape = "block";
       disable_ligatures = "cursor";

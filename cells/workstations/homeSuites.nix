@@ -40,6 +40,7 @@ rec {
       i3status
       fuzzel
       foot
+      kitty
       wezterm
       tmux
     ];
