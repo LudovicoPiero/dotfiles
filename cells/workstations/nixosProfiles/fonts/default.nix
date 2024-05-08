@@ -15,6 +15,7 @@
         material-design-icons
         noto-fonts-emoji
         symbola
+        wqy_zenhei # For Steam
         ;
 
       nerdfonts = pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; };
