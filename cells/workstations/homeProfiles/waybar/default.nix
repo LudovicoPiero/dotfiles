@@ -151,7 +151,7 @@ in
         };
         "clock" = {
           "interval" = 1;
-          "format" = "󰅐 {:%H:%M:%S}";
+          "format" = "󰅐 {:%I:%M %p}";
           "tooltip-format" = "{:%Y-%m-%d | %H:%M:%S}";
         };
         "battery" = {
