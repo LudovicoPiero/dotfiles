@@ -4,7 +4,7 @@
   inputs,
   config,
   ...
-}:
+}@args:
 let
   _ = lib.getExe;
 in
@@ -13,7 +13,7 @@ in
 
   programs.waybar = {
     enable = config.wayland.windowManager.hyprland.enable;
-    style = ./__style.css;
+    style = import ./__style.nix args;
 
     # package = pkgs.waybar;
     package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.waybar;
