@@ -32,7 +32,7 @@ in
           "custom/wireguard"
         ];
         "modules-right" = [
-          "custom/disk_home"
+          "custom/disk_persist"
           "custom/separator"
           "custom/disk_root"
           "custom/separator"
@@ -99,10 +99,10 @@ in
           "tooltip" = false;
         };
 
-        "custom/disk_home" = {
+        "custom/disk_persist" = {
           "format" = "󰋊 Porn Folder: {}";
           "interval" = 30;
-          "exec" = "df -h --output=avail $HOME | tail -1 | tr -d ' '";
+          "exec" = "df -h --output=avail /dev/disk/by-label/Persist | tail -1 | tr -d ' '";
         };
         "custom/disk_root" = {
           "format" = "󰋊 Hentai Folder: {}";
