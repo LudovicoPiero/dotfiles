@@ -26,7 +26,11 @@ in
         "height" = 18; # Waybar height (to be removed for auto height)
 
         # Choose the order of the modules
-        "modules-left" = [ "hyprland/workspaces" ];
+        "modules-left" = [
+          "hyprland/workspaces"
+          "custom/separator"
+          "custom/wireguard"
+        ];
         "modules-right" = [
           "custom/disk_home"
           "custom/separator"
@@ -80,6 +84,14 @@ in
             "default" = "󰝥";
             "special" = "󰦥";
           };
+        };
+
+        "custom/wireguard" = {
+          "format" = "󰖂 Wireguard";
+          "exec" = "echo '{\"class\": \"connected\"}'";
+          "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+          "return-type" = "json";
+          "interval" = 5;
         };
 
         "custom/separator" = {
