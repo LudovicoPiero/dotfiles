@@ -163,8 +163,6 @@ in
     "noshadow, title:^(.*(Disc|WebC)ord.*)$"
     "noanim, class:^(org.telegram.desktop)$"
     "noanim, class:^(wlogout)$"
-    "stayfocused, title:^()$,class:^(steam)$"
-    "minsize 1 1, title:^()$,class:^(steam)$"
   ];
 
   "$mod" = "SUPER";
