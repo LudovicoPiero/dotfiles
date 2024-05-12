@@ -58,8 +58,9 @@ in
   };
 
   documentation = {
-    enable = true;
-    doc.enable = true;
+    enable = false;
+    doc.enable = false;
+    nixos.enable = false;
     man.enable = true;
     dev.enable = false;
   };
