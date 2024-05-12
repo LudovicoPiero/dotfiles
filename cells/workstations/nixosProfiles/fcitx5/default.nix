@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   en = "en_US.UTF-8";
   ja = "ja_JP.UTF-8";
@@ -25,7 +25,7 @@ in
         addons = with pkgs; [
           fcitx5-mozc
           fcitx5-gtk
-          fcitx5-rose-pine # Theme
+          inputs.ludovico-nixpkgs.packages.${system}.catppuccin-fcitx5 # Theme
           libsForQt5.fcitx5-qt
         ];
       };
