@@ -75,7 +75,7 @@ in
         "custom/app#term" = {
           "format" = "{}  ";
           "tooltip" = false;
-          "on-click" = "kitty";
+          "on-click" = "wezterm";
         };
 
         "custom/teavpn" = {

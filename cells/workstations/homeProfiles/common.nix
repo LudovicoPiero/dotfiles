@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 {
@@ -20,7 +19,6 @@
         qbittorrent
         xdg-utils
         yazi
-        kitty
         element-desktop
         thunderbird
         telegram-desktop
