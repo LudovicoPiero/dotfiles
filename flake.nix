@@ -7,6 +7,7 @@
       std,
       hive,
       systems,
+      lix-module,
       ...
     }@inputs:
     let
@@ -78,7 +79,6 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs";
-    nix.url = "github:nixos/nix";
     nixpkgs.follows = "nixpkgs-unstable";
 
     # Hive
@@ -101,6 +101,17 @@
         nixago.follows = "nixago";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+
+    # LIX
+    lix = {
+      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -154,10 +165,8 @@
     nixfmt = {
       url = "github:nixos/nixfmt";
     };
-  };
 
-  # Hyprland
-  inputs = {
+    # Hyprland
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -168,12 +177,12 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
 
-  # Secrets
-  inputs.sops-nix = {
-    url = "github:Mic92/sops-nix";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    # Secrets
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    };
   };
 }

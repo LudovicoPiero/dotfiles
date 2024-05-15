@@ -15,7 +15,10 @@
     inherit (inputs.nixpkgs) system;
     config.allowUnfree = true;
     config.allowBroken = true;
-    overlays = [ inputs.emacs-overlay.overlays.default ];
+    overlays = [
+      inputs.emacs-overlay.overlays.default
+      inputs.lix-module.overlays.default
+    ];
   };
   home = inputs.home-manager;
 }
