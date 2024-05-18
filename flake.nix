@@ -7,7 +7,6 @@
       std,
       hive,
       systems,
-      lix-module,
       ...
     }@inputs:
     let
@@ -66,11 +65,10 @@
         devShells = eachSystem (pkgs: {
           default = pkgs.mkShell {
             name = "Hiveland";
-            packages = with pkgs; [
-              nil
-              inputs.nixfmt.packages.${pkgs.system}.nixfmt
-              sops
-            ];
+            packages = pkgs.lib.attrValues {
+              inherit (pkgs) nixd sops;
+              inherit (inputs.nixfmt.packages.${pkgs.system}) nixfmt;
+            };
           };
         });
       };

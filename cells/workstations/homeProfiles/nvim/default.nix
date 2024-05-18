@@ -15,7 +15,7 @@
     extraPackages = with pkgs; [
       # Nix
       inputs.nixfmt.packages.${pkgs.system}.nixfmt
-      nil
+      nixd
       deadnix
       statix
 

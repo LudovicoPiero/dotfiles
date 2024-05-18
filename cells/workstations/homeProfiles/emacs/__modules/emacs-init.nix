@@ -6,9 +6,35 @@
   ...
 }:
 
-with lib;
-
 let
+
+  inherit (lib)
+    any
+    attrValues
+    concatMap
+    concatStringsSep
+    escape
+    filter
+    flatten
+    getAttr
+    hasAttr
+    isBool
+    isFunction
+    isString
+    literalExpression
+    mapAttrsToList
+    mergeOneOption
+    mkBefore
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    mkOptionType
+    optional
+    optionalString
+    optionals
+    types
+    ;
 
   cfg = config.programs.emacs.init;
 
@@ -265,11 +291,6 @@ let
       };
     }
   );
-
-  usePackageStr = name: pkgConfStr: ''
-    (use-package ${name}
-      ${pkgConfStr})
-  '';
 
   mkRecommendedOption =
     type: extraDescription:

@@ -1,12 +1,6 @@
 # A collection of "uncontroversial" configurations for selected packages.
 # Source: https://gitlab.com/rycee/nur-expressions/-/blob/master/hm-modules/emacs-init-defaults.nix
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-
+{ pkgs, lib, ... }:
 {
   programs.emacs.init.usePackage = {
     all-the-icons = {

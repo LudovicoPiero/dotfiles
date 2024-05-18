@@ -723,11 +723,26 @@ local serverConfigs = {
   pyright = {},
   rust_analyzer = {},
   clangd = {},
-  nil_ls = {
+  nixd = {
+    cmd = { "nixd" },
     settings = {
-      ["nil"] = {
+      nixd = {
+        nixpkgs = {
+          expr = "import (builtins.getFlake (\"git+file://\" + toString ./.)).inputs.nixpkgs { }",
+        },
         formatting = {
           command = { "nixfmt" },
+        },
+        options = {
+          nixos = {
+            expr = "(builtins.getFlake (\"git+file://\" + toString ./.)).nixosConfigurations.sforza.options",
+          },
+          home_manager = {
+            expr = "(builtins.getFlake (\"git+file://\" + toString ./.)).homeConfigurations.\"airi@sforza\".options",
+          },
+          flake_parts = {
+            expr = "let flake = builtins.getFlake (\"git+file://\" + toString ./.); in flake.debug.options // flake.currentSystem.options",
+          },
         },
       },
     },
