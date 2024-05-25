@@ -21,7 +21,7 @@ in
 
   networking.wg-quick.interfaces = {
     wg0 = {
-      autostart = true;
+      autostart = false;
       address = [ "10.66.66.2/32" ];
       dns = [
         "174.138.21.128"
