@@ -77,7 +77,6 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs";
-    nix.url = "github:nixos/nix";
     nixpkgs.follows = "nixpkgs-unstable";
 
     # Hive
@@ -116,6 +115,10 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-super = {
+      url = "github:privatevoid-net/nix-super";
     };
 
     spicetify-nix = {

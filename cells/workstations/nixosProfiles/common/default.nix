@@ -86,7 +86,7 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-    package = lib.mkDefault inputs.nix.packages.${pkgs.system}.nix;
+    package = inputs.nix-super.packages.${pkgs.system}.nix;
 
     settings = {
       # Prevent impurities in builds
@@ -125,12 +125,14 @@
           The default is https://cache.nixos.org, which has a priority of 40.
           Lower value means higher priority.
         */
-        "https://sforza-config.cachix.org?priority=45"
-        "https://nix-community.cachix.org?priority=50"
-        "https://cache.garnix.io?priority=70"
+        "https://cache.privatevoid.net?priority=41"
+        "https://sforza-config.cachix.org?priority=42"
+        "https://nix-community.cachix.org?priority=43"
+        "https://cache.garnix.io?priority=60"
       ];
 
       trusted-public-keys = [
+        "cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="
         "sforza-config.cachix.org-1:qQiEQ1JU25VqhRXi1Qr/kA8RT01pd7oeKHr5OORUolM="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
