@@ -22,6 +22,7 @@ in
       profiles = [
         # nixosProfiles.docker
         # nixosProfiles.wireguard
+        nixosProfiles.dnscrypt2
         hardwareProfiles.sforza
       ];
       suites = with nixosSuites; sforza;

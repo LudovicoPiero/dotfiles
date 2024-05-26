@@ -9,9 +9,9 @@
       server_names = [
         "doh.tiar.app"
         "doh.tiar.app-doh"
-        "dnscry.pt-jakarta-ipv4"
-        "sby-limotelu"
-        "sby-doh-limotelu"
+        "iij"
+        "jp.tiar.app"
+        "jp.tiar.app-doh"
       ];
 
       max_clients = 250;
