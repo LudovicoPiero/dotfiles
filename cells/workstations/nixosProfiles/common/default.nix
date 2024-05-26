@@ -86,6 +86,8 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
+    package = lib.mkDefault inputs.nix.packages.${pkgs.system}.nix;
+
     settings = {
       # Prevent impurities in builds
       sandbox = true;
@@ -125,14 +127,12 @@
         */
         "https://sforza-config.cachix.org?priority=45"
         "https://nix-community.cachix.org?priority=50"
-        "https://cache.lix.systems?priority=55"
         "https://cache.garnix.io?priority=70"
       ];
 
       trusted-public-keys = [
         "sforza-config.cachix.org-1:qQiEQ1JU25VqhRXi1Qr/kA8RT01pd7oeKHr5OORUolM="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
