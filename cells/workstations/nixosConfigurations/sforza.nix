@@ -19,9 +19,9 @@ in
 
   imports =
     let
-      profiles = with nixosProfiles; [
-        # docker
-        wireguard
+      profiles = [
+        # nixosProfiles.docker
+        # nixosProfiles.wireguard
         hardwareProfiles.sforza
       ];
       suites = with nixosSuites; sforza;
