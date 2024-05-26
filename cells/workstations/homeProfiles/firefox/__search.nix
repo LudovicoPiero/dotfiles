@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  default = "DuckDuckGo";
+  default = "Brave";
   force = true;
   engines = {
     "Brave" = {
