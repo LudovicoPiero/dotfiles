@@ -25,7 +25,7 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     initrd.availableKernelModules = [
       "nvme"
