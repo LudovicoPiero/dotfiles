@@ -1,4 +1,4 @@
 return {
   "wakatime/vim-wakatime",
-  lazy = true,
+  lazy = false,
 }
