@@ -65,10 +65,7 @@
         devShells = eachSystem (pkgs: {
           default = pkgs.mkShell {
             name = "Hiveland";
-            packages = pkgs.lib.attrValues {
-              inherit (pkgs) nixd sops;
-              inherit (inputs.nixfmt.packages.${pkgs.system}) nixfmt;
-            };
+            packages = pkgs.lib.attrValues { inherit (pkgs) nixd nixfmt-rfc-style sops; };
           };
         });
       };
@@ -153,8 +150,8 @@
       inputs.base16-schemes.follows = "base16-schemes";
     };
 
-    nixfmt = {
-      url = "github:nixos/nixfmt";
+    nvim-flake = {
+      url = "github:LudovicoPiero/nvim-flake";
     };
 
     # Hyprland

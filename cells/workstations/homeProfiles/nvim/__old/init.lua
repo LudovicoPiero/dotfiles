@@ -728,20 +728,20 @@ local serverConfigs = {
     settings = {
       nixd = {
         nixpkgs = {
-          expr = "import (builtins.getFlake (\"git+file://\" + toString ./.)).inputs.nixpkgs { }",
+          expr = 'import (builtins.getFlake ("git+file://" + toString ./.)).inputs.nixpkgs { }',
         },
         formatting = {
           command = { "nixfmt" },
         },
         options = {
           nixos = {
-            expr = "(builtins.getFlake (\"git+file://\" + toString ./.)).nixosConfigurations.sforza.options",
+            expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.sforza.options',
           },
           home_manager = {
-            expr = "(builtins.getFlake (\"git+file://\" + toString ./.)).homeConfigurations.\"airi@sforza\".options",
+            expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."airi@sforza".options',
           },
           flake_parts = {
-            expr = "let flake = builtins.getFlake (\"git+file://\" + toString ./.); in flake.debug.options // flake.currentSystem.options",
+            expr = 'let flake = builtins.getFlake ("git+file://" + toString ./.); in flake.debug.options // flake.currentSystem.options',
           },
         },
       },

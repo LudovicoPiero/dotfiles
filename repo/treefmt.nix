@@ -11,13 +11,4 @@
     # statix.disabled-lints = ["repeated_keys"];
     stylua.enable = true;
   };
-
-  settings.formatter.stylua.options = [
-    "--indent-type"
-    "Spaces"
-    "--indent-width"
-    "2"
-    "--quote-style"
-    "ForceDouble"
-  ];
 }
