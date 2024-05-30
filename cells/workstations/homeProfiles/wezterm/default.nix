@@ -1,13 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
-let
-  inherit (config) colorScheme;
-  inherit (colorScheme) palette;
-in
+{ pkgs, inputs, ... }:
 {
   programs.wezterm = {
     enable = true;
@@ -19,10 +10,7 @@ in
           "Material Design Icons",
           "Noto Color Emoji",
         }),
-        font_size = 14.0,
         enable_wayland = true,
-        window_background_opacity = 1,
-        color_scheme = "${colorScheme.slug}",
         enable_scroll_bar = false,
         enable_kitty_keyboard = true,
         check_for_updates = false,
@@ -34,24 +22,6 @@ in
         audible_bell = "Disabled",
         use_fancy_tab_bar = false,
         clean_exit_codes = { 130 },
-        window_frame = {
-          active_titlebar_bg = "${palette.base03}",
-          active_titlebar_fg = "${palette.base05}",
-          active_titlebar_border_bottom = "${palette.base03}",
-          border_left_color = "${palette.base01}",
-          border_right_color = "${palette.base01}",
-          border_bottom_color = "${palette.base01}",
-          border_top_color = "${palette.base01}",
-          button_bg = "${palette.base01}",
-          button_fg = "${palette.base05}",
-          button_hover_bg = "${palette.base05}",
-          button_hover_fg = "${palette.base03}",
-          inactive_titlebar_bg = "${palette.base01}",
-          inactive_titlebar_fg = "${palette.base05}",
-          inactive_titlebar_border_bottom = "${palette.base03}",
-        },
-        command_palette_bg_color = "${palette.base01}",
-        command_palette_fg_color = "${palette.base05}",
         command_palette_font_size = 12.0,
 
         leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },

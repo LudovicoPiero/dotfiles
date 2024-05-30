@@ -143,12 +143,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    base16-schemes.url = "github:LudovicoPiero/base16-schemes";
-    base16-schemes.flake = false;
-    nix-colors = {
-      url = "github:misterio77/nix-colors";
-      inputs.base16-schemes.follows = "base16-schemes";
-    };
+    stylix.url = "github:danth/stylix";
 
     nvim-flake = {
       url = "github:LudovicoPiero/nvim-flake";

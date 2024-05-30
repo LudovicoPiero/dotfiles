@@ -5,7 +5,6 @@
   ...
 }:
 let
-  inherit (config.colorScheme) palette;
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wlogout}";
@@ -77,7 +76,6 @@ in
     shadow_range = 8;
     shadow_render_power = 3;
     shadow_offset = "2 2";
-    "col.shadow" = "rgb(f300ff)";
   };
 
   general = {
@@ -85,8 +83,6 @@ in
     gaps_in = 3;
     gaps_out = 3;
     border_size = 2;
-    "col.active_border" = "rgb(${palette.base0E})";
-    "col.inactive_border" = "rgb(${palette.base02})";
 
     layout = "dwindle";
   };
@@ -94,11 +90,7 @@ in
   group = {
     groupbar = {
       render_titles = false;
-      "col.active" = "rgb(${palette.base0B})";
-      "col.inactive" = "rgb(${palette.base03})";
     };
-    "col.border_active" = "rgb(a6e3a1)";
-    "col.border_inactive" = "rgb(585b70)";
   };
 
   input = {

@@ -1,7 +1,4 @@
-{ pkgs, config, ... }:
-let
-  inherit (config.colorScheme) palette;
-in
+{ pkgs, ... }:
 {
   programs.tmux = {
     enable = true;
@@ -31,8 +28,6 @@ in
       set -g status-right ""
       set -g status-justify centre
       set -g window-status-format '#I:#W'
-      set -g window-status-style bg=default,fg=#${palette.base05}
-      set -g status-style bg=default,fg=#${palette.base05}
       set -g status-interval 10
     '';
 
