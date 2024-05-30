@@ -30,14 +30,13 @@ in
     };
     shellAliases = import ./__shellAliases.nix { inherit lib pkgs config; };
 
-    interactiveShellInit =
-      ''
-        set --global async_prompt_functions _pure_prompt_git
-        set --universal pure_check_for_new_release false
-        set pure_symbol_prompt "❯"
+    interactiveShellInit = ''
+      set --global async_prompt_functions _pure_prompt_git
+      set --universal pure_check_for_new_release false
+      set pure_symbol_prompt "❯"
 
-        ${_ any-nix-shell} fish --info-right | source
-      '';
+      ${_ any-nix-shell} fish --info-right | source
+    '';
 
     plugins = [
       {

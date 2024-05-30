@@ -18,12 +18,7 @@
           pkgs
           ;
       };
-      bars = import ./__bars.nix {
-        inherit
-          lib
-          pkgs
-          ;
-      };
+      bars = import ./__bars.nix { inherit lib pkgs; };
       window = import ./__windows.nix;
       output = {
         "eDP-1" = {

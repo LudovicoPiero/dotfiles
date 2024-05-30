@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 [
   {
     statusCommand = "${lib.getExe pkgs.i3status}";
