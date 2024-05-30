@@ -1,6 +1,5 @@
 { config, lib, ... }:
 let
-  inherit (config.colorScheme) palette;
   sway = config.wayland.windowManager.sway.enable;
 in
 {

@@ -27,7 +27,7 @@
       enable = true;
       defaultFonts = {
         serif = [
-          "SF Pro"
+          "Iosevka q"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
           "Sarasa Gothic SC"
@@ -38,7 +38,7 @@
         ];
 
         sansSerif = [
-          "SF Pro"
+          "Iosevka q"
           "Sarasa Gothic J"
           "Sarasa Gothic K"
           "Sarasa Gothic SC"

@@ -1,7 +1,4 @@
-{ config, ... }:
-let
-  inherit (config.colorScheme) palette;
-in
+{ ... }:
 ''
   * {
     border: none;
@@ -14,12 +11,9 @@ in
 
   window#waybar {
     /*background: #000000;*/
-    background-color: #${palette.base00};
-    color: #${palette.base05};
   }
 
   #window {
-    color: #${palette.base04};
     font-weight: bold;
   }
 
@@ -32,8 +26,6 @@ in
     padding: 0 2px;
     margin: 0px;
     background: transparent;
-    color: #${palette.base09};
-    border: 1px solid #${palette.base01};
     font-weight: bold;
   }
   #workspaces button:hover {
@@ -42,13 +34,9 @@ in
   }
 
   #workspaces button.active {
-    background: #${palette.base08};
-    color: #${palette.base00};
   }
 
   #workspaces button.urgent {
-    background: #${palette.base08};
-    color: #${palette.base00};
   }
 
   #clock,
@@ -84,11 +72,8 @@ in
   }
 
   #battery.warning:not(.charging) {
-    background-color: #${palette.base09};
-    color: #${palette.base00};
   }
   #battery.critical:not(.charging) {
-    color: #${palette.base05};
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -121,7 +106,6 @@ in
 
 
   #custom-separator {
-    color: #${palette.base03};
     margin: 0 2px;
   }
 

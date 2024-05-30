@@ -6,20 +6,9 @@
   ...
 }:
 let
-  font = {
-    name = "SF Pro Rounded";
-    size = 11;
-  };
-
   theme = {
     name = "WhiteSur-Dark";
     package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.whitesur-gtk-theme;
-  };
-
-  cursorTheme = {
-    name = "macOS-BigSur";
-    size = 24;
-    package = pkgs.apple-cursor;
   };
 
   iconsTheme = {
@@ -67,12 +56,48 @@ let
   };
 in
 {
-  imports = [ inputs.nix-colors.homeManagerModules.default ];
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-  home.packages = with pkgs; [
-    run-as-service
-    apple-cursor
-  ];
+  imports = [ inputs.stylix.homeManagerModules.stylix ];
+
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    image = "${inputs.self}/assets/anime-nix-wallpaper.png";
+    polarity = "dark";
+
+    targets = {
+      firefox.enable = false;
+      gtk.enable = false;
+      gnome.enable = false;
+    };
+
+    cursor = {
+      package = pkgs.apple-cursor;
+      name = "macOS-BigSur";
+      size = 24;
+    };
+
+    fonts = {
+      serif = {
+        package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.iosevka-q;
+        name = "Iosevka q";
+      };
+      sansSerif = config.stylix.fonts.serif;
+      monospace = config.stylix.fonts.serif;
+
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+
+      sizes = {
+        applications = 12;
+        desktop = 10;
+        popups = 10;
+        terminal = 14;
+      };
+    };
+  };
+
+  home.packages = [ run-as-service ];
 
   # User Services
   systemd.user.services = {
@@ -96,8 +121,8 @@ in
     enable = true;
 
     gtk2.extraConfig = ''
-      gtk-cursor-theme-name="${cursorTheme.name}"
-      gtk-cursor-theme-size=${toString cursorTheme.size}
+      gtk-cursor-theme-name="${config.stylix.cursor.name}"
+      gtk-cursor-theme-size=${toString config.stylix.cursor.size}
       gtk-toolbar-style=GTK_TOOLBAR_BOTH
       gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
       gtk-button-images=1
@@ -125,8 +150,8 @@ in
 
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
-        gtk-cursor-theme-name = cursorTheme.name;
-        gtk-cursor-theme-size = cursorTheme.size;
+        gtk-cursor-theme-name = config.stylix.cursor.name;
+        gtk-cursor-theme-size = config.stylix.cursor.size;
         gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
         gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
         gtk-button-images = 1;
@@ -145,7 +170,8 @@ in
     };
 
     font = {
-      inherit (font) name size;
+      inherit (config.stylix.fonts.serif) name;
+      size = config.stylix.fonts.sizes.desktop;
     };
 
     theme = {
@@ -166,13 +192,13 @@ in
     [icon theme]
     Name=Default
     Comment=Default Cursor Theme
-    Inherits=${cursorTheme.name}
+    Inherits=${config.stylix.cursor.name}
 
     [X-GNOME-Metatheme]
     GtkTheme=${theme.name}
     MetacityTheme=${theme.name}
     IconTheme=${iconsTheme.name}
-    CursorTheme=${cursorTheme.name}
+    CursorTheme=${config.stylix.cursor.name}
     ButtonLayout=close,minimize,maximize:menu
   '';
 
@@ -180,11 +206,11 @@ in
     "org/gnome/desktop/interface" = {
       # Use dconf-editor to get this settings.
       color-scheme = "prefer-dark";
-      cursor-theme = cursorTheme.name;
-      cursor-size = cursorTheme.size;
+      cursor-theme = config.stylix.cursor.name;
+      cursor-size = config.stylix.cursor.size;
       gtk-theme = theme.name;
       icon-theme = iconsTheme.name;
-      font-name = "${font.name} ${toString font.size}";
+      font-name = "${config.stylix.fonts.serif.name} ${toString config.stylix.fonts.sizes.desktop}";
       clock-format = "12h";
       clock-show-date = true;
       clock-show-seconds = false;

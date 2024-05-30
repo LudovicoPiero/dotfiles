@@ -5,15 +5,11 @@
   lib,
   ...
 }:
-let
-  inherit (config.colorScheme) palette;
-in
 {
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.sway;
     config = {
-      colors = import ./__colors.nix { inherit palette; };
       keybindings = import ./__keybindings.nix {
         inherit
           lib
@@ -22,7 +18,12 @@ in
           pkgs
           ;
       };
-      bars = import ./__bars.nix { inherit palette lib pkgs; };
+      bars = import ./__bars.nix {
+        inherit
+          lib
+          pkgs
+          ;
+      };
       window = import ./__windows.nix;
       output = {
         "eDP-1" = {
