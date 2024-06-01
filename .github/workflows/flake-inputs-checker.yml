@@ -1,4 +1,4 @@
-name: Nix Flake Checker
+name: Flake Inputs Checker
 
 on:
   push:
@@ -13,8 +13,8 @@ on:
       - "**/*.el"
 
 jobs:
-  format:
-    name: Run Flake Checker
+  flake-inputs-checker:
+    name: Flake Inputs Checker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
