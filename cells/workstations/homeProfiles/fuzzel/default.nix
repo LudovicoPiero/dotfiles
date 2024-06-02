@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       main = {
-        font = lib.mkForce "IosevkaQ Nerd Font Mono SemiBold-16";
+        font = lib.mkForce "Iosevka q SemiBold-16";
         terminal = "wezterm";
         icon-theme = "${config.gtk.iconTheme.name}";
         prompt = "->";

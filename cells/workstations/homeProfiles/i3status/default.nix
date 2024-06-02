@@ -16,13 +16,13 @@
           format_muted = "Vol: muted (%volume) ";
         };
       };
-      "disk /persist" = {
+      "disk /home" = {
         position = 2;
         settings = {
           format = "Porn Folder: %avail ";
         };
       };
-      "disk /" = {
+      "disk /home/airi/Media" = {
         position = 3;
         settings = {
           format = "Hentai Folder: %avail ";

@@ -41,7 +41,7 @@ in
 
         ;; Set a font
         (add-to-list 'default-frame-alist
-                      '(font . "IosevkaQ Nerd Font Mono SemiBold 15"))
+                      '(font . "Iosevka q SemiBold 15"))
 
         (column-number-mode 1)
         (global-display-line-numbers-mode)
@@ -415,9 +415,9 @@ in
             "(org-agenda-finalize . org-modern-agenda)"
           ];
           config = ''
-            (set-face-attribute 'default nil :family "IosevkaQ Nerd Font Mono SemiBold")
-            (set-face-attribute 'variable-pitch nil :family "IosevkaQ Nerd Font Mono")
-            (set-face-attribute 'org-modern-symbol nil :family "IosevkaQ Nerd Font Mono SemiBold")
+            (set-face-attribute 'default nil :family "Iosevka q SemiBold")
+            (set-face-attribute 'variable-pitch nil :family "Iosevka q")
+            (set-face-attribute 'org-modern-symbol nil :family "Iosevka q SemiBold")
             ;; Add frame borders and window dividers
             (modify-all-frames-parameters
              '((right-divider-width . 20)

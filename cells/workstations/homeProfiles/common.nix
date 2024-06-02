@@ -43,7 +43,7 @@
         --separator-color 00000000 \
         --grace 0 \
         --fade-in 0.2 \
-        --font 'IosevkaQ Nerd Font Mono SemiBold' \
+        --font 'Iosevka q SemiBold' \
         -f
       '';
 

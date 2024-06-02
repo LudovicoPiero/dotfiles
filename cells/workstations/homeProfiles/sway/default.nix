@@ -18,7 +18,7 @@
           pkgs
           ;
       };
-      bars = import ./__bars.nix { inherit config lib pkgs; };
+      bars = import ./__bars.nix { inherit lib pkgs; };
       window = import ./__windows.nix;
       output = {
         "eDP-1" = {
@@ -62,7 +62,7 @@
         outer = 3;
       };
       fonts = {
-        names = [ "IosevkaQ Nerd Font Mono SemiBold" ];
+        names = [ "Iosevka q" ];
         size = 10.0;
       };
       startup = [

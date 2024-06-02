@@ -6,7 +6,7 @@
     extraConfig = ''
       return {
         font = wezterm.font_with_fallback({
-          "IosevkaQ Nerd Font Mono SemiBold",
+          "Iosevka q Semibold",
           "Material Design Icons",
           "Noto Color Emoji",
         }),
