@@ -9,7 +9,7 @@ in
     shellIntegration.mode = "no-rc no-cursor";
 
     font = {
-      name = lib.mkForce "Iosevka q";
+      name = lib.mkForce "IosevkaQ Nerd Font Mono SemiBold";
     };
 
     keybindings = {
