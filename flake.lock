@@ -543,11 +543,11 @@
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
-        "lastModified": 1715865404,
-        "narHash": "sha256-/GJvTdTpuDjNn84j82cU6bXztE0MSkdnTWClUCRub78=",
+        "lastModified": 1717285511,
+        "narHash": "sha256-iKzJcpdXih14qYVcZ9QC9XuZYnPc6T8YImb6dX166kw=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "8dc45382d5206bd292f9c2768b8058a8fd8311d9",
+        "rev": "2a55567fcf15b1b1c7ed712a2c6fadaec7412ea8",
         "type": "github"
       },
       "original": {
@@ -1575,14 +1575,14 @@
     },
     "nixpkgs-lib_2": {
       "locked": {
-        "lastModified": 1714640452,
-        "narHash": "sha256-QBx10+k6JWz6u7VsohfSw8g8hjdBZEf8CFzXH1/1Z94=",
+        "lastModified": 1717284937,
+        "narHash": "sha256-lIbdfCsf8LMFloheeE6N31+BMIeixqyQWbSr2vk79EQ=",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/50eb7ecf4cd0a5756d7275c8ba36790e5bd53e33.tar.gz"
+        "url": "https://github.com/NixOS/nixpkgs/archive/eb9ceca17df2ea50a250b6b27f7bf6ab0186f198.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/50eb7ecf4cd0a5756d7275c8ba36790e5bd53e33.tar.gz"
+        "url": "https://github.com/NixOS/nixpkgs/archive/eb9ceca17df2ea50a250b6b27f7bf6ab0186f198.tar.gz"
       }
     },
     "nixpkgs-master": {
@@ -1730,6 +1730,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1713128889,
+        "narHash": "sha256-aB90ZqzosyRDpBh+rILIcyP5lao8SKz8Sr2PSWvZrzk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2748d22b45a99fb2deafa5f11c7531c212b2cefa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1708475490,
         "narHash": "sha256-g1v0TsWBQPX97ziznfJdWhgMyMGtoBFs102xSYO4syU=",
         "owner": "nixos",
@@ -1757,11 +1773,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1717261562,
-        "narHash": "sha256-Z9NsQeiYZAx74dugWBRHb71AP2lNz1HuPunqKysLArA=",
+        "lastModified": 1717294691,
+        "narHash": "sha256-OdScAoNJjqGA+g0Nznlaa4J7Wrx7QSzEFSXqdHZYnzg=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "f4ce7dad0e9ba16692783a70ed7f5b79e41d6c58",
+        "rev": "f7e009d29ea3da3d9741902222cc280fcfca594a",
         "type": "github"
       },
       "original": {
@@ -1807,11 +1823,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1717280835,
-        "narHash": "sha256-t7aJ1iJKOPGxyfcwRLZyzXQa+riERCWY77cmm9WfLfs=",
+        "lastModified": 1717383617,
+        "narHash": "sha256-2ZyMhrtb8700TXuE0QlY3VOlo+YCTIA+JmIHU+zhVeQ=",
         "owner": "LudovicoPiero",
         "repo": "nvim-flake",
-        "rev": "a4b359a02375b6118fbc9807b7b72920fe54f9b3",
+        "rev": "2f778dfec20500bfd01ad56dfd9fe52aeb584778",
         "type": "github"
       },
       "original": {
@@ -1999,6 +2015,7 @@
         "spicetify-nix": "spicetify-nix",
         "std": "std_2",
         "stylix": "stylix",
+        "swayfx": "swayfx",
         "systems": "systems_7",
         "treefmt-nix": "treefmt-nix_2",
         "xdph": "xdph"
@@ -2026,6 +2043,24 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "scenefx": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1715160751,
+        "narHash": "sha256-S8m7phTU7QYgAq4B0hjH5WdtTjHDcNVhYfPFdhbty+A=",
+        "owner": "wlrfx",
+        "repo": "scenefx",
+        "rev": "2ec3505248e819191c37cb831197629f373326fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wlrfx",
+        "repo": "scenefx",
         "type": "github"
       }
     },
@@ -2217,6 +2252,27 @@
         "type": "github"
       }
     },
+    "swayfx": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "scenefx": "scenefx"
+      },
+      "locked": {
+        "lastModified": 1717215848,
+        "narHash": "sha256-jG/FJjjIGgAqgA6WRzDHZug+X0CXk1ABdp48o36vzXY=",
+        "owner": "WillPower3309",
+        "repo": "swayfx",
+        "rev": "da559b3ea13addecdd7747b99f3ed498f991d031",
+        "type": "github"
+      },
+      "original": {
+        "owner": "WillPower3309",
+        "repo": "swayfx",
+        "type": "github"
+      }
+    },
     "systems": {
       "locked": {
         "lastModified": 1681028828,
@@ -2375,7 +2431,7 @@
     },
     "treefmt-nix_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1717278143,
