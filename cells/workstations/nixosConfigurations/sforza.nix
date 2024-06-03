@@ -21,7 +21,7 @@ in
     let
       profiles = [
         # nixosProfiles.docker
-        # nixosProfiles.wireguard
+        nixosProfiles.wireguard
         nixosProfiles.dnscrypt2
         hardwareProfiles.sforza
       ];

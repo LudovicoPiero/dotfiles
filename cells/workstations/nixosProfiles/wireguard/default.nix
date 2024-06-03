@@ -32,10 +32,10 @@ in
 
       peers = [
         {
-          publicKey = "xra4ritvDeDyEc5BR2btrKY8hby6MXKWKojZ7meMmE0=";
+          publicKey = "1merpuLyqsIpEIa/VJs1yQxHAc2XFfSqCLSRY5ubOWc=";
           presharedKeyFile = config.sops.secrets.presharedKey.path;
           allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "139.180.222.226:51820";
+          endpoint = "64.176.58.166:51820";
           persistentKeepalive = 25;
         }
       ];
