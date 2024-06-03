@@ -8,7 +8,8 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.sway;
+    package = inputs.swayfx.packages.${pkgs.system}.default;
+    checkConfig = false;
     config = {
       keybindings = import ./__keybindings.nix {
         inherit
@@ -73,6 +74,7 @@
           command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP";
         }
         { command = "mako"; }
+        { command = "swayidle-script"; }
         { command = "fcitx5 -d --replace"; }
         { command = "${lib.getExe pkgs.thunderbird}"; }
         {
@@ -87,6 +89,29 @@
       titlebar_border_thickness 1
       title_align center
       titlebar_padding 2
+
+      # SwayFX stuff
+      # window corner radius in px
+      corner_radius 5
+      smart_corner_radius disable
+
+      blur enable
+      blur_xray disable
+      blur_passes 2
+      blur_radius 2
+
+      shadows off
+      shadows_on_csd off
+      shadow_blur_radius 20
+      shadow_color #0000007F
+
+      # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+      default_dim_inactive 0.0
+      dim_inactive_colors.unfocused #000000FF
+      dim_inactive_colors.urgent #900000FF
+
+      # Treat Scratchpad as minimized
+      scratchpad_minimize disable
     '';
     extraSessionCommands = ''
       export XDG_CURRENT_DESKTOP=sway

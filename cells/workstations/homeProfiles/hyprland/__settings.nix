@@ -17,7 +17,7 @@ in
       "waybar"
       "fcitx5 -d --replace"
       "${_ pkgs.mako}"
-      # "swayidle-script"
+      "swayidle-script"
       "[workspace 9 silent;noanim] ${_ pkgs.thunderbird}"
     ]
     ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
@@ -62,7 +62,7 @@ in
     blur = {
       enabled = false;
       size = 2;
-      passes = 1;
+      passes = 2;
       # contrast = 0.8916;
       # brightness = 0.8172;
       vibrancy = 0.4;
