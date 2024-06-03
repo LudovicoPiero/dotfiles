@@ -63,14 +63,16 @@ in
     image = "${inputs.self}/assets/anime-nix-wallpaper.png";
     polarity = "dark";
 
-    opacity = let
-      opacityValue = 0.88;
-    in {
-      applications = opacityValue;
-      desktop = opacityValue;
-      popups = opacityValue;
-      terminal = opacityValue;
-    };
+    opacity =
+      let
+        opacityValue = 0.88;
+      in
+      {
+        applications = opacityValue;
+        desktop = opacityValue;
+        popups = opacityValue;
+        terminal = opacityValue;
+      };
 
     targets = {
       firefox.enable = false;
