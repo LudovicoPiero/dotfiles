@@ -8,10 +8,6 @@ in
 
     shellIntegration.mode = "no-rc no-cursor";
 
-    font = {
-      name = lib.mkForce "Iosevka q";
-    };
-
     keybindings = {
       "ctrl+a>c" = "new_tab_with_cwd";
       "ctrl+a>v" = "new_window_with_cwd";
@@ -31,8 +27,7 @@ in
     };
 
     settings = {
-      window_margin_width = 2;
-
+      window_padding_width = 3;
       cursor_shape = "block";
       disable_ligatures = "cursor";
       scrollback_lines = 5000;
