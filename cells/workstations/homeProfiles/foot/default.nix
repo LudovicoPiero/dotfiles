@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       main = {
-        term = "screen-256color";
+        term = "xterm-256color";
         initial-window-size-chars = "82x23";
         initial-window-mode = "windowed";
         pad = "10x10";

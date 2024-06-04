@@ -77,7 +77,7 @@
       NIXPKGS_ALLOW_UNFREE = "1";
       EDITOR = "nvim";
       VISUAL = "nvim";
-      TERM = "screen-256color";
+      TERM = "xterm-256color";
       BROWSER = "firefox";
       XCURSOR_SIZE = "24";
       DIRENV_LOG_FORMAT = "";

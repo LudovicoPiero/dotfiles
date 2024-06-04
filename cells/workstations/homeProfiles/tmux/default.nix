@@ -5,7 +5,7 @@
 
     baseIndex = 1;
     prefix = "C-a";
-    terminal = "screen-256color";
+    terminal = "xterm-256color";
     mouse = true;
 
     extraConfig = ''
@@ -16,7 +16,7 @@
       set -g history-limit 10000
 
       # Fix Color in neovim
-      set-option -sa terminal-features ',screen-256color:RGB'
+      set-option -ga terminal-overrides ",xterm-256color:Tc"
 
       # Set vi-mode
       set-window-option -g mode-keys vi
