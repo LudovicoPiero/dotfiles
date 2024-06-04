@@ -12,6 +12,9 @@
       bind -n M-H previous-window
       bind -n M-L next-window
 
+      # Set history limit to 10000
+      set -g history-limit 10000
+
       # Fix Color in neovim
       set-option -sa terminal-features ',screen-256color:RGB'
 
@@ -20,7 +23,9 @@
 
       # Open panes in current working directory
       bind ';' split-window -h -c "#{pane_current_path}"
+      bind 'C-c' split-window -h
       bind v split-window -v -c "#{pane_current_path}"
+      bind 'C-v' split-window -v
 
       # Custom Status Theme
       set -g status-position bottom
