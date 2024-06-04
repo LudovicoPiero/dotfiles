@@ -90,7 +90,7 @@ in
     fonts = {
       serif = {
         package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.iosevka-q;
-        name = "Iosevka q";
+        name = "Iosevka q SemiBold";
       };
       sansSerif = config.stylix.fonts.serif;
       monospace = config.stylix.fonts.serif;
