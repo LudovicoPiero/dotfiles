@@ -5,7 +5,7 @@
     settings = {
       main = {
         font = lib.mkForce "Iosevka q SemiBold-16";
-        terminal = "wezterm";
+        terminal = "kitty";
         icon-theme = "${config.gtk.iconTheme.name}";
         prompt = "->";
       };
