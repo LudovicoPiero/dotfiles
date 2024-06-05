@@ -80,7 +80,6 @@
       TERM = "xterm-256color";
       BROWSER = "firefox";
       XCURSOR_SIZE = "24";
-      DIRENV_LOG_FORMAT = "";
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
       "_JAVA_AWT_WM_NONREPARENTING" = "1";
