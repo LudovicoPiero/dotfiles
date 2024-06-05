@@ -166,6 +166,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # For command-not-found
+    programsdb = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Secrets
     sops-nix = {
       url = "github:Mic92/sops-nix";
