@@ -11,6 +11,8 @@ in
     keybindings = {
       "ctrl+a>c" = "new_tab_with_cwd";
       "ctrl+a>v" = "new_window_with_cwd";
+      "ctrl+a>ctrl+c" = "new_tab";
+      "ctrl+a>ctrl+v" = "new_window";
       "alt+k" = "scroll_line_up";
       "alt+j" = "scroll_line_down";
       "alt+t" = "new_tab";
