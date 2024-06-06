@@ -79,6 +79,7 @@ in
       gtk.enable = false;
       gnome.enable = false;
       kde.enable = false;
+      nixvim.enable = false;
     };
 
     cursor = {

@@ -5,8 +5,17 @@
   ...
 }:
 {
-  home = {
-    packages = [ inputs.nvim-flake.packages.${pkgs.system}.default ];
+
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    ./__config
+  ];
+
+  programs.nixvim = {
+    enable = true;
+
+    defaultEditor = true;
+    luaLoader.enable = true; # Experimental lua loader
   };
 
   programs.fish.shellAliases = {

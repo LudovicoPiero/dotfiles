@@ -166,6 +166,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nixvim
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # For command-not-found
     programsdb = {
       url = "github:wamserma/flake-programs-sqlite";
