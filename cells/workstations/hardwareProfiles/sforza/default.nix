@@ -25,7 +25,7 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = inputs.chaotic-nyx.packages.${pkgs.system}.linuxPackages_cachyos-lto;
 
     initrd.availableKernelModules = [
       "nvme"

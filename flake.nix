@@ -1,75 +1,6 @@
 {
   description = "Ludovico's dotfiles powered by Nix Flakes + Hive";
 
-  outputs =
-    {
-      self,
-      std,
-      hive,
-      systems,
-      ...
-    }@inputs:
-    let
-      myCollect = hive.collect // {
-        renamer = _cell: target: "${target}";
-      };
-
-      # Small tool to iterate over each systems
-      eachSystem =
-        f: inputs.nixpkgs.lib.genAttrs (import systems) (system: f inputs.nixpkgs.legacyPackages.${system});
-
-      # Eval the treefmt modules from ./repo/treefmt.nix
-      treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./repo/treefmt.nix);
-    in
-    hive.growOn
-      {
-        inherit inputs;
-
-        nixpkgsConfig = {
-          allowUnfree = true;
-        };
-
-        cellsFrom = ./cells;
-        cellBlocks =
-          with hive.blockTypes;
-          with std.blockTypes;
-          [
-            (functions "bee")
-
-            # Profiles
-            (functions "hardwareProfiles")
-            (functions "homeProfiles")
-            (functions "nixosProfiles")
-
-            # Suites
-            (functions "homeSuites")
-            (functions "nixosSuites")
-
-            # Secrets
-            (functions "secrets")
-
-            # Configurations
-            nixosConfigurations
-          ];
-      }
-      {
-        nixosConfigurations = myCollect self "nixosConfigurations";
-
-        # for `nix fmt`
-        formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
-        # for `nix flake check`
-        checks = eachSystem (pkgs: {
-          formatting = treefmtEval.${pkgs.system}.config.build.check self;
-        });
-
-        devShells = eachSystem (pkgs: {
-          default = pkgs.mkShell {
-            name = "Hiveland";
-            packages = pkgs.lib.attrValues { inherit (pkgs) nixd nixfmt-rfc-style sops; };
-          };
-        });
-      };
-
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
@@ -98,6 +29,7 @@
       };
     };
 
+    chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     ludovico-nixpkgs = {
@@ -185,4 +117,74 @@
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
   };
+
+  outputs =
+    {
+      self,
+      std,
+      hive,
+      systems,
+      ...
+    }@inputs:
+    let
+      myCollect = hive.collect // {
+        renamer = _cell: target: "${target}";
+      };
+
+      # Small tool to iterate over each systems
+      eachSystem =
+        f: inputs.nixpkgs.lib.genAttrs (import systems) (system: f inputs.nixpkgs.legacyPackages.${system});
+
+      # Eval the treefmt modules from ./repo/treefmt.nix
+      treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./repo/treefmt.nix);
+    in
+    hive.growOn
+      {
+        inherit inputs;
+
+        nixpkgsConfig = {
+          allowUnfree = true;
+          allowBroken = true; # For ZFS Kernel
+        };
+
+        cellsFrom = ./cells;
+        cellBlocks =
+          with hive.blockTypes;
+          with std.blockTypes;
+          [
+            (functions "bee")
+
+            # Profiles
+            (functions "hardwareProfiles")
+            (functions "homeProfiles")
+            (functions "nixosProfiles")
+
+            # Suites
+            (functions "homeSuites")
+            (functions "nixosSuites")
+
+            # Secrets
+            (functions "secrets")
+
+            # Configurations
+            nixosConfigurations
+          ];
+      }
+      {
+        nixosConfigurations = myCollect self "nixosConfigurations";
+
+        # for `nix fmt`
+        formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+        # for `nix flake check`
+        checks = eachSystem (pkgs: {
+          formatting = treefmtEval.${pkgs.system}.config.build.check self;
+        });
+
+        devShells = eachSystem (pkgs: {
+          default = pkgs.mkShell {
+            name = "Hiveland";
+            packages = pkgs.lib.attrValues { inherit (pkgs) nixd nixfmt-rfc-style sops; };
+          };
+        });
+      };
 }
