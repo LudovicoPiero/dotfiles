@@ -154,6 +154,13 @@
           nixd = {
             enable = true;
             filetypes = [ "nix" ];
+            settings = {
+              diagnostic.suppress = [
+                "sema-escaping-with"
+                "var-bind-to=this"
+              ];
+              formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+            };
           };
 
           gopls = {
