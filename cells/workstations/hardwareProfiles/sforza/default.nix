@@ -25,7 +25,7 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    kernelPackages = inputs.chaotic-nyx.packages.${pkgs.system}.linuxPackages_cachyos-lto;
+    kernelPackages = inputs.chaotic-nyx.packages.${pkgs.system}.linuxPackages_cachyos;
 
     initrd.availableKernelModules = [
       "nvme"
@@ -48,7 +48,12 @@
       "xfs"
       "zfs"
     ];
-    zfs.devNodes = "/dev/vg/root";
+
+    zfs = {
+      devNodes = "/dev/vg/root";
+      package = inputs.chaotic-nyx.packages.${pkgs.system}.zfs_cachyos;
+    };
+
     # blkid --match-tag UUID --output value "$DISK-part6"
     initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/90743a6a-c41d-4cbb-ad8c-5258b9c82613";
   };
