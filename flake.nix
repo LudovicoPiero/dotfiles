@@ -130,13 +130,6 @@
       myCollect = hive.collect // {
         renamer = _cell: target: "${target}";
       };
-
-      # Small tool to iterate over each systems
-      eachSystem =
-        f: inputs.nixpkgs.lib.genAttrs (import systems) (system: f inputs.nixpkgs.legacyPackages.${system});
-
-      # Eval the treefmt modules from ./repo/treefmt.nix
-      treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./repo/treefmt.nix);
     in
     hive.growOn
       {
@@ -163,6 +156,10 @@
             (functions "homeSuites")
             (functions "nixosSuites")
 
+            # devShells
+            (nixago "configs")
+            (devshells "devshells")
+
             # Secrets
             (functions "secrets")
 
@@ -170,21 +167,11 @@
             nixosConfigurations
           ];
       }
+      { nixosConfigurations = myCollect self "nixosConfigurations"; }
       {
-        nixosConfigurations = myCollect self "nixosConfigurations";
-
-        # for `nix fmt`
-        formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
-        # for `nix flake check`
-        checks = eachSystem (pkgs: {
-          formatting = treefmtEval.${pkgs.system}.config.build.check self;
-        });
-
-        devShells = eachSystem (pkgs: {
-          default = pkgs.mkShell {
-            name = "Hiveland";
-            packages = pkgs.lib.attrValues { inherit (pkgs) nixd nixfmt-rfc-style sops; };
-          };
-        });
+        devShells = std.harvest self [
+          "repo"
+          "devshells"
+        ];
       };
 }
