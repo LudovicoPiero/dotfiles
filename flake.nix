@@ -30,15 +30,13 @@
     };
 
     chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    impermanence.url = "github:nix-community/impermanence";
+    stylix.url = "github:danth/stylix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     ludovico-nixpkgs = {
       url = "github:LudovicoPiero/nixpackages";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    impermanence = {
-      url = "github:nix-community/impermanence";
     };
 
     lanzaboote = {
@@ -73,12 +71,6 @@
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix.url = "github:danth/stylix";
-
-    nvim-flake = {
-      url = "github:LudovicoPiero/nvim-flake";
     };
 
     swayfx = {
@@ -123,7 +115,6 @@
       self,
       std,
       hive,
-      systems,
       ...
     }@inputs:
     let
