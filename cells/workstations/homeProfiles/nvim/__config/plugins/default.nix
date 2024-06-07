@@ -33,7 +33,7 @@
     # UI
     ./ui/lualine.nix
     ./ui/indent-blankline.nix
-    ./ui/colorscheme.nix
+    # ./ui/colorscheme.nix
     ./ui/bufferline.nix
     ./ui/nvim-colorizer.nix
     ./ui/nvim-notify.nix
