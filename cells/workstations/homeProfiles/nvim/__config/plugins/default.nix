@@ -18,6 +18,7 @@
 
     # Completion
     ./completion/cmp.nix
+    ./completion/codeium.nix
 
     # Keybinding
     ./keybinding/flash.nix
