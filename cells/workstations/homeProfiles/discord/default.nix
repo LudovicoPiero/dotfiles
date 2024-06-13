@@ -151,7 +151,7 @@
         enabled = false;
       };
       Experiments = {
-        enabled = false;
+        enabled = true;
       };
       F8Break = {
         enabled = false;
