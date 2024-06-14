@@ -117,7 +117,7 @@ in
           "format" = "󰍛 {used:0.1f}G";
         };
         "network" = {
-          "format-wifi" = "<span color='#589df6'>󰖩</span> {frequency} <span color='#589df6'>{signaldBm} dB</span> <span color='#589df6'>⇵</span> {bandwidthUpBits}/{bandwidthDownBits}";
+          "format-wifi" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
           "format-ethernet" = "󰈀 IP Leaked: {ipaddr}/{cidr}";
           "format-linked" = "{ifname} (No IP)";
           "format-disconnected" = "Disconnected ⚠";
