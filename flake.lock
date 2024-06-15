@@ -1640,11 +1640,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717946075,
-        "narHash": "sha256-Gr9CZUcZ0oaeDVQ5BpMtxpqGZUf3uHYSY+AiEqUBJIM=",
+        "lastModified": 1718484782,
+        "narHash": "sha256-pHUzYk3wqYk++5XWJAxYcW+SrJ/FJJmbJib3HTAdTxc=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "8f9dcaea27ac53afa54d6506754af22e966be413",
+        "rev": "131f811793bbb7a8fdec16b7b418d0e0c4c1cb2a",
         "type": "github"
       },
       "original": {
