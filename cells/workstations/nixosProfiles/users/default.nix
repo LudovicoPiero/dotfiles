@@ -28,12 +28,18 @@ in
       owner = "airi";
       sopsFile = "${inputs.self}/cells/workstations/secrets/users.yaml";
     };
+    "HF_API_KEY" = {
+      mode = "0444";
+      owner = "airi";
+      sopsFile = "${inputs.self}/cells/workstations/secrets/users.yaml";
+    };
   };
 
   programs.fish = {
     enable = true;
     shellInit = ''
       . ${config.sops.secrets.githubToken.path}
+      . ${config.sops.secrets.HF_API_KEY.path}
     '';
   };
 
