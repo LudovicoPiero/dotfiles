@@ -37,7 +37,7 @@ in
 
   programs.fish = {
     enable = true;
-    shellInit = ''
+    interactiveShellInit = ''
       . ${config.sops.secrets.githubToken.path}
       . ${config.sops.secrets.HF_API_KEY.path}
     '';
