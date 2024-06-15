@@ -51,7 +51,6 @@
           sources = [
             { name = "nvim_lsp"; }
             { name = "nvim_lua"; }
-            { name = "codeium"; }
             { name = "luasnip"; }
             { name = "buffer"; }
             { name = "path"; }
