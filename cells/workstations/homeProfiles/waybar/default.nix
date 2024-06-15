@@ -182,7 +182,7 @@ in
             "activated" = "󰈈";
             "deactivated" = "󰈉";
           };
-          "on-click-right" = "${_ pkgs.swaylock} -eFfki ${inputs.self}/assets/Minato-Aqua-Dark.png";
+          "on-click-right" = "swaylock-script"; # From homeProfiles/common.nix
         };
         "tray" = {
           # "icon-size"= 21;
