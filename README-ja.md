@@ -29,10 +29,6 @@
 - シェル: [Fish](https://fishshell.com/)
 - ブラウザー: [Firefox](https://www.mozilla.org/en-US/firefox)
 
-## **謝辞**
-
-NixおよびNixOSコミュニティ、特に[fufexan](https://github.com/fufexan)、[misterio77](https://github.com/misterio77)、[hlissner](https://github.com/hlissner)、[sweenu](https://github.com/sweenu)、およびその他の方々に、貴重なサポートをいただきました。
-
 ## **リソース**
 
 NixおよびNixOSについて詳しく学ぶには、[nixos-manual](https://nixos.org/manual/nixos/stable/)と[nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/)をご覧ください。

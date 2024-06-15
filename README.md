@@ -29,10 +29,6 @@ This is my personal NixOS configuration, a work in progress. I'm using this setu
 - Shell: [Fish](https://fishshell.com/)
 - Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
 
-## **Acknowledgment**
-
-Thanks to the Nix and NixOS community, including [fufexan](https://github.com/fufexan), [misterio77](https://github.com/misterio77), [hlissner](https://github.com/hlissner), [sweenu](https://github.com/sweenu), and others for their invaluable support.
-
 ## **Resources**
 
 Explore [nixos-manual](https://nixos.org/manual/nixos/stable/) & [nixpkgs-manual](https://nixos.org/manual/nixpkgs/stable/) to learn more about Nix and NixOS.
