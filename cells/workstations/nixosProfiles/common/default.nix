@@ -86,8 +86,6 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-    package = inputs.nix-super.packages.${pkgs.system}.nix;
-
     settings = {
       # Prevent impurities in builds
       sandbox = true;
@@ -128,7 +126,8 @@
         "https://cache.privatevoid.net?priority=41"
         "https://sforza-config.cachix.org?priority=42"
         "https://nix-community.cachix.org?priority=43"
-        "https://nyx.chaotic.cx?priority=44"
+        "https://cache.lix.systems?priority=44"
+        "https://nyx.chaotic.cx?priority=50"
         "https://cache.garnix.io?priority=60"
       ];
 
@@ -139,6 +138,7 @@
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
         "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
       ];
     };
 

@@ -34,6 +34,16 @@
     stylix.url = "github:danth/stylix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ludovico-nixpkgs = {
       url = "github:LudovicoPiero/nixpackages";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,10 +52,6 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-super = {
-      url = "github:privatevoid-net/nix-super";
     };
 
     spicetify-nix = {
@@ -93,7 +99,7 @@
     # Nixvim
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # For command-not-found

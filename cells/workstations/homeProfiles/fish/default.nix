@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  osConfig,
   ...
 }:
 let
@@ -26,6 +27,7 @@ in
         pkgs
         inputs
         config
+        osConfig
         ;
     };
     shellAliases = import ./__shellAliases.nix { inherit lib pkgs config; };
