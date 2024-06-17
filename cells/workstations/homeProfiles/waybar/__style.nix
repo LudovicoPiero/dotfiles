@@ -3,7 +3,7 @@
   * {
     border: none;
     border-radius: 0;
-    font-family: "Iosevka q SemiBold", "Material Design Icons", monospace;
+    font-family: "Iosevka q Semibold", "Material Design Icons", monospace;
     font-size: 11px;
     min-height: 0;
     margin: 0px;

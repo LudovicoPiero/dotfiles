@@ -59,6 +59,7 @@ in
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
   stylix = {
+    enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     image = "${inputs.self}/assets/anime-nix-wallpaper.png";
     polarity = "dark";
@@ -90,7 +91,7 @@ in
     fonts = {
       serif = {
         package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.iosevka-q;
-        name = "Iosevka q SemiBold";
+        name = "Iosevka q Semibold";
       };
       sansSerif = config.stylix.fonts.serif;
       monospace = config.stylix.fonts.serif;
