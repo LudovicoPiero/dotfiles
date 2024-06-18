@@ -24,9 +24,8 @@ in
       autostart = true;
       address = [ "10.66.66.2/32" ];
       dns = [
+        "127.0.0.1"
         "174.138.21.128"
-        "188.166.206.224"
-        "1.1.1.1"
       ];
       privateKeyFile = config.sops.secrets.privateKey.path;
 
