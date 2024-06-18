@@ -4,7 +4,7 @@
 */
 { inputs, cell }:
 let
-  inherit (inputs.std) lib;
+  inherit (inputs.std) std lib;
 in
 builtins.mapAttrs (_: lib.dev.mkShell) {
   # Tool Homepage: https://numtide.github.io/devshell/
@@ -31,6 +31,7 @@ builtins.mapAttrs (_: lib.dev.mkShell) {
     ];
 
     commands = [
+      { package = std.cli.default; }
       {
         help = "Format the source tree with treefmt";
         name = "fmt";
