@@ -4,10 +4,12 @@
   home.packages = [
     (pkgs.vesktop.overrideAttrs (old: {
       patches = (old.patches or [ ]) ++ [ ./__readonlyFix.patch ];
-      postFixup = ''
-        wrapProgram $out/bin/vesktop \
-          --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime"
-      '';
+      postFixup =
+        old.postFixup
+        + ''
+          wrapProgram $out/bin/vesktop \
+            --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime"
+        '';
     }))
   ];
 
