@@ -1,6 +1,11 @@
-{ pkgs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 let
-  emacs-git = pkgs.emacs-git.override {
+  emacs-git = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git.override {
     withTreeSitter = true;
     withNativeCompilation = true;
     withPgtk = true;

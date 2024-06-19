@@ -23,7 +23,10 @@ rec {
     gammastep
   ];
 
-  editor = [ nvim ];
+  editor = [
+    emacs
+    nvim
+  ];
 
   graphical =
     base
