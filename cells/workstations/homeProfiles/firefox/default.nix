@@ -39,6 +39,23 @@
               ${builtins.readFile "${betterfox}/Peskyfox.js"}
               ${builtins.readFile "${betterfox}/Securefox.js"}
 
+              /* Betterfox overrides */
+              // PREF: disable address and credit card manager
+              user_pref("extensions.formautofill.addresses.enabled", false);
+              user_pref("extensions.formautofill.creditCards.enabled", false);
+
+              // PREF: enable HTTPS-Only Mode
+              // Warn me before loading sites that don't support HTTPS
+              // when using Private Browsing windows.
+              user_pref("dom.security.https_only_mode_pbm", true);
+              user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
+
+              // PREF: disable Firefox Sync
+              user_pref("identity.fxaccounts.enabled", false);
+
+              // PREF: disable the Firefox View tour from popping up
+              user_pref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":true}");
+
               /* Custom User.js */
               user_pref("browser.tabs.firefox-view-next", false);
               user_pref("privacy.sanitize.sanitizeOnShutdown", false);

@@ -15,7 +15,8 @@
     2 is enable DOH.
     3 is no failback to system dns
   */
-  "network.trr.mode" = 0;
+  "network.trr.mode" = 2;
+  "network.trr.max-fails" = 5;
   "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
   "network.trr.uri" = "https://doh.tiarap.org/dns-query";
   "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
