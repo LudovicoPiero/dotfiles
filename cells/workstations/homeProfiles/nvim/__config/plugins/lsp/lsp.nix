@@ -160,6 +160,29 @@
                 "var-bind-to=this"
               ];
               formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+              "nixpkgs" = {
+                "expr" = "import (builtins.getFlake \"/home/airi/Code/dots\").inputs.nixpkgs { }   ";
+              };
+              /*
+                TODO
+                https://github.com/traxys/Nixfiles/blob/c741fce0afd5529bc68dd00e8d78649a493150ec/neovim/default.nix#L519
+              */
+              options = {
+                "nixos" = {
+                  "expr" = "(builtins.getFlake \"/home/airi/Code/dots\").nixosConfigurations.sforza.options";
+                };
+
+                "home-manager" = {
+                  "expr" = "(builtins.getFlake \"/home/airi/Code/dots\").homeConfigurations.\"airi@sforza\".options";
+                };
+                "flake-parts" = {
+                  "expr" = "(builtins.getFlake \"/home/airi/Code/dots\").debug.options";
+                };
+
+                "flake-parts2" = {
+                  "expr" = "(builtins.getFlake \"/home/airi/Code/dots\").currentSystem.options";
+                };
+              };
             };
           };
 
