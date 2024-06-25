@@ -34,6 +34,7 @@
     stylix.url = "github:danth/stylix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
+    ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";

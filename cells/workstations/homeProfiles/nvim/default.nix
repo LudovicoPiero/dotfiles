@@ -1,23 +1,6 @@
+{ inputs, pkgs, ... }:
 {
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
-{
-
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-    ./__config
-  ];
-
-  programs.nixvim = {
-    enable = true;
-
-    defaultEditor = true;
-    luaLoader.enable = true; # Experimental lua loader
-  };
-
+  home.packages = [ inputs.ludovico-nixvim.packages.${pkgs.system}.nvim ];
   programs.fish.shellAliases = {
     v = "nvim";
   };
