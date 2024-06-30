@@ -2,7 +2,7 @@
 {
   programs.wezterm = {
     enable = true;
-    package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.wezterm;
+    package = inputs.wezterm.packages.${pkgs.system}.default;
     extraConfig = ''
       return {
         font = wezterm.font_with_fallback({
