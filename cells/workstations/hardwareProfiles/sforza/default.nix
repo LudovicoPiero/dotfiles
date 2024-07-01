@@ -13,6 +13,11 @@
 
   # Hardware Config
   boot = {
+    kernelParams = [
+      "quiet"
+      "mitigations=off" # https://www.kernel.org/doc/html/v6.9/admin-guide/kernel-parameters.html
+    ];
+
     loader = {
       systemd-boot.enable = lib.mkForce false;
       systemd-boot.configurationLimit = 5;
