@@ -35,7 +35,6 @@
 
     chaotic-nyx = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
