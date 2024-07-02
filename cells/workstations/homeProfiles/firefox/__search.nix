@@ -1,12 +1,22 @@
 { pkgs, ... }:
 {
-  default = "Brave";
+  default = "DuckDuckGo";
+  order = [
+    "DuckDuckGo"
+    "Searx"
+    "Brave"
+    "Google"
+  ];
   force = true;
   engines = {
+    "Searx" = {
+      urls = [ { template = "https://searx.juancord.xyz/searxng/search?q={searchTerms}"; } ];
+      definedAliases = [ "s" ];
+    };
+
     "Brave" = {
       urls = [ { template = "https://search.brave.com/search?q={searchTerms}"; } ];
       definedAliases = [ "b" ];
-      icon = "${pkgs.brave}/share/icons/hicolor/64x64/apps/brave-browser.png";
     };
 
     "DuckDuckGo" = {
