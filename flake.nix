@@ -7,6 +7,10 @@
     nixpkgs-master.url = "github:nixos/nixpkgs";
     nixpkgs.follows = "nixpkgs-unstable";
 
+    impermanence.url = "github:nix-community/impermanence";
+    ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
+    ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
+
     # Hive
     devshell = {
       url = "github:numtide/devshell";
@@ -29,12 +33,20 @@
       };
     };
 
-    chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    impermanence.url = "github:nix-community/impermanence";
-    stylix.url = "github:danth/stylix";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
-    ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
+    chaotic-nyx = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
