@@ -56,7 +56,10 @@ in
       airi = {
         imports =
           let
-            profiles = with homeProfiles; [ obs-studio ];
+            profiles = with homeProfiles; [
+              mpd
+              obs-studio
+            ];
             suites = with homeSuites; airi;
           in
           lib.concatLists [
