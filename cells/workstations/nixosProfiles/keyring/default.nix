@@ -9,7 +9,7 @@
   services = {
     gnome.at-spi2-core.enable = true;
     gnome.gnome-keyring.enable = true;
-    dbus.packages = [ pkgs.gnome.seahorse ];
+    dbus.packages = [ pkgs.seahorse ];
   };
   security.polkit.enable = true;
 

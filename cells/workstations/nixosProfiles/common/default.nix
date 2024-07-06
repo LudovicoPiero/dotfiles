@@ -16,7 +16,7 @@
     pathsToLink = [ "/share/fish" ];
     systemPackages = with pkgs; [
       teavpn2
-      gnome.adwaita-icon-theme
+      adwaita-icon-theme
       dosfstools
       gptfdisk
       iputils
