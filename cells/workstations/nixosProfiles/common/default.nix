@@ -86,7 +86,7 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-    package = inputs.nix-super.packages.${pkgs.system}.nix;
+    package = pkgs.lix;
 
     settings = {
       # Prevent impurities in builds

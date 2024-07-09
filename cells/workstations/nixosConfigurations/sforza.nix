@@ -24,6 +24,7 @@ in
       overlays = [
         inputs.emacs-overlay.overlays.package
         inputs.chaotic-nyx.overlays.default
+        inputs.lix-module.overlays.default
       ];
     };
     home = inputs.home-manager;
