@@ -86,8 +86,6 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-    package = pkgs.lix;
-
     settings = {
       # Prevent impurities in builds
       sandbox = true;
