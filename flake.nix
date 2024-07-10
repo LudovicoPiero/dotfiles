@@ -88,12 +88,6 @@
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
 
-    # Nixvim
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # For command-not-found
     programsdb = {
       url = "github:wamserma/flake-programs-sqlite";
