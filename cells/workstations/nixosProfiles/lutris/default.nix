@@ -6,7 +6,7 @@
         pkgs.wineWowPackages.staging
         pkgs.pixman
         pkgs.libjpeg
-        pkgs.gnome.zenity
+        pkgs.zenity
       ];
     })
   ];
