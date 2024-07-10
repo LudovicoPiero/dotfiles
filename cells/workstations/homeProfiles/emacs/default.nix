@@ -1,16 +1,4 @@
-{
-  inputs,
-  pkgs,
-  config,
-  ...
-}:
-let
-  emacs-git = inputs.emacs-overlay.packages.${pkgs.system}.emacs-git.override {
-    withTreeSitter = true;
-    withNativeCompilation = true;
-    withPgtk = true;
-  };
-in
+{ pkgs, config, ... }:
 {
   imports = [ ./__modules/emacs-init.nix ];
 
@@ -25,7 +13,7 @@ in
   };
   programs.emacs = {
     enable = true;
-    package = emacs-git;
+    package = pkgs.emacs29-pgtk;
     extraPackages = epkgs: [ epkgs.treesit-grammars.with-all-grammars ];
 
     init = {

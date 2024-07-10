@@ -22,7 +22,6 @@ in
       config.allowUnfree = true;
       config.allowBroken = true;
       overlays = [
-        inputs.emacs-overlay.overlays.package
         inputs.chaotic-nyx.overlays.default
         inputs.lix-module.overlays.default
       ];
