@@ -19,7 +19,8 @@ in
   i18n = {
     inherit extraLocaleSettings;
     inputMethod = {
-      enabled = "fcitx5"; # Uncomment to enable this
+      enable = true;
+      type = "fcitx5";
       fcitx5 = {
         waylandFrontend = true;
         addons = with pkgs; [
