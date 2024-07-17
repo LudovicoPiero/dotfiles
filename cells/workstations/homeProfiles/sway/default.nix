@@ -82,7 +82,7 @@
         }
       ];
       modifier = "Mod4";
-      terminal = "kitty";
+      terminal = "wezterm";
       menu = "${pkgs.fuzzel}/bin/fuzzel";
     };
     extraConfig = ''
