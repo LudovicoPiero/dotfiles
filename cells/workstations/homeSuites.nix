@@ -44,7 +44,7 @@ rec {
       fuzzel
       foot
       kitty
-      # wezterm
+      wezterm
       tmux
     ];
 
