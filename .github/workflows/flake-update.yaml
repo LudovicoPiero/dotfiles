@@ -16,6 +16,11 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
         with:
+          git-author-name: "Ludovico Piero"
+          git-author-email: "lewdovico@gnuweeb.org"
+          git-committer-name: "Ludovico Piero"
+          git-committer-email: "lewdovico@gnuweeb.org"
+          token: ${{ secrets.GH_TOKEN }}
           commit-msg: "chore: Update flake.lock" # The message provided with the commit
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
