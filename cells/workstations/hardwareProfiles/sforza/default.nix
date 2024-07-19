@@ -56,7 +56,7 @@
 
     zfs = {
       devNodes = "/dev/vg/root";
-      # package = pkgs.zfs_cachyos;
+      package = pkgs.zfs_cachyos;
     };
 
     # blkid --match-tag UUID --output value "$DISK-part6"
