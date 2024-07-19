@@ -21,6 +21,8 @@ pull_request_rules:
       - check-success=nixosConfig sforza
     actions:
       merge:
+        method: merge
+      delete_head_branch:
 
   - name: Warn on conflicts
     conditions:
