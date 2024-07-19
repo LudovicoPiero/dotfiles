@@ -30,7 +30,7 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    kernelPackages = pkgs.linuxPackages_cachyos-lto;
+    kernelPackages = pkgs.linuxPackages_cachyos;
 
     initrd.availableKernelModules = [
       "nvme"
