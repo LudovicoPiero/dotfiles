@@ -58,5 +58,11 @@
       };
       command = "move to workspace 2";
     }
+    {
+      criteria = {
+        app_id = "floorp";
+      };
+      command = "move to workspace 2";
+    }
   ];
 }

@@ -133,6 +133,7 @@ in
     "workspace 3, title:^(.*(Disc|ArmC|WebC)ord.*)$"
     "workspace 3, class:^(vesktop)$"
     "workspace 2, class:^(firefox)$"
+    "workspace 2, class:^(floorp)$"
     "workspace 2, class:^(Chromium-browser)$" # xwayland
     "workspace 2, class:^(chromium-browser)$" # wayland
     "workspace 1, class:^(jetbrains-goland)$"
@@ -144,11 +145,13 @@ in
     "float, class:^(steam)$,title:^(Special Offers)$"
     "noblur, class:^(waybar)$"
     "noblur, class:^(firefox)$"
+    "noblur, class:^(floorp)$"
     "noblur, class:^(Chromium-browser)$" # xwayland
     "noblur, class:^(chromium-browser)$" # wayland
     "noblur, title:^(.*(Disc|WebC)ord.*)$"
     "noblur, title:^(Open File)$"
     "noshadow, class:^(firefox)$"
+    "noshadow, class:^(floorp)$"
     "noshadow, class:^(Chromium-browser)$" # xwayland
     "noshadow, class:^(chromium-browser)$" # wayland
     "noshadow, title:^(.*(Disc|WebC)ord.*)$"
@@ -164,7 +167,7 @@ in
     "$mod      , D , exec , run-as-service vesktop"
     "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
-    "$mod      , G , exec , run-as-service firefox"
+    "$mod      , G , exec , run-as-service floorp"
     "$mod SHIFT, G , exec , run-as-service chromium"
     "$mod      , M , exec , [workspace 9 silent;tile] thunderbird"
     "$mod      , P , exec , run-as-service ${launcher}"
