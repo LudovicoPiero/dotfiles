@@ -57,6 +57,7 @@ in
         imports =
           let
             profiles = with homeProfiles; [
+              playerctld
               mpd
               obs-studio
             ];
