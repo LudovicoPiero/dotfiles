@@ -139,7 +139,6 @@ in
     "workspace 1, class:^(jetbrains-goland)$"
     "workspace 1, class:^(jetbrains-clion)$"
     "workspace 1, class:^(Albion-Online)$"
-    "fakefullscreen, class:^(code-url-handler)$"
     "float, title:^(Steam - News)$"
     "float, class:^(xdg-desktop-portal-gtk)$,title:^(Open Files)$"
     "float, class:^(steam)$,title:^(Special Offers)$"
