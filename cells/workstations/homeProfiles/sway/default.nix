@@ -8,7 +8,7 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = inputs.swayfx.packages.${pkgs.system}.default;
+    package = pkgs.swayfx;
     checkConfig = false;
     config = {
       keybindings = import ./__keybindings.nix {
