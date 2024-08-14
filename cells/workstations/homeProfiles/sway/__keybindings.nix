@@ -94,7 +94,7 @@ in
   ### Apps
   "${mod}+Return" = "exec run-as-service '${cfg.terminal}'";
   "${mod}+p" = "exec run-as-service '${cfg.menu}'";
-  "${mod}+g" = "exec '${_ pkgs.floorp}'";
+  "${mod}+g" = "exec 'firefox'";
   "${mod}+d" = "exec run-as-service 'vesktop'";
   "${mod}+Shift+e" = "exec run-as-service '${_ pkgs.xfce.thunar}'";
 

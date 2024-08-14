@@ -166,7 +166,7 @@ in
     "$mod      , D , exec , run-as-service vesktop"
     "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
-    "$mod      , G , exec , run-as-service floorp"
+    "$mod      , G , exec , run-as-service firefox"
     "$mod SHIFT, G , exec , run-as-service chromium"
     "$mod      , M , exec , [workspace 9 silent;tile] thunderbird"
     "$mod      , P , exec , run-as-service ${launcher}"

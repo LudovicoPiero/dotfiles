@@ -78,7 +78,7 @@
       EDITOR = "nvim";
       VISUAL = "nvim";
       TERM = "xterm-256color";
-      BROWSER = "floorp";
+      BROWSER = "firefox";
       XCURSOR_SIZE = "24";
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
@@ -94,7 +94,7 @@
 
   xdg =
     let
-      browser = [ "floorp.desktop" ];
+      browser = [ "firefox.desktop" ];
       chromium-browser = [ "chromium-browser.desktop" ];
       thunderbird = [ "thunderbird.desktop" ];
 
