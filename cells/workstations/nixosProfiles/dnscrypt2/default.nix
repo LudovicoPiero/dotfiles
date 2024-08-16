@@ -7,7 +7,12 @@
     enable = true;
     settings = {
       server_names = [
+        "cs-singapore"
+        "dnscry.pt-jakarta-ipv4"
+        "dnscry.pt-singapore-ipv4"
+        "dnscry.pt-singapore02-ipv4"
         "doh.tiar.app"
+        "doh.tiar.app-doh"
         "iij"
         "jp.tiar.app"
       ];
@@ -90,6 +95,7 @@
           {
             server_name = "*";
             via = [
+              "anon-cs-singapore"
               "anon-saldnssg01-conoha-ipv4"
               "anon-tiarap"
               "dnscry.pt-anon-singapore-ipv4"
