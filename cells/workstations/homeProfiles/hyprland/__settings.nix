@@ -79,7 +79,6 @@ in
   };
 
   general = {
-    sensitivity = 1;
     gaps_in = 3;
     gaps_out = 3;
     border_size = 2;
