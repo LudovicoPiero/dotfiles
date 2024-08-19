@@ -39,6 +39,8 @@ rec {
       # Windows Manager / Compositor
       hyprland
       sway
+
+      # Apps
       waybar
       i3status-rust
       i3status
@@ -47,6 +49,7 @@ rec {
       kitty
       wezterm
       tmux
+      lsd
     ];
 
   airi = graphical;
