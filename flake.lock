@@ -441,11 +441,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1724558604,
-        "narHash": "sha256-s06Bo5fTwJRH0mQZrgNx97132yl0R+zE6bXQme4VfPw=",
+        "lastModified": 1724645012,
+        "narHash": "sha256-XJ8B9ecksgZBlWV9pnDgBWVePyHDg/cLYJ/6YF/RdRA=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "659ae6c4b5c9b2683474e29587f2697fd90a4363",
+        "rev": "70645c904b41b9ddf70f7218898c48df93e8254f",
         "type": "gitlab"
       },
       "original": {
@@ -1097,11 +1097,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1724596623,
-        "narHash": "sha256-pLbNiAfpE8rW2e1Ih7Epi0LfyDmFv+UYU2BXg7Sj66U=",
+        "lastModified": 1724688164,
+        "narHash": "sha256-59TSHh7qDewt/B7XeJzhC+jf12wd+YKSMI8ESs/AoHY=",
         "ref": "refs/heads/main",
-        "rev": "b672118f9238a48a18efd741cbcda387c5552238",
-        "revCount": 5136,
+        "rev": "1ea47950f4262ec1215087948c7275f8e0115af2",
+        "revCount": 5142,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1395,11 +1395,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1724524851,
-        "narHash": "sha256-7i5irBWmjpZvu9Mfo2mhuMndGn1sFbJynzUWpOYCnDg=",
+        "lastModified": 1724668043,
+        "narHash": "sha256-/gHrgxSnSZQySlwX7eruNoRHWcbDRR1yYQpzg/ockA0=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "07f12cbf94a43db26b7f0ff98c433da863e75835",
+        "rev": "4468cb3fbe20ab7e716b8c138c8327a70d767193",
         "type": "github"
       },
       "original": {
@@ -1415,11 +1415,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1724599301,
-        "narHash": "sha256-du3lXqkbkS0WQcEkAL1qqnPEqrarGOpSgHdl8C/BKmg=",
+        "lastModified": 1724685835,
+        "narHash": "sha256-uhZqgjN4z2p0FoOfEB+zbjtr5qD+yiKkP4gmjaV9CbQ=",
         "owner": "LudovicoPiero",
         "repo": "nvim-flake",
-        "rev": "a428d721d974820fbfee989784468fd6c9790bbc",
+        "rev": "74e3fee8ea23310ce1861269467d37ece7ab0fd1",
         "type": "github"
       },
       "original": {
@@ -1791,11 +1791,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1724224976,
-        "narHash": "sha256-Z/ELQhrSd7bMzTO8r7NZgi9g5emh+aRKoCdaAv5fiO0=",
+        "lastModified": 1724479785,
+        "narHash": "sha256-pP3Azj5d6M5nmG68Fu4JqZmdGt4S4vqI5f8te+E/FTw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c374d94f1536013ca8e92341b540eba4c22f9c62",
+        "rev": "d0e1602ddde669d5beb01aec49d71a51937ed7be",
         "type": "github"
       },
       "original": {
@@ -1821,11 +1821,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1724528976,
-        "narHash": "sha256-5W13nD/5ySIsxSvDqXHlj4bg2F3tNcYGKCGudWzpNzw=",
+        "lastModified": 1724598705,
+        "narHash": "sha256-/oaK6niVP0wezfXoJcKAP2Ho887hKza7y1n8HazCkKA=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "8234ee85eaa2c8b7f2c74f5b4cdf02c4965b07fc",
+        "rev": "bb8ecad13c229e1c89301055c8e54d8d0e33e839",
         "type": "github"
       },
       "original": {
@@ -2098,11 +2098,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1724466314,
-        "narHash": "sha256-ltKuK6shQ64uej1mYNtBsDYxttUNFiv9AcHqk0+0NQM=",
+        "lastModified": 1724552650,
+        "narHash": "sha256-u1xzgrdRTL0DQhjXMgmEvl75IrL8zGf0RS34IQJXxeU=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "2b5b3edd96ef336b00622dcabc13788fdef9e3ca",
+        "rev": "19fda552b69513df7b6aa5fcfd1412c0221467b1",
         "type": "github"
       },
       "original": {
