@@ -6,13 +6,10 @@
 
       config = {
         common = {
-          default = [ "gtk" ];
+          # uses the first portal implementation found in lexicographical order
+          default = [ "*" ];
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };
-        hyprland.default = [
-          "gtk"
-          "hyprland"
-        ];
       };
 
       extraPortals = [
