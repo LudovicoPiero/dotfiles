@@ -162,7 +162,7 @@ in
     "$mod SHIFT, C , exit ,"
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
-    "$mod      , D , exec , run-as-service vesktop"
+    "$mod      , D , exec , vesktop"
     "$mod SHIFT, E , exec , run-as-service thunar"
     "$mod      , F , fullscreen , 0"
     "$mod      , G , exec , run-as-service firefox"

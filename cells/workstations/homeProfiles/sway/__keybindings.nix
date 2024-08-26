@@ -95,7 +95,7 @@ in
   "${mod}+Return" = "exec run-as-service '${cfg.terminal}'";
   "${mod}+p" = "exec run-as-service '${cfg.menu}'";
   "${mod}+g" = "exec 'firefox'";
-  "${mod}+d" = "exec run-as-service 'vesktop'";
+  "${mod}+d" = "exec 'vesktop'";
   "${mod}+Shift+e" = "exec run-as-service '${_ pkgs.xfce.thunar}'";
 
   ### Screenshot
