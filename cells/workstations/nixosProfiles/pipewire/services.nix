@@ -1,6 +1,9 @@
 { pkgs, lib, ... }:
 let
   inherit (lib.generators) toLua;
+  quantum = 64;
+  rate = 48000;
+  qr = "${toString quantum}/${toString rate}";
 in
 {
   pipewire = {
@@ -12,42 +15,66 @@ in
     jack.enable = false;
 
     # Source: fufexan/nix-gaming
-    extraConfig.pipewire = {
-      "99-lowlatency" = {
-        context = {
-          properties.default.clock.min-quantum = 64;
-          modules = [
-            {
-              name = "libpipewire-module-rtkit";
-              flags = [
-                "ifexists"
-                "nofail"
-              ];
-              args = {
-                nice.level = -15;
-                rt = {
-                  prio = 88;
-                  time.soft = 200000;
-                  time.hard = 200000;
+    extraConfig = {
+      pipewire = {
+        "99-lowlatency" = {
+          context = {
+            properties.default.clock.min-quantum = quantum;
+            modules = [
+              {
+                name = "libpipewire-module-rtkit";
+                flags = [
+                  "ifexists"
+                  "nofail"
+                ];
+                args = {
+                  nice.level = -15;
+                  rt = {
+                    prio = 88;
+                    time.soft = 200000;
+                    time.hard = 200000;
+                  };
                 };
-              };
-            }
+              }
+              {
+                name = "libpipewire-module-protocol-pulse";
+                args = {
+                  server.address = [ "unix:native" ];
+                  pulse.min = {
+                    req = qr;
+                    quantum = qr;
+                    frag = qr;
+                  };
+                };
+              }
+            ];
+
+            stream.properties = {
+              node.latency = qr;
+              resample.quality = 1;
+            };
+          };
+        };
+      };
+
+      pipewire-pulse = {
+        "92-low-latency" = {
+          "context.properties" = [
             {
               name = "libpipewire-module-protocol-pulse";
-              args = {
-                server.address = [ "unix:native" ];
-                pulse.min = {
-                  req = "64/48000";
-                  quantum = "64/48000";
-                  frag = "64/48000";
-                };
-              };
+              args = { };
             }
           ];
-
-          stream.properties = {
-            node.latency = "64/48000";
-            resample.quality = 1;
+          "pulse.properties" = {
+            "pulse.min.req" = qr;
+            "pulse.default.req" = qr;
+            "pulse.max.req" = qr;
+            "pulse.min.quantum" = qr;
+            "pulse.max.quantum" = qr;
+          };
+          "stream.properties" = {
+            "node.latency" = qr;
+            "resample.quality" = 1;
           };
         };
       };
@@ -77,7 +104,7 @@ in
           # generate "apply_properties" section of the rules
           apply_properties = toLua { } {
             "audio.format" = "S32LE";
-            "audio.rate" = 48000 * 2;
+            "audio.rate" = rate * 2;
             "api.alsa.period-size" = 2;
           };
         in
