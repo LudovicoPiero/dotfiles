@@ -25,7 +25,7 @@ rec {
   ];
 
   editor = [
-    emacs
+    # emacs
     nvim
   ];
 
