@@ -35,6 +35,7 @@
           "Sarasa Gothic HC"
           "Sarasa Gothic CL"
           "Symbola"
+          "Material Design Icons"
         ];
 
         sansSerif = [
@@ -46,6 +47,7 @@
           "Sarasa Gothic HC"
           "Sarasa Gothic CL"
           "Symbola"
+          "Material Design Icons"
         ];
 
         monospace = [
@@ -57,6 +59,7 @@
           "Sarasa Mono HC"
           "Sarasa Mono CL"
           "Symbola"
+          "Material Design Icons"
         ];
 
         emoji = [
