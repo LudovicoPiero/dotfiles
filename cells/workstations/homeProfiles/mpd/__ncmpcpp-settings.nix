@@ -1,69 +1,80 @@
-# Source: https://github.com/NotAShelf/nyx/blob/bb7fa566897bf6df5087d2253aedb1ca0363248a/homes/notashelf/programs/media/ncmpcpp/settings.nix
+# Source: https://github.com/owl4ce/dotfiles/blob/c5c33b46ef90131fff88c2b9b954cab27e0b0972/.config/ncmpcpp/main.config
 { config, ... }:
 {
   programs.ncmpcpp.settings = {
     # Miscelaneous
     ncmpcpp_directory = "${config.xdg.configHome}/ncmpcpp";
-    ignore_leading_the = true;
-    external_editor = "nvim";
-    message_delay_time = 1;
-    playlist_disable_highlight_delay = 2;
+
+    # VISUALIZER
+    # ---
+    visualizer_data_source = "/tmp/mpd.fifo";
+    visualizer_output_name = "Visualizer";
+    visualizer_in_stereo = "no";
+    visualizer_fps = "60";
+    visualizer_type = "wave";
+    visualizer_look = "∗▐";
+    visualizer_color = "199,200,201,202,166,130,94,58,22";
+    visualizer_spectrum_smooth_look = "yes";
+
+    # GENERAL
+    # ---
+    lyrics_directory = "~/.config/ncmpcpp/lyrics";
+    connected_message_on_startup = "yes";
+    cyclic_scrolling = "yes";
+    mouse_support = "yes";
+    mouse_list_scroll_whole_page = "yes";
+    lines_scrolled = "1";
+    message_delay_time = "1";
+    playlist_shorten_total_times = "yes";
+    playlist_display_mode = "columns";
+    browser_display_mode = "columns";
+    search_engine_display_mode = "columns";
+    playlist_editor_display_mode = "columns";
     autocenter_mode = "yes";
     centered_cursor = "yes";
-    allow_for_physical_item_deletion = "no";
-    lines_scrolled = "0";
-    follow_now_playing_lyrics = "yes";
-    lyrics_fetchers = "musixmatch";
-
-    # visualizer
-    visualizer_data_source = "/tmp/mpd.fifo";
-    visualizer_output_name = "mpd_visualizer";
-    visualizer_type = "ellipse";
-    visualizer_in_stereo = "yes";
-    visualizer_look = "●●";
-    visualizer_color = "blue, green";
-
-    # appearance
-    colors_enabled = "yes";
-    playlist_display_mode = "columns";
     user_interface = "classic";
-    volume_color = "white";
+    follow_now_playing_lyrics = "yes";
+    locked_screen_width_part = "50";
+    ask_for_locked_screen_width_part = "yes";
+    display_bitrate = "no";
+    external_editor = "nvim";
+    main_window_color = "default";
+    startup_screen = "playlist";
 
-    # window
-    song_window_title_format = "Music";
-    statusbar_visibility = "no";
-    header_visibility = "no";
-    titles_visibility = "no";
-    # progress bar
-    progressbar_look = "▂▂▂";
+    # PROGRESS BAR
+    # ---
+    progressbar_look = "━━━";
+    #progressbar_look = "▃▃▃";
+    progressbar_elapsed_color = "5";
     progressbar_color = "black";
-    progressbar_elapsed_color = "yellow";
 
-    # Alternative UI
-    alternative_ui_separator_color = "black";
-    alternative_header_first_line_format = "$b$5«$/b$5« $b$8{%t}|{%f}$/b $5»$b$5»$/b";
-    alternative_header_second_line_format = "{$b{$2%a$9}{ - $7%b$9}{ ($2%y$9)}}|{%D}";
+    # UI VISIBILITY
+    # ---
+    header_visibility = "no";
+    statusbar_visibility = "yes";
+    titles_visibility = "yes";
+    enable_window_title = "yes";
 
-    # song list
-    song_status_format = "$7%t";
-    song_list_format = "$(008)%t$R  $(247)%a$R$5  %l$8";
-    song_columns_list_format = "(53)[blue]{tr} (45)[blue]{a}";
-
-    current_item_prefix = "$b$2| ";
-    current_item_suffix = "$/b$5";
-
-    now_playing_prefix = "$b$5| ";
-    now_playing_suffix = "$/b$5";
-
-    song_library_format = "{{%a - %t} (%b)}|{%f}";
-
-    # colors
-    main_window_color = "blue";
-
-    current_item_inactive_column_prefix = "$b$5";
-    current_item_inactive_column_suffix = "$/b$5";
-
+    # COLORS
+    # ---
+    statusbar_color = "white";
     color1 = "white";
-    color2 = "red";
+    color2 = "blue";
+
+    # UI APPEARANCE
+    # ---
+    now_playing_prefix = "$b$2 $7 ";
+    now_playing_suffix = "  $/b$8";
+    current_item_prefix = "$b$7 $/b$3 ";
+    current_item_suffix = "  $8";
+
+    song_columns_list_format = "(50)[]{t|fr:Title} (0)[magenta]{a}";
+
+    # song_list_format = " {%t $R   $8%a$8}|{%f $R   $8%l$8} $8";
+    song_list_format = "{%a - }{%t}|{$8%f$9}$R{$3%l$9}";
+
+    song_status_format = "$b$7[$8󰒫 󰐎 󰓛 󰒬 $7] $7󰝗 {$8 %b }|{$8 %t }|{$8 %f }$7󰉾 $8";
+
+    song_window_title_format = "Now Playing ..";
   };
 }
