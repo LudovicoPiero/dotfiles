@@ -7,6 +7,10 @@
 }@args:
 let
   _ = lib.getExe;
+
+  waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
+    date "+%a %d %b %Y"
+  '';
 in
 {
   home.packages = with pkgs; [ alsa-utils ];
@@ -45,6 +49,8 @@ in
           "pulseaudio"
           "custom/separator"
           "clock"
+          "custom/separator"
+          "custom/date"
           "custom/separator"
           "battery"
           "custom/separator"
@@ -153,6 +159,11 @@ in
           "interval" = 1;
           "format" = "󰅐 {:%I:%M %p}";
           "tooltip-format" = "{:%Y-%m-%d | %H:%M:%S}";
+        };
+        "custom/date" = {
+          format = "󰸗 {}";
+          interval = 3600;
+          exec = "${lib.getExe waybar-date}";
         };
         "battery" = {
           "states" = {
