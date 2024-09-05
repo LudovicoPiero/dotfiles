@@ -58,6 +58,11 @@ in
 {
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
+  home.packages = [
+    run-as-service
+    inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
+
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
@@ -83,9 +88,9 @@ in
     };
 
     cursor = {
-      package = pkgs.apple-cursor;
-      name = "macOS-BigSur";
-      size = 24;
+      package = inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      name = "McMojave";
+      size = 34;
     };
 
     fonts = {
@@ -109,8 +114,6 @@ in
       };
     };
   };
-
-  home.packages = [ run-as-service ];
 
   # User Services
   systemd.user.services = {

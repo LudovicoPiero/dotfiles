@@ -79,7 +79,9 @@
       VISUAL = "nvim";
       TERM = "xterm-256color";
       BROWSER = "firefox";
-      XCURSOR_SIZE = "24";
+      XCURSOR_SIZE = "34";
+      HYPRCURSOR_THEME = "McMojave";
+      HYPRCURSOR_SIZE = "34";
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
       "_JAVA_AWT_WM_NONREPARENTING" = "1";

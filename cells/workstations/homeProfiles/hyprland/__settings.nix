@@ -14,6 +14,7 @@ in
   exec-once =
     [
       "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service swaybg.service"
+      "hyprctl setcursor ${config.stylix.cursor.name} ${toString config.stylix.cursor.size}"
       "waybar"
       "fcitx5 -d --replace"
       "${_ pkgs.mako}"
@@ -23,6 +24,10 @@ in
     ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
       "${_ config.programs.emacs.finalPackage} --fg-daemon"
     ];
+
+  env = [
+    "HYPRCURSOR_THEME,McMojave"
+  ];
 
   monitor = [
     ",highrr,auto,1"
