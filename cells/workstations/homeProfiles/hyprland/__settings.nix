@@ -26,7 +26,7 @@ in
     ];
 
   env = [
-    "HYPRCURSOR_THEME,McMojave"
+    "HYPRCURSOR_THEME,${config.stylix.cursor.name}"
   ];
 
   monitor = [

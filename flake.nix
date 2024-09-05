@@ -43,7 +43,7 @@
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };
 
-    mcmojave-hyprcursor.url = "github:libadoxon/mcmojave-hyprcursor";
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

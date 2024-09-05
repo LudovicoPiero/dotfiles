@@ -79,9 +79,10 @@
       VISUAL = "nvim";
       TERM = "xterm-256color";
       BROWSER = "firefox";
-      XCURSOR_SIZE = "34";
-      HYPRCURSOR_THEME = "McMojave";
-      HYPRCURSOR_SIZE = "34";
+      HYPRCURSOR_THEME = "${config.stylix.cursor.name}";
+      HYPRCURSOR_SIZE = "${toString config.stylix.cursor.size}";
+      XCURSOR_THEME = "${config.stylix.cursor.name}";
+      XCURSOR_SIZE = "${toString config.stylix.cursor.size}";
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
       "_JAVA_AWT_WM_NONREPARENTING" = "1";

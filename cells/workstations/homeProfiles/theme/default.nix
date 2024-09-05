@@ -56,13 +56,16 @@ let
   };
 in
 {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [
+    inputs.stylix.homeManagerModules.stylix
+    inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
+  ];
 
   home.packages = [
     run-as-service
-    inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
+  programs.hyprcursor-phinger.enable = true;
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
@@ -88,9 +91,9 @@ in
     };
 
     cursor = {
-      package = inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      name = "McMojave";
-      size = 34;
+      package = inputs.hyprcursor-phinger.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      name = "phinger-cursors-light";
+      size = 24;
     };
 
     fonts = {
