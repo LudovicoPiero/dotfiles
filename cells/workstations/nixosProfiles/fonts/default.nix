@@ -8,7 +8,7 @@
   fonts = {
     fontDir.enable = true;
     packages = lib.attrValues {
-      inherit (inputs.ludovico-nixpkgs.packages.${pkgs.system}) san-francisco-pro sarasa-gothic iosevka-q;
+      inherit (inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}) san-francisco-pro sarasa-gothic iosevka-q;
 
       inherit (pkgs)
         emacs-all-the-icons-fonts

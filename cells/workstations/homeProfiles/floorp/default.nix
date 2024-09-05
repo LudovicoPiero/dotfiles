@@ -9,7 +9,7 @@
         id = 0;
         isDefault = true;
         name = "Ludovico";
-        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        extensions = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
           bitwarden
           refined-github
           sponsorblock

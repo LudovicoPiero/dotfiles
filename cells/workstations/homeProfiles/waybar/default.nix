@@ -20,7 +20,7 @@ in
     style = import ./__style.nix args;
 
     # package = pkgs.waybar;
-    package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.waybar;
+    package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
 
     settings = {
       # Thanks to https://gist.github.com/genofire/07234e810fcd16f9077710d4303f9a9e

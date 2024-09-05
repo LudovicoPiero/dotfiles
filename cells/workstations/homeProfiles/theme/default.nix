@@ -8,7 +8,7 @@
 let
   theme = {
     name = "WhiteSur-Dark";
-    package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.whitesur-gtk-theme;
+    package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
   };
 
   iconsTheme = {
@@ -95,7 +95,7 @@ in
 
     fonts = {
       serif = {
-        package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.iosevka-q;
+        package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
         name = "Iosevka q Semibold";
       };
       sansSerif = config.stylix.fonts.serif;

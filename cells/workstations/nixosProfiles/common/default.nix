@@ -10,7 +10,7 @@
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   time.timeZone = "Asia/Tokyo";
-  programs.command-not-found.dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+  programs.command-not-found.dbPath = inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
 
   environment = {
     pathsToLink = [ "/share/fish" ];

@@ -9,7 +9,7 @@
           id = 0;
           isDefault = true;
           name = "Ludovico";
-          extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+          extensions = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
             bitwarden
             refined-github
             sponsorblock
@@ -22,7 +22,7 @@
         }
         // (
           let
-            inherit (inputs.ludovico-nixpkgs.packages.${pkgs.system}) firefox-gnome-theme;
+            inherit (inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
             betterfox = pkgs.fetchFromGitHub {
               owner = "yokoffing";
               repo = "Betterfox";

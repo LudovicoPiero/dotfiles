@@ -18,7 +18,7 @@ in
     style = ./__style.css;
 
     # package = pkgs.waybar;
-    package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.waybar;
+    package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
 
     settings = {
       # Thanks to @chborli on Hyprland's discord server
