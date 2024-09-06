@@ -32,7 +32,7 @@
     playlist_editor_display_mode = "columns";
     autocenter_mode = "yes";
     centered_cursor = "yes";
-    user_interface = "classic";
+    user_interface = "alternative";
     follow_now_playing_lyrics = "yes";
     locked_screen_width_part = "50";
     ask_for_locked_screen_width_part = "yes";
