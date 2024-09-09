@@ -69,7 +69,7 @@
       };
       ShikiCodeblocks = {
         enabled = true;
-        theme = "https://raw.githubusercontent.com/shikijs/textmate-grammars-themes/main/packages/tm-themes/themes/catppuccin-mocha.json";
+        theme = "https://raw.githubusercontent.com/shikijs/textmate-grammars-themes/main/packages/tm-themes/themes/everforest-dark.json";
         tryHljs = "SECONDARY";
         useDevIcon = "COLOR";
         bgOpacity = 100;

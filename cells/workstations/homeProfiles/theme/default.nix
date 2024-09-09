@@ -68,7 +68,7 @@ in
   programs.hyprcursor-phinger.enable = true;
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
     image = "${inputs.self}/assets/anime-nix-wallpaper.png";
     polarity = "dark";
 
