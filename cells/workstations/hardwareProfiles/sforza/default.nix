@@ -107,6 +107,9 @@
         options = [
           "fmask=0022"
           "dmask=0022"
+          "nodev"
+          "nosuid"
+          "noexec"
         ];
       };
 
