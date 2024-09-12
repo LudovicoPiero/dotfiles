@@ -99,7 +99,7 @@ in
 
   networking = {
     hostName = "sforza";
-    hostId = "1a122b84"; # head -c8 /etc/machine-id
+    hostId = "22e9b5ca"; # head -c8 /etc/machine-id
     useDHCP = lib.mkDefault true;
     enableIPv6 = false; # L ISP
     networkmanager.enable = true;

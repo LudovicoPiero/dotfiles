@@ -158,7 +158,7 @@
       ]
       ++ lib.optionals config.virtualisation.docker.enable [ "/var/lib/docker" ]
       ++ lib.optionals config.services.jellyfin.enable [ "/var/lib/jellyfin" ];
-    files = [ "/etc/machine-id" ];
+    # files = [ "/etc/machine-id" ];
   };
 
   systemd.tmpfiles.rules = [
