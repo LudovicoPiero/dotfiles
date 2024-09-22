@@ -15,7 +15,7 @@ rec {
 
   commonGraphic = [
     firefox
-    floorp
+    # floorp
     mako
 
     # Etc
