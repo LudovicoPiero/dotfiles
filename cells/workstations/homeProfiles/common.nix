@@ -11,6 +11,7 @@
     packages = lib.attrValues rec {
       inherit (pkgs)
         bat
+        ente-auth
         fd
         fzf
         mpv
