@@ -88,6 +88,7 @@ in
       gtk.enable = false;
       gnome.enable = false;
       kde.enable = false;
+      spicetify.enable = false;
     };
 
     cursor = {
