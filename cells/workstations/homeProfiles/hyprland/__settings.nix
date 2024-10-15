@@ -54,7 +54,6 @@ in
     force_split = 2;
     pseudotile = true;
     preserve_split = true;
-    no_gaps_when_only = 0; # (default: disabled - 0) no border - 1, with border - 2
   };
 
   decoration = {
@@ -124,6 +123,10 @@ in
     "ignorealpha 0.69, notifications"
     "ignorealpha 0.69, launcher"
     "ignorealpha 0.69, lockscreen"
+  ];
+
+  workspace = [
+    "w[tg1], gapsout:0, gapsin:0, border: 0, rounding:0"
   ];
 
   windowrulev2 = [
