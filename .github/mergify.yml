@@ -18,7 +18,7 @@ pull_request_rules:
 
   - name: Automatic merge when CI passes
     conditions:
-      - check-success=nixosConfig sforza
+      - check-success=All Garnix checks
     actions:
       merge:
         method: merge
@@ -36,7 +36,7 @@ pull_request_rules:
 
   - name: Toggle labels based on CI state
     conditions:
-      - check-failure=nixosConfig sforza
+      - check-failure=All Garnix checks
     actions:
       label:
         toggle:
