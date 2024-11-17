@@ -76,10 +76,11 @@ in
       special = true;
     };
 
-    drop_shadow = false;
-    shadow_range = 8;
-    shadow_render_power = 3;
-    shadow_offset = "2 2";
+    shadow = {
+      enabled = false;
+      range = 8;
+      render_power = 3;
+    };
   };
 
   general = {
