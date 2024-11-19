@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-master.url = "github:nixos/nixpkgs";
     nixpkgs.follows = "nixpkgs-unstable";
 
@@ -44,9 +44,11 @@
     };
 
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
+    base16.url = "github:SenchoPens/base16.nix";
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.base16.follows = "base16";
     };
 
     treefmt-nix = {
