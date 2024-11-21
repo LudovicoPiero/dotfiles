@@ -8,6 +8,7 @@
 
     ./shared.nix
     ./greetd.nix
+    ./fuzzel.nix
     ./vars.nix
     ./mako.nix
     ./theme.nix

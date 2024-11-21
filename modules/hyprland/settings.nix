@@ -10,6 +10,7 @@ let
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wlogout}";
   emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
+  inherit (config.colorScheme) palette;
 in
 {
   exec-once =
@@ -89,6 +90,8 @@ in
     gaps_in = 3;
     gaps_out = 3;
     border_size = 2;
+    "col.active_border" = "rgb(${palette.base0D})";
+    "col.inactive_border" = "rgb(${palette.base03})";
 
     layout = "dwindle";
   };
@@ -96,8 +99,14 @@ in
   group = {
     groupbar = {
       render_titles = false;
+      text_color = "rgb(${palette.base05})";
+      "col.active" = "rgb(${palette.base0D})";
+      "col.inactive" = "rgb(${palette.base03})";
     };
+    "col.border_active" = "rgb(${palette.base0D})";
+    "col.border_inactive" = "rgb(${palette.base03})";
   };
+  misc.background_color = "rgb(${palette.base00})";
 
   input = {
     kb_layout = "us";

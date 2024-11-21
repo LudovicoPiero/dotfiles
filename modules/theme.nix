@@ -50,6 +50,11 @@ in
     enable = mkEnableOption "" // {
       default = config.myOptions.vars.withGui;
     };
+
+    colorScheme = mkOption {
+      type = types.anything;
+      default = inputs.nix-colors.colorSchemes.${config.myOptions.vars.colorScheme};
+    };
   };
 
   config = mkIf cfg.enable {
@@ -58,7 +63,10 @@ in
       {
         imports = [
           inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
+          inputs.nix-colors.homeManagerModules.default
         ];
+
+        colorScheme = cfg.colorScheme;
 
         programs.hyprcursor-phinger.enable = true;
 
