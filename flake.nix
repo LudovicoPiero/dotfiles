@@ -1,156 +1,51 @@
 {
-  description = "Ludovico's dotfiles powered by Nix Flakes + Hive";
+  description = "xd uwu";
 
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs";
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    impermanence.url = "github:nix-community/impermanence";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
-    ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
-
-    # Hive
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixago = {
-      url = "github:nix-community/nixago";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hive = {
-      url = "github:divnix/hive";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    std = {
-      url = "github:divnix/std";
-      inputs = {
-        devshell.follows = "devshell";
-        nixago.follows = "nixago";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    # Lix
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    chaotic-nyx = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    };
-
-    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    spicetify-nix = {
-      url = "github:gerg-l/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Hyprland
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    };
-
-    # For command-not-found
-    programsdb = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Secrets
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    };
   };
 
   outputs =
-    {
-      self,
-      std,
-      hive,
-      ...
-    }@inputs:
-    let
-      myCollect = hive.collect // {
-        renamer = _cell: target: "${target}";
-      };
-    in
-    hive.growOn
-      {
-        inherit inputs;
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./hosts
+      ];
 
-        nixpkgsConfig = {
-          allowUnfree = true;
-          allowBroken = true; # For ZFS Kernel
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          # Per-system attributes can be defined here. The self' and inputs'
+          # module parameters provide easy access to attributes of the same
+          # system.
+
+          # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
+          packages.default = pkgs.hello;
         };
-
-        cellsFrom = ./cells;
-        cellBlocks =
-          with hive.blockTypes;
-          with std.blockTypes;
-          [
-            (functions "bee")
-
-            # Profiles
-            (functions "hardwareProfiles")
-            (functions "homeProfiles")
-            (functions "nixosProfiles")
-
-            # Suites
-            (functions "homeSuites")
-            (functions "nixosSuites")
-
-            # devShells
-            (nixago "configs")
-            (devshells "devshells")
-
-            # Secrets
-            (functions "secrets")
-
-            # Configurations
-            nixosConfigurations
-          ];
-      }
-      { nixosConfigurations = myCollect self "nixosConfigurations"; }
-      {
-        devShells = std.harvest self [
-          "repo"
-          "devshells"
-        ];
-      };
+    };
 }
