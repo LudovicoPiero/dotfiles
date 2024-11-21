@@ -18,6 +18,7 @@
     firefox.enable = true;
     hyprland.enable = true;
     vars = {
+      colorScheme = "everforest-dark-hard";
       withGui = true;
       email = "lewdovico@gnuweeb.org";
     };
