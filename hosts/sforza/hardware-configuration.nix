@@ -7,26 +7,40 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/ROOT";
     fsType = "btrfs";
-    options = ["noatime" "compress=zstd"];
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-label/HOME";
     fsType = "btrfs";
-    options = ["noatime" "compress=zstd"];
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -62,7 +76,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/1cd8fb5d-e27e-4b3b-b9e2-be70b346afd7";}
+    { device = "/dev/disk/by-uuid/1cd8fb5d-e27e-4b3b-b9e2-be70b346afd7"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

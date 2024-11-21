@@ -1,53 +1,43 @@
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
-    # contains your disk format and partitioning configuration.
-    # ../../modules/disko.nix
-    # this file is shared among all machines
-    ../../modules/shared.nix
-    # enables GNOME desktop (optional)
-    ../../modules/gnome.nix
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
   ];
 
-  # This is your user login name.
-  users.users.user.name = "airi";
+  myOptions = {
+    fish.enable = true;
+    vars = {
+      email = "lewdovico@gnuweeb.org";
+    };
+  };
 
-  # Set this for clan commands use ssh i.e. `clan machines update`
-  # If you change the hostname, you need to update this line to root@<new-hostname>
-  # This only works however if you have avahi running on your admin machine else use IP
-  # clan.core.networking.targetHost = "root@<IP>";
-
-  # You can get your disk id by running the following command on the installer:
-  # Replace <IP> with the IP of the installer printed on the screen or by running the `ip addr` command.
-  # ssh root@<IP> lsblk --output NAME,ID-LINK,FSTYPE,SIZE,MOUNTPOINT
-  # disko.devices.disk.main.device = "/dev/disk/by-id/__CHANGE_ME__";
-
-  # IMPORTANT! Add your SSH key here
-  # e.g. > cat ~/.ssh/id_ed25519.pub
-  users.users.root.openssh.authorizedKeys.keys = [
-    ''
-	ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINtzB1oiuDptWi04PAEJVpSAcvD96AL0S21zHuMgmcE9 ludovico@sforza
-    ''
-  ];
-
-  # Zerotier needs one controller to accept new nodes. Once accepted
-  # the controller can be offline and routing still works.
-  # clan.core.networking.zerotier.controller.enable = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
 
   networking.hostName = "sforza"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
-  # Set your time zone.
-  time.timeZone = "Asia/Japan";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -87,10 +77,10 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.airi = {
+  users.users.${config.myOptions.vars.username} = {
     initialPassword = "1234";
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
       tree
@@ -128,7 +118,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
@@ -147,5 +137,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = config.myOptions.vars.stateVersion; # Did you read the comment?
 }

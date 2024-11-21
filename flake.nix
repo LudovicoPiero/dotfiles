@@ -1,48 +1,46 @@
 {
-  description = "<Put your description here>";
+  description = "xd uwu";
 
-  inputs={
-    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    clan-core.url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
   };
 
   outputs =
-    { self, clan-core, ... }:
-    let
-      # Usage see: https://docs.clan.lol
-      clan = clan-core.lib.buildClan {
-        directory = self;
-        # Ensure this is unique among all clans you want to use.
-        meta.name = "uwu";
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./hosts
+      ];
 
-        # Prerequisite: boot into the installer.
-        # See: https://docs.clan.lol/getting-started/installer
-        # local> mkdir -p ./machines/machine1
-        # local> Edit ./machines/<machine>/configuration.nix to your liking.
-        machines = {
-          # The name will be used as hostname by default.
-          sforza = { };
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          # Per-system attributes can be defined here. The self' and inputs'
+          # module parameters provide easy access to attributes of the same
+          # system.
+
+          # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
+          packages.default = pkgs.hello;
         };
-      };
-    in
-    {
-      # All machines managed by Clan.
-      inherit (clan) nixosConfigurations clanInternals;
-      # Add the Clan cli tool to the dev shell.
-      # Use "nix develop" to enter the dev shell.
-      devShells =
-        clan-core.inputs.nixpkgs.lib.genAttrs
-          [
-            "x86_64-linux"
-            "aarch64-linux"
-            "aarch64-darwin"
-            "x86_64-darwin"
-          ]
-          (system: {
-            default = clan-core.inputs.nixpkgs.legacyPackages.${system}.mkShell {
-              packages = [ clan-core.packages.${system}.clan-cli ];
-            };
-          });
     };
 }
