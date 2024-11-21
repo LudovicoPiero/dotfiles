@@ -43,5 +43,10 @@ in
       type = types.str;
       default = "Asia/Tokyo";
     };
+
+    withGui = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 }

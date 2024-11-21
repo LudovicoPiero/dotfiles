@@ -14,8 +14,10 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
+    ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
 
   outputs =

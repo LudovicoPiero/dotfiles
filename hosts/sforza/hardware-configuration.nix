@@ -21,9 +21,19 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [
+    "amdgpu"
+    "bcachefs"
+    "btrfs"
+    "dm-snapshot"
+  ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [
+    "bcachefs"
+    "btrfs"
+    "ntfs"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/ROOT";

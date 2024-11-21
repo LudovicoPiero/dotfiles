@@ -17,7 +17,9 @@ let
 in
 {
   options.myOptions.fonts = {
-    enable = mkEnableOption "Fonts";
+    enable = mkEnableOption "Fonts" // {
+      default = config.myOptions.vars.withGui;
+    };
   };
 
   config = mkIf cfg.enable {

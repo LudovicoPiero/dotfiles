@@ -47,7 +47,9 @@ let
 in
 {
   options.myOptions.theme = {
-    enable = mkEnableOption "";
+    enable = mkEnableOption "" // {
+      default = config.myOptions.vars.withGui;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -139,8 +141,8 @@ in
 
             extraConfig = {
               gtk-application-prefer-dark-theme = 1;
-              gtk-cursor-theme-name = config.cursorTheme.name;
-              gtk-cursor-theme-size = config.cursorTheme.size;
+              gtk-cursor-theme-name = config.gtk.cursorTheme.name;
+              gtk-cursor-theme-size = config.gtk.cursorTheme.size;
               gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
               gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
               gtk-button-images = 1;
@@ -180,13 +182,13 @@ in
           [icon theme]
           Name=Default
           Comment=Default Cursor Theme
-          Inherits=${config.cursorTheme.name}
+          Inherits=${config.gtk.cursorTheme.name}
 
           [X-GNOME-Metatheme]
           GtkTheme=${theme.name}
           MetacityTheme=${theme.name}
           IconTheme=${iconsTheme.name}
-          CursorTheme=${config.cursorTheme.name}
+          CursorTheme=${config.gtk.cursorTheme.name}
           ButtonLayout=close,minimize,maximize:menu
         '';
 
@@ -194,8 +196,8 @@ in
           "org/gnome/desktop/interface" = {
             # Use dconf-editor to get this settings.
             color-scheme = "prefer-dark";
-            cursor-theme = config.cursorTheme.name;
-            cursor-size = config.cursorTheme.size;
+            cursor-theme = config.gtk.cursorTheme.name;
+            cursor-size = config.gtk.cursorTheme.size;
             gtk-theme = theme.name;
             icon-theme = iconsTheme.name;
             font-name = "${font.name} ${toString font.size}";
