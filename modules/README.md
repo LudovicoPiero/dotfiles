@@ -20,7 +20,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.users.${config.myOptions.vars.username} = {}; # For Home-Manager options
+    home-manager.users.${config.myOptions.vars.username} = {}; # For Home-Manager options
     systemd.services.CHANGEME = {
       wantedBy = [ "multi-user.target" ];
       serviceConfig.ExecStart = "${pkgs.CHANGEME}/bin/CHANGEME -g'CHANGEME, ${escapeShellArg cfg.greeter}!'";
