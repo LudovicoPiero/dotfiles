@@ -3,6 +3,7 @@
   pkgs,
   config,
   inputs,
+  self,
   ...
 }:
 let
@@ -46,6 +47,15 @@ in
           };
           systemd.enable = !osConfig.programs.uwsm.enable;
         };
+
+        services.hyprpaper = {
+          enable = true;
+          settings = {
+            preload = [ "${self}/assets/anime-nix-wallpaper.png" ];
+            wallpaper = [ ", ${self}/assets/anime-nix-wallpaper.png" ];
+          };
+        };
+        systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
       }; # For Home-Manager options
   };
 }
