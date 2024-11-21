@@ -8,11 +8,8 @@ let
 in
 with pkgs;
 {
-  "bs" = "pushd ~/.config/nixos && doas nixos-rebuild switch --flake ~/.config/nixos && popd";
-  "bb" = "pushd ~/.config/nixos && doas nixos-rebuild boot --flake ~/.config/nixos && popd";
-  "hs" = "pushd ~/.config/nixos && home-manager switch --flake ~/.config/nixos && popd";
   "cat" = "${_ bat}";
-  "config" = "cd ~/.config/nixos";
+  "config" = "cd ~/Code/nixos";
   "ls" = "${_ lsd}";
   "l" = "${_ lsd} -lF --git";
   "la" = "${_ lsd} -la --git";
@@ -29,7 +26,6 @@ with pkgs;
   "gpl" = "git pull";
   "gpsh" = "git push -u origin";
   "gs" = "git status";
-  "sudo" = "doas";
   "..." = "cd ../..";
   ".." = "cd ..";
 }

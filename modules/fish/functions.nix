@@ -14,6 +14,7 @@ with pkgs;
   gitignore = "curl -sL https://www.gitignore.io/api/$argv";
   fish_greeting = ""; # disable welcome text
   run = "${_ osConfig.nix.package} run nixpkgs#$argv[1] -- $argv[2..-1]";
+  "," = "nix run nixpkgs#$argv[1]";
 
   bs = ''
     pushd ${config.home.homeDirectory}/Code/nixos
