@@ -14,6 +14,7 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 

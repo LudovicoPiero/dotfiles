@@ -16,6 +16,7 @@
   myOptions = {
     fish.enable = true;
     fonts.enable = true;
+    theme.enable = true;
     firefox.enable = true;
     vars = {
       email = "lewdovico@gnuweeb.org";
