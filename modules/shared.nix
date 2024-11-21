@@ -17,7 +17,6 @@
   time.timeZone = config.myOptions.vars.timezone;
 
   environment = {
-    # pathsToLink = ["/share/fish"]; #FIXME: uncomment if fish is enabled
     systemPackages = with pkgs; [
       teavpn2
       adwaita-icon-theme

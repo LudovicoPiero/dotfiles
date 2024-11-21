@@ -23,6 +23,9 @@ in
 
   config = mkIf cfg.enable {
     users.users.${config.myOptions.vars.username}.shell = pkgs.fish;
+
+    environment.pathsToLink = [ "/share/fish" ];
+
     programs = {
       fish.enable = true; # This settings comes from nixos options
     };
