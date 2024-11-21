@@ -22,6 +22,7 @@
 
           ./sforza/configuration.nix
 
+          inputs.chaotic.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

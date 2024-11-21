@@ -14,6 +14,7 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   outputs =
