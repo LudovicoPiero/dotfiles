@@ -1,6 +1,11 @@
 Modules Template
 ```nix
-{ lib, pkgs, config, ... }:                     
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   inherit (lib)
     mkEnableOption
@@ -9,9 +14,10 @@ let
     types
     ;
 
-  cfg = config.services.CHANGEME;
-in {
-  options.services.CHANGEME = {
+  cfg = config.myOptions.CHANGEME;
+in
+{
+  options.myOptions.CHANGEME = {
     enable = mkEnableOption "CHANGEME service";
     greeter = mkOption {
       type = types.str;
@@ -20,11 +26,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} = {}; # For Home-Manager options
-    systemd.services.CHANGEME = {
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig.ExecStart = "${pkgs.CHANGEME}/bin/CHANGEME -g'CHANGEME, ${escapeShellArg cfg.greeter}!'";
-    };
+    home-manager.users.${config.myOptions.vars.username} = { }; # For Home-Manager options
   };
 }
 ```

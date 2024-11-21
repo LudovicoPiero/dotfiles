@@ -16,6 +16,12 @@
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   time.timeZone = config.myOptions.vars.timezone;
 
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "symbola"
+    ];
+
   environment = {
     systemPackages = with pkgs; [
       teavpn2
