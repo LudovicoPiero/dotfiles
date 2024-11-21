@@ -1,156 +1,48 @@
 {
-  description = "Ludovico's dotfiles powered by Nix Flakes + Hive";
+  description = "<Put your description here>";
 
-  inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs";
-    nixpkgs.follows = "nixpkgs-unstable";
+  inputs={
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    impermanence.url = "github:nix-community/impermanence";
-    ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
-    ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
-
-    # Hive
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixago = {
-      url = "github:nix-community/nixago";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hive = {
-      url = "github:divnix/hive";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    std = {
-      url = "github:divnix/std";
-      inputs = {
-        devshell.follows = "devshell";
-        nixago.follows = "nixago";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    # Lix
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    chaotic-nyx = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    };
-
-    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    spicetify-nix = {
-      url = "github:gerg-l/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Hyprland
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    };
-
-    # For command-not-found
-    programsdb = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Secrets
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    };
+    clan-core.url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
   };
 
   outputs =
-    {
-      self,
-      std,
-      hive,
-      ...
-    }@inputs:
+    { self, clan-core, ... }:
     let
-      myCollect = hive.collect // {
-        renamer = _cell: target: "${target}";
+      # Usage see: https://docs.clan.lol
+      clan = clan-core.lib.buildClan {
+        directory = self;
+        # Ensure this is unique among all clans you want to use.
+        meta.name = "uwu";
+
+        # Prerequisite: boot into the installer.
+        # See: https://docs.clan.lol/getting-started/installer
+        # local> mkdir -p ./machines/machine1
+        # local> Edit ./machines/<machine>/configuration.nix to your liking.
+        machines = {
+          # The name will be used as hostname by default.
+          sforza = { };
+        };
       };
     in
-    hive.growOn
-      {
-        inherit inputs;
-
-        nixpkgsConfig = {
-          allowUnfree = true;
-          allowBroken = true; # For ZFS Kernel
-        };
-
-        cellsFrom = ./cells;
-        cellBlocks =
-          with hive.blockTypes;
-          with std.blockTypes;
+    {
+      # All machines managed by Clan.
+      inherit (clan) nixosConfigurations clanInternals;
+      # Add the Clan cli tool to the dev shell.
+      # Use "nix develop" to enter the dev shell.
+      devShells =
+        clan-core.inputs.nixpkgs.lib.genAttrs
           [
-            (functions "bee")
-
-            # Profiles
-            (functions "hardwareProfiles")
-            (functions "homeProfiles")
-            (functions "nixosProfiles")
-
-            # Suites
-            (functions "homeSuites")
-            (functions "nixosSuites")
-
-            # devShells
-            (nixago "configs")
-            (devshells "devshells")
-
-            # Secrets
-            (functions "secrets")
-
-            # Configurations
-            nixosConfigurations
-          ];
-      }
-      { nixosConfigurations = myCollect self "nixosConfigurations"; }
-      {
-        devShells = std.harvest self [
-          "repo"
-          "devshells"
-        ];
-      };
+            "x86_64-linux"
+            "aarch64-linux"
+            "aarch64-darwin"
+            "x86_64-darwin"
+          ]
+          (system: {
+            default = clan-core.inputs.nixpkgs.legacyPackages.${system}.mkShell {
+              packages = [ clan-core.packages.${system}.clan-cli ];
+            };
+          });
+    };
 }
