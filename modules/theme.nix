@@ -55,38 +55,9 @@ in
   config = mkIf cfg.enable {
     home-manager.users.${config.myOptions.vars.username} =
       { config, ... }:
-      let
-        # Borrowed from fuf's dotfiles
-        apply-hm-env = pkgs.writeShellScript "apply-hm-env" ''
-          ${lib.optionalString (config.home.sessionPath != [ ]) ''
-            export PATH=${builtins.concatStringsSep ":" config.home.sessionPath}:$PATH
-          ''}
-          ${builtins.concatStringsSep "\n" (
-            lib.mapAttrsToList (k: v: ''
-              export ${k}=${toString v}
-            '') config.home.sessionVariables
-          )}
-          ${config.home.sessionVariablesExtra}
-          exec "$@"
-        '';
-
-        # runs processes as systemd transient services
-        run-as-service = pkgs.writeShellScriptBin "run-as-service" ''
-          exec ${pkgs.systemd}/bin/systemd-run \
-            --slice=app-manual.slice \
-            --property=ExitType=cgroup \
-            --user \
-            --wait \
-            bash -lc "exec ${apply-hm-env} $@"
-        '';
-      in
       {
         imports = [
           inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
-        ];
-
-        home.packages = [
-          run-as-service
         ];
 
         programs.hyprcursor-phinger.enable = true;
