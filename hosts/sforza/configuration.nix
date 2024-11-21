@@ -23,9 +23,6 @@
     };
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-
   hardware.bluetooth = {
     enable = true;
     settings = {

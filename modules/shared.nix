@@ -120,6 +120,7 @@
             '';
         };
       };
+
       xdg =
         let
           browser = [ "firefox.desktop" ];

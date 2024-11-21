@@ -7,6 +7,7 @@
     ./waybar
 
     ./shared.nix
+    ./greetd.nix
     ./vars.nix
     ./mako.nix
     ./theme.nix

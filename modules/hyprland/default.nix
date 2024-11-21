@@ -23,7 +23,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.hyprland.enable = true;
+    programs.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.default;
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    };
+
     home-manager.users.${config.myOptions.vars.username} =
       { config, osConfig, ... }:
       {
@@ -39,6 +44,7 @@ in
               inputs
               ;
           };
+          systemd.enable = !osConfig.programs.uwsm.enable;
         };
       }; # For Home-Manager options
   };
