@@ -202,15 +202,6 @@
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
-
-    # Location for gammastep
-    # geoclue2 = {
-    #   enable = true;
-    #   appConfig.gammastep = {
-    #     isAllowed = true;
-    #     isSystem = false;
-    #   };
-    # };
   };
 
   nix = {

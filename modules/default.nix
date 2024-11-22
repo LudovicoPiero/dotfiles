@@ -7,6 +7,7 @@ _: {
     ./discord
 
     ./shared.nix
+    ./gammastep.nix
     ./hyprlock.nix
     ./hypridle.nix
     ./greetd.nix
