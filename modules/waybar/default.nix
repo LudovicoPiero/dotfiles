@@ -30,13 +30,13 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${config.myOptions.vars.username} =
-      { config, ... }:
+      { config, osConfig, ... }:
       {
         home.packages = with pkgs; [ alsa-utils ];
 
         programs.waybar = {
           enable = true;
-          style = import ./style.nix { inherit config; };
+          style = import ./style.nix { inherit osConfig config; };
 
           # package = pkgs.waybar;
           package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.waybar;

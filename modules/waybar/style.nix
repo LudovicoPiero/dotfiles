@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, osConfig, ... }:
 let
   inherit (config.colorScheme) palette;
 in
@@ -6,7 +6,7 @@ in
   * {
     border: none;
     border-radius: 0;
-    font-family: "Iosevka q Semibold", "Material Design Icons", monospace;
+    font-family: "${osConfig.myOptions.vars.mainFont}", "Material Design Icons", monospace;
     font-size: 11px;
     min-height: 0;
     margin: 0px;

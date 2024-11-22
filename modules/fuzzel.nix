@@ -23,7 +23,7 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${config.myOptions.vars.username} =
-      { config, ... }:
+      { config, osConfig, ... }:
       let
         inherit (config.colorScheme) palette;
       in
@@ -32,7 +32,7 @@ in
           enable = true;
           settings = {
             main = {
-              font = "Iosevka q SemiBold-16";
+              font = "${osConfig.myOptions.vars.mainFont}-16";
               terminal = "wezterm";
               icon-theme = "${config.gtk.iconTheme.name}";
               prompt = "->";

@@ -24,7 +24,7 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${config.myOptions.vars.username} =
-      { config, ... }:
+      { config, osConfig, ... }:
       let
         inherit (config) colorScheme;
         inherit (colorScheme) palette;
@@ -93,7 +93,7 @@ in
           extraConfig = ''
             return {
               font = wezterm.font_with_fallback({
-                "Iosevka q Semibold",
+                "${osConfig.myOptions.vars.mainFont}",
                 "Material Design Icons",
                 "Noto Color Emoji",
               }),

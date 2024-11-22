@@ -7,8 +7,8 @@
 let
   inherit (lib)
     mkEnableOption
-    mkIf
     mkOption
+    mkIf
     types
     ;
 
@@ -18,6 +18,16 @@ in
   options.myOptions.mako = {
     enable = mkEnableOption "mako service" // {
       default = config.myOptions.vars.withGui;
+    };
+
+    fontName = mkOption {
+      type = types.str;
+      default = config.myOptions.vars.mainFont;
+    };
+
+    fontSize = mkOption {
+      type = types.int;
+      default = 12;
     };
   };
 
@@ -32,9 +42,11 @@ in
         services.mako = {
           enable = true;
 
+          font = "${cfg.fontName} ${toString cfg.fontSize}";
           backgroundColor = "#${palette.base00}";
           borderColor = "#${palette.base0E}";
           textColor = "#${palette.base05}";
+          progressColor = "over #${palette.base02}";
 
           anchor = "top-right";
           borderRadius = 5;

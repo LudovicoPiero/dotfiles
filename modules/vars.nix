@@ -19,6 +19,11 @@ in
       default = "email@69420blaze.it";
     };
 
+    mainFont = mkOption {
+      type = types.str;
+      default = "Iosevka q Semibold";
+    };
+
     username = mkOption {
       type = types.str;
       default = "airi";
