@@ -5,6 +5,7 @@ _: {
     ./hyprland
     ./waybar
     ./discord
+    ./fcitx5
 
     ./shared.nix
     ./gammastep.nix
