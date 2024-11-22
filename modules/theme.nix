@@ -66,7 +66,7 @@ in
           inputs.nix-colors.homeManagerModules.default
         ];
 
-        colorScheme = cfg.colorScheme;
+        inherit (cfg) colorScheme;
 
         programs.hyprcursor-phinger.enable = true;
 
