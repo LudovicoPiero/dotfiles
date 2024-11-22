@@ -221,7 +221,7 @@ in
                   "activated" = "󰈈";
                   "deactivated" = "󰈉";
                 };
-                "on-click-right" = "swaylock-script"; # From homeProfiles/common.nix
+                "on-click-right" = "hyprlock";
               };
 
               "tray" = {

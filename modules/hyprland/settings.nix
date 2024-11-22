@@ -16,12 +16,11 @@ in
   exec-once =
     [
       "uwsm finalize"
-      "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service swaybg.service"
+      "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
       "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       "uwsm app -- waybar"
       "fcitx5 -d --replace"
       "uwsm app -- ${_ pkgs.mako}"
-      "uwsm app -- swayidle-script"
       "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
     ]
     ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
@@ -29,6 +28,7 @@ in
     ];
 
   env = [
+    "HYPRCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
     "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
   ];
 

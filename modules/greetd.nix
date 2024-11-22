@@ -29,7 +29,6 @@ in
   config = mkIf cfg.enable {
     security = {
       pam.services.greetd.enableGnomeKeyring = true;
-      pam.services.swaylock.text = "auth include login";
     };
 
     services.greetd = {

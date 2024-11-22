@@ -7,6 +7,8 @@
     ./waybar
 
     ./shared.nix
+    ./hyprlock.nix
+    ./hypridle.nix
     ./greetd.nix
     ./fuzzel.nix
     ./vars.nix
