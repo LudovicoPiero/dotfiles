@@ -13,6 +13,13 @@
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Hyprfamily
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
+    hyprlock.url = "github:hyprwm/hyprlock";
+    hyprlock.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -21,10 +28,9 @@
 
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
-    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     nix-colors.url = "github:misterio77/nix-colors";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
   };
 
   outputs =
