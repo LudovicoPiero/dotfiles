@@ -3,6 +3,7 @@
 # to /etc/nixos/configuration.nix instead.
 {
   config,
+  inputs,
   lib,
   pkgs,
   modulesPath,
@@ -11,78 +12,106 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "ahci"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [
-    "amdgpu"
-    "bcachefs"
-    "btrfs"
-    "dm-snapshot"
-  ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [
-    "bcachefs"
-    "btrfs"
-    "ntfs"
-  ];
+  # Use the systemd-boot EFI boot loader.
+  boot = {
+    loader = {
+      # Lanzaboote currently replaces the systemd-boot module.
+      # This setting is usually set to true in configuration.nix
+      # generated at installation time. So we force it to false
+      # for now.
+      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.configurationLimit = 5;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+    };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/ROOT";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
+    # Secure Boot
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [
+        "amdgpu"
+        "bcachefs"
+        "btrfs"
+        "dm-snapshot"
+      ];
+    };
+
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+    supportedFilesystems = [
+      "bcachefs"
+      "btrfs"
+      "ntfs"
     ];
+
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-label/HOME";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
+    "/home" = {
+      device = "/dev/disk/by-label/HOME";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/home/airi/WinE" = {
-    device = "/dev/disk/by-label/WinE";
-    fsType = "ntfs";
-    options = [
-      "uid=1000"
-      "gid=100"
-      "rw"
-      "user"
-      "exec"
-      "umask=000"
-      "nofail"
-    ];
-  };
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
 
-  fileSystems."/home/airi/Media" = {
-    device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
-    fsType = "bcachefs";
-    options = [
-      # Enable discard/TRIM support
-      "discard"
-      # foreground compression with zstd
-      "compression=zstd"
-      # background compression with zstd
-      "background_compression=zstd"
-    ];
+    "/home/airi/WinE" = {
+      device = "/dev/disk/by-label/WinE";
+      fsType = "ntfs";
+      options = [
+        "uid=1000"
+        "gid=100"
+        "rw"
+        "user"
+        "exec"
+        "umask=000"
+        "nofail"
+      ];
+    };
+
+    "/home/airi/Media" = {
+      device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
+      fsType = "bcachefs";
+      options = [
+        # Enable discard/TRIM support
+        "discard"
+        # foreground compression with zstd
+        "compression=zstd"
+        # background compression with zstd
+        "background_compression=zstd"
+      ];
+    };
   };
 
   swapDevices = [
@@ -96,6 +125,9 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
+
+  # slows down boot time
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
