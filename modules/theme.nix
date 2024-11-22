@@ -70,6 +70,17 @@ in
 
         programs.hyprcursor-phinger.enable = true;
 
+        home = {
+          packages = [
+            inputs.hyprcursor-phinger.packages.${pkgs.system}.default
+          ];
+          pointerCursor = {
+            inherit (config.gtk.cursorTheme) name package size;
+            x11.enable = true;
+            gtk.enable = true;
+          };
+        };
+
         # User Services
         systemd.user.services = {
           wl-clip-persist = mkService {
