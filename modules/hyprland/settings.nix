@@ -18,11 +18,11 @@ in
       "uwsm finalize"
       "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service swaybg.service"
       "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
-      "waybar"
+      "uwsm app -- waybar"
       "fcitx5 -d --replace"
-      "${_ pkgs.mako}"
-      "swayidle-script"
-      "[workspace 9 silent;noanim] ${_ pkgs.thunderbird}"
+      "uwsm app -- ${_ pkgs.mako}"
+      "uwsm app -- swayidle-script"
+      "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
     ]
     ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
       "${_ config.programs.emacs.finalPackage} --fg-daemon"
@@ -187,12 +187,12 @@ in
     "$mod SHIFT, C , exit ,"
     "$mod      , Q, togglespecialworkspace"
     "$mod SHIFT, Q, movetoworkspace, special"
-    "$mod      , D , exec , vesktop"
+    "$mod      , D , exec , uwsm app -- vesktop"
     "$mod SHIFT, E , exec , uwsm app -- thunar"
     "$mod      , F , fullscreen , 0"
     "$mod      , G , exec , uwsm app -- firefox"
     "$mod SHIFT, G , exec , uwsm app -- chromium"
-    "$mod      , M , exec , [workspace 9 silent;tile] thunderbird"
+    "$mod      , M , exec , [workspace 9 silent;tile] uwsm app --  thunderbird"
     "$mod      , P , exec , uwsm app -- ${launcher}"
     "$mod SHIFT, P , exec , uwsm app -- ${lib.getExe' pkgs.pass-wayland "passmenu"}"
     "$mod      , Space , togglefloating ,"
@@ -207,9 +207,9 @@ in
     "$mod      , E , exec , uwsm app -- \"${emacs}\""
     "ALT       , E , exec , uwsm app -- \"emacsclient -c -eval '(dired nil)'\""
 
-    ", print, exec , wl-ocr"
-    "CTRL   , Print , exec , ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
-    "ALT    , Print , exec , ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
+    ", print, exec , uwsm app --  wl-ocr"
+    "CTRL   , Print , exec , uwsm app -- ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
+    "ALT    , Print , exec , uwsm app -- ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
 
     # Dwindle Keybind
     "$mod , h , resizeactive , -20 0"
