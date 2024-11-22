@@ -4,9 +4,9 @@
   config,
   inputs,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -14,17 +14,18 @@ let
     ;
 
   cfg = config.myOptions.nvim;
-in
-{
+in {
   options.myOptions.nvim = {
-    enable = mkEnableOption "nvim" // {
-      default = true;
-    };
+    enable =
+      mkEnableOption "nvim"
+      // {
+        default = true;
+      };
   };
 
   config = mkIf cfg.enable {
     home-manager.users.${config.myOptions.vars.username} = {
-      home.packages = [ inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.nvim ];
+      home.packages = [inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.nvim];
       programs.fish.shellAliases = {
         v = "nvim";
       };

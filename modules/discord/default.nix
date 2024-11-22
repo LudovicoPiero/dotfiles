@@ -3,27 +3,28 @@
   pkgs,
   config,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
 
   cfg = config.myOptions.discord;
-in
-{
+in {
   options.myOptions.discord = {
-    enable = mkEnableOption "discord" // {
-      default = config.myOptions.vars.withGui;
-    };
+    enable =
+      mkEnableOption "discord"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {
     home-manager.users.${config.myOptions.vars.username} = {
       home.packages = [
         (pkgs.vesktop.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./readonlyFix.patch ];
+          patches = (old.patches or []) ++ [./readonlyFix.patch];
           postFixup =
             old.postFixup
             + ''
@@ -49,10 +50,8 @@ in
         autoUpdateNotification = true;
         useQuickCss = true;
         themeLinks = [
-
         ];
         enabledThemes = [
-
         ];
         enableReactDevtools = false;
         frameless = false;

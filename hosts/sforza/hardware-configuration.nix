@@ -8,8 +8,7 @@
   pkgs,
   modulesPath,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.lanzaboote.nixosModules.lanzaboote
@@ -51,8 +50,8 @@
       ];
     };
 
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
     supportedFilesystems = [
       "bcachefs"
       "btrfs"
@@ -115,7 +114,7 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/1cd8fb5d-e27e-4b3b-b9e2-be70b346afd7"; }
+    {device = "/dev/disk/by-uuid/1cd8fb5d-e27e-4b3b-b9e2-be70b346afd7";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

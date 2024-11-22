@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   default = "DuckDuckGo";
   order = [
     "DuckDuckGo"
@@ -10,23 +9,23 @@
   force = true;
   engines = {
     "Searx" = {
-      urls = [ { template = "https://searx.juancord.xyz/searxng/search?q={searchTerms}"; } ];
-      definedAliases = [ "s" ];
+      urls = [{template = "https://searx.juancord.xyz/searxng/search?q={searchTerms}";}];
+      definedAliases = ["s"];
     };
 
     "Brave" = {
-      urls = [ { template = "https://search.brave.com/search?q={searchTerms}"; } ];
-      definedAliases = [ "b" ];
+      urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
+      definedAliases = ["b"];
     };
 
     "DuckDuckGo" = {
-      urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
-      definedAliases = [ "d" ];
+      urls = [{template = "https://duckduckgo.com/?q={searchTerms}";}];
+      definedAliases = ["d"];
     };
 
     "GitHub" = {
-      urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
-      definedAliases = [ "gh" ];
+      urls = [{template = "https://github.com/search?q={searchTerms}&type=code";}];
+      definedAliases = ["gh"];
     };
 
     "Nix Packages" = {
@@ -51,12 +50,12 @@
       ];
 
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      definedAliases = [ "np" ];
+      definedAliases = ["np"];
     };
 
     "Home-Manager" = {
-      urls = [ { template = "https://rycee.gitlab.io/home-manager/options.html"; } ];
-      definedAliases = [ "hm" ];
+      urls = [{template = "https://rycee.gitlab.io/home-manager/options.html";}];
+      definedAliases = ["hm"];
     };
 
     "NixOS Options" = {
@@ -81,18 +80,18 @@
       ];
 
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      definedAliases = [ "no" ];
+      definedAliases = ["no"];
     };
 
     "NixOS Wiki" = {
-      urls = [ { template = "https://wiki.nixos.org/wiki/{searchTerms}"; } ];
+      urls = [{template = "https://wiki.nixos.org/wiki/{searchTerms}";}];
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      definedAliases = [ "nw" ];
+      definedAliases = ["nw"];
     };
 
     "YouTube" = {
-      urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
-      definedAliases = [ "yt" ];
+      urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
+      definedAliases = ["yt"];
     };
 
     "Bing".metaData.hidden = true;

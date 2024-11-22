@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-[
+{pkgs, ...}: [
   {
     name = "pure";
     inherit (pkgs.fishPlugins.pure) src;

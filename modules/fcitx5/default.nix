@@ -4,9 +4,9 @@
   pkgs,
   inputs,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
@@ -27,12 +27,13 @@ let
   };
 
   cfg = config.myOptions.fcitx5;
-in
-{
+in {
   options.myOptions.fcitx5 = {
-    enable = mkEnableOption "fcitx5 service" // {
-      default = config.myOptions.vars.withGui;
-    };
+    enable =
+      mkEnableOption "fcitx5 service"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

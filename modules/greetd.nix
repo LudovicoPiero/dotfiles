@@ -3,9 +3,9 @@
   pkgs,
   config,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -18,12 +18,13 @@ let
   };
 
   cfg = config.myOptions.greetd;
-in
-{
+in {
   options.myOptions.greetd = {
-    enable = mkEnableOption "greetd service" // {
-      default = config.myOptions.vars.withGui;
-    };
+    enable =
+      mkEnableOption "greetd service"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

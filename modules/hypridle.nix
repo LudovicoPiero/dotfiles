@@ -3,9 +3,9 @@
   pkgs,
   config,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -13,12 +13,13 @@ let
     ;
 
   cfg = config.myOptions.hypridle;
-in
-{
+in {
   options.myOptions.hypridle = {
-    enable = mkEnableOption "hypridle service" // {
-      default = config.myOptions.vars.withGui;
-    };
+    enable =
+      mkEnableOption "hypridle service"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

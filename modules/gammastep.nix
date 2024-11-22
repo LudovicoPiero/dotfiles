@@ -2,20 +2,21 @@
   lib,
   config,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
 
   cfg = config.myOptions.gammastep;
-in
-{
+in {
   options.myOptions.gammastep = {
-    enable = mkEnableOption "gammastep service" // {
-      default = config.myOptions.vars.withGui;
-    };
+    enable =
+      mkEnableOption "gammastep service"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

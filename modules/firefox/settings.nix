@@ -11,9 +11,9 @@
 
   # DOH
   /*
-    2 is enable DOH.
-    3 is no failback to system dns
-    5 is no DOH.
+  2 is enable DOH.
+  3 is no failback to system dns
+  5 is no DOH.
   */
   "network.trr.mode" = 2;
   "network.trr.max-fails" = 5;

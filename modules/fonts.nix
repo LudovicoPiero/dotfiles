@@ -4,9 +4,9 @@
   config,
   inputs,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -14,25 +14,28 @@ let
     ;
 
   cfg = config.myOptions.fonts;
-in
-{
+in {
   options.myOptions.fonts = {
-    enable = mkEnableOption "Fonts" // {
-      default = config.myOptions.vars.withGui;
-    };
+    enable =
+      mkEnableOption "Fonts"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {
     fonts = {
       fontDir.enable = true;
       packages = lib.attrValues {
-        inherit (inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system})
+        inherit
+          (inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system})
           san-francisco-pro
           sarasa-gothic
           iosevka-q
           ;
 
-        inherit (pkgs)
+        inherit
+          (pkgs)
           emacs-all-the-icons-fonts
           material-design-icons
           noto-fonts-emoji
@@ -40,7 +43,7 @@ in
           wqy_zenhei # For Steam
           ;
 
-        nerdfonts = pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; };
+        nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
       };
 
       # use fonts specified by user rather than default ones

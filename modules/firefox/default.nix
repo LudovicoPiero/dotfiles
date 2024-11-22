@@ -4,9 +4,9 @@
   config,
   inputs,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -14,8 +14,7 @@ let
     ;
 
   cfg = config.myOptions.firefox;
-in
-{
+in {
   options.myOptions.firefox = {
     enable = mkEnableOption "firefox browser";
   };
@@ -39,7 +38,7 @@ in
                 ublock-origin
               ];
               bookmarks = import ./bookmarks.nix;
-              search = import ./search.nix { inherit pkgs; };
+              search = import ./search.nix {inherit pkgs;};
               settings = import ./settings.nix;
             }
             // (
@@ -51,8 +50,7 @@ in
                   rev = "126.0";
                   hash = "sha256-W0JUT3y55ro3yU23gynQSIu2/vDMVHX1TfexHj1Hv7Q=";
                 };
-              in
-              {
+              in {
                 userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
                 userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
                 extraConfig = ''

@@ -3,11 +3,9 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   inherit (lib) mkOption types;
-in
-{
+in {
   options.myOptions.vars = {
     colorScheme = mkOption {
       type = types.str;

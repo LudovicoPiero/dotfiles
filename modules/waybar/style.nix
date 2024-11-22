@@ -1,8 +1,10 @@
-{ config, osConfig, ... }:
-let
+{
+  config,
+  osConfig,
+  ...
+}: let
   inherit (config.colorScheme) palette;
-in
-''
+in ''
   * {
     border: none;
     border-radius: 0;

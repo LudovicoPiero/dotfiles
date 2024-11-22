@@ -4,15 +4,16 @@
   config,
   osConfig,
   ...
-}:
-let
+}: let
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wlogout}";
-  emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
+  emacs =
+    if config.services.emacs.enable
+    then "emacsclient -c"
+    else "emacs";
   inherit (config.colorScheme) palette;
-in
-{
+in {
   exec-once =
     [
       "uwsm finalize"
@@ -40,7 +41,7 @@ in
   animations = {
     enabled = true;
 
-    bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
+    bezier = ["myBezier, 0.05, 0.9, 0.1, 1.05"];
 
     animation = [
       "windows, 1, 7, myBezier"
