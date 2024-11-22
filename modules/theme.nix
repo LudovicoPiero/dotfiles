@@ -29,18 +29,8 @@ let
   };
 
   mkService = lib.recursiveUpdate {
-    Unit.PartOf = [
-      "hyprland-session.target"
-      "sway-session.target"
-    ];
-    Unit.After = [
-      "hyprland-session.target"
-      "sway-session.target"
-    ];
-    Install.WantedBy = [
-      "hyprland-session.target"
-      "sway-session.target"
-    ];
+    Unit.After = [ "graphical-session.target" ];
+    Install.WantedBy = [ "wayland-session@hyprland.desktop.target" ];
   };
 
   cfg = config.myOptions.theme;
@@ -88,6 +78,7 @@ in
             Service = {
               ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard both";
               Restart = "on-failure";
+              Slice = "app-graphical.slice";
             };
           };
         };
@@ -97,7 +88,7 @@ in
 
           cursorTheme = {
             package = inputs.hyprcursor-phinger.packages.${pkgs.system}.hyprcursor-phinger;
-            name = "phinger-cursor-light";
+            name = "phinger-cursor-light-hyprcursor";
             size = 24;
           };
 
