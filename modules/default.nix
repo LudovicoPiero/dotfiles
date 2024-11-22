@@ -1,10 +1,10 @@
-{ lib, ... }:
-{
+_: {
   imports = [
     ./fish
     ./firefox
     ./hyprland
     ./waybar
+    ./discord
 
     ./shared.nix
     ./hyprlock.nix
