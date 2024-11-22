@@ -52,13 +52,10 @@ in
       { config, ... }:
       {
         imports = [
-          inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
           inputs.nix-colors.homeManagerModules.default
         ];
 
         inherit (cfg) colorScheme;
-
-        programs.hyprcursor-phinger.enable = true;
 
         home = {
           packages = [
@@ -88,7 +85,7 @@ in
 
           cursorTheme = {
             package = inputs.hyprcursor-phinger.packages.${pkgs.system}.hyprcursor-phinger;
-            name = "phinger-cursor-light-hyprcursor";
+            name = lib.mkForce "phinger-cursors-light-hyprcursor";
             size = 24;
           };
 
@@ -158,6 +155,10 @@ in
           enable = true;
           platformTheme.name = "gtk3";
         };
+
+        xdg.dataFile."icons/${config.gtk.cursorTheme.name}".source = lib.mkForce "${
+          inputs.hyprcursor-phinger.packages.${pkgs.system}.default
+        }/share/icons/theme_phinger-cursors-light";
 
         home.file.".icons/default/index.theme".text = ''
           [icon theme]
