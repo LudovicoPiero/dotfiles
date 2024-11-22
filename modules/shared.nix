@@ -192,6 +192,10 @@
     };
 
   # Nixos Stuff
+  imports = [
+    inputs.lix-module.nixosModules.default
+  ];
+
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   time.timeZone = config.myOptions.vars.timezone;
 
