@@ -38,7 +38,7 @@ in
           package = inputs.hyprlock.packages.${pkgs.system}.default;
           settings = {
             general = {
-              grace = 300;
+              grace = 30;
               no_fade_in = true;
               disable_loading_bar = true;
               hide_cursor = false;
