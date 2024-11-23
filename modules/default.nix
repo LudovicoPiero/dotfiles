@@ -1,29 +1,28 @@
 _: {
   imports = [
-    ./fish
-    ./firefox
-    ./hyprland
-    ./waybar
     ./discord
     ./fcitx5
+    ./firefox
+    ./fish
+    ./fonts
+    ./fuzzel
+    ./gammastep
+    ./git
+    ./gpg
+    ./greetd
+    ./hypridle
+    ./hyprland
+    ./hyprlock
+    ./keyring
+    ./mako
+    ./nvim
     ./secrets
-    ./teavpn2
     ./shared
-
-    ./gammastep.nix
-    ./hyprlock.nix
-    ./hypridle.nix
-    ./greetd.nix
-    ./fuzzel.nix
-    ./vars.nix
-    ./mako.nix
-    ./theme.nix
-    ./wezterm.nix
-    ./keyring.nix
-    ./xdg-portal.nix
-    ./fonts.nix
-    ./git.nix
-    ./gpg.nix
-    ./nvim.nix
+    ./teavpn2
+    ./theme
+    ./vars
+    ./waybar
+    ./wezterm
+    ./xdg-portal
   ];
 }
