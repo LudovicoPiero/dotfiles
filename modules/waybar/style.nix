@@ -58,10 +58,16 @@ in ''
   #cpu,
   #memory,
   #network,
+  #idle_inhibitor,
+  #tray,
+  #date,
+  #mode
   #pulseaudio,
   #custom-spotify,
-  #tray,
-  #mode {
+  #custom-wireguard,
+  #custom-teavpn,
+  #custom-disk_home,
+  #custom-disk_root {
     padding: 0 3px;
     margin: 0 2px;
   }

@@ -122,7 +122,7 @@ in {
             };
 
             "custom/teavpn" = {
-              "format" = "󰖂 Wireguard";
+              "format" = "󰖂 Teavpn";
               "exec" = "echo '{\"class\": \"connected\"}'";
               "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
               "return-type" = "json";
