@@ -9,6 +9,7 @@
   imports = [
     inputs.lix-module.nixosModules.default
     ./users.nix
+    ./home-manager.nix
   ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
@@ -85,21 +86,15 @@
         The default is https://cache.nixos.org, which has a priority of 40.
         Lower value means higher priority.
         */
-        "https://cache.privatevoid.net?priority=41"
-        "https://sforza-config.cachix.org?priority=42"
         "https://nix-community.cachix.org?priority=43"
         "https://nyx.chaotic.cx?priority=44"
-        "https://hyprland.cachix.org?priority=45"
         "https://cache.garnix.io?priority=60"
       ];
 
       trusted-public-keys = [
-        "cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="
-        "sforza-config.cachix.org-1:qQiEQ1JU25VqhRXi1Qr/kA8RT01pd7oeKHr5OORUolM="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
         "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
@@ -118,161 +113,4 @@
     optimise.automatic = true;
   };
   system.stateVersion = config.myOptions.vars.stateVersion;
-
-  # Home-Manager Stuff
-  home-manager.backupFileExtension = "hm.bak";
-  home-manager.users.${config.myOptions.vars.username} = {
-    config,
-    osConfig,
-    ...
-  }: {
-    home = {
-      sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-        NIXPKGS_ALLOW_UNFREE = "1";
-        EDITOR = "nvim";
-        VISUAL = "nvim";
-        TERM = "xterm-256color";
-        BROWSER = "firefox";
-        HYPRCURSOR_THEME = "${config.gtk.cursorTheme.name}";
-        HYPRCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
-        XCURSOR_THEME = "${config.gtk.cursorTheme.name}";
-        XCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
-        # Fix for some Java AWT applications (e.g. Android Studio),
-        # use this if they aren't displayed properly:
-        "_JAVA_AWT_WM_NONREPARENTING" = "1";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-        QT_QPA_PLATFORM = "wayland";
-        SDL_VIDEODRIVER = "wayland";
-        XDG_SESSION_TYPE = "wayland";
-      };
-
-      packages = lib.attrValues rec {
-        inherit
-          (pkgs)
-          teavpn2
-          adwaita-icon-theme
-          bat
-          dosfstools
-          gptfdisk
-          iputils
-          usbutils
-          utillinux
-          binutils
-          coreutils
-          curl
-          direnv
-          dnsutils
-          fd
-          fzf
-          sbctl # For debugging and troubleshooting Secure boot.
-
-          bottom
-          jq
-          moreutils
-          nix-index
-          nmap
-          skim
-          ripgrep
-          tealdeer
-          whois
-          wl-clipboard
-          wget
-          unzip
-          # Utils for nixpkgs stuff
-          nixpkgs-review
-          # Fav
-          ente-auth
-          thunderbird
-          telegram-desktop
-          vscodium
-          mpv
-          ;
-
-        # use OCR and copy to clipboard
-        wl-ocr = let
-          inherit
-            (pkgs)
-            grim
-            libnotify
-            slurp
-            tesseract5
-            wl-clipboard
-            ;
-          _ = lib.getExe;
-        in
-          pkgs.writeShellScriptBin "wl-ocr" ''
-            ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-            ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
-          '';
-      };
-    };
-
-    xdg = let
-      browser = ["firefox.desktop"];
-      chromium-browser = ["chromium-browser.desktop"];
-      thunderbird = ["thunderbird.desktop"];
-
-      # XDG MIME types
-      associations = {
-        "x-scheme-handler/chrome" = chromium-browser;
-        "application/x-extension-htm" = browser;
-        "application/x-extension-html" = browser;
-        "application/x-extension-shtml" = browser;
-        "application/x-extension-xht" = browser;
-        "application/x-extension-xhtml" = browser;
-        "application/xhtml+xml" = browser;
-        "text/html" = browser;
-        "x-scheme-handler/about" = browser;
-        "x-scheme-handler/ftp" = browser;
-        "x-scheme-handler/http" = browser;
-        "x-scheme-handler/https" = browser;
-        "x-scheme-handler/unknown" = browser;
-        "inode/directory" = ["thunar.desktop"];
-
-        "audio/*" = ["mpv.desktop"];
-        "video/*" = ["mpv.dekstop"];
-        "video/mp4" = ["umpv.dekstop"];
-        "image/*" = ["imv.desktop"];
-        "image/jpeg" = ["imv.desktop"];
-        "image/png" = ["imv.desktop"];
-        "application/json" = browser;
-        "application/pdf" = ["org.pwmt.zathura.desktop"];
-        "x-scheme-handler/discord" = ["vesktop.desktop"];
-        "x-scheme-handler/spotify" = ["spotify.desktop"];
-        "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
-        "x-scheme-handler/mailto" = thunderbird;
-        "message/rfc822" = thunderbird;
-        "x-scheme-handler/mid" = thunderbird;
-        "x-scheme-handler/mailspring" = ["Mailspring.desktop"];
-      };
-    in {
-      enable = true;
-      cacheHome = config.home.homeDirectory + "/.cache";
-
-      mimeApps = {
-        enable = true;
-        defaultApplications = associations;
-      };
-
-      userDirs = {
-        enable = true;
-        createDirectories = true;
-        documents = "${config.home.homeDirectory}/Documents";
-        download = "${config.home.homeDirectory}/Downloads";
-        music = "${config.home.homeDirectory}/Music";
-        pictures = "${config.home.homeDirectory}/Pictures";
-        videos = "${config.home.homeDirectory}/Videos";
-        desktop = "${config.home.homeDirectory}";
-        extraConfig = {
-          XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
-          XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
-          XDG_SCREENSHOT_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
-          XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
-        };
-      };
-    };
-
-    home.stateVersion = osConfig.myOptions.vars.stateVersion;
-  };
 }
