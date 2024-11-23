@@ -33,8 +33,5 @@ in {
     sops.defaultSopsFormat = "yaml";
     sops.age.sshKeyPaths = ["/home/airi/.ssh/id_ed25519_sops"];
     sops.age.keyFile = "/home/airi/.config/sops/age/keys.txt";
-    sops.secrets."users/userPassword".neededForUsers = true;
-    sops.secrets."users/rootPassword".neededForUsers = true;
-    sops.secrets.teavpnConfig = {owner = config.systemd.services."teavpn2".serviceConfig.User;};
   };
 }

@@ -1,4 +1,7 @@
 {config, ...}: {
+  sops.secrets."users/userPassword".neededForUsers = true;
+  sops.secrets."users/rootPassword".neededForUsers = true;
+
   users.mutableUsers = false;
   users.users.root.hashedPasswordFile = config.sops.secrets."users/rootPassword".path;
   users.users.${config.myOptions.vars.username} = {

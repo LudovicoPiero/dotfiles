@@ -24,6 +24,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    sops.secrets.teavpnConfig = {owner = config.systemd.services."teavpn2".serviceConfig.User;};
+
     systemd.services."teavpn2" = {
       description = "Teavpn2 Service";
 
