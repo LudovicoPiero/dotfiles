@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  pkgs-stable,
   config,
   inputs,
   ...
@@ -9,8 +10,6 @@
     (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
 
   cfg = config.myOptions.firefox;
@@ -23,6 +22,7 @@ in {
     home-manager.users.${config.myOptions.vars.username} = {
       programs.firefox = {
         enable = true;
+        package = pkgs-stable.firefox;
 
         profiles = {
           ludovico =
