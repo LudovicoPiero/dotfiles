@@ -7,6 +7,7 @@ _: {
     ./discord
     ./fcitx5
     ./secrets
+    ./teavpn2
     ./shared
 
     ./gammastep.nix
