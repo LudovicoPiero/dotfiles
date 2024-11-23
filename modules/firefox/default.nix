@@ -47,8 +47,8 @@ in {
                 betterfox = pkgs.fetchFromGitHub {
                   owner = "yokoffing";
                   repo = "Betterfox";
-                  rev = "126.0";
-                  hash = "sha256-W0JUT3y55ro3yU23gynQSIu2/vDMVHX1TfexHj1Hv7Q=";
+                  rev = "131.0";
+                  hash = "sha256-CxPZxo9G44lRocNngjfwTBHSqL5dEJ5MNO5Iauoxp2Y=";
                 };
               in {
                 userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
@@ -58,6 +58,7 @@ in {
                   ${builtins.readFile "${betterfox}/Fastfox.js"}
                   ${builtins.readFile "${betterfox}/Peskyfox.js"}
                   ${builtins.readFile "${betterfox}/Securefox.js"}
+                  ${builtins.readFile "${betterfox}/Smoothfox.js"}
 
                   /* Betterfox overrides */
                   // PREF: disable address and credit card manager
