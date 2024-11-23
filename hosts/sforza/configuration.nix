@@ -13,6 +13,7 @@
   ];
 
   myOptions = {
+    teavpn2.enable = true;
     fish.enable = true;
     firefox.enable = true;
     hyprland.enable = true;
