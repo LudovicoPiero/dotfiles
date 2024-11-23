@@ -11,6 +11,7 @@
     osConfig,
     ...
   }: {
+    systemd.user.startServices = "sd-switch";
     home = {
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
@@ -67,6 +68,8 @@
           # Utils for nixpkgs stuff
           nixpkgs-review
           # Fav
+          imv
+          viewnior
           ente-auth
           thunderbird
           telegram-desktop
@@ -76,19 +79,11 @@
 
         # use OCR and copy to clipboard
         wl-ocr = let
-          inherit
-            (pkgs)
-            grim
-            libnotify
-            slurp
-            tesseract5
-            wl-clipboard
-            ;
           _ = lib.getExe;
         in
           pkgs.writeShellScriptBin "wl-ocr" ''
-            ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-            ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+            ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard}/bin/wl-copy
+            ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
           '';
       };
     };
