@@ -47,6 +47,10 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    wireplumber = {
+      enable = true;
+      extraConfig."wireplumber.profiles".main."monitor.libcamera" = "disabled";
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
