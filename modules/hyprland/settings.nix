@@ -210,7 +210,7 @@ in {
 
     ", print, exec , uwsm app --  wl-ocr"
     "CTRL   , Print , exec , uwsm app -- ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
-    "ALT    , Print , exec , uwsm app -- ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')"
+    "ALT    , Print , exec , uwsm app -- ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
 
     # Dwindle Keybind
     "$mod , h , resizeactive , -20 0"
