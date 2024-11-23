@@ -8,8 +8,12 @@
 
     sharedModules = import ../modules;
 
+    pkgs-stable = import inputs.nixpkgs-stable {
+      system = "x86_64-linux";
+    };
+
     specialArgs = {
-      inherit inputs self;
+      inherit inputs pkgs-stable self;
     };
   in {
     sforza = nixosSystem {
