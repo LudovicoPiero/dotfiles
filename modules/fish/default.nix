@@ -37,6 +37,7 @@ in {
       ...
     }: {
       # programs.nix-index.enable = true;
+      programs.zoxide.enable = true;
 
       home.packages = lib.attrValues {
         inherit
