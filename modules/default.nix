@@ -6,8 +6,9 @@ _: {
     ./waybar
     ./discord
     ./fcitx5
+    ./secrets
+    ./shared
 
-    ./shared.nix
     ./gammastep.nix
     ./hyprlock.nix
     ./hypridle.nix

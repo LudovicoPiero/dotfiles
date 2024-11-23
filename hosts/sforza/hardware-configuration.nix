@@ -74,6 +74,7 @@
     "/home" = {
       device = "/dev/disk/by-label/HOME";
       fsType = "btrfs";
+      neededForBoot = true; # for sops-nix
       options = [
         "noatime"
         "compress=zstd"

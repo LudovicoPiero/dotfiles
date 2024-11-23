@@ -51,12 +51,4 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${config.myOptions.vars.username} = {
-    initialPassword = "1234";
-    uid = 1001;
-    isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-  };
 }
