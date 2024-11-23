@@ -4,13 +4,11 @@
   config,
   inputs,
   ...
-} @ args: let
+}: let
   inherit
     (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
 
   _ = lib.getExe;
@@ -56,6 +54,7 @@ in {
               "hyprland/workspaces"
               "custom/separator"
               "custom/wireguard"
+              "custom/teavpn"
             ];
             "modules-right" = [
               "custom/disk_home"
@@ -118,6 +117,14 @@ in {
               "format" = "󰖂 Wireguard";
               "exec" = "echo '{\"class\": \"connected\"}'";
               "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+              "return-type" = "json";
+              "interval" = 5;
+            };
+
+            "custom/teavpn" = {
+              "format" = "󰖂 Wireguard";
+              "exec" = "echo '{\"class\": \"connected\"}'";
+              "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
               "return-type" = "json";
               "interval" = 5;
             };
