@@ -978,11 +978,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1732458156,
-        "narHash": "sha256-UNZY0U45W5Y5ze1bxq3aQRbMiVXgZfS0+H6i93AFEoI=",
+        "lastModified": 1732471998,
+        "narHash": "sha256-FbaDC5nzgG4Ai4F1SYYQTN5HgVz6KzNWsnanWBPcbw4=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "4cb7aa172b5f120f078fa5da11cf2facc204a41c",
+        "rev": "eb5b7ac72bfb2a87bbc91bbf2a406d1ee844381c",
         "type": "github"
       },
       "original": {
