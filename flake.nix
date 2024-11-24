@@ -31,6 +31,9 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    spicetify-nix.url = "github:gerg-l/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     hosts.url = "github:StevenBlack/hosts";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";

@@ -18,6 +18,7 @@ _: {
     ./nvim
     ./secrets
     ./shared
+    ./spotify
     ./teavpn2
     ./theme
     ./vars
