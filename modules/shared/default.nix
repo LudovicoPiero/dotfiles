@@ -8,8 +8,11 @@
   # Nixos Stuff
   imports = [
     inputs.lix-module.nixosModules.default
+    inputs.hosts.nixosModule
+
     ./users.nix
-    ./home-manager.nix
+    ./security.nix
+    ./home-manager.nix # Home-Manager stuff
   ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;

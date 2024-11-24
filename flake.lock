@@ -564,6 +564,24 @@
         "type": "github"
       }
     },
+    "hosts": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1732402864,
+        "narHash": "sha256-UgGo9noGdUVllBV6voNcFNx26AD5pBSOs6YqhZZKvHw=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "eeab47e50124e567ec46c68d363c5b8a72402cdd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [

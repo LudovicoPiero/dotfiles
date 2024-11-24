@@ -31,6 +31,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    hosts.url = "github:StevenBlack/hosts";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
