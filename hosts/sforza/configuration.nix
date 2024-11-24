@@ -14,6 +14,7 @@
 
   myOptions = {
     teavpn2.enable = true;
+    spotify.enable = true;
     fish.enable = true;
     firefox.enable = true;
     hyprland.enable = true;
