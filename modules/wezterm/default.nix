@@ -9,8 +9,6 @@
     (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
 
   cfg = config.myOptions.wezterm;
@@ -114,45 +112,45 @@ in {
             window_background_opacity = 0.88,
             color_scheme = "${colorScheme.slug}",
             window_frame = {
-               active_titlebar_bg = "#${palette.base03}",
-               active_titlebar_fg = "#${palette.base05}",
-               active_titlebar_border_bottom = "#${palette.base03}",
-               border_left_color = "#${palette.base01}",
-               border_right_color = "#${palette.base01}",
-               border_bottom_color = "#${palette.base01}",
-               border_top_color = "#${palette.base01}",
-               button_bg = "#${palette.base01}",
-               button_fg = "#${palette.base05}",
-               button_hover_bg = "#${palette.base05}",
-               button_hover_fg = "#${palette.base03}",
-               inactive_titlebar_bg = "#${palette.base01}",
-               inactive_titlebar_fg = "#${palette.base05}",
-               inactive_titlebar_border_bottom = "#${palette.base03}",
+              active_titlebar_bg = "#${palette.base03}",
+              active_titlebar_fg = "#${palette.base05}",
+              active_titlebar_border_bottom = "#${palette.base03}",
+              border_left_color = "#${palette.base01}",
+              border_right_color = "#${palette.base01}",
+              border_bottom_color = "#${palette.base01}",
+              border_top_color = "#${palette.base01}",
+              button_bg = "#${palette.base01}",
+              button_fg = "#${palette.base05}",
+              button_hover_bg = "#${palette.base05}",
+              button_hover_fg = "#${palette.base03}",
+              inactive_titlebar_bg = "#${palette.base01}",
+              inactive_titlebar_fg = "#${palette.base05}",
+              inactive_titlebar_border_bottom = "#${palette.base03}",
             },
             colors = {
               tab_bar = {
                 background = "#${palette.base01}",
                 inactive_tab_edge = "#${palette.base01}",
-              active_tab = {
-                bg_color = "#${palette.base00}",
-                fg_color = "#${palette.base05}",
-              },
-              inactive_tab = {
-                bg_color = "#${palette.base03}",
-                fg_color = "#${palette.base05}",
-              },
-              inactive_tab_hover = {
-                bg_color = "#${palette.base05}",
-                fg_color = "#${palette.base00}",
-              },
-              new_tab = {
-                bg_color = "#${palette.base03}",
-                fg_color = "#${palette.base05}",
-              },
-              new_tab_hover = {
-                bg_color = "#${palette.base05}",
-                fg_color = "#${palette.base00}",
-              },
+                active_tab = {
+                  bg_color = "#${palette.base00}",
+                  fg_color = "#${palette.base05}",
+                },
+                inactive_tab = {
+                  bg_color = "#${palette.base03}",
+                  fg_color = "#${palette.base05}",
+                },
+                inactive_tab_hover = {
+                  bg_color = "#${palette.base05}",
+                  fg_color = "#${palette.base00}",
+                },
+                new_tab = {
+                  bg_color = "#${palette.base03}",
+                  fg_color = "#${palette.base05}",
+                },
+                new_tab_hover = {
+                  bg_color = "#${palette.base05}",
+                  fg_color = "#${palette.base00}",
+                },
               },
             },
             command_palette_bg_color = "#${palette.base01}",
@@ -167,10 +165,24 @@ in {
               { key = "l",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
               { key = "j",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
               { key = "k",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-
-              -- screen/tmux compat
-              { key = "v", mods = "LEADER",      action = wezterm.action({ SplitVertical   = { domain = "CurrentPaneDomain" }, }) },
-              { key = ";", mods = "LEADER",      action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" }, }) },
+              {
+                key = "v",
+                mods = "LEADER",
+                action = wezterm.action.SplitPane({
+                  top_level = true,
+                  direction = "Down",
+                  size = { Percent = 30 },
+                }),
+              },
+              {
+                key = ";",
+                mods = "LEADER",
+                action = wezterm.action.SplitPane({
+                  top_level = true,
+                  direction = "Right",
+                  size = { Percent = 30 },
+                }),
+              },
               { key = "c", mods = "LEADER",      action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
               { key = "1", mods = "LEADER",      action = wezterm.action({ ActivateTab = 0 }) },
               { key = "2", mods = "LEADER",      action = wezterm.action({ ActivateTab = 1 }) },
@@ -181,7 +193,6 @@ in {
               { key = "7", mods = "LEADER",      action = wezterm.action({ ActivateTab = 6 }) },
               { key = "8", mods = "LEADER",      action = wezterm.action({ ActivateTab = 7 }) },
               { key = "9", mods = "LEADER",      action = wezterm.action({ ActivateTab = -1 }) },
-              -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
               { key = "a", mods = "LEADER|CTRL", action = wezterm.action({ SendString = "\x01" }) },
             },
           }
