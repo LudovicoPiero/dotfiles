@@ -29,8 +29,8 @@
   };
 
   mkService = lib.recursiveUpdate {
-    Unit.After = ["graphical-session.target"];
-    Install.WantedBy = ["wayland-session@hyprland.desktop.target"];
+    Unit.After = ["multi-user.target"];
+    Install.WantedBy = ["graphical.target"];
   };
 
   cfg = config.myOptions.theme;
@@ -75,6 +75,7 @@ in {
             ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard both";
             Restart = "on-failure";
             Slice = "app-graphical.slice";
+            TimeoutStartSec = "10s";
           };
         };
       };
@@ -86,6 +87,19 @@ in {
           package = inputs.hyprcursor-phinger.packages.${pkgs.system}.hyprcursor-phinger;
           name = lib.mkForce "phinger-cursors-light-hyprcursor";
           size = 24;
+        };
+
+        font = let
+        in {
+          inherit (font) name size;
+        };
+
+        theme = {
+          inherit (theme) name package;
+        };
+
+        iconTheme = {
+          inherit (iconsTheme) name package;
         };
 
         gtk2.extraConfig = ''
@@ -135,18 +149,6 @@ in {
 
         gtk4.extraConfig = {
           gtk-application-prefer-dark-theme = 1;
-        };
-
-        font = {
-          inherit (font) name size;
-        };
-
-        theme = {
-          inherit (theme) name package;
-        };
-
-        iconTheme = {
-          inherit (iconsTheme) name package;
         };
       };
 
