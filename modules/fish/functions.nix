@@ -13,6 +13,7 @@ in
     fish_greeting = ""; # disable welcome text
     run = "${_ osConfig.nix.package} run nixpkgs#$argv[1] -- $argv[2..-1]";
     "," = "nix run nixpkgs#$argv[1]";
+    ns = "nix shell nixpkgs#$argv[1]";
 
     bs = ''
       pushd ${config.home.homeDirectory}/Code/nixos

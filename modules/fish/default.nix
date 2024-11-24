@@ -22,11 +22,17 @@ in {
 
   config = mkIf cfg.enable {
     users.users.${config.myOptions.vars.username}.shell = pkgs.fish;
+    sops.secrets."fish/githubToken" = {mode = "0444";};
 
     environment.pathsToLink = ["/share/fish"];
 
     programs = {
-      fish.enable = true; # This settings comes from nixos options
+      fish = {
+        enable = true; # This settings comes from nixos options
+        interactiveShellInit = ''
+          . ${config.sops.secrets."fish/githubToken".path}
+        '';
+      };
     };
 
     # programs.command-not-found.enable = false;
