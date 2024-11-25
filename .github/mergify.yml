@@ -21,7 +21,7 @@ pull_request_rules:
       - check-success=All Garnix checks
     actions:
       merge:
-        method: merge
+        method: rebase
       delete_head_branch:
 
   - name: Warn on conflicts
