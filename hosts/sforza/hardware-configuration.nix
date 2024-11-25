@@ -58,7 +58,7 @@
       "ntfs"
     ];
 
-    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
   };
 
   fileSystems = {
