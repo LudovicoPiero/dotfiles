@@ -22,7 +22,7 @@ in {
       "uwsm app -- ${_ pkgs.mako}"
       "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
     ]
-    ++ lib.optionals (osConfig.myOptions.waybar.enable) [
+    ++ lib.optionals osConfig.myOptions.waybar.enable [
       "uwsm app -- waybar"
     ]
     ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [
@@ -254,16 +254,16 @@ in {
       ", XF86AudioPause , exec , ${pkgs.playerctl}/bin/playerctl pause"
       ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
     ]
-    ++ lib.optionals (osConfig.myOptions.firefox.enable) [
+    ++ lib.optionals osConfig.myOptions.firefox.enable [
       "$mod      , G , exec , uwsm app -- firefox"
     ]
-    ++ lib.optionals (osConfig.myOptions.discord.enable) [
+    ++ lib.optionals osConfig.myOptions.discord.enable [
       "$mod      , D , exec , uwsm app -- vesktop"
     ]
-    ++ lib.optionals (osConfig.myOptions.spotify.enable) [
+    ++ lib.optionals osConfig.myOptions.spotify.enable [
       "$mod      , S , exec , uwsm app -- spotify"
     ]
-    ++ lib.optionals (config.programs.emacs.enable) [
+    ++ lib.optionals config.programs.emacs.enable [
       "$mod      , E , exec , uwsm app -- \"${emacs}\""
       "ALT       , E , exec , uwsm app -- \"emacsclient -c -eval '(dired nil)'\""
     ];

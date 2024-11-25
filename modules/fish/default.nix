@@ -40,9 +40,6 @@ in {
       osConfig,
       ...
     }: {
-      # programs.nix-index.enable = true;
-      programs.zoxide.enable = true;
-
       home.packages = lib.attrValues {
         inherit
           (pkgs)
@@ -54,29 +51,32 @@ in {
           ;
       };
 
-      programs.fish = {
-        enable = true;
-        functions = import ./functions.nix {
-          inherit
-            pkgs
-            lib
-            config
-            osConfig
-            ;
+      programs = {
+        fish = {
+          enable = true;
+          functions = import ./functions.nix {
+            inherit
+              pkgs
+              lib
+              config
+              osConfig
+              ;
+          };
+          shellAliases = import ./shellAliases.nix {inherit pkgs lib;};
+          plugins = import ./plugins.nix {inherit pkgs lib;};
+
+          interactiveShellInit = ''
+            set --global async_prompt_functions _pure_prompt_git
+            set --universal pure_check_for_new_release false
+            set pure_symbol_prompt "❯"
+
+            ${_ pkgs.any-nix-shell} fish --info-right | source
+          '';
         };
-        shellAliases = import ./shellAliases.nix {inherit pkgs lib;};
-        plugins = import ./plugins.nix {inherit pkgs lib;};
 
-        interactiveShellInit = ''
-          set --global async_prompt_functions _pure_prompt_git
-          set --universal pure_check_for_new_release false
-          set pure_symbol_prompt "❯"
-
-          ${_ pkgs.any-nix-shell} fish --info-right | source
-        '';
+        man.generateCaches = true; # For fish completions
+        zoxide.enable = true;
       };
-
-      programs.man.generateCaches = true; # For fish completions
     };
   };
 }
