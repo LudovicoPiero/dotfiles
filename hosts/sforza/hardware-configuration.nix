@@ -84,6 +84,10 @@
     "/boot" = {
       device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
 
     "/home/airi/WinE" = {
@@ -104,8 +108,10 @@
       device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
       fsType = "bcachefs";
       options = [
-        # Enable discard/TRIM support
+        "noatime"
+        "nodiratime"
         "discard"
+        "ssd"
         # foreground compression with zstd
         "compression=zstd"
         # background compression with zstd
