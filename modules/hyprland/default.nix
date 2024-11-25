@@ -10,8 +10,6 @@
     (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
 
   cfg = config.myOptions.hyprland;

@@ -9,8 +9,6 @@
     (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
 
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};

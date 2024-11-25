@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkOption types;
 in {
   options.myOptions.vars = {

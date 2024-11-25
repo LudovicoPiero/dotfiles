@@ -89,8 +89,7 @@ in {
           size = 24;
         };
 
-        font = let
-        in {
+        font = {
           inherit (font) name size;
         };
 
