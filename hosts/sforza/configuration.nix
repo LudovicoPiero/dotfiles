@@ -8,7 +8,7 @@
   ];
 
   myOptions = {
-    dnscrypt2.enable = true;
+    dnscrypt2.enable = false;
     teavpn2.enable = true;
     spotify.enable = true;
     fish.enable = true;
