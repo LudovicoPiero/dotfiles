@@ -84,8 +84,8 @@ in {
         enable = true;
 
         cursorTheme = {
-          package = inputs.hyprcursor-phinger.packages.${pkgs.system}.hyprcursor-phinger;
-          name = lib.mkForce "phinger-cursors-light-hyprcursor";
+          package = pkgs.phinger-cursors;
+          name = "phinger-cursors-light";
           size = 24;
         };
 
@@ -156,9 +156,14 @@ in {
         platformTheme.name = "gtk3";
       };
 
-      xdg.dataFile."icons/${config.gtk.cursorTheme.name}".source = lib.mkForce "${
-        inputs.hyprcursor-phinger.packages.${pkgs.system}.default
-      }/share/icons/theme_phinger-cursors-light";
+      xdg.dataFile = {
+        "icons/phinger-cursors-light-hyprcursor".source = "${
+          inputs.hyprcursor-phinger.packages.${pkgs.system}.default
+        }/share/icons/theme_phinger-cursors-light";
+        # "icons/phinger-cursors-light-xcursor".source = "${
+        #   pkgs.phinger-cursors
+        # }/share/icons/phinger-cursors-light";
+      };
 
       home.file.".icons/default/index.theme".text = ''
         [icon theme]

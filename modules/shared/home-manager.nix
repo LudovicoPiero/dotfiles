@@ -20,9 +20,9 @@
         VISUAL = "nvim";
         TERM = "xterm-256color";
         BROWSER = "firefox";
-        HYPRCURSOR_THEME = "${config.gtk.cursorTheme.name}";
+        HYPRCURSOR_THEME = "phinger-cursors-light-hyprcursor";
         HYPRCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
-        XCURSOR_THEME = "${config.gtk.cursorTheme.name}";
+        XCURSOR_THEME = "${toString config.gtk.cursorTheme.name}";
         XCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
         # Fix for some Java AWT applications (e.g. Android Studio),
         # use this if they aren't displayed properly:

@@ -33,8 +33,11 @@ in {
     ];
 
   env = [
+    "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
+    "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
+
     "HYPRCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
-    "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
+    "XCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
   ];
 
   monitor = [
