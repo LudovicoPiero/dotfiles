@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./discord
+    ./dnscrypt2
     ./fcitx5
     ./firefox
     ./fish
