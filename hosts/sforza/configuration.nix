@@ -13,6 +13,7 @@
     spotify.enable = true;
     fish.enable = true;
     firefox.enable = true;
+    floorp.enable = true;
     hyprland.enable = true;
     vars = {
       colorScheme = "everforest-dark-hard";
