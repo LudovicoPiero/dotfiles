@@ -82,6 +82,12 @@ in {
                   user_pref("privacy.clearOnShutdown.cookies", false);
                   user_pref("privacy.clearOnShutdown.offlineApps", false);
                   user_pref("browser.sessionstore.privacy_level", 0);
+                  user_pref("floorp.browser.sidebar.enable", false);
+                  user_pref("geo.enabled", false);
+                  user_pref("media.navigator.enabled", false);
+                  user_pref("dom.event.clipboardevents.enabled", false);
+                  user_pref("dom.event.contextmenu.enabled", false);
+                  user_pref("dom.battery.enabled", false);
                 '';
               }
             );
