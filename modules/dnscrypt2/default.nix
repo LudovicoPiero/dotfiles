@@ -17,7 +17,9 @@ in {
 
   config = mkIf cfg.enable {
     networking = {
-      networkmanager.dns = "none";
+      nameservers = ["127.0.0.1" "::1"];
+      dhcpcd.extraConfig = "nohook resolv.conf"; # If using dhcpcd
+      networkmanager.dns = "none"; # If using NetworkManager
     };
 
     services.dnscrypt-proxy2 = {
