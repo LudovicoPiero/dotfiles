@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  pkgs-stable,
   config,
   inputs,
   ...
@@ -35,7 +34,6 @@ in {
               isDefault = true;
               name = "Ludovico";
               extensions = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-                bitwarden
                 refined-github
                 sponsorblock
                 to-deepl
