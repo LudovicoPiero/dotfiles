@@ -204,7 +204,6 @@ in {
       "$mod SHIFT, Q, movetoworkspace, special"
       "$mod SHIFT, E , exec , uwsm app -- thunar"
       "$mod      , F , fullscreen , 0"
-      "$mod SHIFT, G , exec , uwsm app -- chromium"
       "$mod      , M , exec , [workspace 9 silent;tile] uwsm app --  thunderbird"
       "$mod      , P , exec , uwsm app -- ${launcher}"
       "$mod SHIFT, P , exec , uwsm app -- ${lib.getExe' pkgs.pass-wayland "passmenu"}"
@@ -262,6 +261,9 @@ in {
       ", XF86AudioPlay , exec , ${pkgs.playerctl}/bin/playerctl play-pause"
       ", XF86AudioPause , exec , ${pkgs.playerctl}/bin/playerctl pause"
       ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
+    ]
+    ++ lib.optionals osConfig.myOptions.floorp.enable [
+      "$mod SHIFT, G , exec , uwsm app -- floorp"
     ]
     ++ lib.optionals osConfig.myOptions.firefox.enable [
       "$mod      , G , exec , uwsm app -- firefox"
