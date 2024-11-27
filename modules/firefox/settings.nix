@@ -1,4 +1,9 @@
 {
+  osConfig,
+  lib,
+  ...
+}:
+{
   "browser.search.region" = "AU";
   "browser.search.isUS" = false;
   "distribution.searchplugins.defaultLocale" = "en-AU";
@@ -8,19 +13,6 @@
   "browser.privatebrowsing.vpnpromourl" = "";
   "browser.tabs.firefox-view" = false; # Disable Firefox View
   "browser.tabs.firefox-view-next" = false;
-
-  # DOH
-  /*
-  2 is enable DOH.
-  3 is no failback to system dns
-  5 is no DOH.
-  */
-  "network.trr.mode" = 2;
-  "network.trr.max-fails" = 5;
-  "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
-  "network.trr.uri" = "https://doh.tiarap.org/dns-query";
-  "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
-  # "network.trr.bootstrapAddress" = "1.1.1.1";
 
   # Disable telemetry
   "browser.newtabpage.activity-stream.feeds.telemetry" = false;
@@ -126,4 +118,18 @@
   "gnomeTheme.hideWebrtcIndicator" = true;
   # Use system theme icons instead of Adwaita icons included by theme.
   "gnomeTheme.systemIcons" = true;
+}
+// lib.optionalAttrs osConfig.myOptions.dnscrypt2.enable {
+  # DOH
+  /*
+  2 is enable DOH.
+  3 is no failback to system dns
+  5 is no DOH.
+  */
+  "network.trr.mode" = 2;
+  "network.trr.max-fails" = 5;
+  "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
+  "network.trr.uri" = "https://doh.tiarap.org/dns-query";
+  "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
+  # "network.trr.bootstrapAddress" = "1.1.1.1";
 }

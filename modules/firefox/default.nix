@@ -18,14 +18,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} = {
+    home-manager.users.${config.myOptions.vars.username} = {osConfig, ...}: {
       programs.firefox = {
         enable = true;
-        package = pkgs.firefox.override {
-          nativeMessagingHosts = [
-            pkgs.keepassxc
-          ];
-        };
+        package = pkgs.firefox;
+
+        nativeMessagingHosts = [
+          pkgs.keepassxc
+        ];
 
         profiles = {
           ludovico =
@@ -42,7 +42,7 @@ in {
               ];
               bookmarks = import ./bookmarks.nix;
               search = import ./search.nix {inherit pkgs;};
-              settings = import ./settings.nix;
+              settings = import ./settings.nix {inherit lib osConfig;};
             }
             // (
               let

@@ -18,7 +18,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} = {
+    home-manager.users.${config.myOptions.vars.username} = {osConfig, ...}: {
       programs.floorp = {
         enable = true;
 
@@ -41,7 +41,7 @@ in {
               ];
               bookmarks = import ./bookmarks.nix;
               search = import ./search.nix {inherit pkgs;};
-              settings = import ./settings.nix;
+              settings = import ./settings.nix {inherit lib osConfig;};
             }
             // (
               let
