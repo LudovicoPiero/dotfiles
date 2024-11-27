@@ -25,6 +25,19 @@
 
   programs = {
     dconf.enable = true;
+
+    thunar = {
+      enable = config.myOptions.vars.withGui;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
+  };
+
+  services = {
+    gvfs.enable = config.programs.thunar.enable; # Mount, trash, and other functionalities
+    tumbler.enable = config.programs.thunar.enable; # Thumbnail support for images
   };
 
   security = {
