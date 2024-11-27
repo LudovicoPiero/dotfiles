@@ -122,6 +122,7 @@
         "x-scheme-handler/discord" = ["vesktop.desktop"];
         "x-scheme-handler/spotify" = ["spotify.desktop"];
         "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
+        "x-scheme-handler/tonsite" = ["org.telegram.desktop.desktop"];
         "x-scheme-handler/mailto" = thunderbird;
         "message/rfc822" = thunderbird;
         "x-scheme-handler/mid" = thunderbird;
