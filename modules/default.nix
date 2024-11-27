@@ -4,6 +4,7 @@ _: {
     ./dnscrypt2
     ./fcitx5
     ./firefox
+    ./floorp
     ./fish
     ./fonts
     ./fuzzel
