@@ -22,7 +22,11 @@ in {
     home-manager.users.${config.myOptions.vars.username} = {
       programs.firefox = {
         enable = true;
-        package = pkgs-stable.firefox;
+        package = pkgs.firefox.override {
+          nativeMessagingHosts = [
+            pkgs.keepassxc
+          ];
+        };
 
         profiles = {
           ludovico =
@@ -36,6 +40,7 @@ in {
                 sponsorblock
                 to-deepl
                 ublock-origin
+                keepassxc-browser
               ];
               bookmarks = import ./bookmarks.nix;
               search = import ./search.nix {inherit pkgs;};
