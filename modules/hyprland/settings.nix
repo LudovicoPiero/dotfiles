@@ -21,6 +21,7 @@ in {
       "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       "uwsm app -- ${_ pkgs.mako}"
       "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
+      "[workspace 8 silent;noanim] uwsm app -- ${_ pkgs.keepassxc}"
     ]
     ++ lib.optionals osConfig.myOptions.waybar.enable [
       "uwsm app -- waybar"
@@ -173,7 +174,12 @@ in {
     "workspace 1, class:^(Albion-Online)$"
     "float, title:^(Steam - News)$"
     "float, class:^(xdg-desktop-portal-gtk)$,title:^(Open Files)$"
+    "float, class:^(org.keepassxc.KeePassXC)$,title:^(Generate Password)$"
+    "float, class:^(org.keepassxc.KeePassXC)$,title:^(KeePassXC - Browser Access Request)$"
     "float, class:^(steam)$,title:^(Special Offers)$"
+    "noblur, class:^(org.keepassxc.KeePassXC)$"
+    "noblur, class:^(org.keepassxc.KeePassXC)$,title:^(Generate Password)$"
+    "noblur, class:^(org.keepassxc.KeePassXC)$,title:^(KeePassXC - Browser Access Request)$"
     "noblur, class:^(waybar)$"
     "noblur, class:^(firefox)$"
     "noblur, class:^(floorp)$"
