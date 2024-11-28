@@ -20,6 +20,7 @@ in {
       "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
       "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       "uwsm app -- ${_ pkgs.mako}"
+      "${pkgs.brightnessctl}/bin/brightnessctl set 50%"
       "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
       "[workspace 8 silent;noanim] uwsm app -- ${_ pkgs.keepassxc}"
     ]
@@ -256,10 +257,6 @@ in {
       "$mod SHIFT , 9 , movetoworkspacesilent , 9"
       "$mod SHIFT , 0 , movetoworkspacesilent , 10"
 
-      ", XF86AudioNext , exec , ${pkgs.playerctl}/bin/playerctl next"
-      ", XF86AudioPrev , exec , ${pkgs.playerctl}/bin/playerctl previous"
-      ", XF86AudioPlay , exec , ${pkgs.playerctl}/bin/playerctl play-pause"
-      ", XF86AudioPause , exec , ${pkgs.playerctl}/bin/playerctl pause"
       ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
     ]
     ++ lib.optionals osConfig.myOptions.floorp.enable [
@@ -279,10 +276,19 @@ in {
       "ALT       , E , exec , uwsm app -- \"emacsclient -c -eval '(dired nil)'\""
     ];
 
-  binde = [
-    ", XF86AudioRaiseVolume , exec , ${pkgs.alsa-utils}/bin/amixer -q set Master 5%+"
-    ", XF86AudioLowerVolume , exec , ${pkgs.alsa-utils}/bin/amixer -q set Master 5%-"
+  bindel = [
+    ", XF86AudioRaiseVolume , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+    ", XF86AudioLowerVolume , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+    ", XF86AudioMute        , exec , ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  ];
 
+  bindl = [
+    ", XF86AudioNext , exec , ${pkgs.playerctl}/bin/playerctl next"
+    ", XF86AudioPrev , exec , ${pkgs.playerctl}/bin/playerctl previous"
+    ", XF86AudioPlay , exec , ${pkgs.playerctl}/bin/playerctl play-pause"
+  ];
+
+  binde = [
     ", XF86MonBrightnessUp , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%+"
     ", XF86MonBrightnessDown , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
   ];
