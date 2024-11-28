@@ -30,7 +30,10 @@ in {
     services = {
       gnome.at-spi2-core.enable = true;
       gnome.gnome-keyring.enable = true;
-      dbus.packages = [pkgs.seahorse];
+      dbus.packages = with pkgs; [
+        gcr
+        seahorse
+      ];
     };
     security.polkit.enable = true;
 
