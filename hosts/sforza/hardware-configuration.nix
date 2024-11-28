@@ -94,7 +94,7 @@
       device = "/dev/disk/by-label/WinE";
       fsType = "ntfs";
       options = [
-        "uid=1000"
+        "uid=1001"
         "gid=100"
         "rw"
         "user"
