@@ -34,6 +34,9 @@
     spicetify-nix.url = "github:gerg-l/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    programsdb.url = "github:wamserma/flake-programs-sqlite";
+    programsdb.inputs.nixpkgs.follows = "nixpkgs";
+
     hosts.url = "github:StevenBlack/hosts";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
