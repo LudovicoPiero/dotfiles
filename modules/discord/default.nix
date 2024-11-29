@@ -365,6 +365,7 @@ in {
           };
           NoReplyMention = {
             enabled = true;
+            inverseShiftReply = true;
           };
           NoScreensharePreview = {
             enabled = false;
