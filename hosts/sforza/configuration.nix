@@ -1,7 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{lib, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -42,13 +48,42 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    wireplumber = {
+  sops.secrets."asfIpcPassword" = {
+    owner = config.systemd.services.archisteamfarm.serviceConfig.User;
+  };
+  services = {
+    # Enable sound.
+    pipewire = {
       enable = true;
-      extraConfig."wireplumber.profiles".main."monitor.libcamera" = "disabled";
+      pulse.enable = true;
+      wireplumber = {
+        enable = true;
+        extraConfig."wireplumber.profiles".main."monitor.libcamera" = "disabled";
+      };
+    };
+
+    # ArchiSteamFarm
+    archisteamfarm = {
+      enable = true;
+
+      package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.ArchiSteamFarm;
+
+      settings = {
+        Statistics = false;
+        PluginsUpdateList = ["ASFEnhance" "FreePackages"];
+        PluginsUpdateMode = 0;
+      };
+
+      ipcPasswordFile = config.sops.secrets."asfIpcPassword".path;
+      ipcSettings = {
+        Kestrel = {
+          Endpoints = {
+            HTTP = {
+              Url = "http://*:1242";
+            };
+          };
+        };
+      };
     };
   };
 
