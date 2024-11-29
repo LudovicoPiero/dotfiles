@@ -61,6 +61,71 @@
     kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
   };
 
+  # OpenGL
+  hardware = {
+    bluetooth.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+        rocmPackages.clr
+      ];
+    };
+  };
+
+  sops.secrets."asfIpcPassword" = {
+    owner = config.systemd.services.archisteamfarm.serviceConfig.User;
+  };
+  services = {
+    # Enable sound.
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+      wireplumber = {
+        enable = true;
+        extraConfig."wireplumber.profiles".main."monitor.libcamera" = "disabled";
+      };
+    };
+
+    # ArchiSteamFarm
+    archisteamfarm = {
+      enable = true;
+
+      package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.ArchiSteamFarm;
+
+      settings = {
+        Statistics = false;
+        PluginsUpdateList = ["ASFEnhance" "FreePackages"];
+        PluginsUpdateMode = 0;
+      };
+
+      ipcPasswordFile = config.sops.secrets."asfIpcPassword".path;
+      ipcSettings = {
+        Kestrel = {
+          Endpoints = {
+            HTTP = {
+              Url = "http://*:1242";
+            };
+          };
+        };
+      };
+    };
+
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      };
+    };
+
+    logind = {
+      powerKey = "suspend";
+      lidSwitch = "suspend-then-hibernate";
+    };
+  };
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/ROOT";
