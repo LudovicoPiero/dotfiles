@@ -171,6 +171,9 @@ in {
     "float, class:^(steam)$,title:^(Steam - News)$"
     "nofocus, class:^(steam)$,title:^(Steam - News)$"
     "nofocus, class:^(steam)$,title:^(notificationtoasts_.*_desktop)$"
+    "noinitialfocus, class:^(steam)$, title:(^notificationtoasts.*)"
+    "nofocus, title:(^notificationtoasts.*)"
+    "nofocus, class:^(steam)$, title:^()$"
 
     # Spotify rules
     "workspace 5, title:(Spotify)"
