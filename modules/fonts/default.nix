@@ -41,7 +41,7 @@ in {
           wqy_zenhei # For Steam
           ;
 
-        nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
+        inherit (pkgs.nerd-fonts) symbols-only;
       };
 
       # use fonts specified by user rather than default ones
