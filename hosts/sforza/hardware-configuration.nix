@@ -53,9 +53,9 @@
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     supportedFilesystems = [
-      "bcachefs"
       "btrfs"
       "ntfs"
+      "xfs"
     ];
 
     kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
@@ -170,17 +170,11 @@
     };
 
     "/home/airi/Media" = {
-      device = "/dev/disk/by-uuid/9f731a8a-1d76-4b74-ad60-cb2e245d4224";
-      fsType = "bcachefs";
+      device = "/dev/disk/by-label/Media";
+      fsType = "xfs";
       options = [
+        "defaults"
         "noatime"
-        "nodiratime"
-        "discard"
-        "ssd"
-        # foreground compression with zstd
-        "compression=zstd"
-        # background compression with zstd
-        "background_compression=zstd"
       ];
     };
   };
