@@ -8,6 +8,7 @@ _: {
     ./fish
     ./fonts
     ./fuzzel
+    ./gaming
     ./gammastep
     ./git
     ./gpg

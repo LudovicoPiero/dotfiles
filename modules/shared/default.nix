@@ -18,10 +18,7 @@
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   time.timeZone = config.myOptions.vars.timezone;
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "symbola"
-    ];
+  nixpkgs.config.allowUnfree = true;
 
   programs = {
     command-not-found.dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;

@@ -15,6 +15,7 @@
     firefox.enable = true;
     floorp.enable = true;
     hyprland.enable = true;
+    gaming.enable = true;
     vars = {
       colorScheme = "everforest-dark-hard";
       withGui = true;
