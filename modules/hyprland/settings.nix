@@ -153,46 +153,74 @@ in {
   ];
 
   windowrulev2 = [
+    # General workspace rules
     "bordersize 0, floating:0, onworkspace:w[tv1]"
     "rounding 0, floating:0, onworkspace:w[tv1]"
     "bordersize 0, floating:0, onworkspace:f[1]"
     "rounding 0, floating:0, onworkspace:f[1]"
+
+    # Workspace-specific rules
     "workspace 9, class:^(thunderbird)$"
     "workspace 8, class:^(whatsapp-for-linux)$"
     "workspace 7, class:^(qBittorrent|org.qbittorrent.qBittorrent)$"
+
+    # Steam rules
     "workspace 6, class:^(steam)$"
     "workspace 6, title:^(Sign in to Steam)$"
+    "float, class:^(steam)$,title:^(Special Offers)$"
+    "float, class:^(steam)$,title:^(Steam - News)$"
+    "nofocus, class:^(steam)$,title:^(Steam - News)$"
+    "nofocus, class:^(steam)$,title:^(notificationtoasts_.*_desktop)$"
+
+    # Spotify rules
     "workspace 5, title:(Spotify)"
+
+    # Telegram rules
     "workspace 4, class:^(org.telegram.desktop)$"
+
+    # Discord and similar applications
     "workspace 3, title:^(.*(Disc|ArmC|WebC)ord.*)$"
     "workspace 3, class:^(vesktop)$"
+
+    # Browsers
+    ## Firefox
     "workspace 2, class:^(firefox)$"
+    "noblur, class:^(firefox)$"
+    "noshadow, class:^(firefox)$"
+
+    ## Floorp
     "workspace 2, class:^(floorp)$"
+    "noblur, class:^(floorp)$"
+    "noshadow, class:^(floorp)$"
+
+    ## Chromium
     "workspace 2, class:^(Chromium-browser)$" # xwayland
     "workspace 2, class:^(chromium-browser)$" # wayland
+    "noblur, class:^(Chromium-browser)$" # xwayland
+    "noblur, class:^(chromium-browser)$" # wayland
+    "noshadow, class:^(Chromium-browser)$" # xwayland
+    "noshadow, class:^(chromium-browser)$" # wayland
+
+    # JetBrains IDEs and games
     "workspace 1, class:^(jetbrains-goland)$"
     "workspace 1, class:^(jetbrains-clion)$"
     "workspace 1, class:^(Albion-Online)$"
-    "float, title:^(Steam - News)$"
+
+    # Floating windows
     "float, class:^(xdg-desktop-portal-gtk)$,title:^(Open Files)$"
+
+    # KeepassXC rules
+    "noblur, class:^(org.keepassxc.KeePassXC)$"
+    "noanim, class:^(org.keepassxc.KeePassXC)$"
     "float, class:^(org.keepassxc.KeePassXC)$,title:^(Generate Password)$"
     "float, class:^(org.keepassxc.KeePassXC)$,title:^(KeePassXC - Browser Access Request)$"
-    "float, class:^(steam)$,title:^(Special Offers)$"
-    "noblur, class:^(org.keepassxc.KeePassXC)$"
-    "noblur, class:^(org.keepassxc.KeePassXC)$,title:^(Generate Password)$"
-    "noblur, class:^(org.keepassxc.KeePassXC)$,title:^(KeePassXC - Browser Access Request)$"
-    "noblur, class:^(waybar)$"
-    "noblur, class:^(firefox)$"
-    "noblur, class:^(floorp)$"
-    "noblur, class:^(Chromium-browser)$" # xwayland
-    "noblur, class:^(chromium-browser)$" # wayland
+
+    # Discord/WebCord blur and shadow rules
     "noblur, title:^(.*(Disc|WebC)ord.*)$"
     "noblur, title:^(Open File)$"
-    "noshadow, class:^(firefox)$"
-    "noshadow, class:^(floorp)$"
-    "noshadow, class:^(Chromium-browser)$" # xwayland
-    "noshadow, class:^(chromium-browser)$" # wayland
     "noshadow, title:^(.*(Disc|WebC)ord.*)$"
+
+    # Noanim rules
     "noanim, class:^(org.telegram.desktop)$"
     "noanim, class:^(wlogout)$"
   ];
