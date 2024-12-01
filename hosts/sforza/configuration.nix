@@ -12,13 +12,9 @@
     teavpn2.enable = false;
     spotify.enable = true;
     fish.enable = true;
-    firefox.enable = true;
-    floorp.enable = true;
-    hyprland.enable = true;
-    gaming.enable = true;
     vars = {
       colorScheme = "everforest-dark-hard";
-      withGui = true;
+      withGui = false;
       email = "lewdovico@gnuweeb.org";
     };
   };
