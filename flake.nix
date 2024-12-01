@@ -15,6 +15,9 @@
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
+    hosts.url = "github:StevenBlack/hosts";
+    hosts.inputs.nixpkgs.follows = "nixpkgs";
+
     # Hyprfamily
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     hyprlock.url = "github:hyprwm/hyprlock";
@@ -37,7 +40,6 @@
     programsdb.url = "github:wamserma/flake-programs-sqlite";
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
-    hosts.url = "github:StevenBlack/hosts";
     ludovico-nixpkgs.url = "github:LudovicoPiero/nixpackages";
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
