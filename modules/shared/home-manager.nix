@@ -15,10 +15,16 @@
     home = {
       sessionVariables =
         {
-          NIXOS_OZONE_WL = "1";
-          NIXPKGS_ALLOW_UNFREE = "1";
           EDITOR = "nvim";
           VISUAL = "nvim";
+          NIXPKGS_ALLOW_UNFREE = "1";
+        }
+        // lib.optionalAttrs osConfig.myOptions.vars.withGui {
+          HYPRCURSOR_THEME = "phinger-cursors-light-hyprcursor";
+          HYPRCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
+          XCURSOR_THEME = "${toString config.gtk.cursorTheme.name}";
+          XCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
+          NIXOS_OZONE_WL = "1";
           TERM = "xterm-256color";
           BROWSER = "firefox";
           # Fix for some Java AWT applications (e.g. Android Studio),
@@ -28,12 +34,6 @@
           QT_QPA_PLATFORM = "wayland";
           SDL_VIDEODRIVER = "wayland";
           XDG_SESSION_TYPE = "wayland";
-        }
-        // lib.optionalAttrs osConfig.myOptions.vars.withGui {
-          HYPRCURSOR_THEME = "phinger-cursors-light-hyprcursor";
-          HYPRCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
-          XCURSOR_THEME = "${toString config.gtk.cursorTheme.name}";
-          XCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
         };
 
       packages = lib.attrValues {
