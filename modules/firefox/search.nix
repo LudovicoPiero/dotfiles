@@ -1,9 +1,9 @@
 {pkgs, ...}: {
-  default = "DuckDuckGo";
+  default = "Brave";
   order = [
+    "Brave"
     "DuckDuckGo"
     "Searx"
-    "Brave"
     "Google"
   ];
   force = true;
