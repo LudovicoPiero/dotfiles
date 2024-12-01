@@ -14,7 +14,11 @@
   cfg = config.myOptions.floorp;
 in {
   options.myOptions.floorp = {
-    enable = mkEnableOption "floorp";
+    enable =
+      mkEnableOption "floorp"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

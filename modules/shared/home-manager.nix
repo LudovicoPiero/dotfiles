@@ -13,25 +13,28 @@
   }: {
     systemd.user.startServices = "sd-switch";
     home = {
-      sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-        NIXPKGS_ALLOW_UNFREE = "1";
-        EDITOR = "nvim";
-        VISUAL = "nvim";
-        TERM = "xterm-256color";
-        BROWSER = "firefox";
-        HYPRCURSOR_THEME = "phinger-cursors-light-hyprcursor";
-        HYPRCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
-        XCURSOR_THEME = "${toString config.gtk.cursorTheme.name}";
-        XCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
-        # Fix for some Java AWT applications (e.g. Android Studio),
-        # use this if they aren't displayed properly:
-        "_JAVA_AWT_WM_NONREPARENTING" = "1";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-        QT_QPA_PLATFORM = "wayland";
-        SDL_VIDEODRIVER = "wayland";
-        XDG_SESSION_TYPE = "wayland";
-      };
+      sessionVariables =
+        {
+          NIXOS_OZONE_WL = "1";
+          NIXPKGS_ALLOW_UNFREE = "1";
+          EDITOR = "nvim";
+          VISUAL = "nvim";
+          TERM = "xterm-256color";
+          BROWSER = "firefox";
+          # Fix for some Java AWT applications (e.g. Android Studio),
+          # use this if they aren't displayed properly:
+          "_JAVA_AWT_WM_NONREPARENTING" = "1";
+          QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+          QT_QPA_PLATFORM = "wayland";
+          SDL_VIDEODRIVER = "wayland";
+          XDG_SESSION_TYPE = "wayland";
+        }
+        // lib.optionalAttrs osConfig.myOptions.vars.withGui {
+          HYPRCURSOR_THEME = "phinger-cursors-light-hyprcursor";
+          HYPRCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
+          XCURSOR_THEME = "${toString config.gtk.cursorTheme.name}";
+          XCURSOR_SIZE = "${toString config.gtk.cursorTheme.size}";
+        };
 
       packages = lib.attrValues {
         inherit

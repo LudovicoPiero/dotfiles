@@ -14,7 +14,11 @@
   cfg = config.myOptions.firefox;
 in {
   options.myOptions.firefox = {
-    enable = mkEnableOption "firefox browser";
+    enable =
+      mkEnableOption "firefox browser"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

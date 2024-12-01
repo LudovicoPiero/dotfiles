@@ -17,7 +17,11 @@ in {
   imports = [inputs.hyprland.nixosModules.default];
 
   options.myOptions.hyprland = {
-    enable = mkEnableOption "hyprland";
+    enable =
+      mkEnableOption "hyprland"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

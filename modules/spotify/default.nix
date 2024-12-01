@@ -18,7 +18,11 @@ in {
   imports = [inputs.spicetify-nix.nixosModules.default];
 
   options.myOptions.spotify = {
-    enable = mkEnableOption "spotify";
+    enable =
+      mkEnableOption "spotify"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
   };
 
   config = mkIf cfg.enable {

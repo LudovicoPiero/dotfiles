@@ -16,7 +16,11 @@
   cfg = config.myOptions.gaming;
 in {
   options.myOptions.gaming = {
-    enable = mkEnableOption "gaming";
+    enable =
+      mkEnableOption "gaming"
+      // {
+        default = config.myOptions.vars.withGui;
+      };
 
     withGamemode = mkOption {
       type = types.bool;
