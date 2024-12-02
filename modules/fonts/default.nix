@@ -40,8 +40,6 @@ in {
           symbola
           wqy_zenhei # For Steam
           ;
-
-        inherit (pkgs.nerd-fonts) symbols-only;
       };
 
       # use fonts specified by user rather than default ones
