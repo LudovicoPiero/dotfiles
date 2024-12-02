@@ -20,18 +20,22 @@
       inherit specialArgs;
       modules = [
         sharedModules
-
-        ./sforza/configuration.nix
-
         inputs.chaotic.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          # home-manager.users.jdoe = import ./home.nix;
 
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
+        ./sforza/configuration.nix
+        {
+          myOptions = {
+            dnscrypt2.enable = true;
+            teavpn2.enable = false;
+            spotify.enable = true;
+            fish.enable = true;
+            vars = {
+              colorScheme = "everforest-dark-hard";
+              withGui = false; # Enable hyprland & all gui stuff
+              email = "lewdovico@gnuweeb.org";
+            };
+          };
         }
       ];
     };
