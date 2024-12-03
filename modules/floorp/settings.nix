@@ -16,6 +16,13 @@
   "floorp.Tree-type.verticaltab.optimization" = true;
   "floorp.verticaltab.hover.enabled" = true;
 
+  "network.trr.mode" = 2;
+  "network.trr.max-fails" = 5;
+  "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
+  "network.trr.uri" = "https://doh.tiarap.org/dns-query";
+  "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
+  # "network.trr.bootstrapAddress" = "1.1.1.1";
+
   "browser.search.region" = "AU";
   "browser.search.isUS" = false;
   "distribution.searchplugins.defaultLocale" = "en-AU";
@@ -126,10 +133,10 @@
   3 is no failback to system dns
   5 is no DOH.
   */
-  "network.trr.mode" = 2;
+  "network.trr.mode" = 5;
   "network.trr.max-fails" = 5;
-  "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
-  "network.trr.uri" = "https://doh.tiarap.org/dns-query";
-  "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
+  "network.trr.default_provider_uri" = "";
+  "network.trr.uri" = "";
+  "network.trr.custom_uri" = "";
   # "network.trr.bootstrapAddress" = "1.1.1.1";
 }
