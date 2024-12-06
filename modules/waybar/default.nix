@@ -208,9 +208,9 @@ in {
                 "warning" = 20;
                 "critical" = 10;
               };
-              "format" = "<span color='#e88939'>{icon}</span> {capacity}%";
-              "format-charging" = "<span color='#e88939'>󰂄</span> {capacity}%";
-              "format-plugged" = "<span color='#e88939'>{icon} </span> {capacity}% ({time})";
+              "format" = "{icon} {capacity}%";
+              "format-charging" = "{icon}  {power} W";
+              "tooltip-format" = "{timeTo}, {capacity}%\n {power} W";
               "format-icons" = [
                 "󰁺"
                 "󰁻"
