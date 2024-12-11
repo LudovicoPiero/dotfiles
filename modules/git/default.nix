@@ -40,6 +40,19 @@ in {
           };
 
           extraConfig = {
+            init.defaultBranch = "main";
+            merge.conflictstyle = "diff3";
+            format.signOff = "yes";
+            pull.rebase = true;
+
+            sendemail = {
+              smtpencryption = "tls";
+              smtpserver = "mail1.gnuweeb.org";
+              smtpuser = "lewdovico@gnuweeb.org";
+              smtpserverport = 587;
+              # smtpPass = ""; #TODO: agenix(?)
+            };
+
             color = {
               ui = true;
               diff-highlight = {
@@ -57,17 +70,6 @@ in {
                 new = "green bold";
                 whitespace = "red reverse";
               };
-            };
-            init.defaultBranch = "main";
-            merge.conflictstyle = "diff3";
-            format.signOff = "yes";
-
-            sendemail = {
-              smtpencryption = "tls";
-              smtpserver = "mail1.gnuweeb.org";
-              smtpuser = "lewdovico@gnuweeb.org";
-              smtpserverport = 587;
-              # smtpPass = ""; #TODO: agenix(?)
             };
           };
 
