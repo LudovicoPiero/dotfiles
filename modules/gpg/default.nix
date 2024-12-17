@@ -11,6 +11,7 @@
     ;
 
   cfg = config.myOptions.gpg;
+  guiCfg = config.myOptions.vars.withGui;
 in {
   options.myOptions.gpg = {
     enable =
@@ -32,7 +33,10 @@ in {
       # Fix pass
       services.gpg-agent = {
         enable = true;
-        pinentryPackage = pkgs.pinentry-gnome3;
+        pinentryPackage =
+          if guiCfg
+          then pkgs.pinentry-gnome3
+          else pkgs.pinentry-curses;
         extraConfig = ''
           allow-emacs-pinentry
           allow-loopback-pinentry
