@@ -8,7 +8,6 @@
   # Nixos Stuff
   imports = [
     inputs.lix-module.nixosModules.default
-    inputs.hosts.nixosModule
 
     ./users.nix
     ./security.nix

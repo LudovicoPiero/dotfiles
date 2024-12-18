@@ -3,12 +3,6 @@
   config,
   ...
 }: {
-  networking.stevenBlackHosts = {
-    enable = true;
-    blockFakenews = true;
-    blockGambling = true;
-  };
-
   # sets hidepid=2 on /proc (make process info visible only to owning user)
   # NOTE Was removed on nixpkgs-unstable because it doesn't do anything
   # security.hideProcessInformation = true;

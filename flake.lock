@@ -580,26 +580,6 @@
         "type": "github"
       }
     },
-    "hosts": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1734397324,
-        "narHash": "sha256-CMafExAcNPDOjFd518MHK1rWYhapP6eBIXKk6YAjJqc=",
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "rev": "608aed3d80c18c93daab5015a198ca6f00362621",
-        "type": "github"
-      },
-      "original": {
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "type": "github"
-      }
-    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -1480,7 +1460,6 @@
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
-        "hosts": "hosts",
         "hyprcursor-phinger": "hyprcursor-phinger",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
