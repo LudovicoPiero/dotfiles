@@ -95,8 +95,6 @@
     archisteamfarm = {
       enable = true;
 
-      package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.ArchiSteamFarm;
-
       settings = {
         Statistics = false;
         PluginsUpdateList = ["ASFEnhance" "FreePackages"];
