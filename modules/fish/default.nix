@@ -10,6 +10,7 @@
     (lib)
     mkEnableOption
     mkIf
+    optionalString
     ;
 
   cfg = config.myOptions.fish;
@@ -27,9 +28,17 @@ in {
     programs = {
       fish = {
         enable = true; # This settings comes from nixos options
-        interactiveShellInit = ''
-          . ${config.sops.secrets."fish/githubToken".path}
-        '';
+        interactiveShellInit =
+          ''
+            . ${config.sops.secrets."fish/githubToken".path}
+          ''
+          + optionalString (!config.myOptions.vars.withGui)
+          /*
+          Automatically turn of screen after 1 minute. (For laptop)
+          */
+          ''
+            ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
+          '';
       };
     };
 
