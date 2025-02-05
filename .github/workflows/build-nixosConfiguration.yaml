@@ -28,8 +28,6 @@ jobs:
             substituters = https://cache.garnix.io https://nyx.chaotic.cx https://cache.nixos.org/ https://nixpkgs-unfree.cachix.org https://numtide.cachix.org https://dotfiles-pkgs.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs= numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE= dotfiles-pkgs.cachix.org-1:0TnsAyYE0P2BXv9s7gqqCpkf2SNt4cXKPh/66enbwnk=
 
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-
       - uses: cachix/cachix-action@v15
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
