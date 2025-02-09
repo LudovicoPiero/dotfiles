@@ -25,7 +25,9 @@
 
   iconsTheme = {
     name = "WhiteSur-dark";
-    package = pkgs.whitesur-icon-theme;
+    package = pkgs.whitesur-icon-theme.overrideAttrs {
+      dontCheckForBrokenSymlinks = true;
+    };
   };
 
   mkService = lib.recursiveUpdate {
