@@ -52,8 +52,8 @@ in {
                 betterfox = pkgs.fetchFromGitHub {
                   owner = "yokoffing";
                   repo = "Betterfox";
-                  rev = "131.0";
-                  hash = "sha256-CxPZxo9G44lRocNngjfwTBHSqL5dEJ5MNO5Iauoxp2Y=";
+                  rev = "133.0";
+                  hash = "sha256-Uu/a5t74GGvMIJP5tptqbiFiA+x2hw98irPdl8ynGoE=";
                 };
               in {
                 extraConfig = ''
@@ -78,6 +78,9 @@ in {
 
                   // PREF: disable the Firefox View tour from popping up
                   user_pref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":true}");
+
+                  // Fix Strict ETP issue
+                  user_pref("browser.contentblocking.category", "standard");
 
                   /* Custom User.js */
                   user_pref("browser.tabs.firefox-view-next", false);
