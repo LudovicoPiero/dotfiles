@@ -32,7 +32,7 @@
             fish.enable = true;
             vars = {
               colorScheme = "everforest-dark-hard";
-              withGui = true; # Enable hyprland & all gui stuff
+              withGui = false; # Enable hyprland & all gui stuff
               email = "lewdovico@gnuweeb.org";
             };
           };
