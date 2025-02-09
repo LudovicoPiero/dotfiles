@@ -7,7 +7,7 @@
 }: let
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
-  powermenu = "${_ pkgs.wlogout}";
+  powermenu = "${_ pkgs.wleave}";
   emacs =
     if config.services.emacs.enable
     then "emacsclient -c"
@@ -225,7 +225,7 @@ in {
 
     # Noanim rules
     "noanim, class:^(org.telegram.desktop)$"
-    "noanim, class:^(wlogout)$"
+    "noanim, class:^(wleave)$"
   ];
 
   "$mod" = "SUPER";
