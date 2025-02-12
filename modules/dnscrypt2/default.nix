@@ -9,6 +9,9 @@
     mkIf
     ;
 
+  hasIPv6Internet = false;
+  StateDirectory = "dnscrypt-proxy";
+
   cfg = config.myOptions.dnscrypt2;
 in {
   options.myOptions.dnscrypt2 = {
@@ -41,13 +44,13 @@ in {
         # Use servers reachable over IPv4
         ipv4_servers = true;
         # Use servers reachable over IPv6 -- Do not enable if you don't have IPv6 connectivity
-        ipv6_servers = false;
+        ipv6_servers = hasIPv6Internet;
         # Use servers implementing the DNSCrypt protocol
         dnscrypt_servers = true;
         # Use servers implementing the DNS-over-HTTPS protocol
         doh_servers = true;
         # Server must support DNS security extensions (DNSSEC)
-        require_dnssec = false;
+        require_dnssec = true;
         # Server must not log user queries (declarative)
         require_nolog = true;
         # Server must not enforce its own blacklist (for parental control, ads blocking...)
@@ -69,7 +72,7 @@ in {
 
         ## Do not enable if you added a validating resolver such as dnsmasq in front
         ## of the proxy.
-        block_ipv6 = false;
+        block_ipv6 = !hasIPv6Internet;
 
         ###########################
         #        DNS cache        #
@@ -96,7 +99,7 @@ in {
               "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
               "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
             ];
-            cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
+            cache_file = "/var/lib/${StateDirectory}/public-resolvers.md";
             minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
           };
           # relays = {
@@ -126,8 +129,6 @@ in {
       };
     };
 
-    systemd.services.dnscrypt-proxy2.serviceConfig = {
-      StateDirectory = "dnscrypt-proxy";
-    };
+    systemd.services.dnscrypt-proxy2.serviceConfig.StateDirectory = StateDirectory;
   };
 }
