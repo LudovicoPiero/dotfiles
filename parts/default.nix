@@ -7,20 +7,15 @@
   ];
 
   perSystem = {pkgs, ...}: {
-    formatter = pkgs.alejandra;
+    formatter = pkgs.nixfmt-rfc-style;
 
     devShells.default = pkgs.mkShell {
       name = "UwU Shell";
       buildInputs = with pkgs; [
-        alejandra
+        nixfmt-rfc-style
         nixd
         sops
       ];
     };
-
-    packages.default = throw ''
-      No packages are available in this repository.
-      Perhaps https://github.com/ludovicopiero/nixpackages is what you're looking for?
-    '';
   };
 }
