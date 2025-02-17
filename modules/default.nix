@@ -19,6 +19,7 @@ _: {
     ./keyring
     ./mako
     ./nvim
+    ./pipewire
     ./secrets
     ./shared
     ./spotify

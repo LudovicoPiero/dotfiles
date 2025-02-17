@@ -7,7 +7,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  inherit (lib.generators) toLua;
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -81,16 +83,6 @@
     owner = config.systemd.services.archisteamfarm.serviceConfig.User;
   };
   services = {
-    # Enable sound.
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      wireplumber = {
-        enable = true;
-        extraConfig."wireplumber.profiles".main."monitor.libcamera" = "disabled";
-      };
-    };
-
     # ArchiSteamFarm
     archisteamfarm = {
       enable = true;
