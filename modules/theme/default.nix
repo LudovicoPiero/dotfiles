@@ -104,21 +104,23 @@ in {
           inherit (iconsTheme) name package;
         };
 
-        gtk2.extraConfig = ''
-          gtk-cursor-theme-name="${config.gtk.cursorTheme.name}"
-          gtk-cursor-theme-size=${toString config.gtk.cursorTheme.size}
-          gtk-toolbar-style=GTK_TOOLBAR_BOTH
-          gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
-          gtk-button-images=1
-          gtk-menu-images=1
-          gtk-enable-event-sounds=1
-          gtk-enable-input-feedback-sounds=1
-          gtk-xft-antialias=1
-          gtk-xft-hinting=1
-          gtk-xft-hintstyle="hintfull"
-          gtk-xft-rgba="rgb"
-        '';
-
+        gtk2 = {
+          configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+          extraConfig = ''
+            gtk-cursor-theme-name="${config.gtk.cursorTheme.name}"
+            gtk-cursor-theme-size=${toString config.gtk.cursorTheme.size}
+            gtk-toolbar-style=GTK_TOOLBAR_BOTH
+            gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+            gtk-button-images=1
+            gtk-menu-images=1
+            gtk-enable-event-sounds=1
+            gtk-enable-input-feedback-sounds=1
+            gtk-xft-antialias=1
+            gtk-xft-hinting=1
+            gtk-xft-hintstyle="hintfull"
+            gtk-xft-rgba="rgb"
+          '';
+        };
         gtk3 = {
           bookmarks = [
             "file://${config.home.homeDirectory}/Code"
@@ -159,13 +161,25 @@ in {
         platformTheme.name = "gtk3";
       };
 
-      xdg.dataFile = {
-        "icons/phinger-cursors-light-hyprcursor".source = "${
-          inputs.hyprcursor-phinger.packages.${pkgs.system}.default
-        }/share/icons/theme_phinger-cursors-light";
-        # "icons/phinger-cursors-light-xcursor".source = "${
-        #   pkgs.phinger-cursors
-        # }/share/icons/phinger-cursors-light";
+      xdg = {
+        # Stolen from https://github.com/khaneliman/khanelinix/blob/e0039561cfaa7810325ecd811e672ffa6d96736f/modules/home/theme/gtk/default.nix#L150
+        configFile = let
+          gtk4Dir = "${theme.package}/share/themes/${theme.name}/gtk-4.0";
+        in {
+          "gtk-4.0/assets".source = "${gtk4Dir}/assets";
+          "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
+          "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
+        };
+
+        dataFile = {
+          "icons/phinger-cursors-light-hyprcursor".source = "${
+            inputs.hyprcursor-phinger.packages.${pkgs.system}.default
+          }/share/icons/theme_phinger-cursors-light";
+        };
+
+        systemDirs.data = let
+          schema = pkgs.gsettings-desktop-schemas;
+        in ["${schema}/share/gsettings-schemas/${schema.name}"];
       };
 
       home.file.".icons/default/index.theme".text = ''
