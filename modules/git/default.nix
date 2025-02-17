@@ -3,21 +3,20 @@
   pkgs,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     ;
 
   cfg = config.myOptions.git;
-in {
+in
+{
   options.myOptions.git = {
-    enable =
-      mkEnableOption "Git"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "Git" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {

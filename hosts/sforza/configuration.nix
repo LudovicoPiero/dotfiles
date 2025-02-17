@@ -7,7 +7,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -53,8 +54,8 @@
       ];
     };
 
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
     supportedFilesystems = [
       "btrfs"
       "ntfs"
@@ -87,7 +88,10 @@
 
       settings = {
         Statistics = false;
-        PluginsUpdateList = ["ASFEnhance" "FreePackages"];
+        PluginsUpdateList = [
+          "ASFEnhance"
+          "FreePackages"
+        ];
         PluginsUpdateMode = 0;
       };
 
@@ -137,8 +141,8 @@
         RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
 
         /*
-        auto – enabled (power down idle devices)
-        on – disabled (devices powered on permanently)
+          auto – enabled (power down idle devices)
+          on – disabled (devices powered on permanently)
         */
         RUNTIME_PM_ON_AC = "auto";
         RUNTIME_PM_ON_BAT = "auto";

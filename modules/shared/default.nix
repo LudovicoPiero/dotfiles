@@ -4,7 +4,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   # Nixos Stuff
   imports = [
     inputs.lix-module.nixosModules.default
@@ -59,7 +60,7 @@
   };
 
   nix = {
-    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     settings = {
       # Prevent impurities in builds
@@ -91,12 +92,12 @@
         "root"
         "@wheel"
       ];
-      allowed-users = ["@wheel"];
+      allowed-users = [ "@wheel" ];
 
       substituters = [
         /*
-        The default is https://cache.nixos.org, which has a priority of 40.
-        Lower value means higher priority.
+          The default is https://cache.nixos.org, which has a priority of 40.
+          Lower value means higher priority.
         */
         "https://sforza-config.cachix.org?priority=42"
         "https://nix-community.cachix.org?priority=43"

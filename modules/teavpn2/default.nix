@@ -3,9 +3,9 @@
   pkgs,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -13,7 +13,8 @@
     ;
 
   cfg = config.myOptions.teavpn2;
-in {
+in
+{
   options.myOptions.teavpn2 = {
     enable = mkEnableOption "teavpn2";
 
@@ -24,14 +25,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets.teavpnConfig = {owner = config.systemd.services."teavpn2".serviceConfig.User;};
+    sops.secrets.teavpnConfig = {
+      owner = config.systemd.services."teavpn2".serviceConfig.User;
+    };
 
     systemd.services."teavpn2" = {
       description = "Teavpn2 Service";
 
-      after = ["network.target"];
-      requires = ["network-online.target"];
-      wantedBy = ["multi-user.target"];
+      after = [ "network.target" ];
+      requires = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
 
       script = ''
         ${pkgs.teavpn2}/bin/teavpn2 client -c ${cfg.configPath}

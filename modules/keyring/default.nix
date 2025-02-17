@@ -3,26 +3,25 @@
   pkgs,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     ;
 
   cfg = config.myOptions.keyring;
-in {
+in
+{
   options.myOptions.keyring = {
-    enable =
-      mkEnableOption "keyring"
-      // {
-        default = config.myOptions.vars.withGui;
-      };
+    enable = mkEnableOption "keyring" // {
+      default = config.myOptions.vars.withGui;
+    };
   };
 
   config = mkIf cfg.enable {
     environment = {
-      systemPackages = [pkgs.libsecret];
+      systemPackages = [ pkgs.libsecret ];
       variables.XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.airi.uid}"; # set the runtime directory
     };
     programs.dconf.enable = true;
@@ -40,9 +39,9 @@ in {
     systemd = {
       user.services.pantheon-agent-polkit = {
         description = "pantheon-agent-polkit";
-        wantedBy = ["graphical-session.target"];
-        wants = ["graphical-session.target"];
-        after = ["graphical-session.target"];
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.pantheon.pantheon-agent-polkit}/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit";

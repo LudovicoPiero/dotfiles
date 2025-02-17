@@ -3,21 +3,20 @@
   pkgs,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     ;
 
   cfg = config.myOptions.discord;
-in {
+in
+{
   options.myOptions.discord = {
-    enable =
-      mkEnableOption "discord"
-      // {
-        default = config.myOptions.vars.withGui;
-      };
+    enable = mkEnableOption "discord" // {
+      default = config.myOptions.vars.withGui;
+    };
   };
 
   config = mkIf cfg.enable {

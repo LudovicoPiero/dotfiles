@@ -129,9 +129,9 @@
 // lib.optionalAttrs osConfig.myOptions.dnscrypt2.enable {
   # DOH
   /*
-  2 is enable DOH.
-  3 is no failback to system dns
-  5 is no DOH.
+    2 is enable DOH.
+    3 is no failback to system dns
+    5 is no DOH.
   */
   "network.trr.mode" = 5;
   "network.trr.max-fails" = 5;

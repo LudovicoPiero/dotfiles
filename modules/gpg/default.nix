@@ -3,46 +3,44 @@
   pkgs,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     ;
 
   cfg = config.myOptions.gpg;
   guiCfg = config.myOptions.vars.withGui;
-in {
+in
+{
   options.myOptions.gpg = {
-    enable =
-      mkEnableOption "gpg"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "gpg" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
-    services.dbus.packages = [pkgs.gcr];
+    services.dbus.packages = [ pkgs.gcr ];
 
-    home-manager.users.${config.myOptions.vars.username} = {config, ...}: {
-      programs.gpg = {
-        enable = true;
-        homedir = "${config.xdg.configHome}/gnupg";
-      };
+    home-manager.users.${config.myOptions.vars.username} =
+      { config, ... }:
+      {
+        programs.gpg = {
+          enable = true;
+          homedir = "${config.xdg.configHome}/gnupg";
+        };
 
-      # Fix pass
-      services.gpg-agent = {
-        enable = true;
-        pinentryPackage =
-          if guiCfg
-          then pkgs.pinentry-gnome3
-          else pkgs.pinentry-curses;
-        extraConfig = ''
-          allow-emacs-pinentry
-          allow-loopback-pinentry
-          allow-preset-passphrase
-        '';
+        # Fix pass
+        services.gpg-agent = {
+          enable = true;
+          pinentryPackage = if guiCfg then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
+          extraConfig = ''
+            allow-emacs-pinentry
+            allow-loopback-pinentry
+            allow-preset-passphrase
+          '';
+        };
       };
-    };
   };
 }

@@ -2,9 +2,9 @@
   lib,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     ;
@@ -13,14 +13,18 @@
   StateDirectory = "dnscrypt-proxy";
 
   cfg = config.myOptions.dnscrypt2;
-in {
+in
+{
   options.myOptions.dnscrypt2 = {
     enable = mkEnableOption "dnscrypt2 service";
   };
 
   config = mkIf cfg.enable {
     networking = {
-      nameservers = ["127.0.0.1" "::1"];
+      nameservers = [
+        "127.0.0.1"
+        "::1"
+      ];
       dhcpcd.extraConfig = "nohook resolv.conf"; # If using dhcpcd
       networkmanager.dns = "none"; # If using NetworkManager
     };

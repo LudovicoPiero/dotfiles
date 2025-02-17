@@ -3,9 +3,9 @@
   pkgs,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     mkMerge
@@ -14,13 +14,12 @@
     ;
 
   cfg = config.myOptions.gaming;
-in {
+in
+{
   options.myOptions.gaming = {
-    enable =
-      mkEnableOption "gaming"
-      // {
-        default = config.myOptions.vars.withGui;
-      };
+    enable = mkEnableOption "gaming" // {
+      default = config.myOptions.vars.withGui;
+    };
 
     withGamemode = mkOption {
       type = types.bool;
@@ -35,11 +34,12 @@ in {
 
   # config = mkIf cfg.enable {
   config = mkMerge [
-    (mkIf cfg.withGamemode
-      {
-        programs.gamemode = let
+    (mkIf cfg.withGamemode {
+      programs.gamemode =
+        let
           programs = lib.makeBinPath (
-            with pkgs; [
+            with pkgs;
+            [
               gojq
               systemd
             ]
@@ -60,7 +60,8 @@ in {
             ${lib.getExe' pkgs.mako "makoctl"} mode -r dnd
             ${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'
           '';
-        in {
+        in
+        {
           enable = true;
           enableRenice = true;
           settings = {
@@ -74,22 +75,24 @@ in {
             };
           };
         };
-      })
+    })
 
-    (mkIf cfg.withSteam
-      {
-        hardware.steam-hardware.enable = true;
-        programs.steam = {
-          enable = true;
+    (mkIf cfg.withSteam {
+      hardware.steam-hardware.enable = true;
+      programs.steam = {
+        enable = true;
 
-          extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom];
+        extraCompatPackages = with pkgs; [
+          luxtorpeda
+          proton-ge-custom
+        ];
 
-          # Open ports for Steam Remote Play
-          remotePlay.openFirewall = false;
+        # Open ports for Steam Remote Play
+        remotePlay.openFirewall = false;
 
-          # Open ports for Source Dedicated Server
-          dedicatedServer.openFirewall = false;
-        };
-      })
+        # Open ports for Source Dedicated Server
+        dedicatedServer.openFirewall = false;
+      };
+    })
   ];
 }

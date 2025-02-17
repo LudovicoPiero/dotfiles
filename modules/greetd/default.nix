@@ -2,9 +2,9 @@
   lib,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     mkMerge
@@ -14,13 +14,12 @@
     command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
     user = "${config.myOptions.vars.username}";
   };
-in {
+in
+{
   options.myOptions.greetd = {
-    enable =
-      mkEnableOption "greetd service"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "greetd service" // {
+      default = true;
+    };
   };
 
   config = mkMerge [
