@@ -18,6 +18,7 @@ _: {
     ./hyprlock
     ./keyring
     ./mako
+    ./mpd
     ./nvim
     ./pipewire
     ./secrets
