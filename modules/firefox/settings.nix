@@ -4,6 +4,7 @@
   ...
 }:
 {
+  "extensions.autoDisableScopes" = 0;
   "browser.search.region" = "AU";
   "browser.search.isUS" = false;
   "distribution.searchplugins.defaultLocale" = "en-AU";

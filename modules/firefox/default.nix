@@ -38,13 +38,7 @@ in
                 id = 0;
                 isDefault = true;
                 name = "Ludovico";
-                extensions = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-                  refined-github
-                  sponsorblock
-                  to-deepl
-                  ublock-origin
-                  keepassxc-browser
-                ];
+                extensions = import ./extensions.nix { inherit inputs pkgs; };
                 bookmarks = import ./bookmarks.nix;
                 search = import ./search.nix { inherit pkgs; };
                 settings = import ./settings.nix { inherit lib osConfig; };

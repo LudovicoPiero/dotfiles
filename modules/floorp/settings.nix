@@ -4,6 +4,7 @@
   ...
 }:
 {
+  "extensions.autoDisableScopes" = 0;
   # Floorp settings
   "floorp.tabsleep.enabled" = true;
   "floorp.tabsleep.tabTimeoutMinutes" = 30;
