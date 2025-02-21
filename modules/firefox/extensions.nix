@@ -2,11 +2,11 @@
 {
   force = true;
   packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+    bitwarden
     refined-github
     sponsorblock
     to-deepl
     ublock-origin
-    keepassxc-browser
   ];
   settings = {
     "uBlock0@raymondhill.net".settings = {

@@ -21,7 +21,6 @@ in
       "uwsm app -- ${_ pkgs.mako}"
       "${pkgs.brightnessctl}/bin/brightnessctl set 50%"
       "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
-      "[workspace 8 silent;noanim] uwsm app -- ${_ pkgs.keepassxc}"
     ]
     ++ lib.optionals osConfig.myOptions.waybar.enable [
       "uwsm app -- waybar"

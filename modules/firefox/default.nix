@@ -28,10 +28,6 @@ in
           enable = true;
           package = pkgs.firefox;
 
-          nativeMessagingHosts = [
-            pkgs.keepassxc
-          ];
-
           profiles = {
             ludovico =
               {

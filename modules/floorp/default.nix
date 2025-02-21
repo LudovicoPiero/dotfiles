@@ -27,10 +27,6 @@ in
         programs.floorp = {
           enable = true;
 
-          nativeMessagingHosts = [
-            pkgs.keepassxc
-          ];
-
           profiles = {
             ludovico =
               {

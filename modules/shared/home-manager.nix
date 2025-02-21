@@ -73,7 +73,6 @@
             # Utils for nixpkgs stuff
             nixpkgs-review
             # Fav
-            keepassxc
             imv
             viewnior
             ente-auth
