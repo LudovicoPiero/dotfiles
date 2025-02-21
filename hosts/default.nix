@@ -33,7 +33,6 @@
               teavpn2.enable = false;
               spotify.enable = true;
               fish.enable = true;
-              floorp.enable = false;
               vars = {
                 colorScheme = "everforest-dark-hard";
                 withGui = true; # Enable hyprland & all gui stuff
