@@ -61,11 +61,9 @@ in
         inherit (cfg) colorScheme;
 
         home = {
-          packages = [
-            inputs.hyprcursor-phinger.packages.${pkgs.system}.default
-          ];
           pointerCursor = {
             inherit (config.gtk.cursorTheme) name package size;
+            hyprcursor.enable = true;
             x11.enable = true;
             gtk.enable = true;
           };
@@ -174,32 +172,12 @@ in
               "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
             };
 
-          dataFile = {
-            "icons/phinger-cursors-light-hyprcursor".source = "${
-              inputs.hyprcursor-phinger.packages.${pkgs.system}.default
-            }/share/icons/theme_phinger-cursors-light";
-          };
-
           systemDirs.data =
             let
               schema = pkgs.gsettings-desktop-schemas;
             in
             [ "${schema}/share/gsettings-schemas/${schema.name}" ];
         };
-
-        home.file.".icons/default/index.theme".text = ''
-          [icon theme]
-          Name=Default
-          Comment=Default Cursor Theme
-          Inherits=${config.gtk.cursorTheme.name}
-
-          [X-GNOME-Metatheme]
-          GtkTheme=${theme.name}
-          MetacityTheme=${theme.name}
-          IconTheme=${iconsTheme.name}
-          CursorTheme=${config.gtk.cursorTheme.name}
-          ButtonLayout=close,minimize,maximize:menu
-        '';
 
         dconf.settings = {
           "org/gnome/desktop/interface" = {

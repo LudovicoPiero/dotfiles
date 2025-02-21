@@ -55,8 +55,14 @@ in
         services.hyprpaper = {
           enable = true;
           settings = {
-            preload = [ "${self}/assets/anime-nix-wallpaper.png" ];
-            wallpaper = [ ", ${self}/assets/anime-nix-wallpaper.png" ];
+            preload = [
+              "${self}/assets/anime-nix-wallpaper.png"
+              "${self}/assets/Minato-Aqua-Dark.png"
+            ];
+            wallpaper = [
+              ", ${self}/assets/anime-nix-wallpaper.png"
+              "HDMI-A-1, ${self}/assets/Minato-Aqua-Dark.png"
+            ];
           };
         };
         systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
