@@ -95,7 +95,11 @@
       definedAliases = [ "yt" ];
     };
 
+    "Amazon.com".metaData.hidden = true;
     "Bing".metaData.hidden = true;
+    "eBay".metaData.hidden = true;
+    "Google".metaData.hidden = true;
     "Google".metaData.alias = "g";
+    "Wikipedia (en)".metaData.hidden = true;
   };
 }
