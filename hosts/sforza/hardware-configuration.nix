@@ -57,10 +57,10 @@
 
     "/home/airi/Media" = {
       device = "/dev/disk/by-label/Media";
-      fsType = "xfs";
+      fsType = "btrfs";
       options = [
-        "defaults"
         "noatime"
+        "compress=zstd"
       ];
     };
   };
