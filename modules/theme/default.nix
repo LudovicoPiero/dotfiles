@@ -19,18 +19,6 @@ let
     size = 11;
   };
 
-  theme = {
-    name = "WhiteSur-Dark";
-    package = inputs.ludovico-nixpkgs.packages.${pkgs.system}.whitesur-gtk-theme;
-  };
-
-  iconsTheme = {
-    name = "WhiteSur-dark";
-    package = pkgs.whitesur-icon-theme.overrideAttrs {
-      dontCheckForBrokenSymlinks = true;
-    };
-  };
-
   mkService = lib.recursiveUpdate {
     Unit.After = [ "multi-user.target" ];
     Install.WantedBy = [ "graphical.target" ];
@@ -61,6 +49,7 @@ in
         inherit (cfg) colorScheme;
 
         home = {
+          packages = [ pkgs.gnomeExtensions.user-themes ];
           pointerCursor = {
             inherit (config.gtk.cursorTheme) name package size;
             hyprcursor.enable = true;
@@ -95,13 +84,33 @@ in
             inherit (font) name size;
           };
 
-          theme = {
-            inherit (theme) name package;
-          };
+          theme =
+            let
+              #TODO: Modularize this, too lazy now 😪
+              variant = "mocha";
+              accent = "mauve";
+              size = "standard";
+            in
+            {
+              name = "catppuccin-${variant}-${accent}-${size}";
+              package = pkgs.catppuccin-gtk.override {
+                inherit variant size;
+                accents = [ accent ];
+              };
+            };
 
-          iconTheme = {
-            inherit (iconsTheme) name package;
-          };
+          iconTheme =
+            let
+              accent = "mauve";
+              variant = "mocha";
+            in
+            {
+              name = "Papirus-Dark";
+              package = pkgs.catppuccin-papirus-folders.override {
+                inherit accent;
+                flavor = variant;
+              };
+            };
 
           gtk2 = {
             configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -164,7 +173,7 @@ in
           # Stolen from https://github.com/khaneliman/khanelinix/blob/e0039561cfaa7810325ecd811e672ffa6d96736f/modules/home/theme/gtk/default.nix#L150
           configFile =
             let
-              gtk4Dir = "${theme.package}/share/themes/${theme.name}/gtk-4.0";
+              gtk4Dir = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0";
             in
             {
               "gtk-4.0/assets".source = "${gtk4Dir}/assets";
@@ -185,8 +194,8 @@ in
             color-scheme = "prefer-dark";
             cursor-theme = config.gtk.cursorTheme.name;
             cursor-size = config.gtk.cursorTheme.size;
-            gtk-theme = theme.name;
-            icon-theme = iconsTheme.name;
+            gtk-theme = config.gtk.theme.name;
+            icon-theme = config.gtk.iconTheme.name;
             font-name = "${font.name} ${toString font.size}";
             clock-format = "12h";
             clock-show-date = true;
@@ -199,6 +208,13 @@ in
             scaling-factor = 1;
             text-scaling-factor = 1.0;
             toolbar-style = "text";
+          };
+          "org/gnome/shell" = {
+            disable-user-extensions = false;
+            enabled-extensions = [ "user-theme@gnome-shell-extensions.gcampax.github.com" ];
+          };
+          "org/gnome/shell/extensions/user-theme" = {
+            inherit (config.gtk.theme) name;
           };
           "org/gnome/desktop/background" = {
             color-shading-type = "solid";
