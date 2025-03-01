@@ -10,3 +10,7 @@
   ![Hyprchan](Hypr.png "Hyprchan")
 - Rikka: -
   ![Rikka](Rikka.png "Rikka")
+- Lain Red: https://www.reddit.com/r/Lain/comments/ylytj5/serial_experiments_lain_wallpaper_2560_1440/
+  ![Lain Red](Lain_Red.png "Lain Red")
+- Lain Dark: https://wall.alphacoders.com/big.php?i=848404
+  ![Lain Dark](Lain_Dark.jpg "Lain Dark")
