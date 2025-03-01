@@ -41,7 +41,7 @@ in
               hide_cursor = false;
             };
 
-            background.path = "${self}/assets/Minato-Aqua-Dark.png";
+            background.path = "${self}/assets/Lain_Red.png";
 
             input-field = [
               {

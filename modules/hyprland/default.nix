@@ -56,11 +56,11 @@ in
           enable = true;
           settings = {
             preload = [
-              "${self}/assets/anime-nix-wallpaper.png"
+              "${self}/assets/Lain_Red.png"
               "${self}/assets/Minato-Aqua-Dark.png"
             ];
             wallpaper = [
-              ", ${self}/assets/anime-nix-wallpaper.png"
+              ", ${self}/assets/Lain_Red.png"
               "HDMI-A-1, ${self}/assets/Minato-Aqua-Dark.png"
             ];
           };

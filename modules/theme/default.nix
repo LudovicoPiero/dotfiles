@@ -219,7 +219,7 @@ in
           "org/gnome/desktop/background" = {
             color-shading-type = "solid";
             picture-options = "zoom";
-            picture-uri = "${self}/assets/anime-nix-wallpaper.png";
+            picture-uri = "${self}/assets/Lain_Red.png";
             picture-uri-dark = "${self}/assets/anime-nix-wallpaper.png";
             primary-color = "#000000000000";
             secondary-color = "#000000000000";
