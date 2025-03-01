@@ -88,11 +88,7 @@
 
       settings = {
         Statistics = false;
-        PluginsUpdateList = [
-          "ASFEnhance"
-          "FreePackages"
-        ];
-        PluginsUpdateMode = 0;
+        PluginsUpdateMode = 1;
       };
 
       ipcPasswordFile = config.sops.secrets."asfIpcPassword".path;
