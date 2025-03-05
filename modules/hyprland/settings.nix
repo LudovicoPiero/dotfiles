@@ -19,7 +19,7 @@ in
       "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
       "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       "uwsm app -- ${_ pkgs.mako}"
-      "${pkgs.brightnessctl}/bin/brightnessctl set 20%"
+      "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
       "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
     ]
     ++ lib.optionals osConfig.myOptions.waybar.enable [
