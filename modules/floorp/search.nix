@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
-  default = "Brave";
+  default = "DuckDuckGo";
   order = [
-    "Brave"
-    "Google"
     "DuckDuckGo"
+    "Brave"
     "Searx"
+    "Google"
   ];
   force = true;
   engines = {
