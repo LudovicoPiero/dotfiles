@@ -34,6 +34,8 @@
           "ublock-annoyances"
           "IDN-0"
         ];
+        "user-filters" =
+          "shopee.co.id##li.col-xs-2-4.shopee-search-item-result__item:has(div:contains(Ad))\nshopee.co.id##.oMSmr0:has(div:contains(Ad))";
       };
     };
   };
