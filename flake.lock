@@ -981,11 +981,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1741505319,
-        "narHash": "sha256-IIkJfCPRyW7ypIiIdtUDqySCsiBUXySFkaR+NUwQVFk=",
+        "lastModified": 1741570228,
+        "narHash": "sha256-Btoy2P4JABYhOZiIFvkKYAbWqs9iA7Nmlj1jtl31ufM=",
         "owner": "LudovicoPiero",
         "repo": "nixpackages",
-        "rev": "6cd40ba12fa525292dece9edc3a3e0d4a5fa4cab",
+        "rev": "0dca079b4f0b1b10fa3b3b9de1eac5e9022ee3aa",
         "type": "github"
       },
       "original": {
