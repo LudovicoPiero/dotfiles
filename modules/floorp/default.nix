@@ -49,6 +49,7 @@ in
                 in
                 {
                   extraConfig = ''
+                    ${builtins.readFile "${betterfox}/user.js"}
                     ${builtins.readFile "${betterfox}/Fastfox.js"}
                     ${builtins.readFile "${betterfox}/Peskyfox.js"}
                     ${builtins.readFile "${betterfox}/Securefox.js"}
