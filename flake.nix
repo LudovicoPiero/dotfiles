@@ -41,6 +41,7 @@
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
   };
 
   outputs =

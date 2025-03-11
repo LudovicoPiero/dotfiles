@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 let
@@ -34,6 +35,12 @@ in
 
   # config = mkIf cfg.enable {
   config = mkMerge [
+    {
+      environment.systemPackages = [
+        inputs.minecraft.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
+    }
+
     (mkIf cfg.withGamemode {
       programs.gamemode =
         let
