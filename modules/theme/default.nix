@@ -14,11 +14,6 @@ let
     types
     ;
 
-  font = {
-    name = "SF Pro Rounded";
-    size = 11;
-  };
-
   mkService = lib.recursiveUpdate {
     Unit.After = [ "multi-user.target" ];
     Install.WantedBy = [ "graphical.target" ];
@@ -36,6 +31,68 @@ in
       type = types.anything;
       default = inputs.nix-colors.colorSchemes.${config.myOptions.vars.colorScheme};
     };
+
+    gtk =
+      let
+        variant = "mocha";
+        accent = "mauve";
+        size = "standard";
+      in
+      {
+        cursorTheme = {
+          name = mkOption {
+            type = types.str;
+            default = "phinger-cursors-light";
+          };
+          size = mkOption {
+            type = types.int;
+            default = 24;
+          };
+          package = mkOption {
+            type = types.package;
+            default = pkgs.phinger-cursors;
+          };
+        };
+
+        theme = {
+          name = mkOption {
+            type = types.str;
+            default = "catppuccin-${variant}-${accent}-${size}";
+          };
+          package = mkOption {
+            type = types.package;
+            default = pkgs.catppuccin-gtk.override {
+              inherit variant size;
+              accents = [ accent ];
+            };
+          };
+        };
+
+        iconTheme = {
+          name = mkOption {
+            type = types.str;
+            default = "Papirus-Dark";
+          };
+          package = mkOption {
+            type = types.package;
+            default = pkgs.catppuccin-papirus-folders.override {
+              inherit accent;
+              flavor = variant;
+            };
+          };
+        };
+      };
+
+    font = {
+      name = mkOption {
+        type = types.str;
+        default = "SF Pro Rounded";
+      };
+      size = mkOption {
+        type = types.int;
+        default = 11;
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -49,9 +106,12 @@ in
         inherit (cfg) colorScheme;
 
         home = {
-          packages = [ pkgs.gnomeExtensions.user-themes ];
+          packages = [
+            cfg.gtk.cursorTheme.package
+            pkgs.gnomeExtensions.user-themes
+          ];
           pointerCursor = {
-            inherit (config.gtk.cursorTheme) name package size;
+            inherit (cfg.gtk.cursorTheme) name package size;
             hyprcursor.enable = true;
             x11.enable = true;
             gtk.enable = true;
@@ -73,44 +133,12 @@ in
 
         gtk = {
           enable = true;
-
-          cursorTheme = {
-            package = pkgs.phinger-cursors;
-            name = "phinger-cursors-light";
-            size = 24;
-          };
-
-          font = {
-            inherit (font) name size;
-          };
-
-          theme =
-            let
-              #TODO: Modularize this, too lazy now 😪
-              variant = "mocha";
-              accent = "mauve";
-              size = "standard";
-            in
-            {
-              name = "catppuccin-${variant}-${accent}-${size}";
-              package = pkgs.catppuccin-gtk.override {
-                inherit variant size;
-                accents = [ accent ];
-              };
-            };
-
-          iconTheme =
-            let
-              accent = "mauve";
-              variant = "mocha";
-            in
-            {
-              name = "Papirus-Dark";
-              package = pkgs.catppuccin-papirus-folders.override {
-                inherit accent;
-                flavor = variant;
-              };
-            };
+          inherit (cfg) font;
+          inherit (cfg.gtk)
+            cursorTheme
+            theme
+            iconTheme
+            ;
 
           gtk2 = {
             configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -129,6 +157,7 @@ in
               gtk-xft-rgba="rgb"
             '';
           };
+
           gtk3 = {
             bookmarks = [
               "file://${config.home.homeDirectory}/Code"
@@ -196,7 +225,7 @@ in
             cursor-size = config.gtk.cursorTheme.size;
             gtk-theme = config.gtk.theme.name;
             icon-theme = config.gtk.iconTheme.name;
-            font-name = "${font.name} ${toString font.size}";
+            font-name = "${cfg.font.name} ${toString cfg.font.size}";
             clock-format = "12h";
             clock-show-date = true;
             clock-show-seconds = false;
