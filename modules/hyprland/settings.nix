@@ -205,8 +205,9 @@ in
     "nofocus, title:(^notificationtoasts.*)"
     "nofocus, class:^(steam)$, title:^()$"
 
-    # Spotify rules
+    # Music Player rules
     "workspace 5, title:(Spotify)"
+    "workspace 5, class:(org.fooyin.fooyin)"
 
     # Telegram rules
     "workspace 4, class:^(org.telegram.desktop)$"
