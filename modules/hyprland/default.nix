@@ -60,8 +60,8 @@ in
               "${self}/assets/Minato-Aqua-Dark.png"
             ];
             wallpaper = [
-              ", ${self}/assets/Lain_Red.png"
-              "HDMI-A-1, ${self}/assets/Minato-Aqua-Dark.png"
+              ", ${self}/assets/Minato-Aqua-Dark.png"
+              "HDMI-A-1, ${self}/assets/Lain_Red.png"
             ];
           };
         };

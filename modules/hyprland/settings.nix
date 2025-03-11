@@ -41,8 +41,8 @@ in
   ];
 
   monitor = [
-    ",highrr,auto,1"
-    "HDMI-A-1, highrr, auto, 1.5"
+    "eDP-1, 1366x768@60, 1366x0 ,1"
+    "HDMI-A-1, 1920x1080@180, 0x0, 1.5"
   ];
 
   animations = {
