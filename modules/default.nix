@@ -26,6 +26,7 @@ _: {
     ./spotify
     ./teavpn2
     ./theme
+    ./tlp
     ./vars
     ./waybar
     ./wezterm

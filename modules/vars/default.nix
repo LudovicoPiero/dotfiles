@@ -48,5 +48,10 @@ in
       type = types.bool;
       default = false;
     };
+
+    isALaptop = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 }
