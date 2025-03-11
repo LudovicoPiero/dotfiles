@@ -36,6 +36,7 @@
               vars = {
                 colorScheme = "everforest-dark-hard";
                 withGui = true; # Enable hyprland & all gui stuff
+                isALaptop = true; # Enable TLP
                 email = "lewdovico@gnuweeb.org";
               };
             };
