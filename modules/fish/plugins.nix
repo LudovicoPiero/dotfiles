@@ -1,10 +1,6 @@
 { pkgs, ... }:
 [
   {
-    name = "pure";
-    inherit (pkgs.fishPlugins.pure) src;
-  }
-  {
     name = "fzf.fish";
     src = pkgs.fetchFromGitHub {
       owner = "PatrickF1";
