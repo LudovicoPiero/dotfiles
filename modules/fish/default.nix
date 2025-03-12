@@ -80,9 +80,10 @@ in
             interactiveShellInit = ''
               set --global async_prompt_functions _pure_prompt_git
               set --universal pure_check_for_new_release false
+              set --universal pure_enable_nixdevshell true
               set pure_symbol_prompt "❯"
 
-              ${_ pkgs.any-nix-shell} fish --info-right | source
+              ${_ pkgs.nix-your-shell} fish | source
             '';
           };
 
