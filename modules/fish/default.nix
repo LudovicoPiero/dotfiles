@@ -74,7 +74,7 @@ in
                 osConfig
                 ;
             };
-            shellAliases = import ./shellAliases.nix { inherit pkgs lib; };
+            shellAliases = import ./shellAliases.nix { inherit config pkgs lib; };
             plugins = import ./plugins.nix { inherit pkgs lib; };
 
             interactiveShellInit = ''
