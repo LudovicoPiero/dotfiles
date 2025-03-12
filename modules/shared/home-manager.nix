@@ -7,6 +7,8 @@
 {
   # Home-Manager Stuff
   home-manager.backupFileExtension = "hm.bak";
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
   home-manager.users.${config.myOptions.vars.username} =
     {
       config,
