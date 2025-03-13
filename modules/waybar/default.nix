@@ -147,7 +147,7 @@ in
                 "format-ethernet" = "󰈀 IP Leaked: {ipaddr}/{cidr}";
                 "format-linked" = "{ifname} (No IP)";
                 "format-disconnected" = "Disconnected ⚠";
-                "format-alt" = "{ifname}: {ipaddr}/{cidr}";
+                "format-alt" = "IP LEAK: {ipaddr}/{cidr}";
                 "interval" = 5;
               };
               "custom/wireguard" = {
