@@ -34,7 +34,7 @@
               spotify.enable = true;
               fish.enable = true;
               vars = {
-                colorScheme = "everforest-dark-hard";
+                colorScheme = "catppuccin-mocha";
                 withGui = true; # Enable hyprland & all gui stuff
                 isALaptop = true; # Enable TLP
                 email = "lewdovico@gnuweeb.org";
