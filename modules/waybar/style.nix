@@ -62,24 +62,56 @@ in
   #tray > .active {
   }
 
-  #custom-wireguard {
-    color: #${palette.base09};
-  }
-
-  #custom-teavpn {
-    color: #${palette.base09};
-  }
-
   #custom-disk_root {
-    color: #${palette.base06};
+      color: #${palette.base09};
   }
 
   #custom-disk_home {
-    color: #${palette.base07};
+      color: #${palette.base0A};
   }
 
   #privacy {
-    color: #${palette.base0D};
+      color: #${palette.base0B};
+  }
+
+  #network {
+      color: #${palette.base0C};
+      border-radius: 0px 0px 0px 0px;
+  }
+
+  #custom-wireguard {
+      color: #${palette.base0C};
+  }
+
+  #custom-teavpn {
+      color: #${palette.base0C};
+  }
+
+  #pulseaudio {
+      color: #${palette.base0D};
+  }
+
+  #battery {
+      color: #${palette.base0E};
+  }
+
+  #battery.charging {
+      color: #${palette.base0B};
+  }
+
+  #battery.warning:not(.charging) {
+      background-color: #${palette.base00};
+      color: #${palette.base08};
+      border-radius: 0px 0px 0px 0px;
+  }
+
+  #custom-date {
+      color: #${palette.base0F};
+  }
+
+  #clock {
+      color: #${palette.base0F};
+      margin-right: 2px;
   }
 
   #tray,
@@ -96,37 +128,5 @@ in
     background-color: #${palette.base00};
     padding: 0px 5px;
     margin: 2px;
-  }
-
-  #custom-date {
-    color: #${palette.base0A};
-  }
-
-  #clock {
-    color: #${palette.base0B};
-    margin-right: 2px;
-  }
-
-  #battery {
-    color: #${palette.base0E};
-  }
-
-  #battery.charging {
-    color: #${palette.base0B};
-  }
-
-  #battery.warning:not(.charging) {
-    background-color: #${palette.base00};
-    color: #${palette.base08};
-    border-radius: 0px 0px 0px 0px;
-  }
-
-  #network {
-    color: #${palette.base0C};
-    border-radius: 0px 0px 0px 0px;
-  }
-
-  #pulseaudio {
-    color: #${palette.base08};
   }
 ''
