@@ -1,8 +1,4 @@
-{
-  config,
-  osConfig,
-  ...
-}:
+{ config, osConfig, ... }:
 let
   inherit (config.colorScheme) palette;
 in
@@ -10,131 +6,127 @@ in
   * {
     border: none;
     border-radius: 0;
-    font-family: "${osConfig.myOptions.vars.mainFont}", "Material Design Icons", monospace;
-    font-size: 11px;
+    font-family:
+      "${osConfig.myOptions.vars.mainFont}",
+      "Material Design Icons",
+      monospace;
+    font-size: 14px;
     min-height: 0;
-    margin: 0px;
   }
 
   window#waybar {
-    /*background: #000000;*/
     background-color: #${palette.base00};
-    color: #${palette.base05};
-  }
-
-  #window {
-    color: #${palette.base04};
-    font-weight: bold;
   }
 
   #workspaces {
-    padding: 0px;
-    margin: 0px;
+    margin: 2px;
+    margin-left: 2px;
+    border-radius: 0px;
   }
 
   #workspaces button {
-    padding: 0 2px;
-    margin: 0px;
-    color: #${palette.base09};
-    border: 1px solid #${palette.base01};
-    background: transparent;
-    font-weight: bold;
+    color: #${palette.base05};
+    padding: 0px 5px;
+    background-color: #${palette.base00};
+    border-radius: 0px;
   }
-  #workspaces button:hover {
-    box-shadow: inherit;
-    text-shadow: inherit;
+
+  #workspaces button.empty {
+    color: #${palette.base04};
+    background-color: #${palette.base00};
+  }
+
+  #workspaces button.visible {
+    color: #${palette.base04};
   }
 
   #workspaces button.active {
-    background: #${palette.base08};
     color: #${palette.base00};
+    background-color: #${palette.base07};
   }
 
-  #workspaces button.urgent {
-    background: #${palette.base08};
+  #workspaces button:hover {
     color: #${palette.base00};
-  }
-
-  #clock,
-  #battery,
-  #cpu,
-  #memory,
-  #network,
-  #idle_inhibitor,
-  #tray,
-  #date,
-  #mode
-  #pulseaudio,
-  #custom-spotify,
-  #custom-wireguard,
-  #custom-teavpn,
-  #custom-disk_home,
-  #custom-disk_root {
-    padding: 0 3px;
-    margin: 0 2px;
-  }
-
-  #clock {
-  }
-
-  #battery {
-  }
-
-  #battery icon {
-    color: red;
-  }
-
-  #battery.charging {
-  }
-
-  @keyframes blink {
-    to {
-      background-color: #df3320;
-    }
-  }
-
-  #battery.warning:not(.charging) {
-    background-color: #${palette.base09};
-    color: #${palette.base00};
-  }
-  #battery.critical:not(.charging) {
-    color: #${palette.base05};
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-
-  #cpu {
-  }
-
-  #memory {
-  }
-
-  #network {
-  }
-
-  #network.disconnected {
-    background: #f53c3c;
-  }
-
-  #pulseaudio {
-  }
-
-  #pulseaudio.muted {
-  }
-
-  #custom-spotify {
-    color: rgb(102, 220, 105);
-  }
-
-
-  #custom-separator {
-    color: #${palette.base03};
-    margin: 0 2px;
+    background-color: #${palette.base0E};
   }
 
   #tray {
+    border-radius: 0px;
+  }
+  #tray > .passive {
+      -gtk-icon-effect: dim;
+  }
+  #tray > .needs-attention {
+      -gtk-icon-effect: highlight;
+  }
+  #tray > .active {
+  }
+
+  #custom-wireguard {
+    color: #${palette.base09};
+  }
+
+  #custom-teavpn {
+    color: #${palette.base09};
+  }
+
+  #custom-disk_root {
+    color: #${palette.base06};
+  }
+
+  #custom-disk_home {
+    color: #${palette.base07};
+  }
+
+  #privacy {
+    color: #${palette.base0D};
+  }
+
+  #tray,
+  #custom-disk_root,
+  #custom-disk_home,
+  #custom-date,
+  #custom-wireguard,
+  #custom-teavpn,
+  #clock,
+  #battery,
+  #pulseaudio,
+  #privacy,
+  #network {
+    background-color: #${palette.base00};
+    padding: 0px 5px;
+    margin: 2px;
+  }
+
+  #custom-date {
+    color: #${palette.base0A};
+  }
+
+  #clock {
+    color: #${palette.base0B};
+    margin-right: 2px;
+  }
+
+  #battery {
+    color: #${palette.base0E};
+  }
+
+  #battery.charging {
+    color: #${palette.base0B};
+  }
+
+  #battery.warning:not(.charging) {
+    background-color: #${palette.base00};
+    color: #${palette.base08};
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  #network {
+    color: #${palette.base0C};
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  #pulseaudio {
+    color: #${palette.base08};
   }
 ''

@@ -34,60 +34,81 @@ in
         ...
       }:
       {
-        home.packages = with pkgs; [ alsa-utils ];
-
         programs.waybar = {
           enable = true;
-          style = import ./style.nix { inherit osConfig config; };
 
-          # package = pkgs.waybar;
+          style = import ./style.nix { inherit osConfig config; };
           package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
 
           settings = {
-            # Thanks to https://gist.github.com/genofire/07234e810fcd16f9077710d4303f9a9e
             mainBar = {
-              "layer" = "top"; # Waybar at top layer
-              "position" = "bottom"; # Waybar position (top|bottom|left|right)
-              "height" = 18; # Waybar height (to be removed for auto height)
-
-              # Choose the order of the modules
-              "modules-left" = [
+              position = "bottom";
+              height = 25;
+              modules-left = [
                 "hyprland/workspaces"
-                "custom/separator"
-                "custom/wireguard"
-                "custom/teavpn"
-              ];
-              "modules-right" = [
-                "custom/disk_home"
-                "custom/separator"
-                "custom/disk_root"
-                "custom/separator"
-                # "cpu"
-                # "custom/separator"
-                # "memory"
-                # "custom/separator"
-                "network"
-                "custom/separator"
-                "pulseaudio"
-                "custom/separator"
-                "clock"
-                "custom/separator"
-                "custom/date"
-                "custom/separator"
-                "battery"
-                "custom/separator"
-                "idle_inhibitor"
-                "custom/separator"
                 "tray"
               ];
+              modules-right = [
+                "custom/disk_root"
+                "custom/disk_home"
+                "privacy"
+                "network"
+                "custom/wireguard"
+                "custom/teavpn"
+                "pulseaudio"
+                "battery"
+                "custom/date"
+                "clock"
+              ];
+              privacy = {
+                icon-spacing = 4;
+                icon-size = 18;
+                transition-duration = 250;
+                modules = [
+                  {
+                    type = "screenshare";
+                    tooltip = true;
+                    tooltip-icon-size = 24;
+                  }
+                  {
+                    type = "audio-out";
+                    tooltip = true;
+                    tooltip-icon-size = 24;
+                  }
+                  {
+                    type = "audio-in";
+                    tooltip = true;
+                    tooltip-icon-size = 24;
+                  }
+                ];
+              };
+              "pulseaudio" = {
+                "on-click" = "${_ pkgs.ponymix} -N -t sink toggle";
+                "on-click-right" = "${_ pkgs.ponymix} -N -t source toggle";
 
-              # Modules configuration
-
+                "format" = "{icon} {volume}% {format_source}";
+                "format-muted" = "󰖁 {format_source}";
+                "format-bluetooth" = "{icon}󰂯 {volume}% {format_source}";
+                "format-bluetooth-muted" = "󰖁󰂯 {format_source}";
+                "format-source" = "󰍬 {volume}%";
+                "format-source-muted" = "󰍭";
+                "format-icons" = {
+                  "headphones" = "󰋋";
+                  "handsfree" = "󱡏";
+                  "headset" = "󰋋";
+                  "phone" = "";
+                  "portable" = "";
+                  "car" = "";
+                  "default" = [
+                    "󰕿"
+                    "󰖀"
+                    "󰕾"
+                  ];
+                };
+              };
               "hyprland/workspaces" = {
-                "active-only" = false;
                 "all-outputs" = true;
                 "format" = "{icon}";
-                "show-special" = false;
                 "on-click" = "activate";
                 "on-scroll-up" = "hyprctl dispatch workspace e-1";
                 "on-scroll-down" = "hyprctl dispatch workspace e+1";
@@ -97,6 +118,11 @@ in
                   "3" = [ ];
                   "4" = [ ];
                   "5" = [ ];
+                  "6" = [ ];
+                  "7" = [ ];
+                  "8" = [ ];
+                  "9" = [ ];
+                  "10" = [ ];
                 };
                 "format-icons" = {
                   "1" = "1";
@@ -113,49 +139,9 @@ in
                   "special" = "󰦥";
                 };
               };
-
-              "custom/wireguard" = {
-                "format" = "󰖂 Wireguard";
-                "exec" = "echo '{\"class\": \"connected\"}'";
-                "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
-                "return-type" = "json";
-                "interval" = 5;
+              "tray" = {
+                spacing = 5;
               };
-
-              "custom/teavpn" = {
-                "format" = "󰖂 Teavpn";
-                "exec" = "echo '{\"class\": \"connected\"}'";
-                "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
-                "return-type" = "json";
-                "interval" = 5;
-              };
-
-              "custom/separator" = {
-                "format" = "|";
-                "tooltip" = false;
-              };
-
-              "custom/disk_home" = {
-                "format" = "󰋊 Porn Folder: {}";
-                "interval" = 30;
-                "exec" = "df -h --output=avail /dev/disk/by-label/HOME | tail -1 | tr -d ' '";
-              };
-
-              "custom/disk_root" = {
-                "format" = "󰋊 Hentai Folder: {}";
-                "interval" = 30;
-                "exec" = "df -h --output=avail / | tail -1 | tr -d ' '";
-              };
-
-              "cpu" = {
-                "format" = "󰻠 {usage}%";
-                "tooltip" = false;
-              };
-
-              "memory" = {
-                "format" = "󰍛 {used:0.1f}G";
-              };
-
               "network" = {
                 "format-wifi" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
                 "format-ethernet" = "󰈀 IP Leaked: {ipaddr}/{cidr}";
@@ -164,55 +150,41 @@ in
                 "format-alt" = "{ifname}: {ipaddr}/{cidr}";
                 "interval" = 5;
               };
-
-              "pulseaudio" = {
-                "format" = "{icon} {volume}% {format_source}";
-                "format-muted" = "󰖁 {format_source}";
-                "format-bluetooth" = "{icon}󰂯 {volume}% {format_source}";
-                "format-bluetooth-muted" = "󰖁󰂯 {format_source}";
-
-                "format-source" = "󰍬 {volume}%";
-                "format-source-muted" = "󰍭";
-
-                "format-icons" = {
-                  "headphones" = "󰋋";
-                  "handsfree" = "󱡏";
-                  "headset" = "󰋋";
-                  "phone" = "";
-                  "portable" = "";
-                  "car" = "";
-                  "default" = [
-                    "󰕿"
-                    "󰖀"
-                    "󰕾"
-                  ];
-                };
-                "on-click" = "${_ pkgs.ponymix} -N -t sink toggle";
-                "on-click-right" = "${_ pkgs.ponymix} -N -t source toggle";
+              "custom/wireguard" = {
+                "format" = "󰖂 Wireguard";
+                "exec" = "echo '{\"class\": \"connected\"}'";
+                "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+                "return-type" = "json";
+                "interval" = 5;
               };
-
-              "clock" = {
-                "interval" = 1;
-                "format" = "󰅐 {:%I:%M %p}";
-                "tooltip-format" = "{:%Y-%m-%d | %H:%M:%S}";
+              "custom/teavpn" = {
+                "format" = "󰖂 Teavpn";
+                "exec" = "echo '{\"class\": \"connected\"}'";
+                "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
+                "return-type" = "json";
+                "interval" = 5;
               };
-
-              "custom/date" = {
-                format = "󰸗 {}";
-                interval = 3600;
-                exec = "${lib.getExe waybar-date}";
+              "custom/disk_home" = {
+                "format" = "󰋊 Porn Folder: {}";
+                "interval" = 30;
+                "exec" = "df -h --output=avail /dev/disk/by-label/HOME | tail -1 | tr -d ' '";
               };
-
+              "custom/disk_root" = {
+                "format" = "󰋊 Hentai Folder: {}";
+                "interval" = 30;
+                "exec" = "df -h --output=avail / | tail -1 | tr -d ' '";
+              };
               "battery" = {
-                "states" = {
-                  # "good"= 95;
+                bat = "BAT1";
+                interval = 60;
+                format = "{icon}{capacity}%";
+                format-charging = "󰂄{capacity}%";
+                states = {
+                  "good" = 95;
                   "warning" = 20;
                   "critical" = 10;
                 };
-                "format" = "{icon} {capacity}%";
-                "format-charging" = "{icon}  {power} W";
-                "tooltip-format" = "{timeTo}, {capacity}%\n {power} W";
-                "format-icons" = [
+                format-icons = [
                   "󰁺"
                   "󰁻"
                   "󰁼"
@@ -225,23 +197,37 @@ in
                   "󰁹"
                 ];
               };
-
-              "idle_inhibitor" = {
-                "format" = "<span color='#589df6'>{icon}</span>";
-                "format-icons" = {
-                  "activated" = "󰈈";
-                  "deactivated" = "󰈉";
-                };
-                "on-click-right" = "hyprlock";
+              "custom/date" = {
+                "format" = "󰃭 {}";
+                "interval" = 3600;
+                "exec" = "${_ waybar-date}";
               };
-
-              "tray" = {
-                # "icon-size"= 21;
-                "spacing" = 10;
+              "clock" = {
+                "format" = "󰅐 {:%I:%M %p}";
+                "format-alt" = "{:%A; %B %d, %Y (%R)} 󰃭 ";
+                "tooltip-format" = "<tt><small>{calendar}</small></tt>";
+                "calendar" = {
+                  "mode" = "year";
+                  "mode-mon-col" = 3;
+                  "weeks-pos" = "right";
+                  "on-scroll" = 1;
+                  "format" = {
+                    "months" = "<span color='#ffead3'><b>{}</b></span>";
+                    "days" = "<span color='#ecc6d9'><b>{}</b></span>";
+                    "weeks" = "<span color='#99ffdd'><b>W{}</b></span>";
+                    "weekdays" = "<span color='#ffcc66'><b>{}</b></span>";
+                    "today" = "<span color='#ff6699'><b><u>{}</u></b></span>";
+                  };
+                };
+                "actions" = {
+                  "on-click-right" = "mode";
+                  "on-scroll-up" = "shift_up";
+                  "on-scroll-down" = "shift_down";
+                };
               };
             };
           };
         };
-      }; # For Home-Manager options
+      };
   };
 }
