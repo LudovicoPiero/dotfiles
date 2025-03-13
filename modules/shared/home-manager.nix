@@ -76,7 +76,6 @@
             ente-auth
             thunderbird
             telegram-desktop
-            vscodium
             mpv
             ;
 

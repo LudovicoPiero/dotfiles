@@ -28,6 +28,7 @@ _: {
     ./theme
     ./tlp
     ./vars
+    ./vscode
     ./waybar
     ./wezterm
     ./xdg-portal
