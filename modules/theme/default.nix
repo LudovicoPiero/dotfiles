@@ -35,7 +35,7 @@ in
     gtk =
       let
         variant = "mocha";
-        accent = "mauve";
+        accent = "pink";
         size = "standard";
       in
       {
