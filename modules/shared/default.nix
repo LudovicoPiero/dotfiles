@@ -19,6 +19,7 @@
   time.timeZone = config.myOptions.vars.timezone;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
 
   programs = {
     command-not-found.dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
