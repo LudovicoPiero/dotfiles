@@ -41,8 +41,9 @@ in
   ];
 
   monitor = [
-    "eDP-1, 1366x768@60, auto-right, 1"
-    "HDMI-A-1, 1920x1080@180, auto-left, 1"
+    # name, resolution, position, scale
+    "HDMI-A-1, 1920x1080@180, auto, 1"
+    "eDP-1,disable"
   ];
 
   animations = {
