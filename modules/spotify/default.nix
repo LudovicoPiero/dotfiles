@@ -27,7 +27,7 @@ in
   config = mkIf cfg.enable {
     programs.spicetify = {
       enable = true;
-      spotifyPackage = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.spotify;
+      spotifyPackage = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.spotify;
 
       theme = spicePkgs.themes.text;
 

@@ -24,7 +24,7 @@ in
     fonts = {
       fontDir.enable = true;
       packages = lib.attrValues {
-        inherit (inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system})
+        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system})
           san-francisco-pro
           sarasa-gothic
           iosevka-q

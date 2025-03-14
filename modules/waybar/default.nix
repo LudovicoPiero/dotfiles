@@ -38,7 +38,7 @@ in
           enable = true;
 
           style = import ./style.nix { inherit osConfig config; };
-          package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
+          package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
 
           settings = {
             mainBar = {

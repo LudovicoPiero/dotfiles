@@ -34,7 +34,7 @@ in
       {
         programs.wezterm = {
           enable = true;
-          package = inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.wezterm;
+          package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.wezterm;
 
           colorSchemes.${colorScheme.slug} = {
             ansi = [

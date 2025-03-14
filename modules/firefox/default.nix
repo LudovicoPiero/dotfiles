@@ -41,7 +41,7 @@ in
               }
               // (
                 let
-                  inherit (inputs.ludovico-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
+                  inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
                   betterfox = pkgs.fetchFromGitHub {
                     owner = "yokoffing";
                     repo = "Betterfox";
