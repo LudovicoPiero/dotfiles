@@ -37,7 +37,7 @@
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
     # Rust overlay
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.url = "github:oxalica/rust-overlay/8b137260b776525542d47d3a4dbac753df478a42";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix VS Code Extensions.
