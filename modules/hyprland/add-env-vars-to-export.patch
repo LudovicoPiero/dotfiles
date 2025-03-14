@@ -1,0 +1,47 @@
+diff --git a/src/Compositor.cpp b/src/Compositor.cpp
+index a8cbae3a..f43cb26f 100644
+--- a/src/Compositor.cpp
++++ b/src/Compositor.cpp
+@@ -495,10 +495,10 @@ void CCompositor::cleanEnvironment() {
+     if (m_pAqBackend->hasSession() && !envEnabled("HYPRLAND_NO_SD_VARS")) {
+         const auto CMD =
+ #ifdef USES_SYSTEMD
+-            "systemctl --user unset-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS && hash "
++            "systemctl --user unset-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS XDG_CONFIG_DIRS XDG_DATA_HOME XDG_CONFIG_HOME XDG_RUNTIME_DIR SSH_AUTH_SOCK LIBEXEC_PATH INFOPATH QT_PLUGIN_PATH && hash "
+             "dbus-update-activation-environment 2>/dev/null && "
+ #endif
+-            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS";
++            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS XDG_CONFIG_DIRS XDG_DATA_HOME XDG_CONFIG_HOME XDG_RUNTIME_DIR SSH_AUTH_SOCK LIBEXEC_PATH INFOPATH QT_PLUGIN_PATH";
+         CKeybindManager::spawn(CMD);
+     }
+ }
+@@ -733,10 +733,10 @@ void CCompositor::startCompositor() {
+         !envEnabled("HYPRLAND_NO_SD_VARS")) {
+         const auto CMD =
+ #ifdef USES_SYSTEMD
+-            "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS && hash "
++            "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS XDG_CONFIG_DIRS XDG_DATA_HOME XDG_CONFIG_HOME XDG_RUNTIME_DIR SSH_AUTH_SOCK LIBEXEC_PATH INFOPATH QT_PLUGIN_PATH && hash "
+             "dbus-update-activation-environment 2>/dev/null && "
+ #endif
+-            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS";
++            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS XDG_CONFIG_DIRS XDG_DATA_HOME XDG_CONFIG_HOME XDG_RUNTIME_DIR SSH_AUTH_SOCK LIBEXEC_PATH INFOPATH QT_PLUGIN_PATH";
+         CKeybindManager::spawn(CMD);
+     }
+ 
+diff --git a/src/config/ConfigManager.cpp b/src/config/ConfigManager.cpp
+index 3f45ddfe..d03e04ee 100644
+--- a/src/config/ConfigManager.cpp
++++ b/src/config/ConfigManager.cpp
+@@ -1469,10 +1469,10 @@ void CConfigManager::dispatchExecOnce() {
+     if (g_pCompositor->m_pAqBackend->hasSession())
+         handleRawExec("",
+ #ifdef USES_SYSTEMD
+-                      "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS && hash "
++                      "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS XDG_CONFIG_DIRS XDG_DATA_HOME XDG_CONFIG_HOME XDG_RUNTIME_DIR SSH_AUTH_SOCK LIBEXEC_PATH INFOPATH QT_PLUGIN_PATH && hash "
+                       "dbus-update-activation-environment 2>/dev/null && "
+ #endif
+-                      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS");
++                      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE QT_QPA_PLATFORMTHEME PATH XDG_DATA_DIRS XDG_CONFIG_DIRS XDG_DATA_HOME XDG_CONFIG_HOME XDG_RUNTIME_DIR SSH_AUTH_SOCK LIBEXEC_PATH INFOPATH QT_PLUGIN_PATH");
+ 
+     firstExecDispatched = true;
+     isLaunchingExecOnce = true;

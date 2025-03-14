@@ -26,7 +26,23 @@ in
   config = mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.default;
+
+      package =
+        (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+          stdenv = pkgs.clangStdenv;
+        }).overrideAttrs
+          (prevAttrs: {
+            patches = (prevAttrs.patches or [ ]) ++ [
+              ./add-env-vars-to-export.patch
+              ./enable-lto.patch
+            ];
+            mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
+              (lib.mesonBool "b_lto" true)
+              (lib.mesonOption "b_lto_threads" "4")
+              (lib.mesonOption "b_lto_mode" "thin")
+              (lib.mesonBool "b_thinlto_cache" true)
+            ];
+          });
       portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     };
 
