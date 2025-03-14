@@ -110,7 +110,7 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
     ];
 
     postPatch = ''
-      find -name "*.sh" -print0 | while IFS= read -r -d ''' file; do
+      find . -name "*.sh" -print0 | while IFS= read -r -d ''\'' file; do
         patchShebangs "$file"
       done
 
