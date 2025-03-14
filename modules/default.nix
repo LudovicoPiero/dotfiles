@@ -10,6 +10,7 @@ _: {
     ./fuzzel
     ./gaming
     ./gammastep
+    ./ghostty
     ./git
     ./gpg
     ./greetd
