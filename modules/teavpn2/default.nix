@@ -25,9 +25,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    sops.secrets.teavpnConfig = {
-      owner = config.systemd.services."teavpn2".serviceConfig.User;
-    };
+    sops.secrets.teavpnConfig = { };
 
     systemd.services."teavpn2" = {
       description = "Teavpn2 Service";
@@ -36,14 +34,10 @@ in
       requires = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
 
-      script = ''
-        ${pkgs.teavpn2}/bin/teavpn2 client -c ${cfg.configPath}
-      '';
-
       serviceConfig = {
-        User = "root";
-        Restart = "on-failure";
-        RestartSec = "5s";
+        ExecStart = "${pkgs.teavpn2}/bin/teavpn2 client -c ${cfg.configPath}";
+        Restart = "always";
+        Type = "notify";
       };
     };
   };
