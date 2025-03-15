@@ -12,7 +12,7 @@ let
 
   session = {
     command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
-    user = "${config.myOptions.vars.username}";
+    user = "${config.vars.username}";
   };
 in
 {
@@ -23,7 +23,7 @@ in
   };
 
   config = mkMerge [
-    (mkIf config.myOptions.vars.withGui {
+    (mkIf config.vars.withGui {
       security = {
         pam.services.greetd.enableGnomeKeyring = true;
       };
@@ -47,8 +47,8 @@ in
       };
     })
 
-    (mkIf (!config.myOptions.vars.withGui) {
-      services.getty.autologinUser = "${config.myOptions.vars.username}";
+    (mkIf (!config.vars.withGui) {
+      services.getty.autologinUser = "${config.vars.username}";
     })
   ];
 }

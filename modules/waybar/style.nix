@@ -7,7 +7,7 @@ in
     border: none;
     border-radius: 0;
     font-family:
-      "${osConfig.myOptions.vars.mainFont}",
+      "${osConfig.vars.mainFont}",
       "Material Design Icons",
       monospace;
     font-size: 14px;

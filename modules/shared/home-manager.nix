@@ -9,7 +9,7 @@
   home-manager.backupFileExtension = "hm.bak";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.${config.myOptions.vars.username} =
+  home-manager.users.${config.vars.username} =
     {
       config,
       osConfig,
@@ -24,7 +24,7 @@
             VISUAL = "nvim";
             NIXPKGS_ALLOW_UNFREE = "1";
           }
-          // lib.optionalAttrs osConfig.myOptions.vars.withGui {
+          // lib.optionalAttrs osConfig.vars.withGui {
             NIXOS_OZONE_WL = "1";
             TERM = "xterm-256color";
             BROWSER = "firefox";
@@ -159,6 +159,6 @@
           };
         };
 
-      home.stateVersion = osConfig.myOptions.vars.stateVersion;
+      home.stateVersion = osConfig.vars.stateVersion;
     };
 }

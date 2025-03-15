@@ -14,7 +14,7 @@ in
 {
   options.myOptions.gammastep = {
     enable = mkEnableOption "gammastep service" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
@@ -28,7 +28,7 @@ in
       };
     };
 
-    home-manager.users.${config.myOptions.vars.username} = {
+    home-manager.users.${config.vars.username} = {
       services.gammastep = {
         enable = true;
         provider = "geoclue2";

@@ -15,12 +15,12 @@ in
 {
   options.myOptions.hypridle = {
     enable = mkEnableOption "hypridle service" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} = {
+    home-manager.users.${config.vars.username} = {
       services.hypridle = {
         enable = true;
         settings = {

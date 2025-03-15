@@ -14,12 +14,12 @@ in
 {
   options.myOptions.fuzzel = {
     enable = mkEnableOption "fuzzel" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       {
         config,
         osConfig,
@@ -33,7 +33,7 @@ in
           enable = true;
           settings = {
             main = {
-              font = "${osConfig.myOptions.vars.mainFont}-16";
+              font = "${osConfig.vars.mainFont}-16";
               terminal = "wezterm";
               icon-theme = "${config.gtk.iconTheme.name}";
               prompt = "->";

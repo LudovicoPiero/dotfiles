@@ -16,7 +16,7 @@ in
 {
   options.myOptions.pipewire = {
     enable = mkEnableOption "pipewire" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
 
     quantum = mkOption {

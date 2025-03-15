@@ -17,12 +17,12 @@ in
 {
   options.myOptions.vscode = {
     enable = mkEnableOption "vscode" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       { config, osConfig, ... }:
       {
         programs.vscode = {
@@ -113,7 +113,7 @@ in
 
               "editor.formatOnSave" = true;
               "explorer.confirmDragAndDrop" = false;
-              "editor.fontFamily" = "'${osConfig.myOptions.vars.mainFont}', 'Material Design Icons', monospace";
+              "editor.fontFamily" = "'${osConfig.vars.mainFont}', 'Material Design Icons', monospace";
               "editor.fontSize" = 15;
 
               "workbench.colorCustomizations" = null;

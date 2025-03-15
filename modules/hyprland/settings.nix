@@ -277,7 +277,7 @@ in
       "$mod SHIFT, K , changegroupactive, b"
       "$mod      , W , killactive ,"
       "$mod      , X , exec , ${powermenu}"
-      "$mod      , Return , exec , uwsm app -- '${osConfig.myOptions.vars.terminal}'"
+      "$mod      , Return , exec , uwsm app -- '${osConfig.vars.terminal}'"
 
       ", print, exec , uwsm app --  wl-ocr"
       "CTRL   , Print , exec , uwsm app -- ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"

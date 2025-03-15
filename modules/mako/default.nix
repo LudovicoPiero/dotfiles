@@ -17,12 +17,12 @@ in
 {
   options.myOptions.mako = {
     enable = mkEnableOption "mako service" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
 
     fontName = mkOption {
       type = types.str;
-      default = config.myOptions.vars.mainFont;
+      default = config.vars.mainFont;
     };
 
     fontSize = mkOption {
@@ -32,7 +32,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       { config, ... }:
       let
         inherit (config.colorScheme) palette;

@@ -14,12 +14,12 @@ in
 {
   options.myOptions.ghostty = {
     enable = mkEnableOption "ghostty" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       { config, osConfig, ... }:
       let
         inherit (config) colorScheme;
@@ -31,10 +31,10 @@ in
           enableFishIntegration = true;
 
           settings = {
-            font-family = "${osConfig.myOptions.vars.mainFont}";
+            font-family = "${osConfig.vars.mainFont}";
             theme = "${colorScheme.slug}";
             cursor-style-blink = false;
-            background-opacity = "${toString osConfig.myOptions.vars.opacity}";
+            background-opacity = "${toString osConfig.vars.opacity}";
             shell-integration-features = "no-cursor,no-sudo,title";
             app-notifications = "no-clipboard-copy";
             gtk-single-instance = true;

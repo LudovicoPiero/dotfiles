@@ -17,14 +17,14 @@ in
 {
   options.myOptions.hyprlock = {
     enable = mkEnableOption "hyprlock service" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
   config = mkIf cfg.enable {
     security.pam.services.hyprlock.text = "auth include login";
 
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       { config, ... }:
       let
         inherit (config.colorScheme) palette;

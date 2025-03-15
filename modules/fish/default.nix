@@ -21,7 +21,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.users.${config.myOptions.vars.username}.shell = pkgs.fish;
+    users.users.${config.vars.username}.shell = pkgs.fish;
     sops.secrets."fish/githubToken" = {
       mode = "0444";
     };
@@ -36,7 +36,7 @@ in
             . ${config.sops.secrets."fish/githubToken".path}
           ''
           +
-            optionalString (!config.myOptions.vars.withGui && config.myOptions.vars.isALaptop)
+            optionalString (!config.vars.withGui && config.vars.isALaptop)
               # Automatically turn off screen after 1 minute. (For laptop)
               ''
                 ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
@@ -46,7 +46,7 @@ in
 
     # programs.command-not-found.enable = false;
 
-    home-manager.users."${config.myOptions.vars.username}" =
+    home-manager.users."${config.vars.username}" =
       {
         config,
         osConfig,

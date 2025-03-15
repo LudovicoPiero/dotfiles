@@ -21,7 +21,7 @@ in
 
   options.myOptions.hyprland = {
     enable = mkEnableOption "hyprland" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
 
     withLTO = mkOption {
@@ -59,7 +59,7 @@ in
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       {
         config,
         osConfig,

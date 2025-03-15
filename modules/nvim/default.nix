@@ -21,7 +21,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} = {
+    home-manager.users.${config.vars.username} = {
       home.packages = [ inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.nvim ];
       programs.fish.shellAliases = {
         v = "nvim";

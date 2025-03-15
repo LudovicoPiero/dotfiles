@@ -31,7 +31,7 @@ in
 {
   options.myOptions.fcitx5 = {
     enable = mkEnableOption "fcitx5 service" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
@@ -53,8 +53,8 @@ in
       };
     };
 
-    systemd.user.tmpfiles.users.${config.myOptions.vars.username}.rules = [
-      "L+ %h/.config/fcitx5 0755 ${config.myOptions.vars.username} users - ${./config}"
+    systemd.user.tmpfiles.users.${config.vars.username}.rules = [
+      "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}"
     ];
   };
 }

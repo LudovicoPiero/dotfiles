@@ -14,7 +14,7 @@ in
 {
   options.myOptions.tlp = {
     enable = mkEnableOption "tlp" // {
-      default = config.myOptions.vars.isALaptop;
+      default = config.vars.isALaptop;
     };
   };
 

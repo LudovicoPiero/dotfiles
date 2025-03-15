@@ -19,7 +19,7 @@ in
 {
   options.myOptions.gaming = {
     enable = mkEnableOption "gaming" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
 
     withGamemode = mkOption {

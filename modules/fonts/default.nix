@@ -16,7 +16,7 @@ in
 {
   options.myOptions.fonts = {
     enable = mkEnableOption "Fonts" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 

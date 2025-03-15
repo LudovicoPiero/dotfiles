@@ -24,12 +24,12 @@ in
 {
   options.myOptions.theme = {
     enable = mkEnableOption "" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
 
     colorScheme = mkOption {
       type = types.anything;
-      default = inputs.nix-colors.colorSchemes.${config.myOptions.vars.colorScheme};
+      default = inputs.nix-colors.colorSchemes.${config.vars.colorScheme};
     };
 
     gtk =
@@ -96,7 +96,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       { config, ... }:
       {
         imports = [

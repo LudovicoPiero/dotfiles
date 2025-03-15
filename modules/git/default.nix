@@ -20,7 +20,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} = {
+    home-manager.users.${config.vars.username} = {
       programs = {
         git = {
           enable = true;
@@ -30,7 +30,7 @@ in
             enable = true;
           };
 
-          userEmail = "${config.myOptions.vars.email}";
+          userEmail = "${config.vars.email}";
           userName = "Ludovico Piero";
 
           signing = {
@@ -47,7 +47,7 @@ in
             sendemail = {
               smtpencryption = "tls";
               smtpserver = "mail1.gnuweeb.org";
-              smtpuser = "lewdovico@gnuweeb.org";
+              smtpuser = "${config.vars.email}";
               smtpserverport = 587;
               # smtpPass = ""; #TODO: agenix(?)
             };

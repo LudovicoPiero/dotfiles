@@ -27,7 +27,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       {
         config,
         osConfig,

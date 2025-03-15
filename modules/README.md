@@ -31,7 +31,7 @@ in
       pkgs.hello
     ];
 
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       { config, osConfig, ... }:
       {
         home.packages = [

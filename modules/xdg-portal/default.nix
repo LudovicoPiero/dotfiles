@@ -15,7 +15,7 @@ in
 {
   options.myOptions.xdg-portal = {
     enable = mkEnableOption "xdg-portal service" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 

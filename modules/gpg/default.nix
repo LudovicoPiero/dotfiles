@@ -11,7 +11,7 @@ let
     ;
 
   cfg = config.myOptions.gpg;
-  guiCfg = config.myOptions.vars.withGui;
+  guiCfg = config.vars.withGui;
 in
 {
   options.myOptions.gpg = {
@@ -23,7 +23,7 @@ in
   config = mkIf cfg.enable {
     services.dbus.packages = [ pkgs.gcr ];
 
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       { config, ... }:
       {
         programs.gpg = {

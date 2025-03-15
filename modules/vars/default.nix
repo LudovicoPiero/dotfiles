@@ -3,7 +3,7 @@ let
   inherit (lib) mkOption types;
 in
 {
-  options.myOptions.vars = {
+  options.vars = {
     colorScheme = mkOption {
       type = types.str;
       # List of available color schemes:

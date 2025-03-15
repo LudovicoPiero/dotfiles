@@ -16,7 +16,7 @@
   ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
-  time.timeZone = config.myOptions.vars.timezone;
+  time.timeZone = config.vars.timezone;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -26,7 +26,7 @@
     dconf.enable = true;
 
     thunar = {
-      enable = config.myOptions.vars.withGui;
+      enable = config.vars.withGui;
       plugins = with pkgs.xfce; [
         thunar-archive-plugin
         thunar-volman
@@ -130,5 +130,5 @@
     };
     optimise.automatic = true;
   };
-  system.stateVersion = config.myOptions.vars.stateVersion;
+  system.stateVersion = config.vars.stateVersion;
 }

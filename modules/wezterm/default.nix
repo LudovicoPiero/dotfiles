@@ -21,7 +21,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} =
+    home-manager.users.${config.vars.username} =
       {
         config,
         osConfig,
@@ -108,7 +108,7 @@ in
           local stylix_user_config = stylix_wrapped_config()
           stylix_base_config = {
             font = wezterm.font_with_fallback({
-              "${osConfig.myOptions.vars.mainFont}",
+              "${osConfig.vars.mainFont}",
               "Material Design Icons",
               "Noto Color Emoji",
             }),
@@ -124,7 +124,7 @@ in
             audible_bell = "Disabled",
             use_fancy_tab_bar = false,
             clean_exit_codes = { 130 },
-            window_background_opacity = ${toString osConfig.myOptions.vars.opacity},
+            window_background_opacity = ${toString osConfig.vars.opacity},
             color_scheme = "${colorScheme.slug}",
             window_frame = {
               active_titlebar_bg = "#${palette.base03}",

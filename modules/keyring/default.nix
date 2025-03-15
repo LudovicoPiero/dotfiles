@@ -15,7 +15,7 @@ in
 {
   options.myOptions.keyring = {
     enable = mkEnableOption "keyring" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 

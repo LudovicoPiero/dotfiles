@@ -20,7 +20,7 @@ in
 
   options.myOptions.spotify = {
     enable = mkEnableOption "spotify" // {
-      default = config.myOptions.vars.withGui;
+      default = config.vars.withGui;
     };
   };
 
