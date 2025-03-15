@@ -96,6 +96,7 @@ in
                 "$git_branch"
                 "$git_state"
                 "$git_status"
+                " "
                 "$cmd_duration"
                 "$line_break"
                 "$nix_shell"
