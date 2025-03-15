@@ -10,6 +10,8 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
+    mkOption
+    types
     ;
 
   cfg = config.myOptions.hyprland;
@@ -21,6 +23,12 @@ in
     enable = mkEnableOption "hyprland" // {
       default = config.myOptions.vars.withGui;
     };
+
+    withLTO = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable Link-Time Optimization (LTO)";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -28,21 +36,26 @@ in
       enable = true;
 
       package =
-        (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-          stdenv = pkgs.clangStdenv;
-        }).overrideAttrs
-          (prevAttrs: {
-            patches = (prevAttrs.patches or [ ]) ++ [
-              ./add-env-vars-to-export.patch
-              ./enable-lto.patch
-            ];
-            mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
-              (lib.mesonBool "b_lto" true)
-              (lib.mesonOption "b_lto_threads" "4")
-              (lib.mesonOption "b_lto_mode" "thin")
-              (lib.mesonBool "b_thinlto_cache" true)
-            ];
-          });
+        let
+          basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          LTOPackage =
+            (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+              stdenv = pkgs.clangStdenv;
+            }).overrideAttrs
+              (prevAttrs: {
+                patches = (prevAttrs.patches or [ ]) ++ [
+                  ./add-env-vars-to-export.patch
+                  ./enable-lto-thin.patch
+                ];
+                mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
+                  (lib.mesonBool "b_lto" true)
+                  (lib.mesonOption "b_lto_threads" "4")
+                  (lib.mesonOption "b_lto_mode" "thin")
+                  (lib.mesonBool "b_thinlto_cache" true)
+                ];
+              });
+        in
+        if cfg.withLTO then LTOPackage else basePackage;
       portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     };
 
