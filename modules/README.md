@@ -1,4 +1,5 @@
 Modules Template
+
 ```nix
 {
   lib,
@@ -26,7 +27,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.myOptions.vars.username} = { }; # For Home-Manager options
+    environment.systemPackages = [
+      pkgs.hello
+    ];
+
+    home-manager.users.${config.myOptions.vars.username} =
+      { config, osConfig, ... }:
+      {
+        home.packages = [
+          pkgs.hello
+        ];
+      }; # For Home-Manager options
   };
 }
 ```
