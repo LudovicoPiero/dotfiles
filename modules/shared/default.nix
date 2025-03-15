@@ -100,7 +100,6 @@
           The default is https://cache.nixos.org, which has a priority of 40.
           Lower value means higher priority.
         */
-        "https://sforza-config.cachix.org?priority=42"
         "https://nix-community.cachix.org?priority=43"
         "https://nyx.chaotic.cx?priority=44"
         "https://hyprland.cachix.org?priority=45"
@@ -108,7 +107,6 @@
       ];
 
       trusted-public-keys = [
-        "sforza-config.cachix.org-1:qQiEQ1JU25VqhRXi1Qr/kA8RT01pd7oeKHr5OORUolM="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
         "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
