@@ -32,7 +32,7 @@ in
       {
         programs.hyprlock = {
           enable = true;
-          package = inputs.hyprlock.packages.${pkgs.system}.default;
+          package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.default;
           settings = {
             general = {
               grace = 30;

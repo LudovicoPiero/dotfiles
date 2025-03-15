@@ -56,7 +56,7 @@ in
               });
         in
         if cfg.withLTO then LTOPackage else basePackage;
-      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     home-manager.users.${config.myOptions.vars.username} =

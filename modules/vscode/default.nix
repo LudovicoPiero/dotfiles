@@ -103,7 +103,7 @@ in
                       in
                       {
                         nixos.expr = ''${getFlake}.nixosConfigurations.sforza.options'';
-                        nixvim.expr = ''${getFlake}.packages.${pkgs.system}.nvim.options'';
+                        nixvim.expr = ''${getFlake}.packages.${pkgs.stdenv.hostPlatform.system}.nvim.options'';
                         home-manager.expr = ''${getFlake}.homeConfigurations."airi@sforza".options'';
                         flake-parts.expr = ''let flake = ${getFlake}; in flake.debug.options // flake.currentSystem.options'';
                       };
