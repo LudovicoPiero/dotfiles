@@ -86,28 +86,27 @@ in
               "rust-analyzer.debug.engine" = "vadimcn.vscode-lldb";
 
               # Nix
+              "nixEnvSelector.suggestion" = false;
               "nix.enableLanguageServer" = true;
               "nix.formatterPath" = "${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"}";
               "nix.serverPath" = "${lib.getExe pkgs.nixd}";
               "nix.serverSettings" = {
-                "nix.serverSettings" = {
-                  nixd = {
-                    formatting = {
-                      command = [
-                        "${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"}"
-                      ];
-                    };
-                    options =
-                      let
-                        getFlake = ''(builtins.getFlake "${self}")'';
-                      in
-                      {
-                        nixos.expr = ''${getFlake}.nixosConfigurations.sforza.options'';
-                        nixvim.expr = ''${getFlake}.packages.${pkgs.stdenv.hostPlatform.system}.nvim.options'';
-                        home-manager.expr = ''${getFlake}.homeConfigurations."airi@sforza".options'';
-                        flake-parts.expr = ''let flake = ${getFlake}; in flake.debug.options // flake.currentSystem.options'';
-                      };
+                nixd = {
+                  formatting = {
+                    command = [
+                      "${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"}"
+                    ];
                   };
+                  options =
+                    let
+                      getFlake = ''(builtins.getFlake "${self}")'';
+                    in
+                    {
+                      nixos.expr = ''${getFlake}.nixosConfigurations.sforza.options'';
+                      nixvim.expr = ''${getFlake}.packages.${pkgs.stdenv.hostPlatform.system}.nvim.options'';
+                      home-manager.expr = ''${getFlake}.homeConfigurations."airi@sforza".options'';
+                      flake-parts.expr = ''let flake = ${getFlake}; in flake.debug.options // flake.currentSystem.options'';
+                    };
                 };
               };
 
