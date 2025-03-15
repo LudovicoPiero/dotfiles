@@ -31,7 +31,6 @@
             myOptions = {
               dnscrypt2.enable = true;
               teavpn2.enable = false;
-              spotify.enable = true;
               fish.enable = true;
               vars = {
                 # List of available color schemes:
