@@ -111,7 +111,7 @@ in
               audible_bell = "Disabled",
               use_fancy_tab_bar = false,
               clean_exit_codes = { 130 },
-              window_background_opacity = 0.88,
+              window_background_opacity = "${toString osConfig.myOptions.vars.opacity}",
               color_scheme = "${colorScheme.slug}",
               window_frame = {
                 active_titlebar_bg = "#${palette.base03}",

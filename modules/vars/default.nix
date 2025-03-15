@@ -44,6 +44,11 @@ in
       default = "Asia/Tokyo";
     };
 
+    opacity = mkOption {
+      type = types.float;
+      default = 0.9;
+    };
+
     withGui = mkOption {
       type = types.bool;
       default = false;

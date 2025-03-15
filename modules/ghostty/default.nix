@@ -34,7 +34,7 @@ in
             font-family = "${osConfig.myOptions.vars.mainFont}";
             theme = "${colorScheme.slug}";
             cursor-style-blink = false;
-            background-opacity = 0.8;
+            background-opacity = "${toString osConfig.myOptions.vars.opacity}";
             shell-integration-features = "no-cursor,no-sudo,title";
             app-notifications = "no-clipboard-copy";
             gtk-single-instance = true;
