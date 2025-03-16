@@ -42,13 +42,7 @@
             teavpn2
             adwaita-icon-theme
             bat
-            dosfstools
-            gptfdisk
             iputils
-            usbutils
-            utillinux
-            binutils
-            coreutils
             curl
             direnv
             dnsutils
@@ -58,10 +52,8 @@
 
             bottom
             jq
-            moreutils
             nix-index
             nmap
-            skim
             ripgrep
             tealdeer
             whois
@@ -78,6 +70,8 @@
             telegram-desktop
             mpv
             ;
+
+          coreutils = (pkgs.hiPrio pkgs.uutils-coreutils-noprefix);
 
           # use OCR and copy to clipboard
           wl-ocr =
