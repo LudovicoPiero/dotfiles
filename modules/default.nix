@@ -9,7 +9,6 @@ _: {
     ./fonts
     ./fuzzel
     ./gaming
-    ./gammastep
     ./ghostty
     ./git
     ./gpg
