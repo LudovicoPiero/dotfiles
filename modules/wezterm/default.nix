@@ -102,8 +102,8 @@ in
           stylix_base_config = {
             font = wezterm.font_with_fallback({
               "${osConfig.myOptions.fonts.main.name} Semibold",
-              "Material Design Icons",
-              "Noto Color Emoji",
+              "${osConfig.myOptions.fonts.icon.name}",
+              "${osConfig.myOptions.fonts.emoji.name}",
             }),
             enable_wayland = true,
             enable_scroll_bar = false,

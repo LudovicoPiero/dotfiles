@@ -7,10 +7,10 @@ in
     border: none;
     border-radius: 0;
     font-family:
-      "${osConfig.myOptions.fonts.main.name}",
-      "Material Design Icons",
+      "${osConfig.myOptions.fonts.main.name} Semibold",
+      "${osConfig.myOptions.fonts.icon.name}",
       monospace;
-    font-size: 14px;
+    font-size: ${toString osConfig.myOptions.fonts.size}px;
     min-height: 0;
   }
 
