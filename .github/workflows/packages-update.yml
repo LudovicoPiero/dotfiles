@@ -38,9 +38,9 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: "${{ secrets.PR_TOKEN }}"
-          title: "Package Update"
-          body: "BOOMP BOOMP"
-          labels: automated,uwu, keep-up-to-date
+          title: "Nvfetcher Source Update"
+          body: "Automated package updates via nvfetcher. This PR updates packages to their latest versions from source repositories."
+          labels: automated, uwu, keep-up-to-date
           branch: "nvfetcher-update"
           delete-branch: true
 
@@ -79,8 +79,8 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: "${{ secrets.PR_TOKEN }}"
-          title: "Package Update for ${{ matrix.packages }}"
+          title: "Nix-update for ${{ matrix.packages }}"
           body: "Automated package update for ${{ matrix.packages }}"
-          labels: automated,uwu, keep-up-to-date
+          labels: automated, uwu, keep-up-to-date
           branch: "nix-update-${{ matrix.packages }}-${{ github.run_id }}"
           delete-branch: true
