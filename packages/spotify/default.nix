@@ -39,6 +39,7 @@
   libayatana-appindicator,
   libdbusmenu,
   libGL,
+  libgbm,
   # High-DPI support: Spotify's --force-device-scale-factor argument
   # not added if `null`, otherwise, should be a number.
   deviceScaleFactor ? null,
@@ -80,6 +81,7 @@ let
     libdrm
     libgcrypt
     libGL
+    libgbm
     libnotify
     libpng
     libpulseaudio
