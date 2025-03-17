@@ -29,7 +29,8 @@
     ];
 
   programs = {
-    command-not-found.dbPath = inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
+    command-not-found.dbPath =
+      inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
     dconf.enable = true;
 
     thunar = {
