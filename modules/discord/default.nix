@@ -5,10 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.myOptions.discord;
 in
@@ -47,10 +44,8 @@ in
         autoUpdate = true;
         autoUpdateNotification = true;
         useQuickCss = true;
-        themeLinks = [
-        ];
-        enabledThemes = [
-        ];
+        themeLinks = [ ];
+        enabledThemes = [ ];
         enableReactDevtools = false;
         frameless = false;
         transparent = false;

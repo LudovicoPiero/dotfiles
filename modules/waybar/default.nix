@@ -6,10 +6,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   _ = lib.getExe;
 
@@ -28,11 +25,7 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${config.vars.username} =
-      {
-        config,
-        osConfig,
-        ...
-      }:
+      { config, osConfig, ... }:
       {
         programs.waybar = {
           enable = true;

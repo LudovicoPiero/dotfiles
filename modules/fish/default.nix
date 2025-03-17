@@ -7,11 +7,7 @@
 let
   _ = lib.getExe;
 
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    optionalString
-    ;
+  inherit (lib) mkEnableOption mkIf optionalString;
 
   cfg = config.myOptions.fish;
 in
@@ -47,11 +43,7 @@ in
     # programs.command-not-found.enable = false;
 
     home-manager.users."${config.vars.username}" =
-      {
-        config,
-        osConfig,
-        ...
-      }:
+      { config, osConfig, ... }:
       {
         home.packages = lib.attrValues {
           inherit (pkgs)

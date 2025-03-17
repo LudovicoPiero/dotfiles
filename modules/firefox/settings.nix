@@ -1,8 +1,4 @@
-{
-  osConfig,
-  lib,
-  ...
-}:
+{ osConfig, lib, ... }:
 {
   "extensions.autoDisableScopes" = 0;
   "browser.search.region" = "AU";

@@ -1,14 +1,6 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    mkMerge
-    ;
+  inherit (lib) mkEnableOption mkIf mkMerge;
 
   session = {
     command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
@@ -47,8 +39,6 @@ in
       };
     })
 
-    (mkIf (!config.vars.withGui) {
-      services.getty.autologinUser = "${config.vars.username}";
-    })
+    (mkIf (!config.vars.withGui) { services.getty.autologinUser = "${config.vars.username}"; })
   ];
 }

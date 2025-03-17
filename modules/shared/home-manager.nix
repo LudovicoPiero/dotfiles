@@ -10,11 +10,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.${config.vars.username} =
-    {
-      config,
-      osConfig,
-      ...
-    }:
+    { config, osConfig, ... }:
     {
       systemd.user.startServices = "sd-switch";
       home = {

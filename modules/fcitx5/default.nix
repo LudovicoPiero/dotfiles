@@ -6,10 +6,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   en = "en_US.UTF-8";
   ja = "ja_JP.UTF-8";

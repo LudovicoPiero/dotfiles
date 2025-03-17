@@ -6,10 +6,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.myOptions.wezterm;
 in
@@ -22,11 +19,7 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${config.vars.username} =
-      {
-        config,
-        osConfig,
-        ...
-      }:
+      { config, osConfig, ... }:
       let
         inherit (config) colorScheme;
         inherit (colorScheme) palette;

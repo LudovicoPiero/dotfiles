@@ -56,15 +56,12 @@ in
               });
         in
         if cfg.withLTO then LTOPackage else basePackage;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     home-manager.users.${config.vars.username} =
-      {
-        config,
-        osConfig,
-        ...
-      }:
+      { config, osConfig, ... }:
       {
         wayland.windowManager.hyprland = {
           enable = true;

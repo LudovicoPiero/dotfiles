@@ -22,12 +22,8 @@ in
       "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
       "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
     ]
-    ++ lib.optionals osConfig.myOptions.waybar.enable [
-      "uwsm app -- waybar"
-    ]
-    ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [
-      "fcitx5 -d --replace"
-    ]
+    ++ lib.optionals osConfig.myOptions.waybar.enable [ "uwsm app -- waybar" ]
+    ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ]
     ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
       "${_ config.programs.emacs.finalPackage} --fg-daemon"
     ];
@@ -322,18 +318,10 @@ in
 
       ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
     ]
-    ++ lib.optionals osConfig.myOptions.floorp.enable [
-      "$mod SHIFT, G , exec , uwsm app -- floorp"
-    ]
-    ++ lib.optionals osConfig.myOptions.firefox.enable [
-      "$mod      , G , exec , uwsm app -- firefox"
-    ]
-    ++ lib.optionals osConfig.myOptions.discord.enable [
-      "$mod      , D , exec , uwsm app -- vesktop"
-    ]
-    ++ lib.optionals osConfig.myOptions.spotify.enable [
-      "$mod      , S , exec , uwsm app -- spotify"
-    ]
+    ++ lib.optionals osConfig.myOptions.floorp.enable [ "$mod SHIFT, G , exec , uwsm app -- floorp" ]
+    ++ lib.optionals osConfig.myOptions.firefox.enable [ "$mod      , G , exec , uwsm app -- firefox" ]
+    ++ lib.optionals osConfig.myOptions.discord.enable [ "$mod      , D , exec , uwsm app -- vesktop" ]
+    ++ lib.optionals osConfig.myOptions.spotify.enable [ "$mod      , S , exec , uwsm app -- spotify" ]
     ++ lib.optionals config.programs.emacs.enable [
       "$mod      , E , exec , uwsm app -- \"${emacs}\""
       "ALT       , E , exec , uwsm app -- \"emacsclient -c -eval '(dired nil)'\""

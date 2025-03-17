@@ -7,10 +7,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.myOptions.vscode;
 in
@@ -93,9 +90,7 @@ in
               "nix.serverSettings" = {
                 nixd = {
                   formatting = {
-                    command = [
-                      "${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"}"
-                    ];
+                    command = [ "${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"}" ];
                   };
                   options =
                     let

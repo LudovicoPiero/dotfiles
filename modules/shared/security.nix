@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   boot = {
     # tmpfs = /tmp is mounted in RAM for speed and volatility.

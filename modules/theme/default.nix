@@ -99,9 +99,7 @@ in
     home-manager.users.${config.vars.username} =
       { config, ... }:
       {
-        imports = [
-          inputs.nix-colors.homeManagerModules.default
-        ];
+        imports = [ inputs.nix-colors.homeManagerModules.default ];
 
         inherit (cfg) colorScheme;
 
@@ -134,11 +132,7 @@ in
         gtk = {
           enable = true;
           inherit (cfg) font;
-          inherit (cfg.gtk)
-            cursorTheme
-            theme
-            iconTheme
-            ;
+          inherit (cfg.gtk) cursorTheme theme iconTheme;
 
           gtk2 = {
             configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -242,9 +236,7 @@ in
             disable-user-extensions = false;
             enabled-extensions = [ "user-theme@gnome-shell-extensions.gcampax.github.com" ];
           };
-          "org/gnome/shell/extensions/user-theme" = {
-            inherit (config.gtk.theme) name;
-          };
+          "org/gnome/shell/extensions/user-theme" = { inherit (config.gtk.theme) name; };
           "org/gnome/desktop/background" = {
             color-shading-type = "solid";
             picture-options = "zoom";
