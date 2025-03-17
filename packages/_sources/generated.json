@@ -21,7 +21,7 @@
     },
     "firefox-gnome-theme": {
         "cargoLocks": null,
-        "date": "2025-03-14",
+        "date": "2025-03-16",
         "extract": null,
         "name": "firefox-gnome-theme",
         "passthru": null,
@@ -31,13 +31,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "0bbfb2e27b67eee8b75ad17d36132f764792325e",
-            "sha256": "sha256-36fDnQH9+UzSD0CavhcBP5qFqIoyUBw9MzDrAWyc6oY=",
+            "rev": "072ee5d3e8b6f575a31cc294054537dc841d5049",
+            "sha256": "sha256-8EQS6zY47hVa3jWG9d2MuHK+1JmG/6vdp8gEd2eKFow=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/rafaelmardojai/firefox-gnome-theme"
         },
-        "version": "0bbfb2e27b67eee8b75ad17d36132f764792325e"
+        "version": "072ee5d3e8b6f575a31cc294054537dc841d5049"
     },
     "san-francisco-pro": {
         "cargoLocks": null,
@@ -82,13 +82,13 @@
     "wezterm": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-12b971ac44738f37c120160da165cd9072c0e6d2/Cargo.lock",
+                "./wezterm-7053748e4d899e7fc5e202d6f903b052fc78e759/Cargo.lock",
                 {
                     "xcb-imdkit-0.3.0": "sha256-77KaJO+QJWy3tJ9AF1TXKaQHpoVOfGIRqteyqpQaSWo="
                 }
             ]
         },
-        "date": "2025-03-09",
+        "date": "2025-03-17",
         "extract": null,
         "name": "wezterm",
         "passthru": null,
@@ -98,13 +98,13 @@
             "fetchSubmodules": true,
             "leaveDotGit": false,
             "name": null,
-            "rev": "12b971ac44738f37c120160da165cd9072c0e6d2",
-            "sha256": "sha256-AJ//9O1Sbo0FqU0C2ZUMD9VTk/IP+uMZU1Cx+Tra2Jo=",
+            "rev": "7053748e4d899e7fc5e202d6f903b052fc78e759",
+            "sha256": "sha256-bMk9VCESpJvzY3uelrcicgJbMl+bEmKbi8142UtHk3o=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/wez/wezterm"
         },
-        "version": "12b971ac44738f37c120160da165cd9072c0e6d2"
+        "version": "7053748e4d899e7fc5e202d6f903b052fc78e759"
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,
