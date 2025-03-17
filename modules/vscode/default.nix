@@ -107,8 +107,9 @@ in
 
               "editor.formatOnSave" = true;
               "explorer.confirmDragAndDrop" = false;
-              "editor.fontFamily" = "'${osConfig.myOptions.fonts.main.name}', 'Material Design Icons', monospace";
-              "editor.fontSize" = 15;
+              "editor.fontFamily" =
+                "'${osConfig.myOptions.fonts.main.name} Semibold', '${osConfig.myOptions.fonts.icon.name}', monospace";
+              "editor.fontSize" = "${toString osConfig.myOptions.fonts.size}";
 
               "workbench.colorCustomizations" = null;
               "workbench.colorTheme" = "${config.colorScheme.name}";

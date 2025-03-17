@@ -24,7 +24,7 @@ in
           enableFishIntegration = true;
 
           settings = {
-            font-family = "${osConfig.myOptions.fonts.main.name}";
+            font-family = "${osConfig.myOptions.fonts.main.name} Semibold";
             theme = "${colorScheme.slug}";
             cursor-style-blink = false;
             background-opacity = "${toString osConfig.vars.opacity}";

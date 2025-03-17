@@ -21,45 +21,53 @@ in
       default = config.vars.withGui;
     };
 
-    main = mkOption {
-      type = types.submodule {
-        options = {
-          name = mkOption {
-            type = types.str;
-            default = "Iosevka q";
-          };
-          package = mkOption {
-            type = types.package;
-            default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
-          };
-        };
+    main = {
+      name = mkOption {
+        type = types.str;
+        default = "Iosevka q";
       };
-      default = { };
+      package = mkOption {
+        type = types.package;
+        default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
+      };
     };
 
-    #TODO: PLS HELP!!!
-    # cjk = {
-    #   name = mkOption {
-    #     type = types.listOf types.str;
-    #     default = [
-    #       "Sarasa Gothic J"
-    #       "Sarasa Gothic K"
-    #       "Sarasa Gothic SC"
-    #       "Sarasa Gothic TC"
-    #       "Sarasa Gothic HC"
-    #       "Sarasa Gothic CL"
-    #     ];
-    #   };
-    #
-    #   package = mkOption {
-    #     type = types.package;
-    #     default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.sarasa-gothic;
-    #   };
-    # };
+    cjk = {
+      name = mkOption {
+        type = types.str;
+        default = "Noto Serif CJK";
+      };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.noto-fonts-cjk-serif;
+      };
+    };
+
+    emoji = {
+      name = mkOption {
+        type = types.str;
+        default = "Noto Color Emoji";
+      };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.noto-fonts-emoji;
+      };
+    };
+
+    icon = {
+      name = mkOption {
+        type = types.str;
+        default = "Material Design Icons";
+      };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.material-design-icons;
+      };
+    };
 
     size = mkOption {
       type = types.int;
-      default = 12;
+      default = 14;
     };
   };
 
@@ -68,13 +76,12 @@ in
       fontDir.enable = true;
       packages = [
         cfg.main.package
-        # cfg.cjk.package
+        cfg.cjk.package
+        cfg.emoji.package
+        cfg.icon.package
 
         inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.sarasa-gothic
 
-        pkgs.emacs-all-the-icons-fonts
-        pkgs.material-design-icons
-        pkgs.noto-fonts-emoji
         pkgs.symbola
         pkgs.wqy_zenhei # For Steam
       ];
@@ -86,43 +93,28 @@ in
         defaultFonts = {
           serif = [
             "${cfg.main.name}"
-            "Sarasa Gothic J"
-            "Sarasa Gothic K"
-            "Sarasa Gothic SC"
-            "Sarasa Gothic TC"
-            "Sarasa Gothic HC"
-            "Sarasa Gothic CL"
+            "${cfg.cjk.name}"
+            "${cfg.icon.name}"
             "Symbola"
-            "Material Design Icons"
           ];
 
           sansSerif = [
             "${cfg.main.name}"
-            "Sarasa Gothic J"
-            "Sarasa Gothic K"
-            "Sarasa Gothic SC"
-            "Sarasa Gothic TC"
-            "Sarasa Gothic HC"
-            "Sarasa Gothic CL"
+            "${cfg.cjk.name}"
+            "${cfg.icon.name}"
             "Symbola"
-            "Material Design Icons"
           ];
 
           monospace = [
             "${cfg.main.name}"
-            "Sarasa Mono J"
-            "Sarasa Mono K"
-            "Sarasa Mono SC"
-            "Sarasa Mono TC"
-            "Sarasa Mono HC"
-            "Sarasa Mono CL"
+            "${cfg.cjk.name}"
+            "${cfg.icon.name}"
             "Symbola"
-            "Material Design Icons"
           ];
 
           emoji = [
-            "Noto Color Emoji"
-            "Material Design Icons"
+            "${cfg.emoji.name}"
+            "${cfg.icon.name}"
             "Symbola"
           ];
         };
