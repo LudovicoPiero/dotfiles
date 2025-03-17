@@ -280,8 +280,8 @@ in
       "ALT    , Print , exec , uwsm app -- ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
 
       # Dwindle Keybind
-      "$mod , h , resizeactive , -20 0"
-      "$mod , l , resizeactive , 20 0"
+      "$mod , h , movefocus , l"
+      "$mod , l , movefocus , r"
       "$mod , k , movefocus , u"
       "$mod , j , movefocus , d"
 
