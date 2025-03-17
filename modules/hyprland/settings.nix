@@ -321,7 +321,7 @@ in
     ++ lib.optionals osConfig.myOptions.floorp.enable [ "$mod SHIFT, G , exec , uwsm app -- floorp" ]
     ++ lib.optionals osConfig.myOptions.firefox.enable [ "$mod      , G , exec , uwsm app -- firefox" ]
     ++ lib.optionals osConfig.myOptions.discord.enable [ "$mod      , D , exec , uwsm app -- vesktop" ]
-    ++ lib.optionals osConfig.myOptions.spotify.enable [ "$mod      , S , exec , uwsm app -- spotify" ]
+    ++ lib.optionals osConfig.myOptions.spotify.enable [ "$mod SHIFT, S , exec , uwsm app -- spotify" ]
     ++ lib.optionals config.programs.emacs.enable [
       "$mod      , E , exec , uwsm app -- \"${emacs}\""
       "ALT       , E , exec , uwsm app -- \"emacsclient -c -eval '(dired nil)'\""

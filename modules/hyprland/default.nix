@@ -76,6 +76,19 @@ in
               ;
           };
           systemd.enable = !osConfig.programs.uwsm.enable;
+
+          extraConfig = ''
+            # window resize
+            bind = $mod, S, submap, resize
+
+            submap = resize
+            binde = , right, resizeactive, 10 0
+            binde = , left, resizeactive, -10 0
+            binde = , up, resizeactive, 0 -10
+            binde = , down, resizeactive, 0 10
+            bind = , escape, submap, reset
+            submap = reset
+          '';
         };
 
         services.hyprpaper = {
