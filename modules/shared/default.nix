@@ -18,8 +18,15 @@
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   time.timeZone = config.vars.timezone;
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = _: true;
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "unrar"
+      "vscode"
+      "steam"
+      "steam-unwrapped"
+      "symbola"
+    ];
 
   programs = {
     command-not-found.dbPath = inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
