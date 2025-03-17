@@ -124,6 +124,10 @@ stdenv.mkDerivation {
   src = fetchurl {
     url = "https://api.snapcraft.io/api/v1/snaps/download/pOBIoZ2LrCB3rDohMxoYGnbN14EHOgD7_${rev}.snap";
     hash = "sha256-RrauWQgeZuvk7w0m1xFswDll23RynM6S1MvNDraTJlA=";
+    curlOpts = [
+      "--retry"
+      "3"
+    ];
   };
 
   nativeBuildInputs = [
