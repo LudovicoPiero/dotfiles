@@ -50,6 +50,10 @@ in
     background-color: #${palette.base0E};
   }
 
+  #submap {
+    color: #${palette.base05};
+  }
+
   #tray {
     border-radius: 0px;
   }
@@ -124,6 +128,7 @@ in
   #battery,
   #pulseaudio,
   #privacy,
+  #submap,
   #network {
     background-color: #${palette.base00};
     padding: 0px 5px;

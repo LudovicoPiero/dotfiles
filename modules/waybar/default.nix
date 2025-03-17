@@ -39,6 +39,7 @@ in
               height = 25;
               modules-left = [
                 "hyprland/workspaces"
+                "hyprland/submap"
                 "tray"
               ];
               modules-right = [
