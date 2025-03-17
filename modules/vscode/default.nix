@@ -107,7 +107,7 @@ in
 
               "editor.formatOnSave" = true;
               "explorer.confirmDragAndDrop" = false;
-              "editor.fontFamily" = "'${osConfig.vars.mainFont}', 'Material Design Icons', monospace";
+              "editor.fontFamily" = "'${osConfig.myOptions.fonts.main.name}', 'Material Design Icons', monospace";
               "editor.fontSize" = 15;
 
               "workbench.colorCustomizations" = null;

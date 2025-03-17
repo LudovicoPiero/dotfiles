@@ -7,9 +7,7 @@
 let
   inherit (lib)
     mkEnableOption
-    mkOption
     mkIf
-    types
     ;
 
   cfg = config.myOptions.mako;
@@ -19,21 +17,11 @@ in
     enable = mkEnableOption "mako service" // {
       default = config.vars.withGui;
     };
-
-    fontName = mkOption {
-      type = types.str;
-      default = config.vars.mainFont;
-    };
-
-    fontSize = mkOption {
-      type = types.int;
-      default = 12;
-    };
   };
 
   config = mkIf cfg.enable {
     home-manager.users.${config.vars.username} =
-      { config, ... }:
+      { config, osConfig, ... }:
       let
         inherit (config.colorScheme) palette;
       in
@@ -42,7 +30,7 @@ in
         services.mako = {
           enable = true;
 
-          font = "${cfg.fontName} ${toString cfg.fontSize}";
+          font = "${osConfig.myOptions.fonts.main.name} ${toString osConfig.myOptions.fonts.size}";
           backgroundColor = "#${palette.base00}";
           borderColor = "#${palette.base0E}";
           textColor = "#${palette.base05}";

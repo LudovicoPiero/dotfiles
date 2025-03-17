@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 
   cfg = config.myOptions.fonts;
 in
@@ -15,26 +20,64 @@ in
     enable = mkEnableOption "Fonts" // {
       default = config.vars.withGui;
     };
+
+    main = mkOption {
+      type = types.submodule {
+        options = {
+          name = mkOption {
+            type = types.str;
+            default = "Iosevka q";
+          };
+          package = mkOption {
+            type = types.package;
+            default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
+          };
+        };
+      };
+      default = { };
+    };
+
+    #TODO: PLS HELP!!!
+    # cjk = {
+    #   name = mkOption {
+    #     type = types.listOf types.str;
+    #     default = [
+    #       "Sarasa Gothic J"
+    #       "Sarasa Gothic K"
+    #       "Sarasa Gothic SC"
+    #       "Sarasa Gothic TC"
+    #       "Sarasa Gothic HC"
+    #       "Sarasa Gothic CL"
+    #     ];
+    #   };
+    #
+    #   package = mkOption {
+    #     type = types.package;
+    #     default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.sarasa-gothic;
+    #   };
+    # };
+
+    size = mkOption {
+      type = types.int;
+      default = 12;
+    };
   };
 
   config = mkIf cfg.enable {
     fonts = {
       fontDir.enable = true;
-      packages = lib.attrValues {
-        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system})
-          san-francisco-pro
-          sarasa-gothic
-          iosevka-q
-          ;
+      packages = [
+        cfg.main.package
+        # cfg.cjk.package
 
-        inherit (pkgs)
-          emacs-all-the-icons-fonts
-          material-design-icons
-          noto-fonts-emoji
-          symbola
-          wqy_zenhei # For Steam
-          ;
-      };
+        inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.sarasa-gothic
+
+        pkgs.emacs-all-the-icons-fonts
+        pkgs.material-design-icons
+        pkgs.noto-fonts-emoji
+        pkgs.symbola
+        pkgs.wqy_zenhei # For Steam
+      ];
 
       # use fonts specified by user rather than default ones
       enableDefaultPackages = false;
@@ -42,7 +85,7 @@ in
         enable = true;
         defaultFonts = {
           serif = [
-            "SF Pro"
+            "${cfg.main.name}"
             "Sarasa Gothic J"
             "Sarasa Gothic K"
             "Sarasa Gothic SC"
@@ -54,7 +97,7 @@ in
           ];
 
           sansSerif = [
-            "SF Pro"
+            "${cfg.main.name}"
             "Sarasa Gothic J"
             "Sarasa Gothic K"
             "Sarasa Gothic SC"
@@ -66,7 +109,7 @@ in
           ];
 
           monospace = [
-            "SF Pro Rounded"
+            "${cfg.main.name}"
             "Sarasa Mono J"
             "Sarasa Mono K"
             "Sarasa Mono SC"
