@@ -28,7 +28,7 @@ in
 
     terminal = mkOption {
       type = types.str;
-      default = "ghostty";
+      default = "wezterm";
     };
 
     sshPublicKey = mkOption {
