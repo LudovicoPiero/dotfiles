@@ -24,7 +24,7 @@ in
           enableFishIntegration = true;
 
           settings = {
-            font-family = "${osConfig.vars.mainFont}";
+            font-family = "${osConfig.myOptions.fonts.main.name}";
             theme = "${colorScheme.slug}";
             cursor-style-blink = false;
             background-opacity = "${toString osConfig.vars.opacity}";

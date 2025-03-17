@@ -101,7 +101,7 @@ in
           local stylix_user_config = stylix_wrapped_config()
           stylix_base_config = {
             font = wezterm.font_with_fallback({
-              "${osConfig.vars.mainFont}",
+              "${osConfig.myOptions.fonts.main.name} Semibold",
               "Material Design Icons",
               "Noto Color Emoji",
             }),
@@ -163,7 +163,7 @@ in
             },
             command_palette_bg_color = "#${palette.base01}",
             command_palette_fg_color = "#${palette.base05}",
-            command_palette_font_size = 12.0,
+            command_palette_font_size = ${toString osConfig.myOptions.fonts.size},
 
             leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
             keys = {
@@ -179,7 +179,7 @@ in
                 action = wezterm.action.SplitPane({
                   top_level = true,
                   direction = "Down",
-                  size = { Percent = 30 },
+                  size = { Percent = 45 },
                 }),
               },
               {
@@ -188,7 +188,7 @@ in
                 action = wezterm.action.SplitPane({
                   top_level = true,
                   direction = "Right",
-                  size = { Percent = 30 },
+                  size = { Percent = 45 },
                 }),
               },
               { key = "c", mods = "LEADER",      action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
