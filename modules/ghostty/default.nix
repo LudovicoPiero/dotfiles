@@ -22,6 +22,7 @@ in
         programs.ghostty = {
           enable = true;
           enableFishIntegration = true;
+          enableZshIntegration = true;
 
           settings = {
             font-family = "${osConfig.myOptions.fonts.main.name} Semibold";
