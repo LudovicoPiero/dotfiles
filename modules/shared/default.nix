@@ -18,6 +18,11 @@
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   time.timeZone = config.vars.timezone;
 
+  system.switch = {
+    enable = false;
+    enableNg = true;
+  };
+
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
@@ -68,6 +73,9 @@
     fstrim.enable = true;
   };
 
+  systemd.services.nix-daemon = lib.mkIf config.boot.tmp.useTmpfs {
+    environment.TMPDIR = "/var/tmp";
+  };
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
