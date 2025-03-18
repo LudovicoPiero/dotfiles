@@ -26,8 +26,8 @@
 
               # Shell
               # Choose one of the following:
-              fish.enable = false;
-              zsh.enable = true;
+              fish.enable = true;
+              zsh.enable = false;
             };
 
             vars = {
