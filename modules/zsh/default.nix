@@ -98,6 +98,7 @@ in
               ];
               patterns = {
                 "rm -rf *" = "fg=black,bg=red";
+                "rm -fr *" = "fg=black,bg=red";
               };
               styles = {
                 "alias" = "fg=magenta";
