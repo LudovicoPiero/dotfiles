@@ -9,7 +9,7 @@ ActivateKeys=
 DeactivateKeys=
 
 [Hotkey/TriggerKeys]
-0=Control+Shift_L+space
+0=Control+Shift+space
 
 [Hotkey/AltTriggerKeys]
 0=Page_Up
