@@ -32,5 +32,6 @@ _: {
     ./waybar
     ./wezterm
     ./xdg-portal
+    ./zsh
   ];
 }

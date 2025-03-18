@@ -18,7 +18,7 @@ in
 
   config = mkIf cfg.enable {
     users.users.${config.vars.username}.shell = pkgs.fish;
-    sops.secrets."fish/githubToken" = {
+    sops.secrets."shells/githubToken" = {
       mode = "0444";
     };
 
@@ -29,7 +29,7 @@ in
         enable = true; # This settings comes from nixos options
         interactiveShellInit =
           ''
-            . ${config.sops.secrets."fish/githubToken".path}
+            . ${config.sops.secrets."shells/githubToken".path}
           ''
           +
             optionalString (!config.vars.withGui && config.vars.isALaptop)
