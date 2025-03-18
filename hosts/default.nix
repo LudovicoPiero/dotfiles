@@ -23,7 +23,11 @@
             myOptions = {
               dnscrypt2.enable = true;
               teavpn2.enable = false;
-              fish.enable = true;
+
+              # Shell
+              # Choose one of the following:
+              fish.enable = false;
+              zsh.enable = true;
             };
 
             vars = {
