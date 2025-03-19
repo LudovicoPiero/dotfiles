@@ -40,8 +40,6 @@ in
       };
     };
 
-    # programs.command-not-found.enable = false;
-
     home-manager.users."${config.vars.username}" =
       { config, osConfig, ... }:
       {

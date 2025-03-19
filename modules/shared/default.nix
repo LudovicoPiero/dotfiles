@@ -37,19 +37,30 @@
     command-not-found.dbPath =
       inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
     dconf.enable = true;
-
-    thunar = {
-      enable = config.vars.withGui;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
   };
 
+  # Nautilus / File Manager
+  environment.systemPackages =
+    with pkgs;
+    [ ]
+    ++ lib.optionals config.vars.withGui [
+      nautilus
+    ];
+  programs = {
+    evince.enable = config.vars.withGui; # Document Viewer
+    file-roller.enable = config.vars.withGui; # Archive Manager
+    nautilus-open-any-terminal = {
+      enable = config.vars.withGui;
+      terminal = "${config.vars.terminal}";
+    };
+  };
   services = {
-    gvfs.enable = config.programs.thunar.enable; # Mount, trash, and other functionalities
-    tumbler.enable = config.programs.thunar.enable; # Thumbnail support for images
+    gvfs.enable = config.vars.withGui; # Mount, trash, and other functionalities
+    tumbler.enable = config.vars.withGui; # Thumbnail support for images
+    gnome = {
+      sushi.enable = config.vars.withGui; # quick previewer for nautilus
+      glib-networking.enable = config.vars.withGui; # network extensions libs
+    };
   };
 
   security = {
