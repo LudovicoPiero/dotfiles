@@ -34,8 +34,25 @@
           "ublock-annoyances"
           "IDN-0"
         ];
-        "user-filters" =
-          "shopee.co.id##li.col-xs-2-4.shopee-search-item-result__item:has(div:contains(Ad))\nshopee.co.id##.oMSmr0:has(div:contains(Ad))";
+        "user-filters" = ''
+          shopee.co.id##li.col-xs-2-4.shopee-search-item-result__item:has(div:contains(Ad))
+          shopee.co.id##.oMSmr0:has(div:contains(Ad))
+          tokopedia.com#?#.product-card:has(span:-abp-contains(/^Ad$/))
+          tokopedia.com##a[data-testid="lnkProductContainer"]:has(img[alt^="topads"])
+          tokopedia.com##div[data-ssr="findProductSSR"]:has(span[data-testid="lblTopads"])
+          tokopedia.com##div[data-ssr="findProductSSR"]:has(span[data-testid="linkProductTopads"])
+          tokopedia.com##div[data-testid="CPMWrapper"]
+          tokopedia.com#?#div[data-testid="divCarouselProduct"]:has(span:-abp-contains(/^Ad$/))
+          tokopedia.com##div[data-testid="divProduct"]:has(span[data-testid="icnHomeTopadsRecom"])
+          tokopedia.com##div[data-testid="divProductWrapper"]:has(span[data-testid="divSRPTopadsIcon"])
+          tokopedia.com##div[data-testid="featuredShopCntr"]
+          tokopedia.com#?#div[data-testid="lazy-frame"]:has(span:-abp-contains(/^Ad$/))
+          tokopedia.com##div[data-testid="lazy-frame"]:has(span[data-testid="lblProdTopads"])
+          tokopedia.com##div[data-testid="master-product-card"]:has(span[data-testid^="linkProductTopads"])
+          tokopedia.com##div[data-testid="topadsCPMWrapper"]
+          tokopedia.com#?#div[data-testid^="divProductRecommendation"]:has(span:-abp-contains(/^Ad$/))
+          tokopedia.com##div[data-testid^="divProductRecommendation"]:has(span[data-testid="icnHomeTopadsRecom"])
+        '';
       };
     };
   };

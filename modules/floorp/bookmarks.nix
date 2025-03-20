@@ -13,12 +13,7 @@
         {
           name = "KICKASSANIME";
           keyword = "kaa";
-          url = "https://kickassanime.am";
-        }
-        {
-          name = "ANIWAVE";
-          keyword = "aw";
-          url = "https://aniwave.to";
+          url = "https://kaa.mx";
         }
       ];
     }
