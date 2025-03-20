@@ -45,50 +45,47 @@
   };
   waybar = {
     pname = "waybar";
-    version = "8490a1d9b9a5c8770dd63e9faca0a5e01acedcae";
-    src = fetchgit {
-      url = "https://github.com/alexays/waybar";
-      rev = "8490a1d9b9a5c8770dd63e9faca0a5e01acedcae";
+    version = "0.12.0";
+    src = fetchFromGitHub {
+      owner = "alexays";
+      repo = "waybar";
+      rev = "0.12.0";
       fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
       sha256 = "sha256-VpT3ePqmo75Ni6/02KFGV6ltnpiV70/ovG/p1f2wKkU=";
     };
-    date = "2025-02-21";
   };
   wezterm = {
     pname = "wezterm";
-    version = "7053748e4d899e7fc5e202d6f903b052fc78e759";
+    version = "d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "7053748e4d899e7fc5e202d6f903b052fc78e759";
+      rev = "d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-bMk9VCESpJvzY3uelrcicgJbMl+bEmKbi8142UtHk3o=";
+      sha256 = "sha256-An9tJmUaaFM6haFi5amCqfgmGPDqb4Q5xyuW9Uzp/cQ=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-7053748e4d899e7fc5e202d6f903b052fc78e759/Cargo.lock;
+      lockFile = ./wezterm-d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-77KaJO+QJWy3tJ9AF1TXKaQHpoVOfGIRqteyqpQaSWo=";
       };
     };
-    date = "2025-03-17";
+    date = "2025-03-19";
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
-    version = "02e254ff8f1355f3adfd954c8d9e5c4e58929b76";
+    version = "c20f9cf7e7c09c0d2e54f7659e4cd57c88ba5ef7";
     src = fetchgit {
       url = "https://github.com/vinceliuice/WhiteSur-gtk-theme";
-      rev = "02e254ff8f1355f3adfd954c8d9e5c4e58929b76";
+      rev = "c20f9cf7e7c09c0d2e54f7659e4cd57c88ba5ef7";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-3BhTCcGRfRJhWHwjZcYKQo0me97MSqOY1bEjcoTYdZA=";
+      sha256 = "sha256-SWF77YqrijjXlr3r/EccrEyVBxqCOn6tXIHuRA5ngEY=";
     };
-    date = "2025-03-14";
+    date = "2025-03-20";
   };
 }

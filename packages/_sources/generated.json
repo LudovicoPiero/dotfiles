@@ -61,7 +61,7 @@
     },
     "waybar": {
         "cargoLocks": null,
-        "date": "2025-02-21",
+        "date": null,
         "extract": null,
         "name": "waybar",
         "passthru": null,
@@ -71,24 +71,25 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "8490a1d9b9a5c8770dd63e9faca0a5e01acedcae",
+            "owner": "alexays",
+            "repo": "waybar",
+            "rev": "0.12.0",
             "sha256": "sha256-VpT3ePqmo75Ni6/02KFGV6ltnpiV70/ovG/p1f2wKkU=",
             "sparseCheckout": [],
-            "type": "git",
-            "url": "https://github.com/alexays/waybar"
+            "type": "github"
         },
-        "version": "8490a1d9b9a5c8770dd63e9faca0a5e01acedcae"
+        "version": "0.12.0"
     },
     "wezterm": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-7053748e4d899e7fc5e202d6f903b052fc78e759/Cargo.lock",
+                "./wezterm-d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc/Cargo.lock",
                 {
                     "xcb-imdkit-0.3.0": "sha256-77KaJO+QJWy3tJ9AF1TXKaQHpoVOfGIRqteyqpQaSWo="
                 }
             ]
         },
-        "date": "2025-03-17",
+        "date": "2025-03-19",
         "extract": null,
         "name": "wezterm",
         "passthru": null,
@@ -98,17 +99,17 @@
             "fetchSubmodules": true,
             "leaveDotGit": false,
             "name": null,
-            "rev": "7053748e4d899e7fc5e202d6f903b052fc78e759",
-            "sha256": "sha256-bMk9VCESpJvzY3uelrcicgJbMl+bEmKbi8142UtHk3o=",
+            "rev": "d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc",
+            "sha256": "sha256-An9tJmUaaFM6haFi5amCqfgmGPDqb4Q5xyuW9Uzp/cQ=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/wez/wezterm"
         },
-        "version": "7053748e4d899e7fc5e202d6f903b052fc78e759"
+        "version": "d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc"
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,
-        "date": "2025-03-14",
+        "date": "2025-03-20",
         "extract": null,
         "name": "whitesur-gtk-theme",
         "passthru": null,
@@ -118,12 +119,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "02e254ff8f1355f3adfd954c8d9e5c4e58929b76",
-            "sha256": "sha256-3BhTCcGRfRJhWHwjZcYKQo0me97MSqOY1bEjcoTYdZA=",
+            "rev": "c20f9cf7e7c09c0d2e54f7659e4cd57c88ba5ef7",
+            "sha256": "sha256-SWF77YqrijjXlr3r/EccrEyVBxqCOn6tXIHuRA5ngEY=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/vinceliuice/WhiteSur-gtk-theme"
         },
-        "version": "02e254ff8f1355f3adfd954c8d9e5c4e58929b76"
+        "version": "c20f9cf7e7c09c0d2e54f7659e4cd57c88ba5ef7"
     }
 }
