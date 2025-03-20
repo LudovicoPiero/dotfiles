@@ -65,6 +65,7 @@
             thunderbird
             telegram-desktop
             mpv
+            yazi
             ;
 
           coreutils = (pkgs.hiPrio pkgs.uutils-coreutils-noprefix);
