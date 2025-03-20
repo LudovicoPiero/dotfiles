@@ -89,6 +89,8 @@
       settings = {
         Statistics = false;
         PluginsUpdateMode = 1;
+        AutoClaimItemBotNames = "ASF";
+        AutoClaimItemPeriod = 23;
       };
 
       ipcPasswordFile = config.sops.secrets."asfIpcPassword".path;
