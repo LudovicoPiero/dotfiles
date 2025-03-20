@@ -1,35 +1,37 @@
 { pkgs, ... }:
 {
-  default = "DuckDuckGo";
+  default = "ddg";
   order = [
-    "DuckDuckGo"
-    "Brave"
-    "Searx"
-    "Google"
+    "ddg"
+    "brave"
+    "searx"
+    "google"
   ];
+
   force = true;
+
   engines = {
-    "Searx" = {
+    "searx" = {
       urls = [ { template = "https://searx.juancord.xyz/searxng/search?q={searchTerms}"; } ];
       definedAliases = [ "s" ];
     };
 
-    "Brave" = {
+    "brave" = {
       urls = [ { template = "https://search.brave.com/search?q={searchTerms}"; } ];
       definedAliases = [ "b" ];
     };
 
-    "DuckDuckGo" = {
+    "ddg" = {
       urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
       definedAliases = [ "d" ];
     };
 
-    "GitHub" = {
+    "github" = {
       urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
       definedAliases = [ "gh" ];
     };
 
-    "Nix Packages" = {
+    "nix-packages" = {
       urls = [
         {
           template = "https://search.nixos.org/packages";
@@ -54,12 +56,12 @@
       definedAliases = [ "np" ];
     };
 
-    "Home-Manager" = {
+    "home-manager" = {
       urls = [ { template = "https://rycee.gitlab.io/home-manager/options.html"; } ];
       definedAliases = [ "hm" ];
     };
 
-    "NixOS Options" = {
+    "nixos-options" = {
       urls = [
         {
           template = "https://search.nixos.org/options";
@@ -84,22 +86,22 @@
       definedAliases = [ "no" ];
     };
 
-    "NixOS Wiki" = {
-      urls = [ { template = "https://wiki.nixos.org/wiki/{searchTerms}"; } ];
+    "nixos-wiki" = {
+      urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
       definedAliases = [ "nw" ];
     };
 
-    "YouTube" = {
+    "youtube" = {
       urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
       definedAliases = [ "yt" ];
     };
 
-    "Amazon.com".metaData.hidden = true;
-    "Bing".metaData.hidden = true;
-    "eBay".metaData.hidden = true;
-    "Google".metaData.hidden = true;
-    "Google".metaData.alias = "g";
-    "Wikipedia (en)".metaData.hidden = true;
+    "amazondotcom-us".metaData.hidden = true;
+    "bing".metaData.hidden = true;
+    "ebay".metaData.hidden = true;
+    "google".metaData.hidden = true;
+    "google".metaData.alias = "g";
+    "wikipedia".metaData.hidden = true;
   };
 }
