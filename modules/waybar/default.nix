@@ -138,7 +138,7 @@ in
               };
               "network" = {
                 "format-wifi" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
-                "format-ethernet" = "󰈀 IP Leaked: {ipaddr}/{cidr}";
+                "format-ethernet" = "󰈀 IP LEAK: {ipaddr}/{cidr}";
                 "format-linked" = "{ifname} (No IP)";
                 "format-disconnected" = "Disconnected ⚠";
                 "format-alt" = "IP LEAK: {ipaddr}/{cidr}";
