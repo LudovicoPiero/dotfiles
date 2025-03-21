@@ -367,7 +367,7 @@ in
             enabled = false;
           };
           NoTypingAnimation = {
-            enabled = false;
+            enabled = true;
           };
           NoUnblockToJump = {
             enabled = false;
