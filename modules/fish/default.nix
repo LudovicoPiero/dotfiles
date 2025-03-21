@@ -17,6 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    users.users.root.shell = pkgs.fish;
     users.users.${config.vars.username}.shell = pkgs.fish;
     sops.secrets."shells/githubToken" = {
       mode = "0444";

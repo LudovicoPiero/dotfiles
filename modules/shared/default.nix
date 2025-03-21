@@ -40,12 +40,55 @@
   };
 
   # Nautilus / File Manager
-  environment.systemPackages =
-    with pkgs;
-    [ ]
-    ++ lib.optionals config.vars.withGui [
+  environment.systemPackages = lib.attrValues {
+    inherit (pkgs)
+      teavpn2
+      adwaita-icon-theme
+      bat
+      iputils
+      curl
+      direnv
+      dnsutils
+      fd
+      fzf
+      sbctl # For debugging and troubleshooting Secure boot.
       nautilus
-    ];
+
+      bottom
+      jq
+      nix-index
+      nmap
+      ripgrep
+      tealdeer
+      whois
+      wl-clipboard
+      wget
+      unzip
+      # Utils for nixpkgs stuff
+      nixpkgs-review
+      # Fav
+      imv
+      viewnior
+      ente-auth
+      thunderbird
+      telegram-desktop
+      mpv
+      yazi
+      ;
+
+    coreutils = (pkgs.hiPrio pkgs.uutils-coreutils-noprefix);
+
+    # use OCR and copy to clipboard
+    wl-ocr =
+      let
+        _ = lib.getExe;
+      in
+      pkgs.writeShellScriptBin "wl-ocr" ''
+        ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard}/bin/wl-copy
+        ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
+      '';
+  };
+
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer
     file-roller.enable = config.vars.withGui; # Archive Manager
