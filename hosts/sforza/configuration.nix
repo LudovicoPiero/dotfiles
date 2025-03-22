@@ -16,7 +16,10 @@
   ];
 
   networking.hostName = "sforza"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager = {
+    enable = true; # Easiest to use and most distros use this by default.
+    wifi.backend = "iwd";
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot = {
