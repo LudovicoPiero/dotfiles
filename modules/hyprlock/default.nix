@@ -1,9 +1,7 @@
 {
   lib,
   self,
-  pkgs,
   config,
-  inputs,
   ...
 }:
 let
@@ -29,7 +27,6 @@ in
       {
         programs.hyprlock = {
           enable = true;
-          package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.default;
           settings = {
             general = {
               grace = 30;
