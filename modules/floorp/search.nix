@@ -12,7 +12,7 @@
 
   engines = {
     "searx" = {
-      urls = [ { template = "https://searx.juancord.xyz/searxng/search?q={searchTerms}"; } ];
+      urls = [ { template = "https://opnxng.com/search?q={searchTerms}"; } ];
       definedAliases = [ "s" ];
     };
 
