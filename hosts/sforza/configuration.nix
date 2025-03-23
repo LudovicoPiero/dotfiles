@@ -70,7 +70,7 @@
 
   # OpenGL
   hardware = {
-    bluetooth.enable = false;
+    bluetooth.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
