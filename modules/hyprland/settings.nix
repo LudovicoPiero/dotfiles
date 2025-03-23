@@ -179,7 +179,7 @@ in
     "9, monitor:HDMI-A-1"
   ];
 
-  windowrulev2 = [
+  windowrule = [
     # General workspace rules
     "bordersize 0, floating:0, onworkspace:w[tv1]"
     "rounding 0, floating:0, onworkspace:w[tv1]"
@@ -190,6 +190,18 @@ in
     "workspace 9, class:^(thunderbird)$"
     "workspace 8, class:^(whatsapp-for-linux)$"
     "workspace 7, class:^(qBittorrent|org.qbittorrent.qBittorrent)$"
+
+    # Ignore maximize requests from apps. You'll probably like this.
+    "suppressevent maximize, class:.*"
+
+    # Fix some dragging issues with XWayland
+    "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+
+    # Bitwarden Firefox Extensions
+    "float, title:^(.*Bitwarden Password Manager.*)$"
+
+    # Telegram Media Viewer
+    "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
 
     # Steam rules
     "workspace 6, class:^(steam)$"
@@ -203,7 +215,7 @@ in
     "nofocus, class:^(steam)$, title:^()$"
 
     # Music Player rules
-    "workspace 5, title:(Spotify)"
+    "workspace 5, title:^(Spotify( Premium)?)$"
     "workspace 5, class:(org.fooyin.fooyin)"
 
     # Telegram rules
@@ -218,6 +230,9 @@ in
     "workspace 2, class:^(firefox)$"
     "noblur, class:^(firefox)$"
     "noshadow, class:^(firefox)$"
+    "idleinhibit focus, class:^(mpv|.+exe)$"
+    "idleinhibit focus, class:^(firefox|floorp)$, title:^(.*YouTube.*)$"
+    "idleinhibit fullscreen, class:^(firefox|floorp)$"
 
     ## Floorp
     "workspace 2, class:^(floorp)$"
@@ -331,17 +346,15 @@ in
     ", XF86AudioRaiseVolume , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
     ", XF86AudioLowerVolume , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
     ", XF86AudioMute        , exec , ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    ", XF86MonBrightnessUp , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%+"
+    ", XF86MonBrightnessDown , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
   ];
 
   bindl = [
     ", XF86AudioNext , exec , ${pkgs.playerctl}/bin/playerctl next"
     ", XF86AudioPrev , exec , ${pkgs.playerctl}/bin/playerctl previous"
     ", XF86AudioPlay , exec , ${pkgs.playerctl}/bin/playerctl play-pause"
-  ];
-
-  binde = [
-    ", XF86MonBrightnessUp , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%+"
-    ", XF86MonBrightnessDown , exec , ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
+    ", XF86AudioPause , exec , ${pkgs.playerctl}/bin/playerctl play-pause"
   ];
 
   bindm = [
