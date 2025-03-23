@@ -160,11 +160,13 @@ in
               };
               "custom/disk_home" = {
                 "format" = "󰋊 Porn Folder: {}";
+                "tooltip-format" = "Size of /home";
                 "interval" = 30;
                 "exec" = "df -h --output=avail /dev/disk/by-label/HOME | tail -1 | tr -d ' '";
               };
               "custom/disk_root" = {
                 "format" = "󰋊 Hentai Folder: {}";
+                "tooltip-format" = "Size of /";
                 "interval" = 30;
                 "exec" = "df -h --output=avail / | tail -1 | tr -d ' '";
               };
