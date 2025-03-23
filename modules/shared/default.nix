@@ -76,7 +76,7 @@
       yazi
       ;
 
-    coreutils = (pkgs.hiPrio pkgs.uutils-coreutils-noprefix);
+    coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
 
     # use OCR and copy to clipboard
     wl-ocr =
