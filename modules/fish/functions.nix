@@ -43,6 +43,16 @@ with pkgs;
     popd
   '';
 
+  clean-all = ''
+    ${_ nh} clean all
+
+    if test $status -eq 0
+      ${__ libnotify "notify-send"} "NH Clean All" "Clean successful!"
+    else
+      ${__ libnotify "notify-send"} "NH Clean All" "Clean failed!"
+    end
+  '';
+
   hs = ''
     pushd ${config.home.homeDirectory}/Code/nixos
     ${_ nh} home switch .
