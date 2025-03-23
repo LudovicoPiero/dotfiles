@@ -61,20 +61,12 @@ in
     };
 
     home-manager.users.${config.vars.username} =
-      { config, osConfig, ... }:
+      { osConfig, ... }:
       {
+        imports = [ ./settings.nix ];
         wayland.windowManager.hyprland = {
           enable = true;
           package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-          settings = import ./settings.nix {
-            inherit
-              pkgs
-              lib
-              config
-              osConfig
-              inputs
-              ;
-          };
           systemd.enable = !osConfig.programs.uwsm.enable;
 
           extraConfig = ''
