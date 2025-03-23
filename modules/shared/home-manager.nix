@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -32,6 +31,13 @@
             SDL_VIDEODRIVER = "wayland";
             XDG_SESSION_TYPE = "wayland";
           };
+      };
+
+      programs = {
+        direnv = {
+          enable = true;
+          nix-direnv.enable = true;
+        };
       };
 
       xdg =
