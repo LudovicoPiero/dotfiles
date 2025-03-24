@@ -863,11 +863,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1742816128,
-        "narHash": "sha256-0g4IiK01NqABAmlJaC6S3noEtN7E2zNGuJsheE0h8xc=",
+        "lastModified": 1742822692,
+        "narHash": "sha256-Vqt69J9ra2m7X4I8jyu7ex4YldVLC8EJUT0zx0nebSs=",
         "owner": "LudovicoPiero",
         "repo": "nvim-flake",
-        "rev": "2aca0b983698321a24213ce5029dc8b8bd1d844a",
+        "rev": "4cc7e8f883c2bd4cc993be630d2f4a4c3a28d63b",
         "type": "github"
       },
       "original": {
