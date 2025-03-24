@@ -13,7 +13,29 @@
 
     engines = {
       "searx" = {
-        urls = [ { template = "https://opnxng.com/search?q={searchTerms}"; } ];
+        urls = [
+          {
+            template = "https://opnxng.com/search";
+            params = [
+              {
+                name = "q";
+                value = "{searchTerms}";
+              }
+              {
+                name = "categories";
+                value = "general";
+              }
+              {
+                name = "language";
+                value = "all";
+              }
+              {
+                name = "safesearch";
+                value = "0";
+              }
+            ];
+          }
+        ];
         definedAliases = [ "s" ];
       };
 
