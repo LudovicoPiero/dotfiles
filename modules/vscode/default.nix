@@ -109,11 +109,12 @@ in
               "explorer.confirmDragAndDrop" = false;
               "editor.fontFamily" =
                 "'${osConfig.myOptions.fonts.main.name} Semibold', '${osConfig.myOptions.fonts.icon.name}', monospace";
-              "editor.fontSize" = "${toString osConfig.myOptions.fonts.size}";
+              "editor.fontSize" = osConfig.myOptions.fonts.size;
 
               "workbench.colorCustomizations" = null;
               "workbench.colorTheme" = "${config.colorScheme.name}";
               "workbench.iconTheme" = "material-icon-theme";
+              "github.copilot.selectedCompletionModel" = "gpt-4o-copilot";
             };
           };
         };
