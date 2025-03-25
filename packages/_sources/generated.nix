@@ -3,31 +3,31 @@
 {
   catppuccin-fcitx5 = {
     pname = "catppuccin-fcitx5";
-    version = "3471b918d4b5aab2d3c3dd9f2c3b9c18fb470e8e";
+    version = "383c27ac46cbb55aa5f58acbd32841c1ed3a78a0";
     src = fetchgit {
       url = "https://github.com/catppuccin/fcitx5";
-      rev = "3471b918d4b5aab2d3c3dd9f2c3b9c18fb470e8e";
+      rev = "383c27ac46cbb55aa5f58acbd32841c1ed3a78a0";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-1IqFVTEY6z8yNjpi5C+wahMN1kpt0OJATy5echjPXmc=";
+      sha256 = "sha256-n83f9ge4UhBFlgCPRCXygcVJiDp7st48lAJHTm1ohR4=";
     };
-    date = "2024-09-01";
+    date = "2025-03-22";
   };
   firefox-gnome-theme = {
     pname = "firefox-gnome-theme";
-    version = "072ee5d3e8b6f575a31cc294054537dc841d5049";
+    version = "26b99e51e7f15a62eb3f90aea536d9ba55f782df";
     src = fetchgit {
       url = "https://github.com/rafaelmardojai/firefox-gnome-theme";
-      rev = "072ee5d3e8b6f575a31cc294054537dc841d5049";
+      rev = "26b99e51e7f15a62eb3f90aea536d9ba55f782df";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-8EQS6zY47hVa3jWG9d2MuHK+1JmG/6vdp8gEd2eKFow=";
+      sha256 = "sha256-v1uYWuOPpXgUxx8WPLtXyLLCBL2/lgMjqyg7K9RPirw=";
     };
-    date = "2025-03-16";
+    date = "2025-03-24";
   };
   san-francisco-pro = {
     pname = "san-francisco-pro";
@@ -56,23 +56,23 @@
   };
   wezterm = {
     pname = "wezterm";
-    version = "d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc";
+    version = "a87358516004a652ad840bc1661bdf65ffc89b43";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc";
+      rev = "a87358516004a652ad840bc1661bdf65ffc89b43";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-An9tJmUaaFM6haFi5amCqfgmGPDqb4Q5xyuW9Uzp/cQ=";
+      sha256 = "sha256-aYONqWAJ8oasqWscXMVqbnMuJQjZ+9uL3oeFFUhp7KE=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-d0ff5cb892c9b49d6a8d76162bebb8d8c229b3cc/Cargo.lock;
+      lockFile = ./wezterm-a87358516004a652ad840bc1661bdf65ffc89b43/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-77KaJO+QJWy3tJ9AF1TXKaQHpoVOfGIRqteyqpQaSWo=";
       };
     };
-    date = "2025-03-19";
+    date = "2025-03-20";
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
