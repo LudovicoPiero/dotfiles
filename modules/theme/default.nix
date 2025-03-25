@@ -88,6 +88,10 @@ in
         type = types.str;
         default = "SF Pro Rounded";
       };
+      package = mkOption {
+        type = types.package;
+        default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
+      };
       size = mkOption {
         type = types.int;
         default = 11;
@@ -106,6 +110,7 @@ in
         home = {
           packages = [
             cfg.gtk.cursorTheme.package
+            cfg.font.package
             pkgs.gnomeExtensions.user-themes
           ];
           pointerCursor = {
