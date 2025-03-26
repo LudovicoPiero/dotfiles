@@ -18,6 +18,15 @@ with pkgs;
     "," = "nix run nixpkgs#$argv[1]";
     ns = "nix shell nixpkgs#$argv[1]";
 
+    y = ''
+      set tmp (mktemp -t "yazi-cwd.XXXXXX")
+      ${_ yazi} $argv --cwd-file="$tmp"
+      if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+      end
+      rm -f -- "$tmp"
+    '';
+
     bs = ''
       pushd ${config.home.homeDirectory}/Code/nixos
       ${_ nh} os switch .
