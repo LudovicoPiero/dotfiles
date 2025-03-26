@@ -13,6 +13,12 @@
       "browser.tabs.firefox-view" = false; # Disable Firefox View
       "browser.tabs.firefox-view-next" = false;
 
+      "sidebar.verticalTabs" = true;
+      "sidebar.main.tools" = "";
+      "sidebar.visibility" = "always-show";
+      "browser.ml.chat.enabled" = false;
+      "gfx.webrender.all" = true;
+
       "network.trr.mode" = 2;
       "network.trr.max-fails" = 5;
       "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
