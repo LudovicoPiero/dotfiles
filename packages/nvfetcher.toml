@@ -8,10 +8,6 @@ fetch.git = "https://github.com/wez/wezterm"
 cargo_locks = ["Cargo.lock"]
 git.fetchSubmodules = true
 
-[waybar]
-src.git = "https://github.com/alexays/waybar"
-fetch.git = "https://github.com/alexays/waybar"
-
 [firefox-gnome-theme]
 src.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
 fetch.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
