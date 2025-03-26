@@ -40,12 +40,37 @@ in
         staticTitle = false;
       };
 
+      xdg.configFile."vesktop/themes/fix-ui.css".text = ''
+        /* Aligned Chat Box and User Box */
+        .container_c48ade {
+          --custom-chat-input-margin-bottom: 6px;
+        }
+        :root {
+          --custom-channel-textarea-text-area-height: 52px;
+        }
+
+        /* Hide the Visual Refresh Title Bar */
+        :root {
+          --custom-app-top-bar-height: 0 !important;
+        }
+        .visual-refresh {
+         div[class^="base_"] {
+          &>div[class^="bar_"] {
+           display: none;
+          }
+         }
+         ul[data-list-id="guildsnav"]>div[class^="itemsContainer_"] {
+          margin-top: 6px;
+         }
+        }
+      '';
+
       xdg.configFile."vesktop/settings/settings.json".text = builtins.toJSON {
         autoUpdate = true;
         autoUpdateNotification = true;
         useQuickCss = true;
         themeLinks = [ ];
-        enabledThemes = [ ];
+        enabledThemes = [ "fix-ui.css" ];
         enableReactDevtools = false;
         frameless = false;
         transparent = false;
