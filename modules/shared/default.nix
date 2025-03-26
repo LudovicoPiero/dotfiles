@@ -70,6 +70,7 @@
       ;
 
     coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
+    findutils = pkgs.hiPrio pkgs.uutils-findutils;
 
     # use OCR and copy to clipboard
     wl-ocr =
