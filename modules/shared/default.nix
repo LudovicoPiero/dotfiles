@@ -16,6 +16,7 @@
   ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
+  hardware.enableAllFirmware = true;
   time.timeZone = config.vars.timezone;
 
   system.switch = {
