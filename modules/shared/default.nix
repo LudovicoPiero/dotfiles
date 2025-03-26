@@ -15,6 +15,8 @@
     ./home-manager.nix # Home-Manager stuff
   ];
 
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   hardware.enableAllFirmware = true;
   time.timeZone = config.vars.timezone;
@@ -23,16 +25,6 @@
     enable = false;
     enableNg = true;
   };
-
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "unrar"
-      "vscode"
-      "steam"
-      "steam-unwrapped"
-      "symbola"
-    ];
 
   programs = {
     command-not-found.dbPath =
