@@ -78,11 +78,11 @@ in
               "on-click" = "${_ pkgs.ponymix} -N -t sink toggle";
               "on-click-right" = "${_ pkgs.ponymix} -N -t source toggle";
 
-              "format" = "{icon} {volume}% {format_source}";
-              "format-muted" = "󰖁 {format_source}";
+              "format" = "{icon}{volume}% {format_source}";
+              "format-muted" = "󰖁{format_source}";
               "format-bluetooth" = "{icon}󰂯 {volume}% {format_source}";
               "format-bluetooth-muted" = "󰖁󰂯 {format_source}";
-              "format-source" = "󰍬 {volume}%";
+              "format-source" = "󰍬{volume}%";
               "format-source-muted" = "󰍭";
               "format-icons" = {
                 "headphones" = "󰋋";
@@ -135,35 +135,35 @@ in
               spacing = 5;
             };
             "network" = {
-              "format-wifi" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
-              "format-ethernet" = "󰈀 IP LEAK: {ipaddr}/{cidr}";
+              "format-alt" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
+              "format-ethernet" = "󰈀IP LEAK: {ipaddr}/{cidr}";
               "format-linked" = "{ifname} (No IP)";
-              "format-disconnected" = "Disconnected ⚠";
-              "format-alt" = "IP LEAK: {ipaddr}/{cidr}";
+              "format-disconnected" = "⚠ Disconnected";
+              "format-wifi" = "󰖩IP LEAK: {ipaddr}/{cidr}";
               "interval" = 5;
             };
             "custom/wireguard" = {
-              "format" = "󰖂 Wireguard";
+              "format" = "󰖂Wireguard";
               "exec" = "echo '{\"class\": \"connected\"}'";
               "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
               "return-type" = "json";
               "interval" = 5;
             };
             "custom/teavpn" = {
-              "format" = "󰖂 Teavpn";
+              "format" = "󰖂Teavpn";
               "exec" = "echo '{\"class\": \"connected\"}'";
               "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
               "return-type" = "json";
               "interval" = 5;
             };
             "custom/disk_home" = {
-              "format" = "󰋊 Porn Folder: {}";
+              "format" = "󰋊Porn Folder: {}";
               "tooltip-format" = "Size of /home";
               "interval" = 30;
               "exec" = "df -h --output=avail /dev/disk/by-label/HOME | tail -1 | tr -d ' '";
             };
             "custom/disk_root" = {
-              "format" = "󰋊 Hentai Folder: {}";
+              "format" = "󰋊Hentai Folder: {}";
               "tooltip-format" = "Size of /";
               "interval" = 30;
               "exec" = "df -h --output=avail / | tail -1 | tr -d ' '";
@@ -192,13 +192,13 @@ in
               ];
             };
             "custom/date" = {
-              "format" = "󰃭 {}";
+              "format" = "󰃭{}";
               "interval" = 3600;
               "exec" = "${_ waybar-date}";
             };
             "clock" = {
-              "format" = "󰅐 {:%I:%M %p}";
-              "format-alt" = "{:%A; %B %d, %Y (%R)} 󰃭 ";
+              "format" = "󰅐{:%I:%M %p}";
+              "format-alt" = "󰃭{:%A; %B %d, %Y (%R)}";
               "tooltip-format" = "<tt><small>{calendar}</small></tt>";
               "calendar" = {
                 "mode" = "year";
