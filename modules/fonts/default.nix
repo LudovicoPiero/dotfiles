@@ -24,11 +24,11 @@ in
     main = {
       name = mkOption {
         type = types.str;
-        default = "Iosevka Q";
+        default = "Iosevka SS14";
       };
       package = mkOption {
         type = types.package;
-        default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
+        default = pkgs.iosevka-bin.override { variant = "SS14"; };
       };
     };
 
