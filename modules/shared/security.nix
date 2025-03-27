@@ -104,7 +104,6 @@
       "hfsplus"
       "squashfs"
       "udf"
-      "btusb"
       "hpfs"
       "jfs"
       "minix"
