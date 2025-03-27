@@ -79,9 +79,9 @@ in
               "on-click-right" = "${_ pkgs.ponymix} -N -t source toggle";
 
               "format" = "{icon}{volume}% {format_source}";
-              "format-muted" = "󰖁{format_source}";
+              "format-muted" = "󰝟{format_source}";
               "format-bluetooth" = "{icon}󰂯 {volume}% {format_source}";
-              "format-bluetooth-muted" = "󰖁󰂯 {format_source}";
+              "format-bluetooth-muted" = "󰝟󰂯 {format_source}";
               "format-source" = "󰍬{volume}%";
               "format-source-muted" = "󰍭";
               "format-icons" = {
