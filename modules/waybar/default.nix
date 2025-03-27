@@ -29,7 +29,7 @@ in
       programs.waybar = {
         enable = true;
 
-        package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
+        # package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
 
         settings = {
           mainBar = {
