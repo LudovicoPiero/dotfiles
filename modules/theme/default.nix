@@ -94,7 +94,7 @@ in
       };
       size = mkOption {
         type = types.int;
-        default = 11;
+        default = 12;
       };
     };
   };
