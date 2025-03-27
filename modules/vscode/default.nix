@@ -24,6 +24,7 @@ in
       {
         programs.vscode = {
           enable = true;
+          package = pkgs.vscodium;
 
           profiles.default = {
             extensions =
@@ -111,7 +112,6 @@ in
                 "'${osConfig.myOptions.fonts.main.name} Semibold', '${osConfig.myOptions.fonts.icon.name}', monospace";
               "editor.fontSize" = osConfig.myOptions.fonts.size;
 
-              "workbench.colorCustomizations" = null;
               "workbench.colorTheme" = "${config.colorScheme.name}";
               "workbench.iconTheme" = "material-icon-theme";
               "github.copilot.selectedCompletionModel" = "gpt-4o-copilot";
