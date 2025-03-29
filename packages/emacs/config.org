@@ -1,0 +1,1069 @@
+#+TITLE: My Emacs Configuration
+#+AUTHOR: Ludovico Piero
+#+EMAIL: lewdovico@gnuweeb.org
+#+DATE: [2024-03-27 Wed]
+#+STARTUP: showeverything
+#+OPTIONS: toc:2
+#+PROPERTY: header-args:emacs-lisp :tangle yes
+#+REPOSITORY: https://github.com/ludovicopiero/dotfiles
+
+* Table Of Content :toc:
+- [[#early-init][Early init]]
+- [[#general-packages--tweaks-to-load-before-anything][General Packages / Tweaks to Load Before Anything]]
+  - [[#evil-mode][Evil Mode]]
+  - [[#general-keybind][General Keybind]]
+  - [[#tweaks][Tweaks]]
+- [[#all-the-icons][All The Icons]]
+- [[#centered-cursor][Centered Cursor]]
+- [[#company][Company]]
+- [[#dashboard][Dashboard]]
+- [[#deadgrep][Deadgrep]]
+- [[#dired][Dired]]
+- [[#diminish][Diminish]]
+- [[#direnv][Direnv]]
+- [[#flycheck][Flycheck]]
+- [[#git-programs][Git Programs]]
+  - [[#git-time-machine][Git Time Machine]]
+  - [[#magit][Magit]]
+- [[#languages-support][Languages Support]]
+  - [[#lsp][LSP]]
+- [[#org-mode][Org Mode]]
+  - [[#org-modern][Org Modern]]
+  - [[#enabling-table-of-contents][Enabling Table of Contents]]
+  - [[#enabling-org-bullets][Enabling Org Bullets]]
+  - [[#disable-electric-indent][Disable Electric Indent]]
+  - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
+- [[#projectile][Projectile]]
+- [[#rainbow-delimiters][Rainbow Delimiters]]
+- [[#rainbow-mode][Rainbow Mode]]
+- [[#shells-and-terminal][Shells and Terminal]]
+  - [[#eshell][Eshell]]
+  - [[#vterm][Vterm]]
+- [[#ui][UI]]
+  - [[#theme][Theme]]
+  - [[#modeline][Modeline]]
+- [[#treesitter][Treesitter]]
+- [[#treemacs][Treemacs]]
+- [[#undo-tree][Undo Tree]]
+- [[#vertico][Vertico]]
+- [[#which-key][Which Key]]
+- [[#yasnippet][Yasnippet]]
+
+* Early init
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+;; Initialize package sources
+(require 'package)
+
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+  ;; Initialize use-package on non-Linux platforms
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+;; Disable GUI elements early to improve startup time
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(blink-cursor-mode -1)
+(menu-bar-mode -1)
+
+;; Change font early to ensure proper display
+(set-face-attribute 'default nil
+  :font "Iosevka SS14 Semibold"
+  :height 110
+  :weight 'medium)
+(set-face-attribute 'variable-pitch nil
+  :font "Iosevka SS14"
+  :height 120
+  :weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+  :font "Iosevka SS14 Semibold"
+  :height 110
+  :weight 'medium)
+;; Makes commented text and keywords italics.
+;; This is working in emacsclient but not emacs.
+;; Your font must have an italic face available.
+(set-face-attribute 'font-lock-comment-face nil
+  :slant 'italic)
+(set-face-attribute 'font-lock-keyword-face nil
+  :slant 'italic)
+
+;; This sets the default font on all graphical frames created after restarting Emacs.
+;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
+;; are not right unless I also add this method of setting the default font.
+(add-to-list 'default-frame-alist '(font . "Iosevka SS14-15"))
+
+;; Uncomment the following line if line spacing needs adjusting.
+(setq-default line-spacing 0.12)
+
+;; Set transparency
+(set-frame-parameter nil 'alpha-background 100)
+(add-to-list 'default-frame-alist '(alpha-background . 100))
+
+;; Remove unnecessary wait.
+(setq-default pgtk-wait-for-event-timeout nil)
+
+;; all-the-icons
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+;; Enable column number mode
+(column-number-mode 1)
+
+;; Enable display of line numbers in buffers
+(global-display-line-numbers-mode 1)
+
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; Enable visual line mode globally
+(global-visual-line-mode t)
+
+;; Increase process output max for LSP performance
+(setq read-process-output-max (* 1024 1024))
+
+
+;; Make ~/.config/emacs clean
+(use-package no-littering)
+
+;; Recent files
+(use-package recentf
+  :ensure nil)
+(add-to-list 'recentf-exclude
+             (recentf-expand-file-name no-littering-var-directory))
+(add-to-list 'recentf-exclude
+             (recentf-expand-file-name no-littering-etc-directory))
+;; Saved customizations
+(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+;; Native compilation cache
+(when (fboundp 'startup-redirect-eln-cache)
+  (startup-redirect-eln-cache
+   (convert-standard-filename
+    (expand-file-name  "var/eln-cache/" user-emacs-directory))))
+(no-littering-theme-backups)
+
+;; Disable native-compilation warnings/errors during async compilation
+(setq native-comp-async-report-warnings-errors nil)
+
+;; Disable visual bell and startup screen
+(setq ring-bell-function #'ignore
+      inhibit-startup-screen t)
+
+;; Increase GC threshold and percentage to reduce GC pauses during startup
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 1)
+
+;; Function to run GC when Emacs frame loses focus
+(defun +gc-after-focus-change ()
+  "Run garbage collection when Emacs frame loses focus."
+  (run-with-idle-timer
+   5 nil
+   (lambda () (unless (frame-focus-state) (garbage-collect)))))
+
+;; Function to reset initialization values after Emacs initialization
+(defun +reset-init-values ()
+  "Reset initialization values after Emacs startup."
+  ;; Initialize default-file-name-handler-alist if it's not defined
+  (unless (boundp 'default-file-name-handler-alist)
+    (setq default-file-name-handler-alist file-name-handler-alist))
+  (run-with-idle-timer
+   1 nil
+   (lambda ()
+     (setq file-name-handler-alist default-file-name-handler-alist
+           gc-cons-percentage 0.1
+           gc-cons-threshold 100000000)
+     (message "gc-cons-threshold & file-name-handler-alist restored")
+     (when (boundp 'after-focus-change-function)
+       (add-function :after after-focus-change-function #'+gc-after-focus-change)))))
+
+
+;; Call the reset function after startup (in case ELPA is already initialized)
+(+reset-init-values)
+
+;; This needs to be before loading init.org so I don't have to give
+;; permission to load the file when it is symlinked.
+(customize-set-variable
+ 'vc-follow-symlinks t "Follow Symlinks without asking")
+#+end_src
+
+# * Exported File Note
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+;; init.el --- Emacs Configuration File
+;;
+;; Copyright (C) 2024 Ludovico Piero
+;; Author: Ludovico Piero <lewdovico@gnuweeb.org>
+;; URL: https://github.com/ludovicopiero/.emacs.d
+;; Git-Repository: git://github.com/ludovicopiero/.emacs.d.git
+;; Created: 2024-03-27
+
+;;; Commentary:
+
+;; Configuration files for Emacs.
+
+;;; Code:
+#+end_src
+
+* General Packages / Tweaks to Load Before Anything
+** Evil Mode
+   Evil Mode provides Vim emulation in Emacs, allowing users familiar with Vim keybindings and commands to work seamlessly within Emacs.
+   #+begin_src emacs-lisp
+   (use-package evil
+     :init
+     ;; tweak evil's configuration before loading it
+     (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+     (setq evil-want-keybinding nil)
+     (setq evil-vsplit-window-right t)
+     (setq evil-split-window-below t)
+
+     ;; ----- Setting cursor colors
+     (setq evil-emacs-state-cursor    '("#649bce" box))
+     (setq evil-normal-state-cursor   '("#d9a871" box))
+     (setq evil-operator-state-cursor '("#ebcb8b" hollow))
+     (setq evil-visual-state-cursor   '("#677691" box))
+     (setq evil-insert-state-cursor   '("#eb998b" box))
+     (setq evil-replace-state-cursor  '("#eb998b" hbar))
+     (setq evil-motion-state-cursor   '("#ad8beb" box))
+     (evil-mode))
+
+   (use-package evil-collection
+     :after evil
+     :config
+     ;;(setq evil-collection-mode-list '(dashboard dired ibuffer))
+     (evil-collection-init))
+
+   (use-package evil-surround
+     :after evil
+     :ensure t
+     :config
+     (global-evil-surround-mode 1))
+
+   (use-package evil-nerd-commenter
+     :after evil)
+
+   ;; Unmap keys in 'evil-maps if not done, (setq org-return-follows-link t) will not work
+   (with-eval-after-load 'evil-maps
+     ;; Unset keys in evil-motion-state-map
+     (mapc (lambda (key) (define-key evil-motion-state-map (kbd key) nil))
+           '("SPC" "RET" "TAB")))
+   ;; Setting RETURN key in org-mode to follow links
+   (setq org-return-follows-link t)
+   #+end_src
+
+** General Keybind
+   The "General Keybind" section configures general keybindings using the general package, allowing for leader key functionality and easy customization.
+#+begin_src emacs-lisp
+;; Set up the leader key map.
+;; Bind leader key only in normal state to avoid affecting minibuffer.
+(define-prefix-command 'leader-key-map)
+(define-key evil-normal-state-map (kbd "SPC") 'leader-key-map)
+;; Optionally, you can also bind it for visual and other states if needed:
+(define-key evil-visual-state-map (kbd "SPC") 'leader-key-map)
+
+;; Remap space in the minibuffer (this covers ex-mode and other command prompts)
+(define-key minibuffer-local-map (kbd "SPC") 'self-insert-command)
+
+;; --------------------------
+;; Direct Leader Bindings
+;; --------------------------
+(define-key leader-key-map (kbd ".") 'find-file)
+(define-key leader-key-map (kbd "fr") 'recentf)
+(define-key leader-key-map (kbd "ff") 'lsp-format-buffer)
+(define-key leader-key-map (kbd "TAB") 'evilnc-comment-or-uncomment-lines)
+
+;; --------------------------
+;; Bookmarks/Buffers ("b" group)
+;; --------------------------
+(define-prefix-command 'leader-key-b-map)
+(define-key leader-key-map (kbd "b") 'leader-key-b-map)
+(define-key leader-key-b-map (kbd "b") 'switch-to-buffer)
+(define-key leader-key-b-map (kbd "c") 'clone-indirect-buffer)
+(define-key leader-key-b-map (kbd "C") 'clone-indirect-buffer-other-window)
+(define-key leader-key-b-map (kbd "d") 'bookmark-delete)
+(define-key leader-key-b-map (kbd "i") 'ibuffer)
+(define-key leader-key-b-map (kbd "k") 'kill-current-buffer)
+(define-key leader-key-b-map (kbd "K") 'kill-some-buffers)
+(define-key leader-key-b-map (kbd "l") 'list-bookmarks)
+(define-key leader-key-b-map (kbd "m") 'bookmark-set)
+(define-key leader-key-b-map (kbd "n") 'next-buffer)
+(define-key leader-key-b-map (kbd "p") 'previous-buffer)
+(define-key leader-key-b-map (kbd "r") 'revert-buffer)
+(define-key leader-key-b-map (kbd "R") 'rename-buffer)
+(define-key leader-key-b-map (kbd "s") 'basic-save-buffer)
+(define-key leader-key-b-map (kbd "S") 'save-some-buffers)
+(define-key leader-key-b-map (kbd "w") 'bookmark-save)
+
+;; --------------------------
+;; Dired ("d" group)
+;; --------------------------
+(define-prefix-command 'leader-key-d-map)
+(define-key leader-key-map (kbd "d") 'leader-key-d-map)
+(define-key leader-key-d-map (kbd "d") 'dired)
+(define-key leader-key-d-map (kbd "j") 'dired-jump)
+(define-key leader-key-d-map (kbd "p") 'peep-dired)
+
+;; --------------------------
+;; Eshell/Evaluate ("e" group)
+;; --------------------------
+(define-prefix-command 'leader-key-e-map)
+(define-key leader-key-map (kbd "e") 'leader-key-e-map)
+(define-key leader-key-e-map (kbd "b") 'eval-buffer)
+(define-key leader-key-e-map (kbd "d") 'eval-defun)
+(define-key leader-key-e-map (kbd "e") 'eval-expression)
+(define-key leader-key-e-map (kbd "l") 'eval-last-sexp)
+(define-key leader-key-e-map (kbd "r") 'eval-region)
+(define-key leader-key-e-map (kbd "s") 'eshell)
+
+;; --------------------------
+;; Git ("g" group)
+;; --------------------------
+(define-prefix-command 'leader-key-g-map)
+(define-key leader-key-map (kbd "g") 'leader-key-g-map)
+(define-key leader-key-g-map (kbd "g") 'magit-status)
+
+;; --------------------------
+;; Help ("h" group)
+;; --------------------------
+(define-prefix-command 'leader-key-h-map)
+(define-key leader-key-map (kbd "h") 'leader-key-h-map)
+(define-key leader-key-h-map (kbd "f") 'describe-function)
+(define-key leader-key-h-map (kbd "v") 'describe-variable)
+(define-key leader-key-h-map (kbd "rr")
+  (lambda () (interactive)
+    (load-file "~/.config/emacs/init.el")))
+
+;; --------------------------
+;; Org ("o" group)
+;; --------------------------
+(define-prefix-command 'leader-key-o-map)
+(define-key leader-key-map (kbd "o") 'leader-key-o-map)
+(define-key leader-key-o-map (kbd "a") 'org-agenda)
+(define-key leader-key-o-map (kbd "T") 'org-babel-tangle)
+(define-key leader-key-o-map (kbd "t") 'org-todo)
+
+;; --------------------------
+;; Search ("s" group)
+;; --------------------------
+(define-prefix-command 'leader-key-s-map)
+(define-key leader-key-map (kbd "s") 'leader-key-s-map)
+(define-key leader-key-s-map (kbd "SPC") 'ibuffer)
+(define-key leader-key-s-map (kbd "f") 'find-file)
+(define-key leader-key-s-map (kbd "/") 'deadgrep)
+(define-key leader-key-s-map (kbd "g") 'deadgrep)
+
+;; --------------------------
+;; Toggle ("t" group)
+;; --------------------------
+(define-prefix-command 'leader-key-t-map)
+(define-key leader-key-map (kbd "t") 'leader-key-t-map)
+(define-key leader-key-t-map (kbd "d") 'treemacs)
+(define-key leader-key-t-map (kbd "e") 'eshell-toggle)
+(define-key leader-key-t-map (kbd "l") 'display-line-numbers-mode)
+(define-key leader-key-t-map (kbd "r") 'rainbow-mode)
+(define-key leader-key-t-map (kbd "t") 'visual-line-mode)
+(define-key leader-key-t-map (kbd "v") 'vterm-toggle)
+
+;; --------------------------
+;; Windows ("w" group)
+;; --------------------------
+(define-prefix-command 'leader-key-w-map)
+(define-key leader-key-map (kbd "w") 'leader-key-w-map)
+(define-key leader-key-w-map (kbd "c") 'evil-window-delete)
+(define-key leader-key-w-map (kbd "n") 'evil-window-new)
+(define-key leader-key-w-map (kbd "s") 'evil-window-split)
+(define-key leader-key-w-map (kbd "v") 'evil-window-vsplit)
+(define-key leader-key-w-map (kbd "h") 'evil-window-left)
+(define-key leader-key-w-map (kbd "j") 'evil-window-down)
+(define-key leader-key-w-map (kbd "k") 'evil-window-up)
+(define-key leader-key-w-map (kbd "l") 'evil-window-right)
+(define-key leader-key-w-map (kbd "w") 'evil-window-next)
+
+;; Add descriptions for leader key bindings
+(which-key-add-key-based-replacements
+  "SPC" "Leader Key"
+  "SPC ." "Find file"
+  "SPC fr" "Recent files"
+  "SPC ff" "Format Buffer"
+  "SPC TAB" "Comment lines"
+  "SPC b" "Bookmarks/Buffers"
+  "SPC d" "Dired"
+  "SPC e" "Eshell/Evaluate"
+  "SPC g" "Git"
+  "SPC h" "Help"
+  "SPC o" "Org"
+  "SPC s" "Search"
+  "SPC t" "Toggle"
+  "SPC w" "Windows")
+#+END_SRC
+
+** Tweaks
+   This section contains various settings that don't fall into any specific category, grouped together for convenience.
+   #+begin_src emacs-lisp
+   ;; Remembering minibuffer prompt history
+   (setq history-length 25)
+   (savehist-mode 1)
+
+   ;; Prevent using UI dialogs for prompts
+   (setq use-dialog-box nil)
+
+   ;; Disable lock files (.#filenameblabla)
+   (setq create-lockfiles nil)
+
+   ;; Automatically revert buffers when files change on disk
+   (global-auto-revert-mode t)
+
+   ;; You can select text and delete it by typing.
+   (delete-selection-mode 1)
+
+   ;; Set default indentation settings
+   (setq-default indent-tabs-mode nil)
+   (setq-default tab-width 2)
+
+   ;; Configure whitespace display style
+   (setq-default whitespace-style
+                 '(face
+                   tabs
+                   spaces
+                   trailing
+                   lines-tail
+                   newline
+                   missing-newline-at-eof
+                   space-before-tab
+                   indentation
+                   empty
+                   space-after-tab
+                   space-mark
+                   tab-mark
+                   newline-mark))
+
+   ;; Replace yes-or-no-p with y-or-n-p
+   (fset 'yes-or-no-p 'y-or-n-p)
+
+   ;; Set backup directory and options
+   (setq backup-directory-alist '(("." . "~/.config/emacs/backup"))
+         backup-by-copying      t  ; Don't de-link hard links
+         version-control        t  ; Use version numbers on backups
+         delete-old-versions    t  ; Automatically delete excess backups
+         kept-new-versions      10 ; How many of the newest versions to keep
+         kept-old-versions      5) ; How many of the old versions to keep
+
+   ;; Disable creation of backup and autosave files
+   (setq make-backup-files nil
+         auto-save-default nil)
+
+   ;; Improved handling of clipboard
+   (setq select-enable-clipboard t
+         select-enable-primary t
+         save-interprogram-paste-before-kill t)
+
+   ;; Disable noisy bell
+   (setq visible-bell t
+         ring-bell-function #'ignore)
+
+   ;; Show trailing whitespace
+   (setq-default show-trailing-whitespace t)
+
+   ;; Use one space to end sentences
+   (setq sentence-end-double-space nil)
+
+   ;; Prefer UTF-8 coding system
+   (prefer-coding-system 'utf-8)
+
+   ;; Enable transient mark mode for better region handling
+   (transient-mark-mode 1)
+
+   ;; Enable automatic parens pairing
+   (electric-pair-mode 1)
+
+   ;; Prevent auto-pairing of <>
+   (add-hook 'org-mode-hook (lambda ()
+                               (setq-local electric-pair-inhibit-predicate
+                                           `(lambda (c)
+                                              (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+   #+end_src
+
+
+* All The Icons
+#+begin_src emacs-lisp
+(use-package all-the-icons
+  :ensure t)
+#+end_src
+
+* Centered Cursor
+#+begin_src emacs-lisp
+  (use-package centered-cursor-mode
+    :diminish centered-cursor-mode
+    :config (global-centered-cursor-mode))
+#+end_src
+
+* Company
+   The "Company" section configures the Company mode, which provides auto-completion capabilities in Emacs.
+   #+begin_src emacs-lisp
+   (use-package company
+     :defer 0.1
+     :diminish
+     :custom
+     (company-begin-commands '(self-insert-command))
+     (company-idle-delay .1)
+     (company-minimum-prefix-length 1)
+     (company-show-numbers t)
+     (company-tooltip-align-annotations 't)
+     :config
+     (global-company-mode t))
+
+   (use-package company-box
+     :after company
+     :diminish
+     :hook (company-mode . company-box-mode))
+
+   (use-package company-quickhelp
+     :after company
+     :config (company-quickhelp-mode))
+   #+end_src
+
+* Dashboard
+   The "Dashboard" section configures the dashboard package, which provides a customizable startup screen in Emacs.
+   #+begin_src emacs-lisp
+   (use-package dashboard
+     :ensure t
+     :init
+     (setq initial-buffer-choice 'dashboard-open)
+     (setq dashboard-set-heading-icons t)
+     (setq dashboard-set-file-icons t)
+     (setq dashboard-banner-logo-title "Welcome Home!")
+     (setq dashboard-startup-banner 'logo) ;; use standard Emacs logo as banner
+     ;; (setq dashboard-startup-banner "~/.config/emacs/images/cry2sleep.png") ;; use custom image as banner
+     (setq dashboard-center-content t)
+     (setq dashboard-items '((recents . 5)
+                             (agenda . 5)
+                             (bookmarks . 3)
+                             (projects . 3)
+                             (registers . 3)))
+     :custom
+     (dashboard-modify-heading-icons '((recents . "file-text")
+                                       (bookmarks . "book")))
+     :config
+     (dashboard-setup-startup-hook))
+   #+end_src
+
+* Deadgrep
+#+begin_src emacs-lisp
+(use-package deadgrep)
+#+end_src
+
+* Dired
+   The "Dired" section configures settings related to the Dired mode, which provides a file management interface in Emacs.
+   #+begin_src emacs-lisp
+   (use-package all-the-icons-dired
+     :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
+
+   (use-package dired-open
+     :config
+     ;; Customize file associations for opening files in Dired
+     (setq dired-open-extensions '(("gif" . "imv")
+                                   ("jpg" . "imv")
+                                   ("png" . "imv")
+                                   ("mkv" . "mpv")
+                                   ("mp4" . "mpv"))))
+
+   (use-package peep-dired
+     :after dired
+     :hook (evil-normalize-keymaps . peep-dired-hook)
+     :config
+     ;; Customize key bindings for peep-dired
+     (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+     (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
+     (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+     (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file))
+   #+end_src
+
+* Diminish
+   The "Diminish" section configures the diminish package, which provides a convenient way to hide or diminish minor mode indicators in the mode line.
+   #+begin_src emacs-lisp
+   (use-package diminish)
+   #+end_src
+
+* Direnv
+   The "Direnv" section configures the direnv package, which provides integration with direnv, an environment switcher for the shell.
+   #+begin_src emacs-lisp
+   (use-package direnv
+     :config
+     ;; Enable direnv mode globally
+     (direnv-mode))
+   #+end_src
+
+* Flycheck
+   The "Flycheck" section configures the flycheck package, which provides syntax checking for programming languages in Emacs.
+   #+begin_src emacs-lisp
+   (use-package flycheck
+     :after lsp-mode
+     :diminish flycheck-mode
+     :init (global-flycheck-mode))
+
+   (use-package flycheck-eglot
+     :after flycheck
+     :config (global-flycheck-eglot-mode))
+   #+end_src
+
+* Git Programs
+   The "Git Programs" section configures settings related to Git integration in Emacs.
+
+** Git Time Machine
+   The "Git Time Machine" subsection configures the git-timemachine package, which allows you to navigate through revisions of a file in Git history.
+   #+begin_src emacs-lisp
+   (use-package git-timemachine
+     :after git-timemachine
+     :hook (evil-normalize-keymaps . git-timemachine-hook)
+     :config
+     ;; Define key bindings for Git Time Machine mode
+     (evil-define-key 'normal git-timemachine-mode-map (kbd "C-j") 'git-timemachine-show-previous-revision)
+     (evil-define-key 'normal git-timemachine-mode-map (kbd "C-k") 'git-timemachine-show-next-revision))
+   #+end_src
+
+** Magit
+   The "Magit" subsection configures the magit package, which provides a full-featured Git interface within Emacs.
+   #+begin_src emacs-lisp
+   (use-package magit)
+   #+end_src
+
+* Languages Support
+
+** LSP
+#+begin_src emacs-lisp
+(use-package lsp-mode
+  :ensure t
+  :hook ((nix-ts-mode
+          rust-ts-mode
+          python-mode
+          nix-mode) . lsp)
+  :custom
+  (lsp-prefer-flymake nil))
+
+;; lsp-ui for additional UI features (optional)
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+;; Nix LSP support using lsp-nix
+(use-package lsp-nix
+  :ensure t
+  :after lsp-mode
+  :custom
+  (lsp-nix-nil-formatter ["nixfmt"]))
+
+;; Python configuration using lsp-mode (if you’re using e.g., pylsp)
+(use-package python-mode
+  :ensure t
+  :hook (python-mode . lsp))
+
+;; Custom hook for rustic mode.
+;; Ensures that C-c C-c C-r works without asking for confirmation and saves
+;; rust buffers without prompting when appropriate.
+(defun rk/rustic-mode-hook ()
+  (when buffer-file-name
+    (setq-local buffer-save-without-query t))
+  (add-hook 'before-save-hook 'lsp-format-buffer nil t))
+
+;; Then, later in your config, when setting up rustic:
+(use-package rustic
+  :ensure t
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  (setq rustic-format-on-save t)
+  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
+
+;; Web development configuration remains the same
+(use-package css-mode
+  :ensure nil ;; built-in
+  :mode ("\\.css\\'" . css-mode))
+
+(use-package web-mode
+  :ensure t
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.php\\'" . web-mode))
+  :config
+  (setq web-mode-enable-current-column-highlight t
+        web-mode-enable-current-element-highlight t
+        web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2))
+
+(use-package js-mode
+  :ensure nil ;; built-in
+  :mode (("\\.js?\\'" . js-mode)
+         ("\\.jsx?\\'" . js-mode))
+  :config
+  (setq javascript-indent-level 2
+        js-indent-level 2))
+
+(use-package typescript-mode
+  :ensure t
+  :mode (("\\.ts?\\'" . typescript-mode)
+         ("\\.tsx?\\'" . typescript-mode))
+  :config
+  (setq typescript-indent-level 2
+        typescript-auto-indent-flag t))
+#+end_src
+
+* Org Mode
+
+** Org Modern
+#+begin_src emacs-lisp
+(use-package org-modern
+  :ensure t
+  :config
+  (set-face-attribute 'default nil :family "Iosevka SS14")
+  (set-face-attribute 'variable-pitch nil :family "Iosevka SS14")
+  (set-face-attribute 'org-modern-symbol nil :family "Iosevka SS14")
+  ;; Add frame borders and window dividers
+  (modify-all-frames-parameters
+   '((right-divider-width . 20)
+     (internal-border-width . 20)))
+  (dolist (face '(window-divider
+                  window-divider-first-pixel
+                  window-divider-last-pixel))
+    (face-spec-reset-face face)
+    (set-face-foreground face (face-attribute 'default :background)))
+  (set-face-background 'fringe (face-attribute 'default :background))
+
+  (setq
+   ;; Edit settings
+   org-auto-align-tags nil
+   org-tags-column 0
+   org-catch-invisible-edits 'show-and-error
+   org-special-ctrl-a/e t
+   org-insert-heading-respect-content t
+
+   ;; Org styling, hide markup etc.
+   org-hide-emphasis-markers t
+   org-pretty-entities t
+   org-ellipsis "…"
+
+   ;; Agenda styling
+   org-agenda-tags-column 0
+   org-agenda-time-grid
+   '((daily today require-timed)
+     (800 1000 1200 1400 1600 1800 2000)
+     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+   org-agenda-current-time-string
+   "◀── now ─────────────────────────────────────────────────")
+  (with-eval-after-load 'org (global-org-modern-mode)))
+#+end_src
+
+** Enabling Table of Contents
+   #+begin_src emacs-lisp
+   (use-package toc-org
+     :commands toc-org-enable
+     :hook (org-mode . toc-org-enable))
+   #+end_src
+
+** Enabling Org Bullets
+   Org-bullets give us attractive bullets rather than asterisks.
+   #+begin_src emacs-lisp
+   (use-package org-bullets
+     :hook (org-mode . (lambda () (org-bullets-mode 1))))
+   #+end_src
+
+** Disable Electric Indent
+   Org mode source blocks have some weird default indentation behavior, possibly due to `electric-indent-mode`, which is turned on by default in Emacs. Org defaults to indenting 2 spaces in source blocks. Let's turn it all off!
+   #+begin_src emacs-lisp
+   (add-hook 'org-mode-hook
+             (lambda ()
+               (electric-indent-local-mode -1)
+               (setq org-edit-src-content-indentation 0)))
+   #+end_src
+
+** Source Code Block Tag Expansion
+   #+begin_src emacs-lisp
+   (use-package org-tempo
+     :ensure nil)
+   #+end_src
+
+* Projectile
+#+begin_src emacs-lisp
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode 1)
+
+  ;; Set your preferred key bindings here
+  :bind (("C-c p" . projectile-command-map))
+
+  ;; Additional settings
+  :custom
+  ;; Define your project root files/directories here
+  (projectile-project-root-files '(".projectile" ".git" ".svn" ".hg" "Makefile" "package.json"))
+
+  ;; Enable caching to improve performance
+  (projectile-enable-caching t)
+
+  ;; Configure indexing method (default is 'alien for faster indexing)
+  (projectile-indexing-method 'alien
+)
+
+  ;; Display project name in the modeline
+  (projectile-mode-line-function '(lambda () (format " Proj[%s]" (projectile-project-name)))))
+#+end_src
+* Rainbow Delimiters
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
+         (clojure-mode . rainbow-delimiters-mode)))
+#+end_src
+
+* Rainbow Mode
+#+begin_src emacs-lisp
+(use-package rainbow-mode
+  :diminish
+  :hook
+  ((org-mode prog-mode) . rainbow-mode))
+#+end_src
+
+* Shells and Terminal
+
+** Eshell
+#+begin_src emacs-lisp
+(use-package eshell-toggle
+  :custom
+  (eshell-toggle-size-fraction 3)
+  (eshell-toggle-use-projectile-root t)
+  (eshell-toggle-run-command nil)
+  (eshell-toggle-init-function #'eshell-toggle-init-ansi-term))
+
+(use-package eshell-syntax-highlighting
+  :after esh-mode
+  :config
+  (eshell-syntax-highlighting-global-mode +1))
+
+(setq eshell-rc-script (concat user-emacs-directory "eshell/profile")
+      eshell-aliases-file (concat user-emacs-directory "eshell/aliases")
+      eshell-history-size 5000
+      eshell-buffer-maximum-lines 5000
+      eshell-hist-ignoredups t
+      eshell-scroll-to-bottom-on-input t
+      eshell-destroy-buffer-when-process-dies t
+      eshell-visual-commands '("bash" "fish"))
+#+end_src
+
+** Vterm
+#+begin_src emacs-lisp
+(use-package vterm
+  :ensure t
+  :config
+  (setq shell-file-name "/bin/sh"
+        vterm-max-scrollback 5000
+        vterm-always-compile-module t))
+
+(use-package vterm-toggle
+  :after vterm
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (setq vterm-toggle-scope 'project)
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 (reusable-frames . visible)
+                 (window-height . 0.3))))
+#+end_src
+
+* UI
+** Theme
+   #+begin_src emacs-lisp
+   (use-package doom-themes
+        :ensure t
+        :config
+        ;; Global settings (defaults)
+        (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+              doom-themes-enable-italic t) ; if nil, italics is universally disabled
+        (load-theme 'doom-one t)
+
+        ;; Enable flashing mode-line on errors
+        (doom-themes-visual-bell-config)
+        ;; Enable custom neotree theme (all-the-icons must be installed!)
+        (doom-themes-neotree-config)
+        ;; or for treemacs users
+        (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+        (doom-themes-treemacs-config)
+        ;; Corrects (and improves) org-mode's native fontification.
+        (doom-themes-org-config))
+   #+end_src
+
+** Modeline
+   #+begin_src emacs-lisp
+   (use-package doom-modeline
+     :ensure t
+     :config
+     (setq doom-modeline-minor-modes t)
+     :init (doom-modeline-mode 1))
+   #+end_src
+
+* Treesitter
+#+begin_src emacs-lisp
+(use-package tree-sitter
+  :ensure t)
+
+(use-package tree-sitter-langs
+  :after tree-sitter
+  :ensure t
+  :config
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+;;(use-package tree-sitter-indentation
+;;  :after tree-sitter
+;;  :hook (tree-sitter-after-on . tree-sitter-indentation-mode))
+
+
+(defun my/enable-tree-sitter ()
+  "Enable Tree-sitter in `prog-mode'."
+  (interactive)
+  (tree-sitter-mode)
+  (tree-sitter-hl-mode))
+
+(add-hook 'prog-mode-hook #'my/enable-tree-sitter)
+#+end_src
+
+* Treemacs
+#+begin_src emacs-lisp
+(use-package treemacs
+  :ensure t
+  :config
+  ;; Use icons from all-the-icons package
+  (setq treemacs-icons-theme 'all-the-icons)
+  ;; Adjust icon size (optional)
+  (treemacs-resize-icons 14))
+#+end_src
+
+* Undo Tree
+#+begin_src emacs-lisp
+(use-package undo-tree
+  :ensure t
+  :diminish
+  :config
+  (global-undo-tree-mode)
+  (setq evil-undo-system 'undo-tree))
+#+end_src
+
+* Vertico
+#+begin_src emacs-lisp
+;; Enable vertico
+(use-package vertico
+  :init
+  (vertico-mode)
+
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+
+  ;; Show more candidates
+  (setq vertico-count 5)
+
+  ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-resize t)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  (setq vertico-cycle t)
+  )
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :ensure nil
+  :init
+  (savehist-mode))
+
+;; A few more useful configurations...
+(use-package emacs
+  :ensure nil
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Support opening new minibuffers from inside existing minibuffers.
+  (setq enable-recursive-minibuffers t)
+
+  ;; Emacs 28 and newer: Hide commands in M-x which do not work in the current
+  ;; mode.  Vertico commands are hidden in normal buffers. This setting is
+  ;; useful beyond Vertico.
+  (setq read-extended-command-predicate #'command-completion-default-include-p))
+
+;; Optionally use the `orderless' completion style.
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+#+end_src
+
+* Which Key
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 0))
+#+end_src
+
+* Yasnippet
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :ensure t
+  :diminish
+  :init
+  (yas-global-mode 1)
+  :hook (term-mode . (lambda () (yas-minor-mode -1)))
+  :config
+  (setq yas-snippet-dir (expand-file-name "snippets" user-emacs-directory))
+)
+
+(use-package yasnippet-snippets
+  :ensure t
+  :after yasnippet)
+
+(use-package competitive-programming-snippets
+  :ensure t
+  :after yasnippet
+  :config (competitive-programming-snippets-init))
+#+end_src

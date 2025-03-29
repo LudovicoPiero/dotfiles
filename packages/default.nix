@@ -6,6 +6,11 @@
     { pkgs, system, ... }:
     let
       sources = pkgs.callPackage ./_sources/generated.nix { };
+
+      emacsPkgs = import inputs.nixpkgs {
+        inherit system;
+        overlays = [ inputs.emacs.overlays.default ];
+      };
     in
     {
       # This sets `pkgs` to a nixpkgs with allowUnfree option set.
@@ -17,6 +22,8 @@
 
       packages = {
         catppuccin-fcitx5 = pkgs.callPackage ./catppuccin-fcitx5 { inherit sources; };
+
+        emacs = emacsPkgs.callPackage ./emacs { };
 
         iosevka-q = pkgs.callPackage ./iosevka-q { };
 
