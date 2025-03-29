@@ -17,6 +17,7 @@ _: {
     ./hyprland
     ./hyprlock
     ./keyring
+    ./kitty
     ./mako
     ./mpd
     ./nvim

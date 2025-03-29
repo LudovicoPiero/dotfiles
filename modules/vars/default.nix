@@ -23,7 +23,7 @@ in
 
     terminal = mkOption {
       type = types.str;
-      default = "wezterm";
+      default = "kitty";
     };
 
     sshPublicKey = mkOption {
