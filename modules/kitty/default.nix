@@ -70,7 +70,7 @@ in
             open_url_with = "xdg-open";
             confirm_os_window_close = 0;
             cursor_blink_interval = 0; # 0 = Disable cursor blinking
-            background_blur = osConfig.vars.opacity;
+            background_blur = if osConfig.vars.opacity < 1 then 0.9 else 1;
 
             # Tab bar
             tab_bar_min_tabs = 1;
