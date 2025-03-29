@@ -69,6 +69,8 @@ in
             update_check_interval = 0;
             open_url_with = "xdg-open";
             confirm_os_window_close = 0;
+            cursor_blink_interval = 0; # 0 = Disable cursor blinking
+            background_blur = osConfig.vars.opacity;
 
             # Tab bar
             tab_bar_min_tabs = 1;
