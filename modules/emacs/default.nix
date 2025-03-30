@@ -66,7 +66,7 @@ in
       { config, ... }:
       {
         services.emacs = {
-          enable = true;
+          enable = false;
           package = config.programs.emacs.finalPackage;
           client.enable = true;
           socketActivation.enable = true;

@@ -340,8 +340,11 @@ in
       ++ lib.optionals osConfig.myOptions.discord.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
       ++ lib.optionals osConfig.myOptions.spotify.enable [ "$mod SHIFT, S , exec , ${uwsm} app -- spotify" ]
       ++ lib.optionals config.programs.emacs.enable [
-        "$mod      , E , exec , ${uwsm} app -- ${emacs}"
-        "ALT       , E , exec , ${uwsm} app -- ${emacs} -eval '(dired nil)'"
+        #FIXME: `emacsclient -c` can't commit using magit.
+        # "$mod      , E , exec , ${uwsm} app -- ${emacs}"
+        # "ALT       , E , exec , ${uwsm} app -- ${emacs} -eval '(dired nil)'"
+        "$mod      , E , exec , ${uwsm} app -- emacs"
+        "ALT       , E , exec , ${uwsm} app -- emacs -eval '(dired nil)'"
       ];
 
     bindel = [
