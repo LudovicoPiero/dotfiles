@@ -15,7 +15,7 @@
   - [[#tweaks][Tweaks]]
 - [[#all-the-icons][All The Icons]]
 - [[#centered-cursor][Centered Cursor]]
-- [[#company][Company]]
+- [[#corfu][Corfu]]
 - [[#dashboard][Dashboard]]
 - [[#deadgrep][Deadgrep]]
 - [[#dired][Dired]]
@@ -53,22 +53,22 @@
 #+begin_src emacs-lisp
 ;; -*- lexical-binding: t; -*-
 ;; Initialize package sources
-(require 'package)
+(use-package package
+  :ensure nil
+  :config
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                          ("org" . "https://orgmode.org/elpa/")
+                          ("elpa" . "https://elpa.gnu.org/packages/")))
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
 
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
+  ;; Initialize use-package
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-  ;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
+  (require 'use-package)
+  (setq use-package-always-ensure t))
 
 ;; Disable GUI elements early to improve startup time
 (push '(menu-bar-lines . 0) default-frame-alist)
@@ -236,7 +236,7 @@
    (use-package evil-collection
      :after evil
      :config
-     ;;(setq evil-collection-mode-list '(dashboard dired ibuffer))
+     (setq evil-collection-mode-list '(dashboard dired ibuffer magit vterm))
      (evil-collection-init))
 
    (use-package evil-surround
@@ -499,29 +499,28 @@
     :config (global-centered-cursor-mode))
 #+end_src
 
-* Company
-   The "Company" section configures the Company mode, which provides auto-completion capabilities in Emacs.
+* Corfu
+  COmpletion in Region FUnction
    #+begin_src emacs-lisp
-   (use-package company
-     :defer 0.1
-     :diminish
-     :custom
-     (company-begin-commands '(self-insert-command))
-     (company-idle-delay 0.0)
-     (company-minimum-prefix-length 1)
-     (company-show-numbers t)
-     (company-tooltip-align-annotations 't)
-     :config
-     (global-company-mode t))
+  (use-package corfu
+    :config
+    (setq corfu-cycle t          ;; Enable cycling for `corfu-next/previous'
+          corfu-auto t           ;; Enable auto-completion
+          corfu-auto-delay 0.24
+          corfu-auto-prefix 2
+          corfu-count 16
+          corfu-on-exact-match nil
+          corfu-preselect 'first) ;; Preselect the first candidate
 
-   (use-package company-box
-     :after company
-     :diminish
-     :hook (company-mode . company-box-mode))
+    ;; Enable Corfu globally
+    :init
+    (global-corfu-mode))
 
-   (use-package company-quickhelp
-     :after company
-     :config (company-quickhelp-mode))
+  ;; Add Dabbrev support via cape
+  (use-package cape
+    :after corfu
+    :config
+    (add-to-list 'completion-at-point-functions #'cape-dabbrev)) ;; Enable Dabbrev expansion
    #+end_src
 
 * Dashboard
@@ -598,14 +597,14 @@
 * Flycheck
    The "Flycheck" section configures the flycheck package, which provides syntax checking for programming languages in Emacs.
    #+begin_src emacs-lisp
-   (use-package flycheck
-     :after eglot
-     :diminish flycheck-mode
-     :init (global-flycheck-mode))
+      (use-package flycheck
+        :after eglot
+        :diminish flycheck-mode
+        :init (global-flycheck-mode))
 
-   (use-package flycheck-eglot
-     :after flycheck
-     :config (global-flycheck-eglot-mode))
+      (use-package flycheck-eglot
+        :after flycheck
+        :config (global-flycheck-eglot-mode))
    #+end_src
 
 * Git Programs
@@ -625,7 +624,11 @@
 ** Magit
    The "Magit" subsection configures the magit package, which provides a full-featured Git interface within Emacs.
    #+begin_src emacs-lisp
-   (use-package magit)
+      (use-package magit)
+      (use-package pinentry
+        :config
+        (setq epg-pinentry-mode 'loopback)
+        (pinentry-start))
    #+end_src
 
 * Languages Support
@@ -637,20 +640,27 @@
   :custom
   (eglot-autoshutdown t)
   :config
-  ;; Register language servers for specific modes:
-  (add-to-list 'eglot-server-programs '(nix-mode . ("nixd"))))
-
-(with-eval-after-load 'eglot
+  ;; Nix LSP server
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nixd")))
+  ;; Python: using basedpyright (you could swap with ruff-lsp if desired)
   (add-to-list 'eglot-server-programs '(python-ts-mode . ("basedpyright")))
+  ;; Rust: using rust-analyzer
   (add-to-list 'eglot-server-programs '(rust-ts-mode . ("rust-analyzer")))
+  ;; JavaScript / ESLint
   (add-to-list 'eglot-server-programs '(js-ts-mode . ("vscode-eslint-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio"))))
+  ;; TypeScript
+  (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
+  ;; (Optional) For CSS and HTML, you can add a stylelint server:
+  (add-to-list 'eglot-server-programs '(css-mode . ("vscode-stylelint" "--stdio")))
+  (add-to-list 'eglot-server-programs '(web-mode . ("vscode-stylelint" "--stdio"))))
 
 (setq major-mode-remap-alist
       '((python-mode . python-ts-mode)
         (rust-mode . rust-ts-mode)
         (js-mode . js-ts-mode)
         (typescript-mode . typescript-ts-mode)))
+
+(add-hook 'sh-mode-hook #'flycheck-mode)
 
 ;; Nix
 (use-package nix-mode
@@ -664,11 +674,26 @@
   :mode ("\\.py\\'" . python-ts-mode)
   :hook (python-ts-mode . eglot-ensure))
 
+(with-eval-after-load 'flycheck
+  (flycheck-define-checker python-ruff
+    "A Python linter using ruff."
+    :command ("ruff" "check" source)
+    :error-patterns
+    ((error line-start (file-name) ":" line ":" column ": " (message) line-end))
+    :modes (python-ts-mode))
+  (add-to-list 'flycheck-checkers 'python-ruff))
+
 ;; Rust
 (use-package rust-mode
   :ensure nil
   :mode ("\\.rs\\'" . rust-ts-mode)
   :hook (rust-ts-mode . eglot-ensure))
+
+(with-eval-after-load 'eglot
+  ;; Tell rust-analyzer to run clippy on save.
+  (setq eglot-workspace-configuration
+        '((:rust-analyzer .
+           ((checkOnSave . (:command "clippy")))))))
 
 ;; Web development
 (use-package web-mode
@@ -814,8 +839,8 @@
 * Rainbow Delimiters
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters
-  :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
-         (clojure-mode . rainbow-delimiters-mode)))
+  :diminish
+  :hook ((prog-mode . rainbow-delimiters-mode)))
 #+end_src
 
 * Rainbow Mode
@@ -1011,10 +1036,7 @@
   :diminish
   :init
   (yas-global-mode 1)
-  :hook (term-mode . (lambda () (yas-minor-mode -1)))
-  :config
-  (setq yas-snippet-dirs (expand-file-name "snippets" user-emacs-directory))
-)
+  :hook (term-mode . (lambda () (yas-minor-mode -1))))
 
 (use-package yasnippet-snippets
   :ensure t

@@ -30,12 +30,17 @@ let
         pkgs.zls
         # linters
         pkgs.clippy
+        pkgs.eslint
+        pkgs.stylelint
+        pkgs.ruff
         pkgs.shellcheck
         # formatters
         pkgs.nixfmt-rfc-style
         pkgs.rustfmt
         pkgs.black
         pkgs.isort
+        pkgs.nodePackages.prettier
+        pkgs.rustfmt
       ];
       override = _: prev: {
         use-package = prev.emacs;
@@ -64,6 +69,7 @@ in
           enable = true;
           package = config.programs.emacs.finalPackage;
           client.enable = true;
+          socketActivation.enable = true;
         };
 
         programs.emacs = {
