@@ -122,10 +122,9 @@
 (global-display-line-numbers-mode 1)
 
 ;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+(dolist (mode '(org-mode term-mode eshell-mode))
+  (add-hook (intern (concat (symbol-name mode) "-hook"))
+            (lambda () (display-line-numbers-mode 0))))
 
 ;; Enable visual line mode globally
 (global-visual-line-mode t)
@@ -454,10 +453,6 @@
          kept-new-versions      10 ; How many of the newest versions to keep
          kept-old-versions      5) ; How many of the old versions to keep
 
-   ;; Disable creation of backup and autosave files
-   (setq make-backup-files nil
-         auto-save-default nil)
-
    ;; Improved handling of clipboard
    (setq select-enable-clipboard t
          select-enable-primary t
@@ -620,7 +615,6 @@
    The "Git Time Machine" subsection configures the git-timemachine package, which allows you to navigate through revisions of a file in Git history.
    #+begin_src emacs-lisp
    (use-package git-timemachine
-     :after git-timemachine
      :hook (evil-normalize-keymaps . git-timemachine-hook)
      :config
      ;; Define key bindings for Git Time Machine mode
@@ -1019,7 +1013,7 @@
   (yas-global-mode 1)
   :hook (term-mode . (lambda () (yas-minor-mode -1)))
   :config
-  (setq yas-snippet-dir (expand-file-name "snippets" user-emacs-directory))
+  (setq yas-snippet-dirs (expand-file-name "snippets" user-emacs-directory))
 )
 
 (use-package yasnippet-snippets
