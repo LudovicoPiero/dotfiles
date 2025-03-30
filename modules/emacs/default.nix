@@ -40,7 +40,6 @@ let
         pkgs.black
         pkgs.isort
         pkgs.nodePackages.prettier
-        pkgs.rustfmt
       ];
       override = _: prev: {
         use-package = prev.emacs;
