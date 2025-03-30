@@ -614,6 +614,7 @@
    The "Git Time Machine" subsection configures the git-timemachine package, which allows you to navigate through revisions of a file in Git history.
    #+begin_src emacs-lisp
    (use-package git-timemachine
+     :ensure t
      :hook (evil-normalize-keymaps . git-timemachine-hook)
      :config
      ;; Define key bindings for Git Time Machine mode
