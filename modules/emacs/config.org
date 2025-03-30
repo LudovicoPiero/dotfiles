@@ -78,7 +78,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
-(menu-bar-mode -1)
 
 ;; Change font early to ensure proper display
 (set-face-attribute 'default nil
@@ -115,10 +114,6 @@
 
 ;; Remove unnecessary wait.
 (setq-default pgtk-wait-for-event-timeout nil)
-
-;; all-the-icons
-(use-package all-the-icons
-  :if (display-graphic-p))
 
 ;; Enable column number mode
 (column-number-mode 1)
@@ -498,6 +493,7 @@
 * All The Icons
 #+begin_src emacs-lisp
 (use-package all-the-icons
+  :if (display-graphic-p)
   :ensure t)
 #+end_src
 
