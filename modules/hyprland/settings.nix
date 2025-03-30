@@ -10,20 +10,21 @@ let
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
   emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
+  uwsm = "${osConfig.programs.uwsm.package}/bin/uwsm";
   inherit (config.colorScheme) palette;
 in
 {
   wayland.windowManager.hyprland.settings = {
     exec-once =
       [
-        "uwsm finalize"
+        "${uwsm} finalize"
         "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
         "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
-        "uwsm app -- ${_ pkgs.mako}"
+        "${uwsm} app -- ${_ pkgs.mako}"
         "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
-        "[workspace 9 silent;noanim] uwsm app -- ${_ pkgs.thunderbird}"
+        "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
       ]
-      ++ lib.optionals osConfig.myOptions.waybar.enable [ "uwsm app -- waybar" ]
+      ++ lib.optionals osConfig.myOptions.waybar.enable [ "${uwsm} app -- waybar" ]
       ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ]
       ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
         "${_ config.programs.emacs.finalPackage} --fg-daemon"
@@ -278,22 +279,22 @@ in
         "$mod SHIFT, C , exit ,"
         "$mod      , Q, togglespecialworkspace"
         "$mod SHIFT, Q, movetoworkspace, special"
-        "$mod SHIFT, E , exec , uwsm app -- nautilus"
+        "$mod SHIFT, E , exec , ${uwsm} app -- nautilus"
         "$mod      , F , fullscreen , 0"
-        "$mod      , M , exec , [workspace 9 silent;tile] uwsm app --  thunderbird"
-        "$mod      , P , exec , uwsm app -- ${launcher}"
-        "$mod SHIFT, P , exec , uwsm app -- ${lib.getExe' pkgs.pass-wayland "passmenu"}"
+        "$mod      , M , exec , [workspace 9 silent;tile] ${uwsm} app --  thunderbird"
+        "$mod      , P , exec , ${uwsm} app -- ${launcher}"
+        "$mod SHIFT, P , exec , ${uwsm} app -- ${lib.getExe' pkgs.pass-wayland "passmenu"}"
         "$mod      , Space , togglefloating ,"
         "$mod      , R , togglegroup ,"
         "$mod SHIFT, J , changegroupactive, f"
         "$mod SHIFT, K , changegroupactive, b"
         "$mod      , W , killactive ,"
         "$mod      , X , exec , ${powermenu}"
-        "$mod      , Return , exec , uwsm app -- '${osConfig.vars.terminal}'"
+        "$mod      , Return , exec , ${uwsm} app -- '${osConfig.vars.terminal}'"
 
-        ", print, exec , uwsm app --  wl-ocr"
-        "CTRL   , Print , exec , uwsm app -- ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
-        "ALT    , Print , exec , uwsm app -- ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
+        ", print, exec , ${uwsm} app --  wl-ocr"
+        "CTRL   , Print , exec , ${uwsm} app -- ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
+        "ALT    , Print , exec , ${uwsm} app -- ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
 
         # Dwindle Keybind
         "$mod , h , movefocus , l"
@@ -334,13 +335,13 @@ in
 
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
-      ++ lib.optionals osConfig.myOptions.floorp.enable [ "$mod SHIFT, G , exec , uwsm app -- floorp" ]
-      ++ lib.optionals osConfig.myOptions.firefox.enable [ "$mod      , G , exec , uwsm app -- firefox" ]
-      ++ lib.optionals osConfig.myOptions.discord.enable [ "$mod      , D , exec , uwsm app -- vesktop" ]
-      ++ lib.optionals osConfig.myOptions.spotify.enable [ "$mod SHIFT, S , exec , uwsm app -- spotify" ]
+      ++ lib.optionals osConfig.myOptions.floorp.enable [ "$mod SHIFT, G , exec , ${uwsm} app -- floorp" ]
+      ++ lib.optionals osConfig.myOptions.firefox.enable [ "$mod      , G , exec , ${uwsm} app -- firefox" ]
+      ++ lib.optionals osConfig.myOptions.discord.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
+      ++ lib.optionals osConfig.myOptions.spotify.enable [ "$mod SHIFT, S , exec , ${uwsm} app -- spotify" ]
       ++ lib.optionals config.programs.emacs.enable [
-        "$mod      , E , exec , uwsm app -- ${emacs}"
-        "ALT       , E , exec , uwsm app -- ${emacs} -eval '(dired nil)'"
+        "$mod      , E , exec , ${uwsm} app -- ${emacs}"
+        "ALT       , E , exec , ${uwsm} app -- ${emacs} -eval '(dired nil)'"
       ];
 
     bindel = [
