@@ -1,5 +1,6 @@
 _: {
   imports = [
+    ./emacs
     ./discord
     ./dnscrypt2
     ./fcitx5
