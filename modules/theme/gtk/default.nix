@@ -69,6 +69,9 @@ in
   xdg = {
     configFile = {
       "gtk-4.0/assets".source = ./assets;
+
+      #HACK: I just manually run the install.sh and then copy paste it here.
+      #TODO: Find a better way to do it.
       "gtk-4.0/gtk.css".source = ./gtk.css;
       "gtk-4.0/gtk-dark.css".source = ./gtk.css;
     };
