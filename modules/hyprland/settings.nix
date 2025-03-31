@@ -236,6 +236,11 @@ in
       "idleinhibit focus, class:^(firefox|floorp)$, title:^(.*YouTube.*)$"
       "idleinhibit fullscreen, class:^(firefox|floorp)$"
 
+      # Foobar2000
+      "workspace 5, class:^(foobar2000.exe)$"
+      "tile, class:^(foobar2000.exe)$"
+      "noanim, class:^(foobar2000.exe)$"
+
       ## Floorp
       "workspace 2, class:^(floorp)$"
       "noblur, class:^(floorp)$"
