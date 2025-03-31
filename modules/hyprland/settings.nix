@@ -9,7 +9,7 @@ let
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
-  emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
+  # emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
   uwsm = "${osConfig.programs.uwsm.package}/bin/uwsm";
   inherit (config.colorScheme) palette;
 in
@@ -25,10 +25,10 @@ in
         "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
       ]
       ++ lib.optionals osConfig.myOptions.waybar.enable [ "${uwsm} app -- waybar" ]
-      ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ]
-      ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
-        "${_ config.programs.emacs.finalPackage} --fg-daemon"
-      ];
+      # ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
+      #   "${_ config.programs.emacs.finalPackage} --fg-daemon"
+      # ]
+      ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ];
 
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
@@ -336,9 +336,15 @@ in
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
       ++ lib.optionals osConfig.myOptions.floorp.enable [ "$mod SHIFT, G , exec , ${uwsm} app -- floorp" ]
-      ++ lib.optionals osConfig.myOptions.firefox.enable [ "$mod      , G , exec , ${uwsm} app -- firefox" ]
-      ++ lib.optionals osConfig.myOptions.discord.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
-      ++ lib.optionals osConfig.myOptions.spotify.enable [ "$mod SHIFT, S , exec , ${uwsm} app -- spotify" ]
+      ++ lib.optionals osConfig.myOptions.firefox.enable [
+        "$mod      , G , exec , ${uwsm} app -- firefox"
+      ]
+      ++ lib.optionals osConfig.myOptions.discord.enable [
+        "$mod      , D , exec , ${uwsm} app -- vesktop"
+      ]
+      ++ lib.optionals osConfig.myOptions.spotify.enable [
+        "$mod SHIFT, S , exec , ${uwsm} app -- spotify"
+      ]
       ++ lib.optionals config.programs.emacs.enable [
         #FIXME: `emacsclient -c` can't commit using magit.
         # "$mod      , E , exec , ${uwsm} app -- ${emacs}"
