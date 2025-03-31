@@ -43,9 +43,18 @@ in
                   rev = "135.0";
                   hash = "sha256-5fD8ffAyIgQYJ0Z/bMEpqf17YghVQNaK+giZ1Tyk6/Q=";
                 };
+                lepton = pkgs.fetchFromGitHub {
+                  owner = "black7375";
+                  repo = "Firefox-UI-Fix";
+                  rev = "v8.7.0";
+                  hash = "sha256-NBPSKIxTNSuJahySyLqD45R/UmeyvkJBKehUIE/dI0I=";
+                };
               in
               {
+                userChrome = ''@import "${lepton}/css/leptonChromeESR.css";'';
+                userContent = ''@import "${lepton}/css/leptonContentESR.css";'';
                 extraConfig = ''
+                  ${builtins.readFile "${lepton}/user.js"}
                   ${builtins.readFile "${betterfox}/user.js"}
                   ${builtins.readFile "${betterfox}/Fastfox.js"}
                   ${builtins.readFile "${betterfox}/Peskyfox.js"}
