@@ -73,10 +73,8 @@ in
       "gtk-4.0/gtk-dark.css".source = ./gtk.css;
     };
 
-    systemDirs.data =
-      let
-        schema = pkgs.gsettings-desktop-schemas;
-      in
-      [ "${schema}/share/gsettings-schemas/${schema.name}" ];
+    systemDirs.data = [
+      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+    ];
   };
 }
