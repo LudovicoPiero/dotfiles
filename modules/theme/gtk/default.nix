@@ -69,6 +69,7 @@ in
   xdg = {
     configFile = {
       "gtk-4.0/assets".source = ./assets;
+      "gtk-4.0/windows-assets".source = ./windows-assets;
 
       #HACK: I just manually run the install.sh and then copy paste it here.
       #TODO: Find a better way to do it.
