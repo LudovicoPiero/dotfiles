@@ -34,6 +34,7 @@
 
         wezterm = pkgs.callPackage ./wezterm { inherit sources; };
 
+        macos-hyprcursors = pkgs.callPackage ./macos-hyprcursors { inherit sources; };
         whitesur-gtk-theme = pkgs.callPackage ./whitesur-gtk-theme { inherit sources; };
       };
     };
