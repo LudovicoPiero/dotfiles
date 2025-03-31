@@ -29,6 +29,17 @@
     };
     date = "2025-03-25";
   };
+  macos-hyprcursors = {
+    pname = "macos-hyprcursors";
+    version = "v1";
+    src = fetchFromGitHub {
+      owner = "driedpampas";
+      repo = "macOS-hyprcursor";
+      rev = "v1";
+      fetchSubmodules = false;
+      sha256 = "sha256-W7Uglem1qcneRFg/eR6D20p+ggkSFwh5QJYfq8OisLk=";
+    };
+  };
   san-francisco-pro = {
     pname = "san-francisco-pro";
     version = "8bfea09aa6f1139479f80358b2e1e5c6dc991a58";
@@ -65,16 +76,16 @@
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
-    version = "c20f9cf7e7c09c0d2e54f7659e4cd57c88ba5ef7";
+    version = "8ff1fe69ab822c4c110e51482d9ac046ef8d88b6";
     src = fetchgit {
       url = "https://github.com/vinceliuice/WhiteSur-gtk-theme";
-      rev = "c20f9cf7e7c09c0d2e54f7659e4cd57c88ba5ef7";
+      rev = "8ff1fe69ab822c4c110e51482d9ac046ef8d88b6";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-SWF77YqrijjXlr3r/EccrEyVBxqCOn6tXIHuRA5ngEY=";
+      sha256 = "sha256-pfaxW6f6prsRPrUzP1yymnkT1tGcO+QL36gM+5/1M3I=";
     };
-    date = "2025-03-20";
+    date = "2025-03-28";
   };
 }
