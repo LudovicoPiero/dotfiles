@@ -32,56 +32,44 @@ in
       default = inputs.nix-colors.colorSchemes.${config.vars.colorScheme};
     };
 
-    gtk =
-      let
-        variant = "mocha";
-        accent = "pink";
-        size = "standard";
-      in
-      {
-        cursorTheme = {
-          name = mkOption {
-            type = types.str;
-            default = "phinger-cursors-light";
-          };
-          size = mkOption {
-            type = types.int;
-            default = 24;
-          };
-          package = mkOption {
-            type = types.package;
-            default = pkgs.phinger-cursors;
-          };
+    gtk = {
+      cursorTheme = {
+        name = mkOption {
+          type = types.str;
+          default = "phinger-cursors-light";
         };
-
-        theme = {
-          name = mkOption {
-            type = types.str;
-            default = "catppuccin-${variant}-${accent}-${size}";
-          };
-          package = mkOption {
-            type = types.package;
-            default = pkgs.catppuccin-gtk.override {
-              inherit variant size;
-              accents = [ accent ];
-            };
-          };
+        size = mkOption {
+          type = types.int;
+          default = 24;
         };
-
-        iconTheme = {
-          name = mkOption {
-            type = types.str;
-            default = "Papirus-Dark";
-          };
-          package = mkOption {
-            type = types.package;
-            default = pkgs.catppuccin-papirus-folders.override {
-              inherit accent;
-              flavor = variant;
-            };
-          };
+        package = mkOption {
+          type = types.package;
+          default = pkgs.phinger-cursors;
         };
       };
+
+      theme = {
+        name = mkOption {
+          type = types.str;
+          default = "WhiteSur-Dark";
+        };
+        package = mkOption {
+          type = types.package;
+          default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
+        };
+      };
+
+      iconTheme = {
+        name = mkOption {
+          type = types.str;
+          default = "WhiteSur-dark";
+        };
+        package = mkOption {
+          type = types.package;
+          default = pkgs.whitesur-icon-theme;
+        };
+      };
+    };
 
     font = {
       name = mkOption {
@@ -103,7 +91,10 @@ in
     home-manager.users.${config.vars.username} =
       { config, ... }:
       {
-        imports = [ inputs.nix-colors.homeManagerModules.default ];
+        imports = [
+          inputs.nix-colors.homeManagerModules.default
+          ./gtk
+        ];
 
         inherit (cfg) colorScheme;
 
@@ -134,86 +125,9 @@ in
           };
         };
 
-        gtk = {
-          enable = true;
-          inherit (cfg) font;
-          inherit (cfg.gtk) cursorTheme theme iconTheme;
-
-          gtk2 = {
-            configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-            extraConfig = ''
-              gtk-cursor-theme-name="${config.gtk.cursorTheme.name}"
-              gtk-cursor-theme-size=${toString config.gtk.cursorTheme.size}
-              gtk-toolbar-style=GTK_TOOLBAR_BOTH
-              gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
-              gtk-button-images=1
-              gtk-menu-images=1
-              gtk-enable-event-sounds=1
-              gtk-enable-input-feedback-sounds=1
-              gtk-xft-antialias=1
-              gtk-xft-hinting=1
-              gtk-xft-hintstyle="hintfull"
-              gtk-xft-rgba="rgb"
-            '';
-          };
-
-          gtk3 = {
-            bookmarks = [
-              "file://${config.home.homeDirectory}/Code"
-              "file://${config.home.homeDirectory}/Media"
-              "file://${config.home.homeDirectory}/Documents"
-              "file://${config.home.homeDirectory}/Downloads"
-              # "file://${config.home.homeDirectory}/Games"
-              "file://${config.home.homeDirectory}/Music"
-              "file://${config.home.homeDirectory}/Pictures"
-              "file://${config.home.homeDirectory}/Videos"
-              "file://${config.home.homeDirectory}/WinE"
-            ];
-
-            extraConfig = {
-              gtk-application-prefer-dark-theme = 1;
-              gtk-cursor-theme-name = config.gtk.cursorTheme.name;
-              gtk-cursor-theme-size = config.gtk.cursorTheme.size;
-              gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
-              gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-              gtk-button-images = 1;
-              gtk-menu-images = 1;
-              gtk-enable-event-sounds = 1;
-              gtk-enable-input-feedback-sounds = 1;
-              gtk-xft-antialias = 1;
-              gtk-xft-hinting = 1;
-              gtk-xft-hintstyle = "hintfull";
-              gtk-xft-rgba = "rgb";
-            };
-          };
-
-          gtk4.extraConfig = {
-            gtk-application-prefer-dark-theme = 1;
-          };
-        };
-
         qt = {
           enable = true;
           platformTheme.name = "gtk3";
-        };
-
-        xdg = {
-          # Stolen from https://github.com/khaneliman/khanelinix/blob/e0039561cfaa7810325ecd811e672ffa6d96736f/modules/home/theme/gtk/default.nix#L150
-          configFile =
-            let
-              gtk4Dir = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0";
-            in
-            {
-              "gtk-4.0/assets".source = "${gtk4Dir}/assets";
-              "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
-              "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
-            };
-
-          systemDirs.data =
-            let
-              schema = pkgs.gsettings-desktop-schemas;
-            in
-            [ "${schema}/share/gsettings-schemas/${schema.name}" ];
         };
 
         dconf.settings = {
