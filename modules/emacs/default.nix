@@ -11,6 +11,36 @@ let
     mkIf
     ;
 
+  emacs =
+    with pkgs;
+    (emacsPackagesFor emacs-git-pgtk).emacsWithPackages (
+      epkgs: with epkgs; [
+        treesit-grammars.with-all-grammars
+        vterm
+        mu4e
+      ]
+    );
+
+  devTools = [
+    pkgs.vscode-langservers-extracted
+    pkgs.nixd
+    pkgs.rust-analyzer
+    pkgs.typescript-language-server
+    pkgs.basedpyright
+    pkgs.zls
+    pkgs.clippy
+    pkgs.eslint
+    pkgs.stylelint
+    pkgs.ruff
+    pkgs.shellcheck
+    pkgs.nixfmt-rfc-style
+    pkgs.rustfmt
+    pkgs.black
+    pkgs.isort
+    pkgs.nodePackages.prettier
+    pkgs.pinentry-emacs
+  ];
+
   cfg = config.myOptions.emacs;
 in
 {
@@ -37,47 +67,13 @@ in
 
         programs.emacs = {
           enable = true;
-          package =
-            (pkgs.emacs-git-pgtk).emacsWithPackages
-              (
-                epkgs: with epkgs; [
-                  treesit-grammars.with-all-grammars
-                  vterm
-                ]
-              ).overrideAttrs
-              (o: {
-                postFixup =
-                  o.postFixup
-                  + ''
-                    wrapProgram $out/bin/emacs \
-                        --set PATH ${
-                          lib.makeBinPath [
-                            # LSPs
-                            pkgs.vscode-langservers-extracted
-                            pkgs.nixd
-                            pkgs.rust-analyzer
-                            pkgs.typescript-language-server
-                            pkgs.basedpyright
-                            pkgs.zls
-                            # linters
-                            pkgs.clippy
-                            pkgs.eslint
-                            pkgs.stylelint
-                            pkgs.ruff
-                            pkgs.shellcheck
-                            # formatters
-                            pkgs.nixfmt-rfc-style
-                            pkgs.rustfmt
-                            pkgs.black
-                            pkgs.isort
-                            pkgs.nodePackages.prettier
-
-                            #etc
-                            pkgs.pinentry-emacs
-                          ]
-                        }
-                  '';
-              });
+          package = emacs.overrideAttrs (o: {
+            postFixup =
+              (o.postFixup or "")
+              + ''
+                wrapProgram $out/bin/emacs --set PATH ${lib.makeBinPath devTools}
+              '';
+          });
         };
       }; # For Home-Manager options
   };
