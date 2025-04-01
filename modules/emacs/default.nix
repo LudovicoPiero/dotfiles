@@ -11,42 +11,6 @@ let
     mkIf
     ;
 
-  emacsPackages = (
-    pkgs.emacsWithPackagesFromUsePackage {
-      package = pkgs.emacs30-pgtk;
-      config = ./config.org;
-      defaultInitFile = true;
-      alwaysEnsure = true;
-      alwaysTangle = true;
-      extraEmacsPackages = e: [
-        e.use-package
-        e.treesit-grammars.with-all-grammars
-        # LSPs
-        pkgs.vscode-langservers-extracted
-        pkgs.nixd
-        pkgs.rust-analyzer
-        pkgs.typescript-language-server
-        pkgs.basedpyright
-        pkgs.zls
-        # linters
-        pkgs.clippy
-        pkgs.eslint
-        pkgs.stylelint
-        pkgs.ruff
-        pkgs.shellcheck
-        # formatters
-        pkgs.nixfmt-rfc-style
-        pkgs.rustfmt
-        pkgs.black
-        pkgs.isort
-        pkgs.nodePackages.prettier
-      ];
-      override = _: prev: {
-        use-package = prev.emacs;
-      };
-    }
-  );
-
   cfg = config.myOptions.emacs;
 in
 {
@@ -73,7 +37,47 @@ in
 
         programs.emacs = {
           enable = true;
-          package = emacsPackages;
+          package =
+            (pkgs.emacs-git-pgtk).emacsWithPackages
+              (
+                epkgs: with epkgs; [
+                  treesit-grammars.with-all-grammars
+                  vterm
+                ]
+              ).overrideAttrs
+              (o: {
+                postFixup =
+                  o.postFixup
+                  + ''
+                    wrapProgram $out/bin/emacs \
+                        --set PATH ${
+                          lib.makeBinPath [
+                            # LSPs
+                            pkgs.vscode-langservers-extracted
+                            pkgs.nixd
+                            pkgs.rust-analyzer
+                            pkgs.typescript-language-server
+                            pkgs.basedpyright
+                            pkgs.zls
+                            # linters
+                            pkgs.clippy
+                            pkgs.eslint
+                            pkgs.stylelint
+                            pkgs.ruff
+                            pkgs.shellcheck
+                            # formatters
+                            pkgs.nixfmt-rfc-style
+                            pkgs.rustfmt
+                            pkgs.black
+                            pkgs.isort
+                            pkgs.nodePackages.prettier
+
+                            #etc
+                            pkgs.pinentry-emacs
+                          ]
+                        }
+                  '';
+              });
         };
       }; # For Home-Manager options
   };
