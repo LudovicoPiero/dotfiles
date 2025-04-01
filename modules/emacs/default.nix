@@ -22,22 +22,26 @@ let
     );
 
   devTools = [
+    # Language servers
     pkgs.vscode-langservers-extracted
     pkgs.nixd
     pkgs.rust-analyzer
     pkgs.typescript-language-server
     pkgs.basedpyright
     pkgs.zls
+    # Linters
     pkgs.clippy
     pkgs.eslint
     pkgs.stylelint
     pkgs.ruff
     pkgs.shellcheck
+    # Formatters
     pkgs.nixfmt-rfc-style
     pkgs.rustfmt
     pkgs.black
     pkgs.isort
     pkgs.nodePackages.prettier
+    # Other tools
     pkgs.pinentry-emacs
   ];
 
