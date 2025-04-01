@@ -54,26 +54,6 @@
     };
     date = "2021-06-22";
   };
-  wezterm = {
-    pname = "wezterm";
-    version = "a87358516004a652ad840bc1661bdf65ffc89b43";
-    src = fetchgit {
-      url = "https://github.com/wez/wezterm";
-      rev = "a87358516004a652ad840bc1661bdf65ffc89b43";
-      fetchSubmodules = true;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-aYONqWAJ8oasqWscXMVqbnMuJQjZ+9uL3oeFFUhp7KE=";
-    };
-    cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-a87358516004a652ad840bc1661bdf65ffc89b43/Cargo.lock;
-      outputHashes = {
-        "xcb-imdkit-0.3.0" = "sha256-77KaJO+QJWy3tJ9AF1TXKaQHpoVOfGIRqteyqpQaSWo=";
-      };
-    };
-    date = "2025-03-20";
-  };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
     version = "8ff1fe69ab822c4c110e51482d9ac046ef8d88b6";
