@@ -68,7 +68,7 @@ in
           enable = true;
           package = config.programs.emacs.finalPackage;
           client.enable = true;
-          socketActivation.enable = true;
+          socketActivation.enable = false;
         };
 
         programs.emacs = {
