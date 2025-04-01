@@ -49,7 +49,7 @@ let
 in
 {
   options.myOptions.emacs = {
-    enable = mkEnableOption "emacs service" // {
+    enable = mkEnableOption "Emacs and its service" // {
       default = config.vars.withGui;
     };
   };
