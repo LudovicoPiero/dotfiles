@@ -69,16 +69,19 @@ in
           socketActivation.enable = false;
         };
 
+        #TODO: Find a better way to do this shit
         programs.emacs = {
           enable = true;
-          package = emacs.overrideAttrs (o: {
-            postFixup =
-              (o.postFixup or "")
-              + ''
-                wrapProgram $out/bin/emacs --set PATH ${lib.makeBinPath devTools}
-              '';
-          });
+          package = pkgs.symlinkJoin {
+            name = "emacs-wrapped";
+            paths = [ emacs ];
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/emacs \
+                --suffix PATH : "${lib.makeBinPath devTools}"
+            '';
+          };
         };
-      }; # For Home-Manager options
+      };
   };
 }
