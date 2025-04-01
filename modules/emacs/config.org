@@ -81,15 +81,15 @@
 
 ;; Change font early to ensure proper display
 (set-face-attribute 'default nil
-  :font "Iosevka SS14 Semibold"
+  :font "Iosevka Q Semibold"
   :height 110
   :weight 'medium)
 (set-face-attribute 'variable-pitch nil
-  :font "Iosevka SS14"
+  :font "Iosevka Q"
   :height 120
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-  :font "Iosevka SS14 Semibold"
+  :font "Iosevka Q Semibold"
   :height 110
   :weight 'medium)
 ;; Makes commented text and keywords italics.
@@ -103,7 +103,7 @@
 ;; This sets the default font on all graphical frames created after restarting Emacs.
 ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
 ;; are not right unless I also add this method of setting the default font.
-(add-to-list 'default-frame-alist '(font . "Iosevka SS14-15"))
+(add-to-list 'default-frame-alist '(font . "Iosevka Q-15"))
 
 ;; Uncomment the following line if line spacing needs adjusting.
 (setq-default line-spacing 0.12)
@@ -747,9 +747,9 @@
 (use-package org-modern
   :ensure t
   :config
-  (set-face-attribute 'default nil :family "Iosevka SS14")
-  (set-face-attribute 'variable-pitch nil :family "Iosevka SS14")
-  (set-face-attribute 'org-modern-symbol nil :family "Iosevka SS14")
+  (set-face-attribute 'default nil :family "Iosevka Q")
+  (set-face-attribute 'variable-pitch nil :family "Iosevka Q")
+  (set-face-attribute 'org-modern-symbol nil :family "Iosevka Q")
   ;; Add frame borders and window dividers
   (modify-all-frames-parameters
    '((right-divider-width . 20)
