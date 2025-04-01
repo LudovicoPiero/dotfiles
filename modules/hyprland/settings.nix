@@ -9,7 +9,7 @@ let
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
-  # emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
+  emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
   uwsm = "${osConfig.programs.uwsm.package}/bin/uwsm";
   inherit (config.colorScheme) palette;
 in
@@ -25,9 +25,9 @@ in
         "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
       ]
       ++ lib.optionals osConfig.myOptions.waybar.enable [ "${uwsm} app -- waybar" ]
-      # ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
-      #   "${_ config.programs.emacs.finalPackage} --fg-daemon"
-      # ]
+      ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
+        "${_ config.programs.emacs.finalPackage} --fg-daemon"
+      ]
       ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ];
 
     env = [
@@ -352,10 +352,10 @@ in
       ]
       ++ lib.optionals config.programs.emacs.enable [
         #FIXME: `emacsclient -c` can't commit using magit.
-        # "$mod      , E , exec , ${uwsm} app -- ${emacs}"
-        # "ALT       , E , exec , ${uwsm} app -- ${emacs} -eval '(dired nil)'"
-        "$mod      , E , exec , ${uwsm} app -- emacs"
-        "ALT       , E , exec , ${uwsm} app -- emacs -eval '(dired nil)'"
+        "$mod      , E , exec , ${uwsm} app -- ${emacs}"
+        "ALT       , E , exec , ${uwsm} app -- ${emacs} -eval '(dired nil)'"
+        # "$mod      , E , exec , ${uwsm} app -- emacs"
+        # "ALT       , E , exec , ${uwsm} app -- emacs -eval '(dired nil)'"
       ];
 
     bindel = [
