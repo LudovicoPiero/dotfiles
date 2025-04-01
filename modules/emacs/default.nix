@@ -13,7 +13,7 @@ let
 
   emacs =
     with pkgs;
-    (emacsPackagesFor emacs-git-pgtk).emacsWithPackages (
+    (emacsPackagesFor emacs30-pgtk).emacsWithPackages (
       epkgs: with epkgs; [
         treesit-grammars.with-all-grammars
         vterm
