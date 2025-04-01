@@ -1,8 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  inputs,
   ...
 }:
 let
@@ -27,7 +25,6 @@ in
       {
         programs.wezterm = {
           enable = true;
-          # package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.wezterm;
 
           colorSchemes.${colorScheme.slug} = {
             ansi = [
