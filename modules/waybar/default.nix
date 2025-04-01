@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  inputs,
   ...
 }:
 let
@@ -28,8 +27,6 @@ in
       imports = [ ./style.nix ];
       programs.waybar = {
         enable = true;
-
-        # package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
 
         settings = {
           mainBar = {
