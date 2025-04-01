@@ -11,47 +11,45 @@ let
     mkIf
     ;
 
-  emacsPackages = (
-    pkgs.emacsWithPackagesFromUsePackage {
-      package = pkgs.emacs30-pgtk;
-      config = ./config.org;
-      defaultInitFile = true;
-      alwaysEnsure = true;
-      alwaysTangle = true;
-      extraEmacsPackages = e: [
-        e.use-package
-        e.treesit-grammars.with-all-grammars
-        # LSPs
-        pkgs.vscode-langservers-extracted
-        pkgs.nixd
-        pkgs.rust-analyzer
-        pkgs.typescript-language-server
-        pkgs.basedpyright
-        pkgs.zls
-        # linters
-        pkgs.clippy
-        pkgs.eslint
-        pkgs.stylelint
-        pkgs.ruff
-        pkgs.shellcheck
-        # formatters
-        pkgs.nixfmt-rfc-style
-        pkgs.rustfmt
-        pkgs.black
-        pkgs.isort
-        pkgs.nodePackages.prettier
-      ];
-      override = _: prev: {
-        use-package = prev.emacs;
-      };
-    }
-  );
+  emacs =
+    with pkgs;
+    (emacsPackagesFor emacs30-pgtk).emacsWithPackages (
+      epkgs: with epkgs; [
+        treesit-grammars.with-all-grammars
+        vterm
+        mu4e
+      ]
+    );
+
+  devTools = [
+    # Language servers
+    pkgs.vscode-langservers-extracted
+    pkgs.nixd
+    pkgs.rust-analyzer
+    pkgs.typescript-language-server
+    pkgs.basedpyright
+    pkgs.zls
+    # Linters
+    pkgs.clippy
+    pkgs.eslint
+    pkgs.stylelint
+    pkgs.ruff
+    pkgs.shellcheck
+    # Formatters
+    pkgs.nixfmt-rfc-style
+    pkgs.rustfmt
+    pkgs.black
+    pkgs.isort
+    pkgs.nodePackages.prettier
+    # Other tools
+    pkgs.pinentry-emacs
+  ];
 
   cfg = config.myOptions.emacs;
 in
 {
   options.myOptions.emacs = {
-    enable = mkEnableOption "emacs service" // {
+    enable = mkEnableOption "Emacs and its service" // {
       default = config.vars.withGui;
     };
   };
@@ -71,10 +69,19 @@ in
           socketActivation.enable = false;
         };
 
+        #TODO: Find a better way to do this shit
         programs.emacs = {
           enable = true;
-          package = emacsPackages;
+          package = pkgs.symlinkJoin {
+            name = "emacs-wrapped";
+            paths = [ emacs ];
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/emacs \
+                --suffix PATH : "${lib.makeBinPath devTools}"
+            '';
+          };
         };
-      }; # For Home-Manager options
+      };
   };
 }
