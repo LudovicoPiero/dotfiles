@@ -235,18 +235,21 @@
 
    (use-package evil-collection
      :after evil
+     :diminish
      :config
      (setq evil-collection-mode-list '(dashboard dired ibuffer magit vterm))
      (evil-collection-init))
 
    (use-package evil-surround
      :after evil
+     :diminish
      :ensure t
      :config
      (global-evil-surround-mode 1))
 
    (use-package evil-nerd-commenter
-     :after evil)
+     :after evil
+     :diminish)
 
    ;; Unmap keys in 'evil-maps if not done, (setq org-return-follows-link t) will not work
    (with-eval-after-load 'evil-maps
@@ -258,7 +261,6 @@
    #+end_src
 
 ** General Keybind
-   The "General Keybind" section configures general keybindings using the general package, allowing for leader key functionality and easy customization.
 #+begin_src emacs-lisp
 ;; Set up the leader key map.
 ;; Bind leader key only in normal state to avoid affecting minibuffer.
@@ -1041,10 +1043,12 @@
 
 (use-package yasnippet-snippets
   :ensure t
+  :diminish
   :after yasnippet)
 
 (use-package competitive-programming-snippets
   :ensure t
+  :diminish
   :after yasnippet
   :config (competitive-programming-snippets-init))
 #+end_src
