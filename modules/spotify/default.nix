@@ -24,6 +24,7 @@ in
   config = mkIf cfg.enable {
     programs.spicetify = {
       enable = true;
+      experimentalFeatures = true;
       spotifyPackage = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.spotify;
 
       theme = spicePkgs.themes.text;
