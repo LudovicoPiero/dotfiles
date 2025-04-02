@@ -21,28 +21,29 @@ let
       ]
     );
 
-  devTools = [
+  devTools = with pkgs;[
     # Language servers
-    pkgs.vscode-langservers-extracted
-    pkgs.nixd
-    pkgs.rust-analyzer
-    pkgs.typescript-language-server
-    pkgs.basedpyright
-    pkgs.zls
+    clang-tools
+    vscode-langservers-extracted
+    nixd
+    rust-analyzer
+    typescript-language-server
+    basedpyright
+    zls
     # Linters
-    pkgs.clippy
-    pkgs.eslint
-    pkgs.stylelint
-    pkgs.ruff
-    pkgs.shellcheck
+    clippy
+    eslint
+    stylelint
+    ruff
+    shellcheck
     # Formatters
-    pkgs.nixfmt-rfc-style
-    pkgs.rustfmt
-    pkgs.black
-    pkgs.isort
-    pkgs.nodePackages.prettier
+    nixfmt-rfc-style
+    rustfmt
+    black
+    isort
+    nodePackages.prettier
     # Other tools
-    pkgs.pinentry-emacs
+    pinentry-emacs
   ];
 
   cfg = config.myOptions.emacs;
