@@ -14,6 +14,7 @@ let
   inherit (config.colorScheme) palette;
 in
 {
+  services.playerctld.enable = true;
   wayland.windowManager.hyprland.settings = {
     exec-once =
       [
