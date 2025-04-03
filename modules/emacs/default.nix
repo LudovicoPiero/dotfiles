@@ -58,6 +58,7 @@ let
     nodePackages.prettier
     # Other tools
     pinentry-emacs
+    ispell
   ];
 
   cfg = config.myOptions.emacs;
