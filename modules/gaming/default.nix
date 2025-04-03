@@ -89,11 +89,6 @@ in
       programs.steam = {
         enable = true;
 
-        extraCompatPackages = with pkgs; [
-          luxtorpeda
-          proton-ge-custom
-        ];
-
         # Open ports for Steam Remote Play
         remotePlay.openFirewall = false;
 
