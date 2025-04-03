@@ -21,7 +21,18 @@ let
       ]
     );
 
-  devTools = with pkgs;[
+  #TODO: Find a better way to do this shit
+  emacsWrapped = pkgs.symlinkJoin {
+    name = "emacs-wrapped";
+    paths = [ emacs ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/emacs \
+        --suffix PATH : "${lib.makeBinPath devTools}"
+    '';
+  };
+
+  devTools = with pkgs; [
     # Language servers
     clang-tools
     go
@@ -73,18 +84,9 @@ in
           socketActivation.enable = false;
         };
 
-        #TODO: Find a better way to do this shit
         programs.emacs = {
           enable = true;
-          package = pkgs.symlinkJoin {
-            name = "emacs-wrapped";
-            paths = [ emacs ];
-            nativeBuildInputs = [ pkgs.makeWrapper ];
-            postBuild = ''
-              wrapProgram $out/bin/emacs \
-                --suffix PATH : "${lib.makeBinPath devTools}"
-            '';
-          };
+          package = emacsWrapped;
         };
       };
   };
