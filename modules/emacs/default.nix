@@ -15,6 +15,7 @@ let
     with pkgs;
     (emacsPackagesFor emacs30-pgtk).emacsWithPackages (
       epkgs: with epkgs; [
+        copilot
         treesit-grammars.with-all-grammars
         vterm
         mu4e
