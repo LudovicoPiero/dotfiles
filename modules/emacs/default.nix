@@ -24,6 +24,8 @@ let
   devTools = with pkgs;[
     # Language servers
     clang-tools
+    go
+    gopls
     vscode-langservers-extracted
     nixd
     rust-analyzer
@@ -33,6 +35,7 @@ let
     # Linters
     clippy
     eslint
+    gotools
     stylelint
     ruff
     shellcheck
