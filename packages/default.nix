@@ -30,7 +30,6 @@
 
         spotify = pkgs.callPackage ./spotify { };
 
-        macos-hyprcursors = pkgs.callPackage ./macos-hyprcursors { inherit sources; };
         whitesur-gtk-theme = pkgs.callPackage ./whitesur-gtk-theme { inherit sources; };
       };
     };
