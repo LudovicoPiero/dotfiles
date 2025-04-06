@@ -8,8 +8,6 @@
 {
   # Nixos Stuff
   imports = [
-    inputs.lix-module.nixosModules.default
-
     ./users.nix
     ./security.nix
     ./home-manager.nix # Home-Manager stuff
@@ -127,21 +125,15 @@
   };
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    package = pkgs.nixVersions.latest;
 
     settings = {
       # Prevent impurities in builds
       sandbox = true;
 
       experimental-features = [
-        "auto-allocate-uids"
-        "ca-derivations"
-        # "configurable-impure-env"
         "flakes"
-        "no-url-literals"
         "nix-command"
-        "parse-toml-timestamps"
-        "read-only-local-store"
-        "recursive-nix"
       ];
 
       commit-lockfile-summary = "chore: Update flake.lock";
