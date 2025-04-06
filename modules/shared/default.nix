@@ -58,6 +58,9 @@
       # Utils for nixpkgs stuff
       nixpkgs-review
       # Fav
+      fooyin # music player
+      foliate # book reader
+      qbittorrent # uhm
       imv
       viewnior
       ente-auth

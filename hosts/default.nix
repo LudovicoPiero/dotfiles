@@ -1,4 +1,4 @@
-{ inputs, self, ... }:
+{ inputs, ... }:
 {
   flake.nixosConfigurations =
     let
@@ -6,9 +6,7 @@
 
       sharedModules = import ../modules;
 
-      pkgs-stable = import inputs.nixpkgs-stable { system = "x86_64-linux"; };
-
-      specialArgs = { inherit inputs pkgs-stable self; };
+      specialArgs = { inherit inputs; };
     in
     {
       sforza = nixosSystem {

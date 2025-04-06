@@ -1,9 +1,7 @@
 {
   config,
   inputs,
-  pkgs-stable,
   lib,
-  self,
   ...
 }:
 {
@@ -12,7 +10,7 @@
     backupFileExtension = "hm.bak";
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs pkgs-stable self; };
+    extraSpecialArgs = { inherit inputs; };
 
     users.${config.vars.username} =
       { config, osConfig, ... }:
