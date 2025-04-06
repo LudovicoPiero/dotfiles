@@ -35,7 +35,7 @@ in
               hide_cursor = false;
             };
 
-            background.path = "${self}/assets/Lain_Red.png";
+            background.path = "${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
 
             input-field = [
               {

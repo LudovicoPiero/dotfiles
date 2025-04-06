@@ -65,7 +65,7 @@ in
     };
 
     home-manager.users.${config.vars.username} =
-      { osConfig, ... }:
+      { config, osConfig, ... }:
       {
 
         # User Services
@@ -73,7 +73,7 @@ in
           swaybg = mkService {
             Unit.Description = "Swaybg Services";
             Service = {
-              ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${inputs.self}/assets/Lain_Red.png";
+              ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
               Restart = "on-failure";
             };
           };

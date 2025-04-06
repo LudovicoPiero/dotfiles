@@ -3,7 +3,6 @@
   pkgs,
   config,
   inputs,
-  self,
   ...
 }:
 let
@@ -141,8 +140,8 @@ in
           "org/gnome/desktop/background" = {
             color-shading-type = "solid";
             picture-options = "zoom";
-            picture-uri = "${self}/assets/Lain_Red.png";
-            picture-uri-dark = "${self}/assets/anime-nix-wallpaper.png";
+            picture-uri = "${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
+            picture-uri-dark = "${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
             primary-color = "#000000000000";
             secondary-color = "#000000000000";
           };
