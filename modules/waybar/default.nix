@@ -10,7 +10,7 @@ let
   _ = lib.getExe;
 
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
-    date "+%Y年%m月%d日"
+    date "+%A, %d %B %Y"
   '';
 
   cfg = config.myOptions.waybar;
