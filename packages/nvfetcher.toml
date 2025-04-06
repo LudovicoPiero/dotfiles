@@ -13,7 +13,3 @@ fetch.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
 [catppuccin-fcitx5]
 src.git = "https://github.com/catppuccin/fcitx5"
 fetch.git = "https://github.com/catppuccin/fcitx5"
-
-[macos-hyprcursors]
-src.github = "driedpampas/macOS-hyprcursor"
-fetch.github = "driedpampas/macOS-hyprcursor"

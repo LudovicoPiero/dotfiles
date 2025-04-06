@@ -24,6 +24,8 @@
 
         pollymc = pkgs.callPackage ./pollymc { };
 
+        tidal-hifi = pkgs.callPackage ./tidal-hifi { };
+
         san-francisco-pro = pkgs.callPackage ./san-francisco-pro { inherit sources; };
 
         sarasa-gothic = pkgs.callPackage ./sarasa-gothic { };

@@ -52,6 +52,7 @@ jobs:
         packages:
           - iosevka-q
           - sarasa-gothic
+          - tidal-hifi
     steps:
       - name: Checkout
         uses: actions/checkout@v4
