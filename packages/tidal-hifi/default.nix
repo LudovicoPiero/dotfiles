@@ -39,11 +39,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "tidal-hifi";
-  version = "5.18.0";
+  version = "5.18.2";
 
   src = fetchurl {
     url = "https://github.com/Mastermindzh/tidal-hifi/releases/download/${finalAttrs.version}/tidal-hifi_${finalAttrs.version}_amd64.deb";
-    hash = "sha256-R5Xw9uIptVPYEZ73TtdWarQNtn8nhAUN+zA5tnzTaCU=";
+    hash = "sha256-jo3vnq7ul7e+UsaBswil8EctUxVJMcTxo77YyQ2ncIM=";
   };
 
   autoPatchelfIgnoreMissingDeps = [ "libc.musl-x86_64.so.1" ];
