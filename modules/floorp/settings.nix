@@ -19,10 +19,10 @@
 
       "network.trr.mode" = 2;
       "network.trr.max-fails" = 5;
-      "network.trr.default_provider_uri" = "https://doh.tiarap.org/dns-query";
-      "network.trr.uri" = "https://doh.tiarap.org/dns-query";
-      "network.trr.custom_uri" = "https://doh.tiarap.org/dns-query";
-      # "network.trr.bootstrapAddress" = "1.1.1.1";
+      "network.trr.default_provider_uri" = "https://cloudflare-dns.com/dns-query";
+      "network.trr.uri" = "https://cloudflare-dns.com/dns-query";
+      "network.trr.custom_uri" = "https://cloudflare-dns.com/dns-query";
+      "network.trr.bootstrapAddress" = "1.1.1.1";
 
       "browser.search.region" = "AU";
       "browser.search.isUS" = false;
