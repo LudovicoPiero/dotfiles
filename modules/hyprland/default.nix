@@ -3,7 +3,6 @@
   pkgs,
   config,
   inputs,
-  self,
   ...
 }:
 let
@@ -82,21 +81,6 @@ in
             submap = reset
           '';
         };
-
-        services.hyprpaper = {
-          enable = true;
-          settings = {
-            preload = [
-              "${self}/assets/Lain_Red.png"
-              "${self}/assets/Minato-Aqua-Dark.png"
-            ];
-            wallpaper = [
-              ", ${self}/assets/Minato-Aqua-Dark.png"
-              "HDMI-A-1, ${self}/assets/Lain_Red.png"
-            ];
-          };
-        };
-        systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
       }; # For Home-Manager options
   };
 }
