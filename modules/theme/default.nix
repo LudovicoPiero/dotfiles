@@ -14,11 +14,6 @@ let
     types
     ;
 
-  mkService = lib.recursiveUpdate {
-    Unit.After = [ "multi-user.target" ];
-    Install.WantedBy = [ "graphical.target" ];
-  };
-
   cfg = config.myOptions.theme;
 in
 {
@@ -109,26 +104,6 @@ in
             hyprcursor.enable = true;
             x11.enable = true;
             gtk.enable = true;
-          };
-        };
-
-        # User Services
-        systemd.user.services = {
-          swaybg = mkService {
-            Unit.Description = "Swaybg Services";
-            Service = {
-              ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${inputs.self}/assets/Lain_Red.png";
-              Restart = "on-failure";
-            };
-          };
-          wl-clip-persist = mkService {
-            Unit.Description = "Keep Wayland clipboard even after programs close";
-            Service = {
-              ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard both";
-              Restart = "on-failure";
-              Slice = "app-graphical.slice";
-              TimeoutStartSec = "10s";
-            };
           };
         };
 
