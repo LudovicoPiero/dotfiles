@@ -20,6 +20,7 @@
             myOptions = {
               dnscrypt2.enable = false;
               teavpn2.enable = false;
+              hyprland.withLTO = true;
 
               # Shell
               # Choose one of the following:
