@@ -1,7 +1,17 @@
-{ osConfig, lib, ... }:
+{
+  inputs,
+  osConfig,
+  lib,
+  ...
+}:
 {
   programs.floorp.profiles.ludovico.settings =
     {
+
+      # Homepage
+      "browser.startup.page" = 1;
+      "browser.startup.homepage" = "${inputs.self}/assets/homepage.html";
+
       "extensions.autoDisableScopes" = 0;
       # Floorp settings
       "floorp.tabsleep.enabled" = true;

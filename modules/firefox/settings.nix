@@ -1,7 +1,16 @@
-{ osConfig, lib, ... }:
+{
+  inputs,
+  osConfig,
+  lib,
+  ...
+}:
 {
   programs.firefox.profiles.ludovico.settings =
     {
+      # Homepage
+      "browser.startup.page" = 1;
+      "browser.startup.homepage" = "${inputs.self}/assets/homepage.html";
+
       "extensions.autoDisableScopes" = 0;
       "browser.search.region" = "AU";
       "browser.search.isUS" = false;
