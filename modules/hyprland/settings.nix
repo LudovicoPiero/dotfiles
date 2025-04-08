@@ -220,6 +220,7 @@ in
       # Music Player rules
       "workspace 5, title:^(Spotify( Premium)?)$"
       "workspace 5, class:(org.fooyin.fooyin)"
+      "workspace 5, class:(tidal-hifi)"
 
       # Telegram rules
       "workspace 4, class:^(org.telegram.desktop)$"
