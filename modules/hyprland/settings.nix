@@ -342,7 +342,6 @@ in
 
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
-      ++ lib.optionals osConfig.myOptions.floorp.enable [ "$mod SHIFT, G , exec , ${uwsm} app -- floorp" ]
       ++ lib.optionals osConfig.myOptions.firefox.enable [
         "$mod      , G , exec , ${uwsm} app -- firefox"
       ]
