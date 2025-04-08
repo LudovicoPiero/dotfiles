@@ -110,6 +110,33 @@ in
         border-radius: 0px 0px 0px 0px;
     }
 
+    @define-color red #EB6F92;
+
+    #bluetooth {
+      color: #${palette.base0D};
+    }
+
+    #bluetooth.disabled {
+      background-color: @red;
+      color: @background;
+    }
+
+    #bluetooth.off {
+      background-color: @red;
+      color: @background;
+      border-bottom: 0px solid @white;
+    }
+
+    #bluetooth.on {}
+
+    #bluetooth.connected {}
+
+    #bluetooth.discoverable {}
+
+    #bluetooth.discovering {}
+
+    #bluetooth.pairable {}
+
     #custom-date {
         color: #${palette.base0F};
     }
@@ -119,6 +146,7 @@ in
         margin-right: 2px;
     }
 
+    #bluetooth,
     #tray,
     #custom-disk_root,
     #custom-disk_home,
