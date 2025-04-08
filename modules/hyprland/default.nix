@@ -49,7 +49,7 @@ in
               (prevAttrs: {
                 patches = (prevAttrs.patches or [ ]) ++ [
                   ./add-env-vars-to-export.patch
-                  ./enable-lto-thin.patch
+                  ./enable-lto.patch
                 ];
                 mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
                   (lib.mesonBool "b_lto" true)
@@ -91,7 +91,7 @@ in
         imports = [ ./settings.nix ];
         wayland.windowManager.hyprland = {
           enable = true;
-          package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+          package = osConfig.programs.hyprland.package;
           systemd.enable = !osConfig.programs.uwsm.enable;
 
           extraConfig = ''
