@@ -11,7 +11,7 @@ in
 {
   options.myOptions.hyprlock = {
     enable = mkEnableOption "hyprlock service" // {
-      default = config.vars.withGui;
+      default = config.myOptions.hyprland.enable;
     };
   };
 
