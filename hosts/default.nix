@@ -23,10 +23,10 @@
 
               # DE / Compositor
               hyprland = {
-                enable = false;
+                enable = true;
                 withLTO = true;
               };
-              gnome.enable = true;
+              gnome.enable = false;
 
               # Shell
               # Choose one of the following:
