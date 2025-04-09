@@ -180,7 +180,7 @@
     # Improve nix store disk usage
     gc = {
       automatic = true;
-      options = "--delete-older-than 3d";
+      options = "--delete-older-than 30d";
     };
     optimise.automatic = true;
   };
