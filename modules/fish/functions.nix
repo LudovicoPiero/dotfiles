@@ -79,7 +79,7 @@ with pkgs;
     fe = ''
       set selected_file (${__ ripgrep "rg"} --files $argv[1] | fzf --preview "${_ bat} -f {}")
       if [ -n "$selected_file" ]
-          echo "$selected_file" | xargs $EDITOR
+          echo "$selected_file" | xargs ${config.home.sessionVariables.EDITOR}
       end
     '';
 
