@@ -13,10 +13,17 @@ let
     types
     ;
 
-  mkService = lib.recursiveUpdate {
-    Unit.After = [ "multi-user.target" ];
-    Install.WantedBy = [ "graphical.target" ];
-  };
+  mkService =
+    extra:
+    {
+      Unit = {
+        After = [ "graphical-session.target" ];
+        PartOf = [ "graphical-session.target" ];
+        Description = extra.Unit.Description;
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+    }
+    // extra;
 
   cfg = config.myOptions.hyprland;
 in
