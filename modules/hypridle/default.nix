@@ -12,7 +12,7 @@ in
 {
   options.myOptions.hypridle = {
     enable = mkEnableOption "hypridle service" // {
-      default = config.vars.withGui;
+      default = config.myOptions.hyprland.enable;
     };
   };
 
