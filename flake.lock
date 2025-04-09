@@ -1261,7 +1261,6 @@
         ],
         "nixpkgs-unstable": "nixpkgs-unstable",
         "programsdb": "programsdb",
-        "rust-overlay": "rust-overlay_3",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix"
       }
@@ -1306,27 +1305,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rust-overlay_3": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1741919466,
-        "narHash": "sha256-xto0Oq+WItjDZvafo6ZVI4TZa6/2oxJHb0tkcSGVUJI=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "8b137260b776525542d47d3a4dbac753df478a42",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "8b137260b776525542d47d3a4dbac753df478a42",
         "type": "github"
       }
     },

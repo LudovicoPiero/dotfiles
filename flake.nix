@@ -33,10 +33,6 @@
     programsdb.url = "github:wamserma/flake-programs-sqlite";
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Rust overlay
-    rust-overlay.url = "github:oxalica/rust-overlay/8b137260b776525542d47d3a4dbac753df478a42";
-    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-
     # Nix VS Code Extensions.
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
