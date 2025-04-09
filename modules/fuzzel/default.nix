@@ -7,7 +7,7 @@ in
 {
   options.myOptions.fuzzel = {
     enable = mkEnableOption "fuzzel" // {
-      default = config.vars.withGui;
+      default = config.myOptions.hyprland.enable;
     };
   };
 
