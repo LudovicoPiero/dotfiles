@@ -23,7 +23,7 @@
 
               # DE / Compositor
               hyprland = {
-                enable = true;
+                enable = false;
                 withLTO = true;
               };
               gnome.enable = true;
