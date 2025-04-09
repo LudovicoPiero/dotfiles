@@ -11,7 +11,7 @@ in
 {
   options.myOptions.wezterm = {
     enable = mkEnableOption "wezterm" // {
-      default = config.myOptions.hyprland.enable;
+      default = config.vars.withGui;
     };
   };
 
