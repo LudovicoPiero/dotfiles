@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkForce;
 
   cfg = config.myOptions.tlp;
 in
@@ -13,6 +13,7 @@ in
 
   config = mkIf cfg.enable {
     services = {
+      power-profiles-daemon.enable = mkForce false;
       tlp = {
         enable = true;
         settings = {

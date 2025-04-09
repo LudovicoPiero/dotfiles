@@ -36,32 +36,43 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.hyprland = {
-      enable = true;
+    programs = {
+      uwsm = {
+        enable = true;
+        waylandCompositors.hyprland = {
+          binPath = "/run/current-system/sw/bin/Hyprland";
+          prettyName = "Hyprland";
+          comment = "Hyprland managed by UWSM";
+        };
+      };
 
-      package =
-        let
-          basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-          LTOPackage =
-            (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-              stdenv = pkgs.clangStdenv;
-            }).overrideAttrs
-              (prevAttrs: {
-                patches = (prevAttrs.patches or [ ]) ++ [
-                  ./add-env-vars-to-export.patch
-                  ./enable-lto.patch
-                ];
-                mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
-                  (lib.mesonBool "b_lto" true)
-                  (lib.mesonOption "b_lto_threads" "4")
-                  (lib.mesonOption "b_lto_mode" "thin")
-                  (lib.mesonBool "b_thinlto_cache" true)
-                ];
-              });
-        in
-        if cfg.withLTO then LTOPackage else basePackage;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      hyprland = {
+        enable = true;
+
+        package =
+          let
+            basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+            LTOPackage =
+              (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+                stdenv = pkgs.clangStdenv;
+              }).overrideAttrs
+                (prevAttrs: {
+                  patches = (prevAttrs.patches or [ ]) ++ [
+                    ./add-env-vars-to-export.patch
+                    ./enable-lto.patch
+                  ];
+                  mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
+                    (lib.mesonBool "b_lto" true)
+                    (lib.mesonOption "b_lto_threads" "4")
+                    (lib.mesonOption "b_lto_mode" "thin")
+                    (lib.mesonBool "b_thinlto_cache" true)
+                  ];
+                });
+          in
+          if cfg.withLTO then LTOPackage else basePackage;
+        portalPackage =
+          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      };
     };
 
     home-manager.users.${config.vars.username} =

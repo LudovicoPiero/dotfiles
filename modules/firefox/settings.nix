@@ -130,7 +130,7 @@
 
       # Firefox GNOME Theme
       # Hide the tab bar when only one tab is open.
-      "gnomeTheme.hideSingleTab" = true;
+      "gnomeTheme.hideSingleTab" = false;
       # By default the tab close buttons follows the position of the window controls, this preference reverts that behavior.
       "gnomeTheme.swapTabClose" = true;
       # Move Bookmarks toolbar under tabs.

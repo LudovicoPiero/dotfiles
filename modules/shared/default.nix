@@ -58,6 +58,7 @@
       # Utils for nixpkgs stuff
       nixpkgs-review
       # Fav
+      element-desktop # matrix client
       fooyin # music player
       foliate # book reader
       qbittorrent # uhm
