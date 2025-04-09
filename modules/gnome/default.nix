@@ -106,6 +106,8 @@ in
           };
           "org/gnome/desktop/wm/preferences" = {
             button-layout = "close,minimize,maximize:";
+            resize-with-right-button = true;
+            mouse-button-modifier = "<super>";
           };
 
           # Gnome Extensions
