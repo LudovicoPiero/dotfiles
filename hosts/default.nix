@@ -20,7 +20,13 @@
             myOptions = {
               dnscrypt2.enable = false;
               teavpn2.enable = false;
-              hyprland.withLTO = true;
+
+              # DE / Compositor
+              hyprland = {
+                enable = true;
+                withLTO = true;
+              };
+              gnome.enable = true;
 
               # Shell
               # Choose one of the following:

@@ -10,8 +10,8 @@ _: {
     ./fuzzel
     ./gaming
     ./git
+    ./gnome
     ./gpg
-    ./greetd
     ./hypridle
     ./hyprland
     ./hyprlock
@@ -21,6 +21,7 @@ _: {
     ./mpd
     ./nvim
     ./pipewire
+    ./sddm
     ./secrets
     ./shared
     ./spotify

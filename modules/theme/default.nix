@@ -96,7 +96,6 @@ in
           packages = [
             cfg.gtk.cursorTheme.package
             cfg.font.package
-            pkgs.gnomeExtensions.user-themes
           ];
           pointerCursor = {
             inherit (cfg.gtk.cursorTheme) name package size;
@@ -131,22 +130,6 @@ in
             scaling-factor = 1;
             text-scaling-factor = 1.0;
             toolbar-style = "text";
-          };
-          "org/gnome/shell" = {
-            disable-user-extensions = false;
-            enabled-extensions = [ "user-theme@gnome-shell-extensions.gcampax.github.com" ];
-          };
-          "org/gnome/shell/extensions/user-theme" = { inherit (config.gtk.theme) name; };
-          "org/gnome/desktop/background" = {
-            color-shading-type = "solid";
-            picture-options = "zoom";
-            picture-uri = "${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
-            picture-uri-dark = "${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
-            primary-color = "#000000000000";
-            secondary-color = "#000000000000";
-          };
-          "org/gnome/desktop/wm/preferences" = {
-            button-layout = "close,minimize,maximize:icon";
           };
         };
       }; # For Home-Manager options
