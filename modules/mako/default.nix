@@ -12,7 +12,7 @@ in
 {
   options.myOptions.mako = {
     enable = mkEnableOption "mako service" // {
-      default = config.vars.withGui;
+      default = config.myOptions.hyprland.enable;
     };
   };
 
