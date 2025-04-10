@@ -18,7 +18,7 @@
           ./sforza/configuration.nix
           {
             myOptions = {
-              dnscrypt2.enable = false;
+              dnscrypt2.enable = true;
               teavpn2.enable = false;
 
               # DE / Compositor
