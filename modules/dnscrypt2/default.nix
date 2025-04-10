@@ -38,14 +38,7 @@ in
       enable = true;
       settings = {
         server_names = [
-          "cs-singapore"
-          "dnscry.pt-jakarta-ipv4"
-          "dnscry.pt-singapore-ipv4"
-          "dnscry.pt-singapore02-ipv4"
-          "doh.tiar.app"
-          "doh.tiar.app-doh"
-          "iij"
-          "jp.tiar.app"
+          "NextDNS-518d18"
         ];
 
         max_clients = 250;
@@ -98,6 +91,11 @@ in
         cache_neg_min_ttl = 60;
         ## Maximum TTL for negatively cached entries
         cache_neg_max_ttl = 600;
+
+        ###########################
+        #        NextDNS          #
+        ###########################
+        static."NextDNS-518d18".stamp = "sdns://AgEAAAAAAAAAAAAOZG5zLm5leHRkbnMuaW8HLzUxOGQxOA";
 
         ###########################
         #        Sources          #
