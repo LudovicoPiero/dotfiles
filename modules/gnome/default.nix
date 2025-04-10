@@ -73,29 +73,9 @@ in
     environment.gnome.excludePackages = excludedPackages;
 
     home-manager.users.${config.vars.username} =
-      { config, osConfig, ... }:
+      { config, ... }:
       {
         dconf.settings = {
-          "org/gnome/desktop/interface" = {
-            # Use dconf-editor to get this settings.
-            color-scheme = "prefer-dark";
-            cursor-theme = config.gtk.cursorTheme.name;
-            cursor-size = config.gtk.cursorTheme.size;
-            gtk-theme = config.gtk.theme.name;
-            icon-theme = config.gtk.iconTheme.name;
-            font-name = "${osConfig.myOptions.theme.font.name} ${toString osConfig.myOptions.theme.font.size}";
-            clock-format = "12h";
-            clock-show-date = true;
-            clock-show-seconds = false;
-            clock-show-weekday = false;
-            enable-animations = true;
-            enable-hot-corners = false;
-            font-antialiasing = "grayscale";
-            font-hinting = "slight";
-            scaling-factor = 1;
-            text-scaling-factor = 1.0;
-            toolbar-style = "text";
-          };
           "org/gnome/desktop/background" = {
             color-shading-type = "solid";
             picture-options = "zoom";
@@ -103,11 +83,6 @@ in
             picture-uri-dark = "${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
             primary-color = "#000000000000";
             secondary-color = "#000000000000";
-          };
-          "org/gnome/desktop/wm/preferences" = {
-            button-layout = "close,minimize,maximize:";
-            resize-with-right-button = true;
-            mouse-button-modifier = "<super>";
           };
 
           # Gnome Extensions

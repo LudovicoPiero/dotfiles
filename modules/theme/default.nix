@@ -131,6 +131,11 @@ in
             text-scaling-factor = 1.0;
             toolbar-style = "text";
           };
+          "org/gnome/desktop/wm/preferences" = {
+            button-layout = "close,minimize,maximize:";
+            resize-with-right-button = true;
+            mouse-button-modifier = "<super>";
+          };
         };
       }; # For Home-Manager options
   };
