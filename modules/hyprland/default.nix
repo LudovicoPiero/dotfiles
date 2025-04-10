@@ -111,6 +111,7 @@ in
           enable = true;
           package = osConfig.programs.hyprland.package;
           systemd.enable = !osConfig.programs.uwsm.enable;
+          xwayland.enable = false;
 
           extraConfig = ''
             # window resize
