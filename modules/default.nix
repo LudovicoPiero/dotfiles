@@ -12,9 +12,7 @@ _: {
     ./git
     ./gnome
     ./gpg
-    ./hypridle
     ./hyprland
-    ./hyprlock
     ./keyring
     ./kitty
     ./mako

@@ -28,7 +28,12 @@ let
   cfg = config.myOptions.hyprland;
 in
 {
-  imports = [ inputs.hyprland.nixosModules.default ];
+  imports = [
+    inputs.hyprland.nixosModules.default
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./hyprsunset.nix
+  ];
 
   options.myOptions.hyprland = {
     enable = mkEnableOption "hyprland" // {
@@ -65,8 +70,8 @@ in
               }).overrideAttrs
                 (prevAttrs: {
                   patches = (prevAttrs.patches or [ ]) ++ [
-                    ./add-env-vars-to-export.patch
-                    ./enable-lto.patch
+                    ./patches/add-env-vars-to-export.patch
+                    ./patches/enable-lto.patch
                   ];
                   mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
                     (lib.mesonBool "b_lto" true)
