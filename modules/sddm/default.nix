@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf mkMerge;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.myOptions.sddm = {
@@ -9,18 +9,14 @@ in
     };
   };
 
-  config = mkMerge [
-    (mkIf config.vars.withGui {
-      security = {
-        pam.services.sddm.enableGnomeKeyring = true;
-      };
+  config = mkIf config.vars.withGui {
+    security = {
+      pam.services.sddm.enableGnomeKeyring = true;
+    };
 
-      services.displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    })
-
-    (mkIf (!config.vars.withGui) { services.getty.autologinUser = "${config.vars.username}"; })
-  ];
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+  };
 }

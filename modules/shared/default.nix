@@ -138,6 +138,10 @@
   };
 
   services = {
+    getty = lib.mkIf (!config.vars.withGui) {
+      autologinUser = config.vars.username;
+    };
+
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
 
