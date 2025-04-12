@@ -96,7 +96,7 @@ in
           swaybg = mkService {
             Unit.Description = "Swaybg Services";
             Service = {
-              ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${config.xdg.userDirs.pictures}/Wallpaper/Lain_Red.png";
+              ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${config.xdg.userDirs.pictures}/Wallpaper/Minato-Aqua-Dark.png";
               Restart = "on-failure";
             };
           };
