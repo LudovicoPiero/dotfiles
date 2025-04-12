@@ -98,19 +98,6 @@ in
                 end
             end
 
-            function hs
-                pushd /home/${config.vars.username}/Code/nixos
-                ${_ nh} home switch .
-
-                if test $status -eq 0
-                    ${__ libnotify "notify-send"} "Home-Manager Switch" "Build successful!"
-                else
-                    ${__ libnotify "notify-send"} "Home-Manager Switch" "Build failed!"
-                end
-
-                popd
-            end
-
             function fe
                 set selected_file (${__ ripgrep "rg"} --files $argv[1] | fzf --preview "${_ bat} -f {}")
                 if test -n "$selected_file"
