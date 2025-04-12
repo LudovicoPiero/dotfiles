@@ -10,7 +10,7 @@
   imports = [
     ./users.nix
     ./security.nix
-    ./home-manager.nix # Home-Manager stuff
+    ./gnome.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -44,6 +44,8 @@
       fzf
       sbctl # For debugging and troubleshooting Secure boot.
       nautilus
+      git
+      firefox
 
       bottom
       jq
@@ -74,6 +76,7 @@
     coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
     findutils = pkgs.hiPrio pkgs.uutils-findutils;
     tidal-hifi = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.tidal-hifi;
+    nvim = inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     # use OCR and copy to clipboard
     wl-ocr =
@@ -85,6 +88,24 @@
         ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
       '';
   };
+  environment.sessionVariables =
+    {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      NIXPKGS_ALLOW_UNFREE = "1";
+    }
+    // lib.optionalAttrs config.vars.withGui {
+      NIXOS_OZONE_WL = "1";
+      TERM = "xterm-256color";
+      BROWSER = "firefox";
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      "_JAVA_AWT_WM_NONREPARENTING" = "1";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      QT_QPA_PLATFORM = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+    };
 
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer

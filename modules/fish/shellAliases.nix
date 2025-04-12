@@ -14,8 +14,8 @@ with pkgs;
     "config" = "cd ~/Code/nixos";
 
     "dla" =
-      "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '${config.home.homeDirectory}/Media/Audios'"; # Download Audio
-    "dlv" = "${_ yt-dlp} --format 'best[ext=mp4]' -P '${config.home.homeDirectory}/Media/Videos'"; # Download Video
+      "${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P '/home/${config.vars.username}/Media/Audios'"; # Download Audio
+    "dlv" = "${_ yt-dlp} --format 'best[ext=mp4]' -P '/home/${config.vars.username}/Media/Videos'"; # Download Video
 
     "ls" = "${_ lsd}";
     "l" = "${_ lsd} -lF --git";
@@ -36,9 +36,9 @@ with pkgs;
     "gs" = "git status";
 
     "record" =
-      "${_ wl-screenrec} -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4";
+      "${_ wl-screenrec} -f /home/${config.vars.username}/Videos/Record/$(date '+%s').mp4";
     "record-region" =
-      ''${_ wl-screenrec} -g "$(${_ slurp})" -f ${config.xdg.userDirs.extraConfig.XDG_RECORD_DIR}/$(date '+%s').mp4'';
+      ''${_ wl-screenrec} -g "$(${_ slurp})" -f /home/${config.vars.username}/Videos/Record/$(date '+%s').mp4'';
 
     "..." = "cd ../..";
     ".." = "cd ..";

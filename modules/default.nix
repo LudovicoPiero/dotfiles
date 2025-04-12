@@ -1,36 +1,17 @@
-_: {
+{
   imports = [
-    ./emacs
-    ./discord
     ./dnscrypt2
     ./fcitx5
-    ./firefox
     ./fish
     ./fonts
-    ./fuzzel
-    ./gaming
-    ./git
-    ./gnome
-    ./gpg
-    ./hyprland
     ./keyring
-    ./kitty
-    ./mako
-    ./mpd
-    ./nvim
     ./pipewire
     ./sddm
     ./secrets
     ./shared
-    ./spotify
     ./teavpn2
-    ./theme
     ./tlp
     ./vars
-    ./vscode
-    ./waybar
-    ./wezterm
     ./xdg-portal
-    ./zsh
   ];
 }

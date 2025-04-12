@@ -3,9 +3,9 @@ let
   inherit (lib) mkEnableOption mkIf mkMerge;
 in
 {
-  options.myOptions.greetd = {
-    enable = mkEnableOption "greetd service" // {
-      default = true;
+  options.myOptions.sddm = {
+    enable = mkEnableOption "sddm" // {
+      default = config.vars.withGui;
     };
   };
 
