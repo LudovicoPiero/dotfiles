@@ -48,7 +48,8 @@
         "rw"
         "user"
         "exec"
-        "umask=000"
+        "dmask=0002"
+        "fmask=0113"
         "nofail"
       ];
     };
