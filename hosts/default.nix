@@ -13,25 +13,13 @@
         inherit specialArgs;
         modules = [
           sharedModules
-          inputs.home-manager.nixosModules.home-manager
 
           ./sforza/configuration.nix
           {
             myOptions = {
               dnscrypt2.enable = true;
-              teavpn2.enable = false;
-
-              # DE / Compositor
-              hyprland = {
-                enable = true;
-                withLTO = true;
-              };
-              gnome.enable = false;
-
-              # Shell
-              # Choose one of the following:
+              #   teavpn2.enable = false; #FIXME
               fish.enable = true;
-              zsh.enable = false;
             };
 
             vars = {
@@ -39,8 +27,8 @@
               # https://github.com/tinted-theming/schemes/blob/spec-0.11/base16/
               colorScheme = "catppuccin-mocha";
 
-              withGui = true; # Enable hyprland & all gui stuff
-              isALaptop = true; # Enable TLP
+              withGui = true;
+              isALaptop = true;
               email = "lewdovico@gnuweeb.org";
             };
           }

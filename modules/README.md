@@ -30,14 +30,6 @@ in
     environment.systemPackages = [
       pkgs.hello
     ];
-
-    home-manager.users.${config.vars.username} =
-      { config, osConfig, ... }:
-      {
-        home.packages = [
-          pkgs.hello
-        ];
-      }; # For Home-Manager options
   };
 }
 ```
