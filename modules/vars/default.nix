@@ -18,7 +18,7 @@ in
 
     username = mkOption {
       type = types.str;
-      default = "airi";
+      default = "aika";
     };
 
     terminal = mkOption {
