@@ -29,7 +29,7 @@ jobs:
       - name: Run nvfetcher updates
         run: |
           pushd packages
-          nix run github:berberman/nvfetcher -- --commit-changes
+          nix run github:ludovicopiero/nvfetcher -- --commit-changes
           popd
 
       - name: Run nix-update for all flakes
