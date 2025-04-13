@@ -6,18 +6,18 @@ on:
     - cron: "0 15 * * 0"
 
 jobs:
-  nvfetcher-update:
-    if: github.repository == 'ludovicopiero/dotfiles' # Don't do this in forks
+  update-packages:
+    if: github.repository == 'ludovicopiero/dotfiles'  # Don't run in forks
     runs-on: ubuntu-latest
-    outputs:
-      id: pr
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: "${{ secrets.PR_TOKEN }}"
 
-      - uses: cachix/install-nix-action@v31
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -26,61 +26,29 @@ jobs:
           git config --global user.email "maximiliansforza@proton.me"
           git config --global user.name "Maximilian Sforza"
 
-      - name: Run nvfetcher
+      - name: Run nvfetcher updates
         run: |
           pushd packages
           nix run github:berberman/nvfetcher -- --commit-changes
           popd
 
-      - name: Create Pull Request
-        id: create-pr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: "${{ secrets.PR_TOKEN }}"
-          title: "Nvfetcher Source Update"
-          body: "Automated package updates via nvfetcher. This PR updates packages to their latest versions from source repositories."
-          labels: automated, uwu, keep-up-to-date
-          branch: "nvfetcher-update"
-          delete-branch: true
-
-  nix-update:
-    if: github.repository == 'ludovicopiero/dotfiles' # Don't do this in forks
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        packages:
-          - iosevka-q
-          - sarasa-gothic
-          - tidal-hifi
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: "${{ secrets.PR_TOKEN }}"
-
-      - uses: cachix/install-nix-action@v31
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-
-      - name: Git config
-        run: |
-          git config --global user.email "maximiliansforza@proton.me"
-          git config --global user.name "Maximilian Sforza"
-
-      - name: Run nix-update
+      - name: Run nix-update for all flakes
         run: |
           export LC_ALL=en_US.UTF-8
           export LANG=en_US.UTF-8
+          for pkg in iosevka-q sarasa-gothic tidal-hifi; do
+            nix run nixpkgs#nix-update -- --flake "$pkg" --commit
+          done
 
-          nix run nixpkgs#nix-update -- --flake ${{ matrix.packages }} --commit
-
-      - name: Create Pull Request
-        id: create-pr
+      - name: Create or update Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           token: "${{ secrets.PR_TOKEN }}"
-          title: "Nix-update for ${{ matrix.packages }}"
-          body: "Automated package update for ${{ matrix.packages }}"
+          title: "Automated package updates"
+          body: |
+            This PR combines:
+            - nvfetcher source updates
+            - nix-update for iosevka-q, sarasa-gothic, tidal-hifi
           labels: automated, uwu, keep-up-to-date
-          branch: "nix-update-${{ matrix.packages }}-${{ github.run_id }}"
+          branch: "package-update"
           delete-branch: true
