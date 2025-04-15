@@ -5,6 +5,7 @@
     ./fish
     ./fonts
     ./keyring
+    ./git
     ./pipewire
     ./sddm
     ./secrets
