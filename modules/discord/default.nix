@@ -38,6 +38,7 @@ in
         splashBackground = "rgb(49, 51, 56)";
         enableMenu = false;
         staticTitle = false;
+        hardwareAcceleration = false;
       };
 
       xdg.configFile."vesktop/themes/fix-ui.css".text = ''
