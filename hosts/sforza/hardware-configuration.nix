@@ -39,7 +39,7 @@
       ];
     };
 
-    "/home/airi/WinE" = {
+    "/home/${config.vars.username}/WinE" = {
       device = "/dev/disk/by-label/WinE";
       fsType = "ntfs";
       options = [
@@ -53,7 +53,7 @@
       ];
     };
 
-    "/home/airi/Media" = {
+    "/home/${config.vars.username}/Media" = {
       device = "/dev/disk/by-label/Media";
       fsType = "btrfs";
       options = [
