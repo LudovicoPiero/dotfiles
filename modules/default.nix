@@ -13,6 +13,7 @@ _: {
     ./gnome
     ./gpg
     ./hyprland
+    ./kde-plasma
     ./keyring
     ./kitty
     ./mako

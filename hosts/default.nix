@@ -27,6 +27,7 @@
                 withLTO = true;
               };
               gnome.enable = false;
+              kde-plasma.enable = false;
 
               # Shell
               # Choose one of the following:
