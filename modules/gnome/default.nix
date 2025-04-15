@@ -11,54 +11,33 @@ let
     ;
 
   excludedPackages = with pkgs; [
-    orca
-    evince
-    # file-roller
-    geary
-    gnome-disk-utility
-    # seahorse
-    # sushi
-    # sysprof
-    #
-    # gnome-shell-extensions
-    #
-    # adwaita-icon-theme
-    # nixos-background-info
-    # gnome-backgrounds
-    # gnome-bluetooth
-    # gnome-color-manager
-    # gnome-control-center
-    gnome-tour # GNOME Shell detects the .desktop file on first log-in.
-    gnome-user-docs
-    glib # for gsettings program
-    # gnome-menus
-    # gtk3.out # for gtk-launch program
-    # xdg-user-dirs # Update user dirs as described in https://freedesktop.org/wiki/Software/xdg-user-dirs/
-    # xdg-user-dirs-gtk # Used to create the default bookmarks
-    #
-    baobab
-    epiphany
-    gnome-text-editor
-    gnome-calculator
-    gnome-calendar
-    gnome-characters
-    gnome-clocks
-    gnome-console
-    gnome-contacts
-    gnome-font-viewer
-    gnome-logs
-    gnome-maps
-    gnome-music
-    # gnome-system-monitor
-    gnome-weather
-    loupe # image viewer
-    # nautilus
-    gnome-connections
-    simple-scan
-    snapshot
-    totem
-    yelp
-    gnome-software
+    orca # Screen reader for visually impaired users
+    evince # GNOME document viewer (supports PDF, PostScript, DjVu, etc.)
+    geary # Lightweight email client for GNOME
+    gnome-disk-utility # Manage disks, partitions, and S.M.A.R.T. data
+    gnome-tour # GNOME Shell welcome tour (triggered on first login)
+    gnome-user-docs # Official GNOME help and documentation
+    glib # Provides `gsettings` CLI for GNOME settings management
+    baobab # Disk usage analyzer with a graphical interface
+    epiphany # GNOME's default web browser (aka GNOME Web)
+    gnome-text-editor # Official modern text editor for GNOME
+    gnome-calculator # Basic and scientific calculator
+    gnome-calendar # Calendar app integrated with GNOME Online Accounts
+    gnome-characters # Utility for inserting special characters and symbols
+    gnome-clocks # World clocks, alarms, timers, and stopwatch
+    gnome-console # Simple terminal emulator for GNOME (replaces gnome-terminal)
+    gnome-contacts # Contact manager integrated with GNOME Online Accounts
+    gnome-font-viewer # Tool to preview and install fonts
+    gnome-logs # Viewer for system logs with a GUI
+    gnome-maps # Map application using OpenStreetMap
+    gnome-music # Music player designed for GNOME
+    gnome-weather # Displays weather conditions and forecasts
+    gnome-connections # Remote desktop and VNC client
+    simple-scan # Scanning tool with a simple user interface
+    snapshot # GNOME's webcam app for taking photos and videos
+    totem # GNOME video player (also called "Videos")
+    yelp # Help viewer for GNOME documentation
+    gnome-software # GNOME software center (app installation and updates)
   ];
 
   cfg = config.myOptions.gnome;
