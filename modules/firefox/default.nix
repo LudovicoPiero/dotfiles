@@ -42,7 +42,7 @@ in
                 inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
               in
               {
-                userChrome = "${firefox-gnome-theme}/userChrome.css";
+                userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';
                 userContent = ''@import "${firefox-gnome-theme}/userContent.css";'';
                 extraConfig = ''
                   // user_pref("extensions.formautofill.addresses.enabled", false);
