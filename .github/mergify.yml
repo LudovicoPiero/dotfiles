@@ -7,15 +7,6 @@ pull_request_rules:
     actions:
       update:
 
-  - name: Rebase pull requests once when labeled with "rebase"
-    conditions:
-      - label=rebase
-    actions:
-      rebase: {}
-      label:
-        remove:
-          - rebase
-
   - name: Automatic merge when CI passes
     conditions:
       - "#approved-reviews-by>=1"
@@ -63,7 +54,11 @@ pull_request_rules:
   - name: Close stale pull requests
     conditions:
       - updated-at<30 days ago
-      - -label=keep-open # Don't close PRs with this label
+      - -label=keep-open             # Don't close PRs with this label
+      - -is:merged                   # Don't close already merged PRs
+      - -is:draft                    # Don't close drafts
+      - comments=0                   # Optional: Only if there are no recent comments
+      - reviews=0                    # Optional: Only if there are no reviews
     actions:
       comment:
         message: "This PR has been inactive for 30 days and will be closed soon. 💤"
