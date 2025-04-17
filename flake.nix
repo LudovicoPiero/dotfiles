@@ -37,6 +37,10 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Anime Games
+    anime.url = "github:ezKEa/aagl-gtk-on-nix";
+    anime.inputs.nixpkgs.follows = "nixpkgs";
+
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
     minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
