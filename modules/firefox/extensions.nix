@@ -8,6 +8,7 @@
       sponsorblock
       to-deepl
       ublock-origin
+      search-by-image
     ];
     settings = {
       "uBlock0@raymondhill.net" = {
