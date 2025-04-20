@@ -32,9 +32,13 @@ with pkgs;
       ${_ nh} os switch .
 
       if test $status -eq 0
-        ${__ libnotify "notify-send"} "Rebuild Switch" "Build successful!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "Rebuild Switch" "Build successful!"
+        end
       else
-        ${__ libnotify "notify-send"} "Rebuild Switch" "Build failed!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "Rebuild Switch" "Build failed!"
+        end
       end
 
       popd
@@ -45,9 +49,13 @@ with pkgs;
       ${_ nh} os boot .
 
       if test $status -eq 0
-        ${__ libnotify "notify-send"} "Rebuild Boot" "Build successful!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "Rebuild Boot" "Build successful!"
+        end
       else
-        ${__ libnotify "notify-send"} "Rebuild Boot" "Build failed!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "Rebuild Boot" "Build failed!"
+        end
       end
 
       popd
@@ -57,9 +65,13 @@ with pkgs;
       ${_ nh} clean all
 
       if test $status -eq 0
-        ${__ libnotify "notify-send"} "NH Clean All" "Clean successful!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "NH Clean All" "Clean successful!"
+        end
       else
-        ${__ libnotify "notify-send"} "NH Clean All" "Clean failed!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "NH Clean All" "Clean failed!"
+        end
       end
     '';
 
@@ -68,9 +80,13 @@ with pkgs;
       ${_ nh} home switch .
 
       if test $status -eq 0
-        ${__ libnotify "notify-send"} "Home-Manager Switch" "Build successful!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "Home-Manager Switch" "Build successful!"
+        end
       else
-        ${__ libnotify "notify-send"} "Home-Manager Switch" "Build failed!"
+        if not isatty 1
+          ${__ libnotify "notify-send"} "Home-Manager Switch" "Build failed!"
+        end
       end
 
       popd
