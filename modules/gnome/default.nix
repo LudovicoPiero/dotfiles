@@ -5,10 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   excludedPackages = with pkgs; [
     orca # Screen reader for visually impaired users

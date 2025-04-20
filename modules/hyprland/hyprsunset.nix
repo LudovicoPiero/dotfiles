@@ -5,10 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.myOptions.hyprsunset;
 in
@@ -20,9 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.hello
-    ];
+    environment.systemPackages = [ pkgs.hello ];
 
     home-manager.users.${config.vars.username} = {
       services.hyprsunset = {

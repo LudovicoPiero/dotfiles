@@ -6,10 +6,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   emacs =
     with pkgs;
@@ -71,9 +68,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [
-      inputs.emacs.overlays.default
-    ];
+    nixpkgs.overlays = [ inputs.emacs.overlays.default ];
 
     home-manager.users.${config.vars.username} =
       { config, ... }:

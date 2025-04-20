@@ -37,9 +37,7 @@ in
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {
-        server_names = [
-          "NextDNS-518d18"
-        ];
+        server_names = [ "NextDNS-518d18" ];
 
         max_clients = 250;
 

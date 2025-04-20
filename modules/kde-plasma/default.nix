@@ -5,10 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   excludedPackages = with pkgs.kdePackages; [
     plasma-browser-integration # Integrates browser features (tabs, media control, etc.) with KDE Plasma
