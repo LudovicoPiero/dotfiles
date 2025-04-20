@@ -59,7 +59,7 @@
       nixpkgs-review
       # Fav
       element-desktop # matrix client
-      fooyin # music player
+      # fooyin # music player
       foliate # book reader
       qbittorrent # uhm
       imv
