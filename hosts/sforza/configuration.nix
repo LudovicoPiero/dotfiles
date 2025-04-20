@@ -5,14 +5,12 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }:
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   networking.hostName = "sforza"; # Define your hostname.
@@ -21,20 +19,10 @@
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {
-      # Lanzaboote currently replaces the systemd-boot module.
-      # This setting is usually set to true in configuration.nix
-      # generated at installation time. So we force it to false
-      # for now.
-      systemd-boot.enable = lib.mkForce false;
-      systemd-boot.configurationLimit = 5;
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 3;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
-    };
-
-    # Secure Boot
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
     };
 
     initrd = {
