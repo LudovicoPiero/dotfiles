@@ -35,11 +35,11 @@ in
     cjk = {
       name = mkOption {
         type = types.str;
-        default = "Noto Serif CJK";
+        default = "Noto Sans CJK";
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.noto-fonts-cjk-serif;
+        default = pkgs.noto-fonts-cjk-sans;
       };
     };
 
