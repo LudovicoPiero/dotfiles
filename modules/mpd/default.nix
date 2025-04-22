@@ -30,17 +30,17 @@ in
         services = {
           mpris-proxy.enable = true;
           mpd-mpris.enable = true;
-          mpd-discord-rpc = {
-            enable = true;
-            settings = {
-              format = {
-                details = "$title";
-                state = "On $album by $artist";
-                large_text = "$album";
-                small_image = "";
-              };
-            };
-          };
+          # mpd-discord-rpc = {
+          #   enable = true;
+          #   settings = {
+          #     format = {
+          #       details = "$title";
+          #       state = "On $album by $artist";
+          #       large_text = "$album";
+          #       small_image = "";
+          #     };
+          #   };
+          # };
 
           # MPRIS 2 support to mpd
           mpdris2 = {
