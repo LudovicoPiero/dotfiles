@@ -57,11 +57,11 @@ in
     icon = {
       name = mkOption {
         type = types.str;
-        default = "Material Design Icons";
+        default = "Symbols Nerd Font Mono";
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.material-design-icons;
+        default = pkgs.nerd-fonts.symbols-only;
       };
     };
 
