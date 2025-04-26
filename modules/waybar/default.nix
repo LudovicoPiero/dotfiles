@@ -9,10 +9,6 @@ let
 
   _ = lib.getExe;
 
-  waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
-    date "+%A, %d %B %Y"
-  '';
-
   cfg = config.myOptions.waybar;
 in
 {
@@ -30,138 +26,118 @@ in
 
         settings = {
           mainBar = {
+            layer = "top";
+            exclusive = true;
+            passthrough = false;
             position = "bottom";
-            height = 25;
+            height = 32;
+            spacing = 6;
+            margin = "0";
+            margin-top = 0;
+            margin-bottom = 0;
+            margin-left = 0;
+            margin-right = 0;
+            fixed-center = true;
+            ipc = true;
             modules-left = [
-              "hyprland/workspaces"
-              "hyprland/submap"
+              "custom/menu"
+              "cpu"
+              "memory"
+              "custom/disk_home"
+              "custom/disk_root"
+              "idle_inhibitor"
               "tray"
             ];
-            modules-right = [
-              "custom/disk_root"
-              "custom/disk_home"
-              "bluetooth"
-              "privacy"
-              "network"
-              "custom/wireguard"
-              "custom/teavpn"
-              "pulseaudio"
-              "battery"
-              "custom/date"
-              "clock"
+            modules-center = [
+              "hyprland/workspaces"
+              # "mpd"
             ];
-            bluetooth = {
-              format = " {status}";
-              format-connected = " {device_alias}";
-              format-connected-battery = " {device_alias} {device_battery_percentage}%";
-              tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
-              tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
-              tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-              tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
-            };
-            privacy = {
-              icon-spacing = 4;
-              icon-size = 18;
-              transition-duration = 250;
-              modules = [
-                {
-                  type = "screenshare";
-                  tooltip = true;
-                  tooltip-icon-size = 24;
-                }
-                {
-                  type = "audio-out";
-                  tooltip = true;
-                  tooltip-icon-size = 24;
-                }
-                {
-                  type = "audio-in";
-                  tooltip = true;
-                  tooltip-icon-size = 24;
-                }
+            modules-right = [
+              "pulseaudio"
+              "backlight"
+              "bluetooth"
+              "network"
+              "battery"
+              "clock"
+              "custom/power"
+            ];
+            backlight = {
+              interval = 2;
+              align = 0;
+              rotate = 0;
+              format = "{icon} {percent}%";
+              format-icons = [
+                "󱩎"
+                "󱩒"
+                "󰛨"
               ];
+              on-click = "";
+              on-click-middle = "";
+              on-click-right = "";
+              on-update = "";
+              on-scroll-up = "${_ pkgs.light} -A 5%";
+              on-scroll-down = "${_ pkgs.light} -U 5%";
+              smooth-scrolling-threshold = 1;
             };
-            "pulseaudio" = {
-              "on-click" = "${_ pkgs.ponymix} -N -t sink toggle";
-              "on-click-right" = "${_ pkgs.ponymix} -N -t source toggle";
-
-              "format" = "{icon}{volume}% {format_source}";
-              "format-muted" = "󰝟{format_source}";
-              "format-bluetooth" = "{icon}󰂯 {volume}% {format_source}";
-              "format-bluetooth-muted" = "󰝟󰂯 {format_source}";
-              "format-source" = "󰍬{volume}%";
-              "format-source-muted" = "󰍭";
-              "format-icons" = {
-                "headphones" = "󰋋";
-                "handsfree" = "󱡏";
-                "headset" = "󰋋";
-                "phone" = "";
-                "portable" = "";
-                "car" = "";
-                "default" = [
-                  "󰕿"
-                  "󰖀"
-                  "󰕾"
-                ];
+            battery = {
+              interval = 60;
+              align = 0;
+              rotate = 0;
+              full-at = 100;
+              design-capacity = false;
+              states = {
+                good = 95;
+                warning = 30;
+                critical = 15;
               };
+              format = "{icon} {capacity}%";
+              format-charging = " {capacity}%";
+              format-plugged = " {capacity}%";
+              format-full = "{icon} Full";
+              format-alt = "{icon} {time}";
+              format-icons = [
+                ""
+                ""
+                ""
+                ""
+                ""
+              ];
+              format-time = "{H}h {M}min";
+              tooltip = true;
             };
-            "hyprland/workspaces" = {
-              "all-outputs" = true;
-              "format" = "{icon}";
-              "on-click" = "activate";
-              "on-scroll-up" = "hyprctl dispatch workspace e-1";
-              "on-scroll-down" = "hyprctl dispatch workspace e+1";
-              "persistent-workspaces" = {
-                "1" = [ ];
-                "2" = [ ];
-                "3" = [ ];
-                "4" = [ ];
-                "5" = [ ];
-                "6" = [ ];
-                "7" = [ ];
-                "8" = [ ];
-                "9" = [ ];
-                "10" = [ ];
-              };
-              "format-icons" = {
-                "1" = "1";
-                "2" = "2";
-                "3" = "3";
-                "4" = "4";
-                "5" = "5";
-                "6" = "6";
-                "7" = "7";
-                "8" = "8";
-                "9" = "9";
-                "10" = "10";
-                "default" = "󰝥";
-                "special" = "󰦥";
-              };
+            bluetooth = {
+              format = "󰂯 {status}";
+              format-on = "󰂯 {status}";
+              format-off = "󰂲 {status}";
+              format-disabled = "󰂲 {status}";
+              format-connected = "󰂯 {device_alias}";
+              format-connected-battery = "󰂯 {device_alias}, {device_battery_percentage}%";
+              tooltip = true;
+              tooltip-format = "{controller_alias}\t{controller_address}";
+              tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+              tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
             };
-            "tray" = {
-              spacing = 5;
+            clock = {
+              interval = 60;
+              align = 0;
+              rotate = 0;
+              tooltip-format = "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>";
+              format = " {:%I:%M %p}";
+              format-alt = " {:%a %b %d, %G}";
             };
-            "network" = {
-              "format-alt" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
-              "format-ethernet" = "󰈀IP LEAK: {ipaddr}/{cidr}";
-              "format-linked" = "{ifname} (No IP)";
-              "format-disconnected" = "⚠ Disconnected";
-              "format-wifi" = "󰖩IP LEAK: {ipaddr}/{cidr}";
-              "interval" = 5;
+            cpu = {
+              interval = 5;
+              format = "󰻠 LOAD: {usage}%";
             };
-            "custom/wireguard" = {
-              "format" = "󰖂Wireguard";
-              "exec" = "echo '{\"class\": \"connected\"}'";
-              "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
-              "return-type" = "json";
-              "interval" = 5;
+            "custom/menu" = {
+              format = "󰚅";
+              tooltip = false;
+              on-click = "${_ pkgs.fuzzel}";
             };
-            "custom/teavpn" = {
-              "format" = "󰖂Teavpn";
-              "exec" = "echo '{\"class\": \"connected\"}'";
-              "exec-if" = "test -d /proc/sys/net/ipv4/conf/teavpn2-cl-01";
-              "return-type" = "json";
-              "interval" = 5;
+            "custom/power" = {
+              format = "󰐥";
+              tooltip = false;
+              on-click = "${_ pkgs.wlogout}";
             };
             "custom/disk_home" = {
               "format" = "󰋊Porn Folder: {}";
@@ -175,56 +151,91 @@ in
               "interval" = 30;
               "exec" = "df -h --output=avail / | tail -1 | tr -d ' '";
             };
-            "battery" = {
-              bat = "BAT1";
-              interval = 60;
-              format = "{icon}{capacity}%";
-              format-charging = "󰂄{capacity}%";
-              states = {
-                "good" = 95;
-                "warning" = 20;
-                "critical" = 10;
-              };
-              format-icons = [
-                "󰁺"
-                "󰁻"
-                "󰁼"
-                "󰁽"
-                "󰁾"
-                "󰁿"
-                "󰂀"
-                "󰂁"
-                "󰂂"
-                "󰁹"
-              ];
+            memory = {
+              interval = 10;
+              format = "󰍛 USED: {used:0.1f}G";
             };
-            "custom/date" = {
-              "format" = "󰃭{}";
-              "interval" = 3600;
-              "exec" = "${_ waybar-date}";
+            mpd = {
+              interval = 2;
+              unknown-tag = "N/A";
+              format = "{stateIcon} {artist} - {title}";
+              format-disconnected = "󰎊 Disconnected";
+              format-paused = "{stateIcon} {artist} - {title}";
+              format-stopped = "Stopped ";
+              state-icons = {
+                paused = "";
+                playing = "";
+              };
+              tooltip-format = "MPD (connected)";
+              tooltip-format-disconnected = "MPD (disconnected)";
+              on-click = "${_ pkgs.mpc} toggle";
+              on-click-middle = "${_ pkgs.mpc} prev";
+              on-click-right = "${_ pkgs.mpc} next";
+              on-update = "";
+              on-scroll-up = "${_ pkgs.mpc} seek +00:00:01";
+              on-scroll-down = "${_ pkgs.mpc} seek -00:00:01";
+              smooth-scrolling-threshold = 1;
             };
-            "clock" = {
-              "format" = "󰅐{:%I:%M %p}";
-              "format-alt" = "󰃭{:%A; %B %d, %Y (%R)}";
-              "tooltip-format" = "<tt><small>{calendar}</small></tt>";
-              "calendar" = {
-                "mode" = "year";
-                "mode-mon-col" = 3;
-                "weeks-pos" = "right";
-                "on-scroll" = 1;
-                "format" = {
-                  "months" = "<span color='#ffead3'><b>{}</b></span>";
-                  "days" = "<span color='#ecc6d9'><b>{}</b></span>";
-                  "weeks" = "<span color='#99ffdd'><b>W{}</b></span>";
-                  "weekdays" = "<span color='#ffcc66'><b>{}</b></span>";
-                  "today" = "<span color='#ff6699'><b><u>{}</u></b></span>";
-                };
+            network = {
+              interval = 5;
+              "format-alt" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
+              "format-ethernet" = "󰈀IP LEAK: {ipaddr}/{cidr}";
+              "format-linked" = "{ifname} (No IP)";
+              "format-disconnected" = "⚠ Disconnected";
+              "format-wifi" = "󰖩IP LEAK: {ipaddr}/{cidr}";
+            };
+            pulseaudio = {
+              format = "{icon} {volume}%";
+              format-muted = " Mute";
+              format-bluetooth = " {volume}% {format_source}";
+              format-bluetooth-muted = " Mute";
+              format-source = " {volume}%";
+              format-source-muted = "";
+              format-icons = {
+                headphone = "";
+                phone = "";
+                portable = "";
+                car = "";
+                default = [
+                  ""
+                  ""
+                  ""
+                ];
               };
-              "actions" = {
-                "on-click-right" = "mode";
-                "on-scroll-up" = "shift_up";
-                "on-scroll-down" = "shift_down";
+              scroll-step = 5;
+              on-click = "${_ pkgs.pulsemixer} --toggle-mute";
+              on-click-right = "${_ pkgs.pulsemixer} --toggle-mute";
+              smooth-scrolling-threshold = 1;
+            };
+            idle_inhibitor = {
+              format = "{icon}";
+              format-icons = {
+                activated = "";
+                deactivated = "";
               };
+              timeout = 30;
+            };
+            "hyprland/workspaces" = {
+              "format" = "{icon}";
+              "on-click" = "activate";
+              "on-scroll-up" = "hyprctl dispatch workspace e-1";
+              "on-scroll-down" = "hyprctl dispatch workspace e+1";
+              "persistent-workspaces" = {
+                "1" = [ ];
+                "2" = [ ];
+                "3" = [ ];
+                "4" = [ ];
+                "5" = [ ];
+                # "6" = [ ];
+                # "7" = [ ];
+                # "8" = [ ];
+                # "9" = [ ];
+                # "10" = [ ];
+              };
+            };
+            tray = {
+              icon-size = 16;
+              spacing = 10;
             };
           };
         };
