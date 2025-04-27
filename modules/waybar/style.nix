@@ -4,20 +4,6 @@ let
 in
 {
   programs.waybar.style = ''
-    @define-color background #1E1E2E;
-    @define-color background-alt1 #28283d;
-    @define-color background-alt2 #32324d;
-    @define-color foreground #CDD6F4;
-    @define-color selected #89B4FA;
-    @define-color black #45475A;
-    @define-color red #F38BA8;
-    @define-color green #A6E3A1;
-    @define-color yellow #F9E2AF;
-    @define-color blue #89B4FA;
-    @define-color magenta #F5C2E7;
-    @define-color cyan #94E2D5;
-    @define-color white #BAC2DE;
-
     * {
       font-family:
         "${osConfig.myOptions.fonts.main.name} Semibold",
@@ -27,209 +13,334 @@ in
     }
 
     window#waybar {
-     background-color: @background;
-     color: @background;
-     border-bottom: 0px solid @background-alt1;
-     border-radius: 0px 0px 0px 0px;
-     transition-property: background-color;
-     transition-duration: .5s;
+      background-color: #${palette.base00};
+      color: #${palette.base05};
+      border-bottom: 2px solid #${palette.base01};
+      transition-property: background-color;
+      transition-duration: 0.5s;
     }
 
     window#waybar.hidden {
-     opacity: 0.5;
-    }
-
-    #backlight {
-     background-color: @green;
-    }
-
-    #battery {
-     background-color: @blue;
-    }
-
-    #battery.charging {}
-
-    #battery.plugged {}
-
-    @keyframes blink {
-     to {
-      color: @black;
-     }
-    }
-
-    #battery.critical:not(.charging) {
-     background-color: @red;
-     color: @red;
-     animation-name: blink;
-     animation-duration: 0.5s;
-     animation-timing-function: linear;
-     animation-iteration-count: infinite;
-     animation-direction: alternate;
-    }
-
-    #clock {
-     background-color: @yellow;
-    }
-
-    #cpu {
-     background-color: @cyan;
-    }
-
-    #memory {
-     background-color: @magenta;
-    }
-
-    #idle_inhibitor {
-     background-color: @green;
-    }
-
-    #idle_inhibitor.deactivated {
-     background-color: @red;
-    }
-
-    #tray {
-     background-color: @background-alt2;
-    }
-
-    #tray>.passive {
-     -gtk-icon-effect: dim;
-    }
-
-    #tray>.needs-attention {
-     -gtk-icon-effect: highlight;
-    }
-
-    #tray>.active {}
-
-    #pulseaudio {
-     background-color: @yellow;
-    }
-
-    #pulseaudio.bluetooth {
-     background-color: @yellow;
-    }
-
-    #pulseaudio.muted {
-     background-color: @red;
-     color: @background;
-    }
-
-    #network {
-     background-color: @magenta;
-    }
-
-    #network.disconnected,
-    #network.disabled {
-     background-color: @background-alt1;
-     color: @foreground;
-    }
-
-    #network.linked {}
-
-    #network.ethernet {}
-
-    #network.wifi {}
-
-    #bluetooth {
-     background-color: @cyan;
-    }
-
-    #bluetooth.disabled {
-     background-color: @background-alt1;
-     color: @foreground;
-    }
-
-    #bluetooth.off {
-     background-color: @background-alt1;
-     color: @foreground;
-    }
-
-    #bluetooth.on {}
-
-    #bluetooth.connected {}
-
-    #bluetooth.discoverable {}
-
-    #bluetooth.discovering {}
-
-    #bluetooth.pairable {}
-
-    #workspaces {
-     background-color: @background;
-     border-radius: 4px;
-     margin: 0px 0px;
-     padding: 0px 0px;
-    }
-
-    #workspaces button {
-     color: @foreground;
-    }
-
-    #workspaces button.active {
-     color: @selected;
-    }
-
-    #workspaces button.urgent {
-     color: @red;
-    }
-
-    #workspaces button.hidden {
-     color: @yellow;
-    }
-
-    #custom-themes,
-    #custom-menu,
-    #custom-power,
-    #custom-disk_home,
-    #custom-disk_root {
-     border-radius: 12px;
-     margin: 6px 0px;
-     padding: 2px 10px;
-    }
-
-    #custom-disk_root {
-     background-color: @selected;
-    }
-    #custom-disk_home {
-     background-color: @selected;
-    }
-
-    #custom-themes {
-     background-color: @selected;
-     padding: 2px 8px;
+      opacity: 0.5;
     }
 
     #custom-menu {
-     background-color: @selected;
-     margin-left: 6px;
-     padding: 2px 6px;
-     font-size: 16px;
+      background-color: #${palette.base01};
+      color: #${palette.base09};
+      font-size: 18px;
+      border-radius: 0px 14px 0px 0px;
+      margin: 0px 0px 0px 0px;
+      padding: 2px 8px 2px 8px;
+    }
+
+    #custom-disk_home {
+      color: #${palette.base0D};
+    }
+
+    #custom-disk_root {
+      color: #${palette.base0D};
     }
 
     #custom-power {
-     background-color: @red;
-     margin-right: 6px;
-     padding: 2px 8px;
-     font-size: 16px;
+      background-color: #${palette.base08};
+      font-size: 16px;
+    }
+
+    #custom-power,
+    #custom-themes {
+      color: #${palette.base00};
+      border-radius: 10px;
+      margin: 6px 6px 6px 0px;
+      padding: 2px 8px 2px 8px;
+    }
+
+    #idle_inhibitor {
+      background-color: #${palette.base0B};
+      color: #${palette.base00};
+      border-radius: 10px;
+      margin: 6px 0px 6px 6px;
+      padding: 4px 6px;
+    }
+
+    #idle_inhibitor.deactivated {
+      background-color: #${palette.base08};
+    }
+
+    #tray {
+      background-color: #${palette.base01};
+      border-radius: 10px;
+      margin: 6px 0px 6px 6px;
+      padding: 4px 6px;
+    }
+
+    #tray > .passive {
+      -gtk-icon-effect: dim;
+    }
+
+    #tray > .needs-attention {
+      -gtk-icon-effect: highlight;
+    }
+
+    #tray > .active {
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    #mpd {
+      color: #${palette.base05};
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    #mpd.disconnected {
+      color: #${palette.base08};
+    }
+
+    #mpd.stopped {
+      color: #${palette.base08};
+    }
+
+    #mpd.playing {
+      color: #${palette.base0C};
+    }
+
+    #mpd.paused {
+    }
+
+    #mpd.2 {
+      border-radius: 10px 0px 0px 10px;
+      margin: 6px 0px 6px 6px;
+      padding: 4px 6px 4px 10px;
+    }
+
+    #mpd.3 {
+      margin: 6px 0px 6px 0px;
+      padding: 4px;
+    }
+
+    #mpd.4 {
+      border-radius: 0px 10px 10px 0px;
+      margin: 6px 6px 6px 0px;
+      padding: 4px 10px 4px 6px;
+    }
+
+    #mpd.2,
+    #mpd.3,
+    #mpd.4 {
+      background-color: #${palette.base01};
+      font-size: 14px;
+    }
+
+    #custom-spotify {
+      background-color: #${palette.base01};
+      color: #${palette.base05};
+      border-radius: 10px;
+      margin: 6px 0px 6px 6px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    #custom-spotify.paused {
+      color: #${palette.base05};
+    }
+
+    #custom-spotify.playing {
+      background: linear-gradient(
+        90deg,
+        #${palette.base09} 25%,
+        #${palette.base08} 50%,
+        #${palette.base0A} 75%,
+        #${palette.base0C} 100%
+      );
+      background-size: 300% 300%;
+      animation: gradient 10s ease infinite;
+      color: #${palette.base00};
+    }
+
+    #custom-spotify.offline {
+      color: #${palette.base08};
+    }
+
+    #cpu {
+      color: #${palette.base08};
+    }
+
+    #memory {
+      color: #${palette.base0B};
+    }
+
+    #disk {
+      color: #${palette.base0A};
+    }
+
+    #pulseaudio {
+      color: #${palette.base0D};
+    }
+
+    #pulseaudio.bluetooth {
+      color: #${palette.base0C};
+    }
+
+    #pulseaudio.muted {
+      color: #${palette.base08};
+    }
+
+    #pulseaudio.2 {
+    }
+
+    #pulseaudio.2.bluetooth {
+    }
+
+    #pulseaudio.2.muted {
+    }
+
+    #backlight {
+      color: #${palette.base09};
+    }
+
+    #battery {
+      color: #${palette.base0C};
+    }
+
+    #battery.charging {
+    }
+
+    #battery.plugged {
+    }
+
+    @keyframes blink {
+      to {
+        color: #${palette.base05};
+      }
+    }
+
+    #battery.critical:not(.charging) {
+      background-color: #${palette.base02};
+    }
+
+    #battery.2.critical:not(.charging) {
+      background-color: #${palette.base01};
+      color: #${palette.base08};
+      animation-name: blink;
+      animation-duration: 0.5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    #bluetooth {
+      color: #${palette.base0B};
+    }
+
+    #bluetooth.disabled {
+      color: #${palette.base08};
+    }
+
+    #bluetooth.off {
+      color: #${palette.base08};
+    }
+
+    #bluetooth.on {
+    }
+
+    #bluetooth.connected {
+    }
+
+    #bluetooth.discoverable {
+    }
+
+    #bluetooth.discovering {
+    }
+
+    #bluetooth.pairable {
+    }
+
+    #clock {
+      color: #${palette.base0D};
+    }
+
+    #network {
+      color: #${palette.base0E};
+    }
+
+    #workspaces {
+      background-color: #${palette.base00};
+      margin: 6px;
+      padding: 0px;
+    }
+
+    #workspaces button {
+      color: #${palette.base05};
+      padding: 5px;
+      background-color: #${palette.base00};
+      border-radius: 10px;
+    }
+
+    #workspaces button.empty {
+      color: #${palette.base04};
+      background-color: #${palette.base00};
+    }
+
+    #workspaces button.visible {
+      color: #${palette.base04};
+    }
+
+    #workspaces button.active {
+      color: #${palette.base00};
+      background-color: #${palette.base07};
+    }
+
+    #workspaces button:hover {
+      color: #${palette.base00};
+      background-color: #${palette.base0E};
     }
 
     #backlight,
     #battery,
     #clock,
     #cpu,
-    #mode,
-    #memory,
-    #mpd,
     #custom-disk_root,
     #custom-disk_home,
-    #idle_inhibitor,
-    #tray,
+    #disk,
+    #memory,
     #pulseaudio,
     #network,
     #bluetooth {
-     border-radius: 12px;
-     margin: 6px 0px;
-     padding: 2px 10px;
+      background-color: #${palette.base02};
+      border-radius: 10px 0px 0px 10px;
+      margin: 6px 0px 6px 0px;
+      padding: 4px 6px;
+    }
+
+    #backlight.2,
+    #battery.2,
+    #clock.2,
+    #cpu.2,
+    #disk.2,
+    #memory.2,
+    #pulseaudio.2,
+    #network.2,
+    #bluetooth.2 {
+      background-color: #${palette.base01};
+      color: #${palette.base05};
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 0px 10px 10px 0px;
+      margin: 6px 6px 6px 0px;
+      padding: 5px 6px 4px 6px;
     }
   '';
 }
