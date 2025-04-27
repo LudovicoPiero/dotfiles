@@ -38,6 +38,7 @@
     anime.url = "github:ezKEa/aagl-gtk-on-nix";
     anime.inputs.nixpkgs.follows = "nixpkgs";
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
     minecraft.url = "github:hero-persson/FjordLauncherUnlocked";

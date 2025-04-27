@@ -5,6 +5,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -50,7 +51,7 @@
       "xfs"
     ];
 
-    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
   };
 
   # OpenGL
