@@ -30,7 +30,7 @@ in
      background-color: @background;
      color: @background;
      border-bottom: 0px solid @background-alt1;
-     border-radius: 0px 0px 20px 20px;
+     border-radius: 0px 0px 0px 0px;
      transition-property: background-color;
      transition-duration: .5s;
     }
