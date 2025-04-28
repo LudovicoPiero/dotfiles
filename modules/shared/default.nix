@@ -8,6 +8,8 @@
 {
   # Nixos Stuff
   imports = [
+    inputs.lix-module.nixosModules.default
+
     ./users.nix
     ./security.nix
     ./home-manager.nix # Home-Manager stuff
@@ -129,7 +131,6 @@
   };
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-    package = pkgs.nixVersions.latest;
 
     settings = {
       # Prevent impurities in builds
