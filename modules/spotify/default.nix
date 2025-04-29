@@ -28,6 +28,7 @@ in
       spotifyPackage = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.spotify;
 
       theme = spicePkgs.themes.text;
+      colorScheme = "Spotify";
 
       enabledExtensions = with spicePkgs.extensions; [
         fullAppDisplay
