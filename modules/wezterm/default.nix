@@ -86,12 +86,7 @@ in
           local wezterm = require("wezterm")
           wezterm.add_to_config_reload_watch_list(wezterm.config_dir)
 
-          local function stylix_wrapped_config()
-              ${config.programs.wezterm.extraConfig}
-          end
-
           local stylix_base_config = wezterm.config_builder()
-          local stylix_user_config = stylix_wrapped_config()
           stylix_base_config = {
             font = wezterm.font_with_fallback({
               "${osConfig.myOptions.fonts.main.name} Semibold",
@@ -197,9 +192,6 @@ in
               { key = "a", mods = "LEADER|CTRL", action = wezterm.action({ SendString = "\x01" }) },
             },
           }
-          for key, value in pairs(stylix_user_config) do
-              stylix_base_config[key] = value
-          end
           return stylix_base_config
         '';
       }; # For Home-Manager options
