@@ -106,12 +106,12 @@ in
               tooltip = true;
             };
             bluetooth = {
-              format = "󰂯 {status}";
-              format-on = "󰂯 {status}";
-              format-off = "󰂲 {status}";
-              format-disabled = "󰂲 {status}";
-              format-connected = "󰂯 {device_alias}";
-              format-connected-battery = "󰂯 {device_alias}, {device_battery_percentage}%";
+              format = "󰂯{status}";
+              format-on = "󰂯{status}";
+              format-off = "󰂲{status}";
+              format-disabled = "󰂲{status}";
+              format-connected = "󰂯{device_alias}";
+              format-connected-battery = "󰂯{device_alias}, {device_battery_percentage}%";
               tooltip = true;
               tooltip-format = "{controller_alias}\t{controller_address}";
               tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
@@ -140,13 +140,13 @@ in
               on-click = "${_ pkgs.wlogout}";
             };
             "custom/disk_home" = {
-              "format" = "󰋊Porn Folder: {}";
+              "format" = "󰋊 Porn Folder: {}";
               "tooltip-format" = "Size of /home";
               "interval" = 30;
               "exec" = "df -h --output=avail /dev/disk/by-label/HOME | tail -1 | tr -d ' '";
             };
             "custom/disk_root" = {
-              "format" = "󰋊Hentai Folder: {}";
+              "format" = "󰋊 Hentai Folder: {}";
               "tooltip-format" = "Size of /";
               "interval" = 30;
               "exec" = "df -h --output=avail / | tail -1 | tr -d ' '";
@@ -179,32 +179,34 @@ in
             network = {
               interval = 5;
               "format-alt" = "DOWN: {bandwidthDownBits} UP: {bandwidthUpBits}";
-              "format-ethernet" = "󰈀IP LEAK: {ipaddr}/{cidr}";
+              "format-ethernet" = "󰈀 IP LEAK: {ipaddr}/{cidr}";
               "format-linked" = "{ifname} (No IP)";
               "format-disconnected" = "⚠ Disconnected";
-              "format-wifi" = "󰖩IP LEAK: {ipaddr}/{cidr}";
+              "format-wifi" = "󰖩 IP LEAK: {ipaddr}/{cidr}";
             };
             pulseaudio = {
-              format = "{icon} {volume}%";
-              format-muted = " Mute";
-              format-bluetooth = " {volume}% {format_source}";
-              format-bluetooth-muted = " Mute";
-              format-source = " {volume}%";
-              format-source-muted = "";
-              format-icons = {
-                headphone = "";
-                phone = "";
-                portable = "";
-                car = "";
-                default = [
-                  ""
-                  ""
-                  ""
+              "format" = "{icon} {volume}% {format_source}";
+              "format-muted" = "󰝟 {format_source}";
+              "format-bluetooth" = "{icon}󰂯 {volume}% {format_source}";
+              "format-bluetooth-muted" = "󰝟󰂯 {format_source}";
+              "format-source" = "󰍬{volume}%";
+              "format-source-muted" = "󰍭";
+              "format-icons" = {
+                "headphones" = "󰋋";
+                "handsfree" = "󱡏";
+                "headset" = "󰋋";
+                "phone" = "";
+                "portable" = "";
+                "car" = "";
+                "default" = [
+                  "󰕿"
+                  "󰖀"
+                  "󰕾"
                 ];
               };
               scroll-step = 5;
-              on-click = "${_ pkgs.pulsemixer} --toggle-mute";
-              on-click-right = "${_ pkgs.pulsemixer} --toggle-mute";
+              "on-click" = "${_ pkgs.ponymix} -N -t sink toggle";
+              "on-click-right" = "${_ pkgs.ponymix} -N -t source toggle";
               smooth-scrolling-threshold = 1;
             };
             idle_inhibitor = {

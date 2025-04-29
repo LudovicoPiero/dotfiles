@@ -13,6 +13,7 @@
         inherit specialArgs;
         modules = [
           sharedModules
+          inputs.chaotic.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
 
           ./sforza/configuration.nix

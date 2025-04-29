@@ -38,6 +38,11 @@
     anime.url = "github:ezKEa/aagl-gtk-on-nix";
     anime.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Lix
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
     minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
