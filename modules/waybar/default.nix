@@ -50,6 +50,7 @@ in
             ];
             modules-center = [
               "hyprland/workspaces"
+              "hyprland/submap"
               # "mpd"
             ];
             modules-right = [
@@ -216,6 +217,11 @@ in
                 deactivated = "";
               };
               timeout = 30;
+            };
+            "hyprland/submap" = {
+              "format" = "{}";
+              "max-length" = 8;
+              "tooltip" = false;
             };
             "hyprland/workspaces" = {
               "format" = "{icon}";

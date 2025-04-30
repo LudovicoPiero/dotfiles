@@ -276,6 +276,11 @@ in
       color: #${palette.base0E};
     }
 
+    #submap {
+      background-color: #${palette.base00};
+      color: #${palette.base05};
+    }
+
     #workspaces {
       background-color: #${palette.base00};
       margin: 6px;
