@@ -88,28 +88,35 @@ in
     };
 
     home-manager.users.${config.vars.username} =
-      { config, osConfig, ... }:
+      { osConfig, ... }:
       {
 
         # User Services
-        systemd.user.services = {
-          swaybg = mkService {
-            Unit.Description = "Swaybg Services";
-            Service = {
-              ExecStart = "${lib.getExe pkgs.swaybg} -m stretch -i ${config.xdg.userDirs.pictures}/Wallpaper/Minato-Aqua-Dark.png";
-              Restart = "on-failure";
+        systemd.user.services =
+          let
+            wallpaperUrl = pkgs.fetchurl {
+              url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-waterfall.png";
+              hash = "sha256-ULFNUZPU9khDG6rtkMskLe5sYpUcrJVvcFvEkpvXjMM=";
+            };
+          in
+          {
+            swaybg = mkService {
+              Unit.Description = "Swaybg Services";
+              Service = {
+                ExecStart = "${lib.getExe pkgs.swaybg} --mode center --image ${wallpaperUrl}";
+                Restart = "on-failure";
+              };
+            };
+            wl-clip-persist = mkService {
+              Unit.Description = "Keep Wayland clipboard even after programs close";
+              Service = {
+                ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard both";
+                Restart = "on-failure";
+                Slice = "app-graphical.slice";
+                TimeoutStartSec = "10s";
+              };
             };
           };
-          wl-clip-persist = mkService {
-            Unit.Description = "Keep Wayland clipboard even after programs close";
-            Service = {
-              ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard both";
-              Restart = "on-failure";
-              Slice = "app-graphical.slice";
-              TimeoutStartSec = "10s";
-            };
-          };
-        };
 
         imports = [ ./settings.nix ];
         wayland.windowManager.hyprland = {
