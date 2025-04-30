@@ -22,9 +22,9 @@
       "browser.tabs.firefox-view" = false; # Disable Firefox View
       "browser.tabs.firefox-view-next" = false;
 
-      "sidebar.verticalTabs" = true;
+      "sidebar.verticalTabs" = false;
       "sidebar.main.tools" = "";
-      "sidebar.visibility" = "always-show";
+      "sidebar.visibility" = "hide-sidebar";
       "browser.ml.chat.enabled" = false;
       "gfx.webrender.all" = true;
 
