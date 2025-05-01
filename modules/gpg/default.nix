@@ -31,7 +31,7 @@ in
         # Fix pass
         services.gpg-agent = {
           enable = true;
-          pinentryPackage = if guiCfg then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
+          pinentry.package = if guiCfg then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
           extraConfig = ''
             allow-emacs-pinentry
             allow-loopback-pinentry
