@@ -22,6 +22,26 @@
               EDITOR = "nvim";
               VISUAL = "nvim";
               NIXPKGS_ALLOW_UNFREE = "1";
+
+              # XDG Related Stuff
+              XDG_CACHE_HOME = config.xdg.cacheHome;
+              XDG_CONFIG_HOME = config.xdg.configHome;
+              XDG_CONFIG_DIR = config.xdg.configHome;
+              XDG_DATA_HOME = config.xdg.dataHome;
+              XDG_STATE_HOME = config.xdg.stateHome;
+              XDG_RUNTIME_DIR = "/run/user/${toString osConfig.users.users.airi.uid}";
+
+              XDG_DESKTOP_DIR = config.xdg.userDirs.desktop;
+              XDG_DOCUMENTS_DIR = config.xdg.userDirs.documents;
+              XDG_DOWNLOAD_DIR = config.xdg.userDirs.download;
+              XDG_MUSIC_DIR = config.xdg.userDirs.music;
+              XDG_PICTURES_DIR = config.xdg.userDirs.pictures;
+              XDG_PUBLICSHARE_DIR = config.xdg.userDirs.publicShare;
+              XDG_TEMPLATES_DIR = config.xdg.userDirs.templates;
+              XDG_VIDEOS_DIR = config.xdg.userDirs.videos;
+
+              LESSHISTFILE = "/tmp/less-hist";
+              PARALLEL_HOME = "${config.xdg.configHome}/parallel";
             }
             // lib.optionalAttrs osConfig.vars.withGui {
               NIXOS_OZONE_WL = "1";
@@ -44,73 +64,38 @@
           };
         };
 
-        xdg =
-          let
-            browser = [ "firefox.desktop" ];
-            chromium-browser = [ "chromium-browser.desktop" ];
-            thunderbird = [ "thunderbird.desktop" ];
+        xdg = {
+          enable = true;
 
-            # XDG MIME types
-            associations = {
-              "x-scheme-handler/chrome" = chromium-browser;
-              "application/x-extension-htm" = browser;
-              "application/x-extension-html" = browser;
-              "application/x-extension-shtml" = browser;
-              "application/x-extension-xht" = browser;
-              "application/x-extension-xhtml" = browser;
-              "application/xhtml+xml" = browser;
-              "text/html" = browser;
-              "x-scheme-handler/about" = browser;
-              "x-scheme-handler/ftp" = browser;
-              "x-scheme-handler/http" = browser;
-              "x-scheme-handler/https" = browser;
-              "x-scheme-handler/unknown" = browser;
-              "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-
-              "audio/*" = [ "mpv.desktop" ];
-              "video/*" = [ "mpv.dekstop" ];
-              "video/mp4" = [ "umpv.dekstop" ];
-              "image/*" = [ "imv.desktop" ];
-              "image/jpeg" = [ "imv.desktop" ];
-              "image/png" = [ "imv.desktop" ];
-              "application/json" = browser;
-              "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-              "x-scheme-handler/discord" = [ "vesktop.desktop" ];
-              "x-scheme-handler/spotify" = [ "spotify.desktop" ];
-              "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
-              "x-scheme-handler/tonsite" = [ "org.telegram.desktop.desktop" ];
-              "x-scheme-handler/mailto" = thunderbird;
-              "message/rfc822" = thunderbird;
-              "x-scheme-handler/mid" = thunderbird;
-              "x-scheme-handler/mailspring" = [ "Mailspring.desktop" ];
-            };
-          in
-          {
+          mimeApps = {
             enable = true;
-            cacheHome = config.home.homeDirectory + "/.cache";
+          };
 
-            mimeApps = {
-              enable = true;
-              defaultApplications = associations;
-            };
+          cacheHome = "${config.home.homeDirectory}/.cache";
+          configHome = "${config.home.homeDirectory}/.config";
+          dataHome = "${config.home.homeDirectory}/.local/share";
+          stateHome = "${config.home.homeDirectory}/.local/state";
+          userDirs = {
+            enable = true;
+            createDirectories = true;
 
-            userDirs = {
-              enable = true;
-              createDirectories = true;
-              documents = "${config.home.homeDirectory}/Documents";
-              download = "${config.home.homeDirectory}/Downloads";
-              music = "${config.home.homeDirectory}/Music";
-              pictures = "${config.home.homeDirectory}/Pictures";
-              videos = "${config.home.homeDirectory}/Videos";
-              desktop = "${config.home.homeDirectory}";
-              extraConfig = {
-                XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
-                XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
-                XDG_SCREENSHOT_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
-                XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
-              };
+            documents = "${config.home.homeDirectory}/Documents";
+            download = "${config.home.homeDirectory}/Downloads";
+            music = "${config.home.homeDirectory}/Music";
+            pictures = "${config.home.homeDirectory}/Pictures";
+            videos = "${config.home.homeDirectory}/Videos";
+            desktop = "${config.home.homeDirectory}/Desktop";
+            publicShare = "${config.home.homeDirectory}/Public";
+            templates = "${config.home.homeDirectory}/Templates";
+
+            extraConfig = {
+              XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
+              XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
+              XDG_SCREENSHOT_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+              XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
             };
           };
+        };
 
         home.stateVersion = osConfig.vars.stateVersion;
       };

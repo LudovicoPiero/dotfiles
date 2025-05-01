@@ -19,7 +19,6 @@ in
   config = mkIf cfg.enable {
     environment = {
       systemPackages = [ pkgs.libsecret ];
-      variables.XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.airi.uid}"; # set the runtime directory
     };
     programs.dconf.enable = true;
     # Fixes the org.a11y.Bus not provided by .service file error
