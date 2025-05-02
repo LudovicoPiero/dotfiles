@@ -31,7 +31,7 @@ in
           shellIntegration.mode = "no-rc no-cursor";
 
           font = {
-            name = "${osConfig.myOptions.fonts.main.name}";
+            name = "${osConfig.myOptions.fonts.terminal.name}";
             size = osConfig.myOptions.fonts.size;
             package = osConfig.myOptions.fonts.main.package;
           };

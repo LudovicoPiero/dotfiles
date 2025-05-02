@@ -22,7 +22,7 @@ in
           enable = true;
           settings = {
             main = {
-              font = "${osConfig.myOptions.fonts.main.name} Semibold-${toString osConfig.myOptions.fonts.size}";
+              font = "${osConfig.myOptions.fonts.terminal.name} Semibold-${toString osConfig.myOptions.fonts.size}";
               terminal = "wezterm";
               icon-theme = "${config.gtk.iconTheme.name}";
               prompt = "->";

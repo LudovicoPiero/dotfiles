@@ -6,7 +6,7 @@ in
   programs.waybar.style = ''
     * {
       font-family:
-        "${osConfig.myOptions.fonts.main.name} Semibold",
+        "${osConfig.myOptions.fonts.terminal.name} Semibold",
         "${osConfig.myOptions.fonts.icon.name}",
         monospace;
       font-size: ${toString osConfig.myOptions.fonts.size}px;

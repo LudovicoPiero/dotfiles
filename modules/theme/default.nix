@@ -64,26 +64,11 @@ in
         };
       };
     };
-
-    font = {
-      name = mkOption {
-        type = types.str;
-        default = "SF Pro Rounded";
-      };
-      package = mkOption {
-        type = types.package;
-        default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
-      };
-      size = mkOption {
-        type = types.int;
-        default = 12;
-      };
-    };
   };
 
   config = mkIf cfg.enable {
     home-manager.users.${config.vars.username} =
-      { config, ... }:
+      { config, osConfig, ... }:
       {
         imports = [
           inputs.nix-colors.homeManagerModules.default
@@ -95,7 +80,6 @@ in
         home = {
           packages = [
             cfg.gtk.cursorTheme.package
-            cfg.font.package
           ];
           pointerCursor = {
             inherit (cfg.gtk.cursorTheme) name package size;
@@ -118,7 +102,7 @@ in
             cursor-size = config.gtk.cursorTheme.size;
             gtk-theme = config.gtk.theme.name;
             icon-theme = config.gtk.iconTheme.name;
-            font-name = "${cfg.font.name} ${toString cfg.font.size}";
+            font-name = "${osConfig.myOptions.fonts.main.name} ${toString osConfig.myOptions.fonts.size}";
             clock-format = "12h";
             clock-show-date = true;
             clock-show-seconds = false;

@@ -5,13 +5,20 @@
   ...
 }:
 let
-  cfg = osConfig.myOptions.theme;
+  fontCfg = osConfig.myOptions.fonts;
+  gtkCfg = osConfig.myOptions.theme;
 in
 {
   gtk = {
     enable = true;
-    inherit (cfg) font;
-    inherit (cfg.gtk) cursorTheme theme iconTheme;
+
+    font = {
+      name = fontCfg.main.name;
+      size = fontCfg.size;
+      package = fontCfg.main.package;
+    };
+
+    inherit (gtkCfg.gtk) cursorTheme theme iconTheme;
 
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";

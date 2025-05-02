@@ -93,7 +93,7 @@ in
           local stylix_base_config = wezterm.config_builder()
           stylix_base_config = {
             font = wezterm.font_with_fallback({
-              "${osConfig.myOptions.fonts.main.name} Semibold",
+              "${osConfig.myOptions.fonts.terminal.name} Semibold",
               "${osConfig.myOptions.fonts.icon.name}",
               "${osConfig.myOptions.fonts.emoji.name}",
             }),

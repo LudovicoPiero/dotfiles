@@ -27,7 +27,7 @@ in
         services.mako = {
           enable = true;
 
-          font = "${osConfig.myOptions.fonts.main.name} ${toString osConfig.myOptions.fonts.size}";
+          font = "${osConfig.myOptions.fonts.terminal.name} ${toString osConfig.myOptions.fonts.size}";
           backgroundColor = "#${palette.base00}";
           borderColor = "#${palette.base0E}";
           textColor = "#${palette.base05}";

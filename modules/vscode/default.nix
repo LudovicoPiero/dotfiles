@@ -98,7 +98,7 @@ in
               "editor.formatOnSave" = true;
               "explorer.confirmDragAndDrop" = false;
               "editor.fontFamily" =
-                "'${osConfig.myOptions.fonts.main.name} Semibold', '${osConfig.myOptions.fonts.icon.name}', monospace";
+                "'${osConfig.myOptions.fonts.terminal.name} Semibold', '${osConfig.myOptions.fonts.icon.name}', monospace";
               "editor.fontSize" = osConfig.myOptions.fonts.size;
 
               "workbench.colorTheme" = "${config.colorScheme.name}";

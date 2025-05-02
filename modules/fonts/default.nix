@@ -24,6 +24,17 @@ in
     main = {
       name = mkOption {
         type = types.str;
+        default = "SF Pro Rounded";
+      };
+      package = mkOption {
+        type = types.package;
+        default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
+      };
+    };
+
+    terminal = {
+      name = mkOption {
+        type = types.str;
         default = "Iosevka Q";
       };
       package = mkOption {
@@ -76,6 +87,7 @@ in
       fontDir.enable = true;
       packages = [
         cfg.main.package
+        cfg.terminal.package
         cfg.cjk.package
         cfg.emoji.package
         cfg.icon.package
