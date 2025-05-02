@@ -44,7 +44,7 @@ in
           splashBackground = "rgb(49, 51, 56)";
           enableMenu = false;
           staticTitle = false;
-          hardwareAcceleration = false;
+          hardwareAcceleration = true;
           enabledThemes = [ "fix-ui.css" ];
         };
 
