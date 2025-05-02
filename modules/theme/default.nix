@@ -78,9 +78,7 @@ in
         inherit (cfg) colorScheme;
 
         home = {
-          packages = [
-            cfg.gtk.cursorTheme.package
-          ];
+          packages = [ cfg.gtk.cursorTheme.package ];
           pointerCursor = {
             inherit (cfg.gtk.cursorTheme) name package size;
             hyprcursor.enable = true;

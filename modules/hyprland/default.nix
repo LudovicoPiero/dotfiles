@@ -19,7 +19,7 @@ let
       Unit = {
         After = [ "graphical-session.target" ];
         PartOf = [ "graphical-session.target" ];
-        Description = extra.Unit.Description;
+        inherit (extra.Unit) Description;
       };
       Install.WantedBy = [ "graphical-session.target" ];
     }
@@ -121,7 +121,7 @@ in
         imports = [ ./settings.nix ];
         wayland.windowManager.hyprland = {
           enable = true;
-          package = osConfig.programs.hyprland.package;
+          inherit (osConfig.programs.hyprland) package;
           systemd.enable = !osConfig.programs.uwsm.enable;
           xwayland.enable = false;
 

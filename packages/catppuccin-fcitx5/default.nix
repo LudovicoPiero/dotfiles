@@ -4,7 +4,7 @@
   sources,
 }:
 
-stdenvNoCC.mkDerivation (finalAttrs: {
+stdenvNoCC.mkDerivation {
   inherit (sources.catppuccin-fcitx5) pname version src;
 
   dontBuild = true;
@@ -23,4 +23,4 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
     ];
   };
-})
+}

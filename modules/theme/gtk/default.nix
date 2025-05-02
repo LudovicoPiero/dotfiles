@@ -13,9 +13,8 @@ in
     enable = true;
 
     font = {
-      name = fontCfg.main.name;
-      size = fontCfg.size;
-      package = fontCfg.main.package;
+      inherit (fontCfg) size;
+      inherit (fontCfg.main) name package;
     };
 
     inherit (gtkCfg.gtk) cursorTheme theme iconTheme;

@@ -76,7 +76,7 @@
 
     coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
     findutils = pkgs.hiPrio pkgs.uutils-findutils;
-    tidal-hifi = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.tidal-hifi;
+    inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) tidal-hifi;
 
     # use OCR and copy to clipboard
     wl-ocr =

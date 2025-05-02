@@ -27,9 +27,6 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${config.vars.username} = {
-      home.packages = [
-      ];
-
       programs.vesktop = {
         enable = true;
         package = vesktopWrapped;

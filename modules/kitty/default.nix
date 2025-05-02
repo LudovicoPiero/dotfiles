@@ -32,8 +32,8 @@ in
 
           font = {
             name = "${osConfig.myOptions.fonts.terminal.name}";
-            size = osConfig.myOptions.fonts.size;
-            package = osConfig.myOptions.fonts.main.package;
+            inherit (osConfig.myOptions.fonts) size;
+            inherit (osConfig.myOptions.fonts.main) package;
           };
 
           keybindings = {
