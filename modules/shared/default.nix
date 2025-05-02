@@ -71,6 +71,7 @@
       telegram-desktop
       mpv
       yazi
+      nh
       ;
 
     coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
