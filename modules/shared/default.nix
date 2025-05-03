@@ -8,6 +8,8 @@
 {
   # Nixos Stuff
   imports = [
+    inputs.lix-module.nixosModules.default
+
     ./users.nix
     ./security.nix
     ./gnome.nix
@@ -71,11 +73,13 @@
       telegram-desktop
       mpv
       yazi
+      nh
+      tidal-hifi
+
       ;
 
     coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
     findutils = pkgs.hiPrio pkgs.uutils-findutils;
-    tidal-hifi = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.tidal-hifi;
     nvim = inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     # use OCR and copy to clipboard

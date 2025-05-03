@@ -34,6 +34,10 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Lix ( nix fork )
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
     minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
