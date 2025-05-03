@@ -25,6 +25,7 @@
       "sidebar.verticalTabs" = false;
       "sidebar.main.tools" = "";
       "sidebar.visibility" = "hide-sidebar";
+      "sidebar.revamp" = false;
       "browser.ml.chat.enabled" = false;
       "gfx.webrender.all" = true;
 
