@@ -36,7 +36,7 @@ jobs:
         run: |
           export LC_ALL=en_US.UTF-8
           export LANG=en_US.UTF-8
-          for pkg in iosevka-q sarasa-gothic tidal-hifi; do
+          for pkg in iosevka-q sarasa-gothic; do
             nix run nixpkgs#nix-update -- --flake "$pkg" --commit
           done
 
@@ -48,7 +48,7 @@ jobs:
           body: |
             This PR combines:
             - nvfetcher source updates
-            - nix-update for iosevka-q, sarasa-gothic, tidal-hifi
+            - nix-update for iosevka-q, sarasa-gothic
           labels: automated, uwu, keep-up-to-date
           branch: "package-update"
           delete-branch: true
