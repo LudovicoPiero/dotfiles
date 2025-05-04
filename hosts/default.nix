@@ -27,7 +27,7 @@
                 enable = true;
                 withLTO = true;
               };
-              gnome.enable = true;
+              gnome.enable = false;
               kde-plasma.enable = false;
 
               # Shell
