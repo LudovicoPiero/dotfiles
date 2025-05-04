@@ -73,6 +73,34 @@
     };
   };
 
+  sops.secrets."asfIpcPassword" = {
+    owner = config.systemd.services.archisteamfarm.serviceConfig.User;
+  };
+  services = {
+    # ArchiSteamFarm
+    archisteamfarm = {
+      enable = true;
+
+      settings = {
+        Statistics = false;
+        PluginsUpdateMode = 1;
+        AutoClaimItemBotNames = "ASF";
+        AutoClaimItemPeriod = 23;
+      };
+
+      ipcPasswordFile = config.sops.secrets."asfIpcPassword".path;
+      ipcSettings = {
+        Kestrel = {
+          Endpoints = {
+            HTTP = {
+              Url = "http://*:1242";
+            };
+          };
+        };
+      };
+    };
+  };
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
