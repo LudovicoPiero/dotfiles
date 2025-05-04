@@ -141,13 +141,13 @@ in
               on-click = "${_ pkgs.wlogout}";
             };
             "custom/disk_home" = {
-              "format" = "󰋊 Porn Folder: {}";
+              "format" = "󰋊 HOME: {}";
               "tooltip-format" = "Size of /home";
               "interval" = 30;
               "exec" = "df -h --output=avail /dev/disk/by-label/HOME | tail -1 | tr -d ' '";
             };
             "custom/disk_root" = {
-              "format" = "󰋊 Hentai Folder: {}";
+              "format" = "󰋊 ROOT: {}";
               "tooltip-format" = "Size of /";
               "interval" = 30;
               "exec" = "df -h --output=avail / | tail -1 | tr -d ' '";
