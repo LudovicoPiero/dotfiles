@@ -22,8 +22,6 @@
 
         firefox-gnome-theme = pkgs.callPackage ./firefox-gnome-theme { inherit sources; };
 
-        pollymc = pkgs.callPackage ./pollymc { };
-
         san-francisco-pro = pkgs.callPackage ./san-francisco-pro { inherit sources; };
 
         sarasa-gothic = pkgs.callPackage ./sarasa-gothic { };
