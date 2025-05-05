@@ -165,6 +165,7 @@ in
               { key = "l",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
               { key = "j",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
               { key = "k",         mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+              { key = "[",         mods = "LEADER", action = wezterm.action.ActivateCopyMode, },
               {
                 key = "v",
                 mods = "LEADER",
