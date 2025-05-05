@@ -35,13 +35,13 @@ in
             progressColor = "over #${palette.base02}";
 
             anchor = "top-right";
-            borderRadius = "5";
-            borderSize = "2";
-            padding = "20";
-            defaultTimeout = "5000";
+            borderRadius = 5;
+            borderSize = 2;
+            padding = 20;
+            defaultTimeout = 5000;
             layer = "top";
-            height = "100";
-            width = "300";
+            height = 100;
+            width = 300;
             format = "<b>%s</b>\\n%b";
           };
         };
