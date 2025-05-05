@@ -967,11 +967,11 @@
         "nui-nvim": "nui-nvim"
       },
       "locked": {
-        "lastModified": 1746371514,
-        "narHash": "sha256-ZT4o8x5UjvCa8tP5sCPO95qYaWO7uatKRdA8IXGet14=",
+        "lastModified": 1746436025,
+        "narHash": "sha256-d56j66zJZ9/lTYI5uixaWOsIVw4U3PZL/fdG6mg48j0=",
         "owner": "LudovicoPiero",
         "repo": "nvim-flake",
-        "rev": "8e551c86159160d60c07803c3c32e03730d68baf",
+        "rev": "b464c3531e9935f2aefcd4096fa3c7b0c8865031",
         "type": "github"
       },
       "original": {
