@@ -58,6 +58,7 @@
         };
 
         programs = {
+          man.generateCaches = false;
           direnv = {
             enable = true;
             nix-direnv.enable = true;

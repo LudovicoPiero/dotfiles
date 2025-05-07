@@ -140,8 +140,6 @@ in
               };
             };
           };
-
-          man.generateCaches = true; # For fish completions
           zoxide.enable = true;
         };
       };
