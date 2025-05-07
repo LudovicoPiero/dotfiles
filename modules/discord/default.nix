@@ -42,33 +42,162 @@ in
           enableMenu = false;
           staticTitle = false;
           hardwareAcceleration = true;
-          enabledThemes = [ "fix-ui.css" ];
         };
 
         vencord = {
           themes = {
             "fix-ui" = ''
-              /* Aligned Chat Box and User Box */
-              .container_c48ade {
-                --custom-chat-input-margin-bottom: 6px;
-              }
-              :root {
-                --custom-channel-textarea-text-area-height: 52px;
+              &>main[class^="container_"],
+              &>div[class^="shop__"],
+              &>div>div[class^="homeWrapperNormal__"] {
+                border-top: none;
               }
 
-              /* Hide the Visual Refresh Title Bar */
-              :root {
-                --custom-app-top-bar-height: 0 !important;
+              /* hide app launcher */
+              div[class^="channelAppLauncher_"] {
+                display: none !important;
               }
-              .visual-refresh {
-               div[class^="base_"] {
-                &>div[class^="bar_"] {
-                 display: none;
+
+              /* hide help button */
+              div[class^="trailing_"]>a[class^="anchor"] {
+                display: none;
+              }
+
+              /* user box */
+              section[class^="panels_"] {
+                border-radius: 0px !important;
+                width: 100% !important;
+                left: 0 !important;
+                bottom: 0px !important;
+              }
+
+              /* rightclick menu */
+              .separator_c1e9c4 {
+                margin: 2px;
+              }
+
+              /* make it darker */
+              .menu_c1e9c4 {
+                background-color: #121214;
+                /* edit me */
+              }
+
+              /* Hide invite button */
+              .inviteButton_f37cb1 {
+                display: none !important;
+              }
+
+              .guildDropdown_f37cb1 {
+                width: 100% !important;
+              }
+
+              /* i fucking hate avatar decorations */
+              [class*="avatarDecoration"] {
+                display: none;
+              }
+
+              [class^="profileEffects"] {
+                display: none;
+              }
+
+              .avatarDecoration__44b0c {
+                display: none;
+              }
+
+              /* move typing list to top right */
+              .visual-refresh [class^="chatContent_"]>form[class^="form"] {
+                --custom-chat-input-margin-bottom: 8px;
+                --custom-channel-textarea-text-area-height: 44px;
+
+                margin-top: 8px;
+                display: flex;
+                flex-direction: column-reverse;
+                column-gap: 0px;
+
+                >div[class^="typing"] {
+                  position: relative;
+                  justify-self: end;
+                  margin-left: auto;
+                  margin-right: 20px;
+                  margin-top: -22px;
+                  row-gap: 4px;
+
+                  svg {
+                    margin-top: -3px;
+                  }
+
+                  div>span>strong {
+                    margin-top: 0px !important;
+                  }
                 }
-               }
-               ul[data-list-id="guildsnav"]>div[class^="itemsContainer_"] {
-                margin-top: 6px;
-               }
+              }
+
+              /* Remove top bar, keep inbox icon */
+              .visual-refresh {
+
+                div[class^="subtitleContainer_"],
+                main[class^="container__"] section[class*="container__"] {
+                  position-anchor: --vr-header-trailing;
+                  background-color: rgba(0, 0, 0, .25);
+                }
+
+                div[class^="toolbar__"]>div[class^="search__"] {
+                  padding-right: 50px;
+                }
+
+                div[class^="page_"] {
+                  &:not(:has(> div[class^="chat_"])) {
+                    anchor-name: --vr-header-snippet;
+                  }
+
+                  &>div[class^="chat_"] {
+                    anchor-name: --vr-header-snippet;
+                    border-top: none;
+                  }
+
+                  &>main[class^="container_"],
+                  &>div[class^="shop__"],
+                  &>div>div[class^="homeWrapperNormal__"] {
+                    border-top: none;
+                  }
+                }
+
+                div[class^="base_"] {
+                  grid-template-rows: auto;
+
+                  &>div[class^="bar_"] {
+                    position: absolute;
+                    position-anchor: --vr-header-snippet;
+                    top: 0;
+                    right: anchor(right);
+                    width: anchor-size(width);
+                    padding: 0;
+
+                    div[class^="title_"] {
+                      display: none;
+                    }
+                  }
+
+                  & div[class^="trailing_"] {
+                    anchor-name: --vr-header-trailing;
+                    border: none;
+                    margin-top: 8px;
+                    height: 39px;
+                    margin-right: 20px;
+                    z-index: 1000;
+
+                    /* hide help button */
+                    >a[class^="anchor"] {
+                      display: none;
+                    }
+                  }
+
+                  /* fix discord icon glued to the window's border */
+                  /* can't use generic selector because there's a more than 1 with just the id being different */
+                  .tutorialContainer__1f388 {
+                    padding-top: 15px;
+                  }
+                }
               }
             '';
           };
@@ -79,6 +208,7 @@ in
             useQuickCss = true;
             notifyAboutUpdates = false;
             enableReactDevtools = false;
+            enabledThemes = [ "fix-ui.css" ];
             plugins = {
               ChatInputButtonAPI = {
                 enabled = true;
