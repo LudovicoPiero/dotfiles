@@ -76,6 +76,7 @@ in
             ".direnv"
             "node_modules"
             "tmp"
+            "TODO"
           ];
 
           aliases = {
