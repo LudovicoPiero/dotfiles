@@ -219,7 +219,7 @@ in
       "nofocus, class:^(steam)$, title:^()$"
 
       # Music Player rules
-      "workspace 5, title:^(Spotify( Premium)?)$"
+      "workspace 5, class:^(spotify)$, title:^(Spotify( (Premium|Free))?)$"
       "workspace 5, class:(org.fooyin.fooyin)"
       "workspace 5, class:(tidal-hifi)"
 
