@@ -35,6 +35,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    security.rtkit.enable = true;
     services = {
       # Enable sound.
       pipewire = {
