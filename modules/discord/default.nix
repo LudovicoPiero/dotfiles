@@ -104,6 +104,10 @@ in
                 display: none;
               }
 
+              .container__4bbc6 {
+                display:none!important;
+              }
+
               /* move typing list to top right */
               .visual-refresh [class^="chatContent_"]>form[class^="form"] {
                 --custom-chat-input-margin-bottom: 8px;
