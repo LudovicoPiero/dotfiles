@@ -212,7 +212,10 @@ in
             useQuickCss = true;
             notifyAboutUpdates = false;
             enableReactDevtools = false;
-            enabledThemes = [ "fix-ui.css" ];
+            # enabledThemes = [ "fix-ui.css" ];
+            themeLinks = [
+              "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
+            ];
             plugins = {
               ChatInputButtonAPI = {
                 enabled = true;
