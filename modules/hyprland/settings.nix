@@ -2,42 +2,36 @@
   pkgs,
   lib,
   config,
-  osConfig,
+  palette,
   ...
 }:
 let
   _ = lib.getExe;
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
-  emacs = if config.services.emacs.enable then "emacsclient -c" else "emacs";
-  uwsm = "${osConfig.programs.uwsm.package}/bin/uwsm";
-  inherit (config.colorScheme) palette;
+  uwsm = "${config.programs.uwsm.package}/bin/uwsm";
 in
 {
-  services.playerctld.enable = true;
-  wayland.windowManager.hyprland.settings = {
+  hj.rum.programs.hyprland.settings = {
     exec-once =
       [
         "${uwsm} finalize"
         "systemctl --user stop xdg-desktop-portal-gnome.service xdg-desktop-portal-kde.service"
         "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
-        "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
+        # "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
         "${uwsm} app -- ${_ pkgs.mako}"
         "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
         "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
       ]
-      ++ lib.optionals osConfig.myOptions.waybar.enable [ "${uwsm} app -- waybar" ]
-      ++ lib.optionals (config.programs.emacs.enable && !config.services.emacs.enable) [
-        "${_ config.programs.emacs.finalPackage} --fg-daemon"
-      ]
-      ++ lib.optionals (osConfig.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ];
+      ++ lib.optionals config.myOptions.waybar.enable [ "${uwsm} app -- waybar" ]
+      ++ lib.optionals (config.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ];
 
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
-      "HYPRCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
+      "HYPRCURSOR_SIZE,${toString config.myOptions.theme.gtk.cursorTheme.size}"
 
-      "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
-      "XCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
+      "XCURSOR_THEME,${config.myOptions.theme.gtk.cursorTheme.name}"
+      "XCURSOR_SIZE,${toString config.myOptions.theme.gtk.cursorTheme.size}"
     ];
 
     monitor = [
@@ -298,7 +292,7 @@ in
         "$mod SHIFT, K , changegroupactive, b"
         "$mod      , W , killactive ,"
         "$mod      , X , exec , ${powermenu}"
-        "$mod      , Return , exec , ${uwsm} app -- '${osConfig.vars.terminal}'"
+        "$mod      , Return , exec , ${uwsm} app -- '${config.vars.terminal}'"
 
         ", print, exec , ${uwsm} app --  wl-ocr"
         "CTRL   , Print , exec , ${uwsm} app -- ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
@@ -343,21 +337,14 @@ in
 
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
-      ++ lib.optionals osConfig.myOptions.firefox.enable [
+      ++ lib.optionals config.myOptions.firefox.enable [
         "$mod      , G , exec , ${uwsm} app -- firefox"
       ]
-      ++ lib.optionals osConfig.myOptions.discord.enable [
+      ++ lib.optionals config.myOptions.discord.enable [
         "$mod      , D , exec , ${uwsm} app -- vesktop"
       ]
-      ++ lib.optionals osConfig.myOptions.spotify.enable [
+      ++ lib.optionals config.myOptions.spotify.enable [
         "$mod SHIFT, S , exec , ${uwsm} app -- spotify"
-      ]
-      ++ lib.optionals config.programs.emacs.enable [
-        #FIXME: `emacsclient -c` can't commit using magit.
-        "$mod      , E , exec , ${uwsm} app -- ${emacs}"
-        "ALT       , E , exec , ${uwsm} app -- ${emacs} -eval '(dired nil)'"
-        # "$mod      , E , exec , ${uwsm} app -- emacs"
-        # "ALT       , E , exec , ${uwsm} app -- emacs -eval '(dired nil)'"
       ];
 
     bindel = [

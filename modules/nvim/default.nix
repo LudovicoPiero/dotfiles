@@ -21,10 +21,9 @@ in
     environment.systemPackages = [
       inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     ];
-    home-manager.users.${config.vars.username} = {
-      programs.fish.shellAliases = {
-        v = "nvim";
-      };
-    }; # For Home-Manager options
+
+    hj.rum.programs.fish.abbrs = {
+      v = "nvim";
+    };
   };
 }

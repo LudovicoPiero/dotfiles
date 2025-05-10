@@ -9,8 +9,6 @@
       "google"
     ];
 
-    force = true;
-
     engines = {
       "searx" = {
         urls = [

@@ -6,7 +6,15 @@
 
       sharedModules = import ../modules;
 
-      specialArgs = { inherit inputs; };
+      #TODO:
+      colorScheme = inputs.nix-colors.lib.schemeFromYAML "catppuccin-mocha" (
+        builtins.readFile (inputs.catppuccin-base16 + "/base16/mocha.yaml")
+      );
+
+      specialArgs = {
+        inherit (colorScheme) palette;
+        inherit inputs;
+      };
     in
     {
       sforza = nixosSystem {
@@ -14,7 +22,6 @@
         modules = [
           sharedModules
           inputs.chaotic.nixosModules.default
-          inputs.home-manager.nixosModules.home-manager
 
           ./sforza/configuration.nix
           {
@@ -27,13 +34,6 @@
                 enable = true;
                 withLTO = true;
               };
-              gnome.enable = false;
-              kde-plasma.enable = false;
-
-              # Shell
-              # Choose one of the following:
-              fish.enable = true;
-              zsh.enable = false;
             };
 
             vars = {
