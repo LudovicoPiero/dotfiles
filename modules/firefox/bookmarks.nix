@@ -1,6 +1,5 @@
 {
   programs.firefox.profiles.ludovico.bookmarks = {
-    force = true;
     settings = [
       {
         name = "ANIME"; # Bookmark Folder

@@ -1,6 +1,5 @@
 _: {
   imports = [
-    ./emacs
     ./discord
     ./dnscrypt2
     ./fcitx5
@@ -10,14 +9,10 @@ _: {
     ./fuzzel
     ./gaming
     ./git
-    ./gnome
     ./gpg
     ./hyprland
-    ./kde-plasma
     ./keyring
-    ./kitty
     ./mako
-    ./mpd
     ./nvim
     ./pipewire
     ./sddm
@@ -28,10 +23,8 @@ _: {
     ./theme
     ./tlp
     ./vars
-    ./vscode
     ./waybar
     ./wezterm
     ./xdg-portal
-    ./zsh
   ];
 }

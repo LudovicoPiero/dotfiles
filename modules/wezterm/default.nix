@@ -1,4 +1,10 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  palette,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
 
@@ -12,77 +18,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.vars.username} =
-      { config, osConfig, ... }:
-      let
-        inherit (config) colorScheme;
-        inherit (colorScheme) palette;
-      in
-      {
-        programs.wezterm = {
-          enable = true;
+    hj = {
+      packages = [ pkgs.wezterm ];
 
-          colorSchemes.${colorScheme.slug} = {
-            ansi = [
-              "#${palette.base00}"
-              "#${palette.base08}"
-              "#${palette.base0B}"
-              "#${palette.base0A}"
-              "#${palette.base0D}"
-              "#${palette.base0E}"
-              "#${palette.base0C}"
-              "#${palette.base05}"
-            ];
-            brights = [
-              "#${palette.base03}"
-              "#${palette.base08}"
-              "#${palette.base0B}"
-              "#${palette.base0A}"
-              "#${palette.base0D}"
-              "#${palette.base0E}"
-              "#${palette.base0C}"
-              "#${palette.base07}"
-            ];
-            background = "#${palette.base00}";
-            cursor_bg = "#${palette.base05}";
-            cursor_fg = "#${palette.base00}";
-            compose_cursor = "#${palette.base06}";
-            foreground = "#${palette.base05}";
-            scrollbar_thumb = "#${palette.base01}";
-            selection_bg = "#${palette.base05}";
-            selection_fg = "#${palette.base00}";
-            split = "#${palette.base03}";
-            visual_bell = "#${palette.base09}";
-            tab_bar = {
-              background = "#${palette.base01}";
-              inactive_tab_edge = "#${palette.base01}";
-              active_tab = {
-                bg_color = "#${palette.base00}";
-                fg_color = "#${palette.base05}";
-              };
-              inactive_tab = {
-                bg_color = "#${palette.base03}";
-                fg_color = "#${palette.base05}";
-              };
-              inactive_tab_hover = {
-                bg_color = "#${palette.base05}";
-                fg_color = "#${palette.base00}";
-              };
-              new_tab = {
-                bg_color = "#${palette.base03}";
-                fg_color = "#${palette.base05}";
-              };
-              new_tab_hover = {
-                bg_color = "#${palette.base05}";
-                fg_color = "#${palette.base00}";
-              };
-            };
-          };
-        };
-
-        # Stolen from stylix
-        # https://github.com/danth/stylix/blob/master/modules/wezterm/hm.nix
-        xdg.configFile."wezterm/wezterm.lua".text = lib.mkForce ''
+      files = {
+        ".config/wezterm/wezterm.lua".text = ''
           local wezterm = require("wezterm")
 
           -- Watch the config directory for changes and reload automatically
@@ -98,9 +38,9 @@ in
             return {
               -- Fonts (intentionally unchanged)
               font = wezterm.font_with_fallback({
-                "${osConfig.myOptions.fonts.terminal.name} Semibold",
-                "${osConfig.myOptions.fonts.icon.name}",
-                "${osConfig.myOptions.fonts.emoji.name}",
+                "${config.myOptions.fonts.terminal.name} Semibold",
+                "${config.myOptions.fonts.icon.name}",
+                "${config.myOptions.fonts.emoji.name}",
               }),
 
               -- Wayland and UI settings
@@ -116,8 +56,7 @@ in
               adjust_window_size_when_changing_font_size = false,
               audible_bell = "Disabled",
               clean_exit_codes = { 130 },
-              window_background_opacity = ${toString osConfig.vars.opacity},
-              color_scheme = "${colorScheme.slug}",
+              window_background_opacity = ${toString config.vars.opacity},
 
               -- Window frame styling
               window_frame = {
@@ -139,21 +78,66 @@ in
 
               -- Tab bar colors
               colors = {
+                ansi = {
+                  "#${palette.base00}",
+                  "#${palette.base08}",
+                  "#${palette.base0B}",
+                  "#${palette.base0A}",
+                  "#${palette.base0D}",
+                  "#${palette.base0E}",
+                  "#${palette.base0C}",
+                  "#${palette.base05}",
+                },
+                brights = {
+                  "#${palette.base03}",
+                  "#${palette.base08}",
+                  "#${palette.base0B}",
+                  "#${palette.base0A}",
+                  "#${palette.base0D}",
+                  "#${palette.base0E}",
+                  "#${palette.base0C}",
+                  "#${palette.base07}",
+                },
+                background = "#${palette.base00}",
+                cursor_bg = "#${palette.base05}",
+                cursor_fg = "#${palette.base00}",
+                compose_cursor = "#${palette.base06}",
+                foreground = "#${palette.base05}",
+                scrollbar_thumb = "#${palette.base01}",
+                selection_bg = "#${palette.base05}",
+                selection_fg = "#${palette.base00}",
+                split = "#${palette.base03}",
+                visual_bell = "#${palette.base09}",
                 tab_bar = {
                   background = "#${palette.base01}",
                   inactive_tab_edge = "#${palette.base01}",
-                  active_tab = { bg_color = "#${palette.base00}", fg_color = "#${palette.base05}" },
-                  inactive_tab = { bg_color = "#${palette.base03}", fg_color = "#${palette.base05}" },
-                  inactive_tab_hover = { bg_color = "#${palette.base05}", fg_color = "#${palette.base00}" },
-                  new_tab = { bg_color = "#${palette.base03}", fg_color = "#${palette.base05}" },
-                  new_tab_hover = { bg_color = "#${palette.base05}", fg_color = "#${palette.base00}" },
+                  active_tab = {
+                    bg_color = "#${palette.base00}",
+                    fg_color = "#${palette.base05}",
+                  },
+                  inactive_tab = {
+                    bg_color = "#${palette.base03}",
+                    fg_color = "#${palette.base05}",
+                  },
+                  inactive_tab_hover = {
+                    bg_color = "#${palette.base05}",
+                    fg_color = "#${palette.base00}",
+                  },
+                  new_tab = {
+                    bg_color = "#${palette.base03}",
+                    fg_color = "#${palette.base05}",
+                  },
+                  new_tab_hover = {
+                    bg_color = "#${palette.base05}",
+                    fg_color = "#${palette.base00}",
+                  },
                 },
               },
 
               -- Command palette
               command_palette_bg_color = "#${palette.base01}",
               command_palette_fg_color = "#${palette.base05}",
-              command_palette_font_size = ${toString osConfig.myOptions.fonts.size},
+              command_palette_font_size = ${toString config.myOptions.fonts.size},
 
               -- Leader key and shortcuts
               leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
@@ -207,12 +191,6 @@ in
 
           -- Load and apply user-specific overrides if available
           if wezterm.config_builder then
-            local function load_user_config()
-              return (function()
-                ${config.programs.wezterm.extraConfig}
-              end)()
-            end
-            local user_conf = load_user_config()
             if type(user_conf) == "table" then
               for k, v in pairs(user_conf) do
                 config[k] = v
@@ -222,6 +200,7 @@ in
 
           return config
         '';
-      }; # For Home-Manager options
+      };
+    };
   };
 }

@@ -100,6 +100,22 @@
         "type": "github"
       }
     },
+    "catppuccin-base16": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712772035,
+        "narHash": "sha256-HHodDRrlcBVWGE3MN0i6UvUn30zY/JFEbgeUpnZG5C0=",
+        "owner": "catppuccin",
+        "repo": "base16",
+        "rev": "99aa911b29c9c7972f7e1d868b6242507efd508c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "base16",
+        "type": "github"
+      }
+    },
     "chaotic": {
       "inputs": {
         "fenix": "fenix",
@@ -552,6 +568,50 @@
         "type": "github"
       }
     },
+    "hjem": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1746355589,
+        "narHash": "sha256-LguszqsDBTtdBxblQTtN7vOAYmfoe43aHkB8aK1dChE=",
+        "owner": "feel-co",
+        "repo": "hjem",
+        "rev": "77b37eeb583d43e1c723119a69c906235174ce57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "repo": "hjem",
+        "type": "github"
+      }
+    },
+    "hjem-rum": {
+      "inputs": {
+        "hjem": [
+          "hjem"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1746649889,
+        "narHash": "sha256-BPOqzm+PfrGul5XQm00bUayOp4G6w4FAx6SStXyZeUo=",
+        "owner": "snugnug",
+        "repo": "hjem-rum",
+        "rev": "5dd596a204f3dfeb88803ab8c46bfa449a4b5805",
+        "type": "github"
+      },
+      "original": {
+        "owner": "snugnug",
+        "repo": "hjem-rum",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -574,26 +634,6 @@
       }
     },
     "home-manager_2": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1746727295,
-        "narHash": "sha256-0364XVBdfEA8rWfqEPvsgBqGFfq5r9LAo9CS9tvT7tg=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "a51598236f23c89e59ee77eb8e0614358b0e896c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_3": {
       "inputs": {
         "nixpkgs": [
           "ludovico-nixvim",
@@ -984,7 +1024,7 @@
         "emmylua": "emmylua",
         "fenix": "fenix_2",
         "flake-parts": "flake-parts_2",
-        "home-manager": "home-manager_3",
+        "home-manager": "home-manager_2",
         "neovim-overlay": "neovim-overlay",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
@@ -1039,7 +1079,7 @@
           "ludovico-nixvim",
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
         "lastModified": 1746774188,
@@ -1325,11 +1365,13 @@
     "root": {
       "inputs": {
         "anime": "anime",
+        "catppuccin-base16": "catppuccin-base16",
         "chaotic": "chaotic",
         "emacs": "emacs",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
-        "home-manager": "home-manager_2",
+        "hjem": "hjem",
+        "hjem-rum": "hjem-rum",
         "hyprland": "hyprland",
         "lix-module": "lix-module",
         "ludovico-nixvim": "ludovico-nixvim",
@@ -1533,6 +1575,27 @@
       }
     },
     "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "hjem-rum",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1746216483,
+        "narHash": "sha256-4h3s1L/kKqt3gMDcVfN8/4v2jqHrgLIe4qok4ApH5x4=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "29ec5026372e0dec56f890e50dbe4f45930320fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": [
           "ludovico-nixvim",

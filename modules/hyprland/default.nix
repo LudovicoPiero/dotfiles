@@ -13,18 +13,6 @@ let
     types
     ;
 
-  mkService =
-    extra:
-    {
-      Unit = {
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-        inherit (extra.Unit) Description;
-      };
-      Install.WantedBy = [ "graphical-session.target" ];
-    }
-    // extra;
-
   cfg = config.myOptions.hyprland;
 in
 {
@@ -32,7 +20,7 @@ in
     inputs.hyprland.nixosModules.default
     ./hypridle.nix
     ./hyprlock.nix
-    ./hyprsunset.nix
+    ./settings.nix
   ];
 
   options.myOptions.hyprland = {
@@ -87,57 +75,21 @@ in
       };
     };
 
-    home-manager.users.${config.vars.username} =
-      { osConfig, ... }:
-      {
+    hj.rum.programs.hyprland = {
+      enable = true;
 
-        # User Services
-        systemd.user.services =
-          let
-            wallpaperUrl = pkgs.fetchurl {
-              url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-waterfall.png";
-              hash = "sha256-ULFNUZPU9khDG6rtkMskLe5sYpUcrJVvcFvEkpvXjMM=";
-            };
-          in
-          {
-            swaybg = mkService {
-              Unit.Description = "Swaybg Services";
-              Service = {
-                ExecStart = "${lib.getExe pkgs.swaybg} --mode center --image ${wallpaperUrl}";
-                Restart = "on-failure";
-              };
-            };
-            wl-clip-persist = mkService {
-              Unit.Description = "Keep Wayland clipboard even after programs close";
-              Service = {
-                ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard both";
-                Restart = "on-failure";
-                Slice = "app-graphical.slice";
-                TimeoutStartSec = "10s";
-              };
-            };
-          };
+      extraConfig = ''
+        # window resize
+        bind = $mod, S, submap, resize
 
-        imports = [ ./settings.nix ];
-        wayland.windowManager.hyprland = {
-          enable = true;
-          inherit (osConfig.programs.hyprland) package;
-          systemd.enable = !osConfig.programs.uwsm.enable;
-          xwayland.enable = false;
-
-          extraConfig = ''
-            # window resize
-            bind = $mod, S, submap, resize
-
-            submap = resize
-            binde = , right, resizeactive, 10 0
-            binde = , left, resizeactive, -10 0
-            binde = , up, resizeactive, 0 -10
-            binde = , down, resizeactive, 0 10
-            bind = , escape, submap, reset
-            submap = reset
-          '';
-        };
-      }; # For Home-Manager options
+        submap = resize
+        binde = , right, resizeactive, 10 0
+        binde = , left, resizeactive, -10 0
+        binde = , up, resizeactive, 0 -10
+        binde = , down, resizeactive, 0 10
+        bind = , escape, submap, reset
+        submap = reset
+      '';
+    };
   };
 }

@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  palette,
   ...
 }:
 let
@@ -17,34 +18,28 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.vars.username} =
-      { config, osConfig, ... }:
-      let
-        inherit (config.colorScheme) palette;
-      in
-      {
-        home.packages = [ pkgs.libnotify ];
-        services.mako = {
-          enable = true;
+    hj = {
+      packages = with pkgs; [
+        libnotify
+        mako
+      ];
 
-          settings = {
-            font = "${osConfig.myOptions.fonts.terminal.name} ${toString osConfig.myOptions.fonts.size}";
-            backgroundColor = "#${palette.base00}";
-            borderColor = "#${palette.base0E}";
-            textColor = "#${palette.base05}";
-            progressColor = "over #${palette.base02}";
+      files.".config/mako/config".text = ''
+        font=${config.myOptions.fonts.terminal.name} ${toString config.myOptions.fonts.size}
+        background-color=#${palette.base00}
+        border-color=#${palette.base0E}
+        text-color=#${palette.base05}
+        progress-color=over #${palette.base02}
 
-            anchor = "top-right";
-            borderRadius = 5;
-            borderSize = 2;
-            padding = 20;
-            defaultTimeout = 5000;
-            layer = "top";
-            height = 100;
-            width = 300;
-            format = "<b>%s</b>\\n%b";
-          };
-        };
-      }; # For Home-Manager options
+        anchor=top-right
+        border-radius=5
+        border-size=2
+        padding=20
+        default-timeout=5000
+        layer=top
+        height=100
+        width=300
+      '';
+    };
   };
 }

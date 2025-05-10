@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   programs.firefox.profiles.ludovico.extensions = {
-    force = true;
     packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
       bitwarden
       refined-github
@@ -12,7 +11,6 @@
     ];
     settings = {
       "uBlock0@raymondhill.net" = {
-        force = true;
         settings = {
           advancedUserEnabled = true;
           selectedFilterLists = [
