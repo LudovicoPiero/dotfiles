@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  inputs,
   ...
 }:
 let
@@ -11,6 +10,11 @@ let
   cfg = config.myOptions.firefox;
 in
 {
+  imports = [
+    ./preferences.nix
+    ./policies.nix
+  ];
+
   options.myOptions.firefox = {
     enable = mkEnableOption "firefox browser" // {
       default = config.vars.withGui;
@@ -21,197 +25,6 @@ in
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
-
-      policies = {
-        AppAutoUpdate = false;
-        FirefoxSuggest = {
-          "SponsoredSuggestions" = false;
-        };
-        DisableTelemetry = true;
-        HardwareAcceleration = true;
-        PasswordManagerEnabled = false;
-        OfferToSaveLogins = false;
-        OfferToSaveLoginsDefault = false;
-        # REF https://mozilla.github.io/policy-templates/#extensions
-        # NOTE find UUID for each extension in about:debugging#/runtime/this-firefox
-        Extensions = {
-          Locked = [
-            "uBlock0@raymondhill.net"
-            "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden
-            "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" # refined github
-            "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}" # search by image
-            "sponsorBlocker@ajay.app"
-            "{db420ff1-427a-4cda-b5e7-7d395b9f16e1}" # toDeepL
-          ];
-        };
-        ExtensionSettings = {
-          "uBlock0@raymondhill.net" = {
-            default_area = "navbar";
-            "installation_mode" = "force_installed";
-            "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"; # using slug / short name
-          };
-          "sponsorBlocker@ajay.app" = {
-            default_area = "navbar";
-            "installation_mode" = "force_installed";
-            "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
-          };
-          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-            default_area = "navbar";
-            "installation_mode" = "force_installed";
-            "install_url" =
-              "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-          };
-          "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
-            "installation_mode" = "force_installed";
-            "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/refined-github-/latest.xpi";
-          };
-          "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}" = {
-            "installation_mode" = "force_installed";
-            "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/search_by_image/latest.xpi";
-          };
-          "{db420ff1-427a-4cda-b5e7-7d395b9f16e1}" = {
-            "installation_mode" = "force_installed";
-            "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/to-deepl/latest.xpi";
-          };
-        };
-        SSLVersionMin = "tls1.2";
-      };
-
-      preferences = {
-        # Homepage
-        "browser.startup.page" = 1;
-        "browser.startup.homepage" = "${inputs.self}/assets/homepage.html";
-
-        "extensions.autoDisableScopes" = 0;
-        "browser.search.region" = "AU";
-        "browser.search.isUS" = false;
-        "distribution.searchplugins.defaultLocale" = "en-AU";
-        "general.useragent.locale" = "en-AU";
-        "browser.bookmarks.showMobileBookmarks" = true;
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "browser.privatebrowsing.vpnpromourl" = "";
-        "browser.tabs.firefox-view" = false; # Disable Firefox View
-        "browser.tabs.firefox-view-next" = false;
-
-        "sidebar.verticalTabs" = false;
-        "sidebar.main.tools" = "";
-        "sidebar.visibility" = "hide-sidebar";
-        "sidebar.revamp" = false;
-        "browser.ml.chat.enabled" = false;
-        "gfx.webrender.all" = true;
-
-        "network.trr.mode" = 2;
-        "network.trr.max-fails" = 5;
-        "network.trr.default_provider_uri" = "https://dns.nextdns.io/518d18/nixos";
-        "network.trr.uri" = "https://dns.nextdns.io/518d18/nixos";
-        "network.trr.custom_uri" = "https://dns.nextdns.io/518d18/nixos";
-        "network.trr.bootstrapAddress" = "1.1.1.1";
-
-        # Disable telemetry
-        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-        "browser.ping-centre.telemetry" = false;
-        "browser.tabs.crashReporting.sendReport" = false;
-        "devtools.onboarding.telemetry.logged" = false;
-        "toolkit.telemetry.enabled" = false;
-        "toolkit.telemetry.server" = "data:,";
-        "toolkit.telemetry.unified" = false;
-        "toolkit.telemetry.archive.enabled" = false;
-        "toolkit.telemetry.newProfilePing.enabled" = false;
-        "toolkit.telemetry.shutdownPingSender.enabled" = false;
-        "toolkit.telemetry.updatePing.enabled" = false;
-        "toolkit.telemetry.bhrPing.enabled" = false;
-        "toolkit.telemetry.firstShutdownPing.enabled" = false;
-
-        # # Disable Pocket
-        "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" = false;
-        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
-        "browser.newtabpage.activity-stream.showSponsored" = false;
-        "extensions.pocket.enabled" = false;
-
-        # Disable prefetching
-        "network.dns.disablePrefetch" = true;
-        "network.prefetch-next" = false;
-
-        # Disable JS in PDFs
-        "pdfjs.enableScripting" = false;
-
-        # Harden SSL
-        "security.ssl.require_safe_negotiation" = true;
-
-        # Tweaks from archwiki
-        "browser.cache.disk.enable" = false;
-        "browser.cache.memory.enable" = true;
-        "browser.cache.memory.capacity" = -1;
-        "browser.aboutConfig.showWarning" = false;
-        "browser.preferences.defaultPerformanceSettings.enabled" = false;
-        "middlemouse.paste" = false;
-
-        # Smooth Scroll
-        "general.smoothScroll" = true;
-        "general.smoothScroll.lines.durationMaxMS" = 125;
-        "general.smoothScroll.lines.durationMinMS" = 125;
-        "general.smoothScroll.mouseWheel.durationMaxMS" = 200;
-        "general.smoothScroll.mouseWheel.durationMinMS" = 100;
-        "general.smoothScroll.msdPhysics.enabled" = true;
-        "general.smoothScroll.other.durationMaxMS" = 125;
-        "general.smoothScroll.other.durationMinMS" = 125;
-        "general.smoothScroll.pages.durationMaxMS" = 125;
-        "general.smoothScroll.pages.durationMinMS" = 125;
-        "mousewheel.min_line_scroll_amount" = 30;
-        "mousewheel.system_scroll_override_on_root_content.enabled" = true;
-        "mousewheel.system_scroll_override_on_root_content.horizontal.factor" = 175;
-        "mousewheel.system_scroll_override_on_root_content.vertical.factor" = 175;
-        "toolkit.scrollbox.horizontalScrollDistance" = 6;
-        "toolkit.scrollbox.verticalScrollDistance" = 2;
-
-        # # Extra
-        "identity.fxaccounts.enabled" = false;
-        "browser.download.useDownloadDir" = false;
-        "browser.search.suggest.enabled" = false;
-        "browser.urlbar.shortcuts.bookmarks" = false;
-        "browser.urlbar.shortcuts.history" = false;
-        "browser.urlbar.shortcuts.tabs" = false;
-        "browser.urlbar.suggest.bookmark" = false;
-        "browser.urlbar.suggest.searches" = false;
-        "browser.urlbar.suggest.engines" = false;
-        "browser.urlbar.suggest.history" = true;
-        "browser.urlbar.suggest.openpage" = false;
-        "browser.urlbar.suggest.topsites" = false;
-        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
-        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
-        "signon.rememberSignons" = false;
-        "signon.autofillForms" = false;
-        "network.dns.disableIPv6" = true;
-        "network.proxy.socks_remote_dns" = true;
-        "dom.security.https_first" = true;
-
-        # Disable permission
-        # 0=always ask (default), 1=allow, 2=block
-        "permissions.default.geo" = 2;
-        "permissions.default.camera" = 2;
-        "permissions.default.microphone" = 0;
-        "permissions.default.desktop-notification" = 2;
-        "permissions.default.xr" = 2; # Virtual Reality
-        "browser.discovery.enabled" = false;
-        "datareporting.healthreport.uploadEnabled" = false;
-        "datareporting.policy.dataSubmissionEnabled" = false;
-        "app.shield.optoutstudies.enabled" = false;
-        "app.normandy.enabled" = false;
-        "app.normandy.api_url" = "";
-
-        # Firefox GNOME Theme
-        # Hide the tab bar when only one tab is open.
-        "gnomeTheme.hideSingleTab" = false;
-        # By default the tab close buttons follows the position of the window controls, this preference reverts that behavior.
-        "gnomeTheme.swapTabClose" = true;
-        # Move Bookmarks toolbar under tabs.
-        "gnomeTheme.bookmarksToolbarUnderTabs" = true;
-        # Hide WebRTC indicator since GNOME provides their own privacy icons in the top right.
-        "gnomeTheme.hideWebrtcIndicator" = true;
-        # Use system theme icons instead of Adwaita icons included by theme.
-        "gnomeTheme.systemIcons" = true;
-      };
     };
   };
 }
