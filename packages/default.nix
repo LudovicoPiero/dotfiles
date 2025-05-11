@@ -22,6 +22,8 @@
 
         firefox-gnome-theme = pkgs.callPackage ./firefox-gnome-theme { inherit sources; };
 
+        firefox-ui-fix = pkgs.callPackage ./firefox-ui-fix { inherit sources; };
+
         san-francisco-pro = pkgs.callPackage ./san-francisco-pro { inherit sources; };
 
         sarasa-gothic = pkgs.callPackage ./sarasa-gothic { };

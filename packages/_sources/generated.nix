@@ -29,6 +29,20 @@
     };
     date = "2025-04-14";
   };
+  firefox-ui-fix = {
+    pname = "firefox-ui-fix";
+    version = "db615f1753e6975b47ebb9e16fed7d67b2473c0d";
+    src = fetchgit {
+      url = "https://github.com/black7375/Firefox-UI-Fix";
+      rev = "db615f1753e6975b47ebb9e16fed7d67b2473c0d";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-bHyOSiIfBNEmwRsbaQsrSc9O69i7y4xxc+pPpchSfIU=";
+    };
+    date = "2025-04-28";
+  };
   san-francisco-pro = {
     pname = "san-francisco-pro";
     version = "8bfea09aa6f1139479f80358b2e1e5c6dc991a58";

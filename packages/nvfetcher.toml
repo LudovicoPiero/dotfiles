@@ -13,3 +13,7 @@ fetch.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
 [catppuccin-fcitx5]
 src.git = "https://github.com/catppuccin/fcitx5"
 fetch.git = "https://github.com/catppuccin/fcitx5"
+
+[firefox-ui-fix]
+src.git = "https://github.com/black7375/Firefox-UI-Fix"
+fetch.git = "https://github.com/black7375/Firefox-UI-Fix"
