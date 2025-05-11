@@ -7,7 +7,12 @@
 let
   _ = lib.getExe;
 
-  inherit (lib) mkEnableOption mkIf optionalString;
+  inherit (lib)
+    mkForce
+    mkEnableOption
+    mkIf
+    optionalString
+    ;
 
   cfg = config.myOptions.fish;
 in
@@ -31,7 +36,18 @@ in
       mode = "0444";
     };
     environment.pathsToLink = [ "/share/fish" ];
-    programs.fish.enable = true;
+    programs.fish = {
+      enable = true;
+      shellAliases = mkForce { };
+      interactiveShellInit =
+        ''
+          . ${config.sops.secrets."shells/githubToken".path}
+        ''
+        + optionalString (!config.vars.withGui && config.vars.isALaptop) ''
+          ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
+        '';
+
+    };
 
     hj = {
       packages = with pkgs; [
@@ -46,24 +62,15 @@ in
         fish = {
           enable = true;
 
-          config =
-            with pkgs;
-            ''
-              function fish_greeting
-              end
+          config = with pkgs; ''
+            function fish_greeting
+            end
 
-              . ${config.sops.secrets."shells/githubToken".path}
-              ${_ nix-your-shell} fish | source
-              ${_ starship} init fish | source
-              ${_ zoxide} init fish | source
-              ${_ direnv} hook fish | source
-            ''
-            +
-              optionalString (!config.vars.withGui && config.vars.isALaptop)
-                # Automatically turn off screen after 1 minute. (For laptop)
-                ''
-                  ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
-                '';
+            ${_ nix-your-shell} fish | source
+            ${_ starship} init fish | source
+            ${_ zoxide} init fish | source
+            ${_ direnv} hook fish | source
+          '';
         };
 
         starship = {
