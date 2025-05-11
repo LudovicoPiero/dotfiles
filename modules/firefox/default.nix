@@ -25,13 +25,16 @@ in
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox;
+
+      #NOTE:
+      # Use firefox-esr because some policies only works in ESR
+      package = pkgs.firefox-esr;
     };
 
     hj.files =
-      let
-        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
-      in
+      # let
+      #   inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
+      # in
       {
         ".mozilla/firefox/profiles.ini".text = ''
           [General]
@@ -45,10 +48,10 @@ in
           Default=1
         '';
 
-        ".mozilla/firefox/${config.vars.username}/chrome/userChrome.css".text =
-          ''@import "${firefox-gnome-theme}/userChrome.css";'';
-        ".mozilla/firefox/${config.vars.username}/chrome/userContent.css".text =
-          ''@import "${firefox-gnome-theme}/userContent.css";'';
+        # ".mozilla/firefox/${config.vars.username}/chrome/userChrome.css".text =
+        #   ''@import "${firefox-gnome-theme}/userChrome.css";'';
+        # ".mozilla/firefox/${config.vars.username}/chrome/userContent.css".text =
+        #   ''@import "${firefox-gnome-theme}/userContent.css";'';
       };
   };
 }
