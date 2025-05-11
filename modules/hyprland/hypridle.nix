@@ -7,6 +7,9 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
+  hyprlockPackage = config.hj.rum.programs.hyprlock.package;
+  hypridlePackage = config.hj.rum.programs.hypridle.package;
+
   cfg = config.myOptions.hypridle;
 in
 {
@@ -22,18 +25,18 @@ in
       settings = {
         general = {
           before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
-          lock_cmd = "hyprlock";
+          lock_cmd = "${lib.getExe hyprlockPackage}";
         };
 
         listener = [
           {
             timeout = 300;
-            on-timeout = "hyprlock";
+            on-timeout = "${lib.getExe hyprlockPackage}";
           }
           {
             timeout = 350;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
+            on-timeout = "${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off";
+            on-resume = "${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on";
           }
         ];
       };
@@ -48,7 +51,7 @@ in
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkgs.hypridle}";
+        ExecStart = "${lib.getExe hypridlePackage}";
       };
     };
   };
