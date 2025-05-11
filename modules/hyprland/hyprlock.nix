@@ -2,6 +2,7 @@
   lib,
   config,
   palette,
+  inputs,
   ...
 }:
 let
@@ -29,7 +30,7 @@ in
           hide_cursor = false;
         };
 
-        background.path = "/home/${config.vars.username}/Pictures/Wallpaper/Lain_Red.png";
+        background.path = "${inputs.self}/assets/Lain_Red.png";
 
         input-field = [
           {

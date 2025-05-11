@@ -3,6 +3,7 @@
   lib,
   config,
   palette,
+  inputs,
   ...
 }:
 let
@@ -18,8 +19,8 @@ in
         "${uwsm} finalize"
         "systemctl --user stop xdg-desktop-portal-gnome.service xdg-desktop-portal-kde.service"
         "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
-        # "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
         "${uwsm} app -- ${_ pkgs.mako}"
+        "${uwsm} app -- ${_ pkgs.swaybg} -i ${inputs.self}/assets/Lain_Red.png"
         "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
         "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
       ]
