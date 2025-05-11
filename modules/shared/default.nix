@@ -30,6 +30,15 @@
     command-not-found.dbPath =
       inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
     dconf.enable = true;
+    nh = {
+      enable = true;
+      flake = "/home/${config.vars.username}/Code/nixos";
+      clean = {
+        enable = true;
+        dates = "weekly";
+        extraArgs = "--keep 3";
+      };
+    };
   };
 
   # Nautilus / File Manager
@@ -183,10 +192,6 @@
     };
 
     # Improve nix store disk usage
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 30d";
-    };
     optimise.automatic = true;
   };
   system.stateVersion = config.vars.stateVersion;
