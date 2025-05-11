@@ -16,6 +16,9 @@ let
   cfg = config.myOptions.theme;
 in
 {
+  imports = [
+    ./qt.nix
+  ];
   options.myOptions.theme = {
     enable = mkEnableOption "" // {
       default = config.vars.withGui;
@@ -67,11 +70,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    qt = {
-      enable = true;
-      platformTheme = "gtk2";
-    };
-
     hj = {
       rum.gtk = {
         enable = true;
