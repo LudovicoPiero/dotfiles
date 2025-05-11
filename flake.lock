@@ -141,27 +141,6 @@
         "type": "github"
       }
     },
-    "emacs": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": "nixpkgs-stable"
-      },
-      "locked": {
-        "lastModified": 1746753935,
-        "narHash": "sha256-rWzn1B9XCDtjWkrX6hydjWl9by3xfVzZscRz6aL3UC0=",
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "91800e6973d6b6eae46dfbb0691ecc3b4fc0d9f5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "type": "github"
-      }
-    },
     "emmylua": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -1220,22 +1199,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1746557022,
-        "narHash": "sha256-QkNoyEf6TbaTW5UZYX0OkwIJ/ZMeKSSoOMnSDPQuol0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1d3aeb5a193b9ff13f63f4d9cc169fb88129f860",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1746663147,
@@ -1367,7 +1330,6 @@
         "anime": "anime",
         "catppuccin-base16": "catppuccin-base16",
         "chaotic": "chaotic",
-        "emacs": "emacs",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "hjem": "hjem",

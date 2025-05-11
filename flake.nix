@@ -5,9 +5,6 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.follows = "nixpkgs-unstable";
 
-    emacs.url = "github:nix-community/emacs-overlay";
-    emacs.inputs.nixpkgs.follows = "nixpkgs";
-
     hjem.url = "github:feel-co/hjem";
     hjem-rum.url = "github:snugnug/hjem-rum";
     hjem.inputs.nixpkgs.follows = "nixpkgs";

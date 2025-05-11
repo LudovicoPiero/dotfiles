@@ -23,8 +23,8 @@ in
       settings = {
         main = {
           font = "${config.myOptions.fonts.terminal.name} Semibold-${toString config.myOptions.fonts.size}";
-          terminal = "wezterm";
-          icon-theme = "WhiteSur-dark";
+          terminal = config.vars.terminal;
+          icon-theme = config.myOptions.theme.gtk.theme.name;
           prompt = "->";
         };
 

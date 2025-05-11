@@ -50,7 +50,7 @@ in
         settings = {
           color.ui = true;
           init.defaultBranch = "master";
-          format.signOff = "yes";
+          format.signoff = "yes";
           pull.rebase = true;
           commit.gpgSign = true;
           gpg.format = "openpgp";
