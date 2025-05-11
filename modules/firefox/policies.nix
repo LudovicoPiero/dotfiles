@@ -15,6 +15,7 @@ in
       PasswordManagerEnabled = false;
       OfferToSaveLogins = false;
       OfferToSaveLoginsDefault = false;
+      SSLVersionMin = "tls1.2";
       # REF https://mozilla.github.io/policy-templates/#extensions
       # NOTE find UUID for each extension in about:debugging#/runtime/this-firefox
       Extensions = {
@@ -57,7 +58,6 @@ in
           "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/to-deepl/latest.xpi";
         };
       };
-      SSLVersionMin = "tls1.2";
     };
   };
 }

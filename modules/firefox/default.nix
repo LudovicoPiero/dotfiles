@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 let
@@ -26,5 +27,28 @@ in
       enable = true;
       package = pkgs.firefox;
     };
+
+    hj.files =
+      let
+        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
+      in
+      {
+        ".mozilla/firefox/profiles.ini".text = ''
+          [General]
+          StartWithLastProfile=1
+          Version=2
+
+          [Profile0]
+          Name=${config.vars.username}
+          IsRelative=1
+          Path=${config.vars.username}
+          Default=1
+        '';
+
+        ".mozilla/firefox/${config.vars.username}/chrome/userChrome.css".text =
+          ''@import "${firefox-gnome-theme}/userChrome.css";'';
+        ".mozilla/firefox/${config.vars.username}/chrome/userContent.css".text =
+          ''@import "${firefox-gnome-theme}/userContent.css";'';
+      };
   };
 }

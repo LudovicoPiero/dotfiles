@@ -9,140 +9,139 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    programs.firefox.preferences = {
-      # Homepage
-      "browser.startup.page" = 1;
-      "browser.startup.homepage" = "${inputs.self}/assets/homepage.html";
+    hj.files.".mozilla/firefox/${config.vars.username}/user.js".text = ''
+      // Homepage
+      user_pref("browser.startup.page", 1);
+      user_pref("browser.startup.homepage", "${inputs.self}/assets/homepage.html");
 
-      "extensions.autoDisableScopes" = 0;
-      "browser.search.region" = "AU";
-      "browser.search.isUS" = false;
-      "distribution.searchplugins.defaultLocale" = "en-AU";
-      "general.useragent.locale" = "en-AU";
-      "browser.bookmarks.showMobileBookmarks" = true;
-      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      "browser.privatebrowsing.vpnpromourl" = "";
-      "browser.tabs.firefox-view" = false; # Disable Firefox View
-      "browser.tabs.firefox-view-next" = false;
+      user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+      user_pref("svg.context-properties.content.enabled", true);
+      user_pref("browser.uidensity", 0);
+      user_pref("browser.theme.dark-private-windows", false);
+      user_pref("widget.gtk.rounded-bottom-corners.enabled", true);
 
-      "sidebar.verticalTabs" = false;
-      "sidebar.main.tools" = "";
-      "sidebar.visibility" = "hide-sidebar";
-      "sidebar.revamp" = false;
-      "browser.ml.chat.enabled" = false;
-      "gfx.webrender.all" = true;
+      user_pref("extensions.autoDisableScopes", 0);
+      user_pref("browser.search.region", "AU");
+      user_pref("browser.search.isUS", false);
+      user_pref("distribution.searchplugins.defaultLocale", "en-AU");
+      user_pref("general.useragent.locale", "en-AU");
+      user_pref("browser.bookmarks.showMobileBookmarks", true);
+      user_pref("browser.privatebrowsing.vpnpromourl", "");
+      user_pref("browser.tabs.firefox-view", false); // Disable Firefox View
+      user_pref("browser.tabs.firefox-view-next", false);
 
-      "network.trr.mode" = 2;
-      "network.trr.max-fails" = 5;
-      "network.trr.default_provider_uri" = "https://dns.nextdns.io/518d18/nixos";
-      "network.trr.uri" = "https://dns.nextdns.io/518d18/nixos";
-      "network.trr.custom_uri" = "https://dns.nextdns.io/518d18/nixos";
-      "network.trr.bootstrapAddress" = "1.1.1.1";
+      user_pref("sidebar.verticalTabs", false);
+      user_pref("sidebar.main.tools", "");
+      user_pref("sidebar.visibility", "hide-sidebar");
+      user_pref("sidebar.revamp", false);
+      user_pref("browser.ml.chat.enabled", false);
+      user_pref("gfx.webrender.all", true);
 
-      # Disable telemetry
-      "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-      "browser.ping-centre.telemetry" = false;
-      "browser.tabs.crashReporting.sendReport" = false;
-      "devtools.onboarding.telemetry.logged" = false;
-      "toolkit.telemetry.enabled" = false;
-      "toolkit.telemetry.server" = "data:,";
-      "toolkit.telemetry.unified" = false;
-      "toolkit.telemetry.archive.enabled" = false;
-      "toolkit.telemetry.newProfilePing.enabled" = false;
-      "toolkit.telemetry.shutdownPingSender.enabled" = false;
-      "toolkit.telemetry.updatePing.enabled" = false;
-      "toolkit.telemetry.bhrPing.enabled" = false;
-      "toolkit.telemetry.firstShutdownPing.enabled" = false;
+      user_pref("network.trr.mode", 2);
+      user_pref("network.trr.max-fails", 5);
+      user_pref("network.trr.default_provider_uri", "https://dns.nextdns.io/518d18/nixos");
+      user_pref("network.trr.uri", "https://dns.nextdns.io/518d18/nixos");
+      user_pref("network.trr.custom_uri", "https://dns.nextdns.io/518d18/nixos");
+      user_pref("network.trr.bootstrapAddress", "1.1.1.1");
 
-      # # Disable Pocket
-      "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" = false;
-      "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-      "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
-      "browser.newtabpage.activity-stream.showSponsored" = false;
-      "extensions.pocket.enabled" = false;
+      // Disable telemetry
+      user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+      user_pref("browser.ping-centre.telemetry", false);
+      user_pref("browser.tabs.crashReporting.sendReport", false);
+      user_pref("devtools.onboarding.telemetry.logged", false);
+      user_pref("toolkit.telemetry.enabled", false);
+      user_pref("toolkit.telemetry.server", "data:,");
+      user_pref("toolkit.telemetry.unified", false);
+      user_pref("toolkit.telemetry.archive.enabled", false);
+      user_pref("toolkit.telemetry.newProfilePing.enabled", false);
+      user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
+      user_pref("toolkit.telemetry.updatePing.enabled", false);
+      user_pref("toolkit.telemetry.bhrPing.enabled", false);
+      user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
 
-      # Disable prefetching
-      "network.dns.disablePrefetch" = true;
-      "network.prefetch-next" = false;
+      // Disable Pocket
+      user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false);
+      user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+      user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
+      user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+      user_pref("extensions.pocket.enabled", false);
 
-      # Disable JS in PDFs
-      "pdfjs.enableScripting" = false;
+      // Disable prefetching
+      user_pref("network.dns.disablePrefetch", true);
+      user_pref("network.prefetch-next", false);
 
-      # Harden SSL
-      "security.ssl.require_safe_negotiation" = true;
+      // Disable JS in PDFs
+      user_pref("pdfjs.enableScripting", false);
 
-      # Tweaks from archwiki
-      "browser.cache.disk.enable" = false;
-      "browser.cache.memory.enable" = true;
-      "browser.cache.memory.capacity" = -1;
-      "browser.aboutConfig.showWarning" = false;
-      "browser.preferences.defaultPerformanceSettings.enabled" = false;
-      "middlemouse.paste" = false;
+      // Harden SSL
+      user_pref("security.ssl.require_safe_negotiation", true);
 
-      # Smooth Scroll
-      "general.smoothScroll" = true;
-      "general.smoothScroll.lines.durationMaxMS" = 125;
-      "general.smoothScroll.lines.durationMinMS" = 125;
-      "general.smoothScroll.mouseWheel.durationMaxMS" = 200;
-      "general.smoothScroll.mouseWheel.durationMinMS" = 100;
-      "general.smoothScroll.msdPhysics.enabled" = true;
-      "general.smoothScroll.other.durationMaxMS" = 125;
-      "general.smoothScroll.other.durationMinMS" = 125;
-      "general.smoothScroll.pages.durationMaxMS" = 125;
-      "general.smoothScroll.pages.durationMinMS" = 125;
-      "mousewheel.min_line_scroll_amount" = 30;
-      "mousewheel.system_scroll_override_on_root_content.enabled" = true;
-      "mousewheel.system_scroll_override_on_root_content.horizontal.factor" = 175;
-      "mousewheel.system_scroll_override_on_root_content.vertical.factor" = 175;
-      "toolkit.scrollbox.horizontalScrollDistance" = 6;
-      "toolkit.scrollbox.verticalScrollDistance" = 2;
+      // Tweaks from archwiki
+      user_pref("browser.cache.disk.enable", false);
+      user_pref("browser.cache.memory.enable", true);
+      user_pref("browser.cache.memory.capacity", -1);
+      user_pref("browser.aboutConfig.showWarning", false);
+      user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
+      user_pref("middlemouse.paste", false);
 
-      # # Extra
-      "identity.fxaccounts.enabled" = false;
-      "browser.download.useDownloadDir" = false;
-      "browser.search.suggest.enabled" = false;
-      "browser.urlbar.shortcuts.bookmarks" = false;
-      "browser.urlbar.shortcuts.history" = false;
-      "browser.urlbar.shortcuts.tabs" = false;
-      "browser.urlbar.suggest.bookmark" = false;
-      "browser.urlbar.suggest.searches" = false;
-      "browser.urlbar.suggest.engines" = false;
-      "browser.urlbar.suggest.history" = true;
-      "browser.urlbar.suggest.openpage" = false;
-      "browser.urlbar.suggest.topsites" = false;
-      "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
-      "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
-      "signon.rememberSignons" = false;
-      "signon.autofillForms" = false;
-      "network.dns.disableIPv6" = true;
-      "network.proxy.socks_remote_dns" = true;
-      "dom.security.https_first" = true;
+      // Smooth Scroll
+      user_pref("general.smoothScroll", true);
+      user_pref("general.smoothScroll.lines.durationMaxMS", 125);
+      user_pref("general.smoothScroll.lines.durationMinMS", 125);
+      user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 200);
+      user_pref("general.smoothScroll.mouseWheel.durationMinMS", 100);
+      user_pref("general.smoothScroll.msdPhysics.enabled", true);
+      user_pref("general.smoothScroll.other.durationMaxMS", 125);
+      user_pref("general.smoothScroll.other.durationMinMS", 125);
+      user_pref("general.smoothScroll.pages.durationMaxMS", 125);
+      user_pref("general.smoothScroll.pages.durationMinMS", 125);
+      user_pref("mousewheel.min_line_scroll_amount", 30);
+      user_pref("mousewheel.system_scroll_override_on_root_content.enabled", true);
+      user_pref("mousewheel.system_scroll_override_on_root_content.horizontal.factor", 175);
+      user_pref("mousewheel.system_scroll_override_on_root_content.vertical.factor", 175);
+      user_pref("toolkit.scrollbox.horizontalScrollDistance", 6);
+      user_pref("toolkit.scrollbox.verticalScrollDistance", 2);
 
-      # Disable permission
-      # 0=always ask (default), 1=allow, 2=block
-      "permissions.default.geo" = 2;
-      "permissions.default.camera" = 2;
-      "permissions.default.microphone" = 0;
-      "permissions.default.desktop-notification" = 2;
-      "permissions.default.xr" = 2; # Virtual Reality
-      "browser.discovery.enabled" = false;
-      "datareporting.healthreport.uploadEnabled" = false;
-      "datareporting.policy.dataSubmissionEnabled" = false;
-      "app.shield.optoutstudies.enabled" = false;
-      "app.normandy.enabled" = false;
-      "app.normandy.api_url" = "";
+      // Extra
+      user_pref("identity.fxaccounts.enabled", false);
+      user_pref("browser.download.useDownloadDir", false);
+      user_pref("browser.search.suggest.enabled", false);
+      user_pref("browser.urlbar.shortcuts.bookmarks", false);
+      user_pref("browser.urlbar.shortcuts.history", false);
+      user_pref("browser.urlbar.shortcuts.tabs", false);
+      user_pref("browser.urlbar.suggest.bookmark", false);
+      user_pref("browser.urlbar.suggest.searches", false);
+      user_pref("browser.urlbar.suggest.engines", false);
+      user_pref("browser.urlbar.suggest.history", true);
+      user_pref("browser.urlbar.suggest.openpage", false);
+      user_pref("browser.urlbar.suggest.topsites", false);
+      user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+      user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
+      user_pref("signon.rememberSignons", false);
+      user_pref("signon.autofillForms", false);
+      user_pref("network.dns.disableIPv6", true);
+      user_pref("network.proxy.socks_remote_dns", true);
+      user_pref("dom.security.https_first", true);
 
-      # Firefox GNOME Theme
-      # Hide the tab bar when only one tab is open.
-      "gnomeTheme.hideSingleTab" = false;
-      # By default the tab close buttons follows the position of the window controls, this preference reverts that behavior.
-      "gnomeTheme.swapTabClose" = true;
-      # Move Bookmarks toolbar under tabs.
-      "gnomeTheme.bookmarksToolbarUnderTabs" = true;
-      # Hide WebRTC indicator since GNOME provides their own privacy icons in the top right.
-      "gnomeTheme.hideWebrtcIndicator" = true;
-      # Use system theme icons instead of Adwaita icons included by theme.
-      "gnomeTheme.systemIcons" = true;
-    };
+      // Disable permission prompts
+      user_pref("permissions.default.geo", 2);
+      user_pref("permissions.default.camera", 2);
+      user_pref("permissions.default.microphone", 0);
+      user_pref("permissions.default.desktop-notification", 2);
+      user_pref("permissions.default.xr", 2); // Virtual Reality
+      user_pref("browser.discovery.enabled", false);
+      user_pref("datareporting.healthreport.uploadEnabled", false);
+      user_pref("datareporting.policy.dataSubmissionEnabled", false);
+      user_pref("app.shield.optoutstudies.enabled", false);
+      user_pref("app.normandy.enabled", false);
+      user_pref("app.normandy.api_url", "");
+
+      // Firefox GNOME Theme
+      user_pref("gnomeTheme.hideSingleTab", false);
+      user_pref("gnomeTheme.swapTabClose", true);
+      user_pref("gnomeTheme.bookmarksToolbarUnderTabs", true);
+      user_pref("gnomeTheme.hideWebrtcIndicator", true);
+      user_pref("gnomeTheme.systemIcons", true);
+    '';
   };
 }
