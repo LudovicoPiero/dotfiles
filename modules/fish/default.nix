@@ -66,11 +66,17 @@ in
             function fish_greeting
             end
 
+            set --universal async_prompt_functions starship_prompt
+
             ${_ nix-your-shell} fish | source
-            ${_ starship} init fish | source
             ${_ zoxide} init fish | source
             ${_ direnv} hook fish | source
+            ${_ starship} init fish | source
           '';
+
+          plugins = {
+            inherit (pkgs.fishPlugins) async-prompt;
+          };
         };
 
         starship = {
