@@ -11,9 +11,7 @@
   ];
   hjem = {
     clobberByDefault = true;
-    extraModules = [
-      inputs.hjem-rum.hjemModules.default
-    ];
+    extraModules = [ inputs.hjem-rum.hjemModules.default ];
 
     users.${config.vars.username} = {
       enable = true;

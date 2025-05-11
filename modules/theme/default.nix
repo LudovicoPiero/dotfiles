@@ -16,9 +16,7 @@ let
   cfg = config.myOptions.theme;
 in
 {
-  imports = [
-    ./qt.nix
-  ];
+  imports = [ ./qt.nix ];
   options.myOptions.theme = {
     enable = mkEnableOption "" // {
       default = config.vars.withGui;

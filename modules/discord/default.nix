@@ -23,7 +23,7 @@ in
   options.myOptions.discord = {
     enable = mkEnableOption "discord" // {
       default = config.vars.withGui;
-};
+    };
   };
 
   config = mkIf cfg.enable {
