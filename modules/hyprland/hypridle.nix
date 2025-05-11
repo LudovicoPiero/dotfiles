@@ -17,7 +17,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.user.services.hypridle.after = lib.mkForce [ "graphical-session.target" ];
     hj.rum.programs.hypridle = {
       enable = true;
       settings = {
@@ -37,6 +36,19 @@ in
             on-resume = "hyprctl dispatch dpms on";
           }
         ];
+      };
+    };
+
+    systemd.user.services.hypridle = {
+      enable = true;
+      description = "hypridle service";
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        Restart = "always";
+        ExecStart = "${lib.getExe pkgs.hypridle}";
       };
     };
   };
