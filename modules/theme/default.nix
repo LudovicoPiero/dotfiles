@@ -69,7 +69,7 @@ in
 
   config = mkIf cfg.enable {
     hj = {
-      rum.gtk = {
+      rum.misc.gtk = {
         enable = true;
         packages = [
           cfg.gtk.theme.package
