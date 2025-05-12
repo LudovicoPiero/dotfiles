@@ -112,12 +112,12 @@ in
             set -x tide_pwd_markers .bzr .citc .git .hg .node-version .python-version .ruby-version .shorten_folder_marker .svn .terraform Cargo.toml composer.json CVS go.mod package.json build.zig
 
             ${_ zoxide} init fish | source
-            ${_ fzf} --fish | source
             ${_ direnv} hook fish | source
             ${_ nix-your-shell} fish | source
           '';
 
           plugins = {
+            inherit (pkgs.fishPlugins) fzf-fish;
             tide = pkgs.fishPlugins.tide.overrideAttrs {
               src = pkgs.fetchFromGitHub {
                 owner = "IlanCosman";
