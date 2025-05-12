@@ -17,3 +17,7 @@ fetch.git = "https://github.com/catppuccin/fcitx5"
 [firefox-ui-fix]
 src.git = "https://github.com/black7375/Firefox-UI-Fix"
 fetch.git = "https://github.com/black7375/Firefox-UI-Fix"
+
+[fuzzmoji]
+src.git = "https://codeberg.org/codingotaku/fuzzmoji"
+fetch.git = "https://codeberg.org/codingotaku/fuzzmoji"

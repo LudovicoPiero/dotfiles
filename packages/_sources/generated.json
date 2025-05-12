@@ -59,6 +59,26 @@
         },
         "version": "db615f1753e6975b47ebb9e16fed7d67b2473c0d"
     },
+    "fuzzmoji": {
+        "cargoLocks": null,
+        "date": "2024-09-22",
+        "extract": null,
+        "name": "fuzzmoji",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "8385183f7a4b9c6638a227089af684bd044da678",
+            "sha256": "sha256-hz25WX3TnlMifdXrOl9x8+FjgEnEO+RzVAsPf/KrpsY=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://codeberg.org/codingotaku/fuzzmoji"
+        },
+        "version": "8385183f7a4b9c6638a227089af684bd044da678"
+    },
     "san-francisco-pro": {
         "cargoLocks": null,
         "date": "2021-06-22",

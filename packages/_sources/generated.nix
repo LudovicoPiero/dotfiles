@@ -43,6 +43,20 @@
     };
     date = "2025-04-28";
   };
+  fuzzmoji = {
+    pname = "fuzzmoji";
+    version = "8385183f7a4b9c6638a227089af684bd044da678";
+    src = fetchgit {
+      url = "https://codeberg.org/codingotaku/fuzzmoji";
+      rev = "8385183f7a4b9c6638a227089af684bd044da678";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-hz25WX3TnlMifdXrOl9x8+FjgEnEO+RzVAsPf/KrpsY=";
+    };
+    date = "2024-09-22";
+  };
   san-francisco-pro = {
     pname = "san-francisco-pro";
     version = "8bfea09aa6f1139479f80358b2e1e5c6dc991a58";
