@@ -18,6 +18,7 @@ in
 {
   imports = [
     inputs.hyprland.nixosModules.default
+    ./cliphist.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./settings.nix
