@@ -97,6 +97,11 @@ in
             Alias = "np";
           }
           {
+            Name = "NixOS Wiki";
+            URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
+            Alias = "nw";
+          }
+          {
             Name = "Github (Code)";
             URLTemplate = "https://github.com/search?q={searchTerms}&type=code";
             Alias = "ghc";
