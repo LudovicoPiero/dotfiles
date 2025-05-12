@@ -13,6 +13,7 @@ let
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
   clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard-rs "wl-copy"}";
+  emojiPicker = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
 in
 {
   hj.rum.programs.hyprland.settings = {
@@ -289,6 +290,7 @@ in
         "$mod      , M , exec , [workspace 9 silent;tile] ${uwsm} app --  thunderbird"
         "$mod      , P , exec , ${uwsm} app -- ${launcher}"
         "$mod      , O , exec , ${uwsm} app -- ${clipboard}"
+        "$mod SHIFT, O , exec , ${uwsm} app -- ${_ emojiPicker}"
         "$mod SHIFT, P , exec , ${uwsm} app -- ${__ pkgs.pass-wayland "passmenu"}"
         "$mod      , Space , togglefloating ,"
         "$mod      , R , togglegroup ,"
