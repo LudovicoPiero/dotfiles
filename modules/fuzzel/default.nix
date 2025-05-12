@@ -26,6 +26,7 @@ in
           terminal = config.vars.terminal;
           icon-theme = config.myOptions.theme.gtk.theme.name;
           prompt = "->";
+          width = 55;
         };
 
         border = {
