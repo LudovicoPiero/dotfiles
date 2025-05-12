@@ -61,7 +61,7 @@ in
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.noto-fonts-emoji;
+        default = pkgs.noto-fonts-color-emoji;
       };
     };
 
