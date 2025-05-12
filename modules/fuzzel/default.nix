@@ -22,7 +22,7 @@ in
 
       settings = {
         main = {
-          font = "${config.myOptions.fonts.terminal.name} Semibold-${toString config.myOptions.fonts.size}";
+          font = "${config.myOptions.fonts.terminal.name} Semibold:size=${toString config.myOptions.fonts.size}";
           terminal = config.vars.terminal;
           icon-theme = config.myOptions.theme.gtk.theme.name;
           prompt = "->";
