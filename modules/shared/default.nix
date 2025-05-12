@@ -49,7 +49,6 @@
       bat
       iputils
       curl
-      direnv
       dnsutils
       fd
       fzf
