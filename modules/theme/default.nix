@@ -112,6 +112,29 @@ in
       };
 
       files = {
+        ".local/share/icons/default/index.theme".text = ''
+          [Icon Theme]
+          Name=Default
+          Comment=Default Cursor Theme
+          Inherits=${cfg.gtk.cursorTheme.name}
+        '';
+        ".local/share/icons/${cfg.gtk.cursorTheme.name}".source =
+          "${cfg.gtk.cursorTheme.package}/share/icons/${cfg.gtk.cursorTheme.name}";
+
+        /*
+          NOTE:
+          add $HOME/.icons for backward compatibility
+          https://specifications.freedesktop.org/icon-theme-spec/latest/#directory_layout
+        */
+        ".icons/default/index.theme".text = ''
+          [Icon Theme]
+          Name=Default
+          Comment=Default Cursor Theme
+          Inherits=${cfg.gtk.cursorTheme.name}
+        '';
+        ".icons/${cfg.gtk.cursorTheme.name}".source =
+          "${cfg.gtk.cursorTheme.package}/share/icons/${cfg.gtk.cursorTheme.name}";
+
         #GTK 3
         ".config/gtk-3.0/assets".source =
           "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/assets";
