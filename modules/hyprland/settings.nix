@@ -8,9 +8,11 @@
 }:
 let
   _ = lib.getExe;
+  __ = lib.getExe';
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
+  clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard-rs "wl-copy"}";
 in
 {
   hj.rum.programs.hyprland.settings = {
@@ -286,7 +288,8 @@ in
         "$mod      , F , fullscreen , 0"
         "$mod      , M , exec , [workspace 9 silent;tile] ${uwsm} app --  thunderbird"
         "$mod      , P , exec , ${uwsm} app -- ${launcher}"
-        "$mod SHIFT, P , exec , ${uwsm} app -- ${lib.getExe' pkgs.pass-wayland "passmenu"}"
+        "$mod      , O , exec , ${uwsm} app -- ${clipboard}"
+        "$mod SHIFT, P , exec , ${uwsm} app -- ${__ pkgs.pass-wayland "passmenu"}"
         "$mod      , Space , togglefloating ,"
         "$mod      , R , togglegroup ,"
         "$mod SHIFT, J , changegroupactive, f"
@@ -338,7 +341,9 @@ in
 
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
-      ++ lib.optionals config.myOptions.firefox.enable [ "$mod      , G , exec , ${uwsm} app -- firefox-esr" ]
+      ++ lib.optionals config.myOptions.firefox.enable [
+        "$mod      , G , exec , ${uwsm} app -- firefox-esr"
+      ]
       ++ lib.optionals config.myOptions.discord.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
       ++ lib.optionals config.myOptions.spotify.enable [
         "$mod SHIFT, S , exec , ${uwsm} app -- spotify"
