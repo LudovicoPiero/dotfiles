@@ -25,8 +25,15 @@ in
           font = "${config.myOptions.fonts.terminal.name} Semibold:size=${toString config.myOptions.fonts.size}";
           terminal = config.vars.terminal;
           icon-theme = config.myOptions.theme.gtk.theme.name;
+          icons-enabled = "yes";
+          inner-pad = 15;
+          layer = "overlay";
+          dpi-aware = "auto";
+          exit-on-keyboard-focus-loss = "no";
+          fields = "filename,name,generic";
+          use-bold = "yes";
           prompt = "->";
-          width = 55;
+          width = 50;
         };
 
         border = {
