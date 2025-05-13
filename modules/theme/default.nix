@@ -46,11 +46,13 @@ in
       theme = {
         name = mkOption {
           type = types.str;
-          default = "Fluent-Dark";
+          default = "Catppuccin-GTK-Dark";
         };
         package = mkOption {
           type = types.package;
-          default = pkgs.fluent-gtk-theme;
+          default = pkgs.magnetic-catppuccin-gtk.override {
+            tweaks = [ "macos" ];
+          };
         };
       };
 
