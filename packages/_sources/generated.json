@@ -41,7 +41,7 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2025-04-28",
+        "date": "2025-05-11",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -51,13 +51,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "db615f1753e6975b47ebb9e16fed7d67b2473c0d",
-            "sha256": "sha256-bHyOSiIfBNEmwRsbaQsrSc9O69i7y4xxc+pPpchSfIU=",
+            "rev": "6f50e027c3ca8d1e3a6f67dc095b311f8bcb9438",
+            "sha256": "sha256-/AaUXbT9iZ2si1pp5CTGvGrTG/hj1fU3Ir/ZAijvscc=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/black7375/Firefox-UI-Fix"
         },
-        "version": "db615f1753e6975b47ebb9e16fed7d67b2473c0d"
+        "version": "6f50e027c3ca8d1e3a6f67dc095b311f8bcb9438"
     },
     "fuzzmoji": {
         "cargoLocks": null,

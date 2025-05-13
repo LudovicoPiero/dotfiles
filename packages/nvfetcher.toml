@@ -16,6 +16,7 @@ fetch.git = "https://github.com/catppuccin/fcitx5"
 
 [firefox-ui-fix]
 src.git = "https://github.com/black7375/Firefox-UI-Fix"
+src.branch = "proton-style"
 fetch.git = "https://github.com/black7375/Firefox-UI-Fix"
 
 [fuzzmoji]

@@ -31,17 +31,17 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "db615f1753e6975b47ebb9e16fed7d67b2473c0d";
+    version = "6f50e027c3ca8d1e3a6f67dc095b311f8bcb9438";
     src = fetchgit {
       url = "https://github.com/black7375/Firefox-UI-Fix";
-      rev = "db615f1753e6975b47ebb9e16fed7d67b2473c0d";
+      rev = "6f50e027c3ca8d1e3a6f67dc095b311f8bcb9438";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-bHyOSiIfBNEmwRsbaQsrSc9O69i7y4xxc+pPpchSfIU=";
+      sha256 = "sha256-/AaUXbT9iZ2si1pp5CTGvGrTG/hj1fU3Ir/ZAijvscc=";
     };
-    date = "2025-04-28";
+    date = "2025-05-11";
   };
   fuzzmoji = {
     pname = "fuzzmoji";
