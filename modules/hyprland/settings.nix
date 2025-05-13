@@ -285,7 +285,7 @@ in
         "$mod SHIFT, C , exit ,"
         "$mod      , Q, togglespecialworkspace"
         "$mod SHIFT, Q, movetoworkspace, special"
-        "$mod SHIFT, E , exec , ${uwsm} app -- nautilus"
+        "$mod SHIFT, E , exec , ${uwsm} app -- thunar"
         "$mod      , F , fullscreen , 0"
         "$mod      , M , exec , [workspace 9 silent;tile] ${uwsm} app --  thunderbird"
         "$mod      , P , exec , ${uwsm} app -- ${launcher}"

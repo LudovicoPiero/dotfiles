@@ -41,7 +41,6 @@
     };
   };
 
-  # Nautilus / File Manager
   environment.systemPackages = lib.attrValues {
     inherit (pkgs)
       teavpn2
@@ -53,7 +52,6 @@
       fd
       fzf
       sbctl # For debugging and troubleshooting Secure boot.
-      nautilus
 
       bottom
       jq
@@ -100,18 +98,18 @@
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer
     file-roller.enable = config.vars.withGui; # Archive Manager
-    nautilus-open-any-terminal = {
+
+    thunar = {
       enable = config.vars.withGui;
-      terminal = "${config.vars.terminal}";
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
     };
   };
   services = {
     gvfs.enable = config.vars.withGui; # Mount, trash, and other functionalities
     tumbler.enable = config.vars.withGui; # Thumbnail support for images
-    gnome = {
-      sushi.enable = config.vars.withGui; # quick previewer for nautilus
-      glib-networking.enable = config.vars.withGui; # network extensions libs
-    };
   };
 
   security = {
