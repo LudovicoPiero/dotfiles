@@ -46,13 +46,11 @@ in
       theme = {
         name = mkOption {
           type = types.str;
-          default = "Catppuccin-GTK-Dark";
+          default = "WhiteSur-Dark";
         };
         package = mkOption {
           type = types.package;
-          default = pkgs.magnetic-catppuccin-gtk.override {
-            tweaks = [ "macos" ];
-          };
+          default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
         };
       };
 
@@ -138,16 +136,16 @@ in
           "${cfg.gtk.cursorTheme.package}/share/icons/${cfg.gtk.cursorTheme.name}";
 
         #GTK 3
-        ".config/gtk-3.0/assets".source =
-          "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/assets";
+        # ".config/gtk-3.0/assets".source =
+        #   "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/assets";
         ".config/gtk-3.0/gtk.css".source =
           "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/gtk.css";
         ".config/gtk-3.0/gtk-dark.css".source =
           "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/gtk-dark.css";
 
         # GTK 4
-        ".config/gtk-4.0/assets".source =
-          "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-4.0/assets";
+        # ".config/gtk-4.0/assets".source =
+        #   "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-4.0/assets";
         ".config/gtk-4.0/gtk.css".source =
           "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-4.0/gtk.css";
         ".config/gtk-4.0/gtk-dark.css".source =
