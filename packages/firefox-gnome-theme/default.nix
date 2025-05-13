@@ -20,8 +20,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     description = "A GNOME theme for Firefox";
     homepage = "https://github.com/rafaelmardojai/firefox-gnome-theme";
     license = lib.licenses.unlicense;
-    maintainers = with lib.maintainers; [
-      ludovicopiero
-    ];
+    maintainers = with lib.maintainers; [ ludovicopiero ];
   };
 })

@@ -21,10 +21,7 @@ stdenvNoCC.mkDerivation {
     description = "San Francisco Pro Fonts";
     homepage = "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts";
     license = lib.licenses.unfree;
-    maintainers = with lib.maintainers; [
-      ludovicopiero
-
-    ];
+    maintainers = with lib.maintainers; [ ludovicopiero ];
     platforms = lib.platforms.all;
   };
 }

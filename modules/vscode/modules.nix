@@ -75,9 +75,7 @@ let
   mergedUserSettings =
     userSettings: enableUpdateCheck: enableExtensionUpdateCheck:
     userSettings
-    // lib.optionalAttrs (enableUpdateCheck == false) {
-      "update.mode" = "none";
-    }
+    // lib.optionalAttrs (enableUpdateCheck == false) { "update.mode" = "none"; }
     // lib.optionalAttrs (enableExtensionUpdateCheck == false) {
       "extensions.autoCheckUpdates" = false;
     };
@@ -236,11 +234,7 @@ in
   imports =
     [
       (lib.mkChangedOptionModule
-        [
-          "programs"
-          "vscode"
-          "immutableExtensionsDir"
-        ]
+        [ "programs" "vscode" "immutableExtensionsDir" ]
         [ "programs" "vscode" "mutableExtensionsDir" ]
         (config: !config.programs.vscode.immutableExtensionsDir)
       )
@@ -248,15 +242,7 @@ in
     ++ map
       (
         v:
-        lib.mkRenamedOptionModule
-          [ "programs" "vscode" v ]
-          [
-            "programs"
-            "vscode"
-            "profiles"
-            "default"
-            v
-          ]
+        lib.mkRenamedOptionModule [ "programs" "vscode" v ] [ "programs" "vscode" "profiles" "default" v ]
       )
       [
         "enableUpdateCheck"

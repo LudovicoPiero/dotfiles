@@ -82,9 +82,7 @@ in
         ${getExe cfg.package} hook fish | source
       '';
 
-      environment.sessionVariables = mkIf cfg.silent {
-        DIRENV_LOG_FORMAT = "";
-      };
+      environment.sessionVariables = mkIf cfg.silent { DIRENV_LOG_FORMAT = ""; };
     };
   };
 }

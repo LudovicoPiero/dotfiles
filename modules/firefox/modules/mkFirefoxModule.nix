@@ -64,13 +64,9 @@ let
       }
     )
     // {
-      General =
-        {
-          StartWithLastProfile = 1;
-        }
-        // lib.optionalAttrs (cfg.profileVersion != null) {
-          Version = cfg.profileVersion;
-        };
+      General = {
+        StartWithLastProfile = 1;
+      } // lib.optionalAttrs (cfg.profileVersion != null) { Version = cfg.profileVersion; };
     };
 
   profilesIni = lib.generators.toINI { } profiles;
@@ -424,15 +420,7 @@ in
               bookmarks = mkOption {
                 type = (
                   types.coercedTo bookmarkTypes.settingsType
-                    (
-                      bookmarks:
-                      if bookmarks != { } then
-                        {
-                          settings = bookmarks;
-                        }
-                      else
-                        { }
-                    )
+                    (bookmarks: if bookmarks != { } then { settings = bookmarks; } else { })
                     (
                       types.submodule (
                         { config, ... }:
@@ -762,11 +750,7 @@ in
         ++ (lib.optional (cfg.finalPackage != null) cfg.finalPackage);
 
       hj.files = mkMerge (
-        [
-          {
-            "${cfg.configPath}/profiles.ini" = mkIf (cfg.profiles != { }) { text = profilesIni; };
-          }
-        ]
+        [ { "${cfg.configPath}/profiles.ini" = mkIf (cfg.profiles != { }) { text = profilesIni; }; } ]
         ++ lib.flip mapAttrsToList cfg.profiles (
           _: profile:
           # Merge the regular profile settings with extension settings
