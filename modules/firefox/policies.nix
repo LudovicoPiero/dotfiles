@@ -6,16 +6,29 @@ in
 {
   config = mkIf cfg.enable {
     programs.firefox.policies = {
-      AppAutoUpdate = false;
       FirefoxSuggest = {
         "SponsoredSuggestions" = false;
       };
+      FirefoxHome = {
+        SponsoredTopSites = false;
+        SponsoredPocket = false;
+      };
+      DNSOverHTTPS = {
+        Enabled = true;
+        ProviderURL = "https://dns.nextdns.io/518d18/nixos";
+        Fallback = false;
+      };
+
+      AppAutoUpdate = false;
       DisableTelemetry = true;
       HardwareAcceleration = true;
+      PromptForDownloadLocation = true;
       PasswordManagerEnabled = false;
       OfferToSaveLogins = false;
       OfferToSaveLoginsDefault = false;
       SSLVersionMin = "tls1.2";
+
+      # Extensions
       # REF https://mozilla.github.io/policy-templates/#extensions
       # NOTE find UUID for each extension in about:debugging#/runtime/this-firefox
       Extensions = {
