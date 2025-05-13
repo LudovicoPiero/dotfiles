@@ -587,11 +587,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747007624,
-        "narHash": "sha256-e/O5GGuJBukpPdGiwRZlQkcDB7lUGObwxedJd7VO7vM=",
+        "lastModified": 1747038076,
+        "narHash": "sha256-vy+My+8yRRu0OG6XBEPDR8ebfrPS4iuruyQ1ZUyHq6s=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "b3fcf3163c098da3059d5166c8503af96e74774f",
+        "rev": "7d674eaded6586554910e62baed5eadad6496315",
         "type": "github"
       },
       "original": {
@@ -612,11 +612,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1746997297,
-        "narHash": "sha256-lZt5EyqClKbvpdRFDO+8lQhG/CCZ9zDMpvETyFM6mvc=",
+        "lastModified": 1747157093,
+        "narHash": "sha256-Tx8+MncHgC6tjIz3SYsABcPVcB7/Fhk/sUhL7TnbG0E=",
         "owner": "snugnug",
         "repo": "hjem-rum",
-        "rev": "cc2cc3c83f5bb1058ada5f9c4e031f9aa9402017",
+        "rev": "94476a451fc1561e077895d2ee44b15f967cc051",
         "type": "github"
       },
       "original": {
