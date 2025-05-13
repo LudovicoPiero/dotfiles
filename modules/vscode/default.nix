@@ -51,6 +51,7 @@ in
             "git.alwaysSignOff" = true;
             "github.gitProtocol" = "ssh";
             "merge-conflict.autoNavigateNextConflict.enabled" = true;
+            "window.zoomLevel" = 1;
 
             # Fonts
             "editor.fontLigatures" = false;
