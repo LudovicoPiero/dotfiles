@@ -22,7 +22,7 @@
 
         fuzzmoji = pkgs.callPackage ./fuzzmoji { inherit sources; };
 
-        firefox-gnome-theme = pkgs.callPackage ./firefox-gnome-theme { };
+        firefox-gnome-theme = pkgs.callPackage ./firefox-gnome-theme { inherit sources; };
 
         firefox-ui-fix = pkgs.callPackage ./firefox-ui-fix { inherit sources; };
 

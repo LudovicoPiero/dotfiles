@@ -47,9 +47,14 @@
         definedAliases = [ "d" ];
       };
 
-      "github" = {
+      "github (code)" = {
         urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
-        definedAliases = [ "gh" ];
+        definedAliases = [ "ghc" ];
+      };
+
+      "github (repository)" = {
+        urls = [ { template = "https://github.com/search?q={searchTerms}&type=repository"; } ];
+        definedAliases = [ "ghr" ];
       };
 
       "nix-packages" = {
