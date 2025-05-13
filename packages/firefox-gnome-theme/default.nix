@@ -2,10 +2,18 @@
 {
   lib,
   stdenvNoCC,
-  sources,
+  fetchFromGitHub,
 }:
-stdenvNoCC.mkDerivation (_finalAttrs: {
-  inherit (sources.firefox-gnome-theme) pname src version;
+stdenvNoCC.mkDerivation (finalAttrs: {
+  pname = "firefox-gnome-theme";
+  version = "128"; # Firefox-esr
+
+  src = fetchFromGitHub {
+    owner = "rafaelmardojai";
+    repo = "firefox-gnome-theme";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-zB+Zd0V0ayKP/zg9n1MQ8J/Znwa49adylRftxuc694k=";
+  };
 
   installPhase = ''
     runHook preInstall
@@ -22,7 +30,6 @@ stdenvNoCC.mkDerivation (_finalAttrs: {
     license = lib.licenses.unlicense;
     maintainers = with lib.maintainers; [
       ludovicopiero
-
     ];
   };
 })

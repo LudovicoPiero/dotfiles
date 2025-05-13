@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkMerge;
 
   cfg = config.myOptions.firefox;
 in
@@ -19,6 +19,14 @@ in
   options.myOptions.firefox = {
     enable = mkEnableOption "firefox browser" // {
       default = config.vars.withGui;
+    };
+
+    withGnomeTheme = mkEnableOption "Leptop Theme" // {
+      default = false;
+      description = ''
+        Use Gnome Theme for Firefox.
+        https://github.com/rafaelmardojai/firefox-gnome-theme
+      '';
     };
   };
 
@@ -33,39 +41,33 @@ in
 
     hj.files =
       let
-        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-ui-fix;
+        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
+
+        profilePath = ".mozilla/firefox/${config.vars.username}";
       in
-      {
-        ".mozilla/firefox/profiles.ini".text = ''
-          [General]
-          StartWithLastProfile=1
-          Version=2
+      mkMerge [
+        {
+          ".mozilla/firefox/profiles.ini".text = ''
+            [General]
+            StartWithLastProfile=1
+            Version=2
 
-          [Profile0]
-          Name=${config.vars.username}
-          IsRelative=1
-          Path=${config.vars.username}
-          Default=1
-        '';
+            [Profile0]
+            Name=${config.vars.username}
+            IsRelative=1
+            Path=${config.vars.username}
+            Default=1
+          '';
+        }
+        (mkIf cfg.withGnomeTheme {
+          "${profilePath}/chrome/userChrome.css".text = ''
+            @import "${firefox-gnome-theme}/userChrome.css";
+          '';
 
-        ".mozilla/firefox/${config.vars.username}/chrome/userChrome.css".text = ''
-          @import "${firefox-ui-fix}/css/leptonChromeESR.css";
-
-          .tabbrowser-tab {
-             min-height: 30px !important;
-             max-height: 34px !important;
-             box-shadow: none !important;
-          }
-
-          #TabsToolbar #tabs-newtab-button {
-             margin-top: -5px !important;
-             margin-bottom: -8px !important;
-             margin-left: 0px !important;
-          }
-        '';
-        ".mozilla/firefox/${config.vars.username}/chrome/userContent.css".text = ''
-          @import "${firefox-ui-fix}/css/leptonContentESR.css";
-        '';
-      };
+          "${profilePath}/chrome/userContent.css".text = ''
+            @import "${firefox-gnome-theme}/userContent.css";
+          '';
+        })
+      ];
   };
 }
