@@ -182,7 +182,6 @@ let
         enableGnomeExtensions = cfg.enableGnomeExtensions;
       };
 
-      # A bit of hackery to force a config into the wrapper.
       browserName = package.browserName or (builtins.parseDrvName package.name).name;
 
       # The configuration expected by the Firefox wrapper builder.
@@ -428,25 +427,9 @@ in
                     (
                       bookmarks:
                       if bookmarks != { } then
-                        lib.warn
-                          ''
-                            ${cfg.name} bookmarks have been refactored into a submodule that now explicitly require a 'force' option to be enabled.
-
-                            Replace:
-
-                            ${moduleName}.profiles.${name}.bookmarks = [ ... ];
-
-                            With:
-
-                            ${moduleName}.profiles.${name}.bookmarks = {
-                              force = true;
-                              settings = [ ... ];
-                            };
-                          ''
-                          {
-                            force = true;
-                            settings = bookmarks;
-                          }
+                        {
+                          settings = bookmarks;
+                        }
                       else
                         { }
                     )
@@ -499,17 +482,6 @@ in
                 );
                 default = { };
                 description = "Declarative search engine configuration.";
-              };
-
-              containersForce = mkOption {
-                type = types.bool;
-                default = false;
-                description = ''
-                  Whether to force replace the existing containers configuration.
-                  This is recommended since ${appName} will replace the symlink on
-                  every launch, but note that you'll lose any existing configuration
-                  by enabling this.
-                '';
               };
 
               containers = mkOption {
@@ -639,17 +611,6 @@ in
                             '';
                           };
 
-                          force = mkOption {
-                            description = ''
-                              Whether to override all previous firefox settings.
-
-                              This is required when using `settings`.
-                            '';
-                            default = false;
-                            example = true;
-                            type = types.bool;
-                          };
-
                           settings = mkOption {
                             default = { };
                             example = literalExpression ''
@@ -682,15 +643,6 @@ in
                                   settings = mkOption {
                                     type = types.attrsOf jsonFormat.type;
                                     description = "Json formatted options for the specified extensionID";
-                                  };
-                                  force = mkOption {
-                                    type = types.bool;
-                                    default = false;
-                                    example = true;
-                                    description = ''
-                                      Forcibly override any existing configuration for
-                                      this extension.
-                                    '';
                                   };
                                 };
                               }

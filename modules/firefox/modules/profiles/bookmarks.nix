@@ -80,14 +80,6 @@ in
       internal = true;
     };
 
-    force = mkOption {
-      type = with types; bool;
-      default = false;
-      description = ''
-        Whether to force override existing custom bookmarks.
-      '';
-    };
-
     settings = mkOption {
       type = settingsType;
       default = [ ];
