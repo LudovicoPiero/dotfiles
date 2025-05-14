@@ -140,9 +140,6 @@
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     settings = {
-      # Prevent impurities in builds
-      sandbox = true;
-
       experimental-features = [
         # Enable flakes.
         "flakes"
@@ -150,20 +147,45 @@
         # Enable nix3-command.
         "nix-command"
 
-        /*
-          Allows Lix to invoke a custom command via its main binary `lix`,
-          i.e. `lix-foo` gets invoked when `lix foo` is executed.
-        */
+        # Allows Lix to invoke a custom command via its main binary `lix`,
+        # i.e. `lix-foo` gets invoked when `lix foo` is executed.
         "lix-custom-sub-commands"
 
         # Allows Nix to automatically pick UIDs for builds, rather than creating `nixbld*` user accounts.
         "auto-allocate-uids"
       ];
 
+      # Allow Lix to import from a derivation, allowing building at evaluation time.
+      allow-import-from-derivation = true;
+
+      # Prevent impurities in builds
+      sandbox = pkgs.stdenv.hostPlatform.isLinux;
+
+      # Keep building derivations when another build fails.
+      keep-going = true;
+
+      # The number of lines of the tail of the log to show if a build fails.
+      log-lines = 30;
+
+      # The commit summary to use when committing changed flake lock files.
       commit-lockfile-summary = "chore: Update flake.lock";
-      accept-flake-config = true;
+
+      # Accept nix configurations from flake without prompting
+      # Dangerous!
+      accept-flake-config = false;
+
+      # If set to true, Nix automatically detects files in the store that have identical contents,
+      # and replaces them with hard links to a single copy.
       auto-optimise-store = true;
+
+      # If set to true, Nix will conform to the XDG Base Directory Specification for files in $HOME.
+      use-xdg-base-directories = true;
+
+      # For GC roots.
+      # If true (default), the garbage collector will keep the derivations from which non-garbage store paths were built
       keep-derivations = true;
+
+      # If true, the garbage collector will keep the outputs of non-garbage derivations.
       keep-outputs = true;
 
       # Whether to warn about dirty Git/Mercurial trees.
@@ -177,10 +199,8 @@
       allowed-users = [ "@wheel" ];
 
       substituters = [
-        /*
-          The default is https://cache.nixos.org, which has a priority of 40.
-          Lower value means higher priority.
-        */
+        # The default is https://cache.nixos.org, which has a priority of 40.
+        # Lower value means higher priority.
         "https://nix-community.cachix.org?priority=43"
         "https://nyx.chaotic.cx?priority=44"
         "https://cache.garnix.io?priority=60"
