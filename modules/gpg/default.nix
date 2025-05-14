@@ -18,10 +18,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.dbus.packages = [ pkgs.gcr ];
+    services.dbus.packages = [
+      pkgs.gcr
+    ];
 
     hj.environment.sessionVariables = {
-      GNUPGHOME = "/home/${config.vars.username}/.config/gnupg";
+      GNUPGHOME = "${config.vars.homeDirectory}/.config/gnupg";
     };
 
     programs.gnupg = {

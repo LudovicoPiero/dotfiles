@@ -39,7 +39,7 @@
       ];
     };
 
-    "/home/${config.vars.username}/WinE" = {
+    "${config.vars.homeDirectory}/WinE" = {
       device = "/dev/disk/by-label/WinE";
       fsType = "ntfs";
       options = [
@@ -54,7 +54,7 @@
       ];
     };
 
-    "/home/${config.vars.username}/Media" = {
+    "${config.vars.homeDirectory}/Media" = {
       device = "/dev/disk/by-label/Media";
       fsType = "btrfs";
       options = [

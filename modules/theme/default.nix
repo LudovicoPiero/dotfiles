@@ -99,15 +99,15 @@ in
         };
 
         bookmarks = [
-          "file:///home/${config.vars.username}/Code"
-          "file:///home/${config.vars.username}/Media"
-          "file:///home/${config.vars.username}/Documents"
-          "file:///home/${config.vars.username}/Downloads"
-          "file:///home/${config.vars.username}/Games"
-          "file:///home/${config.vars.username}/Music"
-          "file:///home/${config.vars.username}/Pictures"
-          "file:///home/${config.vars.username}/Videos"
-          "file:///home/${config.vars.username}/WinE"
+          "file://${config.vars.homeDirectory}/Code"
+          "file://${config.vars.homeDirectory}/Media"
+          "file://${config.vars.homeDirectory}/Documents"
+          "file://${config.vars.homeDirectory}/Downloads"
+          "file://${config.vars.homeDirectory}/Games"
+          "file://${config.vars.homeDirectory}/Music"
+          "file://${config.vars.homeDirectory}/Pictures"
+          "file://${config.vars.homeDirectory}/Videos"
+          "file://${config.vars.homeDirectory}/WinE"
         ];
       };
 

@@ -32,7 +32,7 @@
     dconf.enable = true;
     nh = {
       enable = true;
-      flake = "/home/${config.vars.username}/Code/nixos";
+      flake = "${config.vars.homeDirectory}/Code/nixos";
       clean = {
         enable = true;
         dates = "weekly";

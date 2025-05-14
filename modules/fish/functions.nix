@@ -40,7 +40,7 @@ with pkgs;
       end
 
       function bs
-          pushd /home/${config.vars.username}/Code/nixos
+          pushd ${config.vars.homeDirectory}/Code/nixos
           ${_ nh} os switch .
 
           if test $status -eq 0
@@ -53,7 +53,7 @@ with pkgs;
       end
 
       function bb
-          pushd /home/${config.vars.username}/Code/nixos
+          pushd ${config.vars.homeDirectory}/Code/nixos
           ${_ nh} os boot .
 
           if test $status -eq 0

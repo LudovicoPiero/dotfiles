@@ -307,7 +307,7 @@ in
       let
         modifyGlobalStorage = pkgs.writeShellScript "vscode-global-storage-modify" ''
           PATH=${lib.makeBinPath [ pkgs.jq ]}''${PATH:+:}$PATH
-          file="/home/${config.vars.username}/.config/${configDir}/User/globalStorage/storage.json"
+          file="${config.vars.homeDirectory}/.config/${configDir}/User/globalStorage/storage.json"
           file_write=""
           profiles=(${lib.escapeShellArgs (flatten (mapAttrsToList (n: v: n) allProfilesExceptDefault))})
 
