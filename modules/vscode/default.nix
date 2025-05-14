@@ -13,9 +13,7 @@ in
 {
   imports = [ ./modules.nix ];
   options.myOptions.vscode = {
-    enable = mkEnableOption "vscode" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "vscode";
   };
 
   config = mkIf cfg.enable {

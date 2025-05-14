@@ -25,9 +25,7 @@ in
   ];
 
   options.myOptions.hyprland = {
-    enable = mkEnableOption "hyprland" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "hyprland";
 
     withLTO = mkOption {
       type = types.bool;

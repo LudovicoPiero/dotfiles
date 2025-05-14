@@ -20,9 +20,7 @@ in
   ];
 
   options.myOptions.firefox = {
-    enable = mkEnableOption "firefox browser" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "firefox browser";
   };
 
   config = mkIf cfg.enable {

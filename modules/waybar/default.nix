@@ -14,9 +14,7 @@ let
 in
 {
   options.myOptions.waybar = {
-    enable = mkEnableOption "waybar" // {
-      default = config.myOptions.hyprland.enable;
-    };
+    enable = mkEnableOption "waybar";
   };
 
   config = mkIf cfg.enable {

@@ -27,9 +27,7 @@ let
 in
 {
   options.myOptions.fcitx5 = {
-    enable = mkEnableOption "fcitx5 service" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "fcitx5 service";
   };
 
   config = mkIf cfg.enable {

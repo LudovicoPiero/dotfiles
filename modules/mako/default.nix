@@ -12,9 +12,7 @@ let
 in
 {
   options.myOptions.mako = {
-    enable = mkEnableOption "mako service" // {
-      default = config.myOptions.hyprland.enable;
-    };
+    enable = mkEnableOption "mako service";
   };
 
   config = mkIf cfg.enable {

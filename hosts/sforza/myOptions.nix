@@ -1,0 +1,184 @@
+{ pkgs, inputs, ... }:
+{
+  vars = {
+    colorScheme = "catppuccin-mocha";
+    email = "lewdovico@gnuweeb.org";
+    isALaptop = true;
+    opacity = 1.0;
+    sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINtzB1oiuDptWi04PAEJVpSAcvD96AL0S21zHuMgmcE9 ludovico@sforza";
+    stateVersion = "24.11";
+    terminal = "wezterm";
+    timezone = "Asia/Tokyo";
+    username = "airi";
+    withGui = true;
+  };
+
+  myOptions = {
+    cliphist = {
+      enable = true;
+      allowImages = true;
+      extraOptions = [
+        "-max-dedupe-search"
+        "10"
+        "-max-items"
+        "500"
+      ];
+      systemdTargets = [ "graphical-session.target" ];
+    };
+
+    direnv = {
+      enable = true;
+      nix-direnv = {
+        enable = true;
+      };
+      silent = true;
+    };
+
+    discord = {
+      enable = true;
+    };
+
+    dnscrypt2 = {
+      enable = true;
+      StateDirectory = "dnscrypt-proxy";
+      hasIPv6Internet = false;
+    };
+
+    fcitx5 = {
+      enable = true;
+    };
+
+    firefox = {
+      enable = true;
+    };
+
+    fish = {
+      enable = true;
+    };
+
+    fonts = {
+      enable = true;
+      size = 14;
+      cjk = {
+        name = "Noto Sans CJK";
+        package = pkgs.noto-fonts-cjk-sans;
+      };
+      emoji = {
+        name = "Noto Color Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+      };
+      icon = {
+        name = "Symbols Nerd Font Mono";
+        package = pkgs.nerd-fonts.symbols-only;
+      };
+      main = {
+        name = "SF Pro Rounded";
+        package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
+      };
+      terminal = {
+        name = "Iosevka Q";
+        package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
+      };
+    };
+
+    fuzzel = {
+      enable = true;
+    };
+
+    gaming = {
+      enable = true;
+      withGamemode = true;
+      withSteam = true;
+    };
+
+    git = {
+      enable = true;
+    };
+
+    gpg = {
+      enable = true;
+    };
+
+    hypridle = {
+      enable = true;
+    };
+
+    hyprland = {
+      enable = true;
+      withLTO = true;
+    };
+
+    hyprlock = {
+      enable = true;
+    };
+
+    keyring = {
+      enable = true;
+    };
+
+    mako = {
+      enable = true;
+    };
+
+    nvim = {
+      enable = true;
+    };
+
+    pipewire = {
+      enable = true;
+      quantum = 64;
+      rate = 48000;
+    };
+
+    sddm = {
+      enable = true;
+    };
+
+    secrets = {
+      enable = true;
+    };
+
+    spotify = {
+      enable = true;
+    };
+
+    theme = {
+      enable = true;
+      gtk = {
+        cursorTheme = {
+          name = "phinger-cursors-light";
+          size = 24;
+          package = pkgs.phinger-cursors;
+        };
+        iconTheme = {
+          name = "WhiteSur-dark";
+          package = pkgs.whitesur-icon-theme;
+        };
+        theme = {
+          name = "WhiteSur-Dark";
+          package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
+        };
+      };
+    };
+
+    tlp = {
+      enable = true;
+    };
+
+    vscode = {
+      enable = true;
+    };
+
+    waybar = {
+      enable = true;
+    };
+
+    wezterm = {
+      enable = true;
+    };
+
+    xdg-portal = {
+      enable = true;
+    };
+  };
+}

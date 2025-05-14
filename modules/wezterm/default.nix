@@ -12,9 +12,7 @@ let
 in
 {
   options.myOptions.wezterm = {
-    enable = mkEnableOption "wezterm" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "wezterm";
   };
 
   config = mkIf cfg.enable {

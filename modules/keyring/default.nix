@@ -11,9 +11,7 @@ let
 in
 {
   options.myOptions.keyring = {
-    enable = mkEnableOption "keyring" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "keyring";
   };
 
   config = mkIf cfg.enable {

@@ -25,9 +25,7 @@ in
   ];
 
   options.myOptions.fish = {
-    enable = mkEnableOption "Fish Shell" // {
-      default = true;
-    };
+    enable = mkEnableOption "Fish Shell";
   };
 
   config = mkIf cfg.enable {

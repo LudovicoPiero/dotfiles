@@ -17,9 +17,7 @@ let
 in
 {
   options.myOptions.fonts = {
-    enable = mkEnableOption "Fonts" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "Fonts";
 
     main = {
       name = mkOption {

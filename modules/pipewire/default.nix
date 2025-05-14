@@ -15,9 +15,7 @@ let
 in
 {
   options.myOptions.pipewire = {
-    enable = mkEnableOption "pipewire" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "pipewire";
 
     quantum = mkOption {
       description = "Minimum quantum to set";

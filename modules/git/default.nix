@@ -6,9 +6,7 @@ let
 in
 {
   options.myOptions.git = {
-    enable = mkEnableOption "Git" // {
-      default = true;
-    };
+    enable = mkEnableOption "Git";
   };
 
   config = mkIf cfg.enable {

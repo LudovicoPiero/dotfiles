@@ -19,9 +19,7 @@ let
 in
 {
   options.myOptions.cliphist = {
-    enable = mkEnableOption "cliphist service" // {
-      default = config.myOptions.hyprland.enable;
-    };
+    enable = mkEnableOption "cliphist service";
 
     package = mkPackageOption pkgs "cliphist" { };
 

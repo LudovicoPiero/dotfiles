@@ -12,9 +12,7 @@ let
 in
 {
   options.myOptions.nvim = {
-    enable = mkEnableOption "nvim" // {
-      default = true;
-    };
+    enable = mkEnableOption "nvim";
   };
 
   config = mkIf cfg.enable {

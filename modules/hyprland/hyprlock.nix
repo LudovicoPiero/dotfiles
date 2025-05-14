@@ -12,9 +12,7 @@ let
 in
 {
   options.myOptions.hyprlock = {
-    enable = mkEnableOption "hyprlock service" // {
-      default = config.myOptions.hyprland.enable;
-    };
+    enable = mkEnableOption "hyprlock service";
   };
 
   config = mkIf cfg.enable {

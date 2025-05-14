@@ -21,9 +21,7 @@ let
 in
 {
   options.myOptions.discord = {
-    enable = mkEnableOption "discord" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "discord";
   };
 
   config = mkIf cfg.enable {

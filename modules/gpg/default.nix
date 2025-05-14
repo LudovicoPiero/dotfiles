@@ -12,15 +12,11 @@ let
 in
 {
   options.myOptions.gpg = {
-    enable = mkEnableOption "gpg" // {
-      default = true;
-    };
+    enable = mkEnableOption "gpg";
   };
 
   config = mkIf cfg.enable {
-    services.dbus.packages = [
-      pkgs.gcr
-    ];
+    services.dbus.packages = [ pkgs.gcr ];
 
     hj.environment.sessionVariables = {
       GNUPGHOME = "${config.vars.homeDirectory}/.config/gnupg";

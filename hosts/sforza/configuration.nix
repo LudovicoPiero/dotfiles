@@ -9,8 +9,8 @@
 }:
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./myOptions.nix
   ];
 
   networking.hostName = "sforza"; # Define your hostname.

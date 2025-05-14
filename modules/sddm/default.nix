@@ -9,9 +9,7 @@ let
 in
 {
   options.myOptions.sddm = {
-    enable = mkEnableOption "sddm service" // {
-      default = true;
-    };
+    enable = mkEnableOption "sddm service";
   };
 
   config = mkMerge [

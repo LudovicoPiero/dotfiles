@@ -18,9 +18,7 @@ in
 {
   imports = [ ./qt.nix ];
   options.myOptions.theme = {
-    enable = mkEnableOption "" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "";
 
     colorScheme = mkOption {
       type = types.anything;

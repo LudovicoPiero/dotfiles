@@ -14,9 +14,7 @@ let
 in
 {
   options.myOptions.hypridle = {
-    enable = mkEnableOption "hypridle service" // {
-      default = config.myOptions.hyprland.enable;
-    };
+    enable = mkEnableOption "hypridle service";
   };
 
   config = mkIf cfg.enable {

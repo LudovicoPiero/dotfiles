@@ -11,9 +11,7 @@ let
 in
 {
   options.myOptions.fuzzel = {
-    enable = mkEnableOption "fuzzel" // {
-      default = config.myOptions.hyprland.enable;
-    };
+    enable = mkEnableOption "fuzzel";
   };
 
   config = mkIf cfg.enable {
