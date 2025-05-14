@@ -8,8 +8,8 @@ let
   inherit (lib) mkEnableOption mkIf mkMerge;
 in
 {
-  options.myOptions.greetd = {
-    enable = mkEnableOption "greetd service" // {
+  options.myOptions.sddm = {
+    enable = mkEnableOption "sddm service" // {
       default = true;
     };
   };
