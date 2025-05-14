@@ -19,7 +19,6 @@ _: {
     ./secrets
     ./shared
     ./spotify
-    ./teavpn2
     ./theme
     ./tlp
     ./vars

@@ -27,7 +27,6 @@
           {
             myOptions = {
               dnscrypt2.enable = true;
-              teavpn2.enable = false;
 
               # DE / Compositor
               hyprland = {
