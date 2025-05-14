@@ -9,11 +9,20 @@
   # Nixos Stuff
   imports = [
     inputs.lix-module.nixosModules.default
+    inputs.chaotic.nixosModules.default
 
     ./users.nix
     ./security.nix
     ./hjem.nix
   ];
+
+  # Chaotic-cx stuff
+  chaotic.nyx = {
+    cache.enable = false;
+    nixPath.enable = false;
+    registry.enable = false;
+    overlay.enable = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
