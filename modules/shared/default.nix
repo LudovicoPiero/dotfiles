@@ -201,9 +201,11 @@
       substituters = [
         # The default is https://cache.nixos.org, which has a priority of 40.
         # Lower value means higher priority.
-        "https://nix-community.cachix.org?priority=43"
-        "https://nyx.chaotic.cx?priority=44"
-        "https://cache.garnix.io?priority=60"
+        "https://cache.nixos.org?priority=10"
+        "https://nix-community.cachix.org?priority=20"
+        "https://nyx.chaotic.cx?priority=30"
+        "https://chaotic-nyx.cachix.org?priority=35"
+        "https://cache.garnix.io?priority=40"
       ];
 
       trusted-public-keys = [
