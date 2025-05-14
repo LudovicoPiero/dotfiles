@@ -20,7 +20,7 @@ in
 {
   options.myOptions.direnv = {
     enable = mkEnableOption "Direnv" // {
-      default = true;
+      default = config.myOptions.fish.enable;
     };
 
     package = mkPackageOption pkgs "direnv" { };
