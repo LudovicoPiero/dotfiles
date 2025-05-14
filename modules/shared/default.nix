@@ -144,8 +144,20 @@
       sandbox = true;
 
       experimental-features = [
+        # Enable flakes.
         "flakes"
+
+        # Enable nix3-command.
         "nix-command"
+
+        /*
+          Allows Lix to invoke a custom command via its main binary `lix`,
+          i.e. `lix-foo` gets invoked when `lix foo` is executed.
+        */
+        "lix-custom-sub-commands"
+
+        # Allows Nix to automatically pick UIDs for builds, rather than creating `nixbld*` user accounts.
+        "auto-allocate-uids"
       ];
 
       commit-lockfile-summary = "chore: Update flake.lock";
