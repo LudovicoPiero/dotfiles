@@ -6,15 +6,7 @@
 
       sharedModules = import ../modules;
 
-      #TODO:
-      colorScheme = inputs.nix-colors.lib.schemeFromYAML "catppuccin-mocha" (
-        builtins.readFile (inputs.catppuccin-base16 + "/base16/mocha.yaml")
-      );
-
-      specialArgs = {
-        inherit (colorScheme) palette;
-        inherit inputs;
-      };
+      specialArgs = { inherit inputs; };
     in
     {
       sforza = nixosSystem {

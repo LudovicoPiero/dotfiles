@@ -1,11 +1,11 @@
 {
   lib,
   config,
-  palette,
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.myOptions.theme.colorScheme) palette;
 
   cfg = config.myOptions.fuzzel;
 in

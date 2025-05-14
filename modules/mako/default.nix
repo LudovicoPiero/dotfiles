@@ -2,11 +2,11 @@
   lib,
   pkgs,
   config,
-  palette,
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.myOptions.theme.colorScheme) palette;
 
   cfg = config.myOptions.mako;
 in

@@ -2,11 +2,11 @@
   lib,
   config,
   pkgs,
-  palette,
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.myOptions.theme.colorScheme) palette;
 
   cfg = config.myOptions.wezterm;
 in

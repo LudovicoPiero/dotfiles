@@ -1,12 +1,12 @@
 {
   lib,
   config,
-  palette,
   inputs,
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.myOptions.theme.colorScheme) palette;
 
   cfg = config.myOptions.hyprlock;
 in

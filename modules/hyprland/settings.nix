@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  palette,
   inputs,
   ...
 }:
@@ -14,6 +13,8 @@ let
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
   clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard-rs "wl-copy"}";
   emojiPicker = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
+
+  inherit (config.myOptions.theme.colorScheme) palette;
 in
 {
   hj.rum.programs.hyprland.settings = {

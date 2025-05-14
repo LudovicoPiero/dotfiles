@@ -1,12 +1,12 @@
 {
   lib,
   pkgs,
-  palette,
   config,
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.myOptions.theme.colorScheme) palette;
 
   _ = lib.getExe;
   json = pkgs.formats.json { };
