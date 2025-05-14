@@ -18,9 +18,7 @@ let
 in
 {
   options.myOptions.gaming = {
-    enable = mkEnableOption "gaming" // {
-      default = config.vars.withGui;
-    };
+    enable = mkEnableOption "gaming";
 
     withGamemode = mkOption {
       type = types.bool;
