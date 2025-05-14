@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   inherit (lib) mkOption types;
 in
@@ -19,6 +19,11 @@ in
     username = mkOption {
       type = types.str;
       default = "airi";
+    };
+
+    homeDirectory = mkOption {
+      type = types.str;
+      default = "/home/${config.vars.username}";
     };
 
     terminal = mkOption {
