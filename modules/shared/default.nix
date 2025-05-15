@@ -9,20 +9,11 @@
   # Nixos Stuff
   imports = [
     inputs.lix-module.nixosModules.default
-    inputs.chaotic.nixosModules.default
 
     ./users.nix
     ./security.nix
     ./hjem.nix
   ];
-
-  # Chaotic-cx stuff
-  chaotic.nyx = {
-    cache.enable = false;
-    nixPath.enable = false;
-    registry.enable = false;
-    overlay.enable = true;
-  };
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -212,16 +203,12 @@
         # Lower value means higher priority.
         "https://cache.nixos.org?priority=10"
         "https://nix-community.cachix.org?priority=20"
-        "https://nyx.chaotic.cx?priority=30"
-        "https://chaotic-nyx.cachix.org?priority=35"
         "https://cache.garnix.io?priority=40"
       ];
 
       trusted-public-keys = [
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       ];
     };
 

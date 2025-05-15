@@ -50,7 +50,7 @@
       "xfs"
     ];
 
-    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   # OpenGL

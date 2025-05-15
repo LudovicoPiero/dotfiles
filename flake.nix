@@ -42,9 +42,6 @@
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    chaotic.inputs.nixpkgs.follows = "nixpkgs";
-
     minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
     minecraft.inputs.nixpkgs.follows = "nixpkgs";
 
