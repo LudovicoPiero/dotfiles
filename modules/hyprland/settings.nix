@@ -230,7 +230,7 @@ in
       "workspace 3, class:^(vesktop)$"
 
       # Browsers
-      ## Firefox
+      ## Firefox / floorp
       "workspace 2, class:^(firefox)$"
       "noblur, class:^(firefox)$"
       "noshadow, class:^(firefox)$"
@@ -261,9 +261,6 @@ in
       "workspace 1, class:^(jetbrains-clion)$"
       "workspace 1, class:^(Albion-Online)$"
 
-      # Floating windows
-      "float, class:^(xdg-desktop-portal-gtk)$,title:^(Open Files)$"
-
       # KeepassXC rules
       "noblur, class:^(org.keepassxc.KeePassXC)$"
       "noanim, class:^(org.keepassxc.KeePassXC)$"
@@ -274,6 +271,7 @@ in
       "noblur, title:^(.*(Disc|WebC)ord.*)$"
       "noblur, title:^(Open File)$"
       "noshadow, title:^(.*(Disc|WebC)ord.*)$"
+      "float, class:^(xdg-desktop-portal-gtk)$,title:^(Open File(s)?)$"
 
       # Noanim rules
       "noanim, class:^(org.telegram.desktop)$"
@@ -346,7 +344,9 @@ in
       ]
       ++ lib.optionals config.myOptions.firefox.enable [ "$mod      , G , exec , ${uwsm} app -- firefox" ]
       ++ lib.optionals config.myOptions.vesktop.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
-      ++ lib.optionals config.myOptions.moonlight.enable [ "$mod  SHIFT, D , exec , ${uwsm} app -- discord${config.myOptions.moonlight.discordVariants}" ]
+      ++ lib.optionals config.myOptions.moonlight.enable [
+        "$mod  SHIFT, D , exec , ${uwsm} app -- discord${config.myOptions.moonlight.discordVariants}"
+      ]
       ++ lib.optionals config.myOptions.spotify.enable [
         "$mod SHIFT, S , exec , ${uwsm} app -- spotify"
       ];
