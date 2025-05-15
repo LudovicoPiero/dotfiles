@@ -169,9 +169,7 @@
             };
           };
         };
-        repositories = [
-          "https://moonlight-mod.github.io/extensions-dist/repo.json"
-        ];
+        repositories = [ "https://moonlight-mod.github.io/extensions-dist/repo.json" ];
       };
     };
 
