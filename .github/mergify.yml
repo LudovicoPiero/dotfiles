@@ -6,6 +6,7 @@ queue_rules:
       - -merged
       - -closed
       - -draft
+      - -author~=\[bot\]$
     merge_conditions: []
     merge_method: rebase
     update_method: rebase
