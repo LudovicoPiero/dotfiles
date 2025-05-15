@@ -10,6 +10,11 @@ let
 
   _ = lib.getExe;
   json = pkgs.formats.json { };
+
+  waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
+    date "+%A, %d %B %Y"
+  '';
+
   cfg = config.myOptions.waybar;
 in
 {
@@ -58,6 +63,7 @@ in
               "network"
               "battery"
               "clock"
+              "custom/date"
               "custom/power"
             ];
             backlight = {
@@ -110,19 +116,38 @@ in
               format-off = "󰂲{status}";
               format-disabled = "󰂲{status}";
               format-connected = "󰂯{device_alias}";
-              format-connected-battery = "󰂯{device_alias}, {device_battery_percentage}%";
+              format-connected-battery = "󰂯{device_battery_percentage}%";
               tooltip = true;
               tooltip-format = "{controller_alias}\t{controller_address}";
               tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
               tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
             };
-            clock = {
-              interval = 60;
-              align = 0;
-              rotate = 0;
-              tooltip-format = "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>";
-              format = " {:%I:%M %p}";
-              format-alt = " {:%a %b %d, %G}";
+            "clock" = {
+              "format" = " {:%I:%M %p}";
+              "tooltip-format" = "<tt><small>{calendar}</small></tt>";
+              "calendar" = {
+                "mode" = "year";
+                "mode-mon-col" = 3;
+                "weeks-pos" = "right";
+                "on-scroll" = 1;
+                "format" = {
+                  "months" = "<span color='#ffead3'><b>{}</b></span>";
+                  "days" = "<span color='#ecc6d9'><b>{}</b></span>";
+                  "weeks" = "<span color='#99ffdd'><b>W{}</b></span>";
+                  "weekdays" = "<span color='#ffcc66'><b>{}</b></span>";
+                  "today" = "<span color='#ff6699'><b><u>{}</u></b></span>";
+                };
+              };
+              "actions" = {
+                "on-click-right" = "mode";
+                "on-scroll-up" = "shift_up";
+                "on-scroll-down" = "shift_down";
+              };
+            };
+            "custom/date" = {
+              format = " {}";
+              interval = 3600;
+              exec = "${_ waybar-date}";
             };
             cpu = {
               interval = 5;
@@ -515,6 +540,10 @@ in
             color: #${palette.base0D};
           }
 
+          #custom-date {
+            color: #${palette.base0D};
+          }
+
           #network {
             color: #${palette.base0E};
           }
@@ -560,6 +589,7 @@ in
           #battery,
           #clock,
           #cpu,
+          #custom-date,
           #custom-disk_root,
           #custom-disk_home,
           #disk,
