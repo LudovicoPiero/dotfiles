@@ -39,8 +39,12 @@
     anime.inputs.nixpkgs.follows = "nixpkgs";
 
     # Lix
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+    # lix-module.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Detsys' nix
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+    determinate.inputs.nixpkgs.follows = "nixpkgs";
 
     minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
     minecraft.inputs.nixpkgs.follows = "nixpkgs";
