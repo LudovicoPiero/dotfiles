@@ -35,8 +35,8 @@ in
         padding=20
         default-timeout=5000
         layer=top
-        height=100
-        width=300
+        height=125
+        width=400
       '';
     };
   };
