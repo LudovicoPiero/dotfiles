@@ -11,7 +11,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.3
-      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Install Lix
+        uses: DeterminateSystems/nix-installer-action@v17
+        with:
+          diagnostic-endpoint: ''
+          source-url: 'https://install.lix.systems/lix/lix-installer-x86_64-linux'
+
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
         with:
