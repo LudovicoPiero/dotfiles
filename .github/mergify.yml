@@ -9,17 +9,29 @@ pull_request_rules:
   - name: Automatic merge when CI passes
     conditions:
       - check-success=All Garnix checks
+      - -title~=(WIP|wip)
+      - -merged
+      - -closed
+      - -draft
     actions:
-      merge:
+      queue:
+        name: default
         method: rebase
-      delete_head_branch:
 
-  - name: Warn on conflicts
+  - name: Toggle conflict label based on mergeability
     conditions:
       - conflict
     actions:
+      label:
+        toggle:
+          - conflict
       comment:
         message: "@{{author}} this pull request is now in conflict 😩"
+
+  - name: Label WIP PRs
+    conditions:
+      - title~=(WIP|wip)
+    actions:
       label:
         add:
-          - conflict
+          - WIP
