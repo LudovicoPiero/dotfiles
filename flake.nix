@@ -45,6 +45,10 @@
     minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
     minecraft.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Moonlight ( Discord Mod )
+    moonlight.url = "github:moonlight-mod/moonlight";
+    moonlight.inputs.nixpkgs.follows = "nixpkgs";
+
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin-base16.url = "github:catppuccin/base16";

@@ -13,6 +13,7 @@ _: {
     ./hyprland
     ./keyring
     ./mako
+    ./moonlight
     ./nvim
     ./pipewire
     ./sddm
