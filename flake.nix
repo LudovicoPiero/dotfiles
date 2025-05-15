@@ -2,7 +2,7 @@
   description = "xd uwu";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.follows = "nixpkgs-unstable";
 
     hjem.url = "github:feel-co/hjem";
