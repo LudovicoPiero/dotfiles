@@ -5,15 +5,26 @@
   inputs,
   ...
 }:
+
 let
   inherit (lib)
     mkEnableOption
     mkIf
     mkOption
     types
+    literalExpression
     ;
 
   jsonFormat = pkgs.formats.json { };
+
+  moonlightPackages =
+    inputs.moonlight.packages.${pkgs.stdenv.hostPlatform.system}."discord-${cfg.discordVariants}";
+
+  discordVariantsOption = mkOption {
+    type = types.str;
+    default = "stable";
+    description = "Which Discord variant to use (e.g., 'stable', 'ptb', 'canary', or 'development').";
+  };
 
   cfg = config.myOptions.moonlight;
 in
@@ -21,25 +32,22 @@ in
   options.myOptions.moonlight = {
     enable = mkEnableOption "Moonlight - Yet another Discord mod";
 
+    discordVariants = discordVariantsOption;
+
     package = mkOption {
       type = types.package;
-      default =
-        inputs.moonlight.packages.${pkgs.stdenv.hostPlatform.system}."discord-${cfg.discordVariants}";
-    };
-
-    discordVariants = mkOption {
-      type = types.str;
-      default = "stable";
+      default = moonlightPackages;
+      description = "The Moonlight-wrapped Discord package to use.";
     };
 
     settings = mkOption {
       type = jsonFormat.type;
       default = { };
       description = ''
-        Config files written to
+        Config written to
         `$XDG_CONFIG_HOME/moonlight-mod/${cfg.discordVariants}.json`.
       '';
-      example = lib.literalExpression ''
+      example = literalExpression ''
         {
           extensions = {
             moonbase = true;
