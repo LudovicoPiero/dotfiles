@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   inherit (config.myOptions.theme.colorScheme) palette;
