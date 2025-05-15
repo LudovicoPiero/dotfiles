@@ -134,13 +134,16 @@
           imageViewer = true;
           mentionAvatars = true;
           noReplyPing = true;
-          freeMoji = true;
+          freeMoji = false;
           silenceTyping = true;
           nameColor = true;
           moonlight-css = {
             enabled = true;
             config = {
               paths = [
+                "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-avatar-decoration.css"
+                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-invite-button.css"
                 # "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
                 # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
               ];
