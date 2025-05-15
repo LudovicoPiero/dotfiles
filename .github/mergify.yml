@@ -8,6 +8,7 @@ queue_rules:
       - -draft
     merge_conditions: []
     merge_method: rebase
+    update_method: rebase
 
 pull_request_rules:
   - name: Automatic rebase for PRs marked as "keep-up-to-date"
@@ -16,6 +17,11 @@ pull_request_rules:
       - -draft
     actions:
       update:
+
+  - name: Automatic merge when CI passes
+    actions:
+      queue:
+
   - name: Toggle conflict label based on mergeability
     conditions:
       - conflict
@@ -33,7 +39,3 @@ pull_request_rules:
       label:
         add:
           - WIP
-  - name: Automatic merge when CI passes
-    conditions: []
-    actions:
-      queue:
