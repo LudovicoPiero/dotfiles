@@ -19,6 +19,7 @@ pull_request_rules:
       update:
 
   - name: Automatic merge when CI passes
+    conditions: []
     actions:
       queue:
 
