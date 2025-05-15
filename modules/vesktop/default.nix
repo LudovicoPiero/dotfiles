@@ -14,13 +14,13 @@ let
     mkOption
     ;
 
-  cfg = config.myOptions.discord;
+  cfg = config.myOptions.vesktop;
 in
 {
-  options.myOptions.discord = {
-    enable = mkEnableOption "discord";
+  options.myOptions.vesktop = {
+    enable = mkEnableOption "Vesktop";
 
-    package = mkPackageOption pkgs "discord" {
+    package = mkPackageOption pkgs "vesktop" {
       example = "pkgs.vesktop.override { withTTS = false; }";
     };
 

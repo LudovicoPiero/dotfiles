@@ -1,6 +1,5 @@
 _: {
   imports = [
-    ./discord
     ./dnscrypt2
     ./fcitx5
     ./firefox
@@ -23,6 +22,7 @@ _: {
     ./theme
     ./tlp
     ./vars
+    ./vesktop
     ./vscode
     ./waybar
     ./wezterm

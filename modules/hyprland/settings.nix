@@ -345,7 +345,8 @@ in
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
       ++ lib.optionals config.myOptions.firefox.enable [ "$mod      , G , exec , ${uwsm} app -- firefox" ]
-      ++ lib.optionals config.myOptions.discord.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
+      ++ lib.optionals config.myOptions.vesktop.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
+      ++ lib.optionals config.myOptions.moonlight.enable [ "$mod  SHIFT, D , exec , ${uwsm} app -- discord${config.myOptions.moonlight.discordVariants}" ]
       ++ lib.optionals config.myOptions.spotify.enable [
         "$mod SHIFT, S , exec , ${uwsm} app -- spotify"
       ];

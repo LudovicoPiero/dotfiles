@@ -34,22 +34,6 @@
       silent = true;
     };
 
-    discord = {
-      enable = true;
-      package = pkgs.vesktop.overrideAttrs (old: {
-        postFixup =
-          (old.postFixup or "")
-          + ''
-            wrapProgram $out/bin/vesktop \
-              --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime=true"
-          '';
-      });
-      themeLinks = [
-        # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
-        "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
-      ];
-    };
-
     dnscrypt2 = {
       enable = true;
       StateDirectory = "dnscrypt-proxy";
@@ -234,6 +218,22 @@
 
     tlp = {
       enable = true;
+    };
+
+    vesktop = {
+      enable = false;
+      package = pkgs.vesktop.overrideAttrs (old: {
+        postFixup =
+          (old.postFixup or "")
+          + ''
+            wrapProgram $out/bin/vesktop \
+              --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime=true"
+          '';
+      });
+      themeLinks = [
+        # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
+        "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
+      ];
     };
 
     vscode = {
