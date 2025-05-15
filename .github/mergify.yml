@@ -1,3 +1,14 @@
+queue_rules:
+  - name: default
+    queue_conditions:
+      - check-success=All Garnix checks
+      - -title~=(WIP|wip)
+      - -merged
+      - -closed
+      - -draft
+    merge_conditions: []
+    merge_method: rebase
+
 pull_request_rules:
   - name: Automatic rebase for PRs marked as "keep-up-to-date"
     conditions:
@@ -5,19 +16,6 @@ pull_request_rules:
       - -draft
     actions:
       update:
-
-  - name: Automatic merge when CI passes
-    conditions:
-      - check-success=All Garnix checks
-      - -title~=(WIP|wip)
-      - -merged
-      - -closed
-      - -draft
-    actions:
-      queue:
-        name: default
-        method: rebase
-
   - name: Toggle conflict label based on mergeability
     conditions:
       - conflict
@@ -35,3 +33,7 @@ pull_request_rules:
       label:
         add:
           - WIP
+  - name: Automatic merge when CI passes
+    conditions: []
+    actions:
+      queue:
