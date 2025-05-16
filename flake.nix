@@ -2,7 +2,7 @@
   description = "xd uwu";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.follows = "nixpkgs-unstable";
 
     hjem.url = "github:feel-co/hjem";
@@ -50,6 +50,8 @@
     moonlight.inputs.nixpkgs.follows = "nixpkgs";
 
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
+    ludovico-nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin-base16.url = "github:catppuccin/base16";
     catppuccin-base16.flake = false;
