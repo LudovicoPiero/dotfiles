@@ -15,7 +15,7 @@ with pkgs;
   config = lib.mkIf cfg.enable {
     hj.rum.programs.fish.earlyConfigFiles.myFunctions = ''
       function gitignore
-          curl -sL https://www.gitignore.io/api/$argv
+          curl -sL https://www.toptal.com/developers/gitignore/api/$argv
       end
 
       function run
