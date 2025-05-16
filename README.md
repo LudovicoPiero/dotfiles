@@ -13,9 +13,10 @@
 
 ---
 
-> **⚠️ Disclaimer:**  
-> This is my personal NixOS configuration, a work in progress. I'm using this setup to learn Nix and manage my personal computers with NixOS.  
-> **Any damage caused by this configuration is not my responsibility. Use at your own risk.**  
+> [!WARNING]
+> This is my personal NixOS configuration and a work in progress.  
+> I'm using it to learn Nix and manage my own systems.  
+> **Use at your own risk — I am not responsible for any damage caused.**  
 
 ---
 
