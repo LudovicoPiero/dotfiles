@@ -42,13 +42,13 @@ in
 
     systemd.user.services.hypridle = {
       enable = true;
-      description = "hypridle service";
+      description = "Hyprland's idle daemon";
       after = [ "graphical-session.target" ];
       wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
+      bindsTo = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        Restart = "always";
+        Restart = "on-failure";
         ExecStart = "${lib.getExe hypridlePackage}";
       };
     };

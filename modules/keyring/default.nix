@@ -30,11 +30,17 @@ in
     };
     security.polkit.enable = true;
 
-    systemd.packages = [ pkgs.hyprpolkitagent ];
     systemd.user.services.hyprpolkitagent = {
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
+      enable = true;
+      description = "Polkit authentication agent";
       after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      bindsTo = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        Restart = "on-failure";
+        ExecStart = "${lib.getExe pkgs.hyprpolkitagent}";
+      };
     };
   };
 }

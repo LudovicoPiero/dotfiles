@@ -48,6 +48,19 @@ in
       };
     };
 
+    systemd.user.services.fcitx5 = {
+      enable = true;
+      description = "Input method framework";
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      bindsTo = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        Restart = "on-failure";
+        ExecStart = "${lib.getExe pkgs.fcitx5}";
+      };
+    };
+
     systemd.user.tmpfiles.users.${config.vars.username}.rules = [
       "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}"
     ];

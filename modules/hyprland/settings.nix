@@ -18,17 +18,11 @@ let
 in
 {
   hj.rum.programs.hyprland.settings = {
-    exec-once =
-      [
-        "${uwsm} finalize"
-        "systemctl --user stop xdg-desktop-portal-gnome.service xdg-desktop-portal-kde.service"
-        "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
-        "${uwsm} app -- ${_ pkgs.swaybg} -i ${inputs.self}/assets/Lain_Red.png"
-        "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
-        "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
-      ]
-      ++ lib.optionals config.myOptions.waybar.enable [ "${uwsm} app -- waybar" ]
-      ++ lib.optionals (config.i18n.inputMethod.type == "fcitx5") [ "fcitx5 -d --replace" ];
+    exec-once = [
+      "${uwsm} finalize"
+      "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
+      "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
+    ];
 
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"

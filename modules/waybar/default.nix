@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkPackageOption mkIf;
   inherit (config.myOptions.theme.colorScheme) palette;
 
   _ = lib.getExe;
@@ -19,12 +19,28 @@ let
 in
 {
   options.myOptions.waybar = {
-    enable = mkEnableOption "waybar";
+    enable = mkEnableOption "waybar service";
+
+    package = mkPackageOption pkgs "waybar" { };
   };
 
   config = mkIf cfg.enable {
+
+    systemd.user.services.waybar = {
+      enable = true;
+      description = "Highly customizable Wayland bar";
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      bindsTo = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        Restart = "on-failure";
+        ExecStart = "${lib.getExe cfg.package}";
+      };
+    };
+
     hj = {
-      packages = [ pkgs.waybar ];
+      packages = [ cfg.package ];
 
       files = {
         ".config/waybar/config".source = (

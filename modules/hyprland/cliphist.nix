@@ -65,7 +65,7 @@ in
 
     systemd.user.services.cliphist = {
       description = "Clipboard management daemon";
-      partOf = lib.toList cfg.systemdTargets;
+      bindsTo = lib.toList cfg.systemdTargets;
       after = lib.toList cfg.systemdTargets;
       wantedBy = lib.toList cfg.systemdTargets;
 
@@ -79,7 +79,7 @@ in
 
     systemd.user.services.cliphist-images = lib.mkIf cfg.allowImages {
       description = "Clipboard management daemon - images";
-      partOf = lib.toList cfg.systemdTargets;
+      bindsTo = lib.toList cfg.systemdTargets;
       after = lib.toList cfg.systemdTargets;
       wantedBy = lib.toList cfg.systemdTargets;
 
