@@ -235,7 +235,7 @@ in
               enabled = false;
             };
             FixImagesQuality = {
-              enabled = false;
+              enabled = true;
             };
             FixSpotifyEmbeds = {
               enabled = false;
@@ -277,7 +277,7 @@ in
               enabled = false;
             };
             ImageZoom = {
-              enabled = false;
+              enabled = true;
             };
             ImplicitRelationships = {
               enabled = false;
