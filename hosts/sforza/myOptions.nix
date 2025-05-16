@@ -69,11 +69,11 @@
       };
       main = {
         name = "SF Pro Rounded";
-        package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
+        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
       };
       terminal = {
         name = "Iosevka Q";
-        package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
+        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
       };
     };
 
@@ -212,7 +212,7 @@
         };
         theme = {
           name = "WhiteSur-Dark";
-          package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
+          package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
         };
       };
     };

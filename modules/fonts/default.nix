@@ -26,7 +26,7 @@ in
       };
       package = mkOption {
         type = types.package;
-        default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
+        default = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
       };
     };
 
@@ -37,7 +37,7 @@ in
       };
       package = mkOption {
         type = types.package;
-        default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
+        default = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
       };
     };
 
@@ -90,7 +90,7 @@ in
         cfg.emoji.package
         cfg.icon.package
 
-        inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.sarasa-gothic
+        inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.sarasa-gothic
 
         pkgs.symbola
         pkgs.wqy_zenhei # For Steam

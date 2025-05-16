@@ -37,7 +37,7 @@ in
           }
           // (
             let
-              inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
+              inherit (inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
             in
             {
               userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';

@@ -48,7 +48,7 @@ in
         };
         package = mkOption {
           type = types.package;
-          default = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
+          default = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
         };
       };
 

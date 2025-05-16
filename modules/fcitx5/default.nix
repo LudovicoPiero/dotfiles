@@ -41,7 +41,7 @@ in
           addons = with pkgs; [
             fcitx5-mozc
             fcitx5-gtk
-            inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-fcitx5 # Theme
+            inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-fcitx5 # Theme
             libsForQt5.fcitx5-qt
           ];
         };

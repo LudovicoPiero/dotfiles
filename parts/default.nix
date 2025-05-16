@@ -1,17 +1,25 @@
+{ inputs, ... }:
 {
-  systems = [
-    "x86_64-linux"
-    # "aarch64-linux"
-    # "aarch64-darwin"
-    # "x86_64-darwin"
-  ];
+  systems = [ "x86_64-linux" ];
 
   perSystem =
-    { pkgs, lib, ... }:
     {
+      pkgs,
+      lib,
+      system,
+      ...
+    }:
+    {
+      # This sets `pkgs` to a nixpkgs with allowUnfree option set.
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        overlays = [ ];
+        config.allowUnfree = true;
+      };
+
       formatter = pkgs.writeShellScriptBin "formatter" ''
-        echo "Formatting *.nix files (excluding packages/)..."
-        fd . -t f -e nix --exclude packages/ -x ${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"} -s '{}'
+        echo "Formatting *.nix files..."
+        fd . -t f -e nix -x ${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"} -s '{}'
 
         echo "Formatting *.html files..."
         fd . -t f -e html -x ${lib.getExe pkgs.nodePackages.prettier} --write '{}'

@@ -52,6 +52,9 @@
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     ludovico-nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
+    ludovico-pkgs.url = "github:LudovicoPiero/pkgs";
+    ludovico-pkgs.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin-base16.url = "github:catppuccin/base16";
     catppuccin-base16.flake = false;
@@ -63,7 +66,6 @@
       imports = [
         ./hosts
         ./parts
-        ./packages
       ];
     };
 }

@@ -23,7 +23,7 @@ in
     programs.spicetify = {
       enable = true;
       experimentalFeatures = true;
-      spotifyPackage = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.spotify;
+      spotifyPackage = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.spotify;
 
       theme = spicePkgs.themes.text;
       colorScheme = "Spotify";
