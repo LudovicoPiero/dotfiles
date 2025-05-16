@@ -13,6 +13,24 @@ let
     types
     ;
 
+  basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  LTOPackage =
+    (basePackage.override {
+      stdenv = pkgs.clangStdenv;
+    }).overrideAttrs
+      (prevAttrs: {
+        patches = (prevAttrs.patches or [ ]) ++ [
+          ./patches/add-env-vars-to-export.patch
+          ./patches/enable-lto.patch
+        ];
+        mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
+          (lib.mesonBool "b_lto" true)
+          (lib.mesonOption "b_lto_threads" "4")
+          (lib.mesonOption "b_lto_mode" "thin")
+          (lib.mesonBool "b_thinlto_cache" true)
+        ];
+      });
+
   cfg = config.myOptions.hyprland;
 in
 {
@@ -26,6 +44,11 @@ in
 
   options.myOptions.hyprland = {
     enable = mkEnableOption "hyprland";
+
+    package = mkOption {
+      type = types.package;
+      default = if cfg.withLTO then LTOPackage else basePackage;
+    };
 
     withLTO = mkOption {
       type = types.bool;
@@ -47,28 +70,7 @@ in
 
       hyprland = {
         enable = true;
-
-        package =
-          let
-            basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-            LTOPackage =
-              (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-                stdenv = pkgs.clangStdenv;
-              }).overrideAttrs
-                (prevAttrs: {
-                  patches = (prevAttrs.patches or [ ]) ++ [
-                    ./patches/add-env-vars-to-export.patch
-                    ./patches/enable-lto.patch
-                  ];
-                  mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
-                    (lib.mesonBool "b_lto" true)
-                    (lib.mesonOption "b_lto_threads" "4")
-                    (lib.mesonOption "b_lto_mode" "thin")
-                    (lib.mesonBool "b_thinlto_cache" true)
-                  ];
-                });
-          in
-          if cfg.withLTO then LTOPackage else basePackage;
+        package = cfg.package;
         portalPackage =
           inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       };
