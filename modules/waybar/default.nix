@@ -37,6 +37,8 @@ in
         Restart = "on-failure";
         ExecStart = "${lib.getExe cfg.package}";
       };
+
+      path = [ config.myOptions.hyprland.package ];
     };
 
     hj = {
