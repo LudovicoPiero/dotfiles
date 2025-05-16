@@ -117,7 +117,7 @@
     };
 
     moonlight = {
-      enable = true;
+      enable = false;
       discordVariants = "canary";
       settings = {
         extensions = {
@@ -222,7 +222,7 @@
     };
 
     vesktop = {
-      enable = false;
+      enable = true;
       package = pkgs.vesktop.overrideAttrs (old: {
         postFixup =
           (old.postFixup or "")
