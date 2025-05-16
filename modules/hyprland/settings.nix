@@ -12,7 +12,7 @@ let
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
   clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard-rs "wl-copy"}";
-  emojiPicker = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
+  emojiPicker = "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji}";
 
   inherit (config.myOptions.theme.colorScheme) palette;
 in
@@ -23,7 +23,6 @@ in
         "${uwsm} finalize"
         "systemctl --user stop xdg-desktop-portal-gnome.service xdg-desktop-portal-kde.service"
         "systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal.service xdg-desktop-portal-hyprland.service"
-        "${uwsm} app -- ${_ pkgs.mako}"
         "${uwsm} app -- ${_ pkgs.swaybg} -i ${inputs.self}/assets/Lain_Red.png"
         "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
         "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
@@ -289,14 +288,14 @@ in
         "$mod      , M , exec , [workspace 9 silent;tile] ${uwsm} app --  thunderbird"
         "$mod      , P , exec , ${uwsm} app -- ${launcher}"
         "$mod      , O , exec , ${uwsm} app -- ${clipboard}"
-        "$mod SHIFT, O , exec , ${uwsm} app -- ${_ emojiPicker}"
+        "$mod SHIFT, O , exec , ${uwsm} app -- ${emojiPicker}"
         "$mod SHIFT, P , exec , ${uwsm} app -- ${__ pkgs.pass-wayland "passmenu"}"
         "$mod      , Space , togglefloating ,"
         "$mod      , R , togglegroup ,"
         "$mod SHIFT, J , changegroupactive, f"
         "$mod SHIFT, K , changegroupactive, b"
         "$mod      , W , killactive ,"
-        "$mod      , X , exec , ${powermenu}"
+        "$mod      , X , exec , ${uwsm} app -- ${powermenu}"
         "$mod      , Return , exec , ${uwsm} app -- '${config.vars.terminal}'"
 
         ", print, exec , ${uwsm} app --  wl-ocr"
