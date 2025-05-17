@@ -91,7 +91,7 @@ in
       dim_strength = 0.7;
 
       blur = {
-        enabled = true;
+        enabled = if (config.vars.opacity < 1) then true else false;
         size = 2;
         passes = 2;
         # contrast = 0.8916;
