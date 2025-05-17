@@ -100,7 +100,7 @@ in
         new_optimizations = true;
         ignore_opacity = true;
         xray = true;
-        special = true;
+        special = false;
       };
 
       shadow = {
