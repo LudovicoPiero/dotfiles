@@ -223,13 +223,12 @@ in
       "workspace 3, class:^(vesktop)$"
 
       # Browsers
-      ## Firefox / floorp
-      "workspace 2, class:^(firefox)$"
-      "noblur, class:^(firefox)$"
-      "noshadow, class:^(firefox)$"
-      "idleinhibit focus, class:^(mpv|.+exe)$"
-      "idleinhibit focus, class:^(firefox|floorp)$, title:^(.*YouTube.*)$"
-      "idleinhibit fullscreen, class:^(firefox|floorp)$"
+      # Firefox / floorp / zen
+      "workspace 2, class:^(firefox|floorp|zen-beta)$"
+      "noblur, class:^(firefox|floorp|zen-beta)$"
+      "noshadow, class:^(firefox|floorp|zen-beta)$"
+      "idleinhibit focus, class:^(firefox|floorp|zen-beta)$, title:^(.*YouTube.*)$"
+      "idleinhibit fullscreen, class:^(firefox|floorp|zen-beta)$"
 
       # Foobar2000
       "workspace 5, class:^(foobar2000.exe)$"
