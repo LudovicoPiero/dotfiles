@@ -27,5 +27,6 @@ _: {
     ./waybar
     ./wezterm
     ./xdg-portal
+    ./zen-browser
   ];
 }
