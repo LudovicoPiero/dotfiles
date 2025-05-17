@@ -18,6 +18,7 @@
       "zen.view.show-newtab-button-top" = false;
       "zen.welcome-screen.seen" = true;
 
+      "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # Hide picture-in-picture
       "extensions.autoDisableScopes" = 0;
       "browser.search.region" = "AU";
       "browser.search.isUS" = false;
@@ -37,6 +38,7 @@
       "network.trr.bootstrapAddress" = "1.1.1.1";
 
       # Disable telemetry
+      "datareporting.usage.uploadEnabled" = false;
       "browser.newtabpage.activity-stream.feeds.telemetry" = false;
       "browser.ping-centre.telemetry" = false;
       "browser.tabs.crashReporting.sendReport" = false;
@@ -71,9 +73,11 @@
       # Tweaks from archwiki
       "browser.cache.disk.enable" = false;
       "browser.cache.memory.enable" = true;
-      "browser.cache.memory.capacity" = -1;
+      "browser.cache.memory.capacity" = 131072; # 128 MB
+      "browser.cache.memory.max_entry_size" = 20480; # 20 MB
       "browser.aboutConfig.showWarning" = false;
       "browser.preferences.defaultPerformanceSettings.enabled" = false;
+      "browser.places.speculativeConnect.enabled" = false;
       "middlemouse.paste" = false;
 
       # Smooth Scroll
