@@ -22,6 +22,7 @@
       "browser.privatebrowsing.vpnpromourl" = "";
       "browser.tabs.firefox-view" = false; # Disable Firefox View
       "browser.tabs.firefox-view-next" = false;
+      "browser.shell.checkDefaultBrowser" = false;
 
       "sidebar.verticalTabs" = false;
       "sidebar.main.tools" = "";
