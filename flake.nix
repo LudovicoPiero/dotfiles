@@ -55,6 +55,10 @@
     ludovico-pkgs.url = "github:LudovicoPiero/pkgs";
     ludovico-pkgs.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Zen Browser
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin-base16.url = "github:catppuccin/base16";
     catppuccin-base16.flake = false;

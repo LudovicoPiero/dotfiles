@@ -257,5 +257,9 @@
     xdg-portal = {
       enable = true;
     };
+
+    zen-browser = {
+      enable = true;
+    };
   };
 }
