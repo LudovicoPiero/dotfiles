@@ -139,6 +139,9 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
+    # Improve nix store disk usage
+    optimise.automatic = true;
+
     settings = {
       experimental-features = [
         # Enable flakes.
@@ -214,9 +217,6 @@
       default.flake = inputs.nixpkgs;
       nixpkgs.flake = inputs.nixpkgs;
     };
-
-    # Improve nix store disk usage
-    optimise.automatic = true;
   };
   system.stateVersion = config.vars.stateVersion;
 }
