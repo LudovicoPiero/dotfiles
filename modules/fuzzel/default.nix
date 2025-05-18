@@ -1,7 +1,15 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
   inherit (config.myOptions.theme.colorScheme) palette;
+
+  app2unit = "${getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit}";
 
   cfg = config.myOptions.fuzzel;
 in
@@ -28,6 +36,8 @@ in
           use-bold = "yes";
           prompt = "->";
           width = 50;
+          launch-prefix =
+            if config.myOptions.hyprland.withUWSM then "${app2unit} --fuzzel-compat --" else null;
         };
 
         border = {

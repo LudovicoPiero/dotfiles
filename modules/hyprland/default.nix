@@ -11,6 +11,7 @@ let
     mkIf
     mkOption
     types
+    mkMerge
     ;
 
   basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -50,6 +51,11 @@ in
       default = if cfg.withLTO then LTOPackage else basePackage;
     };
 
+    withUWSM = mkOption {
+      type = types.bool;
+      default = true;
+    };
+
     withLTO = mkOption {
       type = types.bool;
       default = false;
@@ -57,9 +63,9 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    programs = {
-      uwsm = {
+  config = mkIf cfg.enable (mkMerge [
+    (mkIf cfg.withUWSM {
+      programs.uwsm = {
         enable = true;
         waylandCompositors.hyprland = {
           binPath = "/run/current-system/sw/bin/Hyprland";
@@ -68,29 +74,36 @@ in
         };
       };
 
-      hyprland = {
+      hj.environment.sessionVariables = {
+        APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
+        APP2UNIT_TYPE = "scope";
+      };
+    })
+
+    {
+      programs.hyprland = {
         enable = true;
         package = cfg.package;
         portalPackage =
           inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       };
-    };
 
-    hj.rum.programs.hyprland = {
-      enable = true;
+      hj.rum.programs.hyprland = {
+        enable = true;
 
-      extraConfig = ''
-        # window resize
-        bind = $mod, S, submap, resize
+        extraConfig = ''
+          # window resize
+          bind = $mod, S, submap, resize
 
-        submap = resize
-        binde = , right, resizeactive, 10 0
-        binde = , left, resizeactive, -10 0
-        binde = , up, resizeactive, 0 -10
-        binde = , down, resizeactive, 0 10
-        bind = , escape, submap, reset
-        submap = reset
-      '';
-    };
-  };
+          submap = resize
+          binde = , right, resizeactive, 10 0
+          binde = , left, resizeactive, -10 0
+          binde = , up, resizeactive, 0 -10
+          binde = , down, resizeactive, 0 10
+          bind = , escape, submap, reset
+          submap = reset
+        '';
+      };
+    }
+  ]);
 }

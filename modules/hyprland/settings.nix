@@ -10,6 +10,15 @@ let
 
   _ = getExe;
   __ = getExe';
+
+  cfg = config.myOptions.hyprland;
+
+  app2unit =
+    if cfg.withUWSM then
+      "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit} --"
+    else
+      "";
+
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
@@ -24,7 +33,7 @@ in
       [
         "${uwsm} finalize"
         "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
-        "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
+        "[workspace 9 silent;noanim] ${app2unit} ${_ pkgs.thunderbird}"
       ]
       ++ optionals config.services.xserver.desktopManager.gnome.enable [
         "systemctl --user stop xdg-desktop-portal-gnome.service"
@@ -285,24 +294,24 @@ in
         "$mod SHIFT, C , exit ,"
         "$mod      , Q, togglespecialworkspace"
         "$mod SHIFT, Q, movetoworkspace, special"
-        "$mod SHIFT, E , exec , ${uwsm} app -- thunar"
+        "$mod SHIFT, E , exec , ${app2unit} thunar"
         "$mod      , F , fullscreen , 0"
-        "$mod      , M , exec , [workspace 9 silent;tile] ${uwsm} app --  thunderbird"
-        "$mod      , P , exec , ${uwsm} app -- ${launcher}"
-        "$mod      , O , exec , ${uwsm} app -- ${clipboard}"
-        "$mod SHIFT, O , exec , ${uwsm} app -- ${emojiPicker}"
-        "$mod SHIFT, P , exec , ${uwsm} app -- ${__ pkgs.pass-wayland "passmenu"}"
+        "$mod      , M , exec , [workspace 9 silent;tile] ${app2unit}  thunderbird"
+        "$mod      , P , exec , ${launcher}"
+        "$mod      , O , exec , ${app2unit} ${clipboard}"
+        "$mod SHIFT, O , exec , ${app2unit} ${emojiPicker}"
+        "$mod SHIFT, P , exec , ${app2unit} ${__ pkgs.pass-wayland "passmenu"}"
         "$mod      , Space , togglefloating ,"
         "$mod      , R , togglegroup ,"
         "$mod SHIFT, J , changegroupactive, f"
         "$mod SHIFT, K , changegroupactive, b"
         "$mod      , W , killactive ,"
-        "$mod      , X , exec , ${uwsm} app -- ${powermenu}"
-        "$mod      , Return , exec , ${uwsm} app -- '${config.vars.terminal}'"
+        "$mod      , X , exec , ${app2unit} ${powermenu}"
+        "$mod      , Return , exec , ${app2unit} '${config.vars.terminal}'"
 
-        ", print, exec , ${uwsm} app --  wl-ocr"
-        "CTRL   , Print , exec , ${uwsm} app -- ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
-        "ALT    , Print , exec , ${uwsm} app -- ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
+        ", print, exec , ${app2unit}  wl-ocr"
+        "CTRL   , Print , exec , ${app2unit} ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
+        "ALT    , Print , exec , ${app2unit} ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
 
         # Dwindle Keybind
         "$mod , h , movefocus , l"
@@ -344,19 +353,19 @@ in
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
       ++ optionals config.myOptions.firefox.enable [
-        "$mod      , G , exec , ${uwsm} app -- firefox"
+        "$mod      , G , exec , ${app2unit} firefox"
       ]
       ++ optionals config.myOptions.zen-browser.enable [
-        "$mod SHIFT, G , exec , ${uwsm} app -- zen"
+        "$mod SHIFT, G , exec , ${app2unit} zen"
       ]
       ++ optionals config.myOptions.vesktop.enable [
-        "$mod      , D , exec , ${uwsm} app -- vesktop"
+        "$mod      , D , exec , ${app2unit} vesktop"
       ]
       ++ optionals config.myOptions.moonlight.enable [
-        "$mod  SHIFT, D , exec , ${uwsm} app -- discord${config.myOptions.moonlight.discordVariants}"
+        "$mod  SHIFT, D , exec , ${app2unit} discord${config.myOptions.moonlight.discordVariants}"
       ]
       ++ optionals config.myOptions.spotify.enable [
-        "$mod SHIFT, S , exec , ${uwsm} app -- spotify"
+        "$mod SHIFT, S , exec , ${app2unit} spotify"
       ];
 
     bindel = [
