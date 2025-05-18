@@ -22,7 +22,7 @@ let
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
-  clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard-rs "wl-copy"}";
+  clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard "wl-copy"}";
   emojiPicker = "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji}";
 
   inherit (config.myOptions.theme.colorScheme) palette;

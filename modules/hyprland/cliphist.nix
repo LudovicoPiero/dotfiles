@@ -71,7 +71,7 @@ in
 
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.wl-clipboard-rs}/bin/wl-paste --watch ${cfg.package}/bin/cliphist ${extraOptionsStr} store";
+        ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${cfg.package}/bin/cliphist ${extraOptionsStr} store";
         Restart = "on-failure";
       };
 
@@ -85,7 +85,7 @@ in
 
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.wl-clipboard-rs}/bin/wl-paste --type image --watch ${cfg.package}/bin/cliphist ${extraOptionsStr} store";
+        ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${cfg.package}/bin/cliphist ${extraOptionsStr} store";
         Restart = "on-failure";
       };
 

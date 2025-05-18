@@ -60,7 +60,7 @@
       ripgrep
       tealdeer
       whois
-      wl-clipboard-rs
+      wl-clipboard
       wget
       unzip
       # Utils for nixpkgs stuff
@@ -90,8 +90,8 @@
         _ = lib.getExe;
       in
       pkgs.writeShellScriptBin "wl-ocr" ''
-        ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard-rs}/bin/wl-copy
-        ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard-rs}/bin/wl-paste)"
+        ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard}/bin/wl-copy
+        ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
       '';
   };
 
