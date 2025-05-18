@@ -6,8 +6,10 @@
   ...
 }:
 let
-  _ = lib.getExe;
-  __ = lib.getExe';
+  inherit (lib) getExe getExe' optionals;
+
+  _ = getExe;
+  __ = getExe';
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
@@ -18,11 +20,18 @@ let
 in
 {
   hj.rum.programs.hyprland.settings = {
-    exec-once = [
-      "${uwsm} finalize"
-      "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
-      "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
-    ];
+    exec-once =
+      [
+        "${uwsm} finalize"
+        "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
+        "[workspace 9 silent;noanim] ${uwsm} app -- ${_ pkgs.thunderbird}"
+      ]
+      ++ optionals config.services.xserver.desktopManager.gnome.enable [
+        "systemctl --user stop xdg-desktop-portal-gnome.service"
+      ]
+      ++ optionals config.services.desktopManager.plasma6.enable [
+        "systemctl --user stop xdg-desktop-portal-kde.service"
+      ];
 
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
@@ -334,17 +343,19 @@ in
 
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
-      ++ lib.optionals config.myOptions.firefox.enable [
+      ++ optionals config.myOptions.firefox.enable [
         "$mod      , G , exec , ${uwsm} app -- firefox"
       ]
-      ++ lib.optionals config.myOptions.zen-browser.enable [
+      ++ optionals config.myOptions.zen-browser.enable [
         "$mod SHIFT, G , exec , ${uwsm} app -- zen"
       ]
-      ++ lib.optionals config.myOptions.vesktop.enable [ "$mod      , D , exec , ${uwsm} app -- vesktop" ]
-      ++ lib.optionals config.myOptions.moonlight.enable [
+      ++ optionals config.myOptions.vesktop.enable [
+        "$mod      , D , exec , ${uwsm} app -- vesktop"
+      ]
+      ++ optionals config.myOptions.moonlight.enable [
         "$mod  SHIFT, D , exec , ${uwsm} app -- discord${config.myOptions.moonlight.discordVariants}"
       ]
-      ++ lib.optionals config.myOptions.spotify.enable [
+      ++ optionals config.myOptions.spotify.enable [
         "$mod SHIFT, S , exec , ${uwsm} app -- spotify"
       ];
 
