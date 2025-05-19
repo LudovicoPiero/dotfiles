@@ -80,8 +80,6 @@ in
           enable-animations = true;
           theme-name = cfg.gtk.theme.name;
           font-name = config.myOptions.fonts.main.name;
-          cursor-theme = cfg.gtk.cursorTheme.name;
-          cursor-size = cfg.gtk.cursorTheme.size;
           cursor-theme-name = cfg.gtk.cursorTheme.name;
           cursor-theme-size = cfg.gtk.cursorTheme.size;
           toolbar-style = "GTK_TOOLBAR_BOTH";
