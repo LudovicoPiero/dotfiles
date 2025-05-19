@@ -13,6 +13,7 @@ with pkgs;
 {
   config = lib.mkIf cfg.enable {
     hj.rum.programs.fish.earlyConfigFiles.myAliases = ''
+      alias c="${_ curlie}"
       alias cat="${_ bat}"
       alias config="cd ~/Code/nixos"
 
@@ -36,6 +37,13 @@ with pkgs;
 
       alias ..="cd .."
       alias ...="cd ../.."
+
+      alias grep="grep --color=auto"
+      alias f="${_ fzf}"
+      alias ff="find . -type f | ${_ fzf}"
+      alias rg="${_ ripgrep}"
+      alias rgr="${_ repgrep}"
+      alias jq="${_ jq}"  # jq if not globally accessible
     '';
   };
 }
