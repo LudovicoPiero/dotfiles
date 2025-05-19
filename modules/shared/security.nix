@@ -1,5 +1,13 @@
 { lib, config, ... }:
 {
+  # Enable zram-based swap
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+    priority = 100;
+  };
+
   boot = {
     # tmpfs = /tmp is mounted in RAM for speed and volatility.
     tmp.useTmpfs = lib.mkDefault true;
