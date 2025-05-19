@@ -8,6 +8,8 @@
     priority = 100;
   };
 
+  environment.defaultPackages = lib.mkDefault [ ];
+
   boot = {
     # tmpfs = /tmp is mounted in RAM for speed and volatility.
     tmp.useTmpfs = lib.mkDefault true;
