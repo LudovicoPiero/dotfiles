@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 {
   vars = {
-    colorScheme = "catppuccin-mocha";
+    colorScheme = "catppuccin-macchiato";
     email = "lewdovico@gnuweeb.org";
     isALaptop = true;
     opacity = 1.0;
