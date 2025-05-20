@@ -144,6 +144,32 @@ with pkgs;
                   echo "Cannot extract '$argv[1]' via extract"
           end
       end
+
+      # Media Stuff
+      # Audio downloader
+      function dla
+        set -l outdir ${config.vars.homeDirectory}/Media/Audios
+        ${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P $outdir $argv
+      end
+
+      # Video downloader
+      function dlv
+        set -l outdir ${config.vars.homeDirectory}/Media/Videos
+        ${_ yt-dlp} --format 'best[ext=mp4]' -P $outdir $argv
+      end
+
+      # Fullscreen screen recording
+      function record
+        set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
+        ${_ wl-screenrec} -f $file
+      end
+
+      # Region-based screen recording
+      function record-region
+        set -l region (${_ slurp})
+        set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
+        ${_ wl-screenrec} -g $region -f $file
+      end
     '';
   };
 }
