@@ -17,14 +17,13 @@ let
 
   jsonFormat = pkgs.formats.json { };
 
-  moonlightPackages =
-    inputs.moonlight.packages.${pkgs.stdenv.hostPlatform.system}."discord-${cfg.discordVariants}";
+  basePackage = inputs.moonlight.packages.${pkgs.stdenv.hostPlatform.system};
 
-  discordVariantsOption = mkOption {
-    type = types.str;
-    default = "stable";
-    description = "Which Discord variant to use (e.g., 'stable', 'ptb', 'canary', or 'development').";
-  };
+  moonlightPackages =
+    if (cfg.discordVariants == "stable") then
+      basePackage."discord"
+    else
+      basePackage."discord-${cfg.discordVariants}";
 
   cfg = config.myOptions.moonlight;
 in
@@ -32,7 +31,11 @@ in
   options.myOptions.moonlight = {
     enable = mkEnableOption "Moonlight - Yet another Discord mod";
 
-    discordVariants = discordVariantsOption;
+    discordVariants = mkOption {
+      type = types.str;
+      default = "stable";
+      description = "Which Discord variant to use (e.g., 'stable', 'ptb', 'canary', or 'development').";
+    };
 
     package = mkOption {
       type = types.package;

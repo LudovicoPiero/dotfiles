@@ -19,6 +19,12 @@ let
     else
       "";
 
+  moonlight =
+    if (config.myOptions.moonlight.discordVariants == "stable") then
+      "discord"
+    else
+      "discord${config.myOptions.moonlight.discordVariants}";
+
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
@@ -362,7 +368,7 @@ in
         "$mod      , D , exec , ${app2unit} vesktop"
       ]
       ++ optionals config.myOptions.moonlight.enable [
-        "$mod  SHIFT, D , exec , ${app2unit} discord${config.myOptions.moonlight.discordVariants}"
+        "$mod  SHIFT, D , exec , ${app2unit} ${moonlight}"
       ]
       ++ optionals config.myOptions.spotify.enable [
         "$mod SHIFT, S , exec , ${app2unit} spotify"
