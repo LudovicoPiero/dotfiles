@@ -2,7 +2,7 @@ queue_rules:
   - name: default
     queue_conditions:
       - check-success=All Garnix checks
-      - -title~=(WIP|wip)
+      - -title ~= (?i)wip
       - -merged
       - -closed
       - -draft
@@ -36,7 +36,7 @@ pull_request_rules:
 
   - name: Label WIP PRs
     conditions:
-      - title~=(WIP|wip)
+      - title ~= (?i)wip
     actions:
       label:
         add:
