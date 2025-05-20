@@ -78,11 +78,44 @@
       mpv
       yazi
       nh
-      tidal-hifi
       ;
 
     coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
     findutils = pkgs.hiPrio pkgs.uutils-findutils;
+
+    tidal-hifi = pkgs.tidal-hifi.overrideAttrs {
+      /*
+        #HACK:
+        Remove space in the name to fix issue below
+
+        ❯ fuzzel
+        Invalid Entry ID 'TIDAL Hi-Fi.desktop'!
+      */
+      desktopItems = [
+        (pkgs.makeDesktopItem {
+          exec = "tidal-hifi";
+          name = "tidal-hifi";
+          desktopName = "Tidal Hi-Fi";
+          genericName = "Tidal Hi-Fi";
+          comment = "The web version of listen.tidal.com running in electron with hifi support thanks to widevine.";
+          icon = "tidal-hifi";
+          startupNotify = true;
+          terminal = false;
+          type = "Application";
+          categories = [
+            "Network"
+            "Application"
+            "AudioVideo"
+            "Audio"
+            "Video"
+          ];
+          startupWMClass = "tidal-hifi";
+          mimeTypes = [ "x-scheme-handler/tidal" ];
+          extraConfig.X-PulseAudio-Properties = "media.role=music";
+        })
+      ];
+
+    };
 
     # use OCR and copy to clipboard
     wl-ocr =
