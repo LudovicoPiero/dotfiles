@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
   programs.zen-browser.profiles.ludovico.search = {
-    default = "ddg";
+    default = "searx";
     order = [
+      "searx"
       "ddg"
       "brave"
-      "searx"
       "google"
     ];
 
