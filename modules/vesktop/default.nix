@@ -592,7 +592,7 @@ in
               enabled = false;
             };
             VoiceMessages = {
-              enabled = false;
+              enabled = true;
             };
             VolumeBooster = {
               enabled = false;
