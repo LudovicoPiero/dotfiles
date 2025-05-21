@@ -74,6 +74,10 @@
       enable = true;
     };
 
+    gammastep = {
+      enable = true;
+    };
+
     gaming = {
       enable = true;
       withGamemode = true;

@@ -7,6 +7,7 @@ _: {
     ./fonts
     ./fuzzel
     ./gaming
+    ./gammastep
     ./git
     ./gpg
     ./hyprland
