@@ -24,6 +24,7 @@
             EDITOR = "nvim";
             VISUAL = "nvim";
             NIXPKGS_ALLOW_UNFREE = "1";
+            MANPAGER = "sh -c 'col -bx | bat -l man -p'";
 
             # XDG Related Stuff
             #TODO:
