@@ -146,18 +146,6 @@ with pkgs;
       end
 
       # Media Stuff
-      # Audio downloader
-      function dla
-        set -l outdir ${config.vars.homeDirectory}/Media/Audios
-        ${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P $outdir $argv
-      end
-
-      # Video downloader
-      function dlv
-        set -l outdir ${config.vars.homeDirectory}/Media/Videos
-        ${_ yt-dlp} --format 'best[ext=mp4]' -P $outdir $argv
-      end
-
       # Fullscreen screen recording
       function record
         set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
@@ -169,6 +157,37 @@ with pkgs;
         set -l region (${_ slurp})
         set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
         ${_ wl-screenrec} -g $region -f $file
+      end
+
+      function yt
+        set -l sub $argv[1]
+        set -e argv[1]
+
+        switch $sub
+          case aac
+            set -l outdir ${config.vars.homeDirectory}/Media/Audios
+            ${_ yt-dlp} --extract-audio --audio-format aac --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
+
+          case best
+            set -l outdir ${config.vars.homeDirectory}/Media/Audios
+            ${_ yt-dlp} --extract-audio --audio-format best --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
+
+          case flac
+            set -l outdir ${config.vars.homeDirectory}/Media/Audios
+            ${_ yt-dlp} --extract-audio --audio-format flac --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
+
+          case mp3
+            set -l outdir ${config.vars.homeDirectory}/Media/Audios
+            ${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
+
+          case video
+            set -l outdir ${config.vars.homeDirectory}/Media/Videos
+            ${_ yt-dlp} -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' \
+              --merge-output-format mp4 -P $outdir --output "%(title)s.%(ext)s" $argv
+
+          case '*'
+            echo "Usage: yt [aac|best|flac|mp3|video] <url>"
+        end
       end
     '';
   };
