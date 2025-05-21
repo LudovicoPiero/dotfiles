@@ -2,7 +2,6 @@
   config,
   inputs,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -10,19 +9,6 @@
     inputs.hjem.nixosModules.default
     (lib.modules.mkAliasOptionModule [ "hj" ] [ "hjem" "users" config.vars.username ]) # Stolen from gitlab/fazzi
   ];
-
-  systemd.user.services.swaybg = {
-    enable = true;
-    description = "Wayland wallpaper daemon";
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-    bindsTo = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      Restart = "on-failure";
-      ExecStart = "${lib.getExe pkgs.swaybg} -i ${inputs.self}/assets/Lain_Red.png";
-    };
-  };
 
   hjem = {
     clobberByDefault = true;

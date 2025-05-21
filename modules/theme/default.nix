@@ -13,12 +13,17 @@ let
     types
     ;
 
+  wallpaperLink = pkgs.fetchurl {
+    url = "https://w.wallhaven.cc/full/49/wallhaven-497wow.jpg";
+    hash = "sha256-OzpRjVb9gXnCGJW6mSai+E+TJUa5ycijxkOI2ch7PSQ=";
+  };
+
   cfg = config.myOptions.theme;
 in
 {
   imports = [ ./qt.nix ];
   options.myOptions.theme = {
-    enable = mkEnableOption "";
+    enable = mkEnableOption "Theme";
 
     colorScheme = mkOption {
       type = types.anything;
@@ -66,6 +71,19 @@ in
   };
 
   config = mkIf cfg.enable {
+    systemd.user.services.swaybg = {
+      enable = true;
+      description = "Wayland wallpaper daemon";
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      bindsTo = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        Restart = "on-failure";
+        ExecStart = "${lib.getExe pkgs.swaybg} -i ${wallpaperLink}";
+      };
+    };
+
     hj = {
       rum.misc.gtk = {
         enable = true;
