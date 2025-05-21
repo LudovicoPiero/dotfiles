@@ -10,7 +10,6 @@ _: {
     ./git
     ./gpg
     ./hyprland
-    ./kde-plasma
     ./keyring
     ./mako
     ./moonlight

@@ -108,10 +108,6 @@
       enable = true;
     };
 
-    kde-plasma = {
-      enable = true;
-    };
-
     keyring = {
       enable = true;
     };
