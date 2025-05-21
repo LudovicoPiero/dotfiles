@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf mkMerge;
+  inherit (lib)
+    mkForce
+    mkEnableOption
+    mkIf
+    mkMerge
+    ;
 in
 {
   options.mine.sddm = {
@@ -18,6 +23,7 @@ in
         pam.services.sddm.enableGnomeKeyring = true;
       };
 
+      services.xserver.displayManager.gdm.enable = mkForce false;
       services.displayManager.sddm = {
         enable = true;
         package = lib.mkForce (
