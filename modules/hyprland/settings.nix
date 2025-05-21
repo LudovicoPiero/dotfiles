@@ -46,6 +46,7 @@ in
       ]
       ++ optionals config.services.desktopManager.plasma6.enable [
         "systemctl --user stop xdg-desktop-portal-kde.service"
+        "systemctl --user stop plasma-xdg-desktop-portal-kde.service"
       ];
 
     env = [
