@@ -1,5 +1,5 @@
 {
-  programs.firefox.profiles.ludovico.bookmarks = {
+  mine.programs.firefox.profiles.ludovico.bookmarks = {
     settings = [
       {
         name = "ANIME"; # Bookmark Folder

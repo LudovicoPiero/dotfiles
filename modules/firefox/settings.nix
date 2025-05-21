@@ -5,7 +5,7 @@
   ...
 }:
 {
-  programs.firefox.profiles.ludovico.settings =
+  mine.programs.firefox.profiles.ludovico.settings =
     {
       # Homepage
       "browser.startup.page" = 1;
@@ -146,7 +146,7 @@
       # Use system theme icons instead of Adwaita icons included by theme.
       "gnomeTheme.systemIcons" = true;
     }
-    // lib.optionalAttrs config.myOptions.dnscrypt2.enable {
+    // lib.optionalAttrs config.mine.dnscrypt2.enable {
       # DOH
       /*
         2 is enable DOH.

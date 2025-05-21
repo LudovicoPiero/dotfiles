@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.zen-browser.profiles.ludovico.search = {
+  mine.programs.zen-browser.profiles.ludovico.search = {
     default = "searx";
     order = [
       "searx"

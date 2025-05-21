@@ -9,13 +9,14 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   modulePath = [
+    "mine"
     "programs"
     "zen-browser"
   ];
 
   mkFirefoxModule = import ../firefox/modules/mkFirefoxModule.nix;
 
-  cfg = config.myOptions.zen-browser;
+  cfg = config.mine.zen-browser;
 in
 {
   imports = [
@@ -41,12 +42,12 @@ in
     ./extensions.nix
   ];
 
-  options.myOptions.zen-browser = {
+  options.mine.zen-browser = {
     enable = mkEnableOption "Zen Browser";
   };
 
   config = mkIf cfg.enable {
-    programs.zen-browser = {
+    mine.programs.zen-browser = {
       enable = true;
       package = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
 

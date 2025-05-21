@@ -8,7 +8,7 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.myOptions.firefox;
+  cfg = config.mine.firefox;
 in
 {
   imports = [
@@ -19,12 +19,12 @@ in
     ./extensions.nix
   ];
 
-  options.myOptions.firefox = {
+  options.mine.firefox = {
     enable = mkEnableOption "firefox browser";
   };
 
   config = mkIf cfg.enable {
-    programs.firefox = {
+    mine.programs.firefox = {
       enable = true;
       package = pkgs.firefox;
 

@@ -3,6 +3,7 @@ let
   inherit (lib) mkRemovedOptionModule;
 
   modulePath = [
+    "mine"
     "programs"
     "firefox"
   ];
@@ -12,9 +13,6 @@ let
   mkFirefoxModule = import ./mkFirefoxModule.nix;
 in
 {
-  # Disable firefox modules from nixpkgs
-  disabledModules = [ "programs/firefox.nix" ];
-
   imports = [
     ./mozilla.nix
 
