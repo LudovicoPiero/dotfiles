@@ -10,7 +10,6 @@
     users.root.hashedPasswordFile = config.sops.secrets."users/rootPassword".path;
     users.${config.vars.username} = {
       hashedPasswordFile = config.sops.secrets."users/userPassword".path;
-      uid = 1001;
       isNormalUser = true;
       extraGroups =
         [
