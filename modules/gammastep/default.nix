@@ -1,7 +1,13 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   inherit (lib)
     mkEnableOption
+    mkPackageOption
     mkIf
     ;
 
@@ -10,6 +16,8 @@ in
 {
   options.mine.gammastep = {
     enable = mkEnableOption "Gammastep service";
+
+    package = mkPackageOption pkgs "gammastep" { };
   };
 
   config = mkIf cfg.enable {
@@ -19,6 +27,34 @@ in
       appConfig.gammastep = {
         isAllowed = true;
         isSystem = true;
+      };
+    };
+
+    systemd.user.services = {
+      gammastep = {
+        enable = true;
+        description = "Display colour temperature adjustment";
+        after = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        bindsTo = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          Restart = "on-failure";
+          ExecStart = "${lib.getExe cfg.package}";
+        };
+      };
+
+      gammastep-indicator = {
+        enable = true;
+        description = "Display colour temperature adjustment";
+        after = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        bindsTo = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          Restart = "on-failure";
+          ExecStart = "${lib.getExe' cfg.package "gammastep-indicator"}";
+        };
       };
     };
 
