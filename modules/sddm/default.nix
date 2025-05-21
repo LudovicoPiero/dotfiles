@@ -8,7 +8,7 @@ let
   inherit (lib) mkEnableOption mkIf mkMerge;
 in
 {
-  options.myOptions.sddm = {
+  options.mine.sddm = {
     enable = mkEnableOption "sddm service";
   };
 

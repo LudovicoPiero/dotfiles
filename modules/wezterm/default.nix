@@ -6,12 +6,12 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (config.myOptions.theme.colorScheme) palette;
+  inherit (config.mine.theme.colorScheme) palette;
 
-  cfg = config.myOptions.wezterm;
+  cfg = config.mine.wezterm;
 in
 {
-  options.myOptions.wezterm = {
+  options.mine.wezterm = {
     enable = mkEnableOption "wezterm";
   };
 
@@ -36,9 +36,9 @@ in
             return {
               -- Fonts (intentionally unchanged)
               font = wezterm.font_with_fallback({
-                "${config.myOptions.fonts.terminal.name} Semibold",
-                "${config.myOptions.fonts.icon.name}",
-                "${config.myOptions.fonts.emoji.name}",
+                "${config.mine.fonts.terminal.name} Semibold",
+                "${config.mine.fonts.icon.name}",
+                "${config.mine.fonts.emoji.name}",
               }),
 
               -- Wayland and UI settings
@@ -135,7 +135,7 @@ in
               -- Command palette
               command_palette_bg_color = "#${palette.base01}",
               command_palette_fg_color = "#${palette.base05}",
-              command_palette_font_size = ${toString config.myOptions.fonts.size},
+              command_palette_font_size = ${toString config.mine.fonts.size},
 
               -- Leader key and shortcuts
               leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },

@@ -23,10 +23,10 @@ let
     LC_TIME = en;
   };
 
-  cfg = config.myOptions.fcitx5;
+  cfg = config.mine.fcitx5;
 in
 {
-  options.myOptions.fcitx5 = {
+  options.mine.fcitx5 = {
     enable = mkEnableOption "fcitx5 service";
   };
 

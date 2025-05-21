@@ -7,14 +7,14 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf getExe;
-  inherit (config.myOptions.theme.colorScheme) palette;
+  inherit (config.mine.theme.colorScheme) palette;
 
   app2unit = "${getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit}";
 
-  cfg = config.myOptions.fuzzel;
+  cfg = config.mine.fuzzel;
 in
 {
-  options.myOptions.fuzzel = {
+  options.mine.fuzzel = {
     enable = mkEnableOption "fuzzel";
   };
 
@@ -24,9 +24,9 @@ in
 
       settings = {
         main = {
-          font = "${config.myOptions.fonts.terminal.name} Semibold:size=${toString config.myOptions.fonts.size}";
+          font = "${config.mine.fonts.terminal.name} Semibold:size=${toString config.mine.fonts.size}";
           terminal = config.vars.terminal;
-          icon-theme = config.myOptions.theme.gtk.theme.name;
+          icon-theme = config.mine.theme.gtk.theme.name;
           icons-enabled = "yes";
           inner-pad = 15;
           layer = "overlay";
@@ -37,7 +37,7 @@ in
           prompt = "->";
           width = 50;
           launch-prefix =
-            if config.myOptions.hyprland.withUWSM then "${app2unit} --fuzzel-compat --" else null;
+            if config.mine.hyprland.withUWSM then "${app2unit} --fuzzel-compat --" else null;
         };
 
         border = {

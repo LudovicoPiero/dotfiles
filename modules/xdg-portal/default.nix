@@ -7,10 +7,10 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.myOptions.xdg-portal;
+  cfg = config.mine.xdg-portal;
 in
 {
-  options.myOptions.xdg-portal = {
+  options.mine.xdg-portal = {
     enable = mkEnableOption "xdg-portal service";
   };
 

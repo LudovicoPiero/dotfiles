@@ -25,10 +25,10 @@ let
     else
       basePackage."discord-${cfg.discordVariants}";
 
-  cfg = config.myOptions.moonlight;
+  cfg = config.mine.moonlight;
 in
 {
-  options.myOptions.moonlight = {
+  options.mine.moonlight = {
     enable = mkEnableOption "Moonlight - Yet another Discord mod";
 
     discordVariants = mkOption {

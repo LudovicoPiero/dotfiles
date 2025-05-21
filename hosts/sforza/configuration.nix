@@ -10,7 +10,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./myOptions.nix
+    ./mine.nix
   ];
 
   networking.hostName = "sforza"; # Define your hostname.

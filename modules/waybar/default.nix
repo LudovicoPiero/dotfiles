@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkEnableOption mkPackageOption mkIf;
-  inherit (config.myOptions.theme.colorScheme) palette;
+  inherit (config.mine.theme.colorScheme) palette;
 
   _ = lib.getExe;
   json = pkgs.formats.json { };
@@ -15,10 +15,10 @@ let
     date "+%A, %d %B %Y"
   '';
 
-  cfg = config.myOptions.waybar;
+  cfg = config.mine.waybar;
 in
 {
-  options.myOptions.waybar = {
+  options.mine.waybar = {
     enable = mkEnableOption "waybar service";
 
     package = mkPackageOption pkgs "waybar" { };
@@ -38,7 +38,7 @@ in
         ExecStart = "${lib.getExe cfg.package}";
       };
 
-      path = [ config.myOptions.hyprland.package ];
+      path = [ config.mine.hyprland.package ];
     };
 
     hj = {
@@ -292,10 +292,10 @@ in
         ".config/waybar/style.css".text = ''
           * {
             font-family:
-              "${config.myOptions.fonts.terminal.name} Semibold",
-              "${config.myOptions.fonts.icon.name}",
+              "${config.mine.fonts.terminal.name} Semibold",
+              "${config.mine.fonts.icon.name}",
               monospace;
-            font-size: ${toString config.myOptions.fonts.size}px;
+            font-size: ${toString config.mine.fonts.size}px;
           }
 
           window#waybar {

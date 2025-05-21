@@ -7,11 +7,11 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.myOptions.gpg;
+  cfg = config.mine.gpg;
   guiCfg = config.vars.withGui;
 in
 {
-  options.myOptions.gpg = {
+  options.mine.gpg = {
     enable = mkEnableOption "gpg";
   };
 

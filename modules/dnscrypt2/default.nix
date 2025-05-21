@@ -7,10 +7,10 @@ let
     types
     ;
 
-  cfg = config.myOptions.dnscrypt2;
+  cfg = config.mine.dnscrypt2;
 in
 {
-  options.myOptions.dnscrypt2 = {
+  options.mine.dnscrypt2 = {
     enable = mkEnableOption "dnscrypt2 service";
 
     hasIPv6Internet = mkOption {

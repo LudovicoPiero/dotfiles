@@ -14,10 +14,10 @@ let
     types
     ;
 
-  cfg = config.myOptions.gaming;
+  cfg = config.mine.gaming;
 in
 {
-  options.myOptions.gaming = {
+  options.mine.gaming = {
     enable = mkEnableOption "gaming";
 
     withGamemode = mkOption {

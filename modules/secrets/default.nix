@@ -8,12 +8,12 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.myOptions.secrets;
+  cfg = config.mine.secrets;
 in
 {
   imports = [ inputs.sops-nix.nixosModules.sops ];
 
-  options.myOptions.secrets = {
+  options.mine.secrets = {
     enable = mkEnableOption "secrets";
   };
 

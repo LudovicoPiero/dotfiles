@@ -6,17 +6,17 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (config.myOptions.theme.colorScheme) palette;
+  inherit (config.mine.theme.colorScheme) palette;
 
   backgroundLink = pkgs.fetchurl {
     url = "https://w.wallhaven.cc/full/0p/wallhaven-0pom5m.jpg";
     hash = "sha256-WHt/fDfCHlS4VZp+lydSHm8f7Pa0trf3WoiCCmG8Ih0=";
   };
 
-  cfg = config.myOptions.hyprlock;
+  cfg = config.mine.hyprlock;
 in
 {
-  options.myOptions.hyprlock = {
+  options.mine.hyprlock = {
     enable = mkEnableOption "hyprlock service";
   };
 
@@ -44,7 +44,7 @@ in
           position = "0, -449";
           dots_center = true;
           fade_on_empty = false;
-          font_family = config.myOptions.fonts.main.name;
+          font_family = config.mine.fonts.main.name;
           outer_color = "rgb(${palette.base03})";
           inner_color = "rgb(${palette.base00})";
           font_color = "rgb(${palette.base05})";

@@ -1,9 +1,9 @@
 # NOTE:
-# This is a configuration that will enable all options inside myOptions.nix.
+# This is a configuration that will enable all options inside mine.nix.
 # It is only used for caching purpose only!
 { lib, ... }:
 {
-  imports = [ ./myOptions.nix ];
+  imports = [ ./mine.nix ];
 
   networking.hostName = "allOptions"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.

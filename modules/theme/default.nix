@@ -18,11 +18,11 @@ let
     hash = "sha256-OzpRjVb9gXnCGJW6mSai+E+TJUa5ycijxkOI2ch7PSQ=";
   };
 
-  cfg = config.myOptions.theme;
+  cfg = config.mine.theme;
 in
 {
   imports = [ ./qt.nix ];
-  options.myOptions.theme = {
+  options.mine.theme = {
     enable = mkEnableOption "Theme";
 
     colorScheme = mkOption {
@@ -97,7 +97,7 @@ in
           application-prefer-dark-theme = true;
           enable-animations = true;
           theme-name = cfg.gtk.theme.name;
-          font-name = config.myOptions.fonts.main.name;
+          font-name = config.mine.fonts.main.name;
           cursor-theme-name = cfg.gtk.cursorTheme.name;
           cursor-theme-size = cfg.gtk.cursorTheme.size;
           toolbar-style = "GTK_TOOLBAR_BOTH";

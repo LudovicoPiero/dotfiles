@@ -1,29 +1,22 @@
 { pkgs, inputs, ... }:
 {
   vars = {
-    colorScheme = "catppuccin-macchiato";
-    email = "lewdovico@gnuweeb.org";
-    isALaptop = true;
+    colorScheme = "catppuccin-mocha";
+    email = "contact@yourmom.xd";
+    isALaptop = false;
     opacity = 1.0;
-    sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINtzB1oiuDptWi04PAEJVpSAcvD96AL0S21zHuMgmcE9 ludovico@sforza";
+    sshPublicKey = "";
     stateVersion = "24.11";
     terminal = "wezterm";
     timezone = "Asia/Tokyo";
-    username = "airi";
+    username = "me";
     withGui = true;
   };
 
-  myOptions = {
+  mine = {
     cliphist = {
       enable = true;
       allowImages = true;
-      extraOptions = [
-        "-max-dedupe-search"
-        "10"
-        "-max-items"
-        "500"
-      ];
-      systemdTargets = [ "graphical-session.target" ];
     };
 
     direnv = {
@@ -37,7 +30,7 @@
     dnscrypt2 = {
       enable = true;
       StateDirectory = "dnscrypt-proxy";
-      hasIPv6Internet = false;
+      hasIPv6Internet = true;
     };
 
     fcitx5 = {
@@ -108,10 +101,6 @@
       enable = true;
     };
 
-    kde-plasma = {
-      enable = true;
-    };
-
     keyring = {
       enable = true;
     };
@@ -121,7 +110,7 @@
     };
 
     moonlight = {
-      enable = false;
+      enable = true;
       discordVariants = "canary";
       settings = {
         extensions = {
@@ -138,18 +127,17 @@
           imageViewer = true;
           mentionAvatars = true;
           noReplyPing = true;
-          freeMoji = false;
+          freeMoji = true;
           silenceTyping = true;
           nameColor = true;
           moonlight-css = {
             enabled = true;
             config = {
               paths = [
+                "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
                 "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-avatar-decoration.css"
                 "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-invite-button.css"
-                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-clantag.css"
-                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
-                "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+                # "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
                 # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
               ];
             };
@@ -162,7 +150,7 @@
           platformIcons = {
             enabled = true;
             config = {
-              self = false;
+              self = true;
             };
           };
           reverseImageSearch = true;
@@ -237,12 +225,8 @@
           '';
       });
       themeLinks = [
-        "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-avatar-decoration.css"
-        "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-invite-button.css"
-        "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-clantag.css"
-        "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
-        "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
         # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
+        "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
       ];
     };
 

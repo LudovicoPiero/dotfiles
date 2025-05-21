@@ -7,10 +7,10 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.myOptions.keyring;
+  cfg = config.mine.keyring;
 in
 {
-  options.myOptions.keyring = {
+  options.mine.keyring = {
     enable = mkEnableOption "keyring";
   };
 

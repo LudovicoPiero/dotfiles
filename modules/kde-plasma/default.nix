@@ -29,10 +29,10 @@ let
     xwaylandvideobridge # Allows Wayland windows to be shared with X11 apps (e.g., OBS)
   ];
 
-  cfg = config.myOptions.kde-plasma;
+  cfg = config.mine.kde-plasma;
 in
 {
-  options.myOptions.kde-plasma = {
+  options.mine.kde-plasma = {
     enable = mkEnableOption "kde-plasma";
   };
 

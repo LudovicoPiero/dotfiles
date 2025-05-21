@@ -5,7 +5,7 @@ let
     variant = "mocha";
   };
 
-  fontConfig = "${config.myOptions.fonts.main.name},${toString config.myOptions.fonts.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+  fontConfig = "${config.mine.fonts.main.name},${toString config.mine.fonts.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
 in
 {
   qt = {
@@ -23,7 +23,7 @@ in
     '';
     ".config/qt6ct/qt6ct.conf".text = ''
       [Appearance]
-      icon_theme=${config.myOptions.theme.gtk.iconTheme.name}
+      icon_theme=${config.mine.theme.gtk.iconTheme.name}
       style=kvantum
       standard_dialogs=xdgdesktopportal
       custom_palette=false
@@ -34,7 +34,7 @@ in
     '';
     ".config/qt5ct/qt5ct.conf".text = ''
       [Appearance]
-      icon_theme=${config.myOptions.theme.gtk.iconTheme.name}
+      icon_theme=${config.mine.theme.gtk.iconTheme.name}
       style=kvantum
       standard_dialogs=xdgdesktopportal
       custom_palette=false

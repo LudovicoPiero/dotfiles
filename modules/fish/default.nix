@@ -14,7 +14,7 @@ let
     optionalString
     ;
 
-  cfg = config.myOptions.fish;
+  cfg = config.mine.fish;
 in
 {
 
@@ -24,7 +24,7 @@ in
     ./shellAliases.nix
   ];
 
-  options.myOptions.fish = {
+  options.mine.fish = {
     enable = mkEnableOption "Fish Shell";
   };
 

@@ -11,10 +11,10 @@ let
 
   qr = "${toString cfg.quantum}/${toString cfg.rate}";
 
-  cfg = config.myOptions.pipewire;
+  cfg = config.mine.pipewire;
 in
 {
-  options.myOptions.pipewire = {
+  options.mine.pipewire = {
     enable = mkEnableOption "pipewire";
 
     quantum = mkOption {

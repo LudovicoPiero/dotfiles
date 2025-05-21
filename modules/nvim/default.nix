@@ -8,10 +8,10 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.myOptions.nvim;
+  cfg = config.mine.nvim;
 in
 {
-  options.myOptions.nvim = {
+  options.mine.nvim = {
     enable = mkEnableOption "nvim";
   };
 

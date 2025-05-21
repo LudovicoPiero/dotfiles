@@ -2,10 +2,10 @@
 let
   inherit (lib) mkEnableOption mkIf mkForce;
 
-  cfg = config.myOptions.tlp;
+  cfg = config.mine.tlp;
 in
 {
-  options.myOptions.tlp = {
+  options.mine.tlp = {
     enable = mkEnableOption "tlp" // {
       default = config.vars.isALaptop;
     };

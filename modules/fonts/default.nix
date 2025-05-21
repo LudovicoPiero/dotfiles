@@ -13,10 +13,10 @@ let
     types
     ;
 
-  cfg = config.myOptions.fonts;
+  cfg = config.mine.fonts;
 in
 {
-  options.myOptions.fonts = {
+  options.mine.fonts = {
     enable = mkEnableOption "Fonts";
 
     main = {

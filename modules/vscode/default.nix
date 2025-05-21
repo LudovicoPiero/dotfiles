@@ -8,11 +8,11 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.myOptions.vscode;
+  cfg = config.mine.vscode;
 in
 {
   imports = [ ./modules.nix ];
-  options.myOptions.vscode = {
+  options.mine.vscode = {
     enable = mkEnableOption "vscode";
   };
 
@@ -53,17 +53,17 @@ in
 
             # Fonts
             "editor.fontLigatures" = false;
-            "editor.fontSize" = config.myOptions.fonts.size;
+            "editor.fontSize" = config.mine.fonts.size;
             "editor.fontFamily" =
-              "'${config.myOptions.fonts.terminal.name} Semibold', '${config.myOptions.fonts.icon.name}', monospace";
+              "'${config.mine.fonts.terminal.name} Semibold', '${config.mine.fonts.icon.name}', monospace";
             "editor.inlayHints.fontFamily" =
-              "'${config.myOptions.fonts.terminal.name} Semibold', '${config.myOptions.fonts.icon.name}', monospace";
+              "'${config.mine.fonts.terminal.name} Semibold', '${config.mine.fonts.icon.name}', monospace";
             "terminal.integrated.fontFamily" =
-              "'${config.myOptions.fonts.terminal.name} Semibold', '${config.myOptions.fonts.icon.name}', monospace";
+              "'${config.mine.fonts.terminal.name} Semibold', '${config.mine.fonts.icon.name}', monospace";
             "gitlens.blame.fontFamily" =
-              "'${config.myOptions.fonts.terminal.name} Semibold', '${config.myOptions.fonts.icon.name}', monospace";
+              "'${config.mine.fonts.terminal.name} Semibold', '${config.mine.fonts.icon.name}', monospace";
             "notebook.outpout.fontFamily" =
-              "'${config.myOptions.fonts.terminal.name} Semibold', '${config.myOptions.fonts.icon.name}', monospace";
+              "'${config.mine.fonts.terminal.name} Semibold', '${config.mine.fonts.icon.name}', monospace";
           };
         in
         {

@@ -10,10 +10,10 @@ let
   hyprlockPackage = config.hj.rum.programs.hyprlock.package;
   hypridlePackage = config.hj.rum.programs.hypridle.package;
 
-  cfg = config.myOptions.hypridle;
+  cfg = config.mine.hypridle;
 in
 {
-  options.myOptions.hypridle = {
+  options.mine.hypridle = {
     enable = mkEnableOption "hypridle service";
   };
 

@@ -14,10 +14,10 @@ let
     mkOption
     ;
 
-  cfg = config.myOptions.vesktop;
+  cfg = config.mine.vesktop;
 in
 {
-  options.myOptions.vesktop = {
+  options.mine.vesktop = {
     enable = mkEnableOption "Vesktop";
 
     package = mkPackageOption pkgs "vesktop" {

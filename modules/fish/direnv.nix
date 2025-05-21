@@ -15,12 +15,12 @@ let
 
   tomlFormat = pkgs.formats.toml { };
 
-  cfg = config.myOptions.direnv;
+  cfg = config.mine.direnv;
 in
 {
-  options.myOptions.direnv = {
+  options.mine.direnv = {
     enable = mkEnableOption "Direnv" // {
-      default = config.myOptions.fish.enable;
+      default = config.mine.fish.enable;
     };
 
     package = mkPackageOption pkgs "direnv" { };

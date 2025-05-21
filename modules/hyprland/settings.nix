@@ -11,7 +11,7 @@ let
   _ = getExe;
   __ = getExe';
 
-  cfg = config.myOptions.hyprland;
+  cfg = config.mine.hyprland;
 
   app2unit =
     if cfg.withUWSM then
@@ -20,10 +20,10 @@ let
       "";
 
   moonlight =
-    if (config.myOptions.moonlight.discordVariants == "stable") then
+    if (config.mine.moonlight.discordVariants == "stable") then
       "discord"
     else
-      "discord${config.myOptions.moonlight.discordVariants}";
+      "discord${config.mine.moonlight.discordVariants}";
 
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
@@ -31,7 +31,7 @@ let
   clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard "wl-copy"}";
   emojiPicker = "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji}";
 
-  inherit (config.myOptions.theme.colorScheme) palette;
+  inherit (config.mine.theme.colorScheme) palette;
 in
 {
   hj.rum.programs.hyprland.settings = {
@@ -50,10 +50,10 @@ in
 
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
-      "HYPRCURSOR_SIZE,${toString config.myOptions.theme.gtk.cursorTheme.size}"
+      "HYPRCURSOR_SIZE,${toString config.mine.theme.gtk.cursorTheme.size}"
 
-      "XCURSOR_THEME,${config.myOptions.theme.gtk.cursorTheme.name}"
-      "XCURSOR_SIZE,${toString config.myOptions.theme.gtk.cursorTheme.size}"
+      "XCURSOR_THEME,${config.mine.theme.gtk.cursorTheme.name}"
+      "XCURSOR_SIZE,${toString config.mine.theme.gtk.cursorTheme.size}"
     ];
 
     monitor = [
@@ -358,19 +358,19 @@ in
 
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
-      ++ optionals config.myOptions.firefox.enable [
+      ++ optionals config.mine.firefox.enable [
         "$mod      , G , exec , ${app2unit} firefox"
       ]
-      ++ optionals config.myOptions.zen-browser.enable [
+      ++ optionals config.mine.zen-browser.enable [
         "$mod SHIFT, G , exec , ${app2unit} zen"
       ]
-      ++ optionals config.myOptions.vesktop.enable [
+      ++ optionals config.mine.vesktop.enable [
         "$mod      , D , exec , ${app2unit} vesktop"
       ]
-      ++ optionals config.myOptions.moonlight.enable [
+      ++ optionals config.mine.moonlight.enable [
         "$mod  SHIFT, D , exec , ${app2unit} ${moonlight}"
       ]
-      ++ optionals config.myOptions.spotify.enable [
+      ++ optionals config.mine.spotify.enable [
         "$mod SHIFT, S , exec , ${app2unit} spotify"
       ];
 

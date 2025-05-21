@@ -15,10 +15,10 @@ let
 
   extraOptionsStr = lib.escapeShellArgs cfg.extraOptions;
 
-  cfg = config.myOptions.cliphist;
+  cfg = config.mine.cliphist;
 in
 {
-  options.myOptions.cliphist = {
+  options.mine.cliphist = {
     enable = mkEnableOption "cliphist service";
 
     package = mkPackageOption pkgs "cliphist" { };

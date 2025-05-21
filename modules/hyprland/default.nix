@@ -32,7 +32,7 @@ let
         ];
       });
 
-  cfg = config.myOptions.hyprland;
+  cfg = config.mine.hyprland;
 in
 {
   imports = [
@@ -43,7 +43,7 @@ in
     ./settings.nix
   ];
 
-  options.myOptions.hyprland = {
+  options.mine.hyprland = {
     enable = mkEnableOption "hyprland";
 
     package = mkOption {

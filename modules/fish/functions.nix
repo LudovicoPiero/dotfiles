@@ -8,7 +8,7 @@ let
   _ = lib.getExe;
   __ = lib.getExe';
 
-  cfg = config.myOptions.fish;
+  cfg = config.mine.fish;
 in
 with pkgs;
 {

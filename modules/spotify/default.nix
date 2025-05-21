@@ -10,12 +10,12 @@ let
 
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
-  cfg = config.myOptions.spotify;
+  cfg = config.mine.spotify;
 in
 {
   imports = [ inputs.spicetify-nix.nixosModules.default ];
 
-  options.myOptions.spotify = {
+  options.mine.spotify = {
     enable = mkEnableOption "spotify";
   };
 
