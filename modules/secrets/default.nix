@@ -26,8 +26,8 @@ in
     sops = {
       defaultSopsFile = ../../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";
-      age.sshKeyPaths = [ "/home/airi/.ssh/id_ed25519_sops" ];
-      age.keyFile = "/home/airi/.config/sops/age/keys.txt";
+      age.sshKeyPaths = [ "${config.vars.homeDirectory}/.ssh/id_ed25519_sops" ];
+      age.keyFile = "${config.vars.homeDirectory}/.config/sops/age/keys.txt";
     };
   };
 }
