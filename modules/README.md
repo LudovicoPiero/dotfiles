@@ -15,10 +15,10 @@ let
     types
     ;
 
-  cfg = config.myOptions.CHANGEME;
+  cfg = config.mine.CHANGEME;
 in
 {
-  options.myOptions.CHANGEME = {
+  options.mine.CHANGEME = {
     enable = mkEnableOption "CHANGEME service";
     greeter = mkOption {
       type = types.str;
