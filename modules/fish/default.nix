@@ -37,6 +37,7 @@ in
     environment.pathsToLink = [ "/share/fish" ];
     programs.fish = {
       enable = true;
+      useBabelfish = true;
       shellAliases = mkForce { };
       interactiveShellInit =
         ''
