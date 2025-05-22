@@ -36,8 +36,7 @@ in
           use-bold = "yes";
           prompt = "->";
           width = 50;
-          launch-prefix =
-            if config.mine.hyprland.withUWSM then "${app2unit} --fuzzel-compat --" else null;
+          launch-prefix = if config.mine.hyprland.withUWSM then "${app2unit} --fuzzel-compat --" else null;
         };
 
         border = {

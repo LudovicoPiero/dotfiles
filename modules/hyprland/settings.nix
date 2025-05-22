@@ -13,6 +13,8 @@ let
 
   cfg = config.mine.hyprland;
 
+  cfgmine = config.mine;
+
   app2unit =
     if cfg.withUWSM then
       "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit} --"
@@ -20,10 +22,10 @@ let
       "";
 
   moonlight =
-    if (config.mine.moonlight.discordVariants == "stable") then
+    if (cfgmine.moonlight.discordVariants == "stable") then
       "discord"
     else
-      "discord${config.mine.moonlight.discordVariants}";
+      "discord${cfgmine.moonlight.discordVariants}";
 
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
@@ -31,7 +33,7 @@ let
   clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard "wl-copy"}";
   emojiPicker = "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji}";
 
-  inherit (config.mine.theme.colorScheme) palette;
+  inherit (cfgmine.theme.colorScheme) palette;
 in
 {
   hj.rum.programs.hyprland.settings = {
@@ -51,10 +53,10 @@ in
 
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
-      "HYPRCURSOR_SIZE,${toString config.mine.theme.gtk.cursorTheme.size}"
+      "HYPRCURSOR_SIZE,${toString cfgmine.theme.gtk.cursorTheme.size}"
 
-      "XCURSOR_THEME,${config.mine.theme.gtk.cursorTheme.name}"
-      "XCURSOR_SIZE,${toString config.mine.theme.gtk.cursorTheme.size}"
+      "XCURSOR_THEME,${cfgmine.theme.gtk.cursorTheme.name}"
+      "XCURSOR_SIZE,${toString cfgmine.theme.gtk.cursorTheme.size}"
     ];
 
     monitor = [
@@ -359,21 +361,11 @@ in
 
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
-      ++ optionals config.mine.firefox.enable [
-        "$mod      , G , exec , ${app2unit} firefox"
-      ]
-      ++ optionals config.mine.zen-browser.enable [
-        "$mod SHIFT, G , exec , ${app2unit} zen"
-      ]
-      ++ optionals config.mine.vesktop.enable [
-        "$mod      , D , exec , ${app2unit} vesktop"
-      ]
-      ++ optionals config.mine.moonlight.enable [
-        "$mod  SHIFT, D , exec , ${app2unit} ${moonlight}"
-      ]
-      ++ optionals config.mine.spotify.enable [
-        "$mod SHIFT, S , exec , ${app2unit} spotify"
-      ];
+      ++ optionals cfgmine.firefox.enable [ "$mod      , G , exec , ${app2unit} firefox" ]
+      ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , ${app2unit} zen" ]
+      ++ optionals cfgmine.vesktop.enable [ "$mod      , D , exec , ${app2unit} vesktop" ]
+      ++ optionals cfgmine.moonlight.enable [ "$mod  SHIFT, D , exec , ${app2unit} ${moonlight}" ]
+      ++ optionals cfgmine.spotify.enable [ "$mod SHIFT, S , exec , ${app2unit} spotify" ];
 
     bindel = [
       ", XF86AudioRaiseVolume  , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"

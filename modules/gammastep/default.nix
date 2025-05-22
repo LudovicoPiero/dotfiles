@@ -5,11 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkPackageOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkPackageOption mkIf;
 
   cfg = config.mine.gammastep;
 in

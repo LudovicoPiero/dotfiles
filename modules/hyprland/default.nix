@@ -15,22 +15,18 @@ let
     ;
 
   basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  LTOPackage =
-    (basePackage.override {
-      stdenv = pkgs.clangStdenv;
-    }).overrideAttrs
-      (prevAttrs: {
-        patches = (prevAttrs.patches or [ ]) ++ [
-          ./patches/add-env-vars-to-export.patch
-          ./patches/enable-lto.patch
-        ];
-        mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
-          (lib.mesonBool "b_lto" true)
-          (lib.mesonOption "b_lto_threads" "4")
-          (lib.mesonOption "b_lto_mode" "thin")
-          (lib.mesonBool "b_thinlto_cache" true)
-        ];
-      });
+  LTOPackage = (basePackage.override { stdenv = pkgs.clangStdenv; }).overrideAttrs (prevAttrs: {
+    patches = (prevAttrs.patches or [ ]) ++ [
+      ./patches/add-env-vars-to-export.patch
+      ./patches/enable-lto.patch
+    ];
+    mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
+      (lib.mesonBool "b_lto" true)
+      (lib.mesonOption "b_lto_threads" "4")
+      (lib.mesonOption "b_lto_mode" "thin")
+      (lib.mesonBool "b_thinlto_cache" true)
+    ];
+  });
 
   cfg = config.mine.hyprland;
 in
