@@ -23,6 +23,7 @@
       "browser.tabs.firefox-view" = false; # Disable Firefox View
       "browser.tabs.firefox-view-next" = false;
       "browser.shell.checkDefaultBrowser" = false;
+      "browser.ctrlTab.sortByRecentlyUsed" = true;
 
       "sidebar.verticalTabs" = false;
       "sidebar.main.tools" = "";
