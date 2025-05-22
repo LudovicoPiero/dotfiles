@@ -362,7 +362,7 @@ in
         ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
       ]
       ++ optionals cfgmine.firefox.enable [ "$mod      , G , exec , ${app2unit} firefox" ]
-      ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , ${app2unit} zen" ]
+      ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , ${app2unit} zen-beta" ]
       ++ optionals cfgmine.vesktop.enable [ "$mod      , D , exec , ${app2unit} vesktop" ]
       ++ optionals cfgmine.moonlight.enable [ "$mod  SHIFT, D , exec , ${app2unit} ${moonlight}" ]
       ++ optionals cfgmine.spotify.enable [ "$mod SHIFT, S , exec , ${app2unit} spotify" ];
