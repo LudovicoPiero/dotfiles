@@ -9,8 +9,8 @@ let
   inherit (config.mine.theme.colorScheme) palette;
 
   backgroundLink = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/0p/wallhaven-0pom5m.jpg";
-    hash = "sha256-WHt/fDfCHlS4VZp+lydSHm8f7Pa0trf3WoiCCmG8Ih0=";
+    url = "https://w.wallhaven.cc/full/49/wallhaven-497wow.jpg";
+    hash = "sha256-OzpRjVb9gXnCGJW6mSai+E+TJUa5ycijxkOI2ch7PSQ=";
   };
 
   cfg = config.mine.hyprlock;

@@ -14,8 +14,8 @@ let
     ;
 
   wallpaperLink = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/49/wallhaven-497wow.jpg";
-    hash = "sha256-OzpRjVb9gXnCGJW6mSai+E+TJUa5ycijxkOI2ch7PSQ=";
+    url = "https://w.wallhaven.cc/full/0p/wallhaven-0pom5m.jpg";
+    hash = "sha256-WHt/fDfCHlS4VZp+lydSHm8f7Pa0trf3WoiCCmG8Ih0=";
   };
 
   cfg = config.mine.theme;
