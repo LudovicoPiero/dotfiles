@@ -1,6 +1,15 @@
 {
   description = "xd uwu";
 
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./hosts
+        ./parts
+      ];
+    };
+
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.follows = "nixpkgs-unstable";
@@ -63,13 +72,4 @@
     catppuccin-base16.url = "github:catppuccin/base16";
     catppuccin-base16.flake = false;
   };
-
-  outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./hosts
-        ./parts
-      ];
-    };
 }
