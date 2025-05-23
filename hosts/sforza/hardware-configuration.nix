@@ -23,6 +23,15 @@
     "/home" = {
       device = "/dev/disk/by-label/HOME";
       fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
+
+    "/Persist" = {
+      device = "/dev/disk/by-label/PERSIST";
+      fsType = "btrfs";
       neededForBoot = true; # for sops-nix
       options = [
         "noatime"
@@ -64,7 +73,6 @@
     };
   };
 
-  # swapDevices = [ { device = "/dev/disk/by-uuid/5a271e1b-7bb8-4dd0-a3b5-de1dcd41560e"; } ];
   swapDevices = lib.mkForce [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
