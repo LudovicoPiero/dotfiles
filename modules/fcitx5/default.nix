@@ -39,10 +39,17 @@ in
         fcitx5 = {
           waylandFrontend = true;
           addons = with pkgs; [
-            fcitx5-mozc
+            # Languages
+            fcitx5-mozc # Japanese
+            fcitx5-hangul # Korean
+
+
+            # Input methods Module
             fcitx5-gtk
-            inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-fcitx5 # Theme
             libsForQt5.fcitx5-qt
+
+            # Theme
+            inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-fcitx5
           ];
         };
       };
