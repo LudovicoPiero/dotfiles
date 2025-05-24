@@ -142,7 +142,7 @@ in
             };
             "clock" = {
               "format" = " {:%I:%M %p}";
-              "tooltip-format" = "<tt><small>{calendar}</small></tt>";
+              "tooltip-format" = "\n<span size='9pt' font='${config.mine.fonts.main.name}'>{calendar}</span>";
               "calendar" = {
                 "mode" = "year";
                 "mode-mon-col" = 3;
