@@ -21,10 +21,8 @@
   hardware.enableAllFirmware = true;
   time.timeZone = config.vars.timezone;
 
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
+  system.rebuild.enableNg = true;
+  system.switch.enableNg = true;
 
   programs = {
     command-not-found.dbPath =
