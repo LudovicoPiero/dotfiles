@@ -43,7 +43,6 @@
     inherit (pkgs)
       teavpn2
       adwaita-icon-theme
-      bat
       iputils
       curl
       dnsutils

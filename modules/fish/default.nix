@@ -35,18 +35,32 @@ in
       mode = "0444";
     };
     environment.pathsToLink = [ "/share/fish" ];
-    programs.fish = {
-      enable = true;
-      useBabelfish = true;
-      shellAliases = mkForce { };
-      interactiveShellInit =
-        ''
-          . ${config.sops.secrets."shells/githubToken".path}
-        ''
-        + optionalString (!config.vars.withGui && config.vars.isALaptop) ''
-          ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
-        '';
+    programs = {
+      fish = {
+        enable = true;
+        useBabelfish = true;
+        shellAliases = mkForce { };
+        interactiveShellInit =
+          ''
+            . ${config.sops.secrets."shells/githubToken".path}
+          ''
+          + optionalString (!config.vars.withGui && config.vars.isALaptop) ''
+            ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
+          '';
+      };
 
+      bat = {
+        enable = true;
+        extraPackages = with pkgs.bat-extras; [
+          batdiff
+          batman
+          prettybat
+        ];
+        settings = {
+          pager = "less";
+          theme = "OneHalfDark";
+        };
+      };
     };
 
     hj = {
@@ -54,7 +68,6 @@ in
         zoxide
         fzf
         fd
-        bat
         lazygit
       ];
 
