@@ -3,7 +3,7 @@ name: Update Flakes
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 17 * * 0" # At 17:00 UTC / 2 Midnight JP on Sunday
+    - cron: "0 17 * * 0" # Runs every Sunday at 17:00 UTC / Monday at 2:00 AM JST
 
 jobs:
   update-flake-lock:
