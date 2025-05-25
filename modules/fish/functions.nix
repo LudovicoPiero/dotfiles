@@ -30,6 +30,13 @@ with pkgs;
           nix shell nixpkgs#$argv[1]
       end
 
+
+      function notify
+          if set -q DISPLAY || set -q WAYLAND_DISPLAY
+              ${__ libnotify "notify-send"} $argv
+          end
+      end
+
       function y
           set tmp (mktemp -t "yazi-cwd.XXXXXX")
           ${_ yazi} $argv --cwd-file="$tmp"
@@ -44,9 +51,9 @@ with pkgs;
           ${_ nh} os switch .
 
           if test $status -eq 0
-              ${__ libnotify "notify-send"} "Rebuild Switch" "Build successful!"
+              notify "Rebuild Switch" "Build successful!"
           else
-              ${__ libnotify "notify-send"} "Rebuild Switch" "Build failed!"
+              notify "Rebuild Switch" "Build failed!"
           end
 
           popd
@@ -57,9 +64,9 @@ with pkgs;
           ${_ nh} os boot .
 
           if test $status -eq 0
-              ${__ libnotify "notify-send"} "Rebuild Boot" "Build successful!"
+              notify "Rebuild Boot" "Build successful!"
           else
-              ${__ libnotify "notify-send"} "Rebuild Boot" "Build failed!"
+              notify "Rebuild Boot" "Build failed!"
           end
 
           popd
@@ -69,9 +76,9 @@ with pkgs;
           ${_ nh} clean all
 
           if test $status -eq 0
-              ${__ libnotify "notify-send"} "NH Clean All" "Clean successful!"
+              notify "NH Clean all" "Success!"
           else
-              ${__ libnotify "notify-send"} "NH Clean All" "Clean failed!"
+              notify "NH Clean all" "Failed!"
           end
       end
 
