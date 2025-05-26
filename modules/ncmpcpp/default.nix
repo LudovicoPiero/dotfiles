@@ -94,7 +94,8 @@ in
         current_item_prefix = "$b$7 $/b$3 ";
         current_item_suffix = "  $8";
 
-        song_columns_list_format = "(50)[]{t|fr:Title} (0)[magenta]{a}";
+        # song_columns_list_format = "(50)[]{t|fr:Title} (0)[magenta]{a}";
+        song_columns_list_format = "(30)[]{t|fr:Title} (5)[white]{n} (20)[green]{b} (20)[magenta]{a} (7)[blue]{l}";
 
         # song_list_format = " {%t $R   $8%a$8}|{%f $R   $8%l$8} $8";
         song_list_format = "{%a - }{%t}|{$8%f$9}$R{$3%l$9}";
