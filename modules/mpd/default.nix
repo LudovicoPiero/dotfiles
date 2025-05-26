@@ -24,6 +24,8 @@ in
           music_directory "${config.vars.homeDirectory}/Media/Music"
           state_file "${config.vars.homeDirectory}/.local/state/mpd/state"
           sticker_file "${config.vars.homeDirectory}/.local/state/mpd/sticker.sql"
+          playlist_directory "${config.vars.homeDirectory}/.config/mpd/playlists"
+          db_file "${config.vars.homeDirectory}/.local/state/mpd/database"
 
           auto_update "yes"
           volume_normalization "yes"
