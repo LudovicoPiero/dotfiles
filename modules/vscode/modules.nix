@@ -1,4 +1,10 @@
-#NOTE: modules stolen from home-manager
+# SPDX-License-Identifier: MIT
+#
+# This file contains code adapted from the Home Manager project:
+#   https://github.com/nix-community/home-manager
+#
+# The original code is licensed under the MIT License:
+#   https://github.com/nix-community/home-manager/blob/master/LICENSE
 {
   config,
   lib,
