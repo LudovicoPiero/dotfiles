@@ -177,6 +177,10 @@
       enable = true;
     };
 
+    ncmpcpp = {
+      enable = true;
+    };
+
     nvim = {
       enable = true;
     };

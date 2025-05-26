@@ -15,6 +15,7 @@ _: {
     ./mako
     ./moonlight
     ./mpd
+    ./ncmpcpp
     ./nvim
     ./pipewire
     ./sddm
