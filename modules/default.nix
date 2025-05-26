@@ -14,6 +14,7 @@ _: {
     ./keyring
     ./mako
     ./moonlight
+    ./mpd
     ./nvim
     ./pipewire
     ./sddm

@@ -181,6 +181,10 @@
       };
     };
 
+    mpd = {
+      enable = true;
+    };
+
     nvim = {
       enable = true;
     };
