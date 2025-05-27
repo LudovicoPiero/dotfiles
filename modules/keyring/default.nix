@@ -39,7 +39,7 @@ in
       serviceConfig = {
         Type = "simple";
         Restart = "on-failure";
-        ExecStart = "${lib.getExe pkgs.hyprpolkitagent}";
+        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
       };
     };
   };
