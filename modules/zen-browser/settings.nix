@@ -17,6 +17,7 @@
       "zen.view.sidebar-expanded" = false;
       "zen.view.show-newtab-button-top" = false;
       "zen.welcome-screen.seen" = true;
+      "zen.glance.open-essential-external-links" = false;
 
       "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # Hide picture-in-picture
       "extensions.autoDisableScopes" = 0;
