@@ -39,90 +39,132 @@
     };
   };
 
-  environment.systemPackages = lib.attrValues {
-    inherit (pkgs)
-      teavpn2
-      adwaita-icon-theme
-      iputils
-      curl
-      dnsutils
-      fd
-      fzf
-      sbctl # For debugging and troubleshooting Secure boot.
+  environment = {
+    sessionVariables =
+      {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+        NIXPKGS_ALLOW_UNFREE = "1";
+        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
 
-      bottom
-      jq
-      nix-index
-      nmap
-      ripgrep
-      tealdeer
-      whois
-      wl-clipboard
-      wget
-      unzip
-      # Utils for nixpkgs stuff
-      nixpkgs-review
-      # Fav
-      element-desktop # matrix client
-      # fooyin # music player
-      foliate # book reader
-      qbittorrent # uhm
-      imv
-      viewnior
-      ente-auth
-      thunderbird
-      telegram-desktop
-      mpv
-      yazi
-      nh
-      ;
+        # XDG Related Stuff
+        #TODO:
+        # XDG_CACHE_HOME = config.xdg.cacheHome;
+        # XDG_CONFIG_HOME = config.xdg.configHome;
+        # XDG_CONFIG_DIR = config.xdg.configHome;
+        # XDG_DATA_HOME = config.xdg.dataHome;
+        # XDG_STATE_HOME = config.xdg.stateHome;
+        # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.airi.uid}";
+        # XDG_DESKTOP_DIR = config.xdg.userDirs.desktop;
+        # XDG_DOCUMENTS_DIR = config.xdg.userDirs.documents;
+        # XDG_DOWNLOAD_DIR = config.xdg.userDirs.download;
+        # XDG_MUSIC_DIR = config.xdg.userDirs.music;
+        # XDG_PICTURES_DIR = config.xdg.userDirs.pictures;
+        # XDG_PUBLICSHARE_DIR = config.xdg.userDirs.publicShare;
+        # XDG_TEMPLATES_DIR = config.xdg.userDirs.templates;
+        # XDG_VIDEOS_DIR = config.xdg.userDirs.videos;
 
-    coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
-    findutils = pkgs.hiPrio pkgs.uutils-findutils;
+        # LESSHISTFILE = "/tmp/less-hist";
+        # PARALLEL_HOME = "${config.xdg.configHome}/parallel";
+      }
+      // lib.optionalAttrs config.vars.withGui {
+        NIXOS_OZONE_WL = "1";
+        TERM = "xterm-256color";
+        BROWSER = "firefox";
+        # Fix for some Java AWT applications (e.g. Android Studio),
+        # use this if they aren't displayed properly:
+        "_JAVA_AWT_WM_NONREPARENTING" = "1";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        QT_QPA_PLATFORM = "wayland";
+        SDL_VIDEODRIVER = "wayland";
+        XDG_SESSION_TYPE = "wayland";
+      };
 
-    tidal-hifi = pkgs.tidal-hifi.overrideAttrs {
-      /*
-        #HACK:
-        Remove space in the name to fix issue below
+    systemPackages = lib.attrValues {
+      inherit (pkgs)
+        teavpn2
+        adwaita-icon-theme
+        iputils
+        curl
+        dnsutils
+        fd
+        fzf
+        sbctl # For debugging and troubleshooting Secure boot.
 
-        ❯ fuzzel
-        Invalid Entry ID 'TIDAL Hi-Fi.desktop'!
-      */
-      desktopItems = [
-        (pkgs.makeDesktopItem {
-          exec = "tidal-hifi";
-          name = "tidal-hifi";
-          desktopName = "Tidal Hi-Fi";
-          genericName = "Tidal Hi-Fi";
-          comment = "The web version of listen.tidal.com running in electron with hifi support thanks to widevine.";
-          icon = "tidal-hifi";
-          startupNotify = true;
-          terminal = false;
-          type = "Application";
-          categories = [
-            "Network"
-            "Application"
-            "AudioVideo"
-            "Audio"
-            "Video"
-          ];
-          startupWMClass = "tidal-hifi";
-          mimeTypes = [ "x-scheme-handler/tidal" ];
-          extraConfig.X-PulseAudio-Properties = "media.role=music";
-        })
-      ];
+        bottom
+        jq
+        nix-index
+        nmap
+        ripgrep
+        tealdeer
+        whois
+        wl-clipboard
+        wget
+        unzip
+        # Utils for nixpkgs stuff
+        nixpkgs-review
+        # Fav
+        element-desktop # matrix client
+        # fooyin # music player
+        foliate # book reader
+        qbittorrent # uhm
+        imv
+        viewnior
+        ente-auth
+        thunderbird
+        telegram-desktop
+        mpv
+        yazi
+        nh
+        ;
 
+      coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
+      findutils = pkgs.hiPrio pkgs.uutils-findutils;
+
+      tidal-hifi = pkgs.tidal-hifi.overrideAttrs {
+        /*
+          #HACK:
+          Remove space in the name to fix issue below
+
+          ❯ fuzzel
+          Invalid Entry ID 'TIDAL Hi-Fi.desktop'!
+        */
+        desktopItems = [
+          (pkgs.makeDesktopItem {
+            exec = "tidal-hifi";
+            name = "tidal-hifi";
+            desktopName = "Tidal Hi-Fi";
+            genericName = "Tidal Hi-Fi";
+            comment = "The web version of listen.tidal.com running in electron with hifi support thanks to widevine.";
+            icon = "tidal-hifi";
+            startupNotify = true;
+            terminal = false;
+            type = "Application";
+            categories = [
+              "Network"
+              "Application"
+              "AudioVideo"
+              "Audio"
+              "Video"
+            ];
+            startupWMClass = "tidal-hifi";
+            mimeTypes = [ "x-scheme-handler/tidal" ];
+            extraConfig.X-PulseAudio-Properties = "media.role=music";
+          })
+        ];
+
+      };
+
+      # use OCR and copy to clipboard
+      wl-ocr =
+        let
+          _ = lib.getExe;
+        in
+        pkgs.writeShellScriptBin "wl-ocr" ''
+          ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard}/bin/wl-copy
+          ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
+        '';
     };
-
-    # use OCR and copy to clipboard
-    wl-ocr =
-      let
-        _ = lib.getExe;
-      in
-      pkgs.writeShellScriptBin "wl-ocr" ''
-        ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard}/bin/wl-copy
-        ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
-      '';
   };
 
   programs = {

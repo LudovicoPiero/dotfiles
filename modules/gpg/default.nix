@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     services.dbus.packages = [ pkgs.gcr ];
 
-    hj.environment.sessionVariables = {
+    environment.sessionVariables = {
       GNUPGHOME = "${config.vars.homeDirectory}/.config/gnupg";
     };
 
