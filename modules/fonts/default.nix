@@ -55,11 +55,11 @@ in
     emoji = {
       name = mkOption {
         type = types.str;
-        default = "Twitter Color Emoji";
+        default = "Noto Color Emoji";
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.twitter-color-emoji;
+        default = pkgs.noto-fonts-color-emoji;
       };
     };
 
