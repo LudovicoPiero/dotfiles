@@ -34,7 +34,7 @@
     };
 
     emacs = {
-      enable=true;
+      enable = true;
     };
 
     fcitx5 = {
@@ -255,6 +255,10 @@
     };
 
     wezterm = {
+      enable = true;
+    };
+
+    wleave = {
       enable = true;
     };
 

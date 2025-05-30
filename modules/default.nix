@@ -30,6 +30,7 @@ _: {
     ./vscode
     ./waybar
     ./wezterm
+    ./wleave
     ./xdg-portal
     ./zen-browser
   ];
