@@ -179,7 +179,7 @@ in
             "custom/power" = {
               format = "󰐥";
               tooltip = false;
-              on-click = "${_ pkgs.wlogout}";
+              on-click = "${_ pkgs.wleave}";
             };
             "custom/disk_home" = {
               "format" = "󰋊 HOME: {}";
