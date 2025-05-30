@@ -43,7 +43,6 @@ in
             fcitx5-mozc # Japanese
             fcitx5-hangul # Korean
 
-
             # Input methods Module
             fcitx5-gtk
             libsForQt5.fcitx5-qt
