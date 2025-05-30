@@ -40,6 +40,10 @@
       hasIPv6Internet = false;
     };
 
+    emacs = {
+      enable=true;
+    };
+
     fcitx5 = {
       enable = true;
     };

@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./dnscrypt2
+    ./emacs
     ./fcitx5
     ./firefox
     ./fish

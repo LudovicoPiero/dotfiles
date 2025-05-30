@@ -116,6 +116,27 @@
         "type": "github"
       }
     },
+    "emacs-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1748571491,
+        "narHash": "sha256-Do+VEOBbjbDwezTYcxv09dDFWKn+pJTBLciTEk0Uo9k=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "ff7520b1b7eeaa20f67c1a73da384f53c09bf0d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
     "emmylua": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -1262,6 +1283,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1748421225,
+        "narHash": "sha256-XXILOc80tvlvEQgYpYFnze8MkQQmp3eQxFbTzb3m/R0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "78add7b7abb61689e34fc23070a8f55e1d26185b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1748244669,
@@ -1393,6 +1430,7 @@
       "inputs": {
         "anime": "anime",
         "catppuccin-base16": "catppuccin-base16",
+        "emacs-overlay": "emacs-overlay",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "hjem": "hjem",
@@ -1412,6 +1450,7 @@
         "programsdb": "programsdb",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
+        "wrapper-manager": "wrapper-manager",
         "zen-browser": "zen-browser"
       }
     },
@@ -1688,6 +1727,26 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "wrapper-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1747562021,
+        "narHash": "sha256-XfF+5zjoWbAcAiGNb++og6yDGJRwWYpADr9P6WuieQA=",
+        "owner": "viperML",
+        "repo": "wrapper-manager",
+        "rev": "f2b0bec5140403cf24cae96f6764d97b5d59b0e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "viperML",
+        "repo": "wrapper-manager",
         "type": "github"
       }
     },

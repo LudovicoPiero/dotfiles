@@ -33,6 +33,10 @@
       hasIPv6Internet = true;
     };
 
+    emacs = {
+      enable=true;
+    };
+
     fcitx5 = {
       enable = true;
     };
