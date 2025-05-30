@@ -257,7 +257,6 @@ in
                 activated = "";
                 deactivated = "";
               };
-              timeout = 30;
             };
             "hyprland/submap" = {
               "format" = "{}";
