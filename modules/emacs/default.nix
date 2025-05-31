@@ -76,6 +76,7 @@ in
 
                 # Go
                 go
+                gopls
 
                 # Rust
                 rust-analyzer
