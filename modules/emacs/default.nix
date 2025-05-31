@@ -32,6 +32,7 @@ in
               basePackage = emacsPackage;
               pathAdd = with pkgs; [
                 ## Optional dependencies
+                (mkIf (config.programs.gnupg.agent.enable) pinentry-emacs) # in-emacs gnupg prompts
                 (aspellWithDicts (
                   ds: with ds; [
                     en
@@ -39,7 +40,20 @@ in
                     en-science
                   ]
                 ))
-                (mkIf (config.programs.gnupg.agent.enable) pinentry-emacs) # in-emacs gnupg prompts
+                # https://github.com/manateelazycat/lsp-bridge/wiki/NixOS
+                (python3.withPackages (
+                  p: with p; [
+                    epc
+                    orjson
+                    sexpdata
+                    six
+                    setuptools
+                    paramiko
+                    rapidfuzz
+                    watchdog
+                    packaging
+                  ]
+                ))
 
                 ripgrep
                 fd # faster projectile indexing
@@ -47,7 +61,7 @@ in
                 zstd # for undo-fu-session/undo-tree compression
 
                 # Nix
-                nil
+                nixd
                 nixfmt-rfc-style
 
                 # C
