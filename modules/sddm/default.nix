@@ -23,7 +23,7 @@ in
         pam.services.sddm.enableGnomeKeyring = true;
       };
 
-      services.xserver.displayManager.gdm.enable = mkForce false;
+      services.displayManager.gdm.enable = mkForce false;
       services.displayManager.sddm = {
         enable = true;
         package = lib.mkForce (
