@@ -23,6 +23,7 @@ pull_request_rules:
     conditions: []
     actions:
       queue:
+      delete_head_branch:
 
   - name: Toggle conflict label based on mergeability
     conditions:
