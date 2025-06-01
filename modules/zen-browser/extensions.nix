@@ -12,6 +12,8 @@
     settings = {
       "uBlock0@raymondhill.net" = {
         settings = {
+          # Get your settings here
+          # ~/.zen/YOUR_PROFILE_NAME/browser-extension-data/uBlock0@raymondhill.net/storage.js
           advancedUserEnabled = true;
           selectedFilterLists = [
             "user-filters"
