@@ -12,7 +12,10 @@ let
   emacsPackage =
     with pkgs;
     (emacsPackagesFor emacs-git-pgtk).emacsWithPackages (
-      epkgs: with epkgs; [ treesit-grammars.with-all-grammars ]
+      epkgs: with epkgs; [
+        treesit-grammars.with-all-grammars
+        vterm
+      ]
     );
 
   cfg = config.mine.emacs;
