@@ -17,14 +17,5 @@
           ./sforza/configuration.nix
         ];
       };
-
-      allOptions = nixosSystem {
-        inherit specialArgs;
-        modules = [
-          sharedModules
-
-          ./allOptions/configuration.nix
-        ];
-      };
     };
 }
