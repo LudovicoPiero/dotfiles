@@ -37,7 +37,7 @@ in
         "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
         "[workspace 9 silent;noanim] ${app2unit} ${_ pkgs.thunderbird}"
       ]
-      ++ optionals config.services.xserver.desktopManager.gnome.enable [
+      ++ optionals config.services.desktopManager.gnome.enable [
         "systemctl --user stop xdg-desktop-portal-gnome.service"
       ]
       ++ optionals config.services.desktopManager.plasma6.enable [
