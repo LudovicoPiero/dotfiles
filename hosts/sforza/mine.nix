@@ -58,7 +58,7 @@
 
     fonts = {
       enable = true;
-      size = 15;
+      size = 14;
       cjk = {
         name = "Noto Sans CJK";
         package = pkgs.noto-fonts-cjk-sans;

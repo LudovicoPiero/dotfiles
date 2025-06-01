@@ -76,7 +76,7 @@ in
 
     size = mkOption {
       type = types.int;
-      default = 15;
+      default = 14;
     };
   };
 
