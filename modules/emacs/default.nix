@@ -89,6 +89,10 @@ in
                 # Web Development
                 vscode-langservers-extracted
                 typescript-language-server
+                intelephense # php
+                astro-language-server
+                vue-language-server
+                tailwindcss-language-server
               ];
             };
           }
