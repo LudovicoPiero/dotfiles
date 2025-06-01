@@ -14,20 +14,6 @@ let
     mkMerge
     ;
 
-  basePackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  LTOPackage = (basePackage.override { stdenv = pkgs.clangStdenv; }).overrideAttrs (prevAttrs: {
-    patches = (prevAttrs.patches or [ ]) ++ [
-      ./patches/add-env-vars-to-export.patch
-      ./patches/enable-lto.patch
-    ];
-    mesonFlags = (prevAttrs.mesonFlags or [ ]) ++ [
-      (lib.mesonBool "b_lto" true)
-      (lib.mesonOption "b_lto_threads" "4")
-      (lib.mesonOption "b_lto_mode" "thin")
-      (lib.mesonBool "b_thinlto_cache" true)
-    ];
-  });
-
   cfg = config.mine.hyprland;
 in
 {
@@ -44,18 +30,13 @@ in
 
     package = mkOption {
       type = types.package;
-      default = if cfg.withLTO then LTOPackage else basePackage;
+      default = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      description = "The Hyprland package to use.";
     };
 
     withUWSM = mkOption {
       type = types.bool;
       default = true;
-    };
-
-    withLTO = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable Link-Time Optimization (LTO)";
     };
   };
 

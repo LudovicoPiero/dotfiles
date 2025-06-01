@@ -109,7 +109,6 @@
 
     hyprland = {
       enable = true;
-      withLTO = true;
     };
 
     hyprlock = {
