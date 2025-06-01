@@ -21,12 +21,6 @@ let
     else
       "";
 
-  moonlight =
-    if (cfgmine.moonlight.discordVariants == "stable") then
-      "discord"
-    else
-      "discord${cfgmine.moonlight.discordVariants}";
-
   launcher = "${_ pkgs.fuzzel}";
   powermenu = "${_ pkgs.wleave}";
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
@@ -363,9 +357,7 @@ in
       ]
       ++ optionals cfgmine.firefox.enable [ "$mod      , G , exec , ${app2unit} firefox" ]
       ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , ${app2unit} zen-beta" ]
-      ++ optionals cfgmine.vesktop.enable [ "$mod      , D , exec , ${app2unit} vesktop" ]
-      ++ optionals cfgmine.moonlight.enable [ "$mod  SHIFT, D , exec , ${app2unit} ${moonlight}" ]
-      ++ optionals cfgmine.spotify.enable [ "$mod SHIFT, S , exec , ${app2unit} spotify" ];
+      ++ optionals cfgmine.vesktop.enable [ "$mod      , D , exec , ${app2unit} vesktop" ];
 
     bindel = [
       ", XF86AudioRaiseVolume  , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"

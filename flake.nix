@@ -33,30 +33,12 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    spicetify-nix.url = "github:gerg-l/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     programsdb.url = "github:wamserma/flake-programs-sqlite";
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Nix VS Code Extensions.
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Anime Games
-    anime.url = "github:ezKEa/aagl-gtk-on-nix";
-    anime.inputs.nixpkgs.follows = "nixpkgs";
 
     # Lix
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
-
-    minecraft.url = "github:hero-persson/FjordLauncherUnlocked";
-    minecraft.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Moonlight ( Discord Mod )
-    moonlight.url = "github:moonlight-mod/moonlight";
-    moonlight.inputs.nixpkgs.follows = "nixpkgs";
 
     ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
     ludovico-nixvim.inputs.nixpkgs.follows = "nixpkgs";

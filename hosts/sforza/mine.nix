@@ -124,67 +124,6 @@
       enable = true;
     };
 
-    moonlight = {
-      enable = false;
-      discordVariants = "canary";
-      settings = {
-        extensions = {
-          moonbase = true;
-          disableSentry = true;
-          noTrack = true;
-          noHideToken = true;
-          betterCodeblocks = true;
-          ownerCrown = true;
-          betterTags = true;
-          betterEmbedsYT = true;
-          customSearchEngine = true;
-          hideBlocked = true;
-          imageViewer = true;
-          mentionAvatars = true;
-          noReplyPing = true;
-          freeMoji = false;
-          silenceTyping = true;
-          nameColor = true;
-          moonlight-css = {
-            enabled = true;
-            config = {
-              paths = [
-                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-avatar-decoration.css"
-                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-invite-button.css"
-                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-clantag.css"
-                "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/fix-ui.css"
-                "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
-                # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
-              ];
-            };
-          };
-          copyAvatarUrl = true;
-          inviteToNowhere = true;
-          nativeFixes = true;
-          noMaskedLinkPaste = true;
-          noNotificationSoundExceptDms = true;
-          platformIcons = {
-            enabled = true;
-            config = {
-              self = false;
-            };
-          };
-          reverseImageSearch = true;
-          selectivelyReduceMotion = {
-            enabled = true;
-            config = {
-              avatarDecorations = true;
-              profileEffects = true;
-              nameplates = true;
-              burstReactions = true;
-              confetti = true;
-            };
-          };
-        };
-        repositories = [ "https://moonlight-mod.github.io/extensions-dist/repo.json" ];
-      };
-    };
-
     mpd = {
       enable = true;
     };
@@ -208,10 +147,6 @@
     };
 
     secrets = {
-      enable = true;
-    };
-
-    spotify = {
       enable = true;
     };
 
@@ -256,10 +191,6 @@
         "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
         # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css"
       ];
-    };
-
-    vscode = {
-      enable = true;
     };
 
     waybar = {

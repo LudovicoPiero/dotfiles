@@ -14,7 +14,6 @@ _: {
     ./hyprland
     ./keyring
     ./mako
-    ./moonlight
     ./mpd
     ./ncmpcpp
     ./nvim
@@ -22,12 +21,10 @@ _: {
     ./sddm
     ./secrets
     ./shared
-    ./spotify
     ./theme
     ./tlp
     ./vars
     ./vesktop
-    ./vscode
     ./waybar
     ./wezterm
     ./wleave
