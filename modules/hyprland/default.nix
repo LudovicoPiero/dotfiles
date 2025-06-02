@@ -65,7 +65,7 @@ in
           inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       };
 
-      hj.rum.programs.hyprland = {
+      hm.wayland.windowManager.hyprland = {
         enable = true;
 
         extraConfig = ''

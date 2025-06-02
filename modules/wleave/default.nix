@@ -30,11 +30,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    hj = {
-      packages = [ cfg.package ];
+    hm = {
+      home.packages = [ cfg.package ];
 
-      files = {
-        ".config/wleave/layout".text = ''
+      xdg.configFile = {
+        "wleave/layout".text = ''
           {
               "label" : "lock",
               "action" : "${getExe pkgs.hyprlock} --immediate --immediate-render",
@@ -73,7 +73,7 @@ in
           }
         '';
 
-        ".config/wleave/style.css".text = ''
+        "wleave/style.css".text = ''
           * {
             background-image: none;
             font-family: "${config.mine.fonts.main.name}";

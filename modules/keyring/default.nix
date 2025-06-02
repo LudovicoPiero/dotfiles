@@ -31,7 +31,6 @@ in
     security.polkit.enable = true;
 
     systemd.user.services.hyprpolkitagent = {
-      enable = true;
       description = "Polkit authentication agent";
       after = [ "graphical-session.target" ];
       wantedBy = [ "graphical-session.target" ];

@@ -19,7 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    hj.rum.programs.fuzzel = {
+    hm.programs.fuzzel = {
       enable = true;
 
       settings = {

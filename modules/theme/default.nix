@@ -13,6 +13,8 @@ let
     types
     ;
 
+  inherit (inputs) self;
+
   wallpaperLink = pkgs.fetchurl {
     url = "https://w.wallhaven.cc/full/0p/wallhaven-0pom5m.jpg";
     hash = "sha256-WHt/fDfCHlS4VZp+lydSHm8f7Pa0trf3WoiCCmG8Ih0=";
@@ -21,7 +23,6 @@ let
   cfg = config.mine.theme;
 in
 {
-  imports = [ ./qt.nix ];
   options.mine.theme = {
     enable = mkEnableOption "Theme";
 
@@ -71,97 +72,164 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.user.services.swaybg = {
-      enable = true;
-      description = "Wayland wallpaper daemon";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      bindsTo = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        Restart = "on-failure";
-        ExecStart = "${lib.getExe pkgs.swaybg} -i ${wallpaperLink}";
-      };
-    };
+    hm =
+      { config, osConfig, ... }:
+      {
+        imports = [ inputs.nix-colors.homeManagerModules.default ];
+        inherit (cfg) colorScheme;
 
-    hj = {
-      rum.misc.gtk = {
-        enable = true;
-        packages = [
-          cfg.gtk.theme.package
-          cfg.gtk.iconTheme.package
-          cfg.gtk.cursorTheme.package
-        ];
-
-        settings = {
-          application-prefer-dark-theme = true;
-          cursor-theme-name = cfg.gtk.cursorTheme.name;
-          cursor-theme-size = cfg.gtk.cursorTheme.size;
-          toolbar-style = "GTK_TOOLBAR_BOTH";
-          toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-          button-images = 1;
-          menu-images = 1;
-          enable-event-sounds = 1;
-          enable-input-feedback-sounds = 1;
-          xft-antialias = 1;
-          xft-hinting = 1;
-          xft-hintstyle = "hintfull";
-          xft-rgba = "rgb";
+        systemd.user.services.swaybg = {
+          Unit = {
+            Description = "Wayland wallpaper daemon";
+            After = [ "graphical-session.target" ];
+            BindsTo = [ "graphical-session.target" ];
+          };
+          Install.WantedBy = [ "graphical-session.target" ];
+          Service = {
+            Type = "simple";
+            Restart = "on-failure";
+            ExecStart = "${lib.getExe pkgs.swaybg} -i ${wallpaperLink}";
+          };
         };
 
-        bookmarks = [
-          "file://${config.vars.homeDirectory}/Code"
-          "file://${config.vars.homeDirectory}/Media"
-          "file://${config.vars.homeDirectory}/Documents"
-          "file://${config.vars.homeDirectory}/Downloads"
-          "file://${config.vars.homeDirectory}/Games"
-          "file://${config.vars.homeDirectory}/Music"
-          "file://${config.vars.homeDirectory}/Pictures"
-          "file://${config.vars.homeDirectory}/Videos"
-          "file://${config.vars.homeDirectory}/WinE"
-        ];
+        home = {
+          packages = [
+            cfg.gtk.cursorTheme.package
+            pkgs.gnomeExtensions.user-themes
+          ];
+          pointerCursor = {
+            inherit (cfg.gtk.cursorTheme) name package size;
+            hyprcursor.enable = true;
+            x11.enable = true;
+            gtk.enable = true;
+          };
+        };
+
+        gtk = {
+          enable = true;
+
+          font = {
+            inherit (osConfig.mine.fonts.main) name package;
+            inherit (osConfig.mine.fonts) size;
+          };
+
+          inherit (cfg.gtk) cursorTheme theme iconTheme;
+
+          gtk2 = {
+            configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+            extraConfig = ''
+              gtk-cursor-theme-name="${config.gtk.cursorTheme.name}"
+              gtk-cursor-theme-size=${toString config.gtk.cursorTheme.size}
+              gtk-toolbar-style=GTK_TOOLBAR_BOTH
+              gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+              gtk-button-images=1
+              gtk-menu-images=1
+              gtk-enable-event-sounds=1
+              gtk-enable-input-feedback-sounds=1
+              gtk-xft-antialias=1
+              gtk-xft-hinting=1
+              gtk-xft-hintstyle="hintfull"
+              gtk-xft-rgba="rgb"
+            '';
+          };
+
+          gtk3 = {
+            bookmarks = [
+              "file://${config.home.homeDirectory}/Code"
+              "file://${config.home.homeDirectory}/Media"
+              "file://${config.home.homeDirectory}/Documents"
+              "file://${config.home.homeDirectory}/Downloads"
+              # "file://${config.home.homeDirectory}/Games"
+              "file://${config.home.homeDirectory}/Music"
+              "file://${config.home.homeDirectory}/Pictures"
+              "file://${config.home.homeDirectory}/Videos"
+              "file://${config.home.homeDirectory}/WinE"
+            ];
+
+            extraConfig = {
+              gtk-application-prefer-dark-theme = 1;
+              gtk-cursor-theme-name = config.gtk.cursorTheme.name;
+              gtk-cursor-theme-size = config.gtk.cursorTheme.size;
+              gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
+              gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
+              gtk-button-images = 1;
+              gtk-menu-images = 1;
+              gtk-enable-event-sounds = 1;
+              gtk-enable-input-feedback-sounds = 1;
+              gtk-xft-antialias = 1;
+              gtk-xft-hinting = 1;
+              gtk-xft-hintstyle = "hintfull";
+              gtk-xft-rgba = "rgb";
+            };
+          };
+
+          gtk4.extraConfig = {
+            gtk-application-prefer-dark-theme = 1;
+          };
+        };
+
+        qt = {
+          enable = true;
+          platformTheme.name = "gtk3";
+        };
+
+        xdg = {
+          # Stolen from https://github.com/khaneliman/khanelinix/blob/e0039561cfaa7810325ecd811e672ffa6d96736f/modules/home/theme/gtk/default.nix#L150
+          configFile =
+            let
+              gtk4Dir = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0";
+            in
+            {
+              "gtk-4.0/assets".source = "${gtk4Dir}/assets";
+              "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
+              "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
+            };
+
+          systemDirs.data =
+            let
+              schema = pkgs.gsettings-desktop-schemas;
+            in
+            [ "${schema}/share/gsettings-schemas/${schema.name}" ];
+        };
+
+        dconf.settings = {
+          "org/gnome/desktop/interface" = {
+            # Use dconf-editor to get this settings.
+            color-scheme = "prefer-dark";
+            cursor-theme = config.gtk.cursorTheme.name;
+            cursor-size = config.gtk.cursorTheme.size;
+            gtk-theme = config.gtk.theme.name;
+            icon-theme = config.gtk.iconTheme.name;
+            font-name = "${osConfig.mine.fonts.main.name} ${toString osConfig.mine.fonts.size}";
+            clock-format = "12h";
+            clock-show-date = true;
+            clock-show-seconds = false;
+            clock-show-weekday = false;
+            enable-animations = true;
+            enable-hot-corners = false;
+            font-antialiasing = "grayscale";
+            font-hinting = "slight";
+            scaling-factor = 1;
+            text-scaling-factor = 1.0;
+            toolbar-style = "text";
+          };
+          "org/gnome/shell" = {
+            disable-user-extensions = false;
+            enabled-extensions = [ "user-theme@gnome-shell-extensions.gcampax.github.com" ];
+          };
+          "org/gnome/shell/extensions/user-theme" = { inherit (config.gtk.theme) name; };
+          "org/gnome/desktop/background" = {
+            color-shading-type = "solid";
+            picture-options = "zoom";
+            picture-uri = "${self}/assets/Lain_Red.png";
+            picture-uri-dark = "${self}/assets/anime-nix-wallpaper.png";
+            primary-color = "#000000000000";
+            secondary-color = "#000000000000";
+          };
+          "org/gnome/desktop/wm/preferences" = {
+            button-layout = "close,minimize,maximize:icon";
+          };
+        };
       };
-
-      files = {
-        ".local/share/icons/default/index.theme".text = ''
-          [Icon Theme]
-          Name=Default
-          Comment=Default Cursor Theme
-          Inherits=${cfg.gtk.cursorTheme.name}
-        '';
-        ".local/share/icons/${cfg.gtk.cursorTheme.name}".source =
-          "${cfg.gtk.cursorTheme.package}/share/icons/${cfg.gtk.cursorTheme.name}";
-
-        /*
-          NOTE:
-          add $HOME/.icons for backward compatibility
-          https://specifications.freedesktop.org/icon-theme-spec/latest/#directory_layout
-        */
-        ".icons/default/index.theme".text = ''
-          [Icon Theme]
-          Name=Default
-          Comment=Default Cursor Theme
-          Inherits=${cfg.gtk.cursorTheme.name}
-        '';
-        ".icons/${cfg.gtk.cursorTheme.name}".source =
-          "${cfg.gtk.cursorTheme.package}/share/icons/${cfg.gtk.cursorTheme.name}";
-
-        #GTK 3
-        # ".config/gtk-3.0/assets".source =
-        #   "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/assets";
-        ".config/gtk-3.0/gtk.css".source =
-          "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/gtk.css";
-        ".config/gtk-3.0/gtk-dark.css".source =
-          "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-3.0/gtk-dark.css";
-
-        # GTK 4
-        # ".config/gtk-4.0/assets".source =
-        #   "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-4.0/assets";
-        ".config/gtk-4.0/gtk.css".source =
-          "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-4.0/gtk.css";
-        ".config/gtk-4.0/gtk-dark.css".source =
-          "${cfg.gtk.theme.package}/share/themes/${cfg.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-      };
-    };
   };
 }

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkPackageOption mkIf;
+  inherit (lib) mkEnableOption mkIf;
   inherit (config.mine.theme.colorScheme) palette;
 
   cfg = config.mine.mako;
@@ -13,18 +13,21 @@ in
 {
   options.mine.mako = {
     enable = mkEnableOption "mako service";
-
-    package = mkPackageOption pkgs "mako" { };
   };
 
   config = mkIf cfg.enable {
-    hj = {
-      packages = with pkgs; [
+    hm = {
+      home.packages = with pkgs; [
         libnotify
-        cfg.package
+        mako
       ];
 
-      files.".config/mako/config".text = ''
+      services.mako = {
+        enable = true;
+      };
+
+      #TODO
+      xdg.configFile."mako/config".text = ''
         font=${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}
         background-color=#${palette.base00}
         border-color=#${palette.base0E}
@@ -40,19 +43,6 @@ in
         height=125
         width=400
       '';
-    };
-
-    systemd.user.services.mako = {
-      enable = true;
-      description = "Wayland notification daemon";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      bindsTo = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        Restart = "on-failure";
-        ExecStart = "${lib.getExe cfg.package}";
-      };
     };
   };
 }

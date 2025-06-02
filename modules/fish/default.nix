@@ -63,20 +63,20 @@ in
       };
     };
 
-    hj = {
-      packages = with pkgs; [
+    hm = {
+      home.packages = with pkgs; [
         zoxide
         fzf
         fd
         lazygit
       ];
 
-      rum.programs = {
+      programs = {
         fish = {
           enable = true;
 
           #NOTE: get default tide config using `set -U | grep tide_`
-          config = with pkgs; ''
+          interactiveShellInit = with pkgs; ''
             function fish_greeting
             end
 
@@ -128,17 +128,26 @@ in
             ${_ nix-your-shell} fish | source
           '';
 
-          plugins = {
-            inherit (pkgs.fishPlugins) fzf-fish;
-            tide = pkgs.fishPlugins.tide.overrideAttrs {
+          plugins = [
+            {
+              name = "fzf.fish";
+              src = pkgs.fetchFromGitHub {
+                owner = "PatrickF1";
+                repo = "fzf.fish";
+                rev = "e5d54b93cd3e096ad6c2a419df33c4f50451c900";
+                hash = "sha256-5cO5Ey7z7KMF3vqQhIbYip5JR6YiS2I9VPRd6BOmeC8=";
+              };
+            }
+            {
+              name = "tide";
               src = pkgs.fetchFromGitHub {
                 owner = "IlanCosman";
                 repo = "tide";
                 rev = "44c521ab292f0eb659a9e2e1b6f83f5f0595fcbd";
                 hash = "sha256-85iU1QzcZmZYGhK30/ZaKwJNLTsx+j3w6St8bFiQWxc=";
               };
-            };
-          };
+            }
+          ];
         };
       };
     };

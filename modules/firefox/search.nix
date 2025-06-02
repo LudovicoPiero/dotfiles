@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  mine.programs.firefox.profiles.ludovico.search = {
+  hm.programs.firefox.profiles.ludovico.search = {
+    force = true;
     default = "ddg";
     order = [
       "ddg"

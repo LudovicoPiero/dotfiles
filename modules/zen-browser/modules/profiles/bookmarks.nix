@@ -1,10 +1,3 @@
-# SPDX-License-Identifier: MIT
-#
-# This file contains code adapted from the Home Manager project:
-#   https://github.com/nix-community/home-manager
-#
-# The original code is licensed under the MIT License:
-#   https://github.com/nix-community/home-manager/blob/master/LICENSE
 {
   config,
   lib,
@@ -80,11 +73,22 @@ in
     (pkgs.path + "/nixos/modules/misc/meta.nix")
   ];
 
+  # We're currently looking for a maintainer who actively uses bookmarks!
+  meta.maintainers = with maintainers; [ kira-bruneau ];
+
   options = {
     enable = mkOption {
       type = with types; bool;
       default = config.settings != [ ];
       internal = true;
+    };
+
+    force = mkOption {
+      type = with types; bool;
+      default = false;
+      description = ''
+        Whether to force override existing custom bookmarks.
+      '';
     };
 
     settings = mkOption {
@@ -131,5 +135,17 @@ in
         Configuration file to define custom bookmarks.
       '';
     };
+  };
+
+  config = {
+    assertions = [
+      {
+        assertion = config.enable -> config.force;
+        message = ''
+          Using '${lib.showAttrPath (modulePath ++ [ "settings" ])}' will override all previous bookmarks.
+          Enable ${lib.showAttrPath (modulePath ++ [ "force" ])}' to acknowledge this.
+        '';
+      }
+    ];
   };
 }
