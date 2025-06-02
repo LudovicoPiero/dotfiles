@@ -62,8 +62,8 @@ in
             ipc = true;
             modules-left = [
               "custom/menu"
+              "custom/wireguard"
               "cpu"
-              "memory"
               "custom/disk_home"
               "custom/disk_root"
               "idle_inhibitor"
@@ -72,11 +72,9 @@ in
             modules-center = [
               "hyprland/workspaces"
               "hyprland/submap"
-              # "mpd"
             ];
             modules-right = [
               "pulseaudio"
-              "backlight"
               "bluetooth"
               "network"
               "battery"
@@ -84,6 +82,13 @@ in
               "custom/date"
               "custom/power"
             ];
+            "custom/wireguard" = {
+              "format" = "󰖂 Wireguard";
+              "exec" = "echo '{\"class\": \"connected\"}'";
+              "exec-if" = "test -d /proc/sys/net/ipv4/conf/wg0";
+              "return-type" = "json";
+              "interval" = 5;
+            };
             backlight = {
               interval = 2;
               align = 0;
@@ -322,6 +327,10 @@ in
             color: #${palette.base0D};
           }
 
+          #custom-wireguard {
+            color: #${palette.base0B};
+          }
+
           #custom-disk_root {
             color: #${palette.base0D};
           }
@@ -461,10 +470,6 @@ in
 
           #cpu {
             color: #${palette.base08};
-          }
-
-          #memory {
-            color: #${palette.base0B};
           }
 
           #disk {
@@ -609,8 +614,8 @@ in
           #custom-date,
           #custom-disk_root,
           #custom-disk_home,
+          #custom-wireguard,
           #disk,
-          #memory,
           #pulseaudio,
           #network,
           #bluetooth {
@@ -625,7 +630,6 @@ in
           #clock.2,
           #cpu.2,
           #disk.2,
-          #memory.2,
           #pulseaudio.2,
           #network.2,
           #bluetooth.2 {
