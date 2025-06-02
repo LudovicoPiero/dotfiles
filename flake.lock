@@ -893,11 +893,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748795667,
-        "narHash": "sha256-rpt+BO1l8OCdDjbctM/nByFNIyNoIYzS5jv6JuMz7KY=",
+        "lastModified": 1748874073,
+        "narHash": "sha256-MOk81+U3AAHEZhqhpRVWjUyNjF7686o+O45Lh4PrwFA=",
         "owner": "LudovicoPiero",
         "repo": "pkgs",
-        "rev": "b588e60188be0835e326b5b5be9494bc369cb2b9",
+        "rev": "560f9984bc9cf9081bb203259642e4acef332afb",
         "type": "github"
       },
       "original": {

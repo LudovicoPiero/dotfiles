@@ -22,7 +22,7 @@ in
     main = {
       name = mkOption {
         type = types.str;
-        default = "SF Pro Rounded";
+        default = "SF Pro";
       };
       package = mkOption {
         type = types.package;
@@ -93,8 +93,6 @@ in
         cfg.cjk.package
         cfg.emoji.package
         cfg.icon.package
-
-        inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.sarasa-gothic
 
         pkgs.symbola
         pkgs.wqy_zenhei # For Steam
