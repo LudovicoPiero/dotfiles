@@ -161,8 +161,8 @@ in
             gtk-theme = config.gtk.theme.name;
             icon-theme = config.gtk.iconTheme.name;
             font-name = "${osConfig.mine.fonts.main.name} ${toString osConfig.mine.fonts.size}";
-            document-font-name = "${osConfig.mine.fonts.main.name} Rounded ${toString osConfig.mine.fonts.size}";
-            monospace-font-name = "${osConfig.mine.fonts.main.name} Rounded ${toString osConfig.mine.fonts.size}";
+            document-font-name = "${osConfig.mine.fonts.main.name} ${toString osConfig.mine.fonts.size}";
+            monospace-font-name = "${osConfig.mine.fonts.main.name} ${toString osConfig.mine.fonts.size}";
             clock-format = "12h";
             clock-show-date = true;
             clock-show-seconds = false;

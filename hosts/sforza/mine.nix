@@ -65,8 +65,8 @@
         package = pkgs.nerd-fonts.symbols-only;
       };
       main = {
-        name = "SF Pro";
-        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
+        name = "SF Mono";
+        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-mono;
       };
       terminal = {
         name = "Iosevka Q";
