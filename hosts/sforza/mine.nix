@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   vars = {
     colorScheme = "catppuccin-macchiato";
@@ -35,7 +40,7 @@
     };
 
     dnscrypt2 = {
-      enable = true;
+      enable = !config.mine.wireguard.enable;
       StateDirectory = "dnscrypt-proxy";
       hasIPv6Internet = false;
     };
