@@ -150,6 +150,7 @@ in
               gtk-application-prefer-dark-theme = 1;
               gtk-cursor-theme-name = config.gtk.cursorTheme.name;
               gtk-cursor-theme-size = config.gtk.cursorTheme.size;
+              gtk-font-name = osConfig.mine.fonts.main.name;
               gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
               gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
               gtk-button-images = 1;
@@ -165,6 +166,7 @@ in
 
           gtk4.extraConfig = {
             gtk-application-prefer-dark-theme = 1;
+            gtk-font-name = osConfig.mine.fonts.main.name;
           };
         };
 
