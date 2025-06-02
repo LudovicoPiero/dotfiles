@@ -27,6 +27,7 @@ _: {
     ./vesktop
     ./waybar
     ./wezterm
+    ./wireguard
     ./wleave
     ./xdg-portal
     ./zen-browser

@@ -200,6 +200,10 @@
       enable = true;
     };
 
+    wireguard = {
+      enable = true;
+    };
+
     wleave = {
       enable = true;
     };
