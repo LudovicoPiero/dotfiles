@@ -65,7 +65,7 @@
         package = pkgs.nerd-fonts.symbols-only;
       };
       main = {
-        name = "SF Pro Rounded";
+        name = "SF Pro";
         package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
       };
       terminal = {
