@@ -13,7 +13,7 @@ in
 with pkgs;
 {
   config = lib.mkIf cfg.enable {
-    hj.rum.programs.fish.earlyConfigFiles.myFunctions = ''
+    hm.programs.fish.shellInit = ''
       function gitignore
           curl -sL https://www.toptal.com/developers/gitignore/api/$argv
       end

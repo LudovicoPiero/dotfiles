@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  mine.programs.zen-browser.profiles.ludovico.search = {
+  hm.programs.zen-browser.profiles.ludovico.search = {
+    force = true;
     default = "ddg";
     order = [
       "ddg"

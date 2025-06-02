@@ -1,5 +1,6 @@
 {
-  mine.programs.zen-browser.profiles.ludovico.bookmarks = {
+  hm.programs.zen-browser.profiles.ludovico.bookmarks = {
+    force = true;
     settings = [
       {
         name = "ANIME"; # Bookmark Folder

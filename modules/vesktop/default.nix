@@ -1,14 +1,8 @@
 #NOTE: GOOD LUCK SCROLLING :P
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   inherit (lib)
     mkEnableOption
-    mkPackageOption
     mkIf
     types
     mkOption
@@ -20,10 +14,6 @@ in
   options.mine.vesktop = {
     enable = mkEnableOption "Vesktop";
 
-    package = mkPackageOption pkgs "vesktop" {
-      example = "pkgs.vesktop.override { withTTS = false; }";
-    };
-
     themeLinks = mkOption {
       type = types.listOf types.str;
       default = [ ];
@@ -31,11 +21,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    hj = {
-      packages = [ cfg.package ];
+    hm = {
+      programs.vesktop = {
+        enable = true;
 
-      files = {
-        ".config/vesktop/settings.json".text = builtins.toJSON {
+        settings = {
           arRPC = true;
           discordBranch = "canary";
           enableMenu = false;
@@ -47,7 +37,7 @@ in
           staticTitle = false;
         };
 
-        ".config/vesktop/settings/settings.json".text = builtins.toJSON {
+        vencord.settings = {
           # See https://github.com/Vendicated/Vencord/blob/main/src/api/Settings.ts
           autoUpdate = false;
           autoUpdateNotification = false;

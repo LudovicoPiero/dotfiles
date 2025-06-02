@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   inherit (config.mine.theme.colorScheme) palette;
@@ -16,11 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    hj = {
-      packages = [ pkgs.wezterm ];
-
-      files = {
-        ".config/wezterm/wezterm.lua".text = ''
+    hm = {
+      programs.wezterm = {
+        enable = true;
+        extraConfig = ''
           local wezterm = require("wezterm")
 
           -- Watch the config directory for changes and reload automatically

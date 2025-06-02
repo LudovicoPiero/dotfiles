@@ -12,7 +12,7 @@
 
     ./users.nix
     ./security.nix
-    ./hjem.nix
+    ./home-manager.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

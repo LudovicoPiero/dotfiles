@@ -21,22 +21,10 @@
   mine = {
     cliphist = {
       enable = true;
-      allowImages = true;
-      extraOptions = [
-        "-max-dedupe-search"
-        "10"
-        "-max-items"
-        "500"
-      ];
-      systemdTargets = [ "graphical-session.target" ];
     };
 
     direnv = {
       enable = true;
-      nix-direnv = {
-        enable = true;
-      };
-      silent = true;
     };
 
     dnscrypt2 = {
@@ -179,14 +167,6 @@
 
     vesktop = {
       enable = true;
-      package = pkgs.vesktop.overrideAttrs (old: {
-        postFixup =
-          (old.postFixup or "")
-          + ''
-            wrapProgram $out/bin/vesktop \
-              --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-wayland-ime=true"
-          '';
-      });
       themeLinks = [
         "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-avatar-decoration.css"
         "https://raw.githubusercontent.com/LudovicoPiero/discord-css/refs/heads/main/hide-invite-button.css"

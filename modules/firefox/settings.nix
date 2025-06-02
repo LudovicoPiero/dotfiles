@@ -5,7 +5,7 @@
   ...
 }:
 {
-  mine.programs.firefox.profiles.ludovico.settings =
+  hm.programs.firefox.profiles.ludovico.settings =
     {
       # Homepage
       "browser.startup.page" = 1;

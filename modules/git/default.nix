@@ -10,58 +10,20 @@ in
   };
 
   config = mkIf cfg.enable {
-    hj.files.".config/git/ignore".text = ''
-      # Compiled source #
-      *.o
-      *.so
-      *.a
-      *.la
-      *.lo
-      *.class
-      *.dll
-      *.exe
-      *.out
-      *.pyc
-      __pycache__/
-      .DS_Store
+    hm = {
+      programs = {
+        git = {
+          enable = true;
+          # package = pkgs.gitFull;
 
-      # Backup files #
-      *~
-      *.bak
-      *.swp
-
-      *result*
-      .direnv
-      node_modules
-      tmp
-      TODO
-
-      # Nix #
-      .nix-defexpr/
-    '';
-
-    hj.rum.programs = {
-      git = {
-        enable = true;
-        # package = pkgs.gitFull;
-
-        settings = {
-          color.ui = true;
-          init.defaultBranch = "master";
-          format.signoff = "yes";
-          pull.rebase = true;
-          commit.gpgSign = true;
-          gpg.format = "openpgp";
-          # tag.gpgsign = true;
-          # merge.conflictStyle = "diff3";
-
-          user = {
-            email = "${config.vars.email}";
-            name = "Ludovico Piero";
-            signingkey = "3911DD276CFE779C";
+          signing = {
+            key = "3911DD276CFE779C";
+            signByDefault = true;
           };
+          userName = "Ludovico Piero";
+          userEmail = "${config.vars.email}";
 
-          alias = {
+          aliases = {
             # Basic Commands
             a = "add -p";
             co = "checkout";
@@ -131,6 +93,46 @@ in
             clean = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d";
             bdm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d";
           };
+
+          extraConfig = {
+            color.ui = true;
+            init.defaultBranch = "master";
+            format.signoff = "yes";
+            pull.rebase = true;
+            commit.gpgSign = true;
+            gpg.format = "openpgp";
+          };
+
+          ignores = [
+            # Compiled source #
+            "*.o"
+            "*.so"
+            "*.a"
+            "*.la"
+            "*.lo"
+            "*.class"
+            "*.dll"
+            "*.exe"
+            "*.out"
+            "*.pyc"
+            "__pycache__/"
+            ".DS_Store"
+
+            # Compiled source #
+            "*~"
+            "*.bak"
+            "*.swp"
+
+            # etc #
+            "node_modules"
+            "tmp"
+            "TODO"
+
+            # nix
+            "*result*"
+            ".direnv"
+            ".nix-defexpr/"
+          ];
         };
       };
     };

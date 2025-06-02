@@ -30,12 +30,13 @@ let
   inherit (cfgmine.theme.colorScheme) palette;
 in
 {
-  hj.rum.programs.hyprland.settings = {
+  hm.wayland.windowManager.hyprland.settings = {
     exec-once =
       [
         "${uwsm} finalize"
-        "${pkgs.brightnessctl}/bin/brightnessctl set 10%"
+        "${_ pkgs.brightnessctl} set 10%"
         "[workspace 9 silent;noanim] ${app2unit} ${_ pkgs.thunderbird}"
+        "${app2unit} ${_ pkgs.waybar}"
       ]
       ++ optionals config.services.desktopManager.gnome.enable [
         "systemctl --user stop xdg-desktop-portal-gnome.service"

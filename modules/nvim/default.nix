@@ -19,10 +19,5 @@ in
     environment.systemPackages = [
       inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     ];
-
-    hj.rum.programs.fish.earlyConfigFiles.nvim = ''
-      alias v=nvim
-      alias nv=nvim
-    '';
   };
 }

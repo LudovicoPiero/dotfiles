@@ -7,8 +7,9 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.mine.gpg;
   guiCfg = config.vars.withGui;
+
+  cfg = config.mine.gpg;
 in
 {
   options.mine.gpg = {
@@ -18,16 +19,24 @@ in
   config = mkIf cfg.enable {
     services.dbus.packages = [ pkgs.gcr ];
 
-    environment.sessionVariables = {
-      GNUPGHOME = "${config.vars.homeDirectory}/.config/gnupg";
-    };
+    hm =
+      { config, ... }:
+      {
+        programs.gpg = {
+          enable = true;
+          homedir = "${config.xdg.configHome}/gnupg";
+        };
 
-    programs.gnupg = {
-      agent = {
-        enable = true;
-        enableSSHSupport = true;
-        pinentryPackage = if guiCfg then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
+        # Fix pass
+        services.gpg-agent = {
+          enable = true;
+          pinentry.package = if guiCfg then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
+          extraConfig = ''
+            allow-emacs-pinentry
+            allow-loopback-pinentry
+            allow-preset-passphrase
+          '';
+        };
       };
-    };
   };
 }

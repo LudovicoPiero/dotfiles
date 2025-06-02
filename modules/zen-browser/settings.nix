@@ -5,7 +5,7 @@
   ...
 }:
 {
-  mine.programs.zen-browser.profiles.ludovico.settings =
+  hm.programs.zen-browser.profiles.ludovico.settings =
     {
       # Homepage
       "browser.startup.page" = 1;

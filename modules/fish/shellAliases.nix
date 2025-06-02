@@ -12,10 +12,12 @@ in
 with pkgs;
 {
   config = lib.mkIf cfg.enable {
-    hj.rum.programs.fish.earlyConfigFiles.myAliases = ''
+    hm.programs.fish.shellInit = ''
       alias c="${_ curlie}"
       alias cat="${_ bat}"
       alias config="cd ~/Code/nixos"
+      alias v=nvim
+      alias nv=nvim
 
       alias ls="${_ eza} --color=always --group-directories-first --icons"
       alias ll="${_ eza} -la --icons --octal-permissions --group-directories-first"

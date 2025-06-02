@@ -14,11 +14,8 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.follows = "nixpkgs-unstable";
 
-    hjem.url = "github:feel-co/hjem";
-    hjem-rum.url = "github:snugnug/hjem-rum";
-    hjem.inputs.nixpkgs.follows = "nixpkgs";
-    hjem-rum.inputs.nixpkgs.follows = "nixpkgs";
-    hjem-rum.inputs.hjem.follows = "hjem";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";

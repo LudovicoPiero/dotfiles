@@ -1,10 +1,3 @@
-# SPDX-License-Identifier: MIT
-#
-# This file contains code adapted from the Home Manager project:
-#   https://github.com/nix-community/home-manager
-#
-# The original code is licensed under the MIT License:
-#   https://github.com/nix-community/home-manager/blob/master/LICENSE
 {
   config,
   lib,
@@ -68,7 +61,7 @@ let
       # Required for custom engine configurations, loadPaths
       # are unique identifiers that are generally formatted
       # like: [source]/path/to/engine.xml
-      loadPath = "[hjem]/${
+      loadPath = "[home-manager]/${
         lib.showAttrPath (
           modulePath
           ++ [
@@ -160,6 +153,10 @@ let
       };
   };
 
+  # Home Manager doesn't circumvent user consent and isn't acting
+  # maliciously. We're modifying the search outside of the browser, but
+  # a claim by Mozilla to remove this would be very anti-user, and
+  # is unlikely to be an issue for our use case.
   disclaimer =
     "By modifying this file, I agree that I am doing so "
     + "only within @appName@ itself, using official, user-driven search "
@@ -427,6 +424,8 @@ in
 {
   imports = [ (pkgs.path + "/nixos/modules/misc/meta.nix") ];
 
+  meta.maintainers = with lib.maintainers; [ kira-bruneau ];
+
   options = {
     enable = mkOption {
       type = with types; bool;
@@ -436,6 +435,18 @@ in
         || config.order != [ ]
         || config.engines != { };
       internal = true;
+    };
+
+    force = mkOption {
+      type = with types; bool;
+      default = false;
+      description = ''
+        Whether to force replace the existing search
+        configuration. This is recommended since ${appName} will
+        replace the symlink for the search configuration on every
+        launch, but note that you'll lose any existing configuration
+        by enabling this.
+      '';
     };
 
     default = mkOption {
