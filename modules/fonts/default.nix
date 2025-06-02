@@ -106,6 +106,7 @@ in
           serif = [
             "${cfg.main.name}"
             "${cfg.cjk.name}"
+            "${cfg.emoji.name}"
             "${cfg.icon.name}"
             "Symbola"
           ];
@@ -113,6 +114,7 @@ in
           sansSerif = [
             "${cfg.main.name}"
             "${cfg.cjk.name}"
+            "${cfg.emoji.name}"
             "${cfg.icon.name}"
             "Symbola"
           ];
@@ -120,6 +122,7 @@ in
           monospace = [
             "${cfg.main.name}"
             "${cfg.cjk.name}"
+            "${cfg.emoji.name}"
             "${cfg.icon.name}"
             "Symbola"
           ];
