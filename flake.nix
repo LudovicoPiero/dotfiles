@@ -10,53 +10,133 @@
       ];
     };
 
+  # Inputs are written in attribute-set form instead of using `url = "...";` strings.
+  # This provides more structure, makes parsing easier, and is helpful for tools or flake editors.
+  #
+  # Conventions used:
+  # - GitHub shorthand `github:owner/repo/ref` becomes:
+  #     {
+  #       type = "github";
+  #       owner = "owner";
+  #       repo = "repo";
+  #       ref = "ref";  # optional, if a branch/tag/commit is specified
+  #     }
+  # - If no `ref` is given, the flake defaults to the repository's default branch.
+  #
+  # - GitLab uses the same structure with `type = "gitlab"`.
+  # - For tarball archives (e.g., Lix), we use:
+  #     {
+  #       type = "tarball";
+  #       url = "https://...";
+  #     }
+  # - For flakes with directory overlays (e.g., `?dir=...`), we add a `dir = "..."` field.
+  # - `.inputs.nixpkgs.follows = "..."` lines are kept unchanged to simplify dependency alignment.
+  # - Flakes that don’t expose a flake (like `catppuccin-base16`) explicitly set `flake = false`.
+
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixos-unstable-small";
+    };
     nixpkgs.follows = "nixpkgs-unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
+    };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      type = "github";
+      owner = "hercules-ci";
+      repo = "flake-parts";
+    };
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
-    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons = {
+      type = "gitlab";
+      owner = "rycee";
+      repo = "nur-expressions";
+      dir = "pkgs/firefox-addons";
+    };
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      type = "github";
+      owner = "hyprwm";
+      repo = "Hyprland";
+    };
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      type = "github";
+      owner = "Mic92";
+      repo = "sops-nix";
+    };
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    programsdb.url = "github:wamserma/flake-programs-sqlite";
+    programsdb = {
+      type = "github";
+      owner = "wamserma";
+      repo = "flake-programs-sqlite";
+    };
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Lix
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+    lix-module = {
+      type = "tarball";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+    };
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
-    ludovico-nixvim.url = "github:LudovicoPiero/nvim-flake";
+    ludovico-nixvim = {
+      type = "github";
+      owner = "LudovicoPiero";
+      repo = "nvim-flake";
+    };
     ludovico-nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
-    ludovico-pkgs.url = "github:LudovicoPiero/pkgs";
+    ludovico-pkgs = {
+      type = "github";
+      owner = "LudovicoPiero";
+      repo = "pkgs";
+    };
     ludovico-pkgs.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Zen Browser
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser = {
+      type = "github";
+      owner = "0xc000022070";
+      repo = "zen-browser-flake";
+    };
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Wrapper Manager
-    wrapper-manager.url = "github:viperML/wrapper-manager";
+    wrapper-manager = {
+      type = "github";
+      owner = "viperML";
+      repo = "wrapper-manager";
+    };
     wrapper-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Emacs Overlay
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay = {
+      type = "github";
+      owner = "nix-community";
+      repo = "emacs-overlay";
+    };
     emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-colors.url = "github:misterio77/nix-colors";
-    catppuccin-base16.url = "github:catppuccin/base16";
-    catppuccin-base16.flake = false;
+    nix-colors = {
+      type = "github";
+      owner = "misterio77";
+      repo = "nix-colors";
+    };
+
+    catppuccin-base16 = {
+      type = "github";
+      owner = "catppuccin";
+      repo = "base16";
+      flake = false;
+    };
   };
 }
