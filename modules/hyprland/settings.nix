@@ -184,8 +184,9 @@ in
     ];
 
     workspace = [
-      "w[tv1], gapsout:0, gapsin:0"
-      "f[1], gapsout:0, gapsin:0"
+      "w[tv1]s[false], gapsout:0, gapsin:0"
+      "f[1]s[false], gapsout:0, gapsin:0"
+      "s[true], gapsout:10, gapsin:10, rounding:true" # Add more gaps & enable rounding on special workspace
       "1, monitor:HDMI-A-1"
       "2, monitor:HDMI-A-1"
       "3, monitor:HDMI-A-1"
@@ -199,10 +200,11 @@ in
 
     windowrule = [
       # General workspace rules
-      "bordersize 0, floating:0, onworkspace:w[tv1]"
-      "rounding 0, floating:0, onworkspace:w[tv1]"
-      "bordersize 0, floating:0, onworkspace:f[1]"
-      "rounding 0, floating:0, onworkspace:f[1]"
+      "bordersize 0, floating:0, onworkspace:w[tv1]s[false]"
+      "rounding 0, floating:0, onworkspace:w[tv1]s[false]"
+      "bordersize 0, floating:0, onworkspace:f[1]s[false]"
+      "rounding 0, floating:0, onworkspace:f[1]s[false]"
+      "rounding 5, onworkspace:s[true]" # Set rounding to 5 on special workspace
 
       # Workspace-specific rules
       "workspace 9, class:^(thunderbird)$"
