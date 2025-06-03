@@ -59,6 +59,7 @@ in
                     ]
                   ))
 
+                  fzf
                   ripgrep
                   fd # faster projectile indexing
                   imagemagick # for image-dired
