@@ -89,6 +89,7 @@ in
                   rustfmt
 
                   # Web Development
+                  prettierd
                   vscode-langservers-extracted
                   typescript-language-server
                   intelephense # php
