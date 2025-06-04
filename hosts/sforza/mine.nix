@@ -49,6 +49,10 @@
       enable = true;
     };
 
+    foot = {
+      enable = true;
+    };
+
     fonts = {
       enable = true;
       size = 14;

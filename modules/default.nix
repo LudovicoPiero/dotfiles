@@ -17,6 +17,7 @@ _: {
     ./programs/emacs
     ./programs/firefox
     ./programs/fish
+    ./programs/foot
     ./programs/fuzzel
     ./programs/gaming
     ./programs/git
