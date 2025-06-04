@@ -7,36 +7,31 @@
 }:
 let
   inherit (lib) getExe getExe' optionals;
-
-  _ = getExe;
-  __ = getExe';
+  inherit (config.mine.theme.colorScheme) palette;
 
   cfg = config.mine.hyprland;
-
   cfgmine = config.mine;
 
   app2unit =
     if cfg.withUWSM then
-      "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit} --"
+      "${getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit} --"
     else
       "";
 
-  launcher = "${_ pkgs.fuzzel}";
-  powermenu = "${_ pkgs.wleave}";
+  launcher = getExe pkgs.fuzzel;
+  powermenu = getExe pkgs.wleave;
   uwsm = "${config.programs.uwsm.package}/bin/uwsm";
-  clipboard = "${_ pkgs.cliphist} list | ${_ pkgs.fuzzel} --dmenu | ${_ pkgs.cliphist} decode | ${__ pkgs.wl-clipboard "wl-copy"}";
-  emojiPicker = "${_ inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji}";
-
-  inherit (cfgmine.theme.colorScheme) palette;
+  clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
+  emojiPicker = getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
 in
 {
   hm.wayland.windowManager.hyprland.settings = {
     exec-once =
       [
         "${uwsm} finalize"
-        "${_ pkgs.brightnessctl} set 10%"
-        "[workspace 9 silent;noanim] ${app2unit} ${_ pkgs.thunderbird}"
-        "sleep 5 && ${app2unit} ${_ pkgs.waybar}"
+        "${getExe pkgs.brightnessctl} set 10%"
+        "[workspace 9 silent;noanim] ${app2unit} ${getExe pkgs.thunderbird}"
+        "sleep 5 && ${app2unit} ${getExe pkgs.waybar}"
       ]
       ++ optionals config.services.desktopManager.gnome.enable [
         "systemctl --user stop xdg-desktop-portal-gnome.service"
@@ -49,13 +44,11 @@ in
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
       "HYPRCURSOR_SIZE,${toString cfgmine.theme.gtk.cursorTheme.size}"
-
       "XCURSOR_THEME,${cfgmine.theme.gtk.cursorTheme.name}"
       "XCURSOR_SIZE,${toString cfgmine.theme.gtk.cursorTheme.size}"
     ];
 
     monitor = [
-      # name, resolution, position, scale
       "HDMI-A-1, 1920x1080@180, auto, 1"
       "eDP-1,disable"
     ];
@@ -73,13 +66,6 @@ in
       ];
 
       animation = [
-        # "windows, 1, 7, myBezier"
-        # "windowsOut, 1, 7, default, popin 80%"
-        # "windowsMove, 1, 2, default, popin 80%"
-        # "border, 1, 10, default"
-        # "borderangle, 1, 8, default"
-        # "fade, 1, 7, default"
-        # "workspaces, 1, 6, default"
         "global, 1, 10, default"
         "border, 1, 5.39, easeOutQuint"
         "windows, 1, 4.79, easeOutQuint"
@@ -106,18 +92,14 @@ in
     };
 
     decoration = {
-      # See https://wiki.hyprland.org/Configuring/Variables/ for more
       rounding = 0;
-
       dim_inactive = false;
       dim_strength = 0.7;
 
       blur = {
-        enabled = if (config.vars.opacity < 1) then true else false;
+        enabled = config.vars.opacity < 1;
         size = 2;
         passes = 2;
-        # contrast = 0.8916;
-        # brightness = 0.8172;
         vibrancy = 0.4;
         new_optimizations = true;
         ignore_opacity = true;
@@ -138,7 +120,6 @@ in
       border_size = 2;
       "col.active_border" = "rgb(${palette.base0D})";
       "col.inactive_border" = "rgb(${palette.base03})";
-
       layout = "dwindle";
     };
 
@@ -152,26 +133,26 @@ in
       "col.border_active" = "rgb(${palette.base0D})";
       "col.border_inactive" = "rgb(${palette.base03})";
     };
-    misc.background_color = "rgb(${palette.base00})";
+
+    misc = {
+      background_color = "rgb(${palette.base00})";
+      disable_splash_rendering = true;
+      force_default_wallpaper = false;
+      vfr = true;
+      vrr = 0;
+    };
 
     input = {
       kb_layout = "us";
+      kb_options = "ctrl:nocaps";
       follow_mouse = 1;
       repeat_rate = 30;
       repeat_delay = 300;
-      kb_options = "ctrl:nocaps";
 
       touchpad = {
         natural_scroll = true;
         disable_while_typing = true;
       };
-    };
-
-    misc = {
-      disable_splash_rendering = true; # Text below the wallpaper
-      force_default_wallpaper = false;
-      vfr = true;
-      vrr = 0;
     };
 
     layerrule = [
@@ -186,17 +167,8 @@ in
     workspace = [
       "w[tv1]s[false], gapsout:0, gapsin:0"
       "f[1]s[false], gapsout:0, gapsin:0"
-      "s[true], gapsout:10, gapsin:10, rounding:true" # Add more gaps & enable rounding on special workspace
-      "1, monitor:HDMI-A-1"
-      "2, monitor:HDMI-A-1"
-      "3, monitor:HDMI-A-1"
-      "4, monitor:HDMI-A-1"
-      "5, monitor:HDMI-A-1"
-      "6, monitor:HDMI-A-1"
-      "7, monitor:HDMI-A-1"
-      "8, monitor:HDMI-A-1"
-      "9, monitor:HDMI-A-1"
-    ];
+      "s[true], gapsout:10, gapsin:10, rounding:true"
+    ] ++ (lib.lists.genList (i: "${toString (i + 1)}, monitor:HDMI-A-1") 9);
 
     windowrule = [
       # General workspace rules
@@ -306,7 +278,7 @@ in
         "$mod      , P , exec , ${launcher}"
         "$mod      , O , exec , ${app2unit} ${clipboard}"
         "$mod SHIFT, O , exec , ${app2unit} ${emojiPicker}"
-        "$mod SHIFT, P , exec , ${app2unit} ${__ pkgs.pass-wayland "passmenu"}"
+        "$mod SHIFT, P , exec , ${app2unit} ${getExe' pkgs.pass-wayland "passmenu"}"
         "$mod      , Space , togglefloating ,"
         "$mod      , R , togglegroup ,"
         "$mod SHIFT, J , changegroupactive, f"
@@ -316,8 +288,8 @@ in
         "$mod      , Return , exec , ${app2unit} '${config.vars.terminal}'"
 
         ", print, exec , ${app2unit}  wl-ocr"
-        "CTRL   , Print , exec , ${app2unit} ${_ pkgs.grimblast} save area - | ${_ pkgs.swappy} -f -"
-        "ALT    , Print , exec , ${app2unit} ${_ pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
+        "CTRL   , Print , exec , ${app2unit} ${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -"
+        "ALT    , Print , exec , ${app2unit} ${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
 
         # Dwindle Keybind
         "$mod , h , movefocus , l"
