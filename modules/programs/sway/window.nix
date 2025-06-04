@@ -5,23 +5,29 @@
     commands = [
       {
         criteria = {
-          title = "(?:Open|Save) (?:File|Folder|As)";
+          title = "(?i)(open|save)( as)? (file|folder|directory)?";
         };
         command = "floating enable, resize set width 800 height 600";
       }
 
+      # Handle popup/dialog globally
+      {
+        criteria = {
+          window_role = "popup";
+        };
+        command = "floating enable";
+      }
+      {
+        criteria = {
+          app_id = "xdg-desktop-portal";
+        };
+        command = "floating enable, resize set width 800 height 600";
+      }
       {
         criteria = {
           app_id = "thunderbird";
         };
         command = "move to workspace 9";
-      }
-      # hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793
-      {
-        criteria = {
-          class = "Spotify";
-        };
-        command = "move to workspace 5";
       }
       {
         criteria = {
@@ -31,37 +37,13 @@
       }
       {
         criteria = {
-          app_id = "WebCord";
+          app_id = "^(discord|vesktop|WebCord)$";
         };
         command = "move to workspace 3";
       }
       {
         criteria = {
-          app_id = "chromium-browser";
-        };
-        command = "move to workspace 2";
-      }
-      {
-        criteria = {
-          app_id = "discord";
-        };
-        command = "move to workspace 3";
-      }
-      {
-        criteria = {
-          app_id = "vesktop";
-        };
-        command = "move to workspace 3";
-      }
-      {
-        criteria = {
-          app_id = "firefox";
-        };
-        command = "move to workspace 2";
-      }
-      {
-        criteria = {
-          app_id = "floorp";
+          app_id = "^(chromium-browser|firefox|floorp|zen-browser)$";
         };
         command = "move to workspace 2";
       }

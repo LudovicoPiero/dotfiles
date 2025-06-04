@@ -106,7 +106,7 @@ in
       ### Apps
       "${mod}+Return" = "exec ${app2unit} '${cfgsway.terminal}'";
 
-      "${mod}+o" = "exec ${app2unit} '${clipboard}'";
+      "${mod}+o" = "exec ${app2unit} ${clipboard}";
       "${mod}+Shift+o" = "exec ${app2unit} '${emojiPicker}'";
       "${mod}+p" = "exec ${app2unit} '${cfgsway.menu}'";
       "${mod}+g" = "exec ${app2unit} 'firefox'";
