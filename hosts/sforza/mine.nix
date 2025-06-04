@@ -87,7 +87,7 @@
     };
 
     gaming = {
-      enable = true;
+      enable = false;
       withGamemode = true;
       withSteam = true;
     };
