@@ -11,12 +11,16 @@ in
   config = mkIf cfg.enable {
     hm =
       { osConfig, ... }:
+      let
+        fontConfig = osConfig.mine.fonts;
+      in
       {
         programs.foot = {
           enable = true;
           settings = {
             main = {
-              font = "${osConfig.mine.fonts.terminal.name}:size=15,Material Design Icons:size=13,Noto Color Emoji:size=13";
+              font = "${fontConfig.terminal.name}:size=15,${fontConfig.emoji.name}:size=15,${fontConfig.icon.name}:size=15";
+              term = "xterm-256color";
               dpi-aware = "yes";
               initial-window-size-chars = "82x23";
               initial-window-mode = "windowed";
@@ -25,7 +29,7 @@ in
             };
 
             colors = {
-              alpha = if (osConfig.vars.opacity < 1) then "0.8" else "1.0";
+              alpha = osConfig.vars.opacity;
               foreground = "${palette.base05}"; # Text
               background = "${palette.base00}"; # colors.base
 
