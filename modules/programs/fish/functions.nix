@@ -18,16 +18,16 @@ with pkgs;
           curl -sL https://www.toptal.com/developers/gitignore/api/$argv
       end
 
-      function run
-          nix run nixpkgs#$argv[1] -- $argv[2..-1]
-      end
-
       function ,
           nix run nixpkgs#$argv[1]
       end
 
       function ns
-          nix shell nixpkgs#$argv[1]
+          set pkgs
+          for pkg in $argv
+              set pkgs $pkgs nixpkgs#$pkg
+          end
+          nix shell $pkgs
       end
 
 
