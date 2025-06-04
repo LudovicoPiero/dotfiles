@@ -135,18 +135,6 @@
       "app.shield.optoutstudies.enabled" = false;
       "app.normandy.enabled" = false;
       "app.normandy.api_url" = "";
-
-      # Firefox GNOME Theme
-      # Hide the tab bar when only one tab is open.
-      "gnomeTheme.hideSingleTab" = false;
-      # By default the tab close buttons follows the position of the window controls, this preference reverts that behavior.
-      "gnomeTheme.swapTabClose" = true;
-      # Move Bookmarks toolbar under tabs.
-      "gnomeTheme.bookmarksToolbarUnderTabs" = true;
-      # Hide WebRTC indicator since GNOME provides their own privacy icons in the top right.
-      "gnomeTheme.hideWebrtcIndicator" = true;
-      # Use system theme icons instead of Adwaita icons included by theme.
-      "gnomeTheme.systemIcons" = true;
     }
     // lib.optionalAttrs config.mine.dnscrypt2.enable {
       # DOH
