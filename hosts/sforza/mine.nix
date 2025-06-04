@@ -146,6 +146,10 @@
       enable = true;
     };
 
+    sway = {
+      enable = true;
+    };
+
     theme = {
       enable = true;
       gtk = {

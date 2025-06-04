@@ -25,6 +25,7 @@ _: {
     ./programs/hyprland
     ./programs/ncmpcpp
     ./programs/nvim
+    ./programs/sway
     ./programs/tmux
     ./programs/vesktop
     ./programs/waybar
