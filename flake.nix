@@ -64,13 +64,6 @@
     };
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprland = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "Hyprland";
-    };
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-
     sops-nix = {
       type = "github";
       owner = "Mic92";

@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  inputs,
   ...
 }:
 let
@@ -18,7 +17,6 @@ let
 in
 {
   imports = [
-    inputs.hyprland.nixosModules.default
     ./cliphist.nix
     ./hypridle.nix
     ./hyprlock.nix
@@ -30,7 +28,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      default = pkgs.hyprland;
       description = "The Hyprland package to use.";
     };
 
@@ -61,8 +59,7 @@ in
       programs.hyprland = {
         enable = true;
         package = cfg.package;
-        portalPackage =
-          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        portalPackage = pkgs.xdg-desktop-portal-hyprland;
       };
 
       hm.wayland.windowManager.hyprland = {
