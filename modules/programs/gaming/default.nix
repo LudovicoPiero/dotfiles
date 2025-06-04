@@ -30,8 +30,7 @@ in
     };
   };
 
-  # config = mkIf cfg.enable {
-  config = mkMerge [
+  config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.withGamemode {
       programs.gamemode =
         let
@@ -87,5 +86,5 @@ in
         dedicatedServer.openFirewall = false;
       };
     })
-  ];
+  ]);
 }
