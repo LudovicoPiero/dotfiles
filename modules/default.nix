@@ -23,6 +23,7 @@ _: {
     ./shared
     ./theme
     ./tlp
+    ./tmux
     ./vars
     ./vesktop
     ./waybar

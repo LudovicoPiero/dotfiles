@@ -165,6 +165,10 @@
       enable = true;
     };
 
+    tmux = {
+      enable = true;
+    };
+
     vesktop = {
       enable = true;
       themeLinks = [
