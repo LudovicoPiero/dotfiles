@@ -1,36 +1,41 @@
 _: {
   imports = [
-    ./dnscrypt2
-    ./emacs
-    ./fcitx5
-    ./firefox
-    ./fish
-    ./fonts
-    ./fuzzel
-    ./gaming
-    ./gammastep
-    ./git
-    ./gpg
-    ./hyprland
-    ./keyring
-    ./mako
-    ./mpd
-    ./ncmpcpp
-    ./nvim
-    ./pipewire
-    ./sddm
-    ./secrets
-    ./shared
-    ./theme
-    ./tlp
-    ./tmux
-    ./vars
-    ./vesktop
-    ./waybar
-    ./wezterm
-    ./wireguard
-    ./wleave
-    ./xdg-portal
-    ./zen-browser
+    # Services
+    ./services/dnscrypt2
+    ./services/gammastep
+    ./services/fcitx5
+    ./services/pipewire
+    ./services/sddm
+    ./services/tlp
+    ./services/wireguard
+    ./services/xdg-portal
+    ./services/keyring
+    ./services/mako
+    ./services/mpd
+
+    # Programs
+    ./programs/emacs
+    ./programs/firefox
+    ./programs/fish
+    ./programs/fuzzel
+    ./programs/gaming
+    ./programs/git
+    ./programs/gpg
+    ./programs/hyprland
+    ./programs/ncmpcpp
+    ./programs/nvim
+    ./programs/tmux
+    ./programs/vesktop
+    ./programs/waybar
+    ./programs/wezterm
+    ./programs/wleave
+    ./programs/zen-browser
+
+    # Etc
+    ./etc/fonts
+    ./etc/secrets
+    ./etc/shared
+    ./etc/theme
+    ./etc/vars
   ];
 }
