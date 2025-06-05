@@ -65,7 +65,7 @@ in
           "sway/workspaces" = {
             format = "{name}";
             all-outputs = true;
-            disable-scroll = true;
+            disable-scroll = false;
             persistent-workspaces = {
               "1" = [ ];
               "2" = [ ];
