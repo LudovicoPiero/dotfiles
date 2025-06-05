@@ -51,6 +51,7 @@ in
           modules-center = [
             "hyprland/workspaces"
             "hyprland/submap"
+            "sway/workspaces"
           ];
           modules-right = [
             "pulseaudio"
@@ -61,6 +62,18 @@ in
             "custom/date"
             "custom/power"
           ];
+          "sway/workspaces" = {
+            format = "{name}";
+            all-outputs = true;
+            disable-scroll = true;
+            persistent-workspaces = {
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
+            };
+          };
           "custom/wireguard" = {
             "format" = "󰖂 Wireguard";
             "exec" = "echo '{\"class\": \"connected\"}'";

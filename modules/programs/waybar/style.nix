@@ -307,6 +307,11 @@ in
       color: #${palette.base04};
     }
 
+    #workspaces button.focused {
+      color: #${palette.base00};
+      background-color: #${palette.base07};
+    }
+
     #workspaces button.active {
       color: #${palette.base00};
       background-color: #${palette.base07};
