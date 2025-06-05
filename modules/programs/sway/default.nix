@@ -70,6 +70,11 @@ in
                 inactive_format = " E: down ";
               }
               {
+                block = "sound";
+                format = " VOL: $volume ";
+                max_vol = 100; # Max volume in percent that can be set via scrolling.
+              }
+              {
                 block = "disk_space";
                 path = "/";
                 info_type = "available";
