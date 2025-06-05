@@ -38,7 +38,7 @@ in
             disable = "";
           };
           "HDMI-A-1" = {
-            mode = "1920x1080@180Hz";
+            mode = "1920x1080@144Hz";
             scale = "1";
             adaptive_sync = "on";
           };
