@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   inherit (lib) getExe;
   inherit (config.mine.theme.colorScheme) palette;
@@ -14,7 +9,7 @@ in
     {
       wayland.windowManager.sway.config.bars = [
         {
-          statusCommand = "${getExe pkgs.i3status-rust} ${config.xdg.configHome}/i3status-rust/config-default.toml";
+          command = "${getExe config.programs.waybar.package}";
           position = "bottom";
 
           fonts = {
