@@ -42,40 +42,46 @@
   environment = {
     systemPackages = lib.attrValues {
       inherit (pkgs)
+        # Networking and connectivity tools
         teavpn2
-        adwaita-icon-theme
-        iputils
-        curl
-        dnsutils
-        fd
-        fzf
-        sbctl # For debugging and troubleshooting Secure boot.
+        iputils # Tools like ping, tracepath, etc., for IP network diagnostics
+        curl # Command-line tool for transferring data with URLs
+        dnsutils # DNS-related tools like dig and nslookup
+        nmap # Powerful network scanner for security auditing and discovery
+        whois # Query domain registration info
 
-        bottom
-        jq
-        nix-index
-        nmap
-        ripgrep
-        tealdeer
-        whois
-        wl-clipboard
-        wget
-        unzip
-        # Utils for nixpkgs stuff
-        nixpkgs-review
-        # Fav
-        element-desktop # matrix client
-        # fooyin # music player
-        foliate # book reader
-        qbittorrent # uhm
-        imv
-        viewnior
-        ente-auth
-        thunderbird
-        telegram-desktop
-        mpv
-        yazi
-        nh
+        # Clipboard and file operations
+        rsync # Fast, versatile file copying/syncing tool
+        wl-clipboard # Wayland clipboard tool (wl-copy/wl-paste)
+        unzip # Extract .zip archives
+
+        # Command-line utilities
+        fd # User-friendly alternative to `find`
+        fzf # Fuzzy finder for the terminal, useful in shells and editors
+        jq # Command-line JSON processor
+        ripgrep # Fast recursive search, better `grep`
+        tealdeer # Fast, community-driven man pages (`tldr`)
+        bottom # Graphical process/system monitor, like htop
+        nix-index # Index all Nix packages for local search
+        nh # Helper for managing NixOS systems and generations
+        git # gud
+
+        # Nix-related tools
+        nixpkgs-review # Review pull requests or changes in nixpkgs locally
+
+        # Secure Boot & system tools
+        sbctl # Secure Boot key manager, useful for enrolling custom keys, debugging SB issues
+
+        # Favorite desktop apps
+        element-desktop # Matrix client for decentralized chat (Electron-based)
+        qbittorrent # Qt-based BitTorrent client with a clean UI
+        imv # Minimalist image viewer for X11/Wayland
+        viewnior # Lightweight image viewer, good for simple needs
+        ente-auth # Ente authentication app (for encrypted cloud photo storage)
+        thunderbird # Popular email client by Mozilla
+        telegram-desktop # Desktop client for Telegram messaging app
+        mpv # Highly configurable and efficient media player
+        yazi # Blazing fast terminal file manager with preview support (like `lf`)
         ;
 
       coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
