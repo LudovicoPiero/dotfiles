@@ -43,7 +43,7 @@
       }
       {
         criteria = {
-          app_id = "^(chromium-browser|firefox|floorp|zen-browser)$";
+          app_id = "^(chromium-browser|firefox|floorp|zen-beta)$";
         };
         command = "move to workspace 2";
       }
