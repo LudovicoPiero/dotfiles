@@ -31,6 +31,12 @@
       }
       {
         criteria = {
+          app_id = "^(tidal-hifi|org.fooyin.fooyin)$";
+        };
+        command = "move to workspace 5";
+      }
+      {
+        criteria = {
           app_id = "org.telegram.desktop";
         };
         command = "move to workspace 4";
