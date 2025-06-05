@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe';
 
   hyprlockPackage = config.hm.programs.hyprlock.package;
 
@@ -19,6 +19,9 @@ in
   config = mkIf cfg.enable {
     hm =
       { config, ... }:
+      let
+        cfgwm = config.wayland.windowManager;
+      in
       {
         services.hypridle = {
           enable = true;
@@ -35,8 +38,8 @@ in
               }
               {
                 timeout = 350;
-                on-timeout = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
-                on-resume = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
+                on-timeout = "${getExe' cfgwm.hyprland.package "hyprctl"} dispatch dpms off; ${getExe' cfgwm.sway.package "swaymsg"} output HDMI-A-1 dpms off";
+                on-resume = "${getExe' cfgwm.hyprland.package "hyprctl"} dispatch dpms on; ${getExe' cfgwm.sway.package "swaymsg"} output HDMI-A-1 dpms on";
               }
             ];
           };
