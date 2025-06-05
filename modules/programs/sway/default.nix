@@ -45,12 +45,49 @@ in
     })
 
     {
-      hm = {
-        wayland.windowManager.sway = {
-          enable = true;
-          systemd.enable = true;
+      hm =
+        let
+          inherit (config.mine.theme.colorScheme) palette;
+          background = palette.base00;
+          indicator = palette.base0B;
+          text = palette.base05;
+          urgent = palette.base08;
+          focused = palette.base0D;
+          unfocused = palette.base03;
+        in
+        {
+          wayland.windowManager.sway = {
+            enable = true;
+            systemd.enable = true;
+            config.colors = {
+              urgent = {
+                inherit background indicator text;
+                border = urgent;
+                childBorder = urgent;
+              };
+              focused = {
+                inherit background indicator text;
+                border = focused;
+                childBorder = focused;
+              };
+              focusedInactive = {
+                inherit background indicator text;
+                border = unfocused;
+                childBorder = unfocused;
+              };
+              unfocused = {
+                inherit background indicator text;
+                border = unfocused;
+                childBorder = unfocused;
+              };
+              placeholder = {
+                inherit background indicator text;
+                border = unfocused;
+                childBorder = unfocused;
+              };
+            };
+          };
         };
-      };
     }
   ]);
 }
