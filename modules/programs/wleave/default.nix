@@ -49,7 +49,7 @@ in
           }
           {
               "label" : "logout",
-              "action" : "loginctl terminate-user $USER",
+              "action" : "${getExe config.programs.uwsm.package} stop",
               "text" : "Logout",
               "keybind" : "e"
           }
