@@ -115,10 +115,9 @@ in
       "${mod}+Shift+e" = "exec ${app2unit} '${getExe pkgs.xfce.thunar}'";
 
       ### Screenshot
-      "Print" = "exec wl-ocr";
-      "CTRL+Print" = "exec ${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -";
-      "ALT+Print" =
-        "exec ${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%s.png')";
+      "Print" = "exec ${app2unit} wl-ocr";
+      "CTRL+Print" =
+        "exec ${app2unit} ${getExe pkgs.grim} -g \"$(${getExe pkgs.slurp})\" - | ${getExe pkgs.swappy} -f -";
 
       # Volume
       # (un)mute output
