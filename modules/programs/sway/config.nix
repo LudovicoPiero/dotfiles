@@ -21,7 +21,7 @@ in
         menu = "${getExe pkgs.fuzzel}";
         startup =
           [
-            (mkIf cfg.withUWSM { command = "${uwsm} finalize"; })
+            (mkIf cfg.withUWSM { command = "${getExe uwsm} finalize"; })
             { command = "${getExe pkgs.thunderbird}"; }
             { command = "${getExe pkgs.brightnessctl} set 10%"; }
           ]

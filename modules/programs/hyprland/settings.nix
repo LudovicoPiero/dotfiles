@@ -20,7 +20,7 @@ let
 
   launcher = getExe pkgs.fuzzel;
   powermenu = getExe pkgs.wleave;
-  uwsm = "${config.programs.uwsm.package}/bin/uwsm";
+  uwsm = config.programs.uwsm.package;
   clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
   emojiPicker = getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
 in
@@ -28,7 +28,7 @@ in
   hm.wayland.windowManager.hyprland.settings = {
     exec-once =
       [
-        "${uwsm} finalize"
+        "${getExe uwsm} finalize"
         "${getExe pkgs.brightnessctl} set 10%"
         "[workspace 9 silent;noanim] ${app2unit} ${getExe pkgs.thunderbird}"
         "sleep 5 && ${app2unit} ${getExe pkgs.waybar}"
