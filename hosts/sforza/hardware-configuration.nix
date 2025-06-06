@@ -3,12 +3,45 @@
 # to /etc/nixos/configuration.nix instead.
 {
   config,
+  pkgs,
   lib,
   modulesPath,
   ...
 }:
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Experimental = true;
+        };
+      };
+    };
+
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+        rocmPackages.clr
+      ];
+    };
+
+    amdgpu = {
+      initrd.enable = true;
+      opencl.enable = true;
+      # amdvlk.enable = true;
+      # amdvlk.support32Bit.enable = true;
+    };
+  };
+
+  boot.kernelParams = [
+    "video=eDP-1:d" # Disable eDP-1
+    "video=HDMI-A-1:1920x1080@144"
+  ];
 
   fileSystems = {
     "/" = {
