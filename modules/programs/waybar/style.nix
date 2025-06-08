@@ -71,10 +71,6 @@ in
     }
 
     #tray {
-      background-color: #${palette.base01};
-      border-radius: 10px;
-      margin: 6px 0px 6px 6px;
-      padding: 4px 6px;
     }
 
     #tray > .passive {
@@ -104,8 +100,6 @@ in
 
     #mpd {
       color: #${palette.base05};
-      font-size: 12px;
-      font-weight: bold;
     }
 
     #mpd.disconnected {
@@ -331,6 +325,8 @@ in
     #custom-disk_home,
     #custom-wireguard,
     #disk,
+    #mpd,
+    #tray,
     #pulseaudio,
     #network,
     #bluetooth {
@@ -341,6 +337,7 @@ in
     }
 
     #backlight.2,
+    #mpd.2,
     #battery.2,
     #clock.2,
     #cpu.2,

@@ -42,11 +42,12 @@ in
           modules-left = [
             "custom/menu"
             "cpu"
-            "custom/disk_home"
-            "custom/disk_root"
+            # "custom/disk_home"
+            # "custom/disk_root"
             "custom/wireguard"
-            "idle_inhibitor"
+            "mpd"
             "tray"
+            "idle_inhibitor"
           ];
           modules-center = [
             "hyprland/workspaces"
