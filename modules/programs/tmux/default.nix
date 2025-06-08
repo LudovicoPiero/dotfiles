@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
 
@@ -58,6 +53,12 @@ in
 
         # Copy mode
         bind [ copy-mode
+
+        # Bind 'v' to characterwise selection
+        bind -T copy-mode-vi v send -X begin-selection
+
+        # Bind 'V' to linewise selection
+        bind -T copy-mode-vi V send -X select-line
 
         # Send Ctrl+A
         bind C-a send-prefix
