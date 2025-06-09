@@ -31,7 +31,7 @@ in
         "${getExe uwsm} finalize"
         "${getExe pkgs.brightnessctl} set 10%"
         "[workspace 9 silent;noanim] ${app2unit} ${getExe pkgs.thunderbird}"
-        "sleep 5 && ${app2unit} ${getExe pkgs.waybar}"
+        "sleep 1 && ${app2unit} ${getExe pkgs.waybar}"
       ]
       ++ optionals config.services.desktopManager.gnome.enable [
         "systemctl --user stop xdg-desktop-portal-gnome.service"
