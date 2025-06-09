@@ -232,6 +232,8 @@
       # Whether to warn about dirty Git/Mercurial trees.
       warn-dirty = false;
 
+      narinfo-cache-positive-ttl = 3600;
+
       # Give group special Nix privileges.
       trusted-users = [ "@wheel" ];
       allowed-users = [ "@wheel" ];
