@@ -60,6 +60,9 @@ in
         # Bind 'V' to linewise selection
         bind -T copy-mode-vi V send -X select-line
 
+        # Bind 'y' to yank / copy selection
+        bind -T copy-mode-vi y send -X copy-selection-and-cancel
+
         # Send Ctrl+A
         bind C-a send-prefix
       '';
