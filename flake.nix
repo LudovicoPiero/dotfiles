@@ -56,6 +56,14 @@
     };
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
+    lanzaboote = {
+      type = "github";
+      owner = "nix-community";
+      repo = "lanzaboote";
+      ref = "v0.4.2";
+    };
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+
     firefox-addons = {
       type = "gitlab";
       owner = "rycee";
