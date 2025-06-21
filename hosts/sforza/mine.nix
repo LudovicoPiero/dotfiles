@@ -34,7 +34,7 @@
     };
 
     emacs = {
-      enable = false;
+      enable = true;
     };
 
     fcitx5 = {
