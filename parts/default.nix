@@ -21,6 +21,12 @@
         echo "Formatting *.nix files..."
         fd . -t f -e nix -x ${lib.getExe' pkgs.nixfmt-rfc-style "nixfmt"} -s '{}'
 
+        echo "Running deadnix for *.nix files..."
+        fd . -t f -e nix -x ${lib.getExe pkgs.deadnix} -e '{}'
+
+        echo "Running statix for *.nix files..."
+        fd . -t f -e nix -x ${lib.getExe pkgs.statix} -e '{}'
+
         echo "Formatting *.html files..."
         fd . -t f -e html -x ${lib.getExe pkgs.nodePackages.prettier} --write '{}'
 
