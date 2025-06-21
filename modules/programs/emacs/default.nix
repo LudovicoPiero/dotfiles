@@ -28,7 +28,7 @@ in
 
     hm = {
       home.packages = [
-        (wrapper-manager.lib.build {
+        (wrapper-manager.lib {
           inherit pkgs;
           modules = [
             {
