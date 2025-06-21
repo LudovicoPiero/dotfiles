@@ -18,6 +18,73 @@ let
       ]
     );
 
+  emacsWrapped = wrapper-manager.lib.wrapWith pkgs {
+    basePackage = emacsPackage;
+    pathAdd = with pkgs; [
+      ## Optional dependencies
+      (mkIf (config.programs.gnupg.agent.enable) pinentry-emacs) # in-emacs gnupg prompts
+      (aspellWithDicts (
+        ds: with ds; [
+          en
+          en-computers
+          en-science
+        ]
+      ))
+      # https://github.com/manateelazycat/lsp-bridge/wiki/NixOS
+      (python3.withPackages (
+        p: with p; [
+          epc
+          orjson
+          sexpdata
+          six
+          setuptools
+          paramiko
+          rapidfuzz
+          watchdog
+          packaging
+        ]
+      ))
+
+      fzf
+      ripgrep
+      fd # faster projectile indexing
+      imagemagick # for image-dired
+      zstd # for undo-fu-session/undo-tree compression
+
+      # Nix
+      nixd
+      nixfmt-rfc-style
+
+      # C
+      clang-tools
+      cmake
+
+      # Python
+      basedpyright
+      python3
+      black
+      ruff
+
+      # Go
+      go
+      gopls
+
+      # Rust
+      rust-analyzer
+      clippy
+      rustfmt
+
+      # Web Development
+      prettierd
+      vscode-langservers-extracted
+      typescript-language-server
+      intelephense # php
+      astro-language-server
+      vue-language-server
+      tailwindcss-language-server
+    ];
+  };
+
   cfg = config.mine.emacs;
 in
 {
@@ -27,81 +94,7 @@ in
     nixpkgs.overlays = [ emacs-overlay.overlays.default ];
 
     hm = {
-      home.packages = [
-        (wrapper-manager.lib {
-          inherit pkgs;
-          modules = [
-            {
-              wrappers.emacs = {
-                basePackage = emacsPackage;
-                pathAdd = with pkgs; [
-                  ## Optional dependencies
-                  (mkIf (config.programs.gnupg.agent.enable) pinentry-emacs) # in-emacs gnupg prompts
-                  (aspellWithDicts (
-                    ds: with ds; [
-                      en
-                      en-computers
-                      en-science
-                    ]
-                  ))
-                  # https://github.com/manateelazycat/lsp-bridge/wiki/NixOS
-                  (python3.withPackages (
-                    p: with p; [
-                      epc
-                      orjson
-                      sexpdata
-                      six
-                      setuptools
-                      paramiko
-                      rapidfuzz
-                      watchdog
-                      packaging
-                    ]
-                  ))
-
-                  fzf
-                  ripgrep
-                  fd # faster projectile indexing
-                  imagemagick # for image-dired
-                  zstd # for undo-fu-session/undo-tree compression
-
-                  # Nix
-                  nixd
-                  nixfmt-rfc-style
-
-                  # C
-                  clang-tools
-                  cmake
-
-                  # Python
-                  basedpyright
-                  python3
-                  black
-                  ruff
-
-                  # Go
-                  go
-                  gopls
-
-                  # Rust
-                  rust-analyzer
-                  clippy
-                  rustfmt
-
-                  # Web Development
-                  prettierd
-                  vscode-langservers-extracted
-                  typescript-language-server
-                  intelephense # php
-                  astro-language-server
-                  vue-language-server
-                  tailwindcss-language-server
-                ];
-              };
-            }
-          ];
-        })
-      ];
+      home.packages = [ emacsWrapped ];
     };
   };
 }

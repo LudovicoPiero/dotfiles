@@ -14,7 +14,7 @@ _: {
     ./services/mpd
 
     # Programs
-    # ./programs/emacs
+    ./programs/emacs
     ./programs/firefox
     ./programs/fish
     ./programs/foot
