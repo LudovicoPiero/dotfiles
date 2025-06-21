@@ -21,9 +21,6 @@
   hardware.enableAllFirmware = true;
   time.timeZone = config.vars.timezone;
 
-  system.rebuild.enableNg = true;
-  system.switch.enableNg = true;
-
   programs = {
     command-not-found.dbPath =
       inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
