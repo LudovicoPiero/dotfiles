@@ -166,6 +166,8 @@
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
+
+    playerctld.enable = config.vars.withGui;
   };
 
   systemd.services.nix-daemon = lib.mkIf config.boot.tmp.useTmpfs {

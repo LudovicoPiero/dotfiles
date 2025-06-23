@@ -118,7 +118,6 @@
       owner = "viperML";
       repo = "wrapper-manager";
     };
-    wrapper-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     emacs-overlay = {
       type = "github";
