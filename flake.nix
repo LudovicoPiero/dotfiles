@@ -131,12 +131,5 @@
       owner = "misterio77";
       repo = "nix-colors";
     };
-
-    catppuccin-base16 = {
-      type = "github";
-      owner = "catppuccin";
-      repo = "base16";
-      flake = false;
-    };
   };
 }

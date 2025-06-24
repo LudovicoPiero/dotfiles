@@ -45,22 +45,6 @@
         "type": "github"
       }
     },
-    "catppuccin-base16": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712772035,
-        "narHash": "sha256-HHodDRrlcBVWGE3MN0i6UvUn30zY/JFEbgeUpnZG5C0=",
-        "owner": "catppuccin",
-        "repo": "base16",
-        "rev": "99aa911b29c9c7972f7e1d868b6242507efd508c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "base16",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1731098351,
@@ -949,7 +933,6 @@
     },
     "root": {
       "inputs": {
-        "catppuccin-base16": "catppuccin-base16",
         "emacs-overlay": "emacs-overlay",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
