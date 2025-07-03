@@ -599,15 +599,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1750776670,
-        "narHash": "sha256-EfA5K5EZAnspmraJrXQlziffVpaT+QDBiE6yKmuaNNQ=",
-        "rev": "c3c78a32273e89d28367d8605a4c880f0b6607e3",
+        "lastModified": 1751240025,
+        "narHash": "sha256-SXUAlxpjPRkArRMHy5+Hdi+PiC+ND9yzzIjiaHmTvQU=",
+        "rev": "8b1094356f4723d6e89d3f8a95b333ee16d9ab02",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/c3c78a32273e89d28367d8605a4c880f0b6607e3.tar.gz?rev=c3c78a32273e89d28367d8605a4c880f0b6607e3"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/8b1094356f4723d6e89d3f8a95b333ee16d9ab02.tar.gz?rev=8b1094356f4723d6e89d3f8a95b333ee16d9ab02"
       },
       "original": {
         "type": "tarball",
-        "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.93.1.tar.gz"
+        "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz"
       }
     },
     "ludovico-nixvim": {
