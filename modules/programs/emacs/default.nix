@@ -81,7 +81,7 @@ let
       intelephense # php
       astro-language-server
       vue-language-server
-      (tailwindcss-language-server.override { nodejs_latest = pkgs.nodejs; })
+      tailwindcss-language-server
     ];
   };
 
