@@ -16,6 +16,8 @@ pull_request_rules:
     conditions:
       - label=keep-up-to-date
       - -draft
+      - -merged
+      - -closed
     actions:
       update:
 
