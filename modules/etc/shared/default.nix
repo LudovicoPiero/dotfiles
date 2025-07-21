@@ -8,8 +8,6 @@
 {
   # Nixos Stuff
   imports = [
-    inputs.lix-module.nixosModules.default
-
     ./users.nix
     ./security.nix
     ./home-manager.nix
@@ -176,6 +174,8 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
+    package = pkgs.nixVersions.latest;
+
     # Improve nix store disk usage
     optimise.automatic = true;
 
@@ -187,15 +187,11 @@
         # Enable nix3-command.
         "nix-command"
 
-        # Allows Lix to invoke a custom command via its main binary `lix`,
-        # i.e. `lix-foo` gets invoked when `lix foo` is executed.
-        "lix-custom-sub-commands"
-
         # Allows Nix to automatically pick UIDs for builds, rather than creating `nixbld*` user accounts.
         "auto-allocate-uids"
       ];
 
-      # Allow Lix to import from a derivation, allowing building at evaluation time.
+      # Allow Nix to import from a derivation, allowing building at evaluation time.
       allow-import-from-derivation = true;
 
       # Prevent impurities in builds
