@@ -26,20 +26,19 @@ let
 in
 {
   hm.wayland.windowManager.hyprland.settings = {
-    exec-once =
-      [
-        "${getExe uwsm} finalize"
-        "${getExe pkgs.brightnessctl} set 10%"
-        "[workspace 9 silent;noanim] ${app2unit} ${getExe pkgs.thunderbird}"
-        "sleep 1 && ${app2unit} ${getExe pkgs.waybar}"
-      ]
-      ++ optionals config.services.desktopManager.gnome.enable [
-        "systemctl --user stop xdg-desktop-portal-gnome.service"
-      ]
-      ++ optionals config.services.desktopManager.plasma6.enable [
-        "systemctl --user stop xdg-desktop-portal-kde.service"
-        "systemctl --user stop plasma-xdg-desktop-portal-kde.service"
-      ];
+    exec-once = [
+      "${getExe uwsm} finalize"
+      "${getExe pkgs.brightnessctl} set 10%"
+      "[workspace 9 silent;noanim] ${app2unit} ${getExe pkgs.thunderbird}"
+      "sleep 1 && ${app2unit} ${getExe pkgs.waybar}"
+    ]
+    ++ optionals config.services.desktopManager.gnome.enable [
+      "systemctl --user stop xdg-desktop-portal-gnome.service"
+    ]
+    ++ optionals config.services.desktopManager.plasma6.enable [
+      "systemctl --user stop xdg-desktop-portal-kde.service"
+      "systemctl --user stop plasma-xdg-desktop-portal-kde.service"
+    ];
 
     env = [
       "HYPRCURSOR_THEME,phinger-cursors-light-hyprcursor"
@@ -168,7 +167,8 @@ in
       "w[tv1]s[false], gapsout:0, gapsin:0"
       "f[1]s[false], gapsout:0, gapsin:0"
       "s[true], gapsout:10, gapsin:10, rounding:true"
-    ] ++ (lib.lists.genList (i: "${toString (i + 1)}, monitor:HDMI-A-1") 9);
+    ]
+    ++ (lib.lists.genList (i: "${toString (i + 1)}, monitor:HDMI-A-1") 9);
 
     windowrule = [
       # General workspace rules
@@ -267,72 +267,71 @@ in
     ];
 
     "$mod" = "SUPER";
-    bind =
-      [
-        "$mod SHIFT, C , exit ,"
-        "$mod      , Q, togglespecialworkspace"
-        "$mod SHIFT, Q, movetoworkspace, special"
-        "$mod SHIFT, E , exec , ${app2unit} thunar"
-        "$mod      , F , fullscreen , 0"
-        "$mod      , M , exec , [workspace 9 silent;tile] ${app2unit}  thunderbird"
-        "$mod      , P , exec , ${launcher}"
-        "$mod      , O , exec , ${app2unit} ${clipboard}"
-        "$mod SHIFT, O , exec , ${app2unit} ${emojiPicker}"
-        "$mod SHIFT, P , exec , ${app2unit} ${getExe' pkgs.pass-wayland "passmenu"}"
-        "$mod      , Space , togglefloating ,"
-        "$mod      , R , togglegroup ,"
-        "$mod SHIFT, J , changegroupactive, f"
-        "$mod SHIFT, K , changegroupactive, b"
-        "$mod      , W , killactive ,"
-        "$mod      , X , exec , ${app2unit} ${powermenu}"
-        "$mod      , Return , exec , ${app2unit} '${config.vars.terminal}'"
+    bind = [
+      "$mod SHIFT, C , exit ,"
+      "$mod      , Q, togglespecialworkspace"
+      "$mod SHIFT, Q, movetoworkspace, special"
+      "$mod SHIFT, E , exec , ${app2unit} thunar"
+      "$mod      , F , fullscreen , 0"
+      "$mod      , M , exec , [workspace 9 silent;tile] ${app2unit}  thunderbird"
+      "$mod      , P , exec , ${launcher}"
+      "$mod      , O , exec , ${app2unit} ${clipboard}"
+      "$mod SHIFT, O , exec , ${app2unit} ${emojiPicker}"
+      "$mod SHIFT, P , exec , ${app2unit} ${getExe' pkgs.pass-wayland "passmenu"}"
+      "$mod      , Space , togglefloating ,"
+      "$mod      , R , togglegroup ,"
+      "$mod SHIFT, J , changegroupactive, f"
+      "$mod SHIFT, K , changegroupactive, b"
+      "$mod      , W , killactive ,"
+      "$mod      , X , exec , ${app2unit} ${powermenu}"
+      "$mod      , Return , exec , ${app2unit} '${config.vars.terminal}'"
 
-        ", print, exec , ${app2unit}  wl-ocr"
-        "CTRL   , Print , exec , ${app2unit} ${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -"
-        "ALT    , Print , exec , ${app2unit} ${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
+      ", print, exec , ${app2unit}  wl-ocr"
+      "CTRL   , Print , exec , ${app2unit} ${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -"
+      "ALT    , Print , exec , ${app2unit} ${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
 
-        # Dwindle Keybind
-        "$mod , h , movefocus , l"
-        "$mod , l , movefocus , r"
-        "$mod , k , movefocus , u"
-        "$mod , j , movefocus , d"
+      # Dwindle Keybind
+      "$mod , h , movefocus , l"
+      "$mod , l , movefocus , r"
+      "$mod , k , movefocus , u"
+      "$mod , j , movefocus , d"
 
-        "$mod , left , movewindow , l"
-        "$mod , right , movewindow , r"
-        "$mod , up , movewindow , u"
-        "$mod , down , movewindow , d"
-        "$mod SHIFT , h , movewindow , l"
-        "$mod SHIFT , l , movewindow , r"
-        "$mod SHIFT , k , movewindow , u"
-        "$mod SHIFT , j , movewindow , d"
+      "$mod , left , movewindow , l"
+      "$mod , right , movewindow , r"
+      "$mod , up , movewindow , u"
+      "$mod , down , movewindow , d"
+      "$mod SHIFT , h , movewindow , l"
+      "$mod SHIFT , l , movewindow , r"
+      "$mod SHIFT , k , movewindow , u"
+      "$mod SHIFT , j , movewindow , d"
 
-        "$mod , 1 , workspace , 1"
-        "$mod , 2 , workspace , 2"
-        "$mod , 3 , workspace , 3"
-        "$mod , 4 , workspace , 4"
-        "$mod , 5 , workspace , 5"
-        "$mod , 6 , workspace , 6"
-        "$mod , 7 , workspace , 7"
-        "$mod , 8 , workspace , 8"
-        "$mod , 9 , workspace , 9"
-        "$mod , 0 , workspace , 10"
+      "$mod , 1 , workspace , 1"
+      "$mod , 2 , workspace , 2"
+      "$mod , 3 , workspace , 3"
+      "$mod , 4 , workspace , 4"
+      "$mod , 5 , workspace , 5"
+      "$mod , 6 , workspace , 6"
+      "$mod , 7 , workspace , 7"
+      "$mod , 8 , workspace , 8"
+      "$mod , 9 , workspace , 9"
+      "$mod , 0 , workspace , 10"
 
-        "$mod SHIFT , 1 , movetoworkspacesilent , 1"
-        "$mod SHIFT , 2 , movetoworkspacesilent , 2"
-        "$mod SHIFT , 3 , movetoworkspacesilent , 3"
-        "$mod SHIFT , 4 , movetoworkspacesilent , 4"
-        "$mod SHIFT , 5 , movetoworkspacesilent , 5"
-        "$mod SHIFT , 6 , movetoworkspacesilent , 6"
-        "$mod SHIFT , 7 , movetoworkspacesilent , 7"
-        "$mod SHIFT , 8 , movetoworkspacesilent , 8"
-        "$mod SHIFT , 9 , movetoworkspacesilent , 9"
-        "$mod SHIFT , 0 , movetoworkspacesilent , 10"
+      "$mod SHIFT , 1 , movetoworkspacesilent , 1"
+      "$mod SHIFT , 2 , movetoworkspacesilent , 2"
+      "$mod SHIFT , 3 , movetoworkspacesilent , 3"
+      "$mod SHIFT , 4 , movetoworkspacesilent , 4"
+      "$mod SHIFT , 5 , movetoworkspacesilent , 5"
+      "$mod SHIFT , 6 , movetoworkspacesilent , 6"
+      "$mod SHIFT , 7 , movetoworkspacesilent , 7"
+      "$mod SHIFT , 8 , movetoworkspacesilent , 8"
+      "$mod SHIFT , 9 , movetoworkspacesilent , 9"
+      "$mod SHIFT , 0 , movetoworkspacesilent , 10"
 
-        ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
-      ]
-      ++ optionals cfgmine.firefox.enable [ "$mod      , G , exec , ${app2unit} firefox" ]
-      ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , ${app2unit} zen-beta" ]
-      ++ optionals cfgmine.vesktop.enable [ "$mod      , D , exec , ${app2unit} vesktop" ];
+      ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
+    ]
+    ++ optionals cfgmine.firefox.enable [ "$mod      , G , exec , ${app2unit} firefox" ]
+    ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , ${app2unit} zen-beta" ]
+    ++ optionals cfgmine.vesktop.enable [ "$mod      , D , exec , ${app2unit} vesktop" ];
 
     bindel = [
       ", XF86AudioRaiseVolume  , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"

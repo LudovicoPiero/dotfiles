@@ -19,19 +19,18 @@ in
         modifier = "Mod4";
         terminal = "${osConfig.vars.terminal}";
         menu = "${getExe pkgs.fuzzel}";
-        startup =
-          [
-            (mkIf cfg.withUWSM { command = "${getExe uwsm} finalize"; })
-            { command = "${getExe pkgs.thunderbird}"; }
-            { command = "${getExe pkgs.brightnessctl} set 10%"; }
-          ]
-          ++ optionals config.services.desktopManager.gnome.enable [
-            "systemctl --user stop xdg-desktop-portal-gnome.service"
-          ]
-          ++ optionals config.services.desktopManager.plasma6.enable [
-            "systemctl --user stop xdg-desktop-portal-kde.service"
-            "systemctl --user stop plasma-xdg-desktop-portal-kde.service"
-          ];
+        startup = [
+          (mkIf cfg.withUWSM { command = "${getExe uwsm} finalize"; })
+          { command = "${getExe pkgs.thunderbird}"; }
+          { command = "${getExe pkgs.brightnessctl} set 10%"; }
+        ]
+        ++ optionals config.services.desktopManager.gnome.enable [
+          "systemctl --user stop xdg-desktop-portal-gnome.service"
+        ]
+        ++ optionals config.services.desktopManager.plasma6.enable [
+          "systemctl --user stop xdg-desktop-portal-kde.service"
+          "systemctl --user stop plasma-xdg-desktop-portal-kde.service"
+        ];
 
         output = {
           "eDP-1" = {

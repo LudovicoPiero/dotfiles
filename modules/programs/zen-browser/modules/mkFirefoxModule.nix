@@ -64,7 +64,8 @@ let
     // {
       General = {
         StartWithLastProfile = 1;
-      } // lib.optionalAttrs (cfg.profileVersion != null) { Version = cfg.profileVersion; };
+      }
+      // lib.optionalAttrs (cfg.profileVersion != null) { Version = cfg.profileVersion; };
     };
 
   profilesIni = lib.generators.toINI { } profiles;
@@ -107,9 +108,9 @@ let
     let
       containerToIdentity = _: container: {
         userContextId = container.id;
-        name = container.name;
-        icon = container.icon;
-        color = container.color;
+        inherit (container) name;
+        inherit (container) icon;
+        inherit (container) color;
         public = true;
       };
     in
@@ -160,11 +161,10 @@ let
       in
       {
         assertion = duplicates == { };
-        message =
-          ''
-            Must not have a ${appName} ${entityKind} with an existing ID but
-          ''
-          + concatStringsSep "\n" (mapAttrsToList mkMsg duplicates);
+        message = ''
+          Must not have a ${appName} ${entityKind} with an existing ID but
+        ''
+        + concatStringsSep "\n" (mapAttrsToList mkMsg duplicates);
       }
     );
 
@@ -173,7 +173,7 @@ let
     let
       # The configuration expected by the Firefox wrapper.
       fcfg = {
-        enableGnomeExtensions = cfg.enableGnomeExtensions;
+        inherit (cfg) enableGnomeExtensions;
       };
 
       # A bit of hackery to force a config into the wrapper.
@@ -442,8 +442,7 @@ in
               };
 
               bookmarks = mkOption {
-                type = (
-                  types.coercedTo bookmarkTypes.settingsType
+                type = types.coercedTo bookmarkTypes.settingsType
                     (
                       bookmarks:
                       if bookmarks != { } then
@@ -481,8 +480,7 @@ in
                           ];
                         }
                       )
-                    )
-                );
+                    );
                 default = { };
                 internal = !enableBookmarks;
                 description = "Declarative bookmarks.";
@@ -771,7 +769,8 @@ in
                     }' to acknowledge this.
                   '';
                 }
-              ] ++ config.bookmarks.assertions;
+              ]
+              ++ config.bookmarks.assertions;
             };
           }
         )
@@ -842,7 +841,8 @@ in
         }
 
         (mkNoDuplicateAssertion cfg.profiles "profile")
-      ] ++ (lib.concatMap (profile: profile.assertions) (attrValues cfg.profiles));
+      ]
+      ++ (lib.concatMap (profile: profile.assertions) (attrValues cfg.profiles));
 
       warnings =
         optional (cfg.enableGnomeExtensions or false) ''
@@ -905,9 +905,9 @@ in
                   force = profile.containersForce;
                 };
 
-                "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" = mkIf (profile.search.enable) {
-                  enable = profile.search.enable;
-                  force = profile.search.force;
+                "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" = mkIf profile.search.enable {
+                  inherit (profile.search) enable;
+                  inherit (profile.search) force;
                   source = profile.search.file;
                 };
 

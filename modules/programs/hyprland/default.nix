@@ -58,7 +58,7 @@ in
     {
       programs.hyprland = {
         enable = true;
-        package = cfg.package;
+        inherit (cfg) package;
         portalPackage = pkgs.xdg-desktop-portal-hyprland;
       };
 

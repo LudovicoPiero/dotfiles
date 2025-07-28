@@ -22,7 +22,7 @@ let
     basePackage = emacsPackage;
     pathAdd = with pkgs; [
       ## Optional dependencies
-      (mkIf (config.programs.gnupg.agent.enable) pinentry-emacs) # in-emacs gnupg prompts
+      (mkIf config.programs.gnupg.agent.enable pinentry-emacs) # in-emacs gnupg prompts
       (aspellWithDicts (
         ds: with ds; [
           en

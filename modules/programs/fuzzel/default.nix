@@ -25,7 +25,7 @@ in
       settings = {
         main = {
           font = "${config.mine.fonts.terminal.name} Semibold:size=${toString config.mine.fonts.size}";
-          terminal = config.vars.terminal;
+          inherit (config.vars) terminal;
           icon-theme = config.mine.theme.gtk.theme.name;
           icons-enabled = "yes";
           inner-pad = 15;

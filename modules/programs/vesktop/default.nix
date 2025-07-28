@@ -45,7 +45,7 @@ in
           notifyAboutUpdates = false;
           enableReactDevtools = false;
           enabledThemes = [ ];
-          themeLinks = cfg.themeLinks;
+          inherit (cfg) themeLinks;
 
           /*
             NOTE:

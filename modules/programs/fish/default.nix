@@ -40,13 +40,12 @@ in
         enable = true;
         useBabelfish = true;
         shellAliases = mkForce { };
-        interactiveShellInit =
-          ''
-            . ${config.sops.secrets."shells/githubToken".path}
-          ''
-          + optionalString (!config.vars.withGui && config.vars.isALaptop) ''
-            ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
-          '';
+        interactiveShellInit = ''
+          . ${config.sops.secrets."shells/githubToken".path}
+        ''
+        + optionalString (!config.vars.withGui && config.vars.isALaptop) ''
+          ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
+        '';
       };
 
       bat = {
