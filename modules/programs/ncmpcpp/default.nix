@@ -19,12 +19,18 @@ in
         programs.ncmpcpp = {
           enable = true;
 
-          package = pkgs.ncmpcpp.override {
-            outputsSupport = true; # outputs screen
-            visualizerSupport = false; # visualizer screen
-            clockSupport = true; # clock screen
-            taglibSupport = true; # tag editor
-          };
+          package =
+            (pkgs.ncmpcpp.override {
+              outputsSupport = true;
+              visualizerSupport = false;
+              clockSupport = true;
+              taglibSupport = true;
+            }).overrideAttrs
+              (old: {
+                configureFlags = (old.configureFlags or [ ]) ++ [
+                  (pkgs.lib.withFeatureAs true "boost" pkgs.boost.dev)
+                ];
+              });
 
           mpdMusicDir = config.services.mpd.musicDirectory;
 
