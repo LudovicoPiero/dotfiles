@@ -1,28 +1,19 @@
-queue_rules:
-  - name: default
-    queue_conditions:
-      - check-success=All Garnix checks
-      - -title ~= (?i)wip
-      - -merged
-      - -closed
-      - -draft
-      - -author~=\[bot\]$
-    merge_conditions: []
-    merge_method: rebase
-    update_method: rebase
-
 pull_request_rules:
   - name: Automatic rebase for PRs marked as "keep-up-to-date"
     conditions:
       - label=keep-up-to-date
       - -draft
-      - -merged
       - -closed
+      - -merged
     actions:
       update:
 
   - name: Automatic merge when CI passes
-    conditions: []
+    conditions:
+      - check-success=All Garnix checks
+      - -conflict
+      - -draft
+      - status-success=All Garnix checks
     actions:
       queue:
       delete_head_branch:
