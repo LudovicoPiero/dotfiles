@@ -25,7 +25,7 @@
         fd . -t f -e nix -x ${lib.getExe pkgs.deadnix} -e '{}'
 
         echo "Running statix for *.nix files..."
-        fd . -t f -e nix -x ${lib.getExe pkgs.statix} -e '{}'
+        fd . -t f -e nix -x ${lib.getExe pkgs.statix} fix '{}'
 
         echo "Formatting *.html files..."
         fd . -t f -e html -x ${lib.getExe pkgs.nodePackages.prettier} --write '{}'
