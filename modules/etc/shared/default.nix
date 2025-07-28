@@ -44,6 +44,7 @@
         dnsutils # DNS-related tools like dig and nslookup
         nmap # Powerful network scanner for security auditing and discovery
         whois # Query domain registration info
+        file # Determine file types, useful for identifying file formats
 
         # Clipboard and file operations
         rsync # Fast, versatile file copying/syncing tool
@@ -68,7 +69,6 @@
         sbctl # Secure Boot key manager, useful for enrolling custom keys, debugging SB issues
 
         # Favorite desktop apps
-        element-desktop # Matrix client for decentralized chat (Electron-based)
         qbittorrent # Qt-based BitTorrent client with a clean UI
         imv # Minimalist image viewer for X11/Wayland
         viewnior # Lightweight image viewer, good for simple needs
