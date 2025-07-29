@@ -27,10 +27,10 @@ in
 
         peers = [
           {
-            publicKey = "jZ4mHEdMx0XHlEGRntWXtt0tpYz3feoVUbbJQejYQwA=";
+            publicKey = "lmskSqj03H02xi5AT21+3aZlnG6Ck6WoUTLnDarIVBU=";
             presharedKeyFile = config.sops.secrets.presharedKey.path;
             allowedIPs = [ "0.0.0.0/0" ];
-            endpoint = "167.179.64.176:51820";
+            endpoint = "139.180.221.129:51820";
             persistentKeepalive = 25;
           }
         ];
