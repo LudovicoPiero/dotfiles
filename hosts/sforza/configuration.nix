@@ -14,6 +14,8 @@
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
   networking.hostName = "sforza"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
