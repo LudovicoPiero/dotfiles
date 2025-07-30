@@ -37,6 +37,9 @@ in
       color: #${palette.base0D};
     }
 
+    #custom-tailscale {
+      color: #${palette.base0B};
+    }
     #custom-wireguard {
       color: #${palette.base0B};
     }
@@ -324,6 +327,7 @@ in
     #custom-disk_root,
     #custom-disk_home,
     #custom-wireguard,
+    #custom-tailscale,
     #disk,
     #mpd,
     #tray,

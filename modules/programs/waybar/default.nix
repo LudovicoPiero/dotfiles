@@ -45,6 +45,7 @@ in
             # "custom/disk_home"
             # "custom/disk_root"
             "custom/wireguard"
+            "custom/tailscale"
             "mpd"
             "tray"
             "idle_inhibitor"
@@ -74,6 +75,14 @@ in
               "4" = [ ];
               "5" = [ ];
             };
+          };
+          "custom/tailscale" = {
+            "format" = "󰖂 Tailscale";
+            "exec" = "echo '{\"class\": \"connected\"}'";
+            "exec-if" = "test -d /proc/sys/net/ipv4/conf/tailscale0";
+            "return-type" = "json";
+            "interval" = 5;
+
           };
           "custom/wireguard" = {
             "format" = "󰖂 Wireguard";
