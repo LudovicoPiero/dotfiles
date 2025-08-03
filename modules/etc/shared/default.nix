@@ -237,13 +237,11 @@
         # The default is https://cache.nixos.org, which has a priority of 40.
         # Lower value means higher priority.
         "https://cache.nixos.org?priority=10"
-        "https://nix-community.cachix.org?priority=20"
         "https://cache.garnix.io?priority=40"
       ];
 
       trusted-public-keys = [
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
 
