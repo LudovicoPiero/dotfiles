@@ -172,9 +172,7 @@ let
     package:
     let
       # The configuration expected by the Firefox wrapper.
-      fcfg = {
-        inherit (cfg) enableGnomeExtensions;
-      };
+      fcfg = { inherit (cfg) enableGnomeExtensions; };
 
       # A bit of hackery to force a config into the wrapper.
       browserName = package.browserName or (builtins.parseDrvName package.name).name;
@@ -442,7 +440,8 @@ in
               };
 
               bookmarks = mkOption {
-                type = types.coercedTo bookmarkTypes.settingsType
+                type =
+                  types.coercedTo bookmarkTypes.settingsType
                     (
                       bookmarks:
                       if bookmarks != { } then
