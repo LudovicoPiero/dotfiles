@@ -24,7 +24,7 @@
   # - If no `ref` is given, the flake defaults to the repository's default branch.
   #
   # - GitLab uses the same structure with `type = "gitlab"`.
-  # - For tarball archives, we use:
+  # - For tarball archives (e.g., Lix), we use:
   #     {
   #       type = "tarball";
   #       url = "https://...";
@@ -85,6 +85,12 @@
       repo = "flake-programs-sqlite";
     };
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
+
+    lix-module = {
+      type = "tarball";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
+    };
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
     ludovico-nixvim = {
       type = "github";
