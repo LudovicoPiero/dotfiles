@@ -18,7 +18,7 @@ jobs:
           root-reserve-mb: 512
           swap-size-mb: 1024
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Lix
         uses: DeterminateSystems/nix-installer-action@v19
