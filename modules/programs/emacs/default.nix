@@ -11,7 +11,7 @@ let
 
   emacsPackage =
     with pkgs;
-    (emacsPackagesFor emacs-git-pgtk).emacsWithPackages (
+    (emacsPackagesFor emacs-pgtk).emacsWithPackages (
       epkgs: with epkgs; [
         treesit-grammars.with-all-grammars
         vterm
