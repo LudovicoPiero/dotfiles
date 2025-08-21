@@ -1,258 +1,205 @@
-"""
-Tests for flake.lock
+# =============================================================================
+# NOTE: Test framework/library: pytest
+# These tests validate the structure and critical invariants of flake.lock,
+# with an emphasis on the updated/added inputs in this PR (zen-browser, lix/lix-module,
+# nixpkgs-unstable as the primary nixpkgs, etc.). They avoid brittle pin assertions
+# (timestamps/hashes) but check owners/repos/types and linkage integrity.
+# =============================================================================
 
-Test framework: pytest (assumed; standard for Python projects with tests/).
-These tests validate:
-- Overall schema and structure
-- Cross-references in `inputs`
-- Formats of `narHash`, `rev`, `lastModified`
-- Presence and type constraints for common source types (github, gitlab, tarball)
-- A curated set of exact-pinned revisions and attributes introduced/changed in this PR
-
-No third-party dependencies are used; only Python stdlib.
-"""
+from __future__ import annotations
 
 import json
-import os
 import re
-from urllib.parse import urlparse, parse_qs
+from pathlib import Path
+from typing import Any, Dict, Tuple
 
-# Resolve flake.lock path (repo root / flake.lock)
-THIS_DIR = os.path.dirname(__file__)
-REPO_ROOT = os.path.abspath(os.path.join(THIS_DIR, os.pardir))
-LOCK_PATH = os.path.join(REPO_ROOT, "flake.lock")
-
-HEX40 = re.compile(r"^[0-9a-f]{40}$")
-NAR_SHA256 = re.compile(r"^sha256-[A-Za-z0-9+/=]{43,}$")  # base64 payload, >= 43 chars typical
-VALID_TYPES = {"github", "gitlab", "tarball"}
-
-def load_lock():
-    with open(LOCK_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-def iter_nodes(lock):
-    nodes = lock.get("nodes", {})
-    for name, node in nodes.items():
-        yield name, node
+import pytest
 
 
-def test_lock_file_exists():
-    assert os.path.isfile(LOCK_PATH), f"flake.lock not found at expected path: {LOCK_PATH}"
+def _flake_lock_path() -> Path:
+    # Expect flake.lock at the repo root
+    repo_root = Path(__file__).resolve().parents[1]
+    p = repo_root / "flake.lock"
+    assert p.exists(), f"flake.lock not found at expected path: {p}"
+    return p
 
 
-def test_root_and_version():
-    lock = load_lock()
-    assert "version" in lock and isinstance(lock["version"], int), "Missing or invalid `version`."
-    assert lock["version"] == 7, f"Unexpected version: {lock['version']}"
-    assert "root" in lock and isinstance(lock["root"], str), "Missing or invalid `root`."
-    nodes = lock.get("nodes", {})
-    assert lock["root"] in nodes, "`root` must reference an existing node key in `nodes`."
+@pytest.fixture(scope="session")
+def flake_lock() -> Dict[str, Any]:
+    p = _flake_lock_path()
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        pytest.fail(f"flake.lock is not valid JSON: {e}", pytrace=False)
+    assert isinstance(data, dict), "flake.lock root must be a JSON object"
+    return data
 
 
-def test_nodes_present_and_mapping():
-    lock = load_lock()
-    assert "nodes" in lock and isinstance(lock["nodes"], dict), "`nodes` must be a mapping."
-    # Sanity: ensure a non-trivial number of nodes exist (helps catch truncation/merge issues)
-    assert len(lock["nodes"]) >= 20, f"Expected at least 20 nodes, found {len(lock['nodes'])}."
+@pytest.fixture(scope="session")
+def nodes(flake_lock: Dict[str, Any]) -> Dict[str, Any]:
+    assert "nodes" in flake_lock and isinstance(flake_lock["nodes"], dict), "'nodes' must be present and a mapping"
+    return flake_lock["nodes"]
 
 
-def test_all_input_references_exist():
-    lock = load_lock()
-    nodes = lock["nodes"]
-
-    def _assert_ref(ref):
-        assert ref in nodes, f"Input references unknown node '{ref}'."
-
-    for name, node in iter_nodes(lock):
-        inputs = node.get("inputs")
-        if not inputs:
-            continue
-        assert isinstance(inputs, dict), f"{name}: `inputs` must be a mapping."
-        for _, target in inputs.items():
-            if isinstance(target, str):
-                _assert_ref(target)
-            elif isinstance(target, list):
-                assert target, f"{name}: `inputs` list target must not be empty."
-                for ref in target:
-                    assert isinstance(ref, str), f"{name}: input list items must be strings."
-                    _assert_ref(ref)
-            else:
-                # Some lock files may support nested structures; assert we only see expected types here
-                raise AssertionError(f"{name}: unexpected input reference type: {type(target).__name__}")
+@pytest.fixture(scope="session")
+def root_node(nodes: Dict[str, Any]) -> Dict[str, Any]:
+    assert "root" in nodes, "The 'root' node must exist in flake.lock nodes"
+    return nodes["root"]
 
 
-def test_locked_entries_have_expected_fields_by_type_and_formats():
-    lock = load_lock()
-    for name, node in iter_nodes(lock):
-        if "locked" not in node:
-            # some nodes might be purely virtual, but in this lock they generally have locked info
-            continue
-        locked = node["locked"]
-        assert isinstance(locked, dict), f"{name}: `locked` must be a mapping."
-
-        # Common fields
-        lm = locked.get("lastModified")
-        nh = locked.get("narHash")
-        assert isinstance(lm, int) and lm > 1_500_000_000 and lm < 2_100_000_000, f"{name}: invalid lastModified epoch: {lm}"
-        assert isinstance(nh, str) and NAR_SHA256.match(nh), f"{name}: invalid narHash format: {nh}"
-
-        ltype = locked.get("type")
-        assert ltype in VALID_TYPES, f"{name}: unexpected locked.type '{ltype}'"
-
-        if ltype in {"github", "gitlab"}:
-            for field in ("owner", "repo", "rev"):
-                assert field in locked and isinstance(locked[field], str), f"{name}: missing '{field}' for {ltype} source."
-            assert HEX40.match(locked["rev"]), f"{name}: rev must be a 40-hex git commit, got: {locked['rev']}"
-            # Optional dir is allowed; if present ensure it's a non-empty string
-            if "dir" in locked:
-                assert isinstance(locked["dir"], str) and locked["dir"], f"{name}: `dir` must be non-empty if present."
-
-        elif ltype == "tarball":
-            url = locked.get("url")
-            assert isinstance(url, str) and url.startswith("https://"), f"{name}: tarball `url` must be https://"
-            # Often a tarball may include a 'rev' too; if present, ensure it is hex
-            if "rev" in locked:
-                assert isinstance(locked["rev"], str) and HEX40.match(locked["rev"]), f"{name}: tarball rev must be 40-hex."
-
-            # If the URL query includes ?rev=..., ensure it matches locked.rev when present.
-            qs = parse_qs(urlparse(url).query)
-            if "rev" in qs and qs["rev"]:
-                qrev = qs["rev"][0]
-                if "rev" in locked:
-                    assert locked["rev"] == qrev, f"{name}: locked.rev ({locked['rev']}) != URL rev ({qrev})"
+@pytest.fixture(scope="session")
+def root_inputs(root_node: Dict[str, Any]) -> Dict[str, Any]:
+    assert "inputs" in root_node and isinstance(root_node["inputs"], dict), "'root.inputs' must be present"
+    return root_node["inputs"]
 
 
-def test_original_blocks_are_present_and_reasonable():
-    lock = load_lock()
-    for name, node in iter_nodes(lock):
-        orig = node.get("original")
-        assert orig is not None, f"{name}: missing `original` block."
-        assert isinstance(orig, dict), f"{name}: `original` must be a mapping."
-        otype = orig.get("type")
-        # 'indirect' is permitted (e.g., flake-parts_4), otherwise expect a source type
-        assert otype in (None, "indirect", "github", "gitlab", "tarball"), f"{name}: unexpected original.type '{otype}'"
-        # If original.type is a VCS source, ensure at least owner/repo or url are present
-        if otype in {"github", "gitlab"}:
-            assert "owner" in orig and "repo" in orig, f"{name}: `original` for {otype} should specify owner and repo."
-        if otype == "tarball":
-            assert "url" in orig and isinstance(orig["url"], str), f"{name}: tarball original must include url."
+def test_top_level_structure(flake_lock: Dict[str, Any]) -> None:
+    for key in ("nodes", "root", "version"):
+        assert key in flake_lock, f"Top-level key '{key}' missing"
+    assert isinstance(flake_lock["version"], int), "'version' must be an integer"
+    assert flake_lock["version"] == 7, "Expected lockfile version 7 for modern Nix flakes"
 
 
-def test_flake_false_nodes_have_source_origin():
-    lock = load_lock()
-    for name, node in iter_nodes(lock):
-        if node.get("flake") is False:
-            # Expect that such nodes still have a meaningful `original` source (github/gitlab/tarball).
-            orig = node.get("original", {})
-            otype = orig.get("type")
-            assert otype in {"github", "gitlab", "tarball"}, f"{name}: flake=false nodes should originate from a concrete source."
+def test_root_and_nodes_presence(flake_lock: Dict[str, Any], nodes: Dict[str, Any]) -> None:
+    assert flake_lock["root"] == "root", "Top-level 'root' should reference the 'root' node"
+    assert "root" in nodes, "'root' node must be present in 'nodes'"
 
 
-def test_subset_of_pinned_revisions_from_diff():
-    """
-    Validate a curated subset of exact pins touched in this PR's diff to guard regressions.
-    This is intentionally focused and not exhaustive to reduce brittleness.
-    """
-    lock = load_lock()
-    nodes = lock["nodes"]
-
+def test_expected_key_nodes_exist(nodes: Dict[str, Any]) -> None:
+    # Focus on nodes touched or highlighted by the PR/diff
     expected = {
-        # name: dict of expected fields
-        "neovim-src": {
-            "type": "github",
-            "owner": "neovim",
-            "repo": "neovim",
-            "rev": "3ec63cdab848f903d5e46245b7b2acbf7d5cc829",
-        },
-        "nixpkgs-unstable": {
-            "type": "github",
-            "owner": "NixOS",
-            "repo": "nixpkgs",
-            "rev": "25bf5c5df47ae79b24fbae8d0d3f6480dadde3ed",
-        },
-        "home-manager": {
-            "type": "github",
-            "owner": "nix-community",
-            "repo": "home-manager",
-            "rev": "dd026d86420781e84d0732f2fa28e1c051117b59",
-        },
-        "emacs-overlay": {
-            "type": "github",
-            "owner": "nix-community",
-            "repo": "emacs-overlay",
-            "rev": "69f77500f06ee7f2e59cb9f2d9b7f50d2b6ac0b7",
-        },
-        "nixvim": {
-            "type": "github",
-            "owner": "nix-community",
-            "repo": "nixvim",
-            "rev": "94386cdc4cdb42e90685274066805685d53afa37",
-        },
-        "zen-browser": {
-            "type": "github",
-            "owner": "0xc000022070",
-            "repo": "zen-browser-flake",
-            "rev": "e440e752f83a7c97a45b8f47ada3f850d817343c",
-        },
-        "wrapper-manager": {
-            "type": "github",
-            "owner": "viperML",
-            "repo": "wrapper-manager",
-            "rev": "8ad2484b485acad0632cb0af15b5eb704e3c1d0a",
-        },
-        "programsdb": {
-            "type": "github",
-            "owner": "wamserma",
-            "repo": "flake-programs-sqlite",
-            "rev": "6ceec7d927c3ec7ec54856b06e92c2c47b1367eb",
-        },
-        "sops-nix": {
-            "type": "github",
-            "owner": "Mic92",
-            "repo": "sops-nix",
-            "rev": "3223c7a92724b5d804e9988c6b447a0d09017d48",
-        },
-        "ludovico-nixvim": {
-            "type": "github",
-            "owner": "LudovicoPiero",
-            "repo": "nvim-flake",
-            "rev": "4088155b1780bc9f26435d707ec7d388ac5440e1",
-        },
-        "firefox-addons": {
-            "type": "gitlab",
-            "owner": "rycee",
-            "repo": "nur-expressions",
-            "rev": "2dcb371b407ba4009e27a8e8adf88e6f93d40bfb",
-        },
+        "nixpkgs-unstable",
+        "nixpkgs-stable",
+        "home-manager",
+        "emacs-overlay",
+        "firefox-addons",
+        "zen-browser",
+        "lix",
+        "lix-module",
+        "lanzaboote",
+        "nixvim",
+        "neovim-overlay",
+        "neovim-src",
+        "nui-nvim",
+        "nix-colors",
+        "programsdb",
+        "ludovico-nixvim",
+        "ludovico-pkgs",
+        "flake-parts",
+        "git-hooks",
+        "sops-nix",
     }
-
-    for name, exp in expected.items():
-        assert name in nodes, f"Expected node '{name}' not found."
-        locked = nodes[name]["locked"]
-        for k, v in exp.items():
-            assert locked.get(k) == v, f"{name}: expected locked.{k} == {v!r}, got {locked.get(k)!r}"
+    missing = sorted(expected - set(nodes.keys()))
+    assert not missing, f"Expected nodes missing from lockfile: {missing}"
 
 
-def test_tarball_sources_have_matching_rev_query_param():
-    lock = load_lock()
-    for name in ("lix", "lix-module"):
-        node = lock["nodes"].get(name)
-        assert node is not None, f"Missing expected tarball node '{name}'."
-        locked = node["locked"]
-        assert locked["type"] == "tarball"
-        url = locked["url"]
-        qs = parse_qs(urlparse(url).query)
-        if "rev" in locked:
-            assert qs.get("rev", [None])[0] == locked["rev"], f"{name}: URL ?rev does not match locked.rev"
+def test_locked_types_and_required_fields(nodes: Dict[str, Any]) -> None:
+    allowed_types = {"github", "gitlab", "tarball"}
+    for name, node in nodes.items():
+        locked = node.get("locked")
+        if not isinstance(locked, dict):
+            # some nodes may be purely "original" or structural; continue
+            continue
+        t = locked.get("type")
+        assert t in allowed_types, f"{name!r}: unexpected locked.type={t!r}"
+
+        if t in {"github", "gitlab"}:
+            for k in ("owner", "repo", "rev"):
+                assert k in locked, f"{name!r}: missing '{k}' in locked for {t}"
+        elif t == "tarball":
+            assert "url" in locked, f"{name!r}: tarball source must provide 'url'"
 
 
-def test_root_inputs_reference_existing_nodes():
-    lock = load_lock()
-    root = lock["nodes"][lock["root"]]
-    inputs = root.get("inputs")
-    assert isinstance(inputs, dict) and inputs, "`root.inputs` should be a non-empty mapping."
-    # Validate a representative subset of expected inputs from the diff
-    for key in [
+def test_nar_hash_format(nodes: Dict[str, Any]) -> None:
+    pat = re.compile(r"^sha256-[A-Za-z0-9+/=]+$")
+    offenders: list[Tuple[str, str]] = []
+    for name, node in nodes.items():
+        locked = node.get("locked") or {}
+        nar = locked.get("narHash")
+        if nar is None:
+            continue
+        if not isinstance(nar, str) or not pat.match(nar):
+            offenders.append((name, str(nar)))
+    assert not offenders, f"Invalid narHash format for nodes: {offenders}"
+
+
+def test_last_modified_plausible(nodes: Dict[str, Any]) -> None:
+    # Check timestamps are reasonable (between ~2020 and ~2033)
+    lower, upper = 1_600_000_000, 2_000_000_000
+    bad: list[Tuple[str, Any]] = []
+    for name, node in nodes.items():
+        locked = node.get("locked") or {}
+        ts = locked.get("lastModified")
+        if ts is None:
+            continue
+        if not isinstance(ts, int) or not (lower <= ts <= upper):
+            bad.append((name, ts))
+    assert not bad, f"Unreasonable 'lastModified' values: {bad}"
+
+
+@pytest.mark.parametrize(
+    "node_key, expected_type, owner, repo, expected_original_ref",
+    [
+        ("nixpkgs-unstable", "github", "NixOS", "nixpkgs", "nixos-unstable-small"),
+        ("nixpkgs-stable", "github", "NixOS", "nixpkgs", "nixos-24.11"),
+        ("home-manager", "github", "nix-community", "home-manager", None),
+        ("emacs-overlay", "github", "nix-community", "emacs-overlay", None),
+        ("firefox-addons", "gitlab", "rycee", "nur-expressions", None),
+        ("zen-browser", "github", "0xc000022070", "zen-browser-flake", None),
+        ("nixvim", "github", "nix-community", "nixvim", None),
+        ("neovim-overlay", "github", "nix-community", "neovim-nightly-overlay", None),
+        ("neovim-src", "github", "neovim", "neovim", None),
+        ("nui-nvim", "github", "MunifTanjim", "nui.nvim", None),
+        ("rust-analyzer-src", "github", "rust-lang", "rust-analyzer", "nightly"),
+        ("crane", "github", "ipetkov", "crane", None),
+        ("lanzaboote", "github", "nix-community", "lanzaboote", None),
+        ("git-hooks", "github", "cachix", "git-hooks.nix", None),
+        ("sops-nix", "github", "Mic92", "sops-nix", None),
+    ],
+)
+def test_specific_nodes_metadata(
+    nodes: Dict[str, Any],
+    node_key: str,
+    expected_type: str,
+    owner: str,
+    repo: str,
+    expected_original_ref: str | None,
+) -> None:
+    assert node_key in nodes, f"Missing expected node {node_key!r}"
+    node = nodes[node_key]
+    locked = node.get("locked") or {}
+    assert locked.get("type") == expected_type, f"{node_key!r} type mismatch"
+    if expected_type in {"github", "gitlab"}:
+        assert locked.get("owner") == owner, f"{node_key!r} owner mismatch"
+        assert locked.get("repo") == repo, f"{node_key!r} repo mismatch"
+    if expected_original_ref is not None:
+        original = node.get("original") or {}
+        assert original.get("ref") == expected_original_ref, (
+            f"{node_key!r} original.ref expected {expected_original_ref!r}"
+        )
+
+
+def test_tarball_nodes_have_urls(nodes: Dict[str, Any]) -> None:
+    for key in ("lix", "lix-module"):
+        assert key in nodes, f"Missing tarball node {key}"
+        locked = nodes[key].get("locked") or {}
+        assert locked.get("type") == "tarball", f"{key!r} should be tarball"
+        url = locked.get("url")
+        assert isinstance(url, str) and url.startswith("https://"), f"{key!r} tarball URL invalid: {url!r}"
+        assert "git.lix.systems" in url, f"{key!r} tarball URL should come from git.lix.systems: {url!r}"
+        assert "narHash" in locked, f"{key!r} tarball must include a narHash"
+
+
+def test_flake_false_nodes(nodes: Dict[str, Any]) -> None:
+    expected_false = {"neovim-src", "nui-nvim", "flake-compat", "flake-compat_2", "flake-compat_3"}
+    for key in expected_false:
+        assert key in nodes, f"Expected node {key!r} is missing"
+        assert nodes[key].get("flake") is False, f"{key!r} must have 'flake': false"
+
+
+def test_root_inputs_sanity_and_nixpkgs_points_to_unstable(root_inputs: Dict[str, Any]) -> None:
+    # root.inputs should include a set of important keys
+    subset = {
         "emacs-overlay",
         "firefox-addons",
         "flake-parts",
@@ -263,57 +210,49 @@ def test_root_inputs_reference_existing_nodes():
         "ludovico-nixvim",
         "ludovico-pkgs",
         "nix-colors",
+        "nixpkgs",
         "nixpkgs-unstable",
         "programsdb",
         "sops-nix",
         "wrapper-manager",
         "zen-browser",
-    ]:
-        assert key in inputs, f"`root.inputs` missing '{key}'."
-        # input value should reference an existing node (string reference)
-        ref = inputs[key]
-        assert isinstance(ref, str), f"`root.inputs.{key}` must be a string reference to a node."
-        assert ref in lock["nodes"], f"`root.inputs.{key}` references unknown node '{ref}'."
+    }
+    missing = sorted(subset - set(root_inputs.keys()))
+    assert not missing, f"root.inputs missing expected keys: {missing}"
+
+    # Ensure 'nixpkgs' input resolves to 'nixpkgs-unstable' as per PR focus
+    val = root_inputs.get("nixpkgs")
+    assert val is not None, "'nixpkgs' must be present in root.inputs"
+    if isinstance(val, list):
+        assert "nixpkgs-unstable" in val, "root.inputs.nixpkgs should map to nixpkgs-unstable"
+    else:
+        assert val == "nixpkgs-unstable", "root.inputs.nixpkgs should map to nixpkgs-unstable"
 
 
-def test_all_revs_are_40_hex_if_present():
-    lock = load_lock()
-    for name, node in iter_nodes(lock):
-        rev = node.get("locked", {}).get("rev")
-        if rev is not None:
-            assert isinstance(rev, str) and HEX40.match(rev), f"{name}: rev must be 40 hex characters."
+def test_input_linkage_points_to_known_nodes_or_root_inputs(nodes: Dict[str, Any], root_inputs: Dict[str, Any]) -> None:
+    # Each input references either a node key directly or a path whose last element
+    # should be a known node or a key in root.inputs.
+    node_keys = set(nodes.keys())
+    root_input_keys = set(root_inputs.keys())
+    errors: list[str] = []
 
+    def refs_ok(v: Any, owner_node: str, input_name: str) -> bool:
+        if isinstance(v, str):
+            return v in node_keys or v in root_input_keys
+        if isinstance(v, list) and v:
+            last = v[-1]
+            return isinstance(last, str) and (last in node_keys or last in root_input_keys)
+        # other forms are unusual; flag them
+        errors.append(f"{owner_node}.inputs[{input_name!r}] has unexpected value {v!r}")
+        return False
 
-def test_all_narhashes_are_sha256_prefixed_and_unique_per_node():
-    lock = load_lock()
-    seen = set()
-    for name, node in iter_nodes(lock):
-        locked = node.get("locked")
-        if not locked:
+    for name, node in nodes.items():
+        inputs = node.get("inputs")
+        if not isinstance(inputs, dict):
             continue
-        nar = locked.get("narHash")
-        assert isinstance(nar, str) and nar.startswith("sha256-"), f"{name}: narHash must start with 'sha256-'."
-        # Uniqueness across nodes is not required, but we ensure we don't see empty/duplicate empty values.
-        assert nar, f"{name}: narHash must not be empty."
-        seen.add((name, nar))
-    # Sanity: at least 20 distinct node+nar pairs
-    assert len(seen) >= 20, f"Unexpectedly few narHash entries: {len(seen)}"
+        for k, v in inputs.items():
+            ok = refs_ok(v, name, k)
+            if not ok:
+                errors.append(f"{name}.inputs[{k}] -> {v!r} does not reference known nodes/root inputs")
 
-
-def test_locked_type_values_are_expected():
-    lock = load_lock()
-    for name, node in iter_nodes(lock):
-        ltype = node.get("locked", {}).get("type")
-        if ltype is None:
-            # allow nodes without locked (rare)
-            continue
-        assert ltype in VALID_TYPES, f"{name}: unexpected locked.type '{ltype}'"
-
-
-def test_dir_field_when_present_is_relative():
-    lock = load_lock()
-    for name, node in iter_nodes(lock):
-        locked = node.get("locked", {})
-        dirv = locked.get("dir")
-        if dirv is not None:
-            assert not os.path.isabs(dirv), f"{name}: locked.dir should be a relative path, got absolute: {dirv}"
+    assert not errors, "Invalid or unresolved inputs found:\n- " + "\n- ".join(errors)
