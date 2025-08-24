@@ -104,14 +104,12 @@
       owner = "LudovicoPiero";
       repo = "nvim-flake";
     };
-    ludovico-nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     ludovico-pkgs = {
       type = "github";
       owner = "LudovicoPiero";
       repo = "pkgs";
     };
-    ludovico-pkgs.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser = {
       type = "github";
