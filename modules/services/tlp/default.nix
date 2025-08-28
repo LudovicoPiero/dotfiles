@@ -59,8 +59,10 @@ in
       };
 
       logind = {
-        powerKey = "suspend";
-        lidSwitch = "suspend-then-hibernate";
+        settings.Login = {
+          HandlePowerKey = "suspend";
+          HandleLidSwitch = "suspend-then-hibernate";
+        };
       };
     };
   };
