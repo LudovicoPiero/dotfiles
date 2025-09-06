@@ -28,6 +28,7 @@ _: {
     ./programs/hyprland
     ./programs/ncmpcpp
     ./programs/nvim
+    ./programs/rmpc
     ./programs/sway
     ./programs/tmux
     ./programs/vesktop

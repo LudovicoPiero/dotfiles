@@ -138,6 +138,10 @@
       rate = 48000;
     };
 
+    rmpc = {
+      enable = true;
+    };
+
     sddm = {
       enable = true;
     };
