@@ -16,12 +16,7 @@ let
   cfg = config.mine.hyprland;
 in
 {
-  imports = [
-    ./cliphist.nix
-    ./hypridle.nix
-    ./hyprlock.nix
-    ./settings.nix
-  ];
+  imports = [ ./settings.nix ];
 
   options.mine.hyprland = {
     enable = mkEnableOption "hyprland";

@@ -1,8 +1,11 @@
 _: {
   imports = [
     # Services
+    ./services/cliphist
     ./services/dnscrypt2
     ./services/gammastep
+    ./services/hypridle
+    ./services/hyprlock
     ./services/fcitx5
     ./services/pipewire
     ./services/sddm
