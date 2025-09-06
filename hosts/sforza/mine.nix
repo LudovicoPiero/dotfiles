@@ -125,7 +125,7 @@
     };
 
     ncmpcpp = {
-      enable = true;
+      enable = false;
     };
 
     nvim = {
