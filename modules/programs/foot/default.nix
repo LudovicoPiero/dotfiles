@@ -19,7 +19,7 @@ in
           enable = true;
           settings = {
             main = {
-              font = "${fontConfig.terminal.name}:size=15,${fontConfig.emoji.name}:size=15,${fontConfig.icon.name}:size=15";
+              font = "${fontConfig.terminal.name}:size=${toString config.mine.fonts.size},${fontConfig.emoji.name}:size=${toString config.mine.fonts.size},${fontConfig.icon.name}:size=${toString config.mine.fonts.size}";
               term = "xterm-256color";
               dpi-aware = "yes";
               initial-window-size-chars = "82x23";
