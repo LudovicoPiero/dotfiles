@@ -34,6 +34,7 @@ in
                 "${config.mine.fonts.icon.name}",
                 "${config.mine.fonts.emoji.name}",
               }),
+              font_size = ${toString config.mine.fonts.size},
 
               -- Wayland and UI settings
               enable_wayland = true,
