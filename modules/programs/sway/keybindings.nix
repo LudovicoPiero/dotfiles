@@ -104,7 +104,7 @@ in
       "${mod}+Space" = "floating toggle";
 
       ### Apps
-      "${mod}+Return" = "exec ${app2unit} '${cfgsway.terminal}'";
+      "${mod}+Return" = "exec ${app2unit} '${config.vars.terminal}'";
 
       "${mod}+o" = "exec ${app2unit} ${clipboard}";
       "${mod}+Shift+o" = "exec ${app2unit} '${emojiPicker}'";
