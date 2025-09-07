@@ -1,4 +1,10 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
   inherit (config.mine.theme.colorScheme) palette;
@@ -14,6 +20,9 @@ in
     hm = {
       programs.wezterm = {
         enable = true;
+
+        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.wezterm;
+
         extraConfig = ''
           local wezterm = require("wezterm")
 
