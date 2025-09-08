@@ -68,13 +68,13 @@ in
             format = "{name}";
             all-outputs = true;
             disable-scroll = false;
-            persistent-workspaces = {
-              "1" = [ ];
-              "2" = [ ];
-              "3" = [ ];
-              "4" = [ ];
-              "5" = [ ];
-            };
+            # persistent-workspaces = {
+            #   "1" = [ ];
+            #   "2" = [ ];
+            #   "3" = [ ];
+            #   "4" = [ ];
+            #   "5" = [ ];
+            # };
           };
           "custom/tailscale" = {
             "format" = "󰖂 Tailscale";
