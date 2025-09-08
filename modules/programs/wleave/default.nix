@@ -34,101 +34,118 @@ in
       home.packages = [ cfg.package ];
 
       xdg.configFile = {
-        "wleave/layout".text = ''
+        "wleave/layout.json".text = ''
           {
-              "label" : "lock",
-              "action" : "${getExe pkgs.hyprlock} --immediate --immediate-render",
-              "text" : "Lock",
-              "keybind" : "l"
-          }
-          {
-              "label" : "hibernate",
-              "action" : "systemctl hibernate",
-              "text" : "Hibernate",
-              "keybind" : "h"
-          }
-          {
-              "label" : "logout",
-              "action" : "${getExe config.programs.uwsm.package} stop",
-              "text" : "Logout",
-              "keybind" : "e"
-          }
-          {
-              "label" : "shutdown",
-              "action" : "systemctl poweroff",
-              "text" : "Shutdown",
-              "keybind" : "s"
-          }
-          {
-              "label" : "suspend",
-              "action" : "systemctl suspend",
-              "text" : "Suspend",
-              "keybind" : "u"
-          }
-          {
-              "label" : "reboot",
-              "action" : "systemctl reboot",
-              "text" : "Reboot",
-              "keybind" : "r"
+              "buttons": [
+                  {
+                      "label": "lock",
+                      "action": "swaylock",
+                      "text": "Lock",
+                      "keybind": "l",
+                      "icon": "/home/airi/.config/wleave/icons/lock.svg"
+                  },
+                  {
+                      "label": "hibernate",
+                      "action": "systemctl hibernate",
+                      "text": "Hibernate",
+                      "keybind": "h",
+                      "icon": "/home/airi/.config/wleave/icons/hibernate.svg"
+                  },
+                  {
+                      "label": "logout",
+                      "action": "loginctl terminate-user $USER",
+                      "text": "Logout",
+                      "keybind": "e",
+                      "icon": "/home/airi/.config/wleave/icons/logout.svg"
+                  },
+                  {
+                      "label": "shutdown",
+                      "action": "systemctl poweroff",
+                      "text": "Shutdown",
+                      "keybind": "s",
+                      "icon": "/home/airi/.config/wleave/icons/shutdown.svg"
+                  },
+                  {
+                      "label": "suspend",
+                      "action": "systemctl suspend",
+                      "text": "Suspend",
+                      "keybind": "u",
+                      "icon": "/home/airi/.config/wleave/icons/suspend.svg"
+                  },
+                  {
+                      "label": "reboot",
+                      "action": "systemctl reboot",
+                      "text": "Reboot",
+                      "keybind": "r",
+                      "icon": "/home/airi/.config/wleave/icons/reboot.svg"
+                  }
+              ]
           }
         '';
 
-        "wleave/style.css".text = ''
-          * {
-            background-image: none;
-            font-family: "${config.mine.fonts.main.name}";
-          }
+        "wleave/style.css".text =
+          let
+            fontSize = toString (config.mine.fonts.size + 10);
+          in
+          ''
+            window {
+                background-color: rgba(12, 12, 12, 0.8);
+            }
 
-          window {
-            background-color: #${palette.base01};
-          }
+            button {
+                color: oklab(from var(--view-fg-color) var(--standalone-color-oklab));
+                background-color: var(--view-bg-color);
+                border: none;
+                padding: 10px;
+            }
 
-          button {
-            color: #${palette.base05};
-            background-color: #${palette.base00};
-            border-style: solid;
-            border-width: 2px;
-            background-repeat: no-repeat;
-            background-position: center;
-          }
+            button label.action-name {
+                font-size: ${fontSize}px;
+            }
 
-          button:focus,
-          button:active,
-          button:hover {
-            background-color: #${palette.base02};
-            outline-style: none;
-          }
+            button label.keybind {
+                font-size: ${fontSize}px;
+                font-family: ${config.mine.fonts.terminal.name};
+            }
 
-          #lock {
-            background-image: url("${wleaveIconPath}/lock.svg"),
-              url("${wleaveIconPath}/lock.svg");
-          }
+            button:hover label.keybind, button:focus label.keybind {
+                opacity: 1;
+            }
 
-          #logout {
-            background-image: url("${wleaveIconPath}/logout.svg"),
-              url("${wleaveIconPath}/logout.svg");
-          }
+            button:focus,
+            button:hover {
+                background-color: color-mix(in srgb, var(--accent-bg-color), var(--view-bg-color));
+            }
 
-          #suspend {
-            background-image: url("${wleaveIconPath}/suspend.svg"),
-              url("${wleaveIconPath}/suspend.svg");
-          }
+            button:active {
+                color: var(--accent-fg-color);
+                background-color: var(--accent-bg-color);
+            }
 
-          #hibernate {
-            background-image: url("${wleaveIconPath}/hibernate.svg"),
-              url("${wleaveIconPath}/hibernate.svg");
-          }
+            button#shutdown {
+                --view-fg-color: #ff8d8d;
+            }
 
-          #shutdown {
-            background-image: url("${wleaveIconPath}/shutdown.svg"),
-              url("${wleaveIconPath}/shutdown.svg");
-          }
+            button#hibernate {
+                --view-fg-color: #a8c0ff;
+            }
 
-          #reboot {
-            background-image: url("${wleaveIconPath}/reboot.svg"),
-              url("${wleaveIconPath}/reboot.svg");
-          }
-        '';
+            button#reboot {
+                --view-fg-color: #84ffaa;
+            }
+
+            button#lock {
+                --view-fg-color: #ffe8b6;
+            }
+
+            button#logout {
+                --view-fg-color: #ffcca8;
+            }
+
+            button#suspend {
+                --view-fg-color: #caaff9;
+            }
+          '';
       };
     };
   };
