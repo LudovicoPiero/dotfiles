@@ -10,11 +10,7 @@ let
     mkOption
     mkIf
     types
-    getExe
     ;
-  inherit (config.mine.theme.colorScheme) palette;
-
-  wleaveIconPath = "${pkgs.wleave}/share/wleave/icons";
 
   cfg = config.mine.wleave;
 in
