@@ -30,15 +30,31 @@ in
     };
     security.polkit.enable = true;
 
-    systemd.user.services.hyprpolkitagent = {
-      description = "Polkit authentication agent";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      bindsTo = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        Restart = "on-failure";
-        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+    systemd = {
+      services.seatd = {
+        enable = true;
+        description = "Seat Management Daemon";
+        script = "${pkgs.seatd}/bin/seatd -g wheel";
+        serviceConfig = {
+          Type = "simple";
+          Restart = "always";
+          RestartSec = 1;
+        };
+        wantedBy = [ "multi-user.target" ];
+      };
+
+      user.services.polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
       };
     };
   };
