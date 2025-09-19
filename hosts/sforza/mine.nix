@@ -46,7 +46,7 @@
     };
 
     fish = {
-      enable = true;
+      enable = false;
     };
 
     foot = {
@@ -214,6 +214,10 @@
     };
 
     zen-browser = {
+      enable = true;
+    };
+
+    zsh = {
       enable = true;
     };
   };
