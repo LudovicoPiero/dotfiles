@@ -20,6 +20,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.pathsToLink = [ "/share/zsh" ];
     users.users.root.shell = pkgs.zsh;
     users.users.${config.vars.username}.shell = pkgs.zsh;
     sops.secrets."shells/githubToken" = {
@@ -84,9 +85,9 @@ in
               enable = true;
               plugins = [
                 "sindresorhus/pure"
-                "zsh-users/zsh-autosuggestions"
+                "Aloxaf/fzf-tab"
                 "zsh-users/zsh-syntax-highlighting"
-                "zsh-users/zsh-history-substring-search"
+                "joshskidmore/zsh-fzf-history-search"
                 "ohmyzsh/ohmyzsh path:lib/git.zsh"
               ];
             };
@@ -171,11 +172,13 @@ in
                 fi
               }
 
-              # fe -> fuzzy edit with fzf + preview
               fe() {
-                selected_file=$(${__ ripgrep "rg"} --files "$1" | fzf --preview "${_ bat} -f {}")
+                selected_file=$(${__ ripgrep "rg"} --no-heading --line-number "$1" | ${_ fzf} --preview '${_ bat} --style=numbers --color=always {1} --highlight-line {2}' \
+                  --delimiter : --with-nth 1,2,3)
                 if [[ -n "$selected_file" ]]; then
-                  echo "$selected_file" | xargs nvim
+                  file=$(echo "$selected_file" | cut -d: -f1)
+                  line=$(echo "$selected_file" | cut -d: -f2)
+                  nvim +"$line" "$file"
                 fi
               }
 

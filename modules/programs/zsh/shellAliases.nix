@@ -31,7 +31,6 @@ in
       tree = "${_ eza} --icons --tree";
 
       nr = "${_ nixpkgs-review}";
-      # nv already defined above
       mkdir = "mkdir -p";
 
       g = "${_ git}";
