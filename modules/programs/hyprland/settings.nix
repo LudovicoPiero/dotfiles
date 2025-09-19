@@ -135,6 +135,7 @@ in
 
     misc = {
       background_color = "rgb(${palette.base00})";
+      enable_anr_dialog = false;
       disable_splash_rendering = true;
       force_default_wallpaper = false;
       vfr = true;
