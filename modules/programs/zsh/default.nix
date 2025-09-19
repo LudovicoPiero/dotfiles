@@ -96,6 +96,11 @@ in
               eval "$(${_ zoxide} init zsh)"
               ${_ nix-your-shell} zsh | source /dev/stdin
 
+              # Case insensitive completion
+              zstyle ':completion:*' matcher-list \
+                'm:{a-zA-Z}={A-Za-z} r:|=*' \
+                'm:{a-zA-Z}={A-Za-z} l:|=* r:|=*'
+
               # gitignore
               gitignore() {
                 curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
