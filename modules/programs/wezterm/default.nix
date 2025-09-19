@@ -48,7 +48,7 @@ in
               -- Wayland and UI settings
               enable_wayland = true,
               enable_scroll_bar = false,
-              enable_kitty_keyboard = true,
+              enable_kitty_keyboard = false,
               check_for_updates = false,
               default_cursor_style = "SteadyBlock",
               use_fancy_tab_bar = false,
