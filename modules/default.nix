@@ -36,6 +36,7 @@ _: {
     ./programs/wezterm
     ./programs/wleave
     ./programs/zen-browser
+    ./programs/zsh
 
     # Etc
     ./etc/fonts
