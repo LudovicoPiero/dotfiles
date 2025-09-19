@@ -105,7 +105,7 @@
     };
 
     hyprland = {
-      enable = false;
+      enable = true;
     };
 
     hyprlock = {
@@ -151,7 +151,7 @@
     };
 
     sway = {
-      enable = true;
+      enable = false;
     };
 
     theme = {
