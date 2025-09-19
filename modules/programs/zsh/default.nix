@@ -96,6 +96,11 @@ in
               eval "$(${_ zoxide} init zsh)"
               ${_ nix-your-shell} zsh | source /dev/stdin
 
+              setopt pushd_ignore_dups
+              setopt auto_pushd
+              setopt extendedglob
+              setopt glob_complete
+
               # Case insensitive completion
               zstyle ':completion:*' matcher-list \
                 'm:{a-zA-Z}={A-Za-z} r:|=*' \
