@@ -23,6 +23,7 @@ _: {
     ./programs/foot
     ./programs/fuzzel
     ./programs/gaming
+    ./programs/ghostty
     ./programs/git
     ./programs/gpg
     ./programs/hyprland

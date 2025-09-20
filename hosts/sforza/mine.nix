@@ -92,6 +92,10 @@
       withSteam = true;
     };
 
+    ghostty = {
+      enable = false;
+    };
+
     git = {
       enable = true;
     };
