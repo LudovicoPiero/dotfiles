@@ -192,6 +192,13 @@ in
                 fi
               }
 
+              fef() {
+                selected_file=$(${__ ripgrep "rg"} --files "''${1:-.}" | ${_ fzf} --preview '${_ bat} --style=numbers --color=always {}')
+                if [[ -n "$selected_file" ]]; then
+                  nvim "$selected_file"
+                fi
+              }
+
               # paste -> send file to paste service
               paste() {
                 URL="https://paste.cachyos.org"
