@@ -83,9 +83,25 @@ with pkgs;
       end
 
       function fe
-          set selected_file (${__ ripgrep "rg"} --files $argv[1] | fzf --preview "${_ bat} -f {}")
+          set pattern (or $argv[1] "")
+          set selected_file ( ${__ ripgrep "rg"} --no-heading --line-number "$pattern" | \
+              ${_ fzf} --delimiter : --with-nth 1,2,3 \
+                  --preview "${_ bat} --style=numbers --color=always {1} --highlight-line {2}" )
+
           if test -n "$selected_file"
-              echo "$selected_file" | xargs nvim
+              set file (string split -f1 ":" $selected_file)
+              set line (string split -f2 ":" $selected_file)
+              nvim +$line $file
+          end
+      end
+
+      function fef
+          set dir (or $argv[1] .)
+          set selected_file ( ${__ ripgrep "rg"} --files $dir \
+              | ${_ fzf} --preview "${_ bat} --style=numbers --color=always {}" )
+
+          if test -n "$selected_file"
+              nvim $selected_file
           end
       end
 
