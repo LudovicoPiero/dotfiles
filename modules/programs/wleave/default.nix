@@ -49,7 +49,12 @@ in
                   },
                   {
                       "label": "logout",
-                      "action": "loginctl terminate-user $USER",
+                      "action": "${
+                        if (config.mine.hyprland.withUWSM || config.mine.sway.withUWSM) then
+                          "uwsm stop"
+                        else
+                          "loginctl terminate-user $USER"
+                      }",
                       "text": "Logout",
                       "keybind": "e",
                       "icon": "/home/airi/.config/wleave/icons/logout.svg"
