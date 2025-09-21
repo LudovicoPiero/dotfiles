@@ -45,9 +45,7 @@ in
       };
 
       environment = {
-        etc."greetd/environments".text = lib.mkAfter ''
-          uwsm start hyprland-uwsm.desktop
-        '';
+        etc."greetd/environments".text = lib.mkAfter "uwsm start hyprland-uwsm.desktop";
         sessionVariables = {
           APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
           APP2UNIT_TYPE = "scope";
