@@ -44,7 +44,7 @@ in
           terminal.vt = 1;
           default_session = {
             # command = "${_ pkgs.sway} --config ${swayConf}";
-            command = "${_ pkgs.cage} -s -- ${_ pkgs.gtkgreet} -l";
+            command = "${_ pkgs.cage} -s -- ${_ pkgs.gtkgreet} --layer-shell";
             user = "greeter";
           };
         };
