@@ -4,11 +4,11 @@ _: {
     ./services/cliphist
     ./services/dnscrypt2
     ./services/gammastep
+    ./services/greetd
     ./services/hypridle
     ./services/hyprlock
     ./services/fcitx5
     ./services/pipewire
-    ./services/sddm
     ./services/tlp
     ./services/wireguard
     ./services/xdg-portal

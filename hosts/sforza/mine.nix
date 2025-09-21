@@ -104,6 +104,10 @@
       enable = true;
     };
 
+    greetd = {
+      enable = true;
+    };
+
     hypridle = {
       enable = true;
     };
@@ -146,16 +150,12 @@
       enable = true;
     };
 
-    sddm = {
-      enable = true;
-    };
-
     secrets = {
       enable = true;
     };
 
     sway = {
-      enable = false;
+      enable = true;
     };
 
     theme = {
