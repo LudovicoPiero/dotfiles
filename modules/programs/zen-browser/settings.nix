@@ -17,6 +17,7 @@
     "zen.view.show-newtab-button-top" = false;
     "zen.welcome-screen.seen" = true;
     "zen.glance.open-essential-external-links" = false;
+    "zen.glance.enable-contextmenu-search" = false; # Hidden Flags, https://docs.zen-browser.app/guides/about-config-flags
 
     "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # Hide picture-in-picture
     "extensions.autoDisableScopes" = 0;
