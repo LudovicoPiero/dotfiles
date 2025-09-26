@@ -16,6 +16,12 @@
           # Get your settings here
           # ~/.zen/YOUR_PROFILE_NAME/browser-extension-data/uBlock0@raymondhill.net/storage.js
           advancedUserEnabled = true;
+          netWhitelist = # Trusted Sites
+            ''
+              localhost
+              loopconversation.about-scheme
+              facebook.com
+            '';
           selectedFilterLists = [
             "user-filters"
             "ublock-filters"
