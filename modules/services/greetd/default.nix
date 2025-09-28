@@ -32,12 +32,6 @@ in
 
   config = mkMerge [
     (mkIf config.vars.withGui {
-      security.pam.services = {
-        greetd.enableGnomeKeyring = true;
-        greetd.enableKwallet = true;
-        greetd.gnupg.enable = true;
-      };
-
       services.greetd = {
         enable = true;
         settings = {

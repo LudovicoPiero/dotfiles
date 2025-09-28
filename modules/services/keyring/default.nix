@@ -28,21 +28,18 @@ in
         seahorse
       ];
     };
-    security.polkit.enable = true;
+
+    security = {
+      polkit.enable = true;
+      pam.services = {
+        login.enableGnomeKeyring = true;
+        greetd.enableGnomeKeyring = true;
+        greetd.enableKwallet = true;
+        greetd.gnupg.enable = true;
+      };
+    };
 
     systemd = {
-      services.seatd = {
-        enable = true;
-        description = "Seat Management Daemon";
-        script = "${pkgs.seatd}/bin/seatd -g wheel";
-        serviceConfig = {
-          Type = "simple";
-          Restart = "always";
-          RestartSec = 1;
-        };
-        wantedBy = [ "multi-user.target" ];
-      };
-
       user.services.polkit-gnome-authentication-agent-1 = {
         description = "polkit-gnome-authentication-agent-1";
         wantedBy = [ "graphical-session.target" ];
