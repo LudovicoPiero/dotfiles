@@ -2,8 +2,9 @@
 {
   hm.programs.firefox.profiles.ludovico.search = {
     force = true;
-    default = "ddg";
+    default = "kagi";
     order = [
+      "kagi"
       "ddg"
       "brave"
       "searx"
@@ -11,6 +12,11 @@
     ];
 
     engines = {
+      "kagi" = {
+        urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
+        definedAliases = [ "k" ];
+      };
+
       "searx" = {
         urls = [
           {
