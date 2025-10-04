@@ -155,7 +155,7 @@
     };
 
     sway = {
-      enable = true;
+      enable = false;
     };
 
     theme = {
