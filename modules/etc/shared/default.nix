@@ -74,7 +74,6 @@
         qbittorrent # Qt-based BitTorrent client with a clean UI
         imv # Minimalist image viewer for X11/Wayland
         viewnior # Lightweight image viewer, good for simple needs
-        ente-auth # Ente authentication app (for encrypted cloud photo storage)
         thunderbird # Popular email client by Mozilla
         telegram-desktop # Desktop client for Telegram messaging app
         mpv # Highly configurable and efficient media player
@@ -83,6 +82,11 @@
 
       coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
       findutils = pkgs.hiPrio pkgs.uutils-findutils;
+
+      # Ente authentication app (for encrypted cloud photo storage)
+      ente-auth = pkgs.ente-auth.overrideAttrs {
+        CXXFLAGS = [ "-Wno-deprecated-literal-operator" ];
+      };
 
       tidal-hifi = pkgs.tidal-hifi.overrideAttrs {
         /*
