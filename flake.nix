@@ -42,6 +42,13 @@
     };
     nixpkgs.follows = "nixpkgs-unstable";
 
+    nixpkgs-cage = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "5be222164c59f700ee149c6e6903c146135eb1f9";
+    };
+
     home-manager = {
       type = "github";
       owner = "nix-community";

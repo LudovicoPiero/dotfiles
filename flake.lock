@@ -625,6 +625,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-cage": {
+      "locked": {
+        "lastModified": 1759523065,
+        "narHash": "sha256-2dkRX9TCiVMFsyzPyVyR9mISK6XNcS25GVQ89pyVmvw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5be222164c59f700ee149c6e6903c146135eb1f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "5be222164c59f700ee149c6e6903c146135eb1f9",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1754788789,
@@ -880,6 +896,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "nixpkgs-cage": "nixpkgs-cage",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "programsdb": "programsdb",
         "sops-nix": "sops-nix",

@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -36,11 +37,15 @@ in
         enable = true;
         settings = {
           terminal.vt = 1;
-          default_session = {
-            # command = "${_ pkgs.sway} --config ${swayConf}";
-            command = "${_ pkgs.cage} -s -- ${_ pkgs.gtkgreet} --layer-shell";
-            user = "greeter";
-          };
+          default_session =
+            let
+              oldNixpkgs = inputs.nixpkgs-cage.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+            in
+            {
+              # command = "${_ pkgs.sway} --config ${swayConf}";
+              command = "${_ oldNixpkgs.cage} -m last -s -- ${_ oldNixpkgs.gtkgreet} --layer-shell";
+              user = "greeter";
+            };
         };
       };
 
