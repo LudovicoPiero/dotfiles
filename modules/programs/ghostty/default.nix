@@ -17,8 +17,6 @@ in
         programs.ghostty = {
           enable = true;
 
-          # package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.ghostty;
-
           settings = {
             font-family = [
               osConfig.mine.fonts.terminal.name
