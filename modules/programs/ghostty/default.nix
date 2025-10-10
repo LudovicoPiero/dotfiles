@@ -1,10 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   inherit (config.mine.theme.colorScheme) palette;
