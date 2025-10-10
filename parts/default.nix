@@ -37,7 +37,7 @@
       devShells.default = pkgs.mkShell {
         name = "UwU Shell";
         buildInputs = with pkgs; [
-          nixfmt-rfc-style
+          nixfmt
           nixd
           sops
         ];
