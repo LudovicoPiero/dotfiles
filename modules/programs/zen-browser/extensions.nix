@@ -9,6 +9,7 @@
       to-deepl
       ublock-origin
       search-by-image
+      violentmonkey
     ];
     settings = {
       "uBlock0@raymondhill.net" = {
