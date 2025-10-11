@@ -93,19 +93,6 @@
     };
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix = {
-      type = "tarball";
-      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
-      flake = false;
-    };
-
-    lix-module = {
-      type = "tarball";
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
-    };
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
-    lix-module.inputs.lix.follows = "lix";
-
     ludovico-nixvim = {
       type = "github";
       owner = "LudovicoPiero";
