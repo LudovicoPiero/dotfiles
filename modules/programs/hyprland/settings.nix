@@ -217,6 +217,7 @@ in
     };
 
     misc = {
+      enable_anr_dialog = false;
       background_color = "rgb(${palette.base00})";
       disable_splash_rendering = true;
       vfr = true;
