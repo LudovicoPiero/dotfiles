@@ -13,6 +13,7 @@ pull_request_rules:
       - check-success=All Garnix checks
       - -conflict
       - -draft
+      - -label=WIP
       - status-success=All Garnix checks
     actions:
       queue:
