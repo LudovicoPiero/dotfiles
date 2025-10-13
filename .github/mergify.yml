@@ -13,7 +13,7 @@ pull_request_rules:
       - check-success=All Garnix checks
       - -conflict
       - -draft
-      - -label=WIP
+      - -title~= (?i)wip
       - status-success=All Garnix checks
     actions:
       queue:
@@ -28,11 +28,3 @@ pull_request_rules:
           - conflict
       comment:
         message: "@{{author}} this pull request is now in conflict 😩"
-
-  - name: Label WIP PRs
-    conditions:
-      - title ~= (?i)wip
-    actions:
-      label:
-        add:
-          - WIP
