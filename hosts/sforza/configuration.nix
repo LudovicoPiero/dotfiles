@@ -65,10 +65,4 @@
 
     kernelPackages = pkgs.linuxPackages_latest;
   };
-
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = lib.mkForce "us";
-    useXkbConfig = true; # use xkb.options in tty.
-  };
 }
