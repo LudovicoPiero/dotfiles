@@ -9,42 +9,58 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.mine.fcitx5;
+  localeCfg = cfg.locale;
 in
 {
-  options.mine.fcitx5 = {
-    enable = mkEnableOption "fcitx5 service";
+  options.mine = {
+    fcitx5 = {
+      enable = mkEnableOption "fcitx5 service";
+
+      locale = {
+        defaultLocale = lib.mkOption {
+          type = lib.types.str;
+          default = "ja_JP.UTF-8";
+          description = "Default system locale";
+        };
+        extraLocales = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [
+            "ja_JP.UTF-8"
+            "en_US.UTF-8/UTF-8"
+          ];
+          description = "List of additional locales to generate";
+        };
+      };
+    };
   };
 
   config = mkIf cfg.enable {
     hm = {
-      home.language = {
-        address = "ja_JP.UTF-8";
-        base = "ja_JP.UTF-8";
-        collate = "ja_JP.UTF-8";
-        ctype = "ja_JP.UTF-8";
-        measurement = "ja_JP.UTF-8";
-        messages = "ja_JP.UTF-8";
-        monetary = "ja_JP.UTF-8";
-        name = "ja_JP.UTF-8";
-        numeric = "ja_JP.UTF-8";
-        paper = "ja_JP.UTF-8";
-        telephone = "ja_JP.UTF-8";
-        time = "ja_JP.UTF-8";
-      };
-    };
-
-    environment.variables = {
-      LANG = "ja_JP.UTF-8";
-      LC_ALL = "ja_JP.UTF-8";
+      home.language.base = localeCfg.defaultLocale;
     };
 
     i18n = {
-      defaultLocale = "ja_JP.UTF-8";
-      extraLocales = [
-        "ja_JP.UTF-8/UTF-8"
-        "en_US.UTF-8/UTF-8"
-      ];
-      extraLocaleSettings.LC_ALL = "ja_JP.UTF-8";
+      # Locale Settings
+      defaultLocale = localeCfg.defaultLocale;
+      extraLocales = localeCfg.extraLocales;
+      extraLocaleSettings = {
+        LANGUAGE = "ja_JP.UTF-8";
+        LC_ALL = "ja_JP.UTF-8";
+        LC_CTYPE = "ja_JP.UTF-8";
+        LC_ADDRESS = "ja_JP.UTF-8";
+        LC_IDENTIFICATION = "ja_JP.UTF-8";
+        LC_MEASUREMENT = "ja_JP.UTF-8";
+        LC_MESSAGES = "ja_JP.UTF-8";
+        LC_MONETARY = "ja_JP.UTF-8";
+        LC_NAME = "ja_JP.UTF-8";
+        LC_NUMERIC = "ja_JP.UTF-8";
+        LC_PAPER = "ja_JP.UTF-8";
+        LC_TELEPHONE = "ja_JP.UTF-8";
+        LC_TIME = "ja_JP.UTF-8";
+        LC_COLLATE = "ja_JP.UTF-8";
+      };
+
+      # The Real FCITX5 Settings
       inputMethod = {
         enable = true;
         type = "fcitx5";
