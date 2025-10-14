@@ -8,27 +8,6 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  # en = "en_US.UTF-8";
-  ja = "ja_JP.UTF-8";
-  defaultLocale = ja;
-  extraLocales = [
-    "ja_JP.UTF-8/UTF-8"
-    "en_US.UTF-8/UTF-8"
-  ];
-  extraLocaleSettings = {
-    LC_ALL = ja;
-    LC_ADDRESS = ja;
-    LC_IDENTIFICATION = ja;
-    LC_MEASUREMENT = ja;
-    LC_MONETARY = ja;
-    LC_MESSAGES = ja;
-    LC_NAME = ja;
-    LC_NUMERIC = ja;
-    LC_PAPER = ja;
-    LC_TELEPHONE = ja;
-    LC_TIME = ja;
-  };
-
   cfg = config.mine.fcitx5;
 in
 {
@@ -39,28 +18,33 @@ in
   config = mkIf cfg.enable {
     hm = {
       home.language = {
-        address = ja;
-        base = ja;
-        collate = ja;
-        ctype = ja;
-        measurement = ja;
-        messages = ja;
-        monetary = ja;
-        name = ja;
-        numeric = ja;
-        paper = ja;
-        telephone = ja;
-        time = ja;
+        address = "ja_JP.UTF-8";
+        base = "ja_JP.UTF-8";
+        collate = "ja_JP.UTF-8";
+        ctype = "ja_JP.UTF-8";
+        measurement = "ja_JP.UTF-8";
+        messages = "ja_JP.UTF-8";
+        monetary = "ja_JP.UTF-8";
+        name = "ja_JP.UTF-8";
+        numeric = "ja_JP.UTF-8";
+        paper = "ja_JP.UTF-8";
+        telephone = "ja_JP.UTF-8";
+        time = "ja_JP.UTF-8";
       };
     };
 
     environment.variables = {
-      LANG = ja;
-      LC_ALL = ja;
+      LANG = "ja_JP.UTF-8";
+      LC_ALL = "ja_JP.UTF-8";
     };
 
     i18n = {
-      inherit defaultLocale extraLocaleSettings extraLocales;
+      defaultLocale = "ja_JP.UTF-8";
+      extraLocales = [
+        "ja_JP.UTF-8/UTF-8"
+        "en_US.UTF-8/UTF-8"
+      ];
+      extraLocaleSettings.LC_ALL = "ja_JP.UTF-8";
       inputMethod = {
         enable = true;
         type = "fcitx5";
