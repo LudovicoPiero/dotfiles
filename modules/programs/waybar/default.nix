@@ -10,7 +10,9 @@ let
   _ = lib.getExe;
 
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
-    date "+%A, %d %B %Y"
+    ja=$(LC_TIME=ja_JP.UTF-8 date "+%A, %Y年 %-m月 %-d日")
+    en=$(LC_TIME=en_US.UTF-8 date "+%A, %B %-d, %Y")
+    printf '{"text":" %s","tooltip":"%s"}\n' "$ja" "$en"
   '';
 
   cfg = config.mine.waybar;
@@ -171,9 +173,9 @@ in
             };
           };
           "custom/date" = {
-            format = " {}";
-            interval = 3600;
-            exec = "${_ waybar-date}";
+            "return-type" = "json";
+            "interval" = 3600;
+            "exec" = "${_ waybar-date}";
           };
           cpu = {
             interval = 5;

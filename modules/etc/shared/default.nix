@@ -79,8 +79,8 @@
         yazi # Blazing fast terminal file manager with preview support (like `lf`)
         ;
 
-      coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
-      findutils = pkgs.hiPrio pkgs.uutils-findutils;
+      # coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
+      # findutils = pkgs.hiPrio pkgs.uutils-findutils;
 
       tidal-hifi = pkgs.tidal-hifi.overrideAttrs {
         /*
