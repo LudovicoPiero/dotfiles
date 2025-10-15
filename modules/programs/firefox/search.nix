@@ -17,6 +17,13 @@
         definedAliases = [ "k" ];
       };
 
+      "google" = {
+        urls = [ { template = "https://google.com/search?q={searchTerms}"; } ];
+        definedAliases = [ "g" ];
+        metaData.hidden = true;
+        metaData.alias = "g";
+      };
+
       "searx" = {
         urls = [
           {
@@ -133,8 +140,6 @@
       "amazondotcom-us".metaData.hidden = true;
       "bing".metaData.hidden = true;
       "ebay".metaData.hidden = true;
-      "google".metaData.hidden = true;
-      "google".metaData.alias = "g";
       "wikipedia".metaData.hidden = true;
     };
   };
