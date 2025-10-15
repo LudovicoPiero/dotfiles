@@ -7,182 +7,177 @@
 let
   _ = lib.getExe;
   __ = lib.getExe';
-
   cfg = config.mine.fish;
 in
 with pkgs;
 {
   config = lib.mkIf cfg.enable {
-    hm.programs.fish.shellInit = ''
-      function gitignore
-          curl -sL https://www.toptal.com/developers/gitignore/api/$argv
-      end
+    hm.programs.fish.functions = {
+      gitignore = ''
+        curl -sL https://www.toptal.com/developers/gitignore/api/$argv
+      '';
 
-      function ,
-          nix run nixpkgs#$argv[1]
-      end
+      "," = ''
+        nix run nixpkgs#$argv[1]
+      '';
 
-      function ns
-          set pkgs
-          for pkg in $argv
-              set pkgs $pkgs nixpkgs#$pkg
-          end
-          nix shell $pkgs
-      end
+      ns = ''
+        set pkgs
+        for pkg in $argv
+            set pkgs $pkgs nixpkgs#$pkg
+        end
+        nix shell $pkgs
+      '';
 
+      notify = ''
+        if set -q DISPLAY || set -q WAYLAND_DISPLAY
+            ${__ libnotify "notify-send"} $argv
+        end
+      '';
 
-      function notify
-          if set -q DISPLAY || set -q WAYLAND_DISPLAY
-              ${__ libnotify "notify-send"} $argv
-          end
-      end
+      y = ''
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        ${_ yazi} $argv --cwd-file="$tmp"
+        if set cwd (command cat -- "$tmp"); and test -n "$cwd"; and test "$cwd" != "$PWD"
+            builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+      '';
 
-      function y
-          set tmp (mktemp -t "yazi-cwd.XXXXXX")
-          ${_ yazi} $argv --cwd-file="$tmp"
-          if set cwd (command cat -- "$tmp"); and test -n "$cwd"; and test "$cwd" != "$PWD"
-              builtin cd -- "$cwd"
-          end
-          rm -f -- "$tmp"
-      end
+      bs = ''
+        pushd ${config.vars.homeDirectory}/Code/nixos
+        ${_ nh} os switch .
 
-      function bs
-          pushd ${config.vars.homeDirectory}/Code/nixos
-          ${_ nh} os switch .
+        if test $status -eq 0
+            notify "Rebuild Switch" "Build successful!"
+        else
+            notify "Rebuild Switch" "Build failed!"
+        end
 
-          if test $status -eq 0
-              notify "Rebuild Switch" "Build successful!"
-          else
-              notify "Rebuild Switch" "Build failed!"
-          end
+        popd
+      '';
 
-          popd
-      end
+      bb = ''
+        pushd ${config.vars.homeDirectory}/Code/nixos
+        ${_ nh} os boot .
 
-      function bb
-          pushd ${config.vars.homeDirectory}/Code/nixos
-          ${_ nh} os boot .
+        if test $status -eq 0
+            notify "Rebuild Boot" "Build successful!"
+        else
+            notify "Rebuild Boot" "Build failed!"
+        end
 
-          if test $status -eq 0
-              notify "Rebuild Boot" "Build successful!"
-          else
-              notify "Rebuild Boot" "Build failed!"
-          end
+        popd
+      '';
 
-          popd
-      end
+      "clean-all" = ''
+        ${_ nh} clean all
 
-      function clean-all
-          ${_ nh} clean all
+        if test $status -eq 0
+            notify "NH Clean all" "Success!"
+        else
+            notify "NH Clean all" "Failed!"
+        end
+      '';
 
-          if test $status -eq 0
-              notify "NH Clean all" "Success!"
-          else
-              notify "NH Clean all" "Failed!"
-          end
-      end
+      fe = ''
+        set pattern (or $argv[1] "")
+        set selected_file ( ${__ ripgrep "rg"} --no-heading --line-number "$pattern" | \
+            ${_ fzf} --delimiter : --with-nth 1,2,3 \
+                --preview "${_ bat} --style=numbers --color=always {1} --highlight-line {2}" )
 
-      function fe
-          set pattern (or $argv[1] "")
-          set selected_file ( ${__ ripgrep "rg"} --no-heading --line-number "$pattern" | \
-              ${_ fzf} --delimiter : --with-nth 1,2,3 \
-                  --preview "${_ bat} --style=numbers --color=always {1} --highlight-line {2}" )
+        if test -n "$selected_file"
+            set file (string split -f1 ":" $selected_file)
+            set line (string split -f2 ":" $selected_file)
+            nvim +$line $file
+        end
+      '';
 
-          if test -n "$selected_file"
-              set file (string split -f1 ":" $selected_file)
-              set line (string split -f2 ":" $selected_file)
-              nvim +$line $file
-          end
-      end
+      fef = ''
+        set dir (or $argv[1] .)
+        set selected_file ( ${__ ripgrep "rg"} --files $dir \
+            | ${_ fzf} --preview "${_ bat} --style=numbers --color=always {}" )
 
-      function fef
-          set dir (or $argv[1] .)
-          set selected_file ( ${__ ripgrep "rg"} --files $dir \
-              | ${_ fzf} --preview "${_ bat} --style=numbers --color=always {}" )
+        if test -n "$selected_file"
+            nvim $selected_file
+        end
+      '';
 
-          if test -n "$selected_file"
-              nvim $selected_file
-          end
-      end
+      paste = ''
+        set URL "https://paste.cachyos.org"
 
-      function paste
-          set URL "https://paste.cachyos.org"
+        set FILEPATH $argv[1]
+        set FILENAME (basename -- $FILEPATH)
+        set EXTENSION (string match -r '\.(.*)$' $FILENAME; and echo $argv[1]; or echo "")
 
-          set FILEPATH $argv[1]
-          set FILENAME (basename -- $FILEPATH)
-          set EXTENSION (string match -r '\.(.*)$' $FILENAME; and echo $argv[1]; or echo "")
+        set RESPONSE (curl --data-binary @$FILEPATH --url $URL)
+        set PASTELINK "$URL$RESPONSE"
 
-          set RESPONSE (curl --data-binary @$FILEPATH --url $URL)
-          set PASTELINK "$URL$RESPONSE"
+        if test -z "$EXTENSION"
+            echo "$PASTELINK"
+        else
+            echo "$PASTELINK$EXTENSION"
+        end
+      '';
 
-          if test -z "$EXTENSION"
-              echo "$PASTELINK"
-          else
-              echo "$PASTELINK$EXTENSION"
-          end
-      end
+      watchLive = ''
+        if test (count $argv) -ge 2
+            set quality $argv[2]
+        else
+            set quality "best"
+        end
 
-      function watchLive
-          if test (count $argv) -ge 2
-              set quality $argv[2]
-          else
-              set quality "best"
-          end
+        ${_ streamlink} --player ${_ mpv} $argv[1] $quality
+      '';
 
-          ${_ streamlink} --player ${_ mpv} $argv[1] $quality
-      end
+      mkcd = ''
+        ${__ uutils-coreutils-noprefix "mkdir"} -p $argv[1]
+        if test -d "$argv[1]"
+            cd $argv[1]
+        end
+      '';
 
-      function mkcd
-          ${__ uutils-coreutils-noprefix "mkdir"} -p $argv[1]
-          if test -d "$argv[1]"
-              cd $argv[1]
-          end
-      end
+      extract = ''
+        switch "$argv[1]"
+            case '*.tar.bz2'
+                ${__ gnutar "tar"} xvjf "$argv[1]"
+            case '*.tar.gz'
+                ${__ gnutar "tar"} xvzf "$argv[1]"
+            case '*.bz2'
+                ${__ bzip2 "bunzip2"} "$argv[1]"
+            case '*.rar'
+                ${_ unrar} x "$argv[1]"
+            case '*.gz'
+                ${__ gzip "gunzip"} "$argv[1]"
+            case '*.tar'
+                ${__ gnutar "tar"} xvf "$argv[1]"
+            case '*.tbz2'
+                ${__ gnutar "tar"} xvjf "$argv[1]"
+            case '*.tgz'
+                ${__ gnutar "tar"} xvzf "$argv[1]"
+            case '*.zip'
+                ${_ unzip} "$argv[1]"
+            case '*.Z'
+                ${__ gzip "uncompress"} "$argv[1]"
+            case '*.7z'
+                ${__ p7zip "7z"} x "$argv[1]"
+            case '*'
+                echo "Cannot extract '$argv[1]' via extract"
+        end
+      '';
 
-      function extract
-          switch "$argv[1]"
-              case '*.tar.bz2'
-                  ${__ gnutar "tar"} xvjf "$argv[1]"
-              case '*.tar.gz'
-                  ${__ gnutar "tar"} xvzf "$argv[1]"
-              case '*.bz2'
-                  ${__ bzip2 "bunzip2"} "$argv[1]"
-              case '*.rar'
-                  ${_ unrar} x "$argv[1]"
-              case '*.gz'
-                  ${__ gzip "gunzip"} "$argv[1]"
-              case '*.tar'
-                  ${__ gnutar "tar"} xvf "$argv[1]"
-              case '*.tbz2'
-                  ${__ gnutar "tar"} xvjf "$argv[1]"
-              case '*.tgz'
-                  ${__ gnutar "tar"} xvzf "$argv[1]"
-              case '*.zip'
-                  ${_ unzip} "$argv[1]"
-              case '*.Z'
-                  ${__ gzip "uncompress"} "$argv[1]"
-              case '*.7z'
-                  ${__ p7zip "7z"} x "$argv[1]"
-              case '*'
-                  echo "Cannot extract '$argv[1]' via extract"
-          end
-      end
-
-      # Media Stuff
-      # Fullscreen screen recording
-      function record
+      record = ''
         set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
         ${_ wl-screenrec} -f $file
-      end
+      '';
 
-      # Region-based screen recording
-      function record-region
+      "record-region" = ''
         set -l region (${_ slurp})
         set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
         ${_ wl-screenrec} -g $region -f $file
-      end
+      '';
 
-      function yt
+      yt = ''
         set -l sub $argv[1]
         set -e argv[1]
 
@@ -211,7 +206,7 @@ with pkgs;
           case '*'
             echo "Usage: yt [aac|best|flac|mp3|video] <url>"
         end
-      end
-    '';
+      '';
+    };
   };
 }
