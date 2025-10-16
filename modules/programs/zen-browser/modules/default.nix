@@ -22,6 +22,7 @@ in
         };
         darwin = {
           configPath = "Library/Application Support/Zen";
+          defaultsId = "org.mozilla.firefox.plist";
         };
       };
     })
