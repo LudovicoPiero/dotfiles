@@ -2,10 +2,10 @@
 {
   hm.programs.zen-browser.profiles.ludovico.search = {
     force = true;
-    default = "kagi";
+    default = "ddg";
     order = [
-      "kagi"
       "ddg"
+      "kagi"
       "brave"
       "searx"
       "google"
