@@ -92,7 +92,7 @@
     };
 
     gammastep = {
-      enable = true;
+      enable = false;
     };
 
     gaming = {
