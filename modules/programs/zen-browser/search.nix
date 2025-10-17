@@ -20,8 +20,6 @@
       "google" = {
         urls = [ { template = "https://google.com/search?q={searchTerms}"; } ];
         definedAliases = [ "g" ];
-        metaData.hidden = true;
-        metaData.alias = "g";
       };
 
       "searx" = {
