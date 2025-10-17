@@ -20,8 +20,6 @@
   time.timeZone = config.vars.timezone;
 
   programs = {
-    command-not-found.dbPath =
-      inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
     dconf.enable = true;
     nh = {
       enable = true;
@@ -127,6 +125,14 @@
         '';
     };
   };
+
+  # Nix Command not found handler using programs database
+  programs.command-not-found = {
+    enable = true;
+    dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+  };
+  environment.etc."programs.sqlite".source =
+    inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
 
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer
