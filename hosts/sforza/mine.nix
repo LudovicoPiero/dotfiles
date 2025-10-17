@@ -11,7 +11,7 @@
     colorScheme = "kanagawa";
     email = "lewdovico@gnuweeb.org";
     isALaptop = true;
-    opacity = 1.0;
+    opacity = 0.88;
     sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINtzB1oiuDptWi04PAEJVpSAcvD96AL0S21zHuMgmcE9 ludovico@sforza";
     stateVersion = "24.11";
     terminal = "foot";
