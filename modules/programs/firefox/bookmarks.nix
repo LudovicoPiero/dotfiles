@@ -23,7 +23,7 @@
         toolbar = true;
         bookmarks = [
           {
-            name = "Nix Package";
+            name = "Nix Packages";
             keyword = "np";
             url = "https://search.nixos.org/packages?channel=unstable";
           }

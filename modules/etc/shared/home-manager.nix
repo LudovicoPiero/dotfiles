@@ -23,7 +23,7 @@
         NIXPKGS_ALLOW_UNFREE = "1";
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
 
-        # XDG Related Stuff
+        # XDG-related stuff
         XDG_CACHE_HOME = config.xdg.cacheHome;
         XDG_CONFIG_HOME = config.xdg.configHome;
         XDG_CONFIG_DIR = config.xdg.configHome;
@@ -42,7 +42,7 @@
         NIXOS_OZONE_WL = "1";
         TERM = "xterm-256color";
         BROWSER = "firefox";
-        # Fix for some Java AWT applications (e.g. Android Studio),
+        # Fix for some Java AWT applications (e.g., Android Studio),
         # use this if they aren't displayed properly:
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";

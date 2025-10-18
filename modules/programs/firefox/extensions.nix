@@ -13,10 +13,10 @@
     settings = {
       "uBlock0@raymondhill.net" = {
         settings = {
-          # Get your settings here
+          # Get your settings from here
           # ~/.mozilla/YOUR_PROFILE_NAME/browser-extension-data/uBlock0@raymondhill.net/storage.js
           advancedUserEnabled = true;
-          netWhitelist = # Trusted Sites
+          netWhitelist = # Trusted sites
             ''
               localhost
               loopconversation.about-scheme
@@ -43,7 +43,7 @@
             "ublock-annoyances"
             "IDN-0"
           ];
-          "user-filters" = # My Filters
+          "user-filters" = # My filters
             ''
               shopee.co.id##li.col-xs-2-4.shopee-search-item-result__item:has(div:contains(Ad))
               shopee.co.id##.oMSmr0:has(div:contains(Ad))
@@ -66,7 +66,7 @@
               ! >> uBlock filters - Annoyances should remove Suggested posts without a need for additional filters <<
               ! Suggested for you
               www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])) div:not(:only-child)>div:only-child>div:only-child>div:first-child[class=""]>div:not([data-0]):has-text(/^Suggested/):upward([aria-posinset],[aria-describedby]:not([aria-posinset])):style(height: 0 !important; overflow: hidden !important;)
-              ! Unlabelled Suggested posts (with a Follow/Join buttons)
+              ! Unlabeled suggested posts (with a Follow/Join buttons)
               www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])) :is(h3,h4) [role=button]:has-text(/Follow|Join/):upward([aria-posinset],[aria-describedby]:not([aria-posinset])):style(height: 0 !important; overflow: hidden !important;)
               ! Use only if you actually have these: Suggested posts with the label next to the post date
               www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has-text(Suggested for you):style(height: 0 !important; overflow: hidden !important;)
@@ -87,12 +87,12 @@
 
               facebook.com##[aria-label*="Marketplace"] object:has(> a[href^="/ads/"] > span:has-text(/^Sponsored$/)):upward(a):upward(3)
 
-              ! Removes FB's "Related discussions" panel:
+              ! Removes Facebook's "Related discussions" panel:
               facebook.com##div[role=article] span:not(>*):has-text(/^Related discussions$/):upward(span)
-              ! FB - news and group feeds - related discussions - hide the "# related" link/button
+              ! Facebook - news and group feeds - related discussions - hide the "# related" link/button
               facebook.com##div[role=button] > span:not(>*):has-text(/related/i):upward(4)
 
-              ! Google consent, "before you continue"
+              ! Google consent, 'before you continue'
               www.google.*##^script:has-text(consentCookiePayload)
               www.google.*##+js(acis, document.cookie, YES+)
               google.*##+js(aeld, DOMContentLoaded, CONSENT)
@@ -107,7 +107,7 @@
               www.reddit.com##.useApp,.TopNav__promoButton
               www.reddit.com##body:style(pointer-events:auto!important;)
 
-              ! uBO Annoyances has also this:
+              ! uBO Annoyances also this:
               ! https://github.com/uBlockOrigin/uAssets/issues/6826
               reddit.com##.XPromoPopup
               reddit.com##body.scroll-disabled:style(overflow: visible!important; position: static!important;)

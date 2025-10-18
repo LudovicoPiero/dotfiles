@@ -6,7 +6,7 @@
   ...
 }:
 {
-  # Nixos Stuff
+  # NixOS Stuff
   imports = [
     ./users.nix
     ./security.nix
@@ -94,7 +94,7 @@
             name = "tidal-hifi";
             desktopName = "Tidal Hi-Fi";
             genericName = "Tidal Hi-Fi";
-            comment = "The web version of listen.tidal.com running in electron with hifi support thanks to widevine.";
+            comment = "The web version of listen.tidal.com running in Electron with Hi-Fi support thanks to Widevine.";
             icon = "tidal-hifi";
             startupNotify = true;
             terminal = false;
@@ -114,7 +114,7 @@
 
       };
 
-      # use OCR and copy to clipboard
+      # Use OCR and copy to clipboard
       wl-ocr =
         let
           _ = lib.getExe;
@@ -126,7 +126,7 @@
     };
   };
 
-  # Nix Command not found handler using programs database
+  # Nix command-not-found handler using programs database
   programs.command-not-found = {
     enable = true;
     dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
@@ -155,7 +155,7 @@
     sudo = {
       enable = true;
       extraConfig = ''
-        # rollback results in sudo lectures after each reboot
+        # Rollback results in sudo lectures after each reboot
         Defaults lecture = never
 
         # Show asterisk when typing password
@@ -180,15 +180,15 @@
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-    # Use latest nix
+    # Use latest Nix
     package = pkgs.nixVersions.git;
 
-    # Improve nix store disk usage
+    # Improve Nix store disk usage
     optimise.automatic = true;
 
     settings = {
       experimental-features = [
-        # Enable flakes.
+        # Enable Flakes.
         "flakes"
 
         # Enable nix3-command.
@@ -210,10 +210,10 @@
       # The number of lines of the tail of the log to show if a build fails.
       log-lines = 30;
 
-      # The commit summary to use when committing changed flake lock files.
+      # The commit summary to use when committing changed Flake lock files.
       commit-lockfile-summary = "chore: Update flake.lock";
 
-      # Accept nix configurations from flake without prompting
+      # Accept Nix configurations from Flake without prompting
       # Dangerous!
       accept-flake-config = false;
 

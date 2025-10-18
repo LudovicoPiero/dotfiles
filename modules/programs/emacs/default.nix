@@ -22,7 +22,7 @@ let
     basePackage = emacsPackage;
     pathAdd = with pkgs; [
       ## Optional dependencies
-      (mkIf config.programs.gnupg.agent.enable pinentry-emacs) # in-emacs gnupg prompts
+      (mkIf config.programs.gnupg.agent.enable pinentry-emacs) # in-Emacs GnuPG prompts
       (aspellWithDicts (
         ds: with ds; [
           en
@@ -47,7 +47,7 @@ let
 
       fzf
       ripgrep
-      fd # faster projectile indexing
+      fd # faster Projectile indexing
       imagemagick # for image-dired
       zstd # for undo-fu-session/undo-tree compression
 

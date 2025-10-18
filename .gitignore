@@ -116,3 +116,6 @@ tags
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/direnv,emacs,visualstudiocode,vim,git,patch
+
+.gemini/
+gha-creds-*.json

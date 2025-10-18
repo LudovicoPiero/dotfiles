@@ -69,7 +69,7 @@
       "net.ipv6.conf.default.accept_redirects" = 0;
       # Protect against SYN flood attacks.
       "net.ipv4.tcp_syncookies" = 1;
-      # Incomplete protection for TIME-WAIT assassination.
+      # Incomplete protection for TIME_WAIT assassination.
       "net.ipv4.tcp_rfc1337" = 1;
       # Enable TCP Fast Open.
       "net.ipv4.tcp_fastopen" = 3;

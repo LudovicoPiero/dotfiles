@@ -154,7 +154,7 @@ in
 
         dconf.settings = {
           "org/gnome/desktop/interface" = {
-            # Use dconf-editor to get this settings.
+            # Use dconf-editor to get these settings.
             color-scheme = "prefer-dark";
             cursor-theme = config.gtk.cursorTheme.name;
             cursor-size = config.gtk.cursorTheme.size;

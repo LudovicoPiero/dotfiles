@@ -1,4 +1,4 @@
-Modules Template
+Module Template
 
 ```nix
 {

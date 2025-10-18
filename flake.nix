@@ -1,5 +1,5 @@
 {
-  description = "xd uwu";
+  description = "Airi's NixOS Configuration";
 
   outputs =
     inputs@{ flake-parts, ... }:
@@ -10,30 +10,8 @@
       ];
     };
 
-  # Inputs are written in attribute-set form instead of using `url = "...";` strings.
-  # This provides more structure, makes parsing easier, and is helpful for tools or flake editors.
-  #
-  # Conventions used:
-  # - GitHub shorthand `github:owner/repo/ref` becomes:
-  #     {
-  #       type = "github";
-  #       owner = "owner";
-  #       repo = "repo";
-  #       ref = "ref";  # optional, if a branch/tag/commit is specified
-  #     }
-  # - If no `ref` is given, the flake defaults to the repository's default branch.
-  #
-  # - GitLab uses the same structure with `type = "gitlab"`.
-  # - For tarball archives (e.g., Lix), we use:
-  #     {
-  #       type = "tarball";
-  #       url = "https://...";
-  #     }
-  # - For flakes with directory overlays (e.g., `?dir=...`), we add a `dir = "..."` field.
-  # - `.inputs.nixpkgs.follows = "..."` lines are kept unchanged to simplify dependency alignment.
-  # - Flakes that don’t expose a flake (like `catppuccin-base16`) explicitly set `flake = false`.
-
   inputs = {
+    # Nixpkgs
     nixpkgs-unstable = {
       type = "github";
       owner = "NixOS";
@@ -42,12 +20,21 @@
     };
     nixpkgs.follows = "nixpkgs-unstable";
 
+    # Pinned version of nixpkgs for specific packages.
     nixpkgs-cage = {
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
       ref = "5be222164c59f700ee149c6e6903c146135eb1f9";
     };
+
+    # Core dependencies
+    flake-parts = {
+      type = "github";
+      owner = "hercules-ci";
+      repo = "flake-parts";
+    };
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
     home-manager = {
       type = "github";
@@ -56,20 +43,13 @@
     };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-parts = {
-      type = "github";
-      owner = "hercules-ci";
-      repo = "flake-parts";
-    };
-    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-
-    lanzaboote = {
+    # Overlays and package sets
+    emacs-overlay = {
       type = "github";
       owner = "nix-community";
-      repo = "lanzaboote";
-      ref = "v0.4.2";
+      repo = "emacs-overlay";
     };
-    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     firefox-addons = {
       type = "gitlab";
@@ -79,12 +59,20 @@
     };
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
-    sops-nix = {
+    ludovico-pkgs = {
       type = "github";
-      owner = "Mic92";
-      repo = "sops-nix";
+      owner = "LudovicoPiero";
+      repo = "pkgs";
     };
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # NixOS modules and tools
+    lanzaboote = {
+      type = "github";
+      owner = "nix-community";
+      repo = "lanzaboote";
+      ref = "v0.4.2";
+    };
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
     programsdb = {
       type = "github";
@@ -93,16 +81,24 @@
     };
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
+    sops-nix = {
+      type = "github";
+      owner = "Mic92";
+      repo = "sops-nix";
+    };
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    wrapper-manager = {
+      type = "github";
+      owner = "viperML";
+      repo = "wrapper-manager";
+    };
+
+    # Specific flakes
     ludovico-nixvim = {
       type = "github";
       owner = "LudovicoPiero";
       repo = "nvim-flake";
-    };
-
-    ludovico-pkgs = {
-      type = "github";
-      owner = "LudovicoPiero";
-      repo = "pkgs";
     };
 
     zen-browser = {
@@ -112,19 +108,7 @@
     };
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    wrapper-manager = {
-      type = "github";
-      owner = "viperML";
-      repo = "wrapper-manager";
-    };
-
-    emacs-overlay = {
-      type = "github";
-      owner = "nix-community";
-      repo = "emacs-overlay";
-    };
-    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
-
+    # Theming
     nix-colors = {
       type = "github";
       owner = "misterio77";
@@ -132,3 +116,4 @@
     };
   };
 }
+

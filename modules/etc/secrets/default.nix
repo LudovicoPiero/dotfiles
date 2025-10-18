@@ -14,7 +14,7 @@ in
   imports = [ inputs.sops-nix.nixosModules.sops ];
 
   options.mine.secrets = {
-    enable = mkEnableOption "secrets";
+    enable = mkEnableOption "Secrets";
   };
 
   config = mkIf cfg.enable {

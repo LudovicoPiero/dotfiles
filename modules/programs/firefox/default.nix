@@ -19,7 +19,7 @@ in
   ];
 
   options.mine.firefox = {
-    enable = mkEnableOption "firefox browser";
+    enable = mkEnableOption "Firefox Browser";
   };
 
   config = mkIf cfg.enable {
