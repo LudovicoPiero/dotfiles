@@ -102,7 +102,7 @@
     };
 
     ghostty = {
-      enable = false;
+      enable = true;
     };
 
     git = {
