@@ -36,6 +36,7 @@ in
             gtk-tabs-location = "top";
             gtk-wide-tabs = false;
             gtk-toolbar-style = "flat";
+            gtk-custom-css = "styles/tabs.css";
 
             window-padding-balance = true;
             window-padding-color = "extend";
@@ -116,6 +117,36 @@ in
             ];
           };
         };
+
+        xdg.configFile."ghostty/styles/tabs.css".text = ''
+          headerbar {
+              min-height: 30px;
+              padding: 0;
+              margin: 0;
+          }
+
+          tabbar tabbox {
+              margin: 0;
+              padding: 0;
+              min-height: 30px;
+              background-color: #${palette.base00};
+          }
+
+          tabbar tabbox tab {
+              margin: 0;
+              padding: 0;
+              color: #${palette.base03};
+          }
+
+          tabbar tabbox tab:selected {
+              background-color: #${palette.base02};
+              color: #${palette.base05};
+          }
+
+          tabbar tabbox tab label {
+              font-size: 18px;
+          }
+        '';
       };
   };
 }
