@@ -14,8 +14,14 @@
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
+  hm =
+    { osConfig, ... }:
+    {
+      services.tailscale-systray.enable = osConfig.services.tailscale.enable;
+    };
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";
+
   networking.hostName = "sforza"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
