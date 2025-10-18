@@ -159,6 +159,8 @@ in
         mpd = {
           interval = 2;
           format = "| MPD: {stateIcon} {artist} - {title}";
+          artist-len = 8;
+          title-len = 12;
           format-disconnected = "| MPD DISCONNECTED";
           format-paused = "| MPD PAUSED: {artist} - {title}";
           format-stopped = "| MPD STOPPED";
