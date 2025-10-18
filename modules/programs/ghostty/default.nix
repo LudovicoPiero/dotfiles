@@ -19,7 +19,7 @@ in
 
           settings = {
             font-family = [
-              osConfig.mine.fonts.terminal.name
+              "${config.mine.fonts.terminal.name} Semibold"
               osConfig.mine.fonts.cjk.name
               osConfig.mine.fonts.icon.name
               osConfig.mine.fonts.emoji.name
@@ -28,7 +28,28 @@ in
 
             # Theme
             background-opacity = osConfig.vars.opacity;
-            theme = "custom";
+            window-padding-x = 15;
+            window-padding-y = 15;
+            app-notifications = "false";
+            mouse-hide-while-typing = true;
+            gtk-single-instance = false;
+            gtk-tabs-location = "top";
+            gtk-wide-tabs = false;
+            gtk-toolbar-style = "flat";
+
+            window-padding-balance = true;
+            window-padding-color = "extend";
+            window-decoration = "none";
+            window-theme = "ghostty";
+            window-inherit-working-directory = false;
+
+            clipboard-read = "allow";
+            clipboard-write = "allow";
+            clipboard-paste-protection = false;
+
+            shell-integration-features = "no-cursor";
+            cursor-style = "block";
+            cursor-style-blink = false;
 
             keybind = [
               # Pane navigation (with leader = ctrl+a)
@@ -65,6 +86,8 @@ in
               # Reload config
               "ctrl+shift+r=reload_config"
             ];
+
+            theme = "custom";
           };
 
           themes.custom = {
