@@ -12,7 +12,7 @@ let
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
     ja=$(LC_TIME=ja_JP.UTF-8 date "+%A, %Y年 %-m月 %-d日")
     en=$(LC_TIME=en_US.UTF-8 date "+%A, %B %-d, %Y")
-    printf '{"text":" %s","tooltip":"%s"}\n' "$ja" "$en"
+    printf '{"text":"  %s","tooltip":"%s"}\n' "$ja" "$en"
   '';
 
   cfg = config.mine.waybar;
@@ -43,21 +43,19 @@ in
           ipc = true;
           modules-left = [
             "custom/menu"
-            "cpu"
-            # "custom/disk_home"
-            # "custom/disk_root"
-            "custom/wireguard"
-            "custom/tailscale"
-            "mpd"
-            "tray"
-            "idle_inhibitor"
-          ];
-          modules-center = [
             "hyprland/workspaces"
-            "hyprland/submap"
             "sway/workspaces"
           ];
+          modules-center = [ "hyprland/submap" ];
           modules-right = [
+            "tray"
+            "idle_inhibitor"
+            # "cpu"
+            # "custom/disk_home"
+            # "custom/disk_root"
+            # "custom/wireguard"
+            # "custom/tailscale"
+            "mpd"
             "pulseaudio"
             "bluetooth"
             "network"
@@ -80,11 +78,10 @@ in
           };
           "custom/tailscale" = {
             "format" = "󰖂 Tailscale";
-            "exec" = "echo '{\"class\": \"connected\"}'";
-            "exec-if" = "test -d /proc/sys/net/ipv4/conf/tailscale0";
+            "exec" =
+              "ip link show tailscale0 >/dev/null 2>&1 && echo '{\"class\": \"connected\"}' || echo '{}'";
             "return-type" = "json";
             "interval" = 5;
-
           };
           "custom/wireguard" = {
             "format" = "󰖂 Wireguard";
