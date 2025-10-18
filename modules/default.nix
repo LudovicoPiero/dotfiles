@@ -23,6 +23,7 @@ _: {
     ./programs/foot
     ./programs/fuzzel
     ./programs/gaming
+    ./programs/gemini-cli
     ./programs/ghostty
     ./programs/git
     ./programs/gpg

@@ -101,6 +101,10 @@
       withSteam = true;
     };
 
+    gemini-cli = {
+      enable = true;
+    };
+
     ghostty = {
       enable = true;
     };
