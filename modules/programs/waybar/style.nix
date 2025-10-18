@@ -5,8 +5,8 @@ in
 {
   hm.programs.waybar.style = ''
     * {
-      font-family: "${config.mine.fonts.terminal.name}", "${config.mine.fonts.icon.name}", monospace;
-      font-size: ${toString config.mine.fonts.size}px;
+      font-family: "${config.mine.fonts.terminal.name} Semibold", "${config.mine.fonts.icon.name}", monospace;
+      font-size: ${toString (config.mine.fonts.size - 1)}px;
       border-radius: 0;
     }
 
@@ -15,6 +15,7 @@ in
       color: #${palette.base05};
       border-bottom: 1px solid #${palette.base01};
       border-radius: 0;
+      padding: 1px 0;
     }
 
     /* --- Workspaces --- */
@@ -25,7 +26,7 @@ in
     #workspaces button {
       border: none;
       margin: 0 1px;
-      padding: 2px 8px;
+      padding: 1px 6px;
       background: transparent;
       color: #${palette.base05};
       border-radius: 0;
@@ -74,8 +75,8 @@ in
     #custom-disk_home,
     #custom-disk_root,
     #custom-power {
-      padding: 0 6px;
-      margin: 0 2px;
+      padding: 0 4px;
+      margin: 0 1px;
       border-radius: 0;
     }
 
@@ -101,7 +102,7 @@ in
     #custom-power {
       background: #${palette.base08};
       color: #${palette.base00};
-      padding: 0 8px;
+      padding: 0 6px;
       border-radius: 0;
     }
 
