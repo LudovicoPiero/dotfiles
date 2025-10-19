@@ -41,8 +41,8 @@ in
 
     i18n = {
       # Locale Settings
-      defaultLocale = localeCfg.defaultLocale;
-      extraLocales = localeCfg.extraLocales;
+      inherit (localeCfg) defaultLocale;
+      inherit (localeCfg) extraLocales;
       extraLocaleSettings = {
         LANGUAGE = "ja_JP.UTF-8";
         LC_ALL = "ja_JP.UTF-8";

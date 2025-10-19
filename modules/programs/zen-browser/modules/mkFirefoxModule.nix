@@ -981,14 +981,12 @@ in
           Using '${moduleName}.vendorPath' has been deprecated and
           will be removed in the future. Native messaging hosts will function normally without specifying this path.
         '';
-      targets.darwin.defaults = (
-        mkIf (cfg.darwinDefaultsId != null && isDarwin) {
+      targets.darwin.defaults = mkIf (cfg.darwinDefaultsId != null && isDarwin) {
           ${cfg.darwinDefaultsId} = {
             EnterprisePoliciesEnabled = true;
           }
           // cfg.policies;
-        }
-      );
+        };
 
       home.packages = lib.optional (cfg.finalPackage != null) cfg.finalPackage;
 
@@ -1039,9 +1037,9 @@ in
                 force = profile.containersForce;
               };
 
-              "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" = mkIf (profile.search.enable) {
-                enable = profile.search.enable;
-                force = profile.search.force;
+              "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" = mkIf profile.search.enable {
+                inherit (profile.search) enable;
+                inherit (profile.search) force;
                 source = profile.search.file;
               };
 
