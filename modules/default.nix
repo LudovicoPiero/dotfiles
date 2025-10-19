@@ -29,6 +29,7 @@ _: {
     ./programs/gpg
     ./programs/hyprland
     ./programs/ncmpcpp
+    ./programs/niri
     ./programs/nvim
     ./programs/rmpc
     ./programs/sway

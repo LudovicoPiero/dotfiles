@@ -74,6 +74,12 @@
     };
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
+    niri-flake = {
+      type = "github";
+      owner = "sodiboo";
+      repo = "niri-flake";
+    };
+
     programsdb = {
       type = "github";
       owner = "wamserma";
@@ -116,4 +122,3 @@
     };
   };
 }
-
