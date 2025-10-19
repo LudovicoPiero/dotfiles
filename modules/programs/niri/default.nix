@@ -14,13 +14,13 @@ let
     mkOption
     types
     ;
-
   inherit (inputs.niri-flake.lib.kdl)
     node
     plain
     leaf
     flag
     ;
+  inherit (config.mine.theme.colorScheme) palette;
 
   launcher = getExe pkgs.fuzzel;
   powermenu = getExe pkgs.wleave;
@@ -53,6 +53,7 @@ in
 
         config = [
           (plain "input" [
+            (flag "focus-follows-mouse")
             (plain "keyboard" [
               (plain "xkb" [
                 # You can set rules, model, layout, variant and options.
@@ -206,7 +207,7 @@ in
               # (flag "off")
 
               # How many logical pixels the ring extends out from the windows.
-              (leaf "width" 4)
+              (leaf "width" 2)
 
               # Colors can be set in a variety of ways:
               # - CSS named colors: "red"
@@ -214,10 +215,10 @@ in
               # - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
               # Color of the ring on the active monitor.
-              (leaf "active-color" "#7fc8ff")
+              (leaf "active-color" "#${palette.base0D}")
 
               # Color of the ring on inactive monitors.
-              (leaf "inactive-color" "#505050")
+              (leaf "inactive-color" "#${palette.base03}")
 
               # Additionally, there's a legacy RGBA syntax:
               # (leaf "active-color" [ 127 200 255 255 ])
@@ -243,9 +244,9 @@ in
               # If you enable the border, you probably want to disable the focus ring.
               (flag "off")
 
-              (leaf "width" 4)
-              (leaf "active-color" "#ffc87f")
-              (leaf "inactive-color" "#505050")
+              (leaf "width" 2)
+              (leaf "active-color" "#${palette.base0D}")
+              (leaf "inactive-color" "#${palette.base03}")
 
               # (leaf "active-gradient" { from="#ffbb66"; to="#ffc880"; angle=45; relative-to="workspace-view"; })
               # (leaf "inactive-gradient" { from="#505050"; to="#808080"; angle=45; relative-to="workspace-view"; })
@@ -270,7 +271,7 @@ in
             # (plain "default-column-width" [])
 
             # Set gaps around windows in logical pixels.
-            (leaf "gaps" 16)
+            (leaf "gaps" 3)
 
             # Struts shrink the area occupied by windows, similarly to layer-shell panels.
             # You can think of them as a kind of outer gaps. They are set in logical pixels.
@@ -297,7 +298,7 @@ in
           # Note that running niri as a session supports xdg-desktop-autostart,
           # which may be more convenient to use.
           (leaf "spawn-at-startup" [ "${getExe pkgs.brightnessctl} set 10%" ])
-          (leaf "spawn-at-startup" [ "sleep 1 && ${getExe pkgs.waybar}" ])
+          (leaf "spawn-at-startup" [ "${getExe pkgs.waybar}" ])
 
           # You can override environment variables for processes spawned by niri.
           (plain "environment" [
@@ -512,7 +513,7 @@ in
               ])
             ])
 
-            (plain "Mod+Q" [ (flag "close-window") ])
+            (plain "Mod+W" [ (flag "close-window") ])
 
             (plain "Mod+Left" [ (flag "focus-column-left") ])
             (plain "Mod+Down" [ (flag "focus-window-down") ])
