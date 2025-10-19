@@ -38,6 +38,7 @@ in
           "custom/menu"
           "hyprland/workspaces"
           "sway/workspaces"
+          "niri/workspaces"
         ];
         modules-center = [ "hyprland/submap" ];
         modules-right = [
@@ -209,6 +210,12 @@ in
         "hyprland/submap" = {
           format = "| {}";
           max-length = 8;
+          tooltip = false;
+        };
+
+        "niri/workspaces" = {
+          format = "{value}";
+          on-click = "activate";
           tooltip = false;
         };
 
