@@ -149,6 +149,11 @@
       enable = false;
     };
 
+    niri = {
+      enable = true;
+      package = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+    };
+
     nvim = {
       enable = true;
     };
