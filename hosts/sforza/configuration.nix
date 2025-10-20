@@ -55,7 +55,6 @@
       ];
       kernelModules = [
         "amdgpu"
-        "bcachefs"
         "btrfs"
         "dm-snapshot"
       ];
