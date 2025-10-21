@@ -48,7 +48,7 @@ in
     ];
 
     monitor = [
-      "HDMI-A-1, 1920x1080@144, auto, 1"
+      "HDMI-A-1, 1920x1080@180, auto, 1"
       "eDP-1,disable"
     ];
 
