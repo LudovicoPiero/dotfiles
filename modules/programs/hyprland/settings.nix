@@ -191,7 +191,7 @@ in
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
       # Bitwarden Firefox Extensions
-      "float, title:^(.*Bitwarden Password Manager.*)$"
+      "float, title:^(Extension: (Bitwarden Password Manager))"
 
       # Telegram Media Viewer
       "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
@@ -246,8 +246,9 @@ in
       "noshadow, class:^(chromium-browser)$" # wayland
 
       # JetBrains IDEs and games
-      "workspace 1, class:^(jetbrains-goland)$"
-      "workspace 1, class:^(jetbrains-clion)$"
+      "workspace 1, class:^(jetbrains-.*)$"
+      "noblur, class:^(jetbrains-.*)$"
+      "noanim, class:^(jetbrains-.*)$"
       "workspace 1, class:^(Albion-Online)$"
 
       # KeepassXC rules
