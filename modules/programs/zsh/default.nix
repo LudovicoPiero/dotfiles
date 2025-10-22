@@ -111,18 +111,39 @@ in
                 curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
               }
 
-              # , -> shorthand to run nix run
+              # , → shorthand to run nix run
               ,() {
-                nix run nixpkgs#"''${1}"
+                if [[ $# -lt 1 ]]; then
+                  echo "Usage: , <package> [args...]"
+                  return 1
+                fi
+
+                local pkg="$1"
+                shift  # remove the first arg
+                nix run "nixpkgs#${pkg}" -- "$@"
               }
 
-              # ns -> nix shell with multiple pkgs
+              # ns → nix shell with multiple pkgs
               ns() {
-                pkgs=()
-                for pkg in "$@"; do
-                  pkgs+=("nixpkgs#''${pkg}")
+                if [[ $# -lt 1 ]]; then
+                  echo "Usage: ns <packages...> [--nix-flags...]"
+                  return 1
+                fi
+
+                local pkgs=()
+                local args=()
+
+                # split between package names and nix flags
+                for arg in "$@"; do
+                  if [[ "$arg" == --* ]]; then
+                    args=("$@")  # rest of args are flags
+                    break
+                  fi
+                  pkgs+=("nixpkgs#${arg}")
+                  shift
                 done
-                nix shell "''${pkgs[@]}"
+
+                nix shell "''${pkgs[@]}" "''${args[@]}"
               }
 
               # notify

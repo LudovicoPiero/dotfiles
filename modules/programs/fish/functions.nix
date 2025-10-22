@@ -18,15 +18,40 @@ with pkgs;
       '';
 
       "," = ''
-        nix run nixpkgs#$argv[1]
+        if test (count $argv) -eq 0
+            echo "Usage: , <package> [args...]"
+            return 1
+        end
+
+        set pkg nixpkgs#$argv[1]
+        set args $argv[2..-1]
+
+        nix run $pkg -- $args
       '';
 
       ns = ''
         set pkgs
-        for pkg in $argv
-            set pkgs $pkgs nixpkgs#$pkg
+        set args
+
+        # Separate package names from nix shell flags
+        for arg in $argv
+            switch $arg
+                case '--*'
+                    # Once we hit a flag, the rest are flags
+                    set args $argv[(contains -i -- $arg $argv)..-1]
+                    break
+                case '*'
+                    set pkgs $pkgs nixpkgs#$arg
+            end
         end
-        nix shell $pkgs
+
+        # If no packages given, show usage
+        if test (count $pkgs) -eq 0
+            echo "Usage: ns <packages...> [--nix-flags...]"
+            return 1
+        end
+
+        nix shell $pkgs $args
       '';
 
       notify = ''
