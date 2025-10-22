@@ -258,9 +258,9 @@ in
 
       # Discord/WebCord blur and shadow rules
       "noblur, title:^(.*(Disc|WebC)ord.*)$"
-      "noblur, title:^(Open File)$"
+      "noblur, class:^(xdg-desktop-portal-gtk)$"
       "noshadow, title:^(.*(Disc|WebC)ord.*)$"
-      "float, class:^(xdg-desktop-portal-gtk)$,title:^(Open File(s)?)$"
+      "float, class:^(xdg-desktop-portal-gtk)$"
 
       # Noanim rules
       "noanim, class:^(org.telegram.desktop)$"
