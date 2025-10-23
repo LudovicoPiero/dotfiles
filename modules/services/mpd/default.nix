@@ -16,8 +16,6 @@ in
     hm =
       { config, ... }:
       {
-        home.packages = with pkgs; [ fooyin ];
-
         # Settings stolen from notashelf's dotfiles xd
         services = {
           mpris-proxy.enable = true;
