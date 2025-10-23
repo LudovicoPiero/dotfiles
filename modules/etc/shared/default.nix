@@ -101,19 +101,22 @@
             startupNotify = true;
             terminal = false;
             type = "Application";
+
             categories = [
-              "Network"
-              "Application"
               "AudioVideo"
               "Audio"
-              "Video"
+              "Network"
             ];
+
             startupWMClass = "tidal-hifi";
             mimeTypes = [ "x-scheme-handler/tidal" ];
-            extraConfig.X-PulseAudio-Properties = "media.role=music";
+
+            extraConfig = {
+              "X-PulseAudio-Properties" = "media.role=music";
+              "Keywords" = "music;streaming;tidal;hifi;lossless;";
+            };
           })
         ];
-
       };
 
       # Use OCR and copy to clipboard
