@@ -15,6 +15,8 @@
     "zen.tab-unloader.timeout-minutes" = 20;
     "zen.view.sidebar-expanded" = false;
     "zen.view.show-newtab-button-top" = false;
+    "zen.view.compact.enable-at-startup" = false;
+    "browser.tabs.groups.enabled" = true;
     "zen.welcome-screen.seen" = true;
     "zen.glance.open-essential-external-links" = false;
     "zen.glance.enable-contextmenu-search" = false; # Hidden Flags, https://docs.zen-browser.app/guides/about-config-flags
