@@ -489,6 +489,8 @@ in
             (plain "Super+Return" [ (leaf "spawn" [ "${config.vars.terminal}" ]) ])
             (plain "Super+P" [ (leaf "spawn" [ "${launcher}" ]) ])
             (plain "Super+D" [ (leaf "spawn" [ "vesktop" ]) ])
+            (plain "Super+G" [ (leaf "spawn" [ "firefox" ]) ])
+            (plain "Super+Shift+G" [ (leaf "spawn" [ "zen-beta" ]) ])
             (plain "Super+O" [ (leaf "spawn" [ "${clipboard}" ]) ])
             (plain "Super+Shift+O" [ (leaf "spawn" [ "${emojiPicker}" ]) ])
             (plain "Super+X" [ (leaf "spawn" [ "${powermenu}" ]) ])
