@@ -488,6 +488,7 @@ in
             # Suggested binds for running programs: terminal, app launcher, screen locker.
             (plain "Super+Return" [ (leaf "spawn" [ "${config.vars.terminal}" ]) ])
             (plain "Super+P" [ (leaf "spawn" [ "${launcher}" ]) ])
+            (plain "Super+D" [ (leaf "spawn" [ "vesktop" ]) ])
             (plain "Super+O" [ (leaf "spawn" [ "${clipboard}" ]) ])
             (plain "Super+Shift+O" [ (leaf "spawn" [ "${emojiPicker}" ]) ])
             (plain "Super+X" [ (leaf "spawn" [ "${powermenu}" ]) ])
