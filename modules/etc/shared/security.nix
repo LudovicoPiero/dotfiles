@@ -27,7 +27,7 @@
       # Hide kernel messages from the console.
       "kernel.printk" = "3 3 3 3";
       # Minimize swap usage.
-      "vm.swappiness" = "1";
+      "vm.swappiness" = "60";
 
       # Restrict kernel pointer exposure to mitigate potential kernel info leaks.
       "kernel.kptr_restrict" = 2;
@@ -83,41 +83,21 @@
 
     # Blacklist unnecessary or potentially insecure kernel modules.
     blacklistedKernelModules = [
-      "nvidia"
-      "nvidia-drm"
-      "nvidia-modeset"
-      "nouveau"
       "ax25"
       "netrom"
       "rose"
       "adfs"
-      "affs"
       "bfs"
       "befs"
-      "cramfs"
       "efs"
-      "erofs"
       "exofs"
       "freevxfs"
-      "f2fs"
       "vivid"
-      "gfs2"
       "ksmbd"
-      "nfsv4"
       "nfsv3"
-      "cifs"
-      "nfs"
-      "cramfs"
-      "freevxfs"
+      "nfsv4"
       "jffs2"
-      "hfs"
-      "hfsplus"
-      "squashfs"
-      "udf"
       "hpfs"
-      "jfs"
-      "minix"
-      "nilfs2"
       "omfs"
       "qnx4"
       "qnx6"
