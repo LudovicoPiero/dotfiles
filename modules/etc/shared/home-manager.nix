@@ -50,5 +50,74 @@
         SDL_VIDEODRIVER = "wayland";
         XDG_SESSION_TYPE = "wayland";
       };
+
+      xdg =
+        let
+          browser = [ "zen-beta.desktop" ];
+          thunderbird = [ "thunderbird.desktop" ];
+          thunar = [ "thunar.desktop" ];
+
+          # XDG MIME types
+          associations = {
+            "application/x-extension-htm" = browser;
+            "application/x-extension-html" = browser;
+            "application/x-extension-shtml" = browser;
+            "application/x-extension-xht" = browser;
+            "application/x-extension-xhtml" = browser;
+            "application/xhtml+xml" = browser;
+            "text/html" = browser;
+            "x-scheme-handler/about" = browser;
+            "x-scheme-handler/chrome" = browser;
+            "x-scheme-handler/ftp" = browser;
+            "x-scheme-handler/http" = browser;
+            "x-scheme-handler/https" = browser;
+            "x-scheme-handler/unknown" = browser;
+            "x-scheme-handler/mailspring" = thunderbird;
+
+            "audio/*" = [ "mpv.desktop" ];
+            "video/*" = [ "mpv.desktop" ];
+            "image/*" = [ "imv.desktop" ];
+            "application/json" = browser;
+            "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+            "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+            "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+            "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ]; # not a typo
+            "x-scheme-handler/mailto" = thunderbird;
+            "message/rfc822" = thunderbird;
+            "x-scheme-handler/mid" = thunderbird;
+            "x-scheme-handler/news" = thunderbird;
+            "x-scheme-handler/nntp" = thunderbird;
+
+            "application/zip" = thunar;
+            "application/x-tar" = thunar;
+            "application/x-xz" = thunar;
+            "application/x-bzip2" = thunar;
+            "application/x-gzip" = thunar;
+            "application/x-7z-compressed" = thunar;
+            "application/x-rar" = thunar;
+            "application/x-iso9660-image" = thunar;
+            "inode/directory" = thunar;
+          };
+        in
+        {
+          enable = true;
+          cacheHome = config.home.homeDirectory + "/.cache";
+
+          mimeApps = {
+            enable = true;
+            defaultApplications = associations;
+          };
+
+          userDirs = {
+            enable = true;
+            createDirectories = true;
+            extraConfig = {
+              XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+              XDG_RECORD_DIR = "${config.xdg.userDirs.videos}/Record";
+              XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
+              XDG_MISC_DIR = "${config.home.homeDirectory}/Code";
+            };
+          };
+        };
     };
 }

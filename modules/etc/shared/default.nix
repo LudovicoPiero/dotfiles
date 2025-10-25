@@ -71,6 +71,7 @@
         # Favorite desktop apps
         qbittorrent # Qt-based BitTorrent client with a clean UI
         imv # Minimalist image viewer for X11/Wayland
+        zathura # Lightweight and highly customizable PDF viewer
         viewnior # Lightweight image viewer, good for simple needs
         ente-auth # Ente authentication app (for encrypted cloud photo storage)
         thunderbird # Popular email client by Mozilla
