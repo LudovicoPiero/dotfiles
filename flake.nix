@@ -66,14 +66,6 @@
     };
 
     # NixOS modules and tools
-    lanzaboote = {
-      type = "github";
-      owner = "nix-community";
-      repo = "lanzaboote";
-      ref = "v0.4.2";
-    };
-    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
-
     niri-flake = {
       type = "github";
       owner = "sodiboo";
@@ -93,12 +85,6 @@
       repo = "sops-nix";
     };
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    wrapper-manager = {
-      type = "github";
-      owner = "viperML";
-      repo = "wrapper-manager";
-    };
 
     # Specific flakes
     lix = {

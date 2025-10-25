@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  inherit (inputs) emacs-overlay wrapper-manager;
+  cfg = config.mine.emacs;
 
   emacsPackage =
     with pkgs;
@@ -18,83 +18,52 @@ let
       ]
     );
 
-  emacsWrapped = wrapper-manager.lib.wrapWith pkgs {
-    basePackage = emacsPackage;
-    pathAdd = with pkgs; [
-      ## Optional dependencies
-      (mkIf config.programs.gnupg.agent.enable pinentry-emacs) # in-Emacs GnuPG prompts
-      (aspellWithDicts (
-        ds: with ds; [
-          en
-          en-computers
-          en-science
-        ]
-      ))
-      # https://github.com/manateelazycat/lsp-bridge/wiki/NixOS
-      (python3.withPackages (
-        p: with p; [
-          epc
-          orjson
-          sexpdata
-          six
-          setuptools
-          paramiko
-          rapidfuzz
-          watchdog
-          packaging
-        ]
-      ))
+  runtimeDeps = with pkgs; [
+    fzf
+    ripgrep
+    fd
+    imagemagick
+    zstd
+    nixd
+    nixfmt-rfc-style
+    clang-tools
+    cmake
+    basedpyright
+    python3
+    black
+    ruff
+    go
+    gopls
+    rust-analyzer
+    clippy
+    rustfmt
+    prettierd
+    vscode-langservers-extracted
+    typescript-language-server
+    intelephense
+    astro-language-server
+    vue-language-server
+    tailwindcss-language-server
+    sqlite
+    libvterm
+  ];
 
-      fzf
-      ripgrep
-      fd # faster Projectile indexing
-      imagemagick # for image-dired
-      zstd # for undo-fu-session/undo-tree compression
-
-      # Nix
-      nixd
-      nixfmt-rfc-style
-
-      # C
-      clang-tools
-      cmake
-
-      # Python
-      basedpyright
-      python3
-      black
-      ruff
-
-      # Go
-      go
-      gopls
-
-      # Rust
-      rust-analyzer
-      clippy
-      rustfmt
-
-      # Web Development
-      prettierd
-      vscode-langservers-extracted
-      typescript-language-server
-      intelephense # php
-      astro-language-server
-      vue-language-server
-      tailwindcss-language-server
-    ];
-  };
-
-  cfg = config.mine.emacs;
+  emacsWrapped = pkgs.runCommand "emacs-wrapped" { buildInputs = [ pkgs.makeWrapper ]; } ''
+    mkdir -p $out/bin
+    makeWrapper ${emacsPackage}/bin/emacs $out/bin/emacs \
+      --prefix PATH : ${
+        pkgs.buildEnv {
+          name = "emacs-path";
+          paths = runtimeDeps;
+        }
+      }/bin
+  '';
 in
 {
   options.mine.emacs.enable = mkEnableOption "Emacs";
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [ emacs-overlay.overlays.default ];
-
-    hm = {
-      home.packages = [ emacsWrapped ];
-    };
+    nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
+    hm.home.packages = [ emacsWrapped ];
   };
 }

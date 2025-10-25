@@ -65,9 +65,6 @@
         # Nix-related tools
         nixpkgs-review # Review pull requests or changes in nixpkgs locally
 
-        # Secure Boot & system tools
-        sbctl # Secure Boot key manager, useful for enrolling custom keys, debugging SB issues
-
         # Favorite desktop apps
         qbittorrent # Qt-based BitTorrent client with a clean UI
         imv # Minimalist image viewer for X11/Wayland
