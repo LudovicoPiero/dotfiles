@@ -82,7 +82,7 @@ in
 
   config = mkIf cfg.enable {
     environment.sessionVariables = {
-      FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+      FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 cff:hinting-engine=adobe";
     };
 
     fonts = {
@@ -102,6 +102,7 @@ in
       enableDefaultPackages = false;
       fontconfig = {
         enable = true;
+        cache32Bit = true;
         defaultFonts = {
           serif = [
             "${cfg.main.name}"
