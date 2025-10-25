@@ -16,6 +16,9 @@
     ./mine.nix
   ];
 
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -86,7 +89,7 @@
   programs.fish.enable = true;
   users.users.${config.vars.username} = {
     shell = pkgs.fish;
-    initialPassword = "1234"; #TODO: setup agenix or something
+    initialPassword = "1234"; # TODO: setup agenix or something
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
