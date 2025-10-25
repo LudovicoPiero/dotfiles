@@ -32,7 +32,7 @@
             specialArgs = { inherit inputs; };
             modules = [
               ./modules
-              ./sforza/configuration.nix
+              ./hosts/sforza/configuration.nix
             ];
           };
         };
