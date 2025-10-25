@@ -6,7 +6,7 @@
     colorScheme = "gruvbox-material-dark-hard";
     email = "lewdovico@gnuweeb.org";
     isALaptop = true;
-    opacity = 0.88; #FIXME: still unused
+    opacity = 0.88; # FIXME: still unused
     stateVersion = "24.11";
     terminal = "ghostty";
     timezone = "Asia/Tokyo";
@@ -16,6 +16,10 @@
 
   mine = {
     ghostty = {
+      enable = true;
+    };
+
+    secrets = {
       enable = true;
     };
   };

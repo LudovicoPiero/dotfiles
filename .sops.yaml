@@ -1,0 +1,7 @@
+keys:
+  - &lewdo age1kzq0576smpu33wud97vr5ue87alqwq4w0fscykevkr3suv6qwf4q3jqlkg
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+          - *lewdo
