@@ -1,23 +1,16 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 {
   sops = {
-    secrets."userPassword".neededForUsers = true;
-    secrets."rootPassword".neededForUsers = true;
+    secrets."users/userPassword".neededForUsers = true;
+    secrets."users/rootPassword".neededForUsers = true;
   };
 
-  programs.fish.enable = true; # TODO: move it somewhere else
   users = {
     mutableUsers = false;
-    users.root.hashedPasswordFile = config.sops.secrets."rootPassword".path;
+    users.root.hashedPasswordFile = config.sops.secrets."users/rootPassword".path;
     users.${config.vars.username} = {
-      hashedPasswordFile = config.sops.secrets."userPassword".path;
+      hashedPasswordFile = config.sops.secrets."users/userPassword".path;
       isNormalUser = true;
-      shell = pkgs.fish; # TODO: move it somewhere else
       extraGroups = [
         "seat"
         "video"
