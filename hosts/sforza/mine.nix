@@ -16,7 +16,7 @@
     stateVersion = "24.11";
     terminal = "ghostty";
     timezone = "Asia/Tokyo";
-    username = "airi";
+    username = "lewdo";
     withGui = true;
   };
 

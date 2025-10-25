@@ -32,7 +32,7 @@ in
       programs.uwsm = {
         enable = true;
         waylandCompositors.sway = {
-          binPath = "/etc/profiles/per-user/airi/bin/sway";
+          binPath = "/etc/profiles/per-user/lewdo/bin/sway";
           prettyName = "Sway";
           comment = "Sway managed by UWSM";
         };

@@ -38,14 +38,14 @@ in
                       "action": "swaylock",
                       "text": "Lock",
                       "keybind": "l",
-                      "icon": "/home/airi/.config/wleave/icons/lock.svg"
+                      "icon": "/home/lewdo/.config/wleave/icons/lock.svg"
                   },
                   {
                       "label": "hibernate",
                       "action": "systemctl hibernate",
                       "text": "Hibernate",
                       "keybind": "h",
-                      "icon": "/home/airi/.config/wleave/icons/hibernate.svg"
+                      "icon": "/home/lewdo/.config/wleave/icons/hibernate.svg"
                   },
                   {
                       "label": "logout",
@@ -57,28 +57,28 @@ in
                       }",
                       "text": "Logout",
                       "keybind": "e",
-                      "icon": "/home/airi/.config/wleave/icons/logout.svg"
+                      "icon": "/home/lewdo/.config/wleave/icons/logout.svg"
                   },
                   {
                       "label": "shutdown",
                       "action": "systemctl poweroff",
                       "text": "Shutdown",
                       "keybind": "s",
-                      "icon": "/home/airi/.config/wleave/icons/shutdown.svg"
+                      "icon": "/home/lewdo/.config/wleave/icons/shutdown.svg"
                   },
                   {
                       "label": "suspend",
                       "action": "systemctl suspend",
                       "text": "Suspend",
                       "keybind": "u",
-                      "icon": "/home/airi/.config/wleave/icons/suspend.svg"
+                      "icon": "/home/lewdo/.config/wleave/icons/suspend.svg"
                   },
                   {
                       "label": "reboot",
                       "action": "systemctl reboot",
                       "text": "Reboot",
                       "keybind": "r",
-                      "icon": "/home/airi/.config/wleave/icons/reboot.svg"
+                      "icon": "/home/lewdo/.config/wleave/icons/reboot.svg"
                   }
               ]
           }
