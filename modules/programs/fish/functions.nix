@@ -13,7 +13,7 @@ in
 with pkgs;
 {
   config = lib.mkIf cfg.enable {
-    hj.xdg.config.files."fish/config.fish".text = lib.mkAfter ''
+    mine.programs.fish.config = lib.mkAfter ''
       function gitignore
           curl -sL https://www.gitignore.io/api/$argv
       end

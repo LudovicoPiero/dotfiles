@@ -35,8 +35,60 @@ in
         bat
         lazygit
       ];
+    };
 
-      xdg.config.files."fish/config.fish".text =
+    mine.programs.fish = {
+      enable = true;
+
+      plugins = { inherit (pkgs.fishPlugins) tide fzf-fish; };
+
+      earlyConfigFiles.tide = ''
+        set -x tide_character_color brgreen
+        set -x tide_character_color_failure brred
+        set -x tide_character_icon ❯
+        set -x tide_character_vi_icon_default ❮
+        set -x tide_character_vi_icon_replace ▶
+        set -x tide_character_vi_icon_visual V
+
+        set -x tide_status_bg_color normal
+        set -x tide_status_bg_color_failure normal
+        set -x tide_status_color green
+        set -x tide_status_color_failure red
+        set -x tide_status_icon ✔
+        set -x tide_status_icon_failure ✘
+
+        set -x tide_prompt_add_newline_before true
+        set -x tide_prompt_color_frame_and_connection 6C6C6C
+        set -x tide_prompt_color_separator_same_color 949494
+        set -x tide_prompt_min_cols 34
+        set -x tide_prompt_pad_items false
+        set -x tide_prompt_transient_enabled true
+
+        set -x tide_left_prompt_items pwd git newline character
+        set -x tide_left_prompt_frame_enabled false
+        set -x tide_left_prompt_prefix
+        set -x tide_left_prompt_separator_diff_color " "
+        set -x tide_left_prompt_separator_same_color " "
+        set -x tide_left_prompt_suffix " "
+
+        set -x tide_right_prompt_frame_enabled false
+        set -x tide_right_prompt_items status context jobs direnv node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir zig
+        set -x tide_right_prompt_prefix " "
+        set -x tide_right_prompt_separator_diff_color " "
+        set -x tide_right_prompt_separator_same_color " "
+        set -x tide_right_prompt_suffix ""
+
+        set -x tide_pwd_bg_color normal
+        set -x tide_pwd_color_anchors brcyan
+        set -x tide_pwd_color_dirs cyan
+        set -x tide_pwd_color_truncated_dirs magenta
+        set -x tide_pwd_icon
+        set -x tide_pwd_icon_home
+        set -x tide_pwd_icon_unwritable 
+        set -x tide_pwd_markers .bzr .citc .git .hg .node-version .python-version .ruby-version .shorten_folder_marker .svn .terraform Cargo.toml composer.json CVS go.mod package.json build.zig
+      '';
+
+      config =
         with pkgs;
         ''
           function fish_greeting
@@ -52,7 +104,6 @@ in
 
           . ${config.sops.secrets."shells/githubToken".path}
           ${_ nix-your-shell} fish | source
-          ${_ starship} init fish | source
           ${_ zoxide} init fish | source
           ${_ direnv} hook fish | source
         ''
