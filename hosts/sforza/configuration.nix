@@ -18,6 +18,16 @@
 
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";
+  systemd.user.services.tailscale-systray = {
+    enable = true;
+    description = "Official Tailscale systray application for Linux";
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''${pkgs.tailscale}/bin/tailscale systray'';
+    };
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
