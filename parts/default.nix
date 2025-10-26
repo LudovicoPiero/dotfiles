@@ -31,7 +31,7 @@
         fd . -t f -e nix -x ${lib.getExe' unfreePkgs.nixfmt-rfc-style "nixfmt"} -s '{}'
 
         ${log "Checking for dead code (deadnix)..."}
-        fd . -t f -e nix -x ${lib.getExe unfreePkgs.deadnix} -e '{}'
+        fd . -t f -e nix -x ${lib.getExe unfreePkgs.deadnix} --no-lambda-arg --no-lambda-pattern-names -e '{}'
 
         ${log "Running statix (lint & fix)..."}
         fd . -t f -e nix -x ${lib.getExe unfreePkgs.statix} fix '{}'
