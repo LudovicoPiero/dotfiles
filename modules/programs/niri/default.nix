@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  inputs',
   pkgs,
   ...
 }:
@@ -25,7 +26,7 @@ let
   launcher = getExe pkgs.fuzzel;
   powermenu = getExe pkgs.wleave;
   clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
-  emojiPicker = getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
+  emojiPicker = getExe inputs'.ludovico-pkgs.packages.fuzzmoji;
 
   cfg = config.mine.niri;
   cfgmine = config.mine;
@@ -36,7 +37,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+      default = inputs'.niri-flake.packages.niri-unstable;
       description = "The niri package to use.";
     };
   };

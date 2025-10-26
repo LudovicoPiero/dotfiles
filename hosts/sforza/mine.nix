@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  inputs',
   config,
   ...
 }:
@@ -79,11 +79,11 @@
       };
       main = {
         name = "SF Pro Display";
-        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.san-francisco-pro;
+        package = inputs'.ludovico-pkgs.packages.san-francisco-pro;
       };
       terminal = {
         name = "Iosevka Q";
-        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.iosevka-q;
+        package = inputs'.ludovico-pkgs.packages.iosevka-q;
       };
     };
 
@@ -151,7 +151,7 @@
 
     niri = {
       enable = true;
-      package = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+      package = inputs'.niri-flake.packages.niri-unstable;
     };
 
     nvim = {
@@ -190,7 +190,7 @@
         };
         theme = {
           name = "WhiteSur-Dark";
-          package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
+          package = inputs'.ludovico-pkgs.packages.whitesur-gtk-theme;
         };
       };
     };

@@ -2,7 +2,7 @@
   lib,
   pkgs,
   config,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -36,7 +36,7 @@ in
           }
           // (
             let
-              inherit (inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}) firefox-gnome-theme;
+              inherit (inputs'.ludovico-pkgs.packages) firefox-gnome-theme;
             in
             {
               userChrome = ''@import "${firefox-gnome-theme}/userChrome.css";'';

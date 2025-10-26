@@ -1,8 +1,8 @@
-{ inputs, pkgs, ... }:
+{ inputs', ... }:
 {
   hm.programs.firefox.profiles.ludovico.extensions = {
     force = true;
-    packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+    packages = with inputs'.firefox-addons.packages; [
       bitwarden
       refined-github
       sponsorblock

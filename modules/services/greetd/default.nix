@@ -1,8 +1,7 @@
 {
   lib,
   config,
-  pkgs,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -39,7 +38,7 @@ in
           terminal.vt = 1;
           default_session =
             let
-              oldNixpkgs = inputs.nixpkgs-cage.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+              oldNixpkgs = inputs'.nixpkgs-cage.legacyPackages;
             in
             {
               # command = "${_ pkgs.sway} --config ${swayConf}";

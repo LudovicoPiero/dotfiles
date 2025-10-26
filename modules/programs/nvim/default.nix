@@ -1,8 +1,7 @@
 {
   lib,
-  pkgs,
   config,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -16,8 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      inputs.ludovico-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.nvim
-    ];
+    environment.systemPackages = [ inputs'.ludovico-nixvim.packages.nvim ];
   };
 }

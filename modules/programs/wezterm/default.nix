@@ -1,8 +1,7 @@
 {
   lib,
   config,
-  pkgs,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -21,7 +20,7 @@ in
       programs.wezterm = {
         enable = true;
 
-        package = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.wezterm;
+        package = inputs'.ludovico-pkgs.packages.wezterm;
 
         extraConfig = ''
           local wezterm = require("wezterm")

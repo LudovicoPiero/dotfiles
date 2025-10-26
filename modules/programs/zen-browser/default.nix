@@ -1,8 +1,7 @@
 {
   lib,
-  pkgs,
   config,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -27,7 +26,7 @@ in
       imports = [ ./modules ];
       programs.zen-browser = {
         enable = true;
-        package = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        package = inputs'.zen-browser.packages.default;
 
         profiles = {
           ludovico = {

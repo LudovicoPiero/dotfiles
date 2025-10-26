@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -77,7 +77,7 @@ in
             libsForQt5.fcitx5-qt
 
             # Theme
-            inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-fcitx5
+            inputs'.ludovico-pkgs.packages.catppuccin-fcitx5
           ];
 
           settings = {

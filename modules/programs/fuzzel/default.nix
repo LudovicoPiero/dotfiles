@@ -1,15 +1,14 @@
 {
   lib,
   config,
-  inputs,
-  pkgs,
+  inputs',
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf getExe;
   inherit (config.mine.theme.colorScheme) palette;
 
-  app2unit = "${getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit}";
+  app2unit = "${getExe inputs'.ludovico-pkgs.packages.app2unit}";
 
   cfg = config.mine.fuzzel;
 in

@@ -3,6 +3,7 @@
   pkgs,
   config,
   inputs,
+  inputs',
   ...
 }:
 let
@@ -54,7 +55,7 @@ in
         };
         package = mkOption {
           type = types.package;
-          default = inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.whitesur-gtk-theme;
+          default = inputs'.ludovico-pkgs.packages.whitesur-gtk-theme;
         };
       };
 

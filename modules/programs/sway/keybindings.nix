@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -16,13 +16,9 @@ let
   brightnessctl = "${getExe pkgs.brightnessctl}";
   playerctl = "${getExe pkgs.playerctl}";
   clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
-  emojiPicker = getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
+  emojiPicker = getExe inputs'.ludovico-pkgs.packages.fuzzmoji;
 
-  app2unit =
-    if cfg.withUWSM then
-      "${getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit} --"
-    else
-      "";
+  app2unit = if cfg.withUWSM then "${getExe inputs'.ludovico-pkgs.packages.app2unit} --" else "";
 in
 {
   hm = {

@@ -982,11 +982,11 @@ in
           will be removed in the future. Native messaging hosts will function normally without specifying this path.
         '';
       targets.darwin.defaults = mkIf (cfg.darwinDefaultsId != null && isDarwin) {
-          ${cfg.darwinDefaultsId} = {
-            EnterprisePoliciesEnabled = true;
-          }
-          // cfg.policies;
-        };
+        ${cfg.darwinDefaultsId} = {
+          EnterprisePoliciesEnabled = true;
+        }
+        // cfg.policies;
+      };
 
       home.packages = lib.optional (cfg.finalPackage != null) cfg.finalPackage;
 

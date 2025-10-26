@@ -1,21 +1,9 @@
-{ inputs, ... }:
+{ withSystem, inputs, ... }:
+let
+  mkHost = import ../lib/mkHost.nix { inherit withSystem inputs; };
+in
 {
-  flake.nixosConfigurations =
-    let
-      inherit (inputs.nixpkgs.lib) nixosSystem;
-
-      sharedModules = import ../modules;
-
-      specialArgs = { inherit inputs; };
-    in
-    {
-      sforza = nixosSystem {
-        inherit specialArgs;
-        modules = [
-          sharedModules
-
-          ./sforza/configuration.nix
-        ];
-      };
-    };
+  flake.nixosConfigurations = {
+    sforza = mkHost "sforza" ./sforza/configuration.nix "x86_64-linux";
+  };
 }

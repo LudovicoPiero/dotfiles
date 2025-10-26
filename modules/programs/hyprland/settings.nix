@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -12,17 +12,13 @@ let
   cfg = config.mine.hyprland;
   cfgmine = config.mine;
 
-  app2unit =
-    if cfg.withUWSM then
-      "${getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.app2unit} --"
-    else
-      "";
+  app2unit = if cfg.withUWSM then "${getExe inputs'.ludovico-pkgs.packages.app2unit} --" else "";
 
   launcher = getExe pkgs.fuzzel;
   powermenu = getExe pkgs.wleave;
   uwsm = config.programs.uwsm.package;
   clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
-  emojiPicker = getExe inputs.ludovico-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.fuzzmoji;
+  emojiPicker = getExe inputs'.ludovico-pkgs.packages.fuzzmoji;
 in
 {
   hm.wayland.windowManager.hyprland.settings = {
