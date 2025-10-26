@@ -3,10 +3,10 @@
 
 # Define a function that builds a nixosConfiguration for a given host
 # Usage example:
-# mkHost "sforza" ./sforza/configuration.nix
+# mkHost "sforza" ./sforza/configuration.nix "x86_64-linux"
 hostName: configPath: system:
 withSystem system (
-  ctx@{ inputs', ... }:
+  { inputs', ... }:
   let
     sharedModules = import ../modules;
 
