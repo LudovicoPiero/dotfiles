@@ -424,7 +424,7 @@ in
 {
   imports = [ (pkgs.path + "/nixos/modules/misc/meta.nix") ];
 
-  meta.maintainers = with lib.maintainers; [ kira-bruneau ];
+  meta.maintainers = [ lib.maintainers.kira-bruneau ];
 
   options = {
     enable = mkOption {
