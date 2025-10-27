@@ -55,7 +55,7 @@
     };
 
     fish = {
-      enable = true;
+      enable = false;
     };
 
     foot = {
@@ -240,7 +240,7 @@
     };
 
     zsh = {
-      enable = false;
+      enable = true;
     };
   };
 }
