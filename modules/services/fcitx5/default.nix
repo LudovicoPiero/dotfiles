@@ -7,7 +7,6 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (config.mine.theme.colorScheme) palette;
 
   cfg = config.mine.fcitx5;
   localeCfg = cfg.locale;
@@ -79,110 +78,6 @@ in
             # Theme
             inputs'.ludovico-pkgs.packages.catppuccin-fcitx5
           ];
-
-          settings = {
-            inputMethod = {
-              "GroupOrder" = {
-                "0" = "Keys";
-              };
-              "Groups/0" = {
-                Name = "Keys";
-                "Default Layout" = "us";
-                "DefaultIM" = "keyboard-us";
-              };
-              "Groups/0/Items/0" = {
-                Name = "mozc";
-                "Layout" = "";
-              };
-              "Groups/0/Items/1" = {
-                Name = "keyboard-us";
-                "Layout" = "";
-              };
-              "Groups/0/Items/2" = {
-                Name = "hangul";
-                "Layout" = "us";
-              };
-            };
-
-            globalOptions = {
-              Hotkey = {
-                EnumerateWithTriggerKeys = true;
-                EnumerateSkipFirst = false;
-                ActivateKeys = "";
-                DeactivateKeys = "";
-              };
-
-              "Hotkey/TriggerKeys" = {
-                "0" = "Control+Shift+space";
-              };
-              "Hotkey/AltTriggerKeys" = {
-                "0" = "Page_Up";
-              };
-              "Hotkey/EnumerateForwardKeys" = {
-                "0" = "Control+Shift_L";
-              };
-              "Hotkey/EnumerateBackwardKeys" = {
-                "0" = "Control+Shift_R";
-              };
-              "Hotkey/EnumerateGroupForwardKeys" = {
-                "0" = "Super+space";
-              };
-              "Hotkey/EnumerateGroupBackwardKeys" = {
-                "0" = "Shift+Super+space";
-              };
-              "Hotkey/PrevPage" = {
-                "0" = "Up";
-              };
-              "Hotkey/NextPage" = {
-                "0" = "Down";
-              };
-              "Hotkey/PrevCandidate" = {
-                "0" = "Shift+Tab";
-              };
-              "Hotkey/NextCandidate" = {
-                "0" = "Tab";
-              };
-              "Hotkey/TogglePreedit" = {
-                "0" = "Control+Alt+P";
-              };
-
-              Behavior = {
-                ActiveByDefault = true;
-                ShareInputState = "No";
-                PreeditEnabledByDefault = true;
-                ShowInputMethodInformation = true;
-                showInputMethodInformationWhenFocusIn = false;
-                CompactInputMethodInformation = true;
-                ShowFirstInputMethodInformation = true;
-                DefaultPageSize = 5;
-                OverrideXkbOption = false;
-                CustomXkbOption = "";
-                EnabledAddons = "";
-                DisabledAddons = "";
-                PreloadInputMethod = true;
-              };
-            };
-
-            addons = {
-              classicui.globalSection = {
-                "Theme" = "catppuccin-mocha";
-                "DarkTheme" = "default-dark";
-                "Font" = "${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}";
-                "MenuFont" = "${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}";
-                "TrayFont" = "${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}";
-                "UseDarkTheme" = true;
-                "PerScreenDPI" = false;
-                "ForceWaylandDPI" = false;
-                "EnableFractionalScale" = true;
-                "ShowLayoutNameInIcon" = true;
-                "PreferTextIcon" = true;
-                "TrayOutlineColor" = "#${palette.base00}";
-                "TrayTextColor" = "#${palette.base05}";
-                "Vertical Candidate List" = false;
-                "WheelForPaging" = true;
-              };
-            };
-          };
         };
       };
     };
@@ -204,5 +99,9 @@ in
         };
       };
     };
+
+    systemd.user.tmpfiles.users.${config.vars.username}.rules = [
+      "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}"
+    ];
   };
 }
