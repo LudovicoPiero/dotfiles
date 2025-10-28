@@ -181,10 +181,10 @@ in
         network = {
           interval = 5;
           format-alt = "| NET: DOWN {bandwidthDownBits} UP {bandwidthUpBits}";
-          format-ethernet = "| NET: {ipaddr}/{cidr}";
-          format-linked = "| NET: (No IP)";
+          format-ethernet = "| IP LEAK: {ipaddr}/{cidr}";
+          format-linked = "| IP LEAK: (No IP)";
           format-disconnected = "| NET: DISCONNECTED";
-          format-wifi = "| NET: {ipaddr}/{cidr}";
+          format-wifi = "| IP LEAK: {ipaddr}/{cidr}";
         };
 
         pulseaudio = {
