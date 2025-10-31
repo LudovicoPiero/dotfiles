@@ -1,6 +1,13 @@
 {
   description = "Ludovico's dotfiles";
 
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ ./hosts ];
+    };
+
   inputs = {
     nixpkgs-unstable = {
       type = "github";
@@ -57,28 +64,4 @@
     };
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
-
-  outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      perSystem =
-        { pkgs, system, ... }:
-        {
-          packages.nvim = inputs.ludovico-nvim.packages.${system}.default;
-          packages.default = pkgs.hello;
-        };
-
-      flake = {
-        nixosConfigurations = {
-          sforza = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./modules
-              ./hosts/sforza/configuration.nix
-            ];
-          };
-        };
-      };
-    };
 }
