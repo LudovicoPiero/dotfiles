@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  inputs',
   pkgs,
   config,
   ...
@@ -132,10 +133,9 @@
   # Nix command-not-found handler using programs database
   programs.command-not-found = {
     enable = true;
-    dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+    dbPath = inputs'.programsdb.packages.programs-sqlite;
   };
-  environment.etc."programs.sqlite".source =
-    inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+  environment.etc."programs.sqlite".source = inputs'.programsdb.packages.programs-sqlite;
 
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer
