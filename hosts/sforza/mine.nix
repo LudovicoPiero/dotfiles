@@ -16,7 +16,7 @@
     stateVersion = "24.11";
     terminal = "wezterm";
     timezone = "Asia/Tokyo";
-    username = "lewdo";
+    username = "lain";
     withGui = true;
   };
 
