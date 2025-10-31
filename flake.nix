@@ -32,8 +32,15 @@
 
     ludovico-nvim = {
       type = "github";
-      owner = "ludovicopiero";
+      owner = "LudovicoPiero";
       repo = "nvim-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ludovico-pkgs = {
+      type = "github";
+      owner = "LudovicoPiero";
+      repo = "pkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

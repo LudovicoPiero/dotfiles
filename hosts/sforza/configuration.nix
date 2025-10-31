@@ -16,7 +16,19 @@
     ./mine.nix
   ];
 
-  environment.systemPackages = [inputs.ludovico-nvim.packages.${pkgs.system}.default ];
+  environment.systemPackages = [
+    inputs.ludovico-nvim.packages.${pkgs.system}.default
+    pkgs.firefox
+    pkgs.adwaita-icon-theme-legacy
+    pkgs.adwaita-icon-theme
+    pkgs.gnome-icon-theme
+    pkgs.hicolor-icon-theme
+    pkgs.tokyonight-gtk-theme
+    pkgs.gnome-tweaks
+
+    pkgs.whitesur-icon-theme
+    inputs.ludovico-pkgs.packages.${pkgs.system}.whitesur-gtk-theme
+  ];
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";
   systemd.user.services.tailscale-systray = {
@@ -58,11 +70,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  # Using Wayland (preferred)
-  services.displayManager.sddm.settings.General.DisplayServer = "wayland";
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   services.pipewire = {
     enable = true;

@@ -37,6 +37,8 @@ withSystem system (
           sharedModules
           configPath
         ];
+
+        networking.hostName = hostName;
       }
     ];
   }

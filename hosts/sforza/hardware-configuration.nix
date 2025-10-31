@@ -12,6 +12,10 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
+  boot.kernelParams = [
+    "video=eDP-1:d" # Disable eDP-1
+    "video=HDMI-A-1:1920x1080@180"
+  ];
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
