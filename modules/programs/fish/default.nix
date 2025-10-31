@@ -9,13 +9,11 @@ let
 
   inherit (lib) mkEnableOption mkIf optionalString;
 
-  cfg = config.myOptions.fish;
+  cfg = config.mine.fish;
 in
 {
-  options.myOptions.fish = {
-    enable = mkEnableOption "Fish Shell" // {
-      default = true;
-    };
+  options.mine.fish = {
+    enable = mkEnableOption "Fish Shell";
   };
 
   config = mkIf cfg.enable {
@@ -27,6 +25,8 @@ in
     environment.pathsToLink = [ "/share/fish" ];
     programs.fish.enable = true;
 
+    hjem.extraModules = [ ./_modules.nix ];
+
     hj = {
       packages = with pkgs; [
         zoxide
@@ -37,7 +37,7 @@ in
       ];
     };
 
-    mine.programs.fish = {
+    hj.mine.programs.fish = {
       enable = true;
 
       plugins = { inherit (pkgs.fishPlugins) tide fzf-fish; };

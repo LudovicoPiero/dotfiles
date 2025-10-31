@@ -8,12 +8,12 @@ let
   _ = lib.getExe;
   __ = lib.getExe';
 
-  cfg = config.myOptions.fish;
+  cfg = config.mine.fish;
 in
 with pkgs;
 {
   config = lib.mkIf cfg.enable {
-    mine.programs.fish.config = lib.mkAfter ''
+    hj.mine.programs.fish.config = lib.mkAfter ''
       function gitignore
           curl -sL https://www.gitignore.io/api/$argv
       end

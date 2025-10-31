@@ -182,7 +182,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    hj.packages =
+    packages =
       (optionals (cfg.package != null) [ cfg.package ])
       ++ (filter (pl: isVendored pl) (attrValues cfg.plugins));
 
@@ -216,7 +216,7 @@ in
         ''
     ) (filterAttrs (n: v: !(isVendored v)) cfg.plugins);
 
-    hj.xdg.config.files = {
+    xdg.config.files = {
       "fish/config.fish" = mkIf (cfg.config != "") { source = writeFish "config.fish" cfg.config; };
       "fish/conf.d/mine-environment-variables.fish" = mkIf (env != { }) {
         text = ''

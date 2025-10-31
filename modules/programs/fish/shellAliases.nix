@@ -7,12 +7,12 @@
 let
   _ = lib.getExe;
 
-  cfg = config.myOptions.fish;
+  cfg = config.mine.fish;
 in
 with pkgs;
 {
   config = lib.mkIf cfg.enable {
-    mine.programs.fish = {
+    hj.mine.programs.fish = {
       config = lib.mkAfter ''
         alias cat="${_ bat}"
         alias ls="${_ lsd}"

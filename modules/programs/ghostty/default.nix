@@ -14,7 +14,8 @@
   };
 
   config = lib.mkIf config.mine.ghostty.enable {
-    environment.systemPackages = with pkgs; [ ghostty ];
+    hj.packages = with pkgs; [ ghostty ];
+
     hj.xdg.config.files."ghostty/config" = {
       clobber = true;
       text = ''

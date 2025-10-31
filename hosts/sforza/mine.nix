@@ -1,3 +1,4 @@
+{ inputs', pkgs, ... }:
 {
   vars = {
     # List of available color schemes:
@@ -10,17 +11,41 @@
     stateVersion = "24.11";
     terminal = "ghostty";
     timezone = "Asia/Tokyo";
-    username = "lewdo";
+    username = "lain";
     withGui = true;
   };
 
   mine = {
-    ghostty = {
-      enable = true;
-    };
+    fish.enable = true;
+    ghostty.enable = true;
+    git.enable = true;
+    gpg.enable = true;
+    secrets.enable = true;
+    tlp.enable = true;
 
-    secrets = {
+    fonts = {
       enable = true;
+      size = 15;
+      cjk = {
+        name = "Noto Sans CJK";
+        package = pkgs.noto-fonts-cjk-sans;
+      };
+      emoji = {
+        name = "Noto Color Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+      };
+      icon = {
+        name = "Symbols Nerd Font Mono";
+        package = pkgs.nerd-fonts.symbols-only;
+      };
+      main = {
+        name = "SF Pro Display";
+        package = inputs'.ludovico-pkgs.packages.san-francisco-pro;
+      };
+      terminal = {
+        name = "Iosevka Q";
+        package = inputs'.ludovico-pkgs.packages.iosevka-q;
+      };
     };
   };
 }
