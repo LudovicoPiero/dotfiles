@@ -14,8 +14,7 @@ in
       enable = true;
       config = {
         user = {
-          name = "Ludovico Piero";
-          email = "lewdovico@gnuweeb.org";
+          inherit (config.vars) name email;
           signingKey = "3911DD276CFE779C";
         };
 
