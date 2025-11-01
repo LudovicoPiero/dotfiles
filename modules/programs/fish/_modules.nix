@@ -184,7 +184,7 @@ in
   config = mkIf cfg.enable {
     packages =
       (optionals (cfg.package != null) [ cfg.package ])
-      ++ (filter (pl: isVendored pl) (attrValues cfg.plugins));
+      ++ (filter isVendored (attrValues cfg.plugins));
 
     mine.programs.fish.earlyConfigFiles = mapAttrs' (
       name: source:

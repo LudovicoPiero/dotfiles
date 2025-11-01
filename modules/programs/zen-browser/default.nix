@@ -17,7 +17,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = inputs'.zen-browser.packages.default;
+      inherit (inputs'.zen-browser.packages) default;
       description = "The zen-browser package to install.";
     };
   };
