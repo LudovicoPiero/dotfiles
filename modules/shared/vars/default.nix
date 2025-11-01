@@ -9,6 +9,11 @@ in
       default = "email@69420blaze.it";
     };
 
+    name = mkOption {
+      type = types.str;
+      default = "Ludovico Piero";
+    };
+
     username = mkOption {
       type = types.str;
       default = "airi";
