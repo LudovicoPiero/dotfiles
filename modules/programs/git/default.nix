@@ -102,7 +102,8 @@ in
     };
 
     hj.files.".config/git/ignore".text = ''
-      # Compiled source #
+      # Compiled sources #
+      ####################
       *.o
       *.so
       *.a
@@ -113,22 +114,51 @@ in
       *.exe
       *.out
       *.pyc
-      __pycache__/
-      .DS_Store
+      *.elc
 
-      # Backup files #
+      # Caches #
+      ##########
+      __pycache__/
+      .ccls-cache/
+      .sass-cache/
+
+      # Backup and temporary files #
+      #############################
       *~
+      *.*~
       *.bak
       *.swp
-
-      *result*
-      .direnv
-      node_modules
+      .*.sw[a-z]
+      *.un~
+      # Emacs autosaves
+      \#*
+      .\#*
+      # Vim
+      .netrwhist
+      # Misc
       tmp
       TODO
 
+      # Project artifacts #
+      #####################
+      *result*
+      .direnv
+      node_modules
+
       # Nix #
+      #######
       .nix-defexpr/
+
+      # OS-generated files #
+      ######################
+      .DS_Store
+      .DS_Store?
+      .CFUserTextEncoding
+      .Trash
+      .Xauthority
+      thumbs.db
+      Thumbs.db
+      Icon?
     '';
   };
 }
