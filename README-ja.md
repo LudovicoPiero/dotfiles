@@ -14,9 +14,9 @@
 ---
 
 > [!WARNING]
-> これは私の個人的なNixOS設定であり、進行中の作業です。  
-> このセットアップは、Nixの学習と自身のコンピュータ管理を目的としています。  
-> **この構成を使用したことによる損害について、私は一切責任を負いません。自己責任でご利用ください。**  
+> これは私の個人的なNixOS設定であり、進行中の作業です。
+> このセットアップは、Nixの学習と自身のコンピュータ管理を目的としています。
+> **この構成を使用したことによる損害について、私は一切責任を負いません。自己責任でご利用ください。**
 
 ---
 
@@ -25,20 +25,6 @@
 <div align="center">
     <img src="assets/ss.png" alt="スクリーンショット" width="100%"/>
 </div>
-
----
-
-## **📦 私が個人用のコンピュータで使用しているソフトウェア**
-
-| コンポーネント            | 名前/リンク                                  |
-|---------------------------|----------------------------------------------|
-| **Waylandコンポジター**    | [Hyprland](https://hyprland.org)             |
-| **Waylandバー**           | [Waybar](https://github.com/Alexays/Waybar)  |
-| **通知マネージャー**       | [Mako](https://github.com/emersion/mako)     |
-| **エディター**            | [Neovim](https://neovim.io/)                 |
-| **ターミナル**            | [Kitty](https://github.com/kovidgoyal/kitty) |
-| **シェル**                | [Fish](https://fishshell.com/)               |
-| **ブラウザー**            | [Firefox](https://www.mozilla.org/en-US/firefox) |
 
 ---
 

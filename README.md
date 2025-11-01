@@ -14,9 +14,9 @@
 ---
 
 > [!WARNING]
-> This is my personal NixOS configuration and a work in progress.  
-> I'm using it to learn Nix and manage my own systems.  
-> **Use at your own risk — I am not responsible for any damage caused.**  
+> This is my personal NixOS configuration and a work in progress.
+> I'm using it to learn Nix and manage my own systems.
+> **Use at your own risk — I am not responsible for any damage caused.**
 
 ---
 
@@ -25,20 +25,6 @@
 <div align="center">
     <img src="assets/ss.png" alt="Screenshot" width="100%"/>
 </div>
-
----
-
-## **📦 Software I Use**
-
-| Component            | Name/Link                                  |
-|-----------------------|--------------------------------------------|
-| **Wayland compositor** | [Hyprland](https://hyprland.org)         |
-| **Wayland bar**        | [Waybar](https://github.com/Alexays/Waybar) |
-| **Notification manager** | [Mako](https://github.com/emersion/mako) |
-| **Editor**            | [Neovim](https://neovim.io/)              |
-| **Terminal**          | [Kitty](https://github.com/kovidgoyal/kitty) |
-| **Shell**             | [Fish](https://fishshell.com/)            |
-| **Browser**           | [Firefox](https://www.mozilla.org/en-US/firefox) |
 
 ---
 
