@@ -26,6 +26,11 @@ in
       pkgs.whitesur-icon-theme
       pkgs.phinger-cursors
 
+      # Gnome Extensions
+      pkgs.gnomeExtensions.dash-to-panel
+      pkgs.gnomeExtensions.user-themes
+      pkgs.gnomeExtensions.appindicator
+
       # Etc
       # Added here because core-apps include this
       pkgs.gnome-tweaks
@@ -36,6 +41,7 @@ in
     services.xserver.enable = true;
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
+    services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
     # To disable installing GNOME's suite of applications
     # and only be left with GNOME shell.
