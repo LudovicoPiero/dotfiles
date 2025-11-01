@@ -12,6 +12,8 @@
   };
 
   mine = {
+    gnome.enable = true;
+
     fish.enable = true;
     ghostty.enable = true;
     git.enable = true;
