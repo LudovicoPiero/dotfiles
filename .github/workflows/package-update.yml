@@ -1,0 +1,56 @@
+name: "Update Packages"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * 0"
+    - cron: "0 16 * * 3"
+
+jobs:
+  update-packages:
+    if: github.repository == 'ludovicopiero/dotfiles' # Don't run in forks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Install Lix
+        uses: DeterminateSystems/nix-installer-action@v20
+        with:
+          diagnostic-endpoint: ""
+          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+
+      - name: Git config
+        run: |
+          git config --global user.email "lewdovico@gnuweeb.org"
+          git config --global user.name "Ludovico Piero"
+
+      - name: Run nvfetcher updates
+        run: |
+          pushd packages
+          nix run github:ludovicopiero/nvfetcher -- --commit-changes
+          popd
+
+      - name: Run nix-update for all flakes
+        run: |
+          export LC_ALL=en_US.UTF-8
+          export LANG=en_US.UTF-8
+          for pkg in iosevka-q sarasa-gothic; do
+            nix run nixpkgs#nix-update -- --flake "$pkg" --commit
+          done
+
+      - name: Create or update Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          title: "Automated package updates"
+          body: |
+            This PR combines:
+            - nvfetcher source updates
+            - nix-update for iosevka-q, sarasa-gothic
+          labels: automated, uwu, keep-up-to-date
+          branch: "package-update"
+          delete-branch: true

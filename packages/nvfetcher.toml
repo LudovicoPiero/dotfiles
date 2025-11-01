@@ -1,0 +1,46 @@
+[san-francisco-pro]
+src.git = "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts"
+fetch.git = "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts"
+
+[firefox-gnome-theme]
+src.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
+fetch.git = "https://github.com/rafaelmardojai/firefox-gnome-theme"
+
+[whitesur-gtk-theme]
+src.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
+fetch.git = "https://github.com/vinceliuice/WhiteSur-gtk-theme"
+
+[catppuccin-fcitx5]
+src.git = "https://github.com/catppuccin/fcitx5"
+fetch.git = "https://github.com/catppuccin/fcitx5"
+
+[firefox-ui-fix]
+src.git = "https://github.com/black7375/Firefox-UI-Fix"
+src.branch = "proton-style"
+fetch.git = "https://github.com/black7375/Firefox-UI-Fix"
+
+[fuzzmoji]
+src.git = "https://codeberg.org/codingotaku/fuzzmoji"
+fetch.git = "https://codeberg.org/codingotaku/fuzzmoji"
+
+[runapp]
+src.git = "https://github.com/c4rlo/runapp"
+fetch.git = "https://github.com/c4rlo/runapp"
+
+[app2unit]
+src.git = "https://github.com/Vladimir-csp/app2unit"
+fetch.git = "https://github.com/Vladimir-csp/app2unit"
+
+[san-francisco-fonts]
+src.git = "https://github.com/oyezcubed/Apple-Fonts-San-Francisco-New-York"
+fetch.git = "https://github.com/oyezcubed/Apple-Fonts-San-Francisco-New-York"
+
+[wezterm]
+src.git = "https://github.com/wez/wezterm"
+fetch.git = "https://github.com/wez/wezterm"
+cargo_locks = ["Cargo.lock"]
+git.fetchSubmodules = true
+
+[firefox-csshacks]
+src.git = "https://github.com/MrOtherGuy/firefox-csshacks"
+fetch.git = "https://github.com/MrOtherGuy/firefox-csshacks"

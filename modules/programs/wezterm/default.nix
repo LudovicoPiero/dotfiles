@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  inputs',
+  self',
   ...
 }:
 let
@@ -19,7 +19,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = inputs'.ludovico-pkgs.packages.wezterm;
+      default = self'.packages.wezterm;
       description = "The WezTerm package to install.";
     };
   };

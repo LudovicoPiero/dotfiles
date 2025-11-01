@@ -4,8 +4,10 @@
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      imports = [ ./hosts ];
+      imports = [
+        ./hosts
+        ./packages
+      ];
     };
 
   inputs = {
@@ -34,13 +36,6 @@
       type = "github";
       owner = "LudovicoPiero";
       repo = "nvim-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ludovico-pkgs = {
-      type = "github";
-      owner = "LudovicoPiero";
-      repo = "pkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -75,6 +70,13 @@
       type = "github";
       owner = "0xc000022070";
       repo = "zen-browser-flake";
+    };
+
+    rust-overlay = {
+      type = "github";
+      owner = "oxalica";
+      repo = "rust-overlay";
+      rev = "59c45eb69d9222a4362673141e00ff77842cd219"; # 2025-10-31
     };
   };
 }

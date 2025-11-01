@@ -2,7 +2,7 @@
   lib,
   pkgs,
   config,
-  inputs',
+  self',
   ...
 }:
 let
@@ -26,7 +26,7 @@ in
       };
       package = mkOption {
         type = types.package;
-        default = inputs'.ludovico-pkgs.packages.san-francisco-pro;
+        default = self'.packages.san-francisco-pro;
       };
     };
 
@@ -37,7 +37,7 @@ in
       };
       package = mkOption {
         type = types.package;
-        default = inputs'.ludovico-pkgs.packages.iosevka-q;
+        default = self'.packages.iosevka-q;
       };
     };
 

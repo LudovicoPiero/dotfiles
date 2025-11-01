@@ -2,6 +2,7 @@
   config,
   lib,
   inputs',
+  self',
   pkgs,
   ...
 }:
@@ -21,7 +22,7 @@ in
   config = mkIf cfg.enable {
     hj.packages = [
       # Theming
-      inputs'.ludovico-pkgs.packages.whitesur-gtk-theme
+      self'.packages.whitesur-gtk-theme
       inputs'.ludovico-nvim.packages.default
       pkgs.whitesur-icon-theme
       pkgs.phinger-cursors

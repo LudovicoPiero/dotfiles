@@ -1,4 +1,4 @@
-{ inputs', pkgs, ... }:
+{ self', pkgs, ... }:
 {
   vars = {
     email = "lewdovico@gnuweeb.org";
@@ -41,11 +41,11 @@
       };
       main = {
         name = "SF Pro Display";
-        package = inputs'.ludovico-pkgs.packages.san-francisco-pro;
+        package = self'.packages.san-francisco-pro;
       };
       terminal = {
         name = "Iosevka Q";
-        package = inputs'.ludovico-pkgs.packages.iosevka-q;
+        package = self'.packages.iosevka-q;
       };
     };
   };

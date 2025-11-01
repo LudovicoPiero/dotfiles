@@ -24,10 +24,10 @@ let
 
 in
 withSystem system (
-  { inputs', ... }:
+  { inputs', self', ... }:
   let
     sharedModules = import ../modules;
-    specialArgs = { inherit inputs inputs'; };
+    specialArgs = { inherit inputs inputs' self'; };
   in
   inputs.nixpkgs.lib.nixosSystem {
     inherit specialArgs;
