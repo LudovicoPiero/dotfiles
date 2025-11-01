@@ -1,8 +1,8 @@
 {
   inputs,
+  inputs',
   lib,
   config,
-  pkgs,
   ...
 }:
 {
@@ -22,7 +22,7 @@
   config = lib.mkIf config.mine.hjem.enable {
     hjem = {
       clobberByDefault = true;
-      linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
+      linker = inputs'.hjem.packages.smfh;
       users = {
         "${config.vars.username}" = {
           user = "${config.vars.username}";
