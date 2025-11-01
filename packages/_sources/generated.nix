@@ -3,17 +3,17 @@
 {
   app2unit = {
     pname = "app2unit";
-    version = "6e2f0cd6939093ff2792d88d56c453fd66ec4871";
+    version = "2271a03e75291019dd5717eb403330d90f3ee24e";
     src = fetchgit {
       url = "https://github.com/Vladimir-csp/app2unit";
-      rev = "6e2f0cd6939093ff2792d88d56c453fd66ec4871";
+      rev = "2271a03e75291019dd5717eb403330d90f3ee24e";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-XjpSdkwmnho3ReIrzC0x4iFMJKur2q+TUcFPhsrFv1c=";
+      sha256 = "sha256-dXwd51QEoQXQQKMT8scuvcp1qxSwTYUD2bpLj5Bhszs=";
     };
-    date = "2025-10-22";
+    date = "2025-10-29";
   };
   catppuccin-fcitx5 = {
     pname = "catppuccin-fcitx5";
