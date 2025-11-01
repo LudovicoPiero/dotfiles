@@ -70,5 +70,11 @@
       repo = "sops-nix";
     };
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    zen-browser = {
+      type = "github";
+      owner = "0xc000022070";
+      repo = "zen-browser-flake";
+    };
   };
 }

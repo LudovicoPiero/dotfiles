@@ -22,6 +22,7 @@
     gpg.enable = true;
     secrets.enable = true;
     tlp.enable = true;
+    zen-browser.enable = true;
 
     fonts = {
       enable = true;
