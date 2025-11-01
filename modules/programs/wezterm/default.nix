@@ -188,12 +188,12 @@ in
         -- Add URL hyperlink rules for Markdown handling
         -- Source: https://github.com/wez/wezterm/issues/3803#issuecomment-1608954312
         config.hyperlink_rules = {
-          { regex = '\\((\\w+://\\S+)\\)',     format = '$1', highlight = 1 },
-          { regex = '\\[(\\w+://\\S+)\\]',     format = '$1', highlight = 1 },
-          { regex = '\\{(\\w+://\\S+)\\}',     format = '$1', highlight = 1 },
-          { regex = '<(\\w+://\\S+)>',            format = '$1', highlight = 1 },
-          { regex = '[^(]\\b(\\w+://\\S+[)/a-zA-Z0-9-]+)',format='$1', highlight = 1 },
-          { regex = '\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b', format = 'mailto:$0' },
+          { regex = "\\((\\w+://\\S+)\\)",     format = "$1", highlight = 1 },
+          { regex = "\\[(\\w+://\\S+)\\]",     format = "$1", highlight = 1 },
+          { regex = "\\{(\\w+://\\S+)\\}",     format = "$1", highlight = 1 },
+          { regex = "<(\\w+://\\S+)>",            format = "$1", highlight = 1 },
+          { regex = "[^(]\\b(\\w+://\\S+[)/a-zA-Z0-9-]+)",format="$1", highlight = 1 },
+          { regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b", format = "mailto:$0" },
         }
 
         -- Load and apply user-specific overrides if available
