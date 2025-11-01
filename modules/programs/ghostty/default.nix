@@ -4,21 +4,40 @@
   lib,
   ...
 }:
+let
+  inherit (lib) mkOption types mkIf;
+  cfg = config.mine.ghostty;
+in
 {
   options.mine.ghostty = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
+    enable = mkOption {
+      type = types.bool;
       default = false;
       description = "Enable ghostty terminal emulator";
     };
+
+    font-family = mkOption {
+      type = types.str;
+      default = "${config.mine.fonts.terminal.name} Semibold";
+      description = "Font family for ghostty terminal.";
+    };
+
+    font-size = mkOption {
+      type = types.str;
+      default = "${toString config.mine.fonts.size}";
+      description = "Font size for ghostty terminal.";
+    };
   };
 
-  config = lib.mkIf config.mine.ghostty.enable {
+  config = mkIf config.mine.ghostty.enable {
     hj.packages = with pkgs; [ ghostty ];
 
     hj.xdg.config.files."ghostty/config" = {
       clobber = true;
       text = ''
+        font-family = "${cfg.font-family}"
+        font-size = "${cfg.font-size}"
+
         window-padding-x = 15
         window-padding-y = 15
         app-notifications = "false"

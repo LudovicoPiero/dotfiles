@@ -33,7 +33,7 @@
     systemPackages = lib.attrValues {
       inherit (pkgs)
         # Networking and connectivity tools
-        teavpn2
+        teavpn2 # Gnuweeb
         iputils # Tools like ping, tracepath, etc., for IP network diagnostics
         curl # Command-line tool for transferring data with URLs
         dnsutils # DNS-related tools like dig and nslookup
