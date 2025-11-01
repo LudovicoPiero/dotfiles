@@ -64,6 +64,7 @@
         sbctl # Secure Boot key manager, useful for enrolling custom keys, debugging SB issues
 
         # Favorite desktop apps
+        vesktop # Discord client
         qbittorrent # Qt-based BitTorrent client with a clean UI
         imv # Minimalist image viewer for X11/Wayland
         viewnior # Lightweight image viewer, good for simple needs
