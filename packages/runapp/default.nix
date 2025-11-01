@@ -16,8 +16,8 @@ stdenv.mkDerivation {
 
   postPatch = ''
     substituteInPlace Makefile \
-      --replace "install_runner := sudo" "install_runner :=" \
-      --replace "-march=native" ""
+      --replace-warn "install_runner := sudo" "install_runner :=" \
+      --replace-warn "-march=native" ""
   '';
 
   makeFlags = [ "PREFIX=$(out)" ];
