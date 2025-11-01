@@ -3,9 +3,9 @@
   vars = {
     email = "lewdovico@gnuweeb.org";
     isALaptop = true;
-    opacity = 0.88; # FIXME: still unused
+    opacity = 0.99;
     stateVersion = "24.11";
-    terminal = "ghostty";
+    terminal = "wezterm";
     timezone = "Asia/Tokyo";
     username = "lain";
     withGui = true;
@@ -18,6 +18,7 @@
     gpg.enable = true;
     secrets.enable = true;
     tlp.enable = true;
+    wezterm.enable = true;
     zen-browser.enable = true;
 
     fonts = {
