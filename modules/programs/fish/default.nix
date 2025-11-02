@@ -91,17 +91,6 @@ in
       config =
         with pkgs;
         ''
-          function fish_greeting
-          end
-
-          set -gx GNUPGHOME $HOME/.config/gnupg
-          set -gx EDITOR nvim
-
-          alias v nvim
-          alias g git
-          alias c 'cd $HOME/Code/nixos'
-          alias config 'cd $HOME/Code/nixos'
-
           . ${config.sops.secrets."shells/githubToken".path}
           ${_ nix-your-shell} fish | source
           ${_ zoxide} init fish | source

@@ -30,6 +30,26 @@
   };
 
   environment = {
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      FZF_DEFAULT_COMMAND = "rg --files --hidden --follow --glob '!.git/*'";
+      FZF_CTRL_T_COMMAND = "\${FZF_DEFAULT_COMMAND}";
+      NIXPKGS_ALLOW_UNFREE = "1";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    }
+    // lib.optionalAttrs config.vars.withGui {
+      NIXOS_OZONE_WL = "1";
+      TERM = "xterm-256color";
+      # Fix for some Java AWT applications (e.g., Android Studio),
+      # use this if they aren't displayed properly:
+      "_JAVA_AWT_WM_NONREPARENTING" = "1";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      QT_QPA_PLATFORM = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+    };
+
     systemPackages = lib.attrValues {
       inherit (pkgs)
         # Networking and connectivity tools
