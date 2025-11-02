@@ -41,7 +41,7 @@
     },
     "firefox-csshacks": {
         "cargoLocks": null,
-        "date": "2025-10-27",
+        "date": "2025-11-02",
         "extract": null,
         "name": "firefox-csshacks",
         "passthru": null,
@@ -51,13 +51,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "41d995ac7b79da88c2f6d91784aa511a9b3aea8d",
-            "sha256": "sha256-YKO/0C+Ihm8IpQDD6B4Pcuhu8fgUuWy3ACXTcve7bfY=",
+            "rev": "bcff6cce2155c253136b75799086a2e835bb90aa",
+            "sha256": "sha256-2RRDDkoeATEY/hwwN9sTUxRE6yx7VuApoXLv7/4Pu/4=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/MrOtherGuy/firefox-csshacks"
         },
-        "version": "41d995ac7b79da88c2f6d91784aa511a9b3aea8d"
+        "version": "bcff6cce2155c253136b75799086a2e835bb90aa"
     },
     "firefox-gnome-theme": {
         "cargoLocks": null,

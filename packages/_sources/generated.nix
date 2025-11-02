@@ -31,17 +31,17 @@
   };
   firefox-csshacks = {
     pname = "firefox-csshacks";
-    version = "41d995ac7b79da88c2f6d91784aa511a9b3aea8d";
+    version = "bcff6cce2155c253136b75799086a2e835bb90aa";
     src = fetchgit {
       url = "https://github.com/MrOtherGuy/firefox-csshacks";
-      rev = "41d995ac7b79da88c2f6d91784aa511a9b3aea8d";
+      rev = "bcff6cce2155c253136b75799086a2e835bb90aa";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-YKO/0C+Ihm8IpQDD6B4Pcuhu8fgUuWy3ACXTcve7bfY=";
+      sha256 = "sha256-2RRDDkoeATEY/hwwN9sTUxRE6yx7VuApoXLv7/4Pu/4=";
     };
-    date = "2025-10-27";
+    date = "2025-11-02";
   };
   firefox-gnome-theme = {
     pname = "firefox-gnome-theme";
