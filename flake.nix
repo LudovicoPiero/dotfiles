@@ -26,6 +26,13 @@
       repo = "flake-parts";
     };
 
+    chaotic = {
+      type = "github";
+      owner = "chaotic-cx";
+      repo = "nyx";
+      ref = "nyxpkgs-unstable";
+    };
+
     hjem = {
       type = "github";
       owner = "feel-co";

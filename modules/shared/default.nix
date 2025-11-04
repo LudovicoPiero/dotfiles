@@ -265,10 +265,14 @@
         # The default is https://cache.nixos.org, which has a priority of 40.
         # Lower value means higher priority.
         "https://cache.nixos.org?priority=10"
+        "https://chaotic-nyx.cachix.org?priority=30"
         "https://cache.garnix.io?priority=40"
       ];
 
-      trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      ];
     };
 
     registry = {

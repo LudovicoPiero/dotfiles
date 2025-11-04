@@ -2,10 +2,17 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  inputs',
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
+    inputs.chaotic.nixosModules.default
     ./hardware-configuration.nix
     ./mine.nix
   ];
@@ -28,8 +35,11 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Chaotic's stuff
+  chaotic.nyx.cache.enable = false; # Added manually
+
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
