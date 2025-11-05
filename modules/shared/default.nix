@@ -84,7 +84,6 @@
         sbctl # Secure Boot key manager, useful for enrolling custom keys, debugging SB issues
 
         # Favorite desktop apps
-        vesktop # Discord client
         qbittorrent # Qt-based BitTorrent client with a clean UI
         imv # Minimalist image viewer for X11/Wayland
         viewnior # Lightweight image viewer, good for simple needs
@@ -97,6 +96,15 @@
 
       # coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
       # findutils = pkgs.hiPrio pkgs.uutils-findutils;
+
+      vesktop-wayland = pkgs.vesktop.overrideAttrs (old: {
+        postFixup = ''
+          ${old.postFixup or ""}
+          # Rewrap vesktop to add Wayland-specific flags
+          wrapProgram $out/bin/vesktop \
+            --add-flags "--ozone-platform=wayland --enable-wayland-ime --wayland-text-input-version=3"
+        '';
+      });
 
       tidal-hifi = pkgs.tidal-hifi.overrideAttrs {
         /*
