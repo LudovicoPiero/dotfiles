@@ -62,7 +62,7 @@ in
         # Ibus
         type = "ibus";
         ibus.engines = with pkgs.ibus-engines; [
-          mozc # Japanese
+          mozc-ut # Japanese
           hangul # Korean
         ];
 
