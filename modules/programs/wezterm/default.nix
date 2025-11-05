@@ -64,6 +64,7 @@ in
             audible_bell = "Disabled",
             clean_exit_codes = { 130 },
             window_background_opacity = ${toString config.vars.opacity},
+            use_ime = true,
 
             -- Window frame styling
             window_frame = {
