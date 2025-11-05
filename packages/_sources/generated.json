@@ -1,7 +1,7 @@
 {
     "app2unit": {
         "cargoLocks": null,
-        "date": "2025-10-29",
+        "date": "2025-11-05",
         "extract": null,
         "name": "app2unit",
         "passthru": null,
@@ -11,13 +11,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "2271a03e75291019dd5717eb403330d90f3ee24e",
-            "sha256": "sha256-dXwd51QEoQXQQKMT8scuvcp1qxSwTYUD2bpLj5Bhszs=",
+            "rev": "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b",
+            "sha256": "sha256-0bGddvngzDvIz/oP7bI0dn/gbCTdsVyQC0UN5eNCGMw=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/Vladimir-csp/app2unit"
         },
-        "version": "2271a03e75291019dd5717eb403330d90f3ee24e"
+        "version": "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b"
     },
     "catppuccin-fcitx5": {
         "cargoLocks": null,
@@ -51,13 +51,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "bcff6cce2155c253136b75799086a2e835bb90aa",
-            "sha256": "sha256-2RRDDkoeATEY/hwwN9sTUxRE6yx7VuApoXLv7/4Pu/4=",
+            "rev": "a7a29f9ac9b8dc5715df18251999d9a5f4db881b",
+            "sha256": "sha256-ktPOQ5z+8oy4JtOUxDx+ynsNHjxnisrNAiV6UW1bGqE=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/MrOtherGuy/firefox-csshacks"
         },
-        "version": "bcff6cce2155c253136b75799086a2e835bb90aa"
+        "version": "a7a29f9ac9b8dc5715df18251999d9a5f4db881b"
     },
     "firefox-gnome-theme": {
         "cargoLocks": null,
