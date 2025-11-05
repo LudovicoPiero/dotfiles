@@ -3,17 +3,17 @@
 {
   app2unit = {
     pname = "app2unit";
-    version = "2271a03e75291019dd5717eb403330d90f3ee24e";
+    version = "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b";
     src = fetchgit {
       url = "https://github.com/Vladimir-csp/app2unit";
-      rev = "2271a03e75291019dd5717eb403330d90f3ee24e";
+      rev = "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-dXwd51QEoQXQQKMT8scuvcp1qxSwTYUD2bpLj5Bhszs=";
+      sha256 = "sha256-0bGddvngzDvIz/oP7bI0dn/gbCTdsVyQC0UN5eNCGMw=";
     };
-    date = "2025-10-29";
+    date = "2025-11-05";
   };
   catppuccin-fcitx5 = {
     pname = "catppuccin-fcitx5";
@@ -31,15 +31,15 @@
   };
   firefox-csshacks = {
     pname = "firefox-csshacks";
-    version = "bcff6cce2155c253136b75799086a2e835bb90aa";
+    version = "a7a29f9ac9b8dc5715df18251999d9a5f4db881b";
     src = fetchgit {
       url = "https://github.com/MrOtherGuy/firefox-csshacks";
-      rev = "bcff6cce2155c253136b75799086a2e835bb90aa";
+      rev = "a7a29f9ac9b8dc5715df18251999d9a5f4db881b";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-2RRDDkoeATEY/hwwN9sTUxRE6yx7VuApoXLv7/4Pu/4=";
+      sha256 = "sha256-ktPOQ5z+8oy4JtOUxDx+ynsNHjxnisrNAiV6UW1bGqE=";
     };
     date = "2025-11-02";
   };
