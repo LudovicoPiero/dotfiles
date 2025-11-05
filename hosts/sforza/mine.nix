@@ -16,6 +16,7 @@
     gnome.enable = true;
 
     fish.enable = true;
+    fcitx5.enable = true;
     ghostty.enable = true;
     git.enable = true;
     gpg.enable = true;

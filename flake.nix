@@ -86,5 +86,13 @@
       repo = "rust-overlay";
       rev = "59c45eb69d9222a4362673141e00ff77842cd219"; # 2025-10-31
     };
+
+    firefox-addons = {
+      type = "gitlab";
+      owner = "rycee";
+      repo = "nur-expressions";
+      dir = "pkgs/firefox-addons";
+    };
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

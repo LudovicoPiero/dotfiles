@@ -31,6 +31,7 @@ in
       pkgs.gnomeExtensions.dash-to-panel
       pkgs.gnomeExtensions.user-themes
       pkgs.gnomeExtensions.appindicator
+      pkgs.gnomeExtensions.quick-lang-switch
 
       # Etc
       # Added here because core-apps include this

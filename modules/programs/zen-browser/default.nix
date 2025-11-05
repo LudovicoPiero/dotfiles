@@ -8,6 +8,11 @@ let
   cfg = config.mine.zen-browser;
 in
 {
+  imports = [
+    ./_modules.nix
+    ./_mozilla.nix
+  ];
+
   options.mine.zen-browser = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -23,7 +28,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    #TODO: Module options for zen-browser can be added here
-    hj.packages = [ cfg.package ];
+    mine.programs.zen-browser = {
+      enable = true;
+
+      package = cfg.package;
+
+      profiles = {
+        ludovico = {
+          id = 0;
+          isDefault = true;
+          name = "Ludovico";
+        };
+      };
+    };
   };
 }
