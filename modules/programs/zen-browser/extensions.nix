@@ -10,6 +10,7 @@
       ublock-origin
       search-by-image
       violentmonkey
+      vimium
     ];
     settings = {
       "uBlock0@raymondhill.net" = {
