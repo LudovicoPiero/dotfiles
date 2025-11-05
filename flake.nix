@@ -38,6 +38,7 @@
       owner = "feel-co";
       repo = "hjem";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.ndg.follows = "";
     };
 
     ludovico-nvim = {
