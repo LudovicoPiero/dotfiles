@@ -23,7 +23,6 @@ in
     hj.packages = [
       # Theming
       self'.packages.whitesur-gtk-theme
-      inputs'.ludovico-nvim.packages.default
       pkgs.whitesur-icon-theme
       pkgs.phinger-cursors
 

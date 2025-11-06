@@ -41,13 +41,6 @@
       inputs.ndg.follows = "";
     };
 
-    ludovico-nvim = {
-      type = "github";
-      owner = "LudovicoPiero";
-      repo = "nvim-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # LIX
     lix = {
       type = "tarball";
@@ -57,23 +50,23 @@
     lix-module = {
       type = "tarball";
       url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
     };
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
-    lix-module.inputs.lix.follows = "lix";
 
     programsdb = {
       type = "github";
       owner = "wamserma";
       repo = "flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix = {
       type = "github";
       owner = "Mic92";
       repo = "sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser = {
       type = "github";
@@ -93,7 +86,13 @@
       owner = "rycee";
       repo = "nur-expressions";
       dir = "pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+
+    mnw = {
+      type = "github";
+      owner = "gerg-l";
+      repo = "mnw";
+    };
   };
 }
