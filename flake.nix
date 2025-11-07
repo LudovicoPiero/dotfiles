@@ -95,10 +95,12 @@
       repo = "mnw";
     };
 
-    blink-cmp = {
+    nvim-overlay = {
       type = "github";
-      owner = "saghen";
-      repo = "blink.cmp";
+      owner = "nix-community";
+      repo = "neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
   };
 }

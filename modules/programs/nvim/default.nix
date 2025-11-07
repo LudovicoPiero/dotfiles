@@ -22,7 +22,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = inputs'.nvim.packages.default;
+      inherit (inputs'.nvim-overlay.packages) default;
       description = "The nvim package to install.";
     };
   };
@@ -30,16 +30,21 @@ in
   config = mkIf cfg.enable {
     programs.mnw = {
       enable = true;
+
+      neovim = cfg.package;
+
       initLua = ''
         require("lain")
       '';
 
       plugins = {
         opt = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
-        optAttrs = {
-          #TODO: https://github.com/Gerg-L/nvim-flake/blob/cc168eb146aa258b815ba97491d534eea6cf4aa8/packages/blink-cmp/package.nix
-          "blink.cmp" = inputs'.blink-cmp.packages.default;
-        };
+
+        #   #TODO: https://github.com/Gerg-L/nvim-flake/blob/cc168eb146aa258b815ba97491d534eea6cf4aa8/packages/blink-cmp/package.nix
+        #   # use npins instead of lazy.nvim
+        # optAttrs = {
+        #   "blink.cmp" = inputs'.blink-cmp.packages.default;
+        # };
 
         dev.lain = {
           pure = lib.fileset.toSource {
@@ -64,6 +69,7 @@ in
         nixd
 
         # --- Go ---
+        go
         gopls
         gotools
         golangci-lint

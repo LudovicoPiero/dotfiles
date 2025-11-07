@@ -1,8 +1,18 @@
 local M = {}
 
 function M.setup()
+  -- Use ; instead of :
+  vim.keymap.set("", ";", ":", { desc = "Use ; instead of :" })
+
+  -- Smarter j/k (move by display line when no count)
+  vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+  vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+  -- Kickstart-style mappings
   vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
   vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+  -- Terminal mode escape
   vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
   -- Window navigation
