@@ -20,6 +20,7 @@
     ghostty.enable = true;
     git.enable = true;
     gpg.enable = true;
+    nvim.enable = true;
     secrets.enable = true;
     tlp.enable = true;
     wezterm.enable = true;
