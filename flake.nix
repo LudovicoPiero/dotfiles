@@ -94,5 +94,11 @@
       owner = "gerg-l";
       repo = "mnw";
     };
+
+    blink-cmp = {
+      type = "github";
+      owner = "saghen";
+      repo = "blink.cmp";
+    };
   };
 }

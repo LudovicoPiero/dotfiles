@@ -31,29 +31,21 @@ in
     programs.mnw = {
       enable = true;
       initLua = ''
-        require("config.lazy")
+        require("lain")
       '';
 
       plugins = {
-        opt = [pkgs.vimPlugins.nvim-treesitter.withAllGrammars];
-        start = with pkgs.vimPlugins; [
-          lazy-nvim
-          gruvbox-nvim
-          trouble-nvim
-          cmp-emoji
-          lualine-nvim
-          typescript-nvim
-          nui-nvim
-          gitsigns-nvim
-          nvim-colorizer-lua
-        ];
+        opt = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
+        optAttrs = {
+          #TODO: https://github.com/Gerg-L/nvim-flake/blob/cc168eb146aa258b815ba97491d534eea6cf4aa8/packages/blink-cmp/package.nix
+          "blink.cmp" = inputs'.blink-cmp.packages.default;
+        };
 
-        dev.config = {
-          pure = ./nvim;
-          # impure =
-          #   # This is a hack it should be a absolute path
-          #   # here it'll only work from this directory
-          #   "/' .. vim.uv.cwd()  .. '/nvim";
+        dev.lain = {
+          pure = lib.fileset.toSource {
+            root = ./.;
+            fileset = lib.fileset.unions [ ./lua ];
+          };
         };
       };
 
@@ -67,17 +59,18 @@ in
 
       extraBinPath = with pkgs; [
         # --- Nix ---
-        nil
         statix
+        nixfmt
         nixd
 
         # --- Go ---
         gopls
+        gotools
         golangci-lint
         gofumpt
 
         # --- Python ---
-        pyright
+        basedpyright
         ruff
         black
 
@@ -87,19 +80,30 @@ in
         cargo
         clippy
 
+        # --- Lua ---
+        emmylua-ls # LSP for Lua (also known as sumneko_lua)
+        emmylua-check
+        stylua # Lua code formatter
+        luajitPackages.luacheck # Lua linter
+
         # --- C/C++ ---
         clang-tools # includes clangd, clang-format, etc.
+        cmake-language-server
+        mesonlsp
         gcc
 
         # --- Common tools ---
+        shellharden
+        typescript-language-server
+        haskell-language-server
         shfmt
         shellcheck
-        stylua
         nodePackages.prettier
         taplo
         marksman
         nodePackages.yaml-language-server
         vscode-langservers-extracted
+        # inputs'.self.packages.tree-sitter-cli #TODO
       ];
     };
   };
