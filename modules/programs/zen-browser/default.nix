@@ -31,7 +31,7 @@ in
     mine.programs.zen-browser = {
       enable = true;
 
-      package = cfg.package;
+      inherit (cfg) package;
 
       profiles = {
         ludovico = {

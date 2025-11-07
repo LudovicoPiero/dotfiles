@@ -41,11 +41,7 @@ let
 
   jsonFormat = pkgs.formats.json { };
 
-  supportedPlatforms = lib.flatten (lib.attrVals (lib.attrNames platforms) lib.platforms);
-
-  isWrapped = (wrappedPackageName != null);
-
-  defaultPackageName = if isWrapped then wrappedPackageName else unwrappedPackageName;
+  isWrapped = wrappedPackageName != null;
 
   packageName = if wrappedPackageName != null then wrappedPackageName else unwrappedPackageName;
 
@@ -113,9 +109,9 @@ let
     let
       containerToIdentity = _: container: {
         userContextId = container.id;
-        name = container.name;
-        icon = container.icon;
-        color = container.color;
+        inherit (container) name;
+        inherit (container) icon;
+        inherit (container) color;
         public = true;
       };
     in
@@ -177,9 +173,7 @@ let
     package:
     let
       # The configuration expected by the Firefox wrapper.
-      fcfg = {
-        enableGnomeExtensions = cfg.enableGnomeExtensions;
-      };
+      fcfg = { inherit (cfg) enableGnomeExtensions; };
 
       # A bit of hackery to force a config into the wrapper.
       browserName = package.browserName or (builtins.parseDrvName package.name).name;
@@ -215,7 +209,7 @@ in
     package = mkOption {
       inherit visible;
       type = with types; nullOr package;
-      default = inputs'.zen-browser.packages.default;
+      inherit (inputs'.zen-browser.packages) default;
       defaultText = literalExpression "pkgs.${packageName}";
       example = literalExpression ''
         pkgs.${packageName}.override {
@@ -476,28 +470,24 @@ in
               };
 
               bookmarks = mkOption {
-                type = (
+                type =
                   types.coercedTo bookmarkTypes.settingsType
                     (
                       bookmarks:
                       if bookmarks != { } then
-                        lib.warn
-                          ''
-                            ${cfg.name} bookmarks have been refactored into a submodule that now explicitly require a 'force' option to be enabled.
+                        lib.warn ''
+                          ${cfg.name} bookmarks have been refactored into a submodule that now explicitly require a 'force' option to be enabled.
 
-                            Replace:
+                          Replace:
 
-                            ${moduleName}.profiles.${name}.bookmarks = [ ... ];
+                          ${moduleName}.profiles.${name}.bookmarks = [ ... ];
 
-                            With:
+                          With:
 
-                            ${moduleName}.profiles.${name}.bookmarks = {
-                              settings = [ ... ];
-                            };
-                          ''
-                          {
-                            settings = bookmarks;
-                          }
+                          ${moduleName}.profiles.${name}.bookmarks = {
+                            settings = [ ... ];
+                          };
+                        '' { settings = bookmarks; }
                       else
                         { }
                     )
@@ -513,8 +503,7 @@ in
                           ];
                         }
                       )
-                    )
-                );
+                    );
                 default = { };
                 internal = !enableBookmarks;
                 description = "Declarative bookmarks.";
@@ -1031,8 +1020,8 @@ in
                 text = mkContainersJson profile.containers;
               };
 
-              "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" = mkIf (profile.search.enable) {
-                enable = profile.search.enable;
+              "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" = mkIf profile.search.enable {
+                inherit (profile.search) enable;
                 source = profile.search.file;
               };
 
