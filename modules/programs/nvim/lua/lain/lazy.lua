@@ -1,5 +1,5 @@
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+--- @diagnostic disable: param-type-not-match, undefined-global, type-not-found
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -74,114 +74,89 @@ require("lazy").setup({
 
       -- Document existing key chains
       spec = {
+        { "<leader>b", group = "[B]uffers", mode = { "n", "x" } },
+        { "<leader>c", group = "[C]ode", mode = { "n", "x" } },
+        { "<leader>d", group = "[D]ocument" },
+        { "<leader>f", group = "[F]ormat" },
         { "<leader>s", group = "[S]earch" },
         { "<leader>t", group = "[T]oggle" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+        { "<leader>x", group = "Quickfi[X]", mode = { "n", "v" } },
       },
     },
   },
 
-  { -- Fuzzy Finder (files, lsp, etc)
-    "nvim-telescope/telescope.nvim",
-    event = "VimEnter",
+  {
+    "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
+
+  {
+    "ibhagwan/fzf-lua",
+    cmd = "FzfLua",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { -- If encountering errors, see telescope-fzf-native README for installation instructions
-        "nvim-telescope/telescope-fzf-native.nvim",
-
-        -- `build` is used to run some command when the plugin is installed/updated.
-        -- This is only run then, not every time Neovim starts up.
-        build = "make",
-
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
-        cond = function()
-          return vim.fn.executable("make") == 1
-        end,
-      },
-      { "nvim-telescope/telescope-ui-select.nvim" },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
-      -- The easiest way to use Telescope, is to start by doing something like:
-      --  :Telescope help_tags
-      --
-      -- After running this command, a window will open up and you're able to
-      -- type in the prompt window. You'll see a list of `help_tags` options and
-      -- a corresponding preview of the help.
-      --
-      -- Two important keymaps to use while in Telescope are:
-      --  - Insert mode: <c-/>
-      --  - Normal mode: ?
-      --
-      -- This opens a window that shows you all of the keymaps for the current
-      -- Telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
-
-      -- [[ Configure Telescope ]]
-      -- See `:help telescope` and `:help telescope.setup()`
-      require("telescope").setup({
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown(),
+      require("fzf-lua").setup({
+        {
+          "max-perf",
+          "ivy",
+        },
+        winopts = {
+          preview = {
+            default = "bat",
           },
         },
       })
 
-      -- Enable Telescope extensions if they are installed
-      pcall(require("telescope").load_extension, "fzf")
-      pcall(require("telescope").load_extension, "ui-select")
-
-      -- See `:help telescope.builtin`
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-      vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-      vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-      vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-      vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-      vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-      vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-
-      -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set("n", "<leader>/", function()
-        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-          winblend = 10,
-          previewer = false,
-        }))
-      end, { desc = "[/] Fuzzily search in current buffer" })
-
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set("n", "<leader>s/", function()
-        builtin.live_grep({
-          grep_open_files = true,
-          prompt_title = "Live Grep in Open Files",
-        })
-      end, { desc = "[S]earch [/] in Open Files" })
-
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set("n", "<leader>sn", function()
-        builtin.find_files({ cwd = vim.fn.stdpath("config") })
-      end, { desc = "[S]earch [N]eovim files" })
+      local fzf = require("fzf-lua")
+      vim.keymap.set("n", "<leader>sq", fzf.quickfix, { desc = "[S]earch [Q]uickfix List" })
+      vim.keymap.set("n", "<leader>sh", fzf.helptags, { desc = "[S]earch [H]elp" })
+      vim.keymap.set("n", "<leader>sk", fzf.keymaps, { desc = "[S]earch [K]eymaps" })
+      vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
+      vim.keymap.set("n", "<leader>sb", fzf.builtin, { desc = "[S]earch [B]uiltin FzfLua" })
+      vim.keymap.set("n", "<leader>sw", fzf.grep_cword, { desc = "[S]earch current [W]ord" })
+      vim.keymap.set("n", "<leader>sg", fzf.live_grep, { desc = "[S]earch by [G]rep" })
+      vim.keymap.set("n", "<leader>sd", fzf.diagnostics_document, { desc = "[S]earch [d]iagnostic documents" })
+      vim.keymap.set("n", "<leader>sD", fzf.diagnostics_workspace, { desc = "[S]earch [D]iagnostic workspace" })
+      vim.keymap.set("n", "<leader>s.", fzf.oldfiles, { desc = "[S]earch Recent Files ('.' for repeat)" })
+      vim.keymap.set("n", "<leader><leader>", fzf.buffers, { desc = "[ ] Find existing buffers" })
+      vim.keymap.set("n", "<leader>/", fzf.lgrep_curbuf, { desc = "[S]earch [/] in Open Files" })
     end,
   },
 
@@ -218,16 +193,6 @@ require("lazy").setup({
             mode = mode or "n"
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
-
-          map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
-          map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-          map("grr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-          map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-          map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-          map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-          map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
-          map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
-          map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
@@ -296,9 +261,6 @@ require("lazy").setup({
 
       local diag_float = {}
       local on_attach_common = function(client, bufnr)
-        local opts = { noremap = true, silent = true, buffer = bufnr }
-        local fzf = require("fzf-lua")
-
         local augroup = vim.api.nvim_create_augroup("LspDiagnosticsFloat", { clear = true })
         vim.api.nvim_create_autocmd("CursorHold", {
           buffer = bufnr,
@@ -346,6 +308,8 @@ require("lazy").setup({
           end,
         })
 
+        local opts = { noremap = true, silent = true, buffer = bufnr }
+        local fzf = require("fzf-lua")
         vim.keymap.set("n", "gd", fzf.lsp_definitions, vim.tbl_extend("force", { desc = "Go to definition" }, opts))
         vim.keymap.set(
           "n",
@@ -672,13 +636,24 @@ require("lazy").setup({
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
       require("mini.ai").setup({ n_lines = 500 })
+      require("mini.splitjoin").setup()
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require("mini.surround").setup()
+      require("mini.surround").setup({
+        mappings = {
+          add = "gsa", -- Add surrounding in Normal and Visual modes
+          delete = "gsd", -- Delete surrounding
+          find = "gsf", -- Find surrounding (to the right)
+          find_left = "gsF", -- Find surrounding (to the left)
+          highlight = "gsh", -- Highlight surrounding
+          replace = "gsr", -- Replace surrounding
+          update_n_lines = "gsn", -- Update `n_lines`
+        },
+      })
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -694,6 +669,25 @@ require("lazy").setup({
       statusline.section_location = function()
         return "%2l:%-2v"
       end
+
+      vim.keymap.set("n", "<leader>bd", function()
+        local bd = require("mini.bufremove").delete
+        if vim.bo.modified then
+          local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+          if choice == 1 then -- Yes
+            vim.cmd.write()
+            bd(0)
+          elseif choice == 2 then -- No
+            bd(0, true)
+          end
+        else
+          bd(0)
+        end
+      end, { desc = "Delete Buffer" })
+
+      vim.keymap.set("n", "<leader>bD", function()
+        require("mini.bufremove").delete(0, true)
+      end, { desc = "Delete Buffer (Force)" })
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -731,6 +725,7 @@ require("lazy").setup({
       indent = { enable = true, disable = { "ruby" } },
     },
   },
+
   {
     "saghen/blink.cmp",
     dependencies = {
@@ -906,7 +901,45 @@ require("lazy").setup({
     end,
   },
 
+  {
+    "folke/flash.nvim",
+    opts = {},
+    keys = {
+      -- stylua: ignore start
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      -- stylua: ignore end
+    },
+  },
+
   --- UI ---
+  {
+    "akinsho/bufferline.nvim",
+    init = function()
+      vim.keymap.set("n", "<Tab>", ":BufferLinePick<CR>", { silent = true })
+      -- vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
+      -- vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true })
+    end,
+    config = function()
+      local bufferline = require("bufferline")
+      bufferline.setup({
+        -- highlights = require("catppuccin.special.bufferline").get_theme(),
+        options = {
+          show_close_icon = false,
+          show_buffer_close_icons = false,
+          separator_style = "thin",
+          diagnostics = "nvim_lsp",
+          themable = true,
+          pick = {
+            alphabet = "abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ1234567890",
+          },
+        },
+      })
+    end,
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
@@ -939,7 +972,6 @@ require("lazy").setup({
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
     --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     "folke/tokyonight.nvim",
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
@@ -953,7 +985,7 @@ require("lazy").setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme("tokyonight-night")
+      vim.cmd.colorscheme("tokyonight-storm")
     end,
   },
 }, {
