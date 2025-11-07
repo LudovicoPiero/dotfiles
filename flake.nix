@@ -16,7 +16,7 @@
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
-      ref = "nixos-unstable";
+      ref = "nixos-unstable-small";
     };
     nixpkgs.follows = "nixpkgs-unstable";
 
@@ -38,7 +38,6 @@
       owner = "feel-co";
       repo = "hjem";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.ndg.follows = "";
     };
 
     # LIX
