@@ -1,0 +1,53 @@
+name: Nix Format Check
+
+on:
+  push:
+    branches: [gnome-hjem]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  nix-fmt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Lix
+        uses: DeterminateSystems/nix-installer-action@v20
+        with:
+          diagnostic-endpoint: ''
+          source-url: 'https://install.lix.systems/lix/lix-installer-x86_64-linux'
+
+      - name: Run nix fmt
+        id: fmt
+        run: |
+          nix fmt .
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit formatted files
+        if: steps.fmt.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "chore: apply nix formatting"
+
+      - name: Create or update Pull Request
+        if: steps.fmt.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ci/nix-fmt
+          title: "chore: apply nix formatting"
+          body: "This PR applies automatic nix formatting using `nix fmt`."
+          commit-message: "chore: apply nix formatting"
+          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          labels: "ci, formatting"
+          token: ${{ secrets.GITHUB_TOKEN }}
