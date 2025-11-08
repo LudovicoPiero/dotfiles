@@ -19,6 +19,51 @@
         },
         "version": "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b"
     },
+    "blink-cmp": {
+        "cargoLocks": null,
+        "date": "2025-11-05",
+        "extract": null,
+        "name": "blink-cmp",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "40380e711b616a28affb0f4086a2f7de2f2a556b",
+            "sha256": "sha256-0+KyxOh7WUm6rRLfb936X48qBhYL5aRYn2OBEj4G1/s=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/saghen/blink.cmp"
+        },
+        "version": "40380e711b616a28affb0f4086a2f7de2f2a556b"
+    },
+    "blink-fuzzy-lib": {
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./blink-fuzzy-lib-40380e711b616a28affb0f4086a2f7de2f2a556b/Cargo.lock",
+                {}
+            ]
+        },
+        "date": "2025-11-05",
+        "extract": null,
+        "name": "blink-fuzzy-lib",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "40380e711b616a28affb0f4086a2f7de2f2a556b",
+            "sha256": "sha256-0+KyxOh7WUm6rRLfb936X48qBhYL5aRYn2OBEj4G1/s=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/saghen/blink.cmp"
+        },
+        "version": "40380e711b616a28affb0f4086a2f7de2f2a556b"
+    },
     "catppuccin-fcitx5": {
         "cargoLocks": null,
         "date": "2025-05-16",

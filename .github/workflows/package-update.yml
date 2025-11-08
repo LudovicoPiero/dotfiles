@@ -34,6 +34,19 @@ jobs:
           nix run github:ludovicopiero/nvfetcher -- --commit-changes
           popd
 
+      - name: Run npins update
+        run: |
+          pushd modules/programs/nvim
+          nix shell -f https://github.com/andir/npins/archive/master.tar.gz
+          npins update
+          if ! git diff --quiet; then
+            git add .
+            git commit -m "npins: update Neovim plugins"
+          else
+            echo "No plugin updates, skipping commit."
+          fi
+          popd
+
       - name: Run nix-update for all flakes
         run: |
           export LC_ALL=en_US.UTF-8
@@ -50,6 +63,7 @@ jobs:
           body: |
             This PR combines:
             - nvfetcher source updates
+            - npins update ( for neovim plugins )
             - nix-update for iosevka-q, sarasa-gothic
           labels: automated, uwu, keep-up-to-date
           branch: "package-update"

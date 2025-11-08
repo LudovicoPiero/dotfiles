@@ -1,14 +1,20 @@
+# NOTE: Thanks Gerg
+# https://github.com/Gerg-L/nvim-flake/blob/master/config.nix
 {
   config,
   lib,
   inputs,
   inputs',
+  self',
   pkgs,
   ...
 }:
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.nvim;
+
+  npinsToPlugins =
+    input: builtins.mapAttrs (_: v: v { inherit pkgs; }) (import ./npins/_npins.nix { inherit input; });
 in
 {
   imports = [ inputs.mnw.nixosModules.default ];
@@ -42,45 +48,11 @@ in
         ];
 
         # Anything that you're loading lazily should be put here
-        #TODO: use npins like gerg
-        opt = with pkgs.vimPlugins; [
-          # Completion / Snippets
-          blink-cmp
-          luasnip
-          friendly-snippets
-          lspkind-nvim
-          blink-compat
-          blink-copilot
-          copilot-lua
-
-          # Appearance / UI / Themes
-          tokyonight-nvim
-          indent-blankline-nvim
-          bufferline-nvim
-
-          # Navigation / Motion
-          flash-nvim
-          yazi-nvim
-          fzf-lua
-
-          # Code / LSP / Development
-          nvim-lspconfig
-          conform-nvim
-          lazydev-nvim
-          mini-nvim
-
-          # Project / Git / Todo
-          todo-comments-nvim
-          gitsigns-nvim
-
-          # Misc / Utilities
-          trouble-nvim
-          which-key-nvim
-          nvim-web-devicons
-
-          # Parsing / Treesitter
-          nvim-treesitter.withAllGrammars
-        ];
+        opt = with pkgs.vimPlugins; [ nvim-treesitter.withAllGrammars ];
+        optAttrs = {
+          "blink.cmp" = self'.packages.blink-cmp;
+        }
+        // npinsToPlugins ./npins/sources.json;
 
         dev.lain = {
           # is this necessary?
