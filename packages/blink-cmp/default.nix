@@ -1,10 +1,7 @@
 {
   lib,
-  rustPlatform,
-  fetchFromGitHub,
   stdenv,
   vimUtils,
-  nix-update-script,
   gitMinimal,
   makeRustPlatform,
   rust-bin,
@@ -16,10 +13,8 @@ let
     rustc = rust-bin.selectLatestNightlyWith (toolchain: toolchain.default);
   };
 
-  inherit (sources.blink-cmp) version src;
   blink-fuzzy-lib = rustPlatform.buildRustPackage {
-    inherit (sources.blink-fuzzy-lib) pname;
-    inherit version src;
+    inherit (sources.blink-fuzzy-lib) version src pname;
 
     cargoLock = sources.blink-fuzzy-lib.cargoLock."Cargo.lock";
 
@@ -32,8 +27,7 @@ let
   };
 in
 vimUtils.buildVimPlugin {
-  pname = "blink.cmp";
-  inherit version src;
+  inherit (sources.blink-cmp) pname version src;
   preInstall =
     let
       ext = stdenv.hostPlatform.extensions.sharedLibrary;
@@ -51,7 +45,6 @@ vimUtils.buildVimPlugin {
   meta = {
     description = "Performant, batteries-included completion plugin for Neovim";
     homepage = "https://github.com/saghen/blink.cmp";
-    changelog = "https://github.com/Saghen/blink.cmp/blob/v${version}/CHANGELOG.md";
     maintainers = with lib.maintainers; [ ludovicopiero ];
   };
 

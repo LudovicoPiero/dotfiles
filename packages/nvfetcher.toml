@@ -54,6 +54,16 @@ src.git = "https://github.com/saghen/blink.cmp"
 fetch.git = "https://github.com/saghen/blink.cmp"
 cargo_locks = ["Cargo.lock"]
 
+
+[blink-pairs]
+src.git = "https://github.com/saghen/blink.pairs"
+fetch.git = "https://github.com/saghen/blink.pairs"
+
+[blink-pairs-lib]
+src.git = "https://github.com/saghen/blink.pairs"
+fetch.git = "https://github.com/saghen/blink.pairs"
+cargo_locks = ["Cargo.lock"]
+
 [npins]
 src.git = "https://github.com/andir/npins"
 fetch.git = "https://github.com/andir/npins"

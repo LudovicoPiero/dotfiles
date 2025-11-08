@@ -49,6 +49,40 @@
     };
     date = "2025-11-05";
   };
+  blink-pairs = {
+    pname = "blink-pairs";
+    version = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
+    src = fetchgit {
+      url = "https://github.com/saghen/blink.pairs";
+      rev = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-L1sG5vW8W1z5TMf6IRrkmNqNiCvPePT0eA+dR8yBZMI=";
+    };
+    date = "2025-11-07";
+  };
+  blink-pairs-lib = {
+    pname = "blink-pairs-lib";
+    version = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
+    src = fetchgit {
+      url = "https://github.com/saghen/blink.pairs";
+      rev = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-L1sG5vW8W1z5TMf6IRrkmNqNiCvPePT0eA+dR8yBZMI=";
+    };
+    cargoLock."Cargo.lock" = {
+      lockFile = ./blink-pairs-lib-8e935d07ab6a3843565afd6a6d56456678cbf43f/Cargo.lock;
+      outputHashes = {
+        
+      };
+    };
+    date = "2025-11-07";
+  };
   catppuccin-fcitx5 = {
     pname = "catppuccin-fcitx5";
     version = "393845cf3ed0e0000bfe57fe1b9ad75748e2547f";
