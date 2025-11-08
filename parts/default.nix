@@ -28,20 +28,20 @@
         set -euo pipefail
 
         ${log "Formatting *.nix files..."}
-        fd . --exclude='packages' -t f -e nix -x ${lib.getExe' unfreePkgs.nixfmt "nixfmt"} -s '{}'
+        ${lib.getExe unfreePkgs.fd} . --exclude='packages' -t f -e nix -x ${lib.getExe' unfreePkgs.nixfmt "nixfmt"} -s '{}'
 
         ${log "Formatting *.lua files..."}
-        fd . --exclude='packages' -t f -e lua -x ${lib.getExe' unfreePkgs.stylua "stylua"} \
+        ${lib.getExe unfreePkgs.fd} . --exclude='packages' -t f -e lua -x ${lib.getExe' unfreePkgs.stylua "stylua"} \
           --indent-type Spaces --indent-width 2 '{}'
 
         ${log "Formatting *.sh files..."}
-        fd . --exclude='packages' -t f -e sh -x ${lib.getExe unfreePkgs.shfmt} -w -i 2 '{}'
+        ${lib.getExe unfreePkgs.fd} . --exclude='packages' -t f -e sh -x ${lib.getExe unfreePkgs.shfmt} -w -i 2 '{}'
 
         ${log "Checking for dead code (deadnix)..."}
-        fd . --exclude='packages' -t f -e nix -x ${lib.getExe unfreePkgs.deadnix} --no-lambda-arg --no-lambda-pattern-names -e '{}'
+        ${lib.getExe unfreePkgs.fd} . --exclude='packages' -t f -e nix -x ${lib.getExe unfreePkgs.deadnix} --no-lambda-arg --no-lambda-pattern-names -e '{}'
 
         ${log "Running statix (lint & fix)..."}
-        fd . --exclude='packages' -t f -e nix -x ${lib.getExe unfreePkgs.statix} fix '{}'
+        ${lib.getExe unfreePkgs.fd} . --exclude='packages' -t f -e nix -x ${lib.getExe unfreePkgs.statix} fix '{}'
 
         echo -e "${color.green}✨ All done!${color.reset}"
       '';
