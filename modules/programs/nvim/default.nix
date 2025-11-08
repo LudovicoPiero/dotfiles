@@ -33,23 +33,63 @@ in
 
       neovim = cfg.package;
 
-      initLua = ''
-        require("lain")
-      '';
+      luaFiles = [ ./init.lua ];
 
       plugins = {
-        opt = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
+        start = [
+          pkgs.vimPlugins.lazy-nvim
+          pkgs.vimPlugins.plenary-nvim
+        ];
 
-        #   #TODO: https://github.com/Gerg-L/nvim-flake/blob/cc168eb146aa258b815ba97491d534eea6cf4aa8/packages/blink-cmp/package.nix
-        #   # use npins instead of lazy.nvim
-        # optAttrs = {
-        #   "blink.cmp" = inputs'.blink-cmp.packages.default;
-        # };
+        # Anything that you're loading lazily should be put here
+        #TODO: use npins like gerg
+        opt = with pkgs.vimPlugins; [
+          # Completion / Snippets
+          blink-cmp
+          luasnip
+          friendly-snippets
+          lspkind-nvim
+          blink-compat
+          blink-copilot
+          copilot-lua
+
+          # Appearance / UI / Themes
+          tokyonight-nvim
+          indent-blankline-nvim
+          bufferline-nvim
+
+          # Navigation / Motion
+          flash-nvim
+          yazi-nvim
+          fzf-lua
+
+          # Code / LSP / Development
+          nvim-lspconfig
+          conform-nvim
+          lazydev-nvim
+          mini-nvim
+
+          # Project / Git / Todo
+          todo-comments-nvim
+          gitsigns-nvim
+
+          # Misc / Utilities
+          trouble-nvim
+          which-key-nvim
+          nvim-web-devicons
+
+          # Parsing / Treesitter
+          nvim-treesitter.withAllGrammars
+        ];
 
         dev.lain = {
+          # is this necessary?
           pure = lib.fileset.toSource {
             root = ./.;
-            fileset = lib.fileset.unions [ ./lua ];
+            fileset = lib.fileset.unions [
+              ./lua
+              ./init.lua
+            ];
           };
         };
       };
