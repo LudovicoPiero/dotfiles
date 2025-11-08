@@ -59,6 +59,7 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           title: "Automated package updates"
+          sign-commits: true
           body: |
             This PR combines:
             - nvfetcher source updates
