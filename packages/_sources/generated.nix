@@ -3,15 +3,15 @@
 {
   app2unit = {
     pname = "app2unit";
-    version = "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b";
+    version = "4c165a98ac3f1d351cd2aeb36ba6df3104ca6b16";
     src = fetchgit {
       url = "https://github.com/Vladimir-csp/app2unit";
-      rev = "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b";
+      rev = "4c165a98ac3f1d351cd2aeb36ba6df3104ca6b16";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-0bGddvngzDvIz/oP7bI0dn/gbCTdsVyQC0UN5eNCGMw=";
+      sha256 = "sha256-928fcvJtJlpGWxHjz4/6IwvZ8mzkdN5Jo5X+5BW1K9A=";
     };
     date = "2025-11-05";
   };
@@ -196,8 +196,8 @@
     cargoLock."Cargo.lock" = {
       lockFile = ./wezterm-b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17/Cargo.lock;
       outputHashes = {
-        "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
         "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
+        "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
       };
     };
     date = "2025-10-25";
