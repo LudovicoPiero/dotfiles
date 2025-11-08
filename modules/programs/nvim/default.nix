@@ -1,4 +1,4 @@
-# NOTE: Thanks Gerg
+# NOTE: Thanks Gerg 🏴‍☠️
 # https://github.com/Gerg-L/nvim-flake/blob/master/config.nix
 {
   config,
@@ -51,6 +51,7 @@ in
         opt = with pkgs.vimPlugins; [ nvim-treesitter.withAllGrammars ];
         optAttrs = {
           "blink.cmp" = self'.packages.blink-cmp;
+          "blink.pairs" = self'.packages.blink-pairs;
         }
         // npinsToPlugins ./npins/sources.json;
 

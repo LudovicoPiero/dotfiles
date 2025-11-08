@@ -155,7 +155,7 @@ return {
     snippets = { preset = "luasnip" },
 
     fuzzy = {
-      implementation = "lua", -- TODO: Use rust
+      implementation = "rust",
       prebuilt_binaries = {
         download = false,
       },
