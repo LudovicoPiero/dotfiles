@@ -11,13 +11,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b",
-            "sha256": "sha256-0bGddvngzDvIz/oP7bI0dn/gbCTdsVyQC0UN5eNCGMw=",
+            "rev": "4c165a98ac3f1d351cd2aeb36ba6df3104ca6b16",
+            "sha256": "sha256-928fcvJtJlpGWxHjz4/6IwvZ8mzkdN5Jo5X+5BW1K9A=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/Vladimir-csp/app2unit"
         },
-        "version": "a2e59316c9bd4693b87b3e5b2e587e15eb0b6e3b"
+        "version": "4c165a98ac3f1d351cd2aeb36ba6df3104ca6b16"
     },
     "blink-cmp": {
         "cargoLocks": null,
