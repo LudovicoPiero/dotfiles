@@ -164,6 +164,33 @@
         },
         "version": "af4baa86611f2dfbe66c845f1b7edb582efc6cb5"
     },
+    "npins": {
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./npins-f4e3698681704e74196fa0f905c7dfdd43cf5c86/Cargo.lock",
+                {
+                    "nix-compat-0.1.0": "sha256-ehkc7ug0HkTHKxx9tQi/9vkOtQry9HdiX9UxBUvjYRY="
+                }
+            ]
+        },
+        "date": "2025-10-12",
+        "extract": null,
+        "name": "npins",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "f4e3698681704e74196fa0f905c7dfdd43cf5c86",
+            "sha256": "sha256-8lkiistkBemkRN4aTqGW3SvI1CqibOnvFvNJS9OOdnU=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/andir/npins"
+        },
+        "version": "f4e3698681704e74196fa0f905c7dfdd43cf5c86"
+    },
     "runapp": {
         "cargoLocks": null,
         "date": "2025-10-12",

@@ -53,3 +53,8 @@ fetch.git = "https://github.com/saghen/blink.cmp"
 src.git = "https://github.com/saghen/blink.cmp"
 fetch.git = "https://github.com/saghen/blink.cmp"
 cargo_locks = ["Cargo.lock"]
+
+[npins]
+src.git = "https://github.com/andir/npins"
+fetch.git = "https://github.com/andir/npins"
+cargo_locks = ["Cargo.lock"]

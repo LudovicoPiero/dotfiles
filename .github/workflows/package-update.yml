@@ -37,8 +37,7 @@ jobs:
       - name: Run npins update
         run: |
           pushd modules/programs/nvim
-          nix shell -f https://github.com/andir/npins/archive/master.tar.gz
-          npins update
+          nix run github:ludovicopiero/dotfiles#npins -- update
           if ! git diff --quiet; then
             git add .
             git commit -m "npins: update Neovim plugins"

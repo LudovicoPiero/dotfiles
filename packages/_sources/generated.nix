@@ -119,6 +119,26 @@
     };
     date = "2025-07-06";
   };
+  npins = {
+    pname = "npins";
+    version = "f4e3698681704e74196fa0f905c7dfdd43cf5c86";
+    src = fetchgit {
+      url = "https://github.com/andir/npins";
+      rev = "f4e3698681704e74196fa0f905c7dfdd43cf5c86";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-8lkiistkBemkRN4aTqGW3SvI1CqibOnvFvNJS9OOdnU=";
+    };
+    cargoLock."Cargo.lock" = {
+      lockFile = ./npins-f4e3698681704e74196fa0f905c7dfdd43cf5c86/Cargo.lock;
+      outputHashes = {
+        "nix-compat-0.1.0" = "sha256-ehkc7ug0HkTHKxx9tQi/9vkOtQry9HdiX9UxBUvjYRY=";
+      };
+    };
+    date = "2025-10-12";
+  };
   runapp = {
     pname = "runapp";
     version = "29a37370ff261fa968248a4e9d832119d5be7a3a";
