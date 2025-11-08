@@ -42,7 +42,7 @@ jobs:
 
       - name: Create or update Pull Request
         if: steps.fmt.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           branch: ci/nix-fmt
           title: "chore: apply nix formatting"
