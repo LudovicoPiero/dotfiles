@@ -19,8 +19,8 @@ jobs:
       - name: Install Lix
         uses: DeterminateSystems/nix-installer-action@v20
         with:
-          diagnostic-endpoint: ""
-          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          diagnostic-endpoint: ''
+          source-url: 'https://install.lix.systems/lix/lix-installer-x86_64-linux'
 
       - name: Run nix fmt
         id: fmt
@@ -48,6 +48,6 @@ jobs:
           title: "chore: apply nix formatting"
           body: "This PR applies automatic nix formatting using `nix fmt`."
           commit-message: "chore: apply nix formatting"
+          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           labels: "ci, formatting"
-          sign-commits: true
           token: ${{ secrets.GITHUB_TOKEN }}

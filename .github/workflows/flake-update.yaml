@@ -18,13 +18,17 @@ jobs:
       - name: Install Lix
         uses: DeterminateSystems/nix-installer-action@v20
         with:
-          diagnostic-endpoint: ""
-          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          diagnostic-endpoint: ''
+          source-url: 'https://install.lix.systems/lix/lix-installer-x86_64-linux'
 
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
         with:
-          sign-commits: true
+          git-author-name: "Maximilian Sforza"
+          git-author-email: "maximiliansforza@proton.me"
+          git-committer-name: "Maximilian Sforza"
+          git-committer-email: "maximiliansforza@proton.me"
+          token: ${{ secrets.PR_TOKEN }}
           commit-msg: "chore: Update flake.lock" # The message provided with the commit
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: | # Labels to be set on the PR
