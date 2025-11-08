@@ -14,6 +14,26 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require("lazy").setup({
+  defaults = {
+    lazy = true, -- Set global lazy loading
+  },
+  rtp = {
+    reset = true,
+    paths = {},
+    disabled_plugins = {
+      "gzip",
+      "matchit",
+      "rplugin",
+      "tarPlugin",
+      "tohtml",
+      "tutor",
+      "zipPlugin",
+    },
+  },
+  rocks = {
+    hererocks = false,
+    enabled = false,
+  },
   "NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -748,6 +768,30 @@ require("lazy").setup({
         },
       },
       { "onsails/lspkind.nvim", opts = {} },
+      { "saghen/blink.compat", opts = {} },
+      { "fang2hou/blink-copilot" },
+      {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        opts = {
+          suggestion = {
+            enabled = false,
+            auto_trigger = true,
+            hide_during_completion = true,
+            keymap = {
+              accept = false, -- handled by nvim-cmp / blink.cmp
+              next = "<M-]>",
+              prev = "<M-[>",
+            },
+          },
+          panel = { enabled = false },
+          filetypes = {
+            gitcommit = true,
+            markdown = true,
+            help = true,
+          },
+        },
+      },
     },
     opts = {
       cmdline = { enabled = false },
@@ -815,7 +859,7 @@ require("lazy").setup({
       },
 
       sources = {
-        default = { "lsp", "snippets", "buffer", "path", "lazydev" },
+        default = { "lsp", "snippets", "buffer", "path", "copilot", "lazydev" },
         providers = {
           lazydev = {
             module = "lazydev.integrations.blink",
@@ -845,6 +889,13 @@ require("lazy").setup({
               end,
               show_hidden_files_by_default = false,
             },
+          },
+          copilot = {
+            enabled = true,
+            name = "copilot",
+            module = "blink-copilot",
+            score_offset = 100,
+            async = true,
           },
         },
       },
