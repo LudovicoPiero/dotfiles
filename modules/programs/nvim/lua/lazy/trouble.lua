@@ -1,6 +1,8 @@
 return {
-  "folke/trouble.nvim",
-  opts = {},
+  "trouble.nvim",
+  after = function()
+    require("trouble").setup({})
+  end,
   cmd = "Trouble",
   keys = {
     {

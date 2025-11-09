@@ -25,30 +25,26 @@ in
       default = false;
       description = "Enable nvim.";
     };
-
-    package = mkOption {
-      type = types.package;
-      inherit (inputs'.nvim-overlay.packages) default;
-      description = "The nvim package to install.";
-    };
   };
 
   config = mkIf cfg.enable {
     programs.mnw = {
       enable = true;
+      inherit (inputs'.nvim-overlay.packages) neovim;
 
-      neovim = cfg.package;
-
-      luaFiles = [ ./init.lua ];
+      initLua = ''
+        require("lain")
+        require("lz.n").load("lazy")
+      '';
 
       plugins = {
         start = [
-          pkgs.vimPlugins.lazy-nvim
+          pkgs.vimPlugins.lz-n
           pkgs.vimPlugins.plenary-nvim
         ];
 
         # Anything that you're loading lazily should be put here
-        opt = with pkgs.vimPlugins; [ nvim-treesitter.withAllGrammars ];
+        opt = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
         optAttrs = {
           "blink.cmp" = self'.packages.blink-cmp;
           "blink.pairs" = self'.packages.blink-pairs;
@@ -59,10 +55,7 @@ in
           # is this necessary?
           pure = lib.fileset.toSource {
             root = ./.;
-            fileset = lib.fileset.unions [
-              ./lua
-              ./init.lua
-            ];
+            fileset = lib.fileset.unions [ ./lua ];
           };
         };
       };

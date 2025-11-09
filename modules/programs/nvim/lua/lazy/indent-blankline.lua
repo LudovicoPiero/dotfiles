@@ -1,7 +1,6 @@
 return {
-  "lukas-reineke/indent-blankline.nvim",
-  main = "ibl",
-  config = function()
+  "indent-blankline.nvim",
+  after = function()
     local highlight = {
       "RainbowRed",
       "RainbowYellow",

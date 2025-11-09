@@ -1,7 +1,18 @@
 return {
-  "mikavilpas/yazi.nvim",
-  version = "*",
-  event = "VeryLazy",
+  "yazi.nvim",
+  beforeAll = function()
+    vim.g.loaded_netrwPlugin = 1
+  end,
+
+  after = function()
+    require("yazi").setup({
+      open_for_directories = false,
+      keymaps = {
+        show_help = "<f1>",
+      },
+    })
+  end,
+
   keys = {
     {
       "<leader>tf",
@@ -20,13 +31,4 @@ return {
       desc = "Resume the last yazi session",
     },
   },
-  opts = {
-    open_for_directories = false,
-    keymaps = {
-      show_help = "<f1>",
-    },
-  },
-  init = function()
-    vim.g.loaded_netrwPlugin = 1
-  end,
 }
