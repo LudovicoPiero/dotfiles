@@ -126,9 +126,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "a8458b79a957a6e3e217d84106a0fd4b9470ff4c",
-      "url": "https://github.com/ibhagwan/fzf-lua/archive/a8458b79a957a6e3e217d84106a0fd4b9470ff4c.tar.gz",
-      "hash": "sha256-OloQKfJZIP8Hu9O6+b2iVUtaD52dyYrfDy16Kd3KXHM="
+      "revision": "be1c28b4a32beec16e29ac9c3edb7c6f760747ae",
+      "url": "https://github.com/ibhagwan/fzf-lua/archive/be1c28b4a32beec16e29ac9c3edb7c6f760747ae.tar.gz",
+      "hash": "sha256-zbyH4ym7d9MpaWqymSw0dtrAdPf8YnrVZ8Y8a1N3ILk="
     },
     "gitsigns.nvim": {
       "type": "Git",
@@ -295,9 +295,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b625a2b102c7cbb488e84a0f05fd9907b05a4a32",
-      "url": "https://github.com/mikavilpas/yazi.nvim/archive/b625a2b102c7cbb488e84a0f05fd9907b05a4a32.tar.gz",
-      "hash": "sha256-sedlzvZLS0K8tGLmy8YndFXBBbQSNePj67HAls8f5Rk="
+      "revision": "b4b836acace8eedad385413d86ee1525eebab117",
+      "url": "https://github.com/mikavilpas/yazi.nvim/archive/b4b836acace8eedad385413d86ee1525eebab117.tar.gz",
+      "hash": "sha256-knL7uPy0oTeIMVtAS91SXuVlTCtp/mArfUsJITTuH4I="
     }
   },
   "version": 7
