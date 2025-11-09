@@ -27,22 +27,8 @@
       sparseCheckout = [ ];
       sha256 = "sha256-0+KyxOh7WUm6rRLfb936X48qBhYL5aRYn2OBEj4G1/s=";
     };
-    date = "2025-11-05";
-  };
-  blink-fuzzy-lib = {
-    pname = "blink-fuzzy-lib";
-    version = "40380e711b616a28affb0f4086a2f7de2f2a556b";
-    src = fetchgit {
-      url = "https://github.com/saghen/blink.cmp";
-      rev = "40380e711b616a28affb0f4086a2f7de2f2a556b";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-0+KyxOh7WUm6rRLfb936X48qBhYL5aRYn2OBEj4G1/s=";
-    };
     cargoLock."Cargo.lock" = {
-      lockFile = ./blink-fuzzy-lib-40380e711b616a28affb0f4086a2f7de2f2a556b/Cargo.lock;
+      lockFile = ./blink-cmp-40380e711b616a28affb0f4086a2f7de2f2a556b/Cargo.lock;
       outputHashes = {
         
       };
@@ -61,22 +47,8 @@
       sparseCheckout = [ ];
       sha256 = "sha256-L1sG5vW8W1z5TMf6IRrkmNqNiCvPePT0eA+dR8yBZMI=";
     };
-    date = "2025-11-07";
-  };
-  blink-pairs-lib = {
-    pname = "blink-pairs-lib";
-    version = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
-    src = fetchgit {
-      url = "https://github.com/saghen/blink.pairs";
-      rev = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-L1sG5vW8W1z5TMf6IRrkmNqNiCvPePT0eA+dR8yBZMI=";
-    };
     cargoLock."Cargo.lock" = {
-      lockFile = ./blink-pairs-lib-8e935d07ab6a3843565afd6a6d56456678cbf43f/Cargo.lock;
+      lockFile = ./blink-pairs-8e935d07ab6a3843565afd6a6d56456678cbf43f/Cargo.lock;
       outputHashes = {
         
       };
@@ -230,8 +202,8 @@
     cargoLock."Cargo.lock" = {
       lockFile = ./wezterm-b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17/Cargo.lock;
       outputHashes = {
-        "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
         "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
+        "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
       };
     };
     date = "2025-10-25";
