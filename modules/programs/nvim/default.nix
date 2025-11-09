@@ -110,8 +110,11 @@ in
         cmake-language-server
         mesonlsp
         gcc
+        gn
+        cmake-format
 
         # --- Common tools ---
+        bash-language-server
         shellharden
         typescript-language-server
         haskell-language-server
