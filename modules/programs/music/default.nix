@@ -97,7 +97,17 @@ in
         ExecStart = "${lib.getExe pkgs.mpd} --no-daemon ${config.vars.homeDirectory}/.config/mpd/mpd.conf";
         Restart = "on-failure";
       };
+    };
 
+    systemd.user.services.mpdris2 = {
+      description = "MPD D-Bus Interface (mpDris2)";
+      after = [ "mpd.service" ];
+      wants = [ "mpd.service" ];
+      wantedBy = [ "default.target" ];
+      serviceConfig = {
+        ExecStart = "${lib.getExe pkgs.mpdris2}";
+        Restart = "on-failure";
+      };
     };
   };
 }
