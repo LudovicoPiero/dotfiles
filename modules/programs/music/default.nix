@@ -97,7 +97,6 @@ in
         ExecStart = "${lib.getExe pkgs.mpd} --no-daemon ${config.vars.homeDirectory}/.config/mpd/mpd.conf";
         Restart = "on-failure";
       };
-
     };
   };
 }

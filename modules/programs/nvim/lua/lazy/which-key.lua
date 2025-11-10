@@ -49,10 +49,11 @@ return { -- Useful plugin to show you pending keybinds.
         { "<leader>c", group = "[C]ode", mode = { "n", "x" } },
         { "<leader>d", group = "[D]ocument" },
         { "<leader>f", group = "[F]ormat" },
-        { "<leader>s", group = "[S]earch" },
+        { "<leader>s", group = "[S]earch", mode = { "n", "v" } },
         { "<leader>t", group = "[T]oggle" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
         { "<leader>x", group = "Quickfi[X]", mode = { "n", "v" } },
+        { "gr", group = "LSP Actions", mode = { "n" } },
       },
     })
   end,

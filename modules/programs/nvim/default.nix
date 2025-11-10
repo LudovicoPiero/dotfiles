@@ -118,6 +118,7 @@ in
         marksman
         nodePackages.yaml-language-server
         vscode-langservers-extracted
+        chafa
         # inputs'.self.packages.tree-sitter-cli #TODO
       ];
     };

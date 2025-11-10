@@ -4,22 +4,9 @@ return {
   { "lspkind.nvim" },
   { "blink.compat" },
   { "blink-copilot" },
-  { "copilot.lua" },
-
   {
-    "blink.cmp",
-    event = "DeferredUIEnter",
-
-    before = function()
-      require("lz.n").trigger_load("lspkind.nvim")
-      require("lz.n").trigger_load("friendly-snippets")
-      require("lz.n").trigger_load("LuaSnip")
-      require("lz.n").trigger_load("blink.compat")
-      require("lz.n").trigger_load("blink-copilot")
-    end,
-
+    "copilot.lua",
     after = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
       require("copilot").setup({
         suggestion = {
           enabled = false,
@@ -38,7 +25,23 @@ return {
           help = true,
         },
       })
+    end,
+  },
 
+  {
+    "blink.cmp",
+    event = "InsertEnter",
+
+    before = function()
+      require("lz.n").trigger_load("lspkind.nvim")
+      require("lz.n").trigger_load("friendly-snippets")
+      require("lz.n").trigger_load("LuaSnip")
+      require("lz.n").trigger_load("blink.compat")
+      require("lz.n").trigger_load("blink-copilot")
+    end,
+
+    after = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
       require("blink.cmp").setup({
         cmdline = { enabled = false },
         keymap = {
@@ -113,8 +116,16 @@ return {
               score_offset = 100,
             },
             buffer = {
-              min_keyword_length = function()
-                return vim.bo.filetype == "markdown" and 0 or 1
+              -- Make buffer completions appear at the end.
+              score_offset = -100,
+              enabled = function()
+                -- Filetypes for which buffer completions are enabled; add filetypes to extend:
+                local enabled_filetypes = {
+                  "markdown",
+                  "text",
+                }
+                local filetype = vim.bo.filetype
+                return vim.tbl_contains(enabled_filetypes, filetype)
               end,
             },
             lsp = { score_offset = 4 },

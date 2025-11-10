@@ -2,7 +2,7 @@ return { -- Highlight, edit, and navigate code
   "nvim-treesitter",
   lazy = false,
   after = function()
-    require("nvim-treesitter").setup({
+    require("nvim-treesitter.configs").setup({
       ensure_installed = {},
       auto_install = false, -- Installed via nix
       highlight = {
