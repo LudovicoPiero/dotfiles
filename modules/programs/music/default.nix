@@ -7,6 +7,7 @@
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.music;
+
 in
 {
   options.mine.music = {
@@ -18,6 +19,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    sops = {
+      secrets."scrobble/lastfm" = { };
+      secrets."scrobble/listenbrainz" = { };
+    };
     services.playerctld.enable = true;
     hj = {
       packages = with pkgs; [ rmpc ];
@@ -29,8 +34,8 @@ in
             address: "127.0.0.1:6600",
             password: None,
             theme: None,
-            cache_dir: "${config.vars.homeDirectory}/.cache/rmpc",
-            lyrics_dir: "${config.vars.homeDirectory}/.config/rmpc/lyrics",
+            cache_dir: "${config.hj.xdg.cache.directory}/rmpc",
+            lyrics_dir: "${config.hj.xdg.config.directory}/rmpc/lyrics",
             on_song_change: None,
             volume_step: 5,
             max_fps: 30,
@@ -51,15 +56,22 @@ in
 
       xdg.config.files."mpd/mpd.conf".text = ''
         music_directory "${config.vars.homeDirectory}/Media/Music"
+        playlist_directory "${config.hj.xdg.config.directory}/mpd/playlists"
+        state_file "${config.hj.xdg.state.directory}/mpd/state"
+        sticker_file "${config.hj.xdg.state.directory}/mpd/sticker.sql"
+        db_file "${config.hj.xdg.state.directory}/mpd/database"
+
         auto_update "yes"
-        volume_normalization "yes"
+        volume_normalization "no"
         restore_paused "yes"
         filesystem_charset "UTF-8"
-        replaygain "track"
+        replaygain "off"
+        audio_buffer_size "8192"
 
         audio_output {
           type                "pipewire"
           name                "PipeWire"
+          format "44100:24:2"
         }
 
         audio_output {
@@ -75,7 +87,6 @@ in
           encoder             "flac"
           port                "8000"
           max_clients         "8"
-          mixer_type          "software"
           format              "44100:16:2"
         }
 
@@ -85,6 +96,22 @@ in
     };
 
     services.mpd.enable = lib.mkForce false;
+    services.mpdscribble = {
+      enable = true;
+      host = "localhost";
+      port = 6600;
+      endpoints = {
+        "last.fm" = {
+          username = "ludovicopiero";
+          passwordFile = config.sops.secrets."scrobble/lastfm".path;
+        };
+        #FIXME:
+        # "listenbrainz" = {
+        #   username = "ludovicopiero";
+        #   passwordFile = config.sops.secrets."scrobble/listenbrainz".path;
+        # };
+      };
+    };
     systemd.user.services.mpd = {
       description = "Music Player Daemon (User Service)";
       after = [
