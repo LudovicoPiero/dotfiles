@@ -9,7 +9,6 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
 
     before = function()
-      require("lz.n").trigger_load("blink.cmp")
       require("lz.n").trigger_load("fzf-lua")
       require("lz.n").trigger_load("fidget.nvim")
       require("lz.n").trigger_load("nvim-web-devicons")
@@ -160,72 +159,212 @@ return {
         },
       })
 
-      local servers = {
-        nixd = {
-          cmd = { "nixd", "--inlay-hints=true", "--semantic-tokens=true" },
-          settings = {
-            nixd = {
-              nixpkgs = {
-                expr = "import <nixpkgs> { }",
-              },
-              formatting = {
-                command = { "nixfmt" },
-              },
-              options = {
-                nixos = {
-                  expr = '(builtins.getFlake "/home/airi/Code/nvim-flake").nixosConfigurations.sforza.options',
-                },
-                home_manager = {
-                  expr = '(builtins.getFlake "/home/airi/Code/nvim-flake").homeConfigurations."airi@sforza".options',
-                },
-              },
-            },
-          },
-        },
-        gopls = { cmd = { "gopls" } },
-        basedpyright = { cmd = { "basedpyright-langserver", "--stdio" } },
-        rust_analyzer = { cmd = { "rust-analyzer" } },
-        clangd = { cmd = { "clangd" } },
-        mesonlsp = { cmd = { "mesonlsp", "--lsp" } },
-        bashls = { cmd = { "bash-language-server", "start" } },
-        ts_ls = { cmd = { "typescript-language-server", "--stdio" } },
-        hls = { cmd = { "haskell-language-server-wrapper", "--lsp" } },
-        taplo = { cmd = { "taplo", "lsp", "stdio" } },
-        cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
-        yamlls = { cmd = { "yaml-language-server", "--stdio" } },
-        marksman = { cmd = { "marksman", "server" } },
-        emmylua_ls = {
-          filetypes = { "lua" },
-          cmd = { "emmylua_ls" },
-          settings = {
-            Lua = {
-              completion = { callSnippet = "Replace" },
-            },
-          },
-        },
+      local cmp_capabilities = require("blink.cmp").get_lsp_capabilities()
+      local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = vim.tbl_deep_extend("force", lsp_capabilities, cmp_capabilities)
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
       }
 
-      -- Register and enable each server
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-      for name, config in pairs(servers) do
-        local existing = nil
-        local ok, configs = pcall(require, "lspconfig.configs")
-        if ok then
-          existing = configs[name]
-        end
+      vim.lsp.config("nixd", {
+        cmd = { "nixd" },
+        capabilities = capabilities,
+        settings = {
+          nixd = {
+            formatting = {
+              command = { "nixfmt" },
+            },
+            nixpkgs = {
+              expr = "import <nixpkgs> { }",
+            },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake "/home/airi/Code/nvim-flake").nixosConfigurations.sforza.options',
+              },
+              ["home-manager"] = {
+                expr = '(builtins.getFlake "/home/airi/Code/nvim-flake").homeConfigurations."airi@sforza".options',
+              },
+            },
+          },
+        },
+      })
 
-        if existing then
-          config = vim.tbl_deep_extend("force", vim.deepcopy(existing.default_config or {}), config)
-        end
+      vim.lsp.config("gopls", {
+        cmd = { "gopls" },
+        capabilities = capabilities,
+        settings = {
+          gopls = {
+            experimentalPostfixCompletions = true,
+            analyses = { unusedparams = true, shadow = true },
+            staticcheck = true,
+            gofumpt = true,
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+          },
+        },
+        init_options = { usePlaceholders = true },
+      })
 
-        config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
+      vim.lsp.config("basedpyright", {
+        cmd = { "basedpyright-langserver", "--stdio" },
+        capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = "workspace",
+              useLibraryCodeForTypes = true,
+              typeCheckingMode = "off",
+            },
+          },
+        },
+      })
 
-        if vim.fn.executable(config.cmd and config.cmd[1] or name) == 1 then
-          vim.lsp.config(name, config)
-          vim.lsp.enable(name)
-        else
-          vim.notify(("LSP: %s not found in PATH, skipping"):format(name), vim.log.levels.WARN)
-        end
+      vim.lsp.config("emmylua_ls", {
+        cmd = { "emmylua_ls" },
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" } },
+            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+          },
+        },
+      })
+
+      vim.lsp.config("rust_analyzer", {
+        cmd = { "rust-analyzer" },
+        capabilities = capabilities,
+        settings = {
+          ["rust-analyzer"] = {
+            diagnostics = { enable = true, styleLints = { enable = true } },
+            files = { excludeDirs = { ".direnv", "rust/.direnv" } },
+            inlayHints = {
+              bindingModeHints = { enable = true },
+              closureReturnTypeHints = { enable = "always" },
+              discriminantHints = { enable = "always" },
+              expressionAdjustmentHints = { enable = "always" },
+              lifetimeElisionHints = { enable = "always" },
+              rangeExclusiveHints = { enable = true },
+            },
+            procMacro = { enable = true },
+          },
+        },
+      })
+
+      vim.lsp.config("taplo", {
+        cmd = { "taplo", "lsp", "stdio" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("html", {
+        cmd = { "vscode-html-language-server", "--stdio" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("cssls", {
+        cmd = { "vscode-css-language-server", "--stdio" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("ts_ls", {
+        cmd = { "typescript-language-server", "--stdio" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("vue_ls", {
+        cmd = { "vue-language-server", "--stdio" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("bashls", {
+        cmd = { "bash-language-server", "start" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("hls", {
+        cmd = { "haskell-language-server-wrapper", "--lsp" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("clangd", {
+        cmd = {
+          "clangd",
+          "--enable-config",
+          "--pch-storage=memory",
+          "--compile-commands-dir=''${workspaceFolder}/build",
+          "--background-index",
+          "--clang-tidy",
+          "--log=verbose",
+          "--all-scopes-completion",
+          "--header-insertion=iwyu",
+          "--fallback-style=LLVM",
+          "--completion-style=detailed",
+          "--function-arg-placeholders",
+          "--pretty",
+        },
+        capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = { "utf-16" } }),
+      })
+
+      vim.lsp.config("cmake", {
+        cmd = { "cmake-language-server" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("mesonlsp", {
+        cmd = { "mesonlsp", "--lsp" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("yamlls", {
+        cmd = { "yaml-language-server", "--stdio" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("marksman", {
+        cmd = { "marksman", "server" },
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config("jsonls", {
+        cmd = { "vscode-json-language-server", "--stdio" },
+        capabilities = capabilities,
+      })
+
+      -- ---------------------
+      -- Enable all configured servers
+      -- ---------------------
+      local servers = {
+        "nixd",
+        "gopls",
+        "basedpyright",
+        "lua_ls",
+        "rust_analyzer",
+        "taplo",
+        "html",
+        "cssls",
+        "ts_ls",
+        "vue_ls",
+        "bashls",
+        "hls",
+        "clangd",
+        "cmake",
+        "mesonlsp",
+        "yamlls",
+        "marksman",
+        "jsonls",
+      }
+
+      for _, s in ipairs(servers) do
+        vim.lsp.enable(s)
       end
     end,
   },

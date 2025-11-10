@@ -3,41 +3,42 @@ return {
   { "LuaSnip" },
   { "lspkind.nvim" },
   { "blink.compat" },
-  { "blink-copilot" },
-  {
-    "copilot.lua",
-    after = function()
-      require("copilot").setup({
-        suggestion = {
-          enabled = false,
-          auto_trigger = true,
-          hide_during_completion = true,
-          keymap = {
-            accept = false, -- handled by nvim-cmp / blink.cmp
-            next = "<M-]>",
-            prev = "<M-[>",
-          },
-        },
-        panel = { enabled = false },
-        filetypes = {
-          gitcommit = true,
-          markdown = true,
-          help = true,
-        },
-      })
-    end,
-  },
+  -- { "blink-copilot" },
+  -- {
+  --   "copilot.lua",
+  --   after = function()
+  --     require("copilot").setup({
+  --       suggestion = {
+  --         enabled = false,
+  --         auto_trigger = true,
+  --         hide_during_completion = true,
+  --         keymap = {
+  --           accept = false, -- handled by nvim-cmp / blink.cmp
+  --           next = "<M-]>",
+  --           prev = "<M-[>",
+  --         },
+  --       },
+  --       panel = { enabled = false },
+  --       filetypes = {
+  --         gitcommit = true,
+  --         markdown = true,
+  --         help = true,
+  --       },
+  --     })
+  --   end,
+  -- },
 
   {
     "blink.cmp",
     event = "InsertEnter",
 
     before = function()
+      require("lz.n").trigger_load("blink.compat")
+      -- require("lz.n").trigger_load("blink-copilot")
+      -- require("lz.n").trigger_load("copilot.lua")
       require("lz.n").trigger_load("lspkind.nvim")
       require("lz.n").trigger_load("friendly-snippets")
       require("lz.n").trigger_load("LuaSnip")
-      require("lz.n").trigger_load("blink.compat")
-      require("lz.n").trigger_load("blink-copilot")
     end,
 
     after = function()
@@ -108,7 +109,14 @@ return {
         },
 
         sources = {
-          default = { "lsp", "snippets", "buffer", "path", "copilot", "lazydev" },
+          default = {
+            "lsp",
+            "snippets",
+            "buffer",
+            "path",
+            -- "copilot",
+            "lazydev",
+          },
           providers = {
             lazydev = {
               module = "lazydev.integrations.blink",
@@ -147,13 +155,13 @@ return {
                 show_hidden_files_by_default = false,
               },
             },
-            copilot = {
-              enabled = true,
-              name = "copilot",
-              module = "blink-copilot",
-              score_offset = 100,
-              async = true,
-            },
+            -- copilot = {
+            --   enabled = true,
+            --   name = "copilot",
+            --   module = "blink-copilot",
+            --   score_offset = 100,
+            --   async = true,
+            -- },
           },
         },
 
