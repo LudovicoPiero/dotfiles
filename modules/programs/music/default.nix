@@ -109,5 +109,16 @@ in
         Restart = "on-failure";
       };
     };
+
+    systemd.user.services.mpd-discord-rpc = {
+      description = "the mpd-discord-rpc service";
+      after = [ "mpd.service" ];
+      wants = [ "mpd.service" ];
+      wantedBy = [ "default.target" ];
+      serviceConfig = {
+        ExecStart = "${lib.getExe pkgs.mpd-discord-rpc}";
+        Restart = "on-failure";
+      };
+    };
   };
 }
