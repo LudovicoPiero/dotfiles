@@ -98,5 +98,27 @@ in
         Restart = "on-failure";
       };
     };
+
+    systemd.user.services.mpdris2 = {
+      description = "MPD D-Bus Interface (mpDris2)";
+      after = [ "mpd.service" ];
+      wants = [ "mpd.service" ];
+      wantedBy = [ "default.target" ];
+      serviceConfig = {
+        ExecStart = "${lib.getExe pkgs.mpdris2}";
+        Restart = "on-failure";
+      };
+    };
+
+    systemd.user.services.mpd-discord-rpc = {
+      description = "the mpd-discord-rpc service";
+      after = [ "mpd.service" ];
+      wants = [ "mpd.service" ];
+      wantedBy = [ "default.target" ];
+      serviceConfig = {
+        ExecStart = "${lib.getExe pkgs.mpd-discord-rpc}";
+        Restart = "on-failure";
+      };
+    };
   };
 }
