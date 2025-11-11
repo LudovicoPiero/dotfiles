@@ -38,16 +38,11 @@ in
       enable = true;
       inherit (inputs'.nvim-overlay.packages) neovim;
 
-      initLua = ''
-        require("lain")
-        require("lz.n").load("lazy")
-      '';
+      # Lua config files to load at startup
+      luaFiles = [ ./init.lua ];
 
       plugins = {
-        start = [
-          pkgs.vimPlugins.lz-n
-          pkgs.vimPlugins.plenary-nvim
-        ];
+        start = [ pkgs.vimPlugins.plenary-nvim ];
 
         # Anything that you're loading lazily should be put here
         opt = with pkgs.vimPlugins; [ nvim-treesitter.withAllGrammars ];
@@ -61,7 +56,7 @@ in
           # is this necessary?
           pure = lib.fileset.toSource {
             root = ./.;
-            fileset = lib.fileset.unions [ ./lua ];
+            fileset = lib.fileset.unions [ ./nvim ];
           };
         };
       };
