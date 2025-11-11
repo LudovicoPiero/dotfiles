@@ -19,8 +19,13 @@ in
   config = mkIf cfg.enable {
     users.users.root.shell = pkgs.fish;
     users.users.${config.vars.username}.shell = pkgs.fish;
-    sops.secrets."shells/githubToken" = {
-      mode = "0444";
+    sops = {
+      secrets."shells/copilotToken" = {
+        mode = "0444";
+      };
+      secrets."shells/githubToken" = {
+        mode = "0444";
+      };
     };
     environment.pathsToLink = [ "/share/fish" ];
     programs.fish.enable = true;
@@ -92,6 +97,7 @@ in
         with pkgs;
         ''
           . ${config.sops.secrets."shells/githubToken".path}
+          . ${config.sops.secrets."shells/copilotToken".path}
           ${_ nix-your-shell} fish | source
           ${_ zoxide} init fish | source
           ${_ direnv} hook fish | source
