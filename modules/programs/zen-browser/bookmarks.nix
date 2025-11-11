@@ -3,6 +3,17 @@
     force = true;
     settings = [
       {
+        name = "JP"; # Bookmark Folder
+        toolbar = true;
+        bookmarks = [
+          {
+            name = "JP Dictionary";
+            keyword = "js";
+            url = "https://jisho.org/";
+          }
+        ];
+      }
+      {
         name = "ANIME"; # Bookmark Folder
         toolbar = true;
         bookmarks = [
