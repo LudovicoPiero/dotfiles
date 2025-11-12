@@ -34,18 +34,6 @@ jobs:
           nix run github:ludovicopiero/nvfetcher -- --commit-changes
           popd
 
-      - name: Run npins update
-        run: |
-          pushd modules/programs/nvim
-          nix run github:ludovicopiero/dotfiles#npins -- update
-          if ! git diff --quiet; then
-            git add .
-            git commit -m "npins: update Neovim plugins"
-          else
-            echo "No plugin updates, skipping commit."
-          fi
-          popd
-
       - name: Run nix-update for all flakes
         run: |
           export LC_ALL=en_US.UTF-8
