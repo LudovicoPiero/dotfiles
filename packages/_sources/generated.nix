@@ -162,8 +162,8 @@
     cargoLock."Cargo.lock" = {
       lockFile = ./wezterm-118802c24420f3f4c206333cc7885cd922142e8e/Cargo.lock;
       outputHashes = {
-        "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
         "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
+        "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
       };
     };
     date = "2025-11-11";
