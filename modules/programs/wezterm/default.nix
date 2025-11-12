@@ -65,6 +65,7 @@ in
             clean_exit_codes = { 130 },
             window_background_opacity = ${toString config.vars.opacity},
             use_ime = true,
+            warn_about_missing_glyphs = false,
 
             -- Window frame styling
             window_frame = {
