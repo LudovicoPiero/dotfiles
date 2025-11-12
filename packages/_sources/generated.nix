@@ -15,46 +15,6 @@
     };
     date = "2025-11-05";
   };
-  blink-cmp = {
-    pname = "blink-cmp";
-    version = "40380e711b616a28affb0f4086a2f7de2f2a556b";
-    src = fetchgit {
-      url = "https://github.com/saghen/blink.cmp";
-      rev = "40380e711b616a28affb0f4086a2f7de2f2a556b";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-0+KyxOh7WUm6rRLfb936X48qBhYL5aRYn2OBEj4G1/s=";
-    };
-    cargoLock."Cargo.lock" = {
-      lockFile = ./blink-cmp-40380e711b616a28affb0f4086a2f7de2f2a556b/Cargo.lock;
-      outputHashes = {
-        
-      };
-    };
-    date = "2025-11-05";
-  };
-  blink-pairs = {
-    pname = "blink-pairs";
-    version = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
-    src = fetchgit {
-      url = "https://github.com/saghen/blink.pairs";
-      rev = "8e935d07ab6a3843565afd6a6d56456678cbf43f";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-L1sG5vW8W1z5TMf6IRrkmNqNiCvPePT0eA+dR8yBZMI=";
-    };
-    cargoLock."Cargo.lock" = {
-      lockFile = ./blink-pairs-8e935d07ab6a3843565afd6a6d56456678cbf43f/Cargo.lock;
-      outputHashes = {
-        
-      };
-    };
-    date = "2025-11-07";
-  };
   catppuccin-fcitx5 = {
     pname = "catppuccin-fcitx5";
     version = "393845cf3ed0e0000bfe57fe1b9ad75748e2547f";
@@ -189,24 +149,24 @@
   };
   wezterm = {
     pname = "wezterm";
-    version = "b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17";
+    version = "118802c24420f3f4c206333cc7885cd922142e8e";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17";
+      rev = "118802c24420f3f4c206333cc7885cd922142e8e";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-t99sVnRzfJUa6b6h55nFy/Xpkeeeph5ugZBl98N0jEg=";
+      sha256 = "sha256-omRxmuhWh9YnlsbAd3ZlC/XVoFOwzMHEy5lLXR/cdh8=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17/Cargo.lock;
+      lockFile = ./wezterm-118802c24420f3f4c206333cc7885cd922142e8e/Cargo.lock;
       outputHashes = {
-        "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
         "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
+        "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
       };
     };
-    date = "2025-10-25";
+    date = "2025-11-11";
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";

@@ -97,6 +97,8 @@
       # coreutils = pkgs.hiPrio pkgs.uutils-coreutils-noprefix;
       # findutils = pkgs.hiPrio pkgs.uutils-findutils;
 
+      inherit (inputs'.nvim-flake.packages) nvim;
+
       vesktop-wayland = pkgs.vesktop.overrideAttrs (old: {
         postFixup = ''
           ${old.postFixup or ""}

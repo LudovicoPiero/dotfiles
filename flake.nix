@@ -88,18 +88,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mnw = {
+    nvim-flake = {
       type = "github";
-      owner = "gerg-l";
-      repo = "mnw";
-    };
-
-    nvim-overlay = {
-      type = "github";
-      owner = "nix-community";
-      repo = "neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
+      owner = "LudovicoPiero";
+      repo = "nvim-flake";
     };
   };
 }

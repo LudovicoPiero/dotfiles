@@ -19,56 +19,6 @@
         },
         "version": "4c165a98ac3f1d351cd2aeb36ba6df3104ca6b16"
     },
-    "blink-cmp": {
-        "cargoLocks": {
-            "Cargo.lock": [
-                "./blink-cmp-40380e711b616a28affb0f4086a2f7de2f2a556b/Cargo.lock",
-                {}
-            ]
-        },
-        "date": "2025-11-05",
-        "extract": null,
-        "name": "blink-cmp",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "40380e711b616a28affb0f4086a2f7de2f2a556b",
-            "sha256": "sha256-0+KyxOh7WUm6rRLfb936X48qBhYL5aRYn2OBEj4G1/s=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://github.com/saghen/blink.cmp"
-        },
-        "version": "40380e711b616a28affb0f4086a2f7de2f2a556b"
-    },
-    "blink-pairs": {
-        "cargoLocks": {
-            "Cargo.lock": [
-                "./blink-pairs-8e935d07ab6a3843565afd6a6d56456678cbf43f/Cargo.lock",
-                {}
-            ]
-        },
-        "date": "2025-11-07",
-        "extract": null,
-        "name": "blink-pairs",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "8e935d07ab6a3843565afd6a6d56456678cbf43f",
-            "sha256": "sha256-L1sG5vW8W1z5TMf6IRrkmNqNiCvPePT0eA+dR8yBZMI=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://github.com/saghen/blink.pairs"
-        },
-        "version": "8e935d07ab6a3843565afd6a6d56456678cbf43f"
-    },
     "catppuccin-fcitx5": {
         "cargoLocks": null,
         "date": "2025-05-16",
@@ -259,14 +209,14 @@
     "wezterm": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17/Cargo.lock",
+                "./wezterm-118802c24420f3f4c206333cc7885cd922142e8e/Cargo.lock",
                 {
                     "finl_unicode-1.3.0": "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=",
                     "xcb-imdkit-0.3.0": "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU="
                 }
             ]
         },
-        "date": "2025-10-25",
+        "date": "2025-11-11",
         "extract": null,
         "name": "wezterm",
         "passthru": null,
@@ -276,13 +226,13 @@
             "fetchSubmodules": true,
             "leaveDotGit": false,
             "name": null,
-            "rev": "b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17",
-            "sha256": "sha256-t99sVnRzfJUa6b6h55nFy/Xpkeeeph5ugZBl98N0jEg=",
+            "rev": "118802c24420f3f4c206333cc7885cd922142e8e",
+            "sha256": "sha256-omRxmuhWh9YnlsbAd3ZlC/XVoFOwzMHEy5lLXR/cdh8=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/wez/wezterm"
         },
-        "version": "b6e75fd7c8f9c9ad5af4efbba1d28df0969f6b17"
+        "version": "118802c24420f3f4c206333cc7885cd922142e8e"
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,

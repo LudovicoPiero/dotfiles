@@ -21,7 +21,6 @@
     git.enable = true;
     gpg.enable = true;
     music.enable = true;
-    nvim.enable = true;
     secrets.enable = true;
     tlp.enable = true;
     wezterm.enable = true;
