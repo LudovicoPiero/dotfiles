@@ -19,8 +19,6 @@ for name, type in vim.fs.dir(opt_dir) do
   end
 end
 
-vim.keymap.set("n", "<leader>o", ":FzfLua files<CR>", { desc = "[S]earch [Q]uickfix List" })
-
 -- Load your configuration modules
 require("config.globals")
 require("config.colorscheme")
