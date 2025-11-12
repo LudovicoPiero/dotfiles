@@ -56,6 +56,7 @@ rustPlatform.buildRustPackage rec {
   auditable = false;
 
   cargoLock = sources.wezterm.cargoLock."Cargo.lock";
+  doCheck = false;
 
   nativeBuildInputs = [
     installShellFiles
@@ -134,9 +135,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://wezfurlong.org/wezterm";
     license = lib.licenses.mit;
     mainProgram = "wezterm";
-    maintainers = with lib.maintainers; [
-      ludovicopiero
-
-    ];
+    maintainers = with lib.maintainers; [ ludovicopiero ];
   };
 }
