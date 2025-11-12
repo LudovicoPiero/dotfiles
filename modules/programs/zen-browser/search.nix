@@ -22,6 +22,11 @@
         definedAliases = [ "g" ];
       };
 
+      "jisho" = {
+        urls = [ { template = "https://jisho.org/search/{searchTerms}"; } ];
+        definedAliases = [ "j" ];
+      };
+
       "searx" = {
         urls = [
           {
