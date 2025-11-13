@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs',
   self',
   pkgs,
   ...
@@ -23,14 +22,15 @@ in
     hj.packages = [
       # Theming
       self'.packages.whitesur-gtk-theme
+      pkgs.tokyonight-gtk-theme
       pkgs.whitesur-icon-theme
       pkgs.phinger-cursors
 
       # Gnome Extensions
-      pkgs.gnomeExtensions.dash-to-panel
-      pkgs.gnomeExtensions.user-themes
-      pkgs.gnomeExtensions.appindicator
-      pkgs.gnomeExtensions.quick-lang-switch
+      # pkgs.gnomeExtensions.dash-to-panel
+      # pkgs.gnomeExtensions.user-themes
+      # pkgs.gnomeExtensions.appindicator
+      # pkgs.gnomeExtensions.quick-lang-switch
 
       # Etc
       # Added here because core-apps include this
