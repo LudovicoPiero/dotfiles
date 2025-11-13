@@ -76,6 +76,7 @@
         nix-index # Index all Nix packages for local search
         nh # Helper for managing NixOS systems and generations
         git # gud
+        gh
 
         # Nix-related tools
         nixpkgs-review # Review pull requests or changes in nixpkgs locally
