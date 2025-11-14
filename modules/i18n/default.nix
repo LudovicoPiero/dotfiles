@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self',
   ...
 }:
 let
@@ -9,6 +10,18 @@ let
 
   cfg = config.mine.fcitx5;
   localeCfg = cfg.locale;
+
+  gnome = config.mine.gnome.enable;
+  kde = config.mine.kde.enable;
+
+  # Automatically pick the input method
+  selectedInputMethod =
+    if kde then
+      "fcitx5"
+    else if gnome then
+      "ibus"
+    else
+      cfg.inputMethod or "fcitx5"; # fallback
 in
 {
   options.mine = {
@@ -30,14 +43,27 @@ in
           description = "List of additional locales to generate";
         };
       };
+
+      # Optional fallback so user can override
+      inputMethod = lib.mkOption {
+        type = lib.types.enum [
+          "fcitx5"
+          "ibus"
+        ];
+        default = null;
+        description = "Override auto-selected input method (fcitx5/ibus).";
+      };
     };
   };
 
   config = mkIf cfg.enable {
+    ###########
+    #  LOCALE #
+    ###########
     i18n = {
-      # Locale Settings
       inherit (localeCfg) defaultLocale;
       inherit (localeCfg) extraLocales;
+
       extraLocaleSettings = {
         LANGUAGE = "en_US.UTF-8";
         LC_ALL = "en_US.UTF-8";
@@ -55,39 +81,43 @@ in
         LC_COLLATE = "en_US.UTF-8";
       };
 
-      # The Real FCITX5 Settings
+      #########################
+      # INPUT METHOD SELECTOR #
+      #########################
       inputMethod = {
         enable = true;
+        type = selectedInputMethod;
 
-        # Ibus
-        type = "ibus";
-        ibus.engines = with pkgs.ibus-engines; [
-          mozc-ut # Japanese
-          hangul # Korean
-        ];
+        ibus = mkIf (selectedInputMethod == "ibus") {
+          engines = with pkgs.ibus-engines; [
+            mozc-ut
+            hangul
+          ];
+        };
 
-        # FCITX5
-        # type = "fcitx5";
-        # fcitx5 = {
-        #   waylandFrontend = true;
-        #   addons = with pkgs; [
-        #     # Languages
-        #     fcitx5-mozc # Japanese
-        #     fcitx5-hangul # Korean
-        #
-        #     # Input methods Module
-        #     fcitx5-gtk
-        #     libsForQt5.fcitx5-qt
-        #
-        #     # Theme
-        #     inputs'.ludovico-pkgs.packages.catppuccin-fcitx5
-        #   ];
-        # };
+        fcitx5 = mkIf (selectedInputMethod == "fcitx5") {
+          waylandFrontend = true;
+          addons = with pkgs; [
+            fcitx5-mozc
+            fcitx5-hangul
+            fcitx5-gtk
+            libsForQt5.fcitx5-qt
+            self'.packages.catppuccin-fcitx5
+          ];
+        };
       };
     };
 
-    # systemd.user.tmpfiles.users.${config.vars.username}.rules = [
-    #   "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}"
-    # ];
+    # Only apply when using fcitx5 (KDE or manual override)
+    systemd.user.units."app-org.fcitx.Fcitx5@autostart.service".enable = mkIf (
+      selectedInputMethod == "fcitx5"
+    ) false;
+
+    ###############################
+    # fcitx5 custom config folder #
+    ###############################
+    systemd.user.tmpfiles.users.${config.vars.username}.rules = mkIf (
+      selectedInputMethod == "fcitx5"
+    ) [ "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}" ];
   };
 }
