@@ -65,12 +65,16 @@
       };
 
       "github (code)" = {
-        urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
+        urls = [
+          { template = "https://github.com/search?q={searchTerms}&type=code"; }
+        ];
         definedAliases = [ "ghc" ];
       };
 
       "github (repository)" = {
-        urls = [ { template = "https://github.com/search?q={searchTerms}&type=repository"; } ];
+        urls = [
+          { template = "https://github.com/search?q={searchTerms}&type=repository"; }
+        ];
         definedAliases = [ "ghr" ];
       };
 
@@ -130,13 +134,17 @@
       };
 
       "nixos-wiki" = {
-        urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
+        urls = [
+          { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; }
+        ];
         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "nw" ];
       };
 
       "youtube" = {
-        urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
+        urls = [
+          { template = "https://www.youtube.com/results?search_query={searchTerms}"; }
+        ];
         definedAliases = [ "yt" ];
       };
 
