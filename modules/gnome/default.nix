@@ -22,7 +22,7 @@ in
     hj.packages = [
       # Theming
       self'.packages.whitesur-gtk-theme
-      pkgs.tokyonight-gtk-theme
+      (pkgs.orchis-theme.override { tweaks = [ "macos" ]; })
       pkgs.whitesur-icon-theme
       pkgs.phinger-cursors
 
