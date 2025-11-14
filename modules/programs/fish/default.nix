@@ -28,7 +28,13 @@ in
       };
     };
     environment.pathsToLink = [ "/share/fish" ];
-    programs.fish.enable = true;
+    programs = {
+      fish.enable = true;
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+    };
 
     hjem.extraModules = [ ./_modules.nix ];
 
