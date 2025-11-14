@@ -20,7 +20,7 @@
         set -euo pipefail
 
         ${log "Formatting *.nix files..."}
-        ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe' pkgs.nixfmt "nixfmt"} -s '{}'
+        ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe' pkgs.nixfmt "nixfmt"} --strict --width=80 '{}'
 
         ${log "Formatting *.lua files..."}
         ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e lua -x ${lib.getExe' pkgs.stylua "stylua"} \
