@@ -1,17 +1,9 @@
-{ inputs, ... }:
 {
   systems = [ "x86_64-linux" ];
 
   perSystem =
-    { lib, system, ... }:
+    { lib, pkgs, ... }:
     let
-      # Import nixpkgs with unfree packages allowed
-      unfreePkgs = import inputs.nixpkgs {
-        inherit system;
-        overlays = [ ];
-        config.allowUnfree = true;
-      };
-
       # Helper to print pretty log messages
       color = {
         blue = "\\033[1;34m";
@@ -24,24 +16,24 @@
       log = msg: "echo -e \"${color.blue}▶${color.reset} ${msg}\"";
 
       # Format all files nicely
-      formatScript = unfreePkgs.writeShellScriptBin "formatter" ''
+      formatScript = pkgs.writeShellScriptBin "formatter" ''
         set -euo pipefail
 
         ${log "Formatting *.nix files..."}
-        ${lib.getExe unfreePkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe' unfreePkgs.nixfmt "nixfmt"} -s '{}'
+        ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe' pkgs.nixfmt "nixfmt"} -s '{}'
 
         ${log "Formatting *.lua files..."}
-        ${lib.getExe unfreePkgs.fd} . --exclude='_*' -t f -e lua -x ${lib.getExe' unfreePkgs.stylua "stylua"} \
+        ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e lua -x ${lib.getExe' pkgs.stylua "stylua"} \
           --indent-type Spaces --indent-width 2 '{}'
 
         ${log "Formatting *.sh files..."}
-        ${lib.getExe unfreePkgs.fd} . --exclude='_*' -t f -e sh -x ${lib.getExe unfreePkgs.shfmt} -w -i 2 '{}'
+        ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e sh -x ${lib.getExe pkgs.shfmt} -w -i 2 '{}'
 
         ${log "Checking for dead code (deadnix)..."}
-        ${lib.getExe unfreePkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe unfreePkgs.deadnix} --no-lambda-arg --no-lambda-pattern-names -e '{}'
+        ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe pkgs.deadnix} --no-lambda-arg --no-lambda-pattern-names -e '{}'
 
         ${log "Running statix (lint & fix)..."}
-        ${lib.getExe unfreePkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe unfreePkgs.statix} fix '{}'
+        ${lib.getExe pkgs.fd} . --exclude='_*' -t f -e nix -x ${lib.getExe pkgs.statix} fix '{}'
 
         echo -e "${color.green}✨ All done!${color.reset}"
       '';
@@ -49,9 +41,9 @@
     {
       formatter = formatScript;
 
-      devShells.default = unfreePkgs.mkShell {
+      devShells.default = pkgs.mkShell {
         name = "UwU Shell";
-        buildInputs = with unfreePkgs; [
+        buildInputs = with pkgs; [
           nixfmt
           deadnix
           statix
