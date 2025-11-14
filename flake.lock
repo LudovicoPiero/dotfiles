@@ -461,11 +461,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1763099956,
-        "narHash": "sha256-X7VdyRnyaidVEKD+NKYNOFzNxJ6kuo6k7vCkl1jf/MU=",
+        "lastModified": 1763100246,
+        "narHash": "sha256-y4SYO7sCZcHhNkBSoTFt/612ak0q84fKsmKp7vxCV1s=",
         "owner": "LudovicoPiero",
         "repo": "nvim-flake",
-        "rev": "59322edd4941c3d1b94b13d5cf84cf6c3e3ca334",
+        "rev": "188a0c8d4ba298cff673b0350cb4d7a084f3ba8f",
         "type": "github"
       },
       "original": {
