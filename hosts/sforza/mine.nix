@@ -13,8 +13,8 @@
   };
 
   mine = {
-    gnome.enable = false;
-    kde.enable = true;
+    gnome.enable = true;
+    kde.enable = false;
 
     fish.enable = true;
     fcitx5.enable = true;
