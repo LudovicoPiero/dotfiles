@@ -16,7 +16,7 @@
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
-      ref = "nixos-unstable-small";
+      ref = "nixos-unstable";
     };
     nixpkgs.follows = "nixpkgs-unstable";
 
