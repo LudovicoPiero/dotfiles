@@ -461,11 +461,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1763225406,
-        "narHash": "sha256-FX0poByjgz6HbWJLA3fPJR8IxOeewWkmONSaEmuQGQ0=",
+        "lastModified": 1763264976,
+        "narHash": "sha256-l1fgKqR+uBJhu0EQfgyx9Z2VN7KdA1smT9hwgaGi7wY=",
         "owner": "LudovicoPiero",
         "repo": "nvim-flake",
-        "rev": "0155018888b5a9850acaf24bae3bd2381fe1305a",
+        "rev": "5d715615a7a05e36aadc9808cb7f83ebe3402442",
         "type": "github"
       },
       "original": {
@@ -715,15 +715,16 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1763257444,
-        "narHash": "sha256-rN/bEAErGWQ/AUkR3XuJfahou/9YvdexpRjAjvbxWcI=",
+        "lastModified": 1763214567,
+        "narHash": "sha256-BDRSWvXGoKq1oHSjl+HLAq7I8ZL90ZhW3fDB3cl7LJk=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "ddc2dbc0b1b9d462bc08be4d30f9bc5fb2532023",
+        "rev": "0bfb3939813d5da9e198de6d4cc1e2afc38a7021",
         "type": "github"
       },
       "original": {
         "owner": "0xc000022070",
+        "ref": "0bfb3939813d5da9e198de6d4cc1e2afc38a7021",
         "repo": "zen-browser-flake",
         "type": "github"
       }
