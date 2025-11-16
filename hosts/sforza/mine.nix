@@ -3,7 +3,7 @@
   vars = {
     email = "lewdovico@gnuweeb.org";
     isALaptop = true;
-    opacity = 0.99;
+    opacity = 1.00;
     stateVersion = "24.11";
     terminal = "wezterm";
     timezone = "Asia/Tokyo";
