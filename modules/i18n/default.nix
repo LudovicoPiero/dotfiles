@@ -98,7 +98,7 @@ in
         fcitx5 = mkIf (selectedInputMethod == "fcitx5") {
           waylandFrontend = true;
           addons = with pkgs; [
-            fcitx5-mozc
+            fcitx5-mozc-ut
             fcitx5-hangul
             fcitx5-gtk
             libsForQt5.fcitx5-qt
