@@ -17,7 +17,8 @@
     kde.enable = false;
 
     fish.enable = true;
-    fcitx5.enable = true;
+    inputMethod.enable = true;
+    inputMethod.type = "fcitx5";
     ghostty.enable = true;
     git.enable = true;
     gpg.enable = true;

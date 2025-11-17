@@ -5,64 +5,64 @@
   self',
   ...
 }:
+
 let
   inherit (lib) mkEnableOption mkIf;
-
-  cfg = config.mine.fcitx5;
-  localeCfg = cfg.locale;
+  cfg = config.mine.inputMethod;
+  localeCfg = config.mine.inputMethod.locale;
 
   gnome = config.mine.gnome.enable;
   kde = config.mine.kde.enable;
 
-  # Automatically pick the input method
   selectedInputMethod =
-    if kde then
-      "fcitx5"
-    else if gnome then
-      "ibus"
-    else
-      cfg.inputMethod or "fcitx5"; # fallback
+    let
+      autoPick =
+        if kde then
+          lib.warnIf (
+            cfg.type == null
+          ) "mine.inputMethod: KDE detected → automatically selecting 'fcitx5'." "fcitx5"
+        else if gnome then
+          lib.warnIf (
+            cfg.type == null
+          ) "mine.inputMethod: GNOME detected → automatically selecting 'ibus'." "ibus"
+        else
+          "fcitx5";
+    in
+    if cfg.type != null then cfg.type else autoPick;
 in
 {
-  options.mine = {
-    fcitx5 = {
-      enable = mkEnableOption "fcitx5 service";
+  options.mine.inputMethod = {
+    enable = mkEnableOption "Enable input-method management";
 
-      locale = {
-        defaultLocale = lib.mkOption {
-          type = lib.types.str;
-          default = "ja_JP.UTF-8";
-          description = "Default system locale";
-        };
-        extraLocales = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
-          default = [
-            "ja_JP.UTF-8/UTF-8"
-            "en_US.UTF-8/UTF-8"
-          ];
-          description = "List of additional locales to generate";
-        };
+    locale = {
+      defaultLocale = lib.mkOption {
+        type = lib.types.str;
+        default = "ja_JP.UTF-8";
+        description = "Default system locale for input method support";
       };
-
-      # Optional fallback so user can override
-      inputMethod = lib.mkOption {
-        type = lib.types.enum [
-          "fcitx5"
-          "ibus"
+      extraLocales = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [
+          "ja_JP.UTF-8/UTF-8"
+          "en_US.UTF-8/UTF-8"
         ];
-        default = null;
-        description = "Override auto-selected input method (fcitx5/ibus).";
+        description = "Additional locales to generate for input methods";
       };
+    };
+
+    type = lib.mkOption {
+      type = lib.types.enum [
+        "fcitx5"
+        "ibus"
+      ];
+      default = null;
+      description = "Force-select the input method (fcitx5 or ibus).";
     };
   };
 
   config = mkIf cfg.enable {
-    ###########
-    #  LOCALE #
-    ###########
     i18n = {
-      inherit (localeCfg) defaultLocale;
-      inherit (localeCfg) extraLocales;
+      inherit (localeCfg) extraLocales defaultLocale;
 
       extraLocaleSettings = {
         LANGUAGE = "en_US.UTF-8";
@@ -108,14 +108,10 @@ in
       };
     };
 
-    # Only apply when using fcitx5 (KDE or manual override)
     systemd.user.units."app-org.fcitx.Fcitx5@autostart.service".enable = mkIf (
       selectedInputMethod == "fcitx5"
     ) false;
 
-    ###############################
-    # fcitx5 custom config folder #
-    ###############################
     systemd.user.tmpfiles.users.${config.vars.username}.rules = mkIf (
       selectedInputMethod == "fcitx5"
     ) [ "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}" ];
