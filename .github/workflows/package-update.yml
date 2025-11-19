@@ -35,7 +35,7 @@ jobs:
         run: |
           export LC_ALL=en_US.UTF-8
           export LANG=en_US.UTF-8
-          for pkg in iosevka-q sarasa-gothic; do
+          for pkg in gemini-cli iosevka-q sarasa-gothic; do
             nix run nixpkgs#nix-update -- --flake "$pkg" --commit
           done
 
