@@ -2,6 +2,7 @@
   lib,
   inputs,
   inputs',
+  self',
   pkgs,
   config,
   ...
@@ -99,6 +100,7 @@
       # findutils = pkgs.hiPrio pkgs.uutils-findutils;
 
       inherit (inputs'.nvim-flake.packages) nvim;
+      inherit (self'.packages) gemini-cli;
 
       vesktop-wayland = pkgs.vesktop.overrideAttrs (old: {
         postFixup = ''
