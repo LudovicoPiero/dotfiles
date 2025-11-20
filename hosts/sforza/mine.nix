@@ -28,6 +28,11 @@
     wezterm.enable = true;
     zen-browser.enable = true;
 
+    theme = {
+      gtk.enable = true;
+      qt.enable = true;
+    };
+
     fonts = {
       enable = true;
       size = 15;
