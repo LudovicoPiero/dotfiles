@@ -20,12 +20,6 @@ in
 
   config = mkIf cfg.enable {
     hj.packages = [
-      # Theming
-      self'.packages.whitesur-gtk-theme
-      (pkgs.orchis-theme.override { tweaks = [ "macos" ]; })
-      pkgs.whitesur-icon-theme
-      pkgs.phinger-cursors
-
       # Gnome Extensions
       # pkgs.gnomeExtensions.dash-to-panel
       # pkgs.gnomeExtensions.user-themes
