@@ -30,24 +30,47 @@ let
       formatValue =
         v: if isBool v then (if v then "true" else "false") else toString v;
 
-      # Custom sorter: Forces 'bezier' to appear before 'animation'
-      # Hyprland requires beziers to be defined before they are referenced.
+      # Custom sorter: Enforces "Reference" order
+      # 1. Monitor, 2. Variables ($), 3. Env, 4. Exec, 5. Bezier, etc.
       hyprSort =
         a: b:
-        if a == "bezier" then
+        let
+          prio =
+            key:
+            if key == "monitor" then
+              0
+            else if key == "source" then
+              1
+            else if key == "$mod" then
+              2 # Variables near top
+            else if key == "env" then
+              3
+            else if key == "exec-once" then
+              4
+            else if key == "bezier" then
+              5 # Must be before animation
+            else if key == "animation" then
+              6
+            else if key == "input" then
+              7
+            else if key == "general" then
+              8
+            else
+              100; # Everything else (binds, windowrules) at the bottom
+        in
+        if prio a < prio b then
           true
-        else if b == "bezier" then
+        else if prio a > prio b then
           false
         else
-          a < b;
+          a < b; # Default to alphabetical for same-priority keys
 
       render =
         name: value:
         if isAttrs value then
           let
-            # We sort the keys using our custom sorter instead of mapAttrsToList
+            # Sort keys using our custom hierarchical sorter
             sortedKeys = sort hyprSort (attrNames value);
-            # Recursively render items in the sorted order
             innerContent = concatStringsSep "\n" (map (k: render k value.${k}) sortedKeys);
           in
           "${name} {\n${innerContent}\n}"
@@ -64,6 +87,7 @@ let
   emojiPicker = getExe self'.packages.fuzzmoji;
 
   hyprlandSettings = {
+    # This will now render near the top (Priority 4)
     exec-once = [
       "${getExe pkgs.brightnessctl} set 10%"
       "[workspace 9 silent;noanim] ${getExe pkgs.thunderbird}"
@@ -78,6 +102,7 @@ let
       "systemctl --user stop plasma-xdg-desktop-portal-kde.service"
     ];
 
+    # Priority 3
     env = [
       "HYPRCURSOR_THEME,${cfgmine.theme.cursor.name}"
       "XCURSOR_THEME,${cfgmine.theme.cursor.name}"
@@ -85,6 +110,7 @@ let
       "XCURSOR_SIZE,${toString cfgmine.theme.cursor.size}"
     ];
 
+    # Priority 0 (Top)
     monitor = [
       "HDMI-A-1, 1920x1080@180, auto, 1"
       "eDP-1,disable"
@@ -92,6 +118,8 @@ let
 
     animations = {
       enabled = true;
+
+      # Priority 5: Will render before 'animation'
       bezier = [
         "myBezier, 0.05, 0.9, 0.1, 1.05"
         "easeOutQuint, 0.23, 1, 0.32,1"
@@ -101,6 +129,7 @@ let
         "quick, 0.15, 0, 0.1, 1"
       ];
 
+      # Priority 6
       animation = [
         "global, 1, 10, default"
         "border, 1, 5.39, easeOutQuint"
@@ -267,7 +296,9 @@ let
       "noanim, class:^(wleave)$"
     ];
 
+    # Priority 2: Variables
     "$mod" = "SUPER";
+
     bind = [
       "$mod SHIFT, C , exit ,"
       "$mod        , Q, togglespecialworkspace"
