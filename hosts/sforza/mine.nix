@@ -1,67 +1,87 @@
-{ self', pkgs, ... }:
+{ pkgs, self', ... }:
 {
   vars = {
-    email = "lewdovico@gnuweeb.org";
-    isALaptop = true;
-    opacity = 1.00;
-    stateVersion = "24.11";
-    terminal = "wezterm";
-    timezone = "Asia/Tokyo";
+    # -- Identity --
     name = "Ludovico Piero";
     username = "lain";
+    email = "lewdovico@gnuweeb.org";
+
+    # -- System --
+    stateVersion = "24.11";
+    timezone = "Asia/Tokyo";
+    isALaptop = true;
     withGui = true;
+
+    # -- Visuals --
+    terminal = "wezterm";
+    opacity = 1.00;
   };
 
   mine = {
+    # -- Desktop Environment --
     hyprland.enable = true;
-    keyring.enable = true;
-    mako.enable = true;
-    waybar.enable = true;
     greetd.enable = true;
-    pipewire.enable = true;
-    cliphist.enable = true;
     lockscreen.enable = true;
+    waybar.enable = true;
+    mako.enable = true;
     xdg-portal.enable = true;
 
-    fish.enable = true;
-    inputMethod.enable = true;
-    inputMethod.type = "fcitx5";
-    ghostty.enable = true;
-    git.enable = true;
-    gpg.enable = true;
-    music.enable = true;
+    # -- System Services --
+    pipewire.enable = true;
+    cliphist.enable = true;
+    keyring.enable = true;
     secrets.enable = true;
     tlp.enable = true;
-    wezterm.enable = true;
-    zen-browser.enable = true;
+    gpg.enable = true;
 
+    # -- Input Method --
+    inputMethod = {
+      enable = true;
+      type = "fcitx5";
+    };
+
+    # -- Applications --
+    fish.enable = true;
+    git.enable = true;
+    music.enable = true;
+    zen-browser.enable = true;
+    ghostty.enable = true;
+    wezterm.enable = true;
+
+    # -- Theming --
     theme = {
       gtk.enable = true;
       qt.enable = true;
     };
 
+    # -- Typography --
     fonts = {
       enable = true;
       size = 15;
-      cjk = {
-        name = "Noto Sans CJK";
-        package = pkgs.noto-fonts-cjk-sans;
-      };
-      emoji = {
-        name = "Noto Color Emoji";
-        package = pkgs.noto-fonts-color-emoji;
-      };
-      icon = {
-        name = "Symbols Nerd Font Mono";
-        package = pkgs.nerd-fonts.symbols-only;
-      };
+
       main = {
         name = "SF Pro Display";
         package = self'.packages.san-francisco-pro;
       };
+
       terminal = {
         name = "Iosevka Q";
         package = self'.packages.iosevka-q;
+      };
+
+      cjk = {
+        name = "Noto Sans CJK";
+        package = pkgs.noto-fonts-cjk-sans;
+      };
+
+      emoji = {
+        name = "Noto Color Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+      };
+
+      icon = {
+        name = "Symbols Nerd Font Mono";
+        package = pkgs.nerd-fonts.symbols-only;
       };
     };
   };
