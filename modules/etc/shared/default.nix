@@ -192,6 +192,14 @@
 
         # Show asterisk when typing password
         Defaults pwfeedback
+
+        # Increases the timeout to 30 minutes (default is 15).
+        # Less typing your password while working on long tasks.
+        Defaults timestamp_timeout=30
+
+        # Preserves preferred editor and terminal colors when running sudo.
+        # This prevents 'sudo vim' from looking like shit or defaulting to nano.
+        Defaults env_keep += "EDITOR VISUAL TERM"
       '';
     };
   };
