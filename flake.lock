@@ -461,11 +461,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1763735386,
-        "narHash": "sha256-W0hgDuNivXrvSJODqRIkap7a5JGI3QFgVE4IumuxLqM=",
+        "lastModified": 1763741825,
+        "narHash": "sha256-GqnwptehP4jes8CCC5q0UIaO/nm6+Azs61HsI5N74G8=",
         "owner": "LudovicoPiero",
         "repo": "nvim-flake",
-        "rev": "30acc919ff523256acb17ef6d9a9c180cd726f62",
+        "rev": "2c11aa7fd403abc3960f02fde8aa62a47428f993",
         "type": "github"
       },
       "original": {
@@ -508,11 +508,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1763712333,
-        "narHash": "sha256-RQqkCNSkCKSmexQMDfEc2uHFi2zpbWtX4aYYlGiqDPs=",
+        "lastModified": 1763739290,
+        "narHash": "sha256-9R9bmRu13tTUuNfAETeH+EeobRZgB84m4J7CeRZ65tY=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "0edbd07abc0e478da674ca4957a08e307a9c5bd1",
+        "rev": "e4469c4f04a74d5d982a9df3d4f7796f559c3002",
         "type": "github"
       },
       "original": {
