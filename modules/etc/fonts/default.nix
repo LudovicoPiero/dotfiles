@@ -121,7 +121,7 @@ in
           ];
 
           monospace = [
-            "${cfg.main.name}"
+            "${cfg.terminal.name}"
             "${cfg.cjk.name}"
             "${cfg.emoji.name}"
             "${cfg.icon.name}"
