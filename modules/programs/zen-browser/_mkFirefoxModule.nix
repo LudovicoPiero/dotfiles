@@ -43,7 +43,8 @@ let
 
   isWrapped = wrappedPackageName != null;
 
-  packageName = if wrappedPackageName != null then wrappedPackageName else unwrappedPackageName;
+  packageName =
+    if wrappedPackageName != null then wrappedPackageName else unwrappedPackageName;
 
   # The extensions path shared by all profiles; will not be supported
   # by future browser versions.
@@ -63,7 +64,9 @@ let
       General = {
         StartWithLastProfile = 1;
       }
-      // lib.optionalAttrs (cfg.profileVersion != null) { Version = cfg.profileVersion; };
+      // lib.optionalAttrs (cfg.profileVersion != null) {
+        Version = cfg.profileVersion;
+      };
     };
 
   profilesIni = lib.generators.toINI { } profiles;
@@ -71,11 +74,15 @@ let
   userPrefValue =
     pref:
     builtins.toJSON (
-      if lib.isBool pref || lib.isInt pref || lib.isString pref then pref else builtins.toJSON pref
+      if lib.isBool pref || lib.isInt pref || lib.isString pref then
+        pref
+      else
+        builtins.toJSON pref
     );
 
   extensionSettingsNeedForce =
-    extensionSettings: builtins.any (ext: ext.settings != { }) (attrValues extensionSettings);
+    extensionSettings:
+    builtins.any (ext: ext.settings != { }) (attrValues extensionSettings);
 
   mkUserJs =
     prePrefs: prefs: extraPrefs: bookmarksFile: extensions:
@@ -152,13 +159,20 @@ let
         # the result only if more than one entity has it. The argument
         # entities is a list of AttrSet of one id/name pair.
         findDuplicateIds =
-          entities: lib.filterAttrs (_entityId: entityNames: length entityNames != 1) (lib.zipAttrs entities);
+          entities:
+          lib.filterAttrs (_entityId: entityNames: length entityNames != 1) (
+            lib.zipAttrs entities
+          );
 
         duplicates = findDuplicateIds (
-          mapAttrsToList (entityName: entity: { "${toString entity.id}" = entityName; }) entities
+          mapAttrsToList (entityName: entity: {
+            "${toString entity.id}" = entityName;
+          }) entities
         );
 
-        mkMsg = entityId: entityNames: "  - ID ${entityId} is used by " + concatStringsSep ", " entityNames;
+        mkMsg =
+          entityId: entityNames:
+          "  - ID ${entityId} is used by " + concatStringsSep ", " entityNames;
       in
       {
         assertion = duplicates == { };
@@ -201,8 +215,12 @@ in
       default = false;
       example = true;
       description = ''
-        Whether to enable ${appName}.${optionalString (description != null) " ${description}"}
-        ${optionalString (!visible) "See `${moduleName}` for more configuration options."}
+        Whether to enable ${appName}.${
+          optionalString (description != null) " ${description}"
+        }
+        ${optionalString (
+          !visible
+        ) "See `${moduleName}` for more configuration options."}
       '';
     };
 
@@ -269,7 +287,11 @@ in
     };
     darwinDefaultsId = mkOption rec {
       type = types.nullOr types.str;
-      default = if lib.platforms.darwin ? "defaultsId" then platforms.darwin.defaultsId else null;
+      default =
+        if lib.platforms.darwin ? "defaultsId" then
+          platforms.darwin.defaultsId
+        else
+          null;
       example = if default != null then default else "com.developer.app";
       description = ''The id for the darwin defaults in order to set policies'';
     };
@@ -280,7 +302,9 @@ in
       default =
         lib.toUpper (lib.substring 0 1 cfg.wrappedPackageName)
         + lib.toLower (
-          lib.substring 1 ((lib.stringLength cfg.wrappedPackageName) - 1) cfg.wrappedPackageName
+          lib.substring 1 (
+            (lib.stringLength cfg.wrappedPackageName) - 1
+          ) cfg.wrappedPackageName
         );
       description = "Name of browser app on Darwin.";
     };
@@ -304,7 +328,9 @@ in
     configPath = mkOption {
       internal = true;
       type = types.str;
-      default = with platforms; if isDarwin then darwin.configPath else linux.configPath;
+      default =
+        with platforms;
+        if isDarwin then darwin.configPath else linux.configPath;
       example = ".mozilla/firefox";
       description = "Directory containing the ${appName} configuration files.";
     };
@@ -807,7 +833,9 @@ in
               assertions = [
                 (mkNoDuplicateAssertion config.containers "container")
                 {
-                  assertion = !(extensionSettingsNeedForce config.extensions.settings) || config.extensions.force;
+                  assertion =
+                    !(extensionSettingsNeedForce config.extensions.settings)
+                    || config.extensions.force;
                   message = ''
                     Using '${lib.showOption profilePath}.extensions.settings' will override all
                     previous extensions settings. Enable
@@ -836,7 +864,9 @@ in
                       missingPermissions == [ ];
                   errorMessage =
                     if
-                      config.extensions.exactPermissions && missingPermissions != [ ] && redundantPermissions != [ ]
+                      config.extensions.exactPermissions
+                      && missingPermissions != [ ]
+                      && redundantPermissions != [ ]
                     then
                       ''
                         Extension ${safeAddonId} requests permissions that weren't
@@ -877,7 +907,9 @@ in
               ++ (builtins.concatMap (
                 { name, value }:
                 let
-                  packages = builtins.filter (pkg: (pkg.addonId or pkg.name) == name) config.extensions.packages;
+                  packages = builtins.filter (
+                    pkg: (pkg.addonId or pkg.name) == name
+                  ) config.extensions.packages;
                 in
                 [
                   {
@@ -924,27 +956,34 @@ in
       assertions = [
         (
           let
-            defaults = lib.catAttrs "name" (lib.filter (a: a.isDefault) (attrValues cfg.profiles));
+            defaults = lib.catAttrs "name" (
+              lib.filter (a: a.isDefault) (attrValues cfg.profiles)
+            );
           in
           {
             assertion = cfg.profiles == { } || length defaults == 1;
             message =
               "Must have exactly one default ${appName} profile but found "
               + toString (length defaults)
-              + optionalString (length defaults > 1) (", namely " + concatStringsSep ", " defaults);
+              + optionalString (length defaults > 1) (
+                ", namely " + concatStringsSep ", " defaults
+              );
           }
         )
 
         (
           let
             getContainers =
-              profiles: lib.flatten (mapAttrsToList (_: value: (attrValues value.containers)) profiles);
+              profiles:
+              lib.flatten (mapAttrsToList (_: value: (attrValues value.containers)) profiles);
 
             findInvalidContainerIds =
-              profiles: lib.filter (container: container.id >= 4294967294) (getContainers profiles);
+              profiles:
+              lib.filter (container: container.id >= 4294967294) (getContainers profiles);
           in
           {
-            assertion = cfg.profiles == { } || length (findInvalidContainerIds cfg.profiles) == 0;
+            assertion =
+              cfg.profiles == { } || length (findInvalidContainerIds cfg.profiles) == 0;
             message = "Container id must be smaller than 4294967294 (2^32 - 2)";
           }
         )
@@ -975,7 +1014,13 @@ in
       hj.packages = lib.optional (cfg.finalPackage != null) cfg.finalPackage;
 
       hj.files = mkMerge (
-        [ { "${cfg.configPath}/profiles.ini" = mkIf (cfg.profiles != { }) { text = profilesIni; }; } ]
+        [
+          {
+            "${cfg.configPath}/profiles.ini" = mkIf (cfg.profiles != { }) {
+              text = profilesIni;
+            };
+          }
+        ]
         ++ lib.flip mapAttrsToList cfg.profiles (
           _: profile:
           # Merge the regular profile settings with extension settings
@@ -983,23 +1028,27 @@ in
             {
               "${cfg.profilesPath}/${profile.path}/.keep".text = "";
 
-              "${cfg.profilesPath}/${profile.path}/chrome/userChrome.css" = mkIf (profile.userChrome != "") (
-                let
-                  key = if builtins.isString profile.userChrome then "text" else "source";
-                in
-                {
-                  "${key}" = profile.userChrome;
-                }
-              );
+              "${cfg.profilesPath}/${profile.path}/chrome/userChrome.css" =
+                mkIf (profile.userChrome != "")
+                  (
+                    let
+                      key = if builtins.isString profile.userChrome then "text" else "source";
+                    in
+                    {
+                      "${key}" = profile.userChrome;
+                    }
+                  );
 
-              "${cfg.profilesPath}/${profile.path}/chrome/userContent.css" = mkIf (profile.userContent != "") (
-                let
-                  key = if builtins.isString profile.userContent then "text" else "source";
-                in
-                {
-                  "${key}" = profile.userContent;
-                }
-              );
+              "${cfg.profilesPath}/${profile.path}/chrome/userContent.css" =
+                mkIf (profile.userContent != "")
+                  (
+                    let
+                      key = if builtins.isString profile.userContent then "text" else "source";
+                    in
+                    {
+                      "${key}" = profile.userContent;
+                    }
+                  );
 
               "${cfg.profilesPath}/${profile.path}/user.js" =
                 mkIf
@@ -1012,38 +1061,44 @@ in
                   )
                   {
                     text =
-                      mkUserJs profile.preConfig profile.settings profile.extraConfig profile.bookmarks.configFile
+                      mkUserJs profile.preConfig profile.settings profile.extraConfig
+                        profile.bookmarks.configFile
                         profile.extensions.settings;
                   };
 
-              "${cfg.profilesPath}/${profile.path}/containers.json" = mkIf (profile.containers != { }) {
-                text = mkContainersJson profile.containers;
-              };
+              "${cfg.profilesPath}/${profile.path}/containers.json" = mkIf (
+                profile.containers != { }
+              ) { text = mkContainersJson profile.containers; };
 
-              "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" = mkIf profile.search.enable {
-                inherit (profile.search) enable;
-                source = profile.search.file;
-              };
+              "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" =
+                mkIf profile.search.enable
+                  {
+                    inherit (profile.search) enable;
+                    source = profile.search.file;
+                  };
 
-              "${cfg.profilesPath}/${profile.path}/extensions" = mkIf (profile.extensions.packages != [ ]) {
-                source =
-                  let
-                    extensionsEnvPkg = pkgs.buildEnv {
-                      name = "hm-firefox-extensions";
-                      paths = profile.extensions.packages;
-                    };
-                  in
-                  "${extensionsEnvPkg}/share/mozilla/${extensionPath}";
-              };
+              "${cfg.profilesPath}/${profile.path}/extensions" =
+                mkIf (profile.extensions.packages != [ ])
+                  {
+                    source =
+                      let
+                        extensionsEnvPkg = pkgs.buildEnv {
+                          name = "hm-firefox-extensions";
+                          paths = profile.extensions.packages;
+                        };
+                      in
+                      "${extensionsEnvPkg}/share/mozilla/${extensionPath}";
+                  };
             }
 
             (mkMerge (
               mapAttrsToList (
                 name: settingConfig:
                 mkIf (settingConfig.settings != { }) {
-                  "${cfg.profilesPath}/${profile.path}/browser-extension-data/${name}/storage.js" = {
-                    text = lib.generators.toJSON { } settingConfig.settings;
-                  };
+                  "${cfg.profilesPath}/${profile.path}/browser-extension-data/${name}/storage.js" =
+                    {
+                      text = lib.generators.toJSON { } settingConfig.settings;
+                    };
                 }
               ) profile.extensions.settings
             ))
@@ -1053,12 +1108,14 @@ in
     }
     // setAttrByPath modulePath {
       finalPackage = wrapPackage cfg.package;
-      release = mkOptionDefault (builtins.head (lib.splitString "-" cfg.package.version));
+      release = mkOptionDefault (
+        builtins.head (lib.splitString "-" cfg.package.version)
+      );
 
       policies = {
-        NoDefaultBookmarks = lib.mkIf (builtins.any (profile: profile.bookmarks.enable) (
-          builtins.attrValues cfg.profiles
-        )) false;
+        NoDefaultBookmarks = lib.mkIf (builtins.any (
+          profile: profile.bookmarks.enable
+        ) (builtins.attrValues cfg.profiles)) false;
         ExtensionSettings = lib.mkIf (cfg.languagePacks != [ ]) (
           lib.listToAttrs (
             map (

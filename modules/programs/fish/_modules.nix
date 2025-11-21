@@ -183,7 +183,8 @@ in
 
   config = mkIf cfg.enable {
     packages =
-      (optionals (cfg.package != null) [ cfg.package ]) ++ (filter isVendored (attrValues cfg.plugins));
+      (optionals (cfg.package != null) [ cfg.package ])
+      ++ (filter isVendored (attrValues cfg.plugins));
 
     mine.programs.fish.earlyConfigFiles = mapAttrs' (
       name: source:
@@ -216,10 +217,14 @@ in
     ) (filterAttrs (n: v: !(isVendored v)) cfg.plugins);
 
     xdg.config.files = {
-      "fish/config.fish" = mkIf (cfg.config != "") { source = writeFish "config.fish" cfg.config; };
+      "fish/config.fish" = mkIf (cfg.config != "") {
+        source = writeFish "config.fish" cfg.config;
+      };
       "fish/conf.d/mine-environment-variables.fish" = mkIf (env != { }) {
         text = ''
-          ${concatMapAttrsStringSep "\n" (name: value: "set --global --export ${name} ${toString value}") env}
+          ${concatMapAttrsStringSep "\n" (
+            name: value: "set --global --export ${name} ${toString value}"
+          ) env}
         '';
       };
       "fish/conf.d/mine-abbreviations.fish" = mkIf (cfg.abbrs != { }) {
@@ -238,10 +243,14 @@ in
       };
     }
     // (mapAttrs' (
-      name: val: nameValuePair "fish/functions/${name}.fish" { source = toFishFunc val name; }
+      name: val:
+      nameValuePair "fish/functions/${name}.fish" { source = toFishFunc val name; }
     ) cfg.functions)
     // (mapAttrs' (
-      name: val: nameValuePair "fish/conf.d/${name}.fish" { source = writeFish "${name}.fish" val; }
+      name: val:
+      nameValuePair "fish/conf.d/${name}.fish" {
+        source = writeFish "${name}.fish" val;
+      }
     ) cfg.earlyConfigFiles);
   };
 }

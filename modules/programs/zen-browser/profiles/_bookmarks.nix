@@ -22,12 +22,15 @@ let
   bookmarksFile =
     bookmarks:
     let
-      indent = level: lib.concatStringsSep "" (map (lib.const "  ") (lib.range 1 level));
+      indent =
+        level: lib.concatStringsSep "" (map (lib.const "  ") (lib.range 1 level));
 
       bookmarkToHTML =
         indentLevel: bookmark:
         ''${indent indentLevel}<DT><A HREF="${escapeXML bookmark.url}" ADD_DATE="1" LAST_MODIFIED="1"${
-          lib.optionalString (bookmark.keyword != null) " SHORTCUTURL=\"${escapeXML bookmark.keyword}\""
+          lib.optionalString (
+            bookmark.keyword != null
+          ) " SHORTCUTURL=\"${escapeXML bookmark.keyword}\""
         }${
           lib.optionalString (
             bookmark.tags != [ ]
@@ -57,7 +60,8 @@ let
           directoryToHTML indentLevel item;
 
       allItemsToHTML =
-        indentLevel: bookmarks: lib.concatStringsSep "\n" (map (itemToHTMLOrRecurse indentLevel) bookmarks);
+        indentLevel: bookmarks:
+        lib.concatStringsSep "\n" (map (itemToHTMLOrRecurse indentLevel) bookmarks);
 
       bookmarkEntries = allItemsToHTML 1 bookmarks;
     in
@@ -150,7 +154,9 @@ in
       {
         assertion = config.enable -> config.force;
         message = ''
-          Using '${lib.showAttrPath (modulePath ++ [ "settings" ])}' will override all previous bookmarks.
+          Using '${
+            lib.showAttrPath (modulePath ++ [ "settings" ])
+          }' will override all previous bookmarks.
           Enable ${lib.showAttrPath (modulePath ++ [ "force" ])}' to acknowledge this.
         '';
       }
