@@ -10,7 +10,6 @@ let
 
   cfg = config.mine.fish;
 in
-with pkgs;
 {
   config = lib.mkIf cfg.enable {
     hj.mine.programs.fish.config = lib.mkAfter ''
@@ -30,33 +29,24 @@ with pkgs;
               echo "Usage: , <package> [args...]"
               return 1
           end
-
-          set pkg nixpkgs#$argv[1]
-          set args $argv[2..-1]
-
-          nix run $pkg -- $args
+          nix run nixpkgs#$argv[1] -- $argv[2..-1]
       end
 
       function ns
-          set pkgs
-          set args
-
-          # Separate package names from nix shell flags
-          for arg in $argv
-              switch $arg
-                  case '--*'
-                      # Once we hit a flag, the rest are flags
-                      set args $argv[(contains -i -- $arg $argv)..-1]
-                      break
-                  case '*'
-                      set pkgs $pkgs nixpkgs#$arg
-              end
-          end
-
-          # If no packages given, show usage
-          if test (count $pkgs) -eq 0
+          if test (count $argv) -eq 0
               echo "Usage: ns <packages...> [--nix-flags...]"
               return 1
+          end
+
+          set -l pkgs
+          set -l args
+
+          for arg in $argv
+              if string match -q -- "-*" $arg
+                  set args $args $arg
+              else
+                  set pkgs $pkgs nixpkgs#$arg
+              end
           end
 
           nix shell $pkgs $args
@@ -64,13 +54,13 @@ with pkgs;
 
       function notify
           if set -q DISPLAY || set -q WAYLAND_DISPLAY
-              ${__ libnotify "notify-send"} $argv
+              ${__ pkgs.libnotify "notify-send"} $argv
           end
       end
 
       function y
           set tmp (mktemp -t "yazi-cwd.XXXXXX")
-          ${_ yazi} $argv --cwd-file="$tmp"
+          ${_ pkgs.yazi} $argv --cwd-file="$tmp"
           if set cwd (command cat -- "$tmp"); and test -n "$cwd"; and test "$cwd" != "$PWD"
               builtin cd -- "$cwd"
           end
@@ -78,46 +68,73 @@ with pkgs;
       end
 
       function bs
-          pushd ${config.vars.homeDirectory}/Code/nixos
-          ${_ nh} os switch .
+          set -l FLAKE_DIR "${config.vars.homeDirectory}/Code/nixos"
+          set -l PROFILE_DIR "/nix/var/nix/profiles"
 
-          if test $status -eq 0
-              ${__ libnotify "notify-send"} "Rebuild Switch" "Build successful!"
+          # 1. Capture current generation BEFORE rebuild
+          set -l PREV_GEN_NAME (readlink "$PROFILE_DIR/system")
+          set -l PREV_SYSTEM_PATH "$PROFILE_DIR/$PREV_GEN_NAME"
+
+          echo "🔒 Locked previous generation: $PREV_GEN_NAME"
+
+          pushd $FLAKE_DIR
+          echo "🔨 Rebuilding (Switch)..."
+
+          # 2. Run Rebuild
+          if nixos-rebuild switch --flake .# --sudo
+              ${__ pkgs.libnotify "notify-send"} -u normal "Rebuild Switch" "Build successful!"
+              popd
+
+              # 3. Diff against the new current system
+              echo "📊 Diffing changes..."
+              ${lib.getExe pkgs.lix-diff} "$PREV_SYSTEM_PATH" "/run/current-system"
           else
-              ${__ libnotify "notify-send"} "Rebuild Switch" "Build failed!"
+              ${__ pkgs.libnotify "notify-send"} -u critical "Rebuild Switch" "Build failed!"
+              popd
           end
-
-          popd
       end
 
       function bb
-          pushd ${config.vars.homeDirectory}/Code/nixos
-          ${_ nh} os boot .
+          set -l FLAKE_DIR "${config.vars.homeDirectory}/Code/nixos"
+          set -l PROFILE_DIR "/nix/var/nix/profiles"
 
-          if test $status -eq 0
-              ${__ libnotify "notify-send"} "Rebuild Boot" "Build successful!"
+          set -l PREV_GEN_NAME (readlink "$PROFILE_DIR/system")
+          set -l PREV_SYSTEM_PATH "$PROFILE_DIR/$PREV_GEN_NAME"
+
+          echo "🔒 Locked previous generation: $PREV_GEN_NAME"
+
+          pushd $FLAKE_DIR
+          echo "🥾 Rebuilding (Boot)..."
+
+          if nixos-rebuild boot --flake .# --sudo
+              ${__ pkgs.libnotify "notify-send"} -u normal "Rebuild Boot" "Build successful!"
+              popd
+
+              echo "📊 Diffing changes..."
+              # For boot, /run/current-system doesn't update until reboot.
+              # So we compare Old Gen vs The New Profile Link instead.
+              ${lib.getExe pkgs.lix-diff} "$PREV_SYSTEM_PATH" "$PROFILE_DIR/system"
           else
-              ${__ libnotify "notify-send"} "Rebuild Boot" "Build failed!"
+              ${__ pkgs.libnotify "notify-send"} -u critical "Rebuild Boot" "Build failed!"
+              popd
           end
-
-          popd
       end
 
       function clean-all
-          ${_ nh} clean all
+          ${_ pkgs.nh} clean all
 
           if test $status -eq 0
-              ${__ libnotify "notify-send"} "NH Clean All" "Clean successful!"
+              ${__ pkgs.libnotify "notify-send"} "NH Clean" "Clean successful!"
           else
-              ${__ libnotify "notify-send"} "NH Clean All" "Clean failed!"
+              ${__ pkgs.libnotify "notify-send"} -u critical "NH Clean" "Clean failed!"
           end
       end
 
       function fe
           set pattern (or $argv[1] "")
-          set selected_file ( ${__ ripgrep "rg"} --no-heading --line-number "$pattern" | \
-              ${_ fzf} --delimiter : --with-nth 1,2,3 \
-                  --preview "${_ bat} --style=numbers --color=always {1} --highlight-line {2}" )
+          set selected_file ( ${__ pkgs.ripgrep "rg"} --no-heading --line-number "$pattern" | \
+              ${_ pkgs.fzf} --delimiter : --with-nth 1,2,3 \
+                  --preview "${_ pkgs.bat} --style=numbers --color=always {1} --highlight-line {2}" )
 
           if test -n "$selected_file"
               set file (string split -f1 ":" $selected_file)
@@ -128,8 +145,8 @@ with pkgs;
 
       function fef
           set dir (or $argv[1] .)
-          set selected_file ( ${__ ripgrep "rg"} --files $dir \
-              | ${_ fzf} --preview "${_ bat} --style=numbers --color=always {}" )
+          set selected_file ( ${__ pkgs.ripgrep "rg"} --files $dir \
+              | ${_ pkgs.fzf} --preview "${_ pkgs.bat} --style=numbers --color=always {}" )
 
           if test -n "$selected_file"
               nvim $selected_file
@@ -138,104 +155,85 @@ with pkgs;
 
       function paste
           set URL "https://paste.cachyos.org"
-
           set FILEPATH $argv[1]
-          set FILENAME (basename -- $FILEPATH)
-          set EXTENSION (string match -r '\.(.*)$' $FILENAME; and echo $argv[1]; or echo "")
-
           set RESPONSE (curl --data-binary @$FILEPATH --url $URL)
-          set PASTELINK "$URL$RESPONSE"
-
-          if test -z "$EXTENSION"
-              echo "$PASTELINK"
-          else
-              echo "$PASTELINK$EXTENSION"
-          end
+          echo "$URL$RESPONSE"
       end
 
       function watchLive
+          set quality "best"
           if test (count $argv) -ge 2
               set quality $argv[2]
-          else
-              set quality "best"
           end
-
-          ${_ streamlink} --player ${_ mpv} $argv[1] $quality
+          ${_ pkgs.streamlink} --player ${_ pkgs.mpv} $argv[1] $quality
       end
 
       function mkcd
-          ${__ uutils-coreutils-noprefix "mkdir"} -p $argv[1]
-          if test -d "$argv[1]"
-              cd $argv[1]
-          end
+          mkdir -p $argv[1]
+          cd $argv[1]
       end
 
       function extract
-          switch "$argv[1]"
-              case '*.tar.bz2'
-                  ${__ gnutar "tar"} xvjf "$argv[1]"
-              case '*.tar.gz'
-                  ${__ gnutar "tar"} xvzf "$argv[1]"
-              case '*.bz2'
-                  ${__ bzip2 "bunzip2"} "$argv[1]"
-              case '*.rar'
-                  ${_ unrar} x "$argv[1]"
-              case '*.gz'
-                  ${__ gzip "gunzip"} "$argv[1]"
-              case '*.tar'
-                  ${__ gnutar "tar"} xvf "$argv[1]"
-              case '*.tbz2'
-                  ${__ gnutar "tar"} xvjf "$argv[1]"
-              case '*.tgz'
-                  ${__ gnutar "tar"} xvzf "$argv[1]"
-              case '*.zip'
-                  ${_ unzip} "$argv[1]"
-              case '*.Z'
-                  ${__ gzip "uncompress"} "$argv[1]"
-              case '*.7z'
-                  ${__ p7zip "7z"} x "$argv[1]"
-              case '*'
-                  echo "Cannot extract '$argv[1]' via extract"
+          if test -f $argv[1]
+              switch $argv[1]
+                  case '*.tar.bz2'
+                      ${__ pkgs.gnutar "tar"} xvjf $argv[1]
+                  case '*.tar.gz'
+                      ${__ pkgs.gnutar "tar"} xvzf $argv[1]
+                  case '*.bz2'
+                      ${__ pkgs.bzip2 "bunzip2"} $argv[1]
+                  case '*.rar'
+                      ${_ pkgs.unrar} x $argv[1]
+                  case '*.gz'
+                      ${__ pkgs.gzip "gunzip"} $argv[1]
+                  case '*.tar'
+                      ${__ pkgs.gnutar "tar"} xvf $argv[1]
+                  case '*.tbz2'
+                      ${__ pkgs.gnutar "tar"} xvjf $argv[1]
+                  case '*.tgz'
+                      ${__ pkgs.gnutar "tar"} xvzf $argv[1]
+                  case '*.zip'
+                      ${_ pkgs.unzip} $argv[1]
+                  case '*.Z'
+                      ${__ pkgs.gzip "uncompress"} $argv[1]
+                  case '*.7z'
+                      ${__ pkgs.p7zip "7z"} x $argv[1]
+                  case '*'
+                      echo "'$argv[1]' cannot be extracted via extract()"
+              end
+          else
+              echo "'$argv[1]' is not a valid file"
           end
       end
 
       function record
           set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
-          ${_ wl-screenrec} -f $file
+          ${_ pkgs.wl-screenrec} -f $file
       end
 
       function record-region
-          set -l region (${_ slurp})
+          set -l region (${_ pkgs.slurp})
           set -l file ${config.vars.homeDirectory}/Videos/Record/(date +'%F_%H:%M:%S').mp4
-          ${_ wl-screenrec} -g $region -f $file
+          ${_ pkgs.wl-screenrec} -g $region -f $file
       end
 
       function yt
           set -l sub $argv[1]
           set -e argv[1]
+          set -l outdir_audio ${config.vars.homeDirectory}/Media/Audios
+          set -l outdir_video ${config.vars.homeDirectory}/Media/Videos
 
           switch $sub
               case aac
-                  set -l outdir ${config.vars.homeDirectory}/Media/Audios
-                  ${_ yt-dlp} --extract-audio --audio-format aac --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
-
+                  ${_ pkgs.yt-dlp} --extract-audio --audio-format aac --audio-quality 0 -P $outdir_audio --output "%(title)s.%(ext)s" $argv
               case best
-                  set -l outdir ${config.vars.homeDirectory}/Media/Audios
-                  ${_ yt-dlp} --extract-audio --audio-format best --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
-
+                  ${_ pkgs.yt-dlp} --extract-audio --audio-format best --audio-quality 0 -P $outdir_audio --output "%(title)s.%(ext)s" $argv
               case flac
-                  set -l outdir ${config.vars.homeDirectory}/Media/Audios
-                  ${_ yt-dlp} --extract-audio --audio-format flac --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
-
+                  ${_ pkgs.yt-dlp} --extract-audio --audio-format flac --audio-quality 0 -P $outdir_audio --output "%(title)s.%(ext)s" $argv
               case mp3
-                  set -l outdir ${config.vars.homeDirectory}/Media/Audios
-                  ${_ yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P $outdir --output "%(title)s.%(ext)s" $argv
-
+                  ${_ pkgs.yt-dlp} --extract-audio --audio-format mp3 --audio-quality 0 -P $outdir_audio --output "%(title)s.%(ext)s" $argv
               case video
-                  set -l outdir ${config.vars.homeDirectory}/Media/Videos
-                  ${_ yt-dlp} -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' \
-                      --merge-output-format mp4 -P $outdir --output "%(title)s.%(ext)s" $argv
-
+                  ${_ pkgs.yt-dlp} -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 -P $outdir_video --output "%(title)s.%(ext)s" $argv
               case '*'
                   echo "Usage: yt [aac|best|flac|mp3|video] <url>"
           end
