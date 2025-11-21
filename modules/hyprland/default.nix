@@ -24,5 +24,13 @@ in
     };
   };
 
-  config = mkIf cfg.enable { hj.packages = [ cfg.package ]; };
+  config = mkIf cfg.enable {
+    programs.hyprland = {
+      enable = true;
+      inherit (cfg) package;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    };
+
+    hj.packages = [ cfg.package ];
+  };
 }
