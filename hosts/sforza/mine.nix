@@ -19,6 +19,7 @@
     waybar.enable = true;
     greetd.enable = true;
     pipewire.enable = true;
+    cliphist.enable = true;
 
     fish.enable = true;
     inputMethod.enable = true;
