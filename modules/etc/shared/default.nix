@@ -37,7 +37,6 @@
       FZF_DEFAULT_COMMAND = "rg --files --hidden --follow --glob '!.git/*'";
       FZF_CTRL_T_COMMAND = "\${FZF_DEFAULT_COMMAND}";
       NIXPKGS_ALLOW_UNFREE = "1";
-      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     }
     // lib.optionalAttrs config.vars.withGui {
       NIXOS_OZONE_WL = "1";
@@ -66,6 +65,7 @@
         rsync # Fast, versatile file copying/syncing tool
         wl-clipboard # Wayland clipboard tool (wl-copy/wl-paste)
         unzip # Extract .zip archives
+        file-roller
 
         # Command-line utilities
         fd # User-friendly alternative to `find`
@@ -170,8 +170,6 @@
 
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer
-    file-roller.enable = config.vars.withGui; # Archive Manager
-
     thunar = {
       enable = config.vars.withGui;
       plugins = with pkgs.xfce; [

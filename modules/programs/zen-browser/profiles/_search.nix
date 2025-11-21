@@ -40,7 +40,9 @@ let
     };
 
   # Convenience to specify absolute path to icon
-  iconUrl = icon: if lib.isPath icon || lib.hasPrefix "/" icon then "file://${icon}" else icon;
+  iconUrl =
+    icon:
+    if lib.isPath icon || lib.hasPrefix "/" icon then "file://${icon}" else icon;
 
   processCustomEngineInput =
     input:
@@ -77,7 +79,8 @@ let
     let
       requiredInput = {
         inherit id;
-        isAppProvided = input.isAppProvided or (removeAttrs input [ "metaData" ] == { });
+        isAppProvided =
+          input.isAppProvided or (removeAttrs input [ "metaData" ] == { });
         metaData = input.metaData or { };
       };
     in
@@ -161,10 +164,17 @@ let
     + "from outside of @appName@ is a malicious act, and will be responded "
     + "to accordingly.";
 
-  salt = if config.default != null then profilePath + config.default + disclaimer else null;
+  salt =
+    if config.default != null then
+      profilePath + config.default + disclaimer
+    else
+      null;
 
   privateSalt =
-    if config.privateDefault != null then profilePath + config.privateDefault + disclaimer else null;
+    if config.privateDefault != null then
+      profilePath + config.privateDefault + disclaimer
+    else
+      null;
 
   appNameVariable =
     if package == null then

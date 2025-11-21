@@ -8,19 +8,16 @@
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.theme;
-
-  # We'll create a generic gtk module that can be enabled
-  # on a per-host basis.
-  gtkThemeCfg = config.mine.theme.gtk;
+  fontcfg = config.mine.fonts;
 
   # Generate GTK settings.ini content
   gtkSettings = pkgs.writeText "settings.ini" ''
     [Settings]
-    gtk-theme-name=${cfg.name}
-    gtk-icon-theme-name=${cfg.iconTheme}
-    gtk-font-name=${cfg.font}
-    gtk-cursor-theme-name=${cfg.cursorTheme}
-    gtk-cursor-theme-size=24
+    gtk-theme-name=${cfg.gtk.theme.name}
+    gtk-icon-theme-name=${cfg.gtk.iconTheme.name}
+    gtk-font-name=${fontcfg.main.name} ${toString fontcfg.size}
+    gtk-cursor-theme-name=${cfg.cursor.name}
+    gtk-cursor-theme-size=${toString cfg.cursor.size}
   '';
 
   # Generate .gtkrc-2.0 content for GTK2 applications
@@ -28,14 +25,14 @@ let
     include "${
       pkgs.buildEnv {
         name = "gtk-theme-env";
-        paths = [ cfg.package ];
+        paths = [ cfg.gtk.theme.package ];
       }
-    }/share/themes/${cfg.name}/gtk-2.0/gtkrc"
-    gtk-theme-name="${cfg.name}"
-    gtk-icon-theme-name="${cfg.iconTheme}"
-    gtk-font-name="${cfg.font}"
-    gtk-cursor-theme-name="${cfg.cursorTheme}"
-    gtk-cursor-theme-size=24
+    }/share/themes/${cfg.gtk.theme.name}/gtk-2.0/gtkrc"
+    gtk-theme-name="${cfg.gtk.theme.name}"
+    gtk-icon-theme-name="${cfg.gtk.iconTheme.name}"
+    gtk-font-name="${fontcfg.main.name} ${toString fontcfg.size}"
+    gtk-cursor-theme-name="${cfg.cursor.name}"
+    gtk-cursor-theme-size=${toString cfg.cursor.size}
   '';
 
 in
@@ -48,7 +45,7 @@ in
     };
   };
 
-  config = mkIf gtkThemeCfg.enable {
+  config = mkIf config.mine.theme.gtk.enable {
     # This uses the alias `hj` for `hjem.users.<username>`
     # defined in `modules/shared/hjem/default.nix`
     hj.files = {
@@ -59,10 +56,9 @@ in
 
     # Make the theme packages available in the user's profile
     hj.packages = [
-      cfg.package
-      cfg.iconPackage
-      cfg.cursorPackage
-      cfg.fontPackage
+      cfg.gtk.theme.package
+      cfg.gtk.iconTheme.package
+      cfg.cursor.package
     ];
   };
 }

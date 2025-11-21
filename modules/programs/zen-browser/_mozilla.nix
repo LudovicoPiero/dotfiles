@@ -16,7 +16,10 @@ let
   ];
 
   thunderbirdNativeMessagingHostsPath =
-    if isDarwin then "Library/Mozilla/NativeMessagingHosts" else ".mozilla/native-messaging-hosts";
+    if isDarwin then
+      "Library/Mozilla/NativeMessagingHosts"
+    else
+      ".mozilla/native-messaging-hosts";
 
   firefoxNativeMessagingHostsPath =
     if isDarwin then

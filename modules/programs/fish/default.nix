@@ -20,9 +20,6 @@ in
     users.users.root.shell = pkgs.fish;
     users.users.${config.vars.username}.shell = pkgs.fish;
     sops = {
-      secrets."shells/copilotToken" = {
-        mode = "0444";
-      };
       secrets."shells/githubToken" = {
         mode = "0444";
       };
@@ -103,7 +100,6 @@ in
         with pkgs;
         ''
           . ${config.sops.secrets."shells/githubToken".path}
-          . ${config.sops.secrets."shells/copilotToken".path}
           ${_ nix-your-shell} fish | source
           ${_ zoxide} init fish | source
           ${_ direnv} hook fish | source
