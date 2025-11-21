@@ -286,6 +286,7 @@ let
       "$mod        , W , killactive ,"
       "$mod        , X , exec , ${powermenu}"
       "$mod        , Return , exec , '${config.vars.terminal}'"
+      "$mod        , D , exec , '${getExe pkgs.vesktop}'"
 
       ", print, exec , wl-ocr"
       "CTRL   , Print , exec , ${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -"
