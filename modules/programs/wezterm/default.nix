@@ -44,7 +44,7 @@ in
           return {
             -- Fonts (intentionally unchanged)
             font = wezterm.font_with_fallback({
-              "${config.mine.fonts.terminal.name} Semibold",
+              "${config.mine.fonts.terminal.name}",
               "${config.mine.fonts.icon.name}",
               "${config.mine.fonts.emoji.name}",
             }),

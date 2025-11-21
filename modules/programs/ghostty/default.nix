@@ -20,7 +20,7 @@ in
 
     font-family = mkOption {
       type = types.str;
-      default = "${config.mine.fonts.terminal.name} Semibold";
+      default = "${config.mine.fonts.terminal.name}";
       description = "Font family for ghostty terminal.";
     };
 

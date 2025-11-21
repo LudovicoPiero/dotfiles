@@ -6,7 +6,7 @@ in
 lib.mkIf cfgmine.waybar.enable {
   hj.xdg.config.files."waybar/style.css".text = ''
     * {
-      font-family: "${config.mine.fonts.terminal.name} Semibold", "${config.mine.fonts.icon.name}", monospace;
+      font-family: "${config.mine.fonts.terminal.name}", "${config.mine.fonts.icon.name}", monospace;
       font-size: ${toString (config.mine.fonts.size - 1)}px;
       border-radius: 0;
     }

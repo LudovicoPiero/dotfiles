@@ -60,12 +60,12 @@
       size = 15;
 
       main = {
-        name = "SF Pro Display";
-        package = self'.packages.san-francisco-pro;
+        name = "Inter";
+        package = pkgs.inter;
       };
 
       terminal = {
-        name = "Iosevka Q";
+        name = "Iosevka Q SemiBold";
         package = self'.packages.iosevka-q;
       };
 
