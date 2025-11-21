@@ -21,6 +21,7 @@
     pipewire.enable = true;
     cliphist.enable = true;
     lockscreen.enable = true;
+    xdg-portal.enable = true;
 
     fish.enable = true;
     inputMethod.enable = true;
