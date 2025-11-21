@@ -13,8 +13,12 @@
   };
 
   mine = {
-    gnome.enable = true;
-    kde.enable = false;
+    hyprland.enable = true;
+    keyring.enable = true;
+    mako.enable = true;
+    waybar.enable = true;
+    greetd.enable = true;
+    pipewire.enable = true;
 
     fish.enable = true;
     inputMethod.enable = true;

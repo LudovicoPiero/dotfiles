@@ -24,7 +24,7 @@ in
     ];
 
     sops = {
-      defaultSopsFile = ../../../secrets/secrets.yaml;
+      defaultSopsFile = ../../../../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";
       age.sshKeyPaths = [ "/Persist/ssh/id_ed25519_sops" ];
       age.keyFile = "/Persist/sops/age/keys.txt";

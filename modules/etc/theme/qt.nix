@@ -4,10 +4,10 @@
   pkgs,
   ...
 }:
-
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.theme;
+  fontcfg = config.mine.fonts;
   qtThemeCfg = config.mine.theme.qt;
 
   # Configuration for qt5ct and qt6ct
@@ -15,13 +15,13 @@ let
     [Appearance]
     color_scheme_path=
     custom_palette=false
-    icon_theme=${cfg.iconTheme}
+    icon_theme=${cfg.gtk.iconTheme.name}
     standard_dialogs=default
     style=kvantum
 
     [Fonts]
-    fixed=${cfg.font}
-    general=${cfg.font}
+    fixed="${fontcfg.main.name},${toString fontcfg.size}"
+    general="${fontcfg.main.name},${toString fontcfg.size}"
 
     [Interface]
     activate_item_on_single_click=1
@@ -48,12 +48,11 @@ let
   # Kvantum configuration to match the GTK theme
   kvantumConf = pkgs.writeText "kvantum.kvconfig" ''
     [General]
-    theme=${cfg.name}
+    theme=${cfg.gtk.theme.name}
 
     [Applications]
     use_custom_theme_for=
   '';
-
 in
 {
   options.mine.theme.qt = {
@@ -73,8 +72,7 @@ in
     ];
 
     # Set environment variables to use qt5ct/qt6ct
-    # Note: This assumes `hjem` can handle environment variables.
-    # If not, this needs to be done via `environment.variables` in the main configuration.
+    # Note: If you are using Home Manager, this should likely be `home.sessionVariables`
     environment.variables = {
       QT_QPA_PLATFORMTHEME = "qt5ct";
       QT_STYLE_OVERRIDE = "kvantum";
@@ -85,7 +83,8 @@ in
       ".config/qt5ct/qt5ct.conf".source = qt5ctConf;
       ".config/qt6ct/qt6ct.conf".source = qt5ctConf; # Use the same config for qt6
       ".config/Kvantum/kvantum.kvconfig".source = kvantumConf;
-      ".config/Kvantum/${cfg.name}/${cfg.name}.kvconfig".source = kvantumConf; # Some themes need it in a subfolder
+      ".config/Kvantum/${cfg.gtk.theme.name}/${cfg.gtk.theme.name}.kvconfig".source =
+        kvantumConf;
     };
   };
 }
