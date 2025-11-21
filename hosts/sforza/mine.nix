@@ -20,6 +20,7 @@
     greetd.enable = true;
     pipewire.enable = true;
     cliphist.enable = true;
+    lockscreen.enable = true;
 
     fish.enable = true;
     inputMethod.enable = true;
