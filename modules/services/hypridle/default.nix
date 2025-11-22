@@ -116,6 +116,8 @@ in
       }
     '';
 
+    security.pam.services.hyprlock = { };
+    security.pam.services.swaylock = { };
     # Enable the hypridle service
     systemd.user.services.hypridle = {
       description = "Hyprland idle daemon";
