@@ -42,6 +42,7 @@
 
     # -- Applications --
     fish.enable = true;
+    fuzzel.enable = true;
     git.enable = true;
     music.enable = true;
     zen-browser.enable = true;

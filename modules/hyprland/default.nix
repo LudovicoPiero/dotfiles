@@ -22,13 +22,18 @@ in
       default = pkgs.hyprland;
       description = "The Hyprland package to install.";
     };
+
+    withUWSM = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Launch Hyprland apps with UWSM for better compatibility.";
+    };
   };
 
   config = mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
-      inherit (cfg) package;
-      withUWSM = true;
+      inherit (cfg) package withUWSM;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
 
