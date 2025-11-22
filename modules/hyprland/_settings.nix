@@ -18,20 +18,25 @@ let
     mkIf
     sort
     attrNames
+    replaceStrings
     ;
   inherit (config.mine.theme.colorScheme) palette;
 
   cfgmine = config.mine;
 
+  # Replace "exec," with "exec, uwsm app --" to wrap keybinds automatically.
+  # This handles "exec," and "exec ," (with space).
+  wrapBind =
+    bindStr:
+    replaceStrings [ "exec," "exec ," ] [ "exec, uwsm app --" "exec , uwsm app --" ]
+      bindStr;
+
   # -- Helper Function: Convert Nix Set to Hyprland Config String --
   toHyprconf =
     let
-      # Helper to safely convert types to strings (specifically booleans)
       formatValue =
         v: if isBool v then (if v then "true" else "false") else toString v;
 
-      # Custom sorter: Enforces "Reference" order
-      # 1. Monitor, 2. Variables ($), 3. Env, 4. Exec, 5. Bezier, etc.
       hyprSort =
         a: b:
         let
@@ -42,13 +47,13 @@ let
             else if key == "source" then
               1
             else if key == "$mod" then
-              2 # Variables near top
+              2
             else if key == "env" then
               3
             else if key == "exec-once" then
               4
             else if key == "bezier" then
-              5 # Must be before animation
+              5
             else if key == "animation" then
               6
             else if key == "input" then
@@ -56,20 +61,19 @@ let
             else if key == "general" then
               8
             else
-              100; # Everything else (binds, windowrules) at the bottom
+              100;
         in
         if prio a < prio b then
           true
         else if prio a > prio b then
           false
         else
-          a < b; # Default to alphabetical for same-priority keys
+          a < b;
 
       render =
         name: value:
         if isAttrs value then
           let
-            # Sort keys using our custom hierarchical sorter
             sortedKeys = sort hyprSort (attrNames value);
             innerContent = concatStringsSep "\n" (map (k: render k value.${k}) sortedKeys);
           in
@@ -87,12 +91,14 @@ let
   emojiPicker = getExe self'.packages.fuzzmoji;
 
   hyprlandSettings = {
-    # This will now render near the top (Priority 4)
     exec-once = [
-      "${getExe pkgs.brightnessctl} set 10%"
-      "[workspace 9 silent;noanim] ${getExe pkgs.thunderbird}"
-      "sleep 1 && ${getExe pkgs.waybar}"
-      "${getExe pkgs.mako}"
+      "uwsm finalize"
+      "uwsm app -- ${getExe pkgs.brightnessctl} set 10%"
+      # Note the placement of uwsm app -- AFTER the rule
+      "[workspace 9 silent;noanim] uwsm app -- ${getExe pkgs.thunderbird}"
+      # sleep runs in shell, waybar runs via uwsm
+      "sleep 1 && uwsm app -- ${getExe pkgs.waybar}"
+      "uwsm app -- ${getExe pkgs.mako}"
     ]
     ++ optionals config.services.desktopManager.gnome.enable [
       "systemctl --user stop xdg-desktop-portal-gnome.service"
@@ -118,8 +124,6 @@ let
 
     animations = {
       enabled = true;
-
-      # Priority 5: Will render before 'animation'
       bezier = [
         "myBezier, 0.05, 0.9, 0.1, 1.05"
         "easeOutQuint, 0.23, 1, 0.32,1"
@@ -128,8 +132,6 @@ let
         "almostLinear, 0.5, 0.5, 0.75, 1.0"
         "quick, 0.15, 0, 0.1, 1"
       ];
-
-      # Priority 6
       animation = [
         "global, 1, 10, default"
         "border, 1, 5.39, easeOutQuint"
@@ -160,7 +162,6 @@ let
       rounding = 0;
       dim_inactive = false;
       dim_strength = 0.7;
-
       blur = {
         enabled = false;
         size = 2;
@@ -171,7 +172,6 @@ let
         xray = true;
         special = false;
       };
-
       shadow = {
         enabled = false;
         range = 8;
@@ -212,7 +212,6 @@ let
       follow_mouse = 1;
       repeat_rate = 30;
       repeat_delay = 300;
-
       touchpad = {
         natural_scroll = true;
         disable_while_typing = true;
@@ -298,68 +297,69 @@ let
 
     # Priority 2: Variables
     "$mod" = "SUPER";
+    bind = map wrapBind (
+      [
+        "$mod SHIFT, C , exit ,"
+        "$mod        , Q, togglespecialworkspace"
+        "$mod SHIFT, Q, movetoworkspace, special"
+        "$mod SHIFT, E , exec , thunar"
+        "$mod        , F , fullscreen , 0"
+        "$mod        , M , exec , [workspace 9 silent;tile] thunderbird"
+        "$mod        , P , exec , ${launcher}"
+        "$mod        , O , exec , ${clipboard}"
+        "$mod SHIFT, O , exec , ${emojiPicker}"
+        "$mod SHIFT, P , exec , ${getExe' pkgs.pass-wayland "passmenu"}"
+        "$mod        , Space , togglefloating ,"
+        "$mod        , R , togglegroup ,"
+        "$mod SHIFT, J , changegroupactive, f"
+        "$mod SHIFT, K , changegroupactive, b"
+        "$mod        , W , killactive ,"
+        "$mod        , X , exec , ${powermenu}"
+        "$mod        , Return , exec , '${config.vars.terminal}'"
+        "$mod        , D , exec , '${getExe pkgs.vesktop}'"
 
-    bind = [
-      "$mod SHIFT, C , exit ,"
-      "$mod        , Q, togglespecialworkspace"
-      "$mod SHIFT, Q, movetoworkspace, special"
-      "$mod SHIFT, E , exec , thunar"
-      "$mod        , F , fullscreen , 0"
-      "$mod        , M , exec , [workspace 9 silent;tile] thunderbird"
-      "$mod        , P , exec , ${launcher}"
-      "$mod        , O , exec , ${clipboard}"
-      "$mod SHIFT, O , exec , ${emojiPicker}"
-      "$mod SHIFT, P , exec , ${getExe' pkgs.pass-wayland "passmenu"}"
-      "$mod        , Space , togglefloating ,"
-      "$mod        , R , togglegroup ,"
-      "$mod SHIFT, J , changegroupactive, f"
-      "$mod SHIFT, K , changegroupactive, b"
-      "$mod        , W , killactive ,"
-      "$mod        , X , exec , ${powermenu}"
-      "$mod        , Return , exec , '${config.vars.terminal}'"
-      "$mod        , D , exec , '${getExe pkgs.vesktop}'"
+        ", print, exec , wl-ocr"
+        "CTRL   , Print , exec , ${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -"
+        "ALT    , Print , exec , ${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
 
-      ", print, exec , wl-ocr"
-      "CTRL   , Print , exec , ${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -"
-      "ALT    , Print , exec , ${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')"
+        "$mod , h , movefocus , l"
+        "$mod , l , movefocus , r"
+        "$mod , k , movefocus , u"
+        "$mod , j , movefocus , d"
+        "$mod , left , movewindow , l"
+        "$mod , right , movewindow , r"
+        "$mod , up , movewindow , u"
+        "$mod , down , movewindow , d"
+        "$mod SHIFT , h , movewindow , l"
+        "$mod SHIFT , l , movewindow , r"
+        "$mod SHIFT , k , movewindow , u"
+        "$mod SHIFT , j , movewindow , d"
 
-      "$mod , h , movefocus , l"
-      "$mod , l , movefocus , r"
-      "$mod , k , movefocus , u"
-      "$mod , j , movefocus , d"
-      "$mod , left , movewindow , l"
-      "$mod , right , movewindow , r"
-      "$mod , up , movewindow , u"
-      "$mod , down , movewindow , d"
-      "$mod SHIFT , h , movewindow , l"
-      "$mod SHIFT , l , movewindow , r"
-      "$mod SHIFT , k , movewindow , u"
-      "$mod SHIFT , j , movewindow , d"
+        "$mod , 1 , workspace , 1"
+        "$mod , 2 , workspace , 2"
+        "$mod , 3 , workspace , 3"
+        "$mod , 4 , workspace , 4"
+        "$mod , 5 , workspace , 5"
+        "$mod , 6 , workspace , 6"
+        "$mod , 7 , workspace , 7"
+        "$mod , 8 , workspace , 8"
+        "$mod , 9 , workspace , 9"
+        "$mod , 0 , workspace , 10"
+        "$mod SHIFT , 1 , movetoworkspacesilent , 1"
+        "$mod SHIFT , 2 , movetoworkspacesilent , 2"
+        "$mod SHIFT , 3 , movetoworkspacesilent , 3"
+        "$mod SHIFT , 4 , movetoworkspacesilent , 4"
+        "$mod SHIFT , 5 , movetoworkspacesilent , 5"
+        "$mod SHIFT , 6 , movetoworkspacesilent , 6"
+        "$mod SHIFT , 7 , movetoworkspacesilent , 7"
+        "$mod SHIFT , 8 , movetoworkspacesilent , 8"
+        "$mod SHIFT , 9 , movetoworkspacesilent , 9"
+        "$mod SHIFT , 0 , movetoworkspacesilent , 10"
 
-      "$mod , 1 , workspace , 1"
-      "$mod , 2 , workspace , 2"
-      "$mod , 3 , workspace , 3"
-      "$mod , 4 , workspace , 4"
-      "$mod , 5 , workspace , 5"
-      "$mod , 6 , workspace , 6"
-      "$mod , 7 , workspace , 7"
-      "$mod , 8 , workspace , 8"
-      "$mod , 9 , workspace , 9"
-      "$mod , 0 , workspace , 10"
-      "$mod SHIFT , 1 , movetoworkspacesilent , 1"
-      "$mod SHIFT , 2 , movetoworkspacesilent , 2"
-      "$mod SHIFT , 3 , movetoworkspacesilent , 3"
-      "$mod SHIFT , 4 , movetoworkspacesilent , 4"
-      "$mod SHIFT , 5 , movetoworkspacesilent , 5"
-      "$mod SHIFT , 6 , movetoworkspacesilent , 6"
-      "$mod SHIFT , 7 , movetoworkspacesilent , 7"
-      "$mod SHIFT , 8 , movetoworkspacesilent , 8"
-      "$mod SHIFT , 9 , movetoworkspacesilent , 9"
-      "$mod SHIFT , 0 , movetoworkspacesilent , 10"
-
-      ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
-    ]
-    ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , zen-beta" ];
+        ", XF86AudioStop , exec , ${pkgs.playerctl}/bin/playerctl stop"
+      ]
+      ++ optionals cfgmine.zen-browser.enable [ "$mod SHIFT, G , exec , zen-beta" ]
+    );
 
     bindel = [
       ", XF86AudioRaiseVolume  , exec , ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"

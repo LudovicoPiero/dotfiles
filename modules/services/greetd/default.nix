@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.greetd;
@@ -22,7 +17,7 @@ in
       enable = true;
       settings = rec {
         initial_session = {
-          command = "${pkgs.hyprland}/bin/hyprland";
+          command = "uwsm start hyprland-uwsm.desktop";
           user = "${config.vars.username}";
         };
         default_session = initial_session;

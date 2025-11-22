@@ -28,6 +28,7 @@ in
     programs.hyprland = {
       enable = true;
       inherit (cfg) package;
+      withUWSM = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
 
