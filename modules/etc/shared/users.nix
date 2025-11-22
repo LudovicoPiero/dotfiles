@@ -9,6 +9,7 @@
     mutableUsers = false;
     users.root.hashedPasswordFile = config.sops.secrets."users/rootPassword".path;
     users.${config.vars.username} = {
+      uid = 1001;
       hashedPasswordFile = config.sops.secrets."users/userPassword".path;
       isNormalUser = true;
       extraGroups = [

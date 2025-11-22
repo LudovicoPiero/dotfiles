@@ -87,13 +87,13 @@
     device = "/dev/disk/by-label/WinE";
     fsType = "ntfs";
     options = [
-      # "uid=1001"
-      # "gid=100"
+      "uid=${toString config.users.users.${config.vars.username}.uid}"
+      "gid=100"
       "rw"
       "user"
       "exec"
-      "dmask=0002"
-      "fmask=0113"
+      "dmask=0022" # Directories: 755 (Owner: rwx, Others: r-x)
+      "fmask=0133" # Files: 644 (Owner: rw-, Others: r--)
       "nofail"
     ];
   };
