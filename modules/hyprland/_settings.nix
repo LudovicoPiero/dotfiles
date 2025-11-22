@@ -303,7 +303,7 @@ let
         "$mod SHIFT, Q, movetoworkspace, special"
         "$mod SHIFT, E , exec , thunar"
         "$mod        , F , fullscreen , 0"
-        "$mod        , M , exec , [workspace 9 silent;tile] thunderbird"
+        "$mod        , M , exec , thunderbird"
         "$mod        , P , exec , ${launcher}"
         "$mod        , O , exec , ${clipboard}"
         "$mod SHIFT, O , exec , ${emojiPicker}"
