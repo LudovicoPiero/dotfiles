@@ -121,9 +121,11 @@ in
     # Enable the hypridle service
     systemd.user.services.hypridle = {
       description = "Hyprland idle daemon";
+
       after = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
       wantedBy = [ "graphical-session.target" ];
+
       serviceConfig = {
         ExecStart = getExe pkgs.hypridle;
         Restart = "always";

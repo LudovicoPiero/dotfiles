@@ -36,8 +36,8 @@ in
       serviceConfig = {
         # Watches clipboard for text changes and stores them
         ExecStart = "${getExe' pkgs.wl-clipboard "wl-paste"} --watch ${getExe pkgs.cliphist} store";
-        restart = "always";
-        restartSec = "1s";
+        Restart = "always";
+        RestartSec = "1s";
       };
     };
 
@@ -51,8 +51,8 @@ in
       serviceConfig = {
         # Watches clipboard for image changes and stores them
         ExecStart = "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${getExe pkgs.cliphist} store";
-        restart = "always";
-        restartSec = "1s";
+        Restart = "always";
+        RestartSec = "1s";
       };
     };
   };
