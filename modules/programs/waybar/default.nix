@@ -172,11 +172,11 @@ let
 
     network = {
       interval = 5;
-      format-alt = "| NET: DOWN {bandwidthDownBits} UP {bandwidthUpBits}";
+      format-wifi = "| NET: DOWN {bandwidthDownBits} UP {bandwidthUpBits}";
       format-ethernet = "| IP LEAK: {ipaddr}/{cidr}";
       format-linked = "| IP LEAK: (No IP)";
       format-disconnected = "| NET: DISCONNECTED";
-      format-wifi = "| IP LEAK: {ipaddr}/{cidr}";
+      format-alt = "| IP LEAK: {ipaddr}/{cidr}";
     };
 
     pulseaudio = {
