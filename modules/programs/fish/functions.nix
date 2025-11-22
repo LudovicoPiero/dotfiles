@@ -69,55 +69,91 @@ in
 
       function bs
           set -l FLAKE_DIR "${config.vars.homeDirectory}/Code/nixos"
-          set -l PROFILE_DIR "/nix/var/nix/profiles"
-
-          # 1. Capture current generation BEFORE rebuild
-          set -l PREV_GEN_NAME (readlink "$PROFILE_DIR/system")
-          set -l PREV_SYSTEM_PATH "$PROFILE_DIR/$PREV_GEN_NAME"
-
-          echo "🔒 Locked previous generation: $PREV_GEN_NAME"
+          set -l PROFILE "/nix/var/nix/profiles/system"
+          set -l CURRENT_SYSTEM "/run/current-system"
+          set -l HOST (hostname)
 
           pushd $FLAKE_DIR
-          echo "🔨 Rebuilding (Switch)..."
+          echo "🔨 Building system closure..."
 
-          # 2. Run Rebuild
-          if nixos-rebuild switch --flake .# --sudo
-              ${__ pkgs.libnotify "notify-send"} -u normal "Rebuild Switch" "Build successful!"
-              popd
+          # 1. Build the system derivation using nom (creates ./result symlink)
+          # nom wraps 'nix build' to provide a pretty dependency graph
+          if ${lib.getExe pkgs.nix-output-monitor} build ".#nixosConfigurations.$HOST.config.system.build.toplevel"
 
-              # 3. Diff against the new current system
-              echo "📊 Diffing changes..."
-              ${lib.getExe pkgs.lix-diff} "$PREV_SYSTEM_PATH" "/run/current-system"
+              # 2. Preview the diff (Current System vs New Result)
+              echo "📊 Previewing changes:"
+              ${lib.getExe pkgs.dix} $CURRENT_SYSTEM result/
+
+              read -P "🚀 Apply these changes? [y/N] " confirm
+
+              if string match -qi "y" $confirm
+                  echo "🔄 Switching configuration..."
+
+                  # 3. Update the System Profile
+                  # Links the new build as the current system generation.
+                  sudo nix-env -p $PROFILE --set ./result
+
+                  # 4. Activate the Configuration
+                  # Reloads systemd, restarts services, and updates boot entries.
+                  if sudo ./result/bin/switch-to-configuration switch
+                      ${__ pkgs.libnotify "notify-send"} -u normal "Rebuild Switch" "System switched successfully!"
+                  else
+                      ${__ pkgs.libnotify "notify-send"} -u critical "Rebuild Switch" "Activation failed!"
+                  end
+              else
+                  echo "❌ Changes discarded."
+              end
           else
               ${__ pkgs.libnotify "notify-send"} -u critical "Rebuild Switch" "Build failed!"
-              popd
           end
+
+          # Cleanup the build symlink
+          rm -f result
+          popd
       end
 
       function bb
           set -l FLAKE_DIR "${config.vars.homeDirectory}/Code/nixos"
-          set -l PROFILE_DIR "/nix/var/nix/profiles"
-
-          set -l PREV_GEN_NAME (readlink "$PROFILE_DIR/system")
-          set -l PREV_SYSTEM_PATH "$PROFILE_DIR/$PREV_GEN_NAME"
-
-          echo "🔒 Locked previous generation: $PREV_GEN_NAME"
+          set -l PROFILE "/nix/var/nix/profiles/system"
+          set -l CURRENT_SYSTEM "/run/current-system"
+          set -l HOST (hostname)
 
           pushd $FLAKE_DIR
-          echo "🥾 Rebuilding (Boot)..."
+          echo "🔨 Building system closure..."
 
-          if nixos-rebuild boot --flake .# --sudo
-              ${__ pkgs.libnotify "notify-send"} -u normal "Rebuild Boot" "Build successful!"
-              popd
+          # 1. Build the system derivation using nom
+          if ${lib.getExe pkgs.nix-output-monitor} build ".#nixosConfigurations.$HOST.config.system.build.toplevel"
 
-              echo "📊 Diffing changes..."
-              # For boot, /run/current-system doesn't update until reboot.
-              # So we compare Old Gen vs The New Profile Link instead.
-              ${lib.getExe pkgs.lix-diff} "$PREV_SYSTEM_PATH" "$PROFILE_DIR/system"
+              # 2. Preview the diff (Current System vs New Result)
+              echo "📊 Previewing changes:"
+              ${lib.getExe pkgs.dix} $CURRENT_SYSTEM result/
+
+              read -P "🥾 Set this as default boot entry? [y/N] " confirm
+
+              if string match -qi "y" $confirm
+                  echo "🔄 Updating bootloader..."
+
+                  # 3. Update the System Profile
+                  # Links the new build as the current system generation.
+                  sudo nix-env -p $PROFILE --set ./result
+
+                  # 4. Activate the Configuration (Boot)
+                  # Only updates the bootloader, does NOT restart services.
+                  if sudo ./result/bin/switch-to-configuration boot
+                      ${__ pkgs.libnotify "notify-send"} -u normal "Rebuild Boot" "Boot entry updated successfully!"
+                  else
+                      ${__ pkgs.libnotify "notify-send"} -u critical "Rebuild Boot" "Bootloader update failed!"
+                  end
+              else
+                  echo "❌ Changes discarded."
+              end
           else
               ${__ pkgs.libnotify "notify-send"} -u critical "Rebuild Boot" "Build failed!"
-              popd
           end
+
+          # Cleanup the build symlink
+          rm -f result
+          popd
       end
 
       function clean-all
