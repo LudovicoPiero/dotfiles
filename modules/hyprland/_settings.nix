@@ -24,11 +24,12 @@ let
 
   cfgmine = config.mine;
 
-  # Replace "exec," with "exec, uwsm app --" to wrap keybinds automatically.
-  # This handles "exec," and "exec ," (with space).
   wrapBind =
     bindStr:
-    replaceStrings [ "exec," "exec ," ] [ "exec, uwsm app --" "exec , uwsm app --" ]
+    if cfgmine.hyprland.withUWSM then
+      replaceStrings [ "exec," "exec ," ] [ "exec, uwsm app --" "exec , uwsm app --" ]
+        bindStr
+    else
       bindStr;
 
   # -- Helper Function: Convert Nix Set to Hyprland Config String --
@@ -94,9 +95,7 @@ let
     exec-once = [
       "uwsm finalize"
       "uwsm app -- ${getExe pkgs.brightnessctl} set 10%"
-      # Note the placement of uwsm app -- AFTER the rule
       "[workspace 9 silent;noanim] uwsm app -- ${getExe pkgs.thunderbird}"
-      # sleep runs in shell, waybar runs via uwsm
       "sleep 1 && uwsm app -- ${getExe pkgs.waybar}"
       "uwsm app -- ${getExe pkgs.mako}"
     ]
