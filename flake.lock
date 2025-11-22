@@ -31,11 +31,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1763697825,
-        "narHash": "sha256-AgCCcVPOi1tuzuW5/StlwqBjRWSX62oL97qWuxrq5UA=",
+        "lastModified": 1763784262,
+        "narHash": "sha256-bg+MOwWA4GgsHQ2QZQHCixIs0ouPHvN1EVAzMTELPiQ=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "cefce78793603231be226fa77e7ad58e0e4899b8",
+        "rev": "a717a95e58c8dfdb3d07797b97fdedc97697d65c",
         "type": "gitlab"
       },
       "original": {
@@ -237,11 +237,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1763746547,
-        "narHash": "sha256-kas7FT2J86DVJlPH5dNNHM56OgdQQyfCE/dX/EOKDp8=",
-        "rev": "b707403a308030739dfeacc5b0aaaeef8ba3f633",
+        "lastModified": 1763826533,
+        "narHash": "sha256-PQJAA995Qk9Qd8c+Uwk95h8vwf6PDY5JetNe1KzEdmM=",
+        "rev": "be18b7dc25da54ada1d102993a17ac27afbca5e4",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/b707403a308030739dfeacc5b0aaaeef8ba3f633.tar.gz?rev=b707403a308030739dfeacc5b0aaaeef8ba3f633"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/be18b7dc25da54ada1d102993a17ac27afbca5e4.tar.gz?rev=be18b7dc25da54ada1d102993a17ac27afbca5e4"
       },
       "original": {
         "type": "tarball",
@@ -373,11 +373,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1763421233,
-        "narHash": "sha256-Stk9ZYRkGrnnpyJ4eqt9eQtdFWRRIvMxpNRf4sIegnw=",
+        "lastModified": 1763678758,
+        "narHash": "sha256-+hBiJ+kG5IoffUOdlANKFflTT5nO3FrrR2CA3178Y5s=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "89c2b2330e733d6cdb5eae7b899326930c2c0648",
+        "rev": "117cc7f94e8072499b0a7aa4c52084fa4e11cc9b",
         "type": "github"
       },
       "original": {
@@ -508,11 +508,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1763779800,
-        "narHash": "sha256-uCm1QMH/pKb6jhN7RWDBBZNfqTP2YkvKNK8CmfnUI6M=",
+        "lastModified": 1763834692,
+        "narHash": "sha256-rbnh/fbOiVveDDKTW5JT45Ckh5i+nglxpuxwu0kshfo=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "f1ed2cc2ba45aed3e046697d49581221e80476f4",
+        "rev": "d94085cbc0bb9794347494c04b5393a7927b3ba0",
         "type": "github"
       },
       "original": {
