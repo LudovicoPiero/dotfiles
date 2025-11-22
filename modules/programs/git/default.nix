@@ -159,5 +159,28 @@ in
       Thumbs.db
       Icon?
     '';
+
+    # lazygit
+    hj.xdg.config.files."lazygit/config.yml".text = ''
+      git:
+        commit:
+          # Automatically add "Signed-off-by: Name <email>"
+          signOff: true
+
+      gui:
+        # Make it look pretty with your Nerd Fonts
+        nerdFontsVersion: "3"
+        showIcons: true
+
+        theme:
+          activeBorderColor:
+            - "${config.mine.theme.colorScheme.palette.base0D}" # Blue
+          inactiveBorderColor:
+            - "${config.mine.theme.colorScheme.palette.base03}" # Grey
+          optionsTextColor:
+            - "${config.mine.theme.colorScheme.palette.base0D}"
+          selectedLineBgColor:
+            - "${config.mine.theme.colorScheme.palette.base02}"
+    '';
   };
 }
