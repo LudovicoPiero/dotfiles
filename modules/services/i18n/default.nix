@@ -11,24 +11,7 @@ let
   cfg = config.mine.inputMethod;
   localeCfg = config.mine.inputMethod.locale;
 
-  gnome = config.mine.gnome.enable;
-  kde = config.mine.kde.enable;
-
-  selectedInputMethod =
-    let
-      autoPick =
-        if kde then
-          lib.warnIf (
-            cfg.type == null
-          ) "mine.inputMethod: KDE detected → automatically selecting 'fcitx5'." "fcitx5"
-        else if gnome then
-          lib.warnIf (
-            cfg.type == null
-          ) "mine.inputMethod: GNOME detected → automatically selecting 'ibus'." "ibus"
-        else
-          "fcitx5";
-    in
-    if cfg.type != null then cfg.type else autoPick;
+  selectedInputMethod = if cfg.type != null then cfg.type else "fcitx5";
 in
 {
   options.mine.inputMethod = {
@@ -56,7 +39,7 @@ in
         "ibus"
       ];
       default = null;
-      description = "Force-select the input method (fcitx5 or ibus).";
+      description = "Force-select the input method (fcitx5 or ibus). Defaults to fcitx5.";
     };
   };
 
@@ -108,10 +91,7 @@ in
       };
     };
 
-    systemd.user.units."app-org.fcitx.Fcitx5@autostart.service".enable = mkIf (
-      selectedInputMethod == "fcitx5"
-    ) false;
-
+    # Symlink config for fcitx5 styling
     systemd.user.tmpfiles.users.${config.vars.username}.rules = mkIf (
       selectedInputMethod == "fcitx5"
     ) [ "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}" ];
