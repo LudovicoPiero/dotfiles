@@ -33,6 +33,7 @@ let
       "niri/workspaces"
       # "dwl/tags"
       "ext/workspaces"
+      "dwl/window"
     ];
     modules-center = [ "hyprland/submap" ];
     modules-right = [
@@ -216,6 +217,10 @@ let
     "dwl/tags" = {
       num-tags = 9;
       disable-click = false;
+    };
+
+    "dwl/window" = {
+      format = "[{layout}]";
     };
 
     "ext/workspaces" = {
