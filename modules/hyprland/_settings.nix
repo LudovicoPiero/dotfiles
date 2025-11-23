@@ -202,7 +202,8 @@ let
       enable_anr_dialog = false;
       background_color = "rgb(${palette.base00})";
       disable_splash_rendering = true;
-      force_default_wallpaper = false;
+      force_default_wallpaper = -1; # -1 means “random”. [-1/0/1/2]
+      disable_hyprland_logo = false;
     };
 
     input = {
