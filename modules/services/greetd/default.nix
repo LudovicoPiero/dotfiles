@@ -1,7 +1,15 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  inputs',
+  ...
+}:
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.greetd;
+
+  oldNixpkgs = inputs'.nixpkgs-cage.legacyPackages;
+  _ = lib.getExe;
 in
 {
   options.mine.greetd = {
@@ -15,12 +23,11 @@ in
   config = mkIf cfg.enable {
     services.greetd = {
       enable = true;
-      settings = rec {
-        initial_session = {
-          command = "uwsm start hyprland-uwsm.desktop";
-          user = "${config.vars.username}";
+      settings = {
+        default_session = {
+          command = "${_ oldNixpkgs.cage} -m last -s -- ${_ oldNixpkgs.gtkgreet} --layer-shell";
+          user = "greeter";
         };
-        default_session = initial_session;
       };
     };
   };

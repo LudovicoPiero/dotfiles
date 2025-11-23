@@ -60,6 +60,42 @@ lib.mkIf cfgmine.waybar.enable {
       color: #${palette.base03};
     }
 
+    /* --- Tags (River, dwl) --- */
+    #tags {
+      margin: 0 4px;
+    }
+
+    #tags button {
+      border: none;
+      margin: 0 1px;
+      padding: 1px 6px;
+      background: transparent;
+      color: #${palette.base05};
+      border-radius: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #tags button.occupied {
+      color: #${palette.base05};
+      background: #${palette.base03};
+    }
+
+    #tags button.focused {
+      color: #${palette.base0D};
+      background: #${palette.base00};
+      font-weight: bold;
+    }
+
+    #tags button.urgent {
+      color: #${palette.base08};
+      background: #${palette.base00};
+    }
+
+    #tags button:hover {
+      background: #${palette.base05};
+      color: #${palette.base03};
+    }
+
     #clock,
     #battery,
     #cpu,

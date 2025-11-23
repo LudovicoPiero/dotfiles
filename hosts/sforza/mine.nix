@@ -20,6 +20,9 @@
   mine = {
     # -- Desktop Environment --
     hyprland.enable = true;
+    mangowc.enable = true;
+
+    # Applications
     hyprsunset.enable = true;
     greetd.enable = true;
     lockscreen.enable = true;

@@ -20,6 +20,14 @@
     };
     nixpkgs.follows = "nixpkgs-unstable";
 
+    # Pinned version of nixpkgs for cage
+    nixpkgs-cage = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "5be222164c59f700ee149c6e6903c146135eb1f9";
+    };
+
     flake-parts = {
       type = "github";
       owner = "hercules-ci";
@@ -92,6 +100,15 @@
       type = "github";
       owner = "LudovicoPiero";
       repo = "nvim-flake";
+    };
+
+    # Mangowc Wayland Compositor
+    mangowc = {
+      type = "github";
+      owner = "DreamMaoMao";
+      repo = "mangowc";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
   };
 }

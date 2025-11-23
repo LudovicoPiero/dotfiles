@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  inputs',
   ...
 }:
 let
@@ -11,26 +11,26 @@ let
     mkIf
     mkMerge
     ;
-  cfg = config.mine.hyprland;
+  cfg = config.mine.mangowc;
 in
 {
-  options.mine.hyprland = {
+  options.mine.mangowc = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = "Enable Hyprland.";
+      description = "Enable mangowc.";
     };
 
     package = mkOption {
       type = types.package;
-      default = pkgs.hyprland;
-      description = "The Hyprland package to install.";
+      default = inputs'.mangowc.packages.default;
+      description = "The mangowc package to install.";
     };
 
     withUWSM = mkOption {
       type = types.bool;
       default = true;
-      description = "Launch Hyprland apps with UWSM for better compatibility.";
+      description = "Whether to use UWSM for session management.";
     };
   };
 
@@ -38,28 +38,20 @@ in
     (mkIf cfg.withUWSM {
       programs.uwsm = {
         enable = true;
-        waylandCompositors.hyprland = {
-          binPath = "/run/current-system/sw/bin/hyprland";
-          prettyName = "Hyprland";
-          comment = "Hyprland managed by UWSM";
+        waylandCompositors.mangowc = {
+          binPath = "/etc/profiles/per-user/lain/bin/mango";
+          prettyName = "Mangowc";
+          comment = "Mangowc managed by UWSM";
         };
       };
 
       environment = {
-        etc."greetd/environments".text = lib.mkAfter "uwsm start hyprland-uwsm.desktop";
+        etc."greetd/environments".text = lib.mkBefore "uwsm start mangowc-uwsm.desktop";
         sessionVariables = {
           APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
           APP2UNIT_TYPE = "scope";
         };
       };
     })
-    {
-      programs.hyprland = {
-        enable = true;
-        inherit (cfg) package;
-      };
-
-      hj.packages = [ cfg.package ];
-    }
   ]);
 }

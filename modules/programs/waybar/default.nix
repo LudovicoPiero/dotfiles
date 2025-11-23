@@ -31,6 +31,8 @@ let
       "hyprland/workspaces"
       "sway/workspaces"
       "niri/workspaces"
+      # "dwl/tags"
+      "ext/workspaces"
     ];
     modules-center = [ "hyprland/submap" ];
     modules-right = [
@@ -209,6 +211,17 @@ let
       format = "{value}";
       on-click = "activate";
       tooltip = false;
+    };
+
+    "dwl/tags" = {
+      num-tags = 9;
+      disable-click = false;
+    };
+
+    "ext/workspaces" = {
+      format = "{name}";
+      sort-by-number = true;
+      on-click = "activate";
     };
 
     "hyprland/workspaces" = {

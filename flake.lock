@@ -271,6 +271,30 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz"
       }
     },
+    "mangowc": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "scenefx": "scenefx"
+      },
+      "locked": {
+        "lastModified": 1763707827,
+        "narHash": "sha256-gNWQ5Hmwx/iq0EJxPWpEbeQ5YS/20FYgrHiHLyK816E=",
+        "owner": "DreamMaoMao",
+        "repo": "mangowc",
+        "rev": "03ee277ef604639e623a2c7a5cbafa7ecf3c76d4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DreamMaoMao",
+        "repo": "mangowc",
+        "type": "github"
+      }
+    },
     "mnw": {
       "locked": {
         "lastModified": 1763076462,
@@ -337,6 +361,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-cage": {
+      "locked": {
+        "lastModified": 1759523065,
+        "narHash": "sha256-2dkRX9TCiVMFsyzPyVyR9mISK6XNcS25GVQ89pyVmvw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5be222164c59f700ee149c6e6903c146135eb1f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "5be222164c59f700ee149c6e6903c146135eb1f9",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -529,9 +569,11 @@
         "hjem": "hjem",
         "lix": "lix",
         "lix-module": "lix-module",
+        "mangowc": "mangowc",
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "nixpkgs-cage": "nixpkgs-cage",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim-flake": "nvim-flake",
         "programsdb": "programsdb",
@@ -618,6 +660,27 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "59c45eb69d9222a4362673141e00ff77842cd219",
+        "type": "github"
+      }
+    },
+    "scenefx": {
+      "inputs": {
+        "nixpkgs": [
+          "mangowc",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750785057,
+        "narHash": "sha256-tGX6j4W91rcb+glXJo43sjPI9zQvPotonknG1BdihR4=",
+        "owner": "wlrfx",
+        "repo": "scenefx",
+        "rev": "3a6cfb12e4ba97b43326357d14f7b3e40897adfc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wlrfx",
+        "repo": "scenefx",
         "type": "github"
       }
     },
