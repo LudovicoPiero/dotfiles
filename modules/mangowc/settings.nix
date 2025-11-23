@@ -2,13 +2,19 @@
   config,
   pkgs,
   lib,
+  self',
   ...
 }:
 let
   cfg = config.mine.mangowc;
   cfgmine = config.mine;
   inherit (config.mine.theme.colorScheme) palette;
-  inherit (lib) getExe mkIf;
+  inherit (lib) getExe getExe' mkIf;
+
+  launcher = getExe pkgs.fuzzel;
+  powermenu = getExe pkgs.wleave;
+  clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
+  emojiPicker = getExe self'.packages.fuzzmoji;
 in
 mkIf cfgmine.mangowc.enable {
   hj = {
@@ -31,9 +37,9 @@ mkIf cfgmine.mangowc.enable {
 
       # Startup Applications
       exec-once=uwsm finalize
-      exec-once=uwsm app -- ${getExe pkgs.brightnessctl} set 10%
-      exec-once=[workspace 9 silent;noanim] uwsm app -- ${getExe pkgs.thunderbird}
-      exec-once=sleep 1 && uwsm app -- ${getExe pkgs.waybar}
+      exec-once=${getExe pkgs.brightnessctl} set 10%
+      exec-once=uwsm app -- ${getExe pkgs.thunderbird}
+      exec-once=uwsm app -- ${getExe pkgs.waybar}
       exec-once=uwsm app -- ${getExe pkgs.mako}
 
       # Window effect
@@ -179,25 +185,33 @@ mkIf cfgmine.mangowc.enable {
       bind=SUPER,r,reload_config
 
       # menu and terminal
-      bind=SUPER,p,spawn,uwsm app -- ${getExe pkgs.fuzzel}
-      bind=SUPER,Return,spawn,wezterm
+      bind=SUPER,p,spawn,uwsm app -- ${launcher}
+      bind=SUPER,Return,spawn,uwsm app -- ${config.vars.terminal}
+      bind=SUPER,o,spawn,uwsm app -- ${clipboard}
+      bind=SUPER+SHIFT,o,spawn,uwsm app -- ${emojiPicker}
+      bind=SUPER,d,spawn,uwsm app -- ${getExe pkgs.vesktop}
 
       # exit
-      bind=SUPER,x,${getExe pkgs.wleave}
+      bind=SUPER,x,${powermenu},
       bind=SUPER,w,killclient,
+
+      # Screenshot
+      bind=none,Print,spawn,wl-ocr
+      bind=CTRL,Print,spawn,${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -
+      bind=ALT,Print,spawn,${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')
 
       # switch window focus
       bind=SUPER,Tab,focusstack,next
-      bind=ALT,Left,focusdir,left
-      bind=ALT,Right,focusdir,right
-      bind=ALT,Up,focusdir,up
-      bind=ALT,Down,focusdir,down
+      bind=SUPER,h,focusdir,left
+      bind=SUPER,l,focusdir,right
+      bind=SUPER,k,focusdir,up
+      bind=SUPER,j,focusdir,down
 
       # swap window
-      bind=SUPER+SHIFT,Up,exchange_client,up
-      bind=SUPER+SHIFT,Down,exchange_client,down
-      bind=SUPER+SHIFT,Left,exchange_client,left
-      bind=SUPER+SHIFT,Right,exchange_client,right
+      bind=SUPER+SHIFT,h,exchange_client,left
+      bind=SUPER+SHIFT,l,exchange_client,right
+      bind=SUPER+SHIFT,k,exchange_client,up
+      bind=SUPER+SHIFT,j,exchange_client,down
 
       # switch window status
       bind=ALT,Tab,toggleoverview,
