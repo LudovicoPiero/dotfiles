@@ -37,6 +37,7 @@ mkIf cfgmine.mangowc.enable {
 
       # Startup Applications
       exec-once=uwsm finalize
+      exec-once=systemctl --user start xdg-desktop-portal-hyprland.service
       exec-once=${getExe pkgs.brightnessctl} set 10%
       exec-once=uwsm app -- ${getExe pkgs.thunderbird}
       exec-once=uwsm app -- ${getExe pkgs.waybar}
@@ -192,7 +193,7 @@ mkIf cfgmine.mangowc.enable {
       bind=SUPER,d,spawn,uwsm app -- ${getExe pkgs.vesktop}
 
       # exit
-      bind=SUPER,x,${powermenu},
+      bind=SUPER,x,spawn,uwsm app -- ${powermenu}
       bind=SUPER,w,killclient,
 
       # Screenshot
@@ -285,6 +286,11 @@ mkIf cfgmine.mangowc.enable {
       # layer rule
       layerrule=animation_type_open:zoom,layer_name:rofi
       layerrule=animation_type_close:zoom,layer_name:rofi
+
+      # Window Rules
+      windowrule=tags:2,appid:zen-beta
+      windowrule=tags:3,appid:vesktop
+      windowrule=tags:9,appid:thunderbird
     '';
   };
 }
