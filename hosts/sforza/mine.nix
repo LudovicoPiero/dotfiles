@@ -20,6 +20,7 @@
   mine = {
     # -- Desktop Environment --
     hyprland.enable = true;
+    hyprsunset.enable = true;
     greetd.enable = true;
     lockscreen.enable = true;
     waybar.enable = true;
