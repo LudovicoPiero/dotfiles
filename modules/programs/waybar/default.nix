@@ -214,8 +214,8 @@ let
     "hyprland/workspaces" = {
       format = "{icon}";
       on-click = "activate";
-      on-scroll-up = "hyprctl dispatch workspace e-1";
-      on-scroll-down = "hyprctl dispatch workspace e+1";
+      on-scroll-up = "${config.mine.hyprland.package}/bin/hyprctl dispatch workspace e-1";
+      on-scroll-down = "${config.mine.hyprland.package}/bin/hyprctl dispatch workspace e+1";
     };
 
     tray = {
