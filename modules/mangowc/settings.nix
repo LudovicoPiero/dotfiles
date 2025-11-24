@@ -190,6 +190,7 @@ mkIf cfgmine.mangowc.enable {
       bind=SUPER,Return,spawn,uwsm app -- ${config.vars.terminal}
       bind=SUPER,o,spawn,uwsm app -- ${clipboard}
       bind=SUPER+SHIFT,o,spawn,uwsm app -- ${emojiPicker}
+      bind=SUPER+SHIFT,g,spawn,uwsm app -- zen-beta
       bind=SUPER,d,spawn,uwsm app -- ${getExe pkgs.vesktop}
 
       # exit
