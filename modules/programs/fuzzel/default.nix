@@ -27,9 +27,7 @@ in
         icons-enabled=yes
         inner-pad=15
         layer=overlay
-        launch-prefix=${
-          if config.mine.hyprland.withUWSM then "uwsm app --" else null
-        }
+        launch-prefix=${if config.mine.hyprland.withUWSM then "uwsm app --" else null}
         dpi-aware=auto
         exit-on-keyboard-focus-loss=no
         fields="filename,name,generic"
