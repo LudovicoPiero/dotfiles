@@ -20,7 +20,7 @@ mkIf cfgmine.mangowc.enable {
 
     # Window Rules
     # Email & Chat
-    windowrule=tags:9,appid:^(thunderbird)$
+    windowrule=tags:9,isopensilent:1,appid:^(thunderbird)$
     windowrule=tags:8,appid:^(whatsapp-for-linux)$
     windowrule=tags:7,appid:^(qBittorrent|org.qbittorrent.qBittorrent)$
     windowrule=tags:4,appid:^(org.telegram.desktop)$
