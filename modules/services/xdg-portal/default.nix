@@ -5,9 +5,18 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf optionals;
 
   cfg = config.mine.xdg-portal;
+  minecfg = config.mine;
+
+  portalConf =
+    if minecfg.hyprland.enable then
+      [ "hyprland" ]
+    else if minecfg.mangowc.enable then
+      [ "wlr" ]
+    else
+      [ ];
 in
 {
   options.mine.xdg-portal = {
@@ -23,14 +32,22 @@ in
           common = {
             # uses the first portal implementation found in lexicographical order
             default = [ "*" ];
+
+            # except those
             "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+            "org.freedesktop.impl.portal.ScreenCast" = portalConf;
+            "org.freedesktop.impl.portal.ScreenShot" = portalConf;
+
+            # wlr does not have this interface
+            "org.freedesktop.impl.portal.Inhibit" = [ ];
           };
         };
 
         extraPortals = [
           pkgs.xdg-desktop-portal-gtk
-          pkgs.xdg-desktop-portal-hyprland
-        ];
+        ]
+        ++ optionals minecfg.hyprland.enable [ pkgs.xdg-desktop-portal-hyprland ]
+        ++ optionals minecfg.mangowc.enable [ pkgs.xdg-desktop-portal-wlr ];
       };
     };
   };

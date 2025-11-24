@@ -31,7 +31,8 @@ mkIf cfgmine.mangowc.enable {
 
       # Startup Applications
       exec-once=uwsm finalize
-      exec-once=systemctl --user start xdg-desktop-portal-hyprland.service
+      exec-once=systemctl --user stop xdg-desktop-portal-hyprland.service
+      exec-once=systemctl status --user xdg-desktop-portal.service xdg-desktop-portal-gtk.service xdg-desktop-portal-wlr.service
       exec-once=${getExe pkgs.brightnessctl} set 10%
       exec-once=uwsm app -- ${getExe pkgs.thunderbird}
       exec-once=uwsm app -- ${getExe pkgs.waybar}

@@ -94,6 +94,8 @@ let
   hyprlandSettings = {
     exec-once = [
       "uwsm finalize"
+      "systemctl --user stop xdg-desktop-portal-wlr.service"
+      "systemctl status --user xdg-desktop-portal.service xdg-desktop-portal-gtk.service xdg-desktop-portal-hyprland.service"
       "uwsm app -- ${getExe pkgs.brightnessctl} set 10%"
       "[workspace 9 silent;noanim] uwsm app -- ${getExe pkgs.thunderbird}"
       "sleep 1 && uwsm app -- ${getExe pkgs.waybar}"
