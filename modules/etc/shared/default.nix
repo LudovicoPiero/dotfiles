@@ -157,6 +157,13 @@
           ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard}/bin/wl-copy
           ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
         '';
+
+      clipboard-picker = pkgs.writeShellScriptBin "clipboard-picker" ''
+        ${pkgs.cliphist}/bin/cliphist list | \
+        ${pkgs.fuzzel}/bin/fuzzel --dmenu | \
+        ${pkgs.cliphist}/bin/cliphist decode | \
+        ${pkgs.wl-clipboard}/bin/wl-copy
+      '';
     };
   };
 

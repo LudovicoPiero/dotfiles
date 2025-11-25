@@ -88,7 +88,6 @@ let
 
   launcher = getExe pkgs.fuzzel;
   powermenu = getExe pkgs.wleave;
-  clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
   emojiPicker = getExe self'.packages.fuzzmoji;
 
   hyprlandSettings = {
@@ -308,7 +307,7 @@ let
         "$mod        , F , fullscreen , 0"
         "$mod        , M , exec , thunderbird"
         "$mod        , P , exec , ${launcher}"
-        "$mod        , O , exec , ${clipboard}"
+        "$mod        , O , exec , clipboard-picker"
         "$mod SHIFT, O , exec , ${emojiPicker}"
         "$mod SHIFT, P , exec , ${getExe' pkgs.pass-wayland "passmenu"}"
         "$mod        , Space , togglefloating ,"

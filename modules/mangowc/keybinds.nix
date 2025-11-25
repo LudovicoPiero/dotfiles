@@ -6,17 +6,11 @@
   ...
 }:
 let
-  inherit (lib)
-    getExe
-    getExe'
-    mkAfter
-    mkIf
-    ;
+  inherit (lib) getExe mkAfter mkIf;
 
   cfgmine = config.mine;
   launcher = getExe pkgs.fuzzel;
   powermenu = getExe pkgs.wleave;
-  clipboard = "${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}";
   emojiPicker = getExe self'.packages.fuzzmoji;
 in
 mkIf cfgmine.mangowc.enable {
@@ -30,7 +24,7 @@ mkIf cfgmine.mangowc.enable {
     # menu and terminal
     bind=SUPER,p,spawn,uwsm app -- ${launcher}
     bind=SUPER,Return,spawn,uwsm app -- ${config.vars.terminal}
-    bind=SUPER,o,spawn,uwsm app -- ${clipboard}
+    bind=SUPER,o,spawn,uwsm app -- clipboard-picker
     bind=SUPER+SHIFT,o,spawn,uwsm app -- ${emojiPicker}
     bind=SUPER+SHIFT,g,spawn,uwsm app -- zen-beta
     bind=SUPER,d,spawn,uwsm app -- ${getExe pkgs.vesktop}
