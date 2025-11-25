@@ -29,11 +29,10 @@ let
     modules-left = [
       "custom/menu"
       "hyprland/workspaces"
-      "sway/workspaces"
       "niri/workspaces"
-      # "dwl/tags"
-      "ext/workspaces"
-      "dwl/window"
+      "dwl/tags"
+      # "ext/workspaces"
+      # "dwl/window"
     ];
     modules-center = [ "hyprland/submap" ];
     modules-right = [
