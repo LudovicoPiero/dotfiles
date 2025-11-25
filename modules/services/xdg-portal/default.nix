@@ -30,7 +30,6 @@ in
 
         config = {
           common = {
-            # uses the first portal implementation found in lexicographical order
             default = [ "gtk" ];
 
             # except those
@@ -41,6 +40,10 @@ in
             # wlr does not have this interface
             "org.freedesktop.impl.portal.Inhibit" = [ ];
           };
+          hyprland.default = [
+            "gtk"
+            "hyprland"
+          ];
         };
 
         extraPortals = [
