@@ -31,7 +31,7 @@ in
         config = {
           common = {
             # uses the first portal implementation found in lexicographical order
-            default = [ "*" ];
+            default = [ "gtk" ];
 
             # except those
             "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
