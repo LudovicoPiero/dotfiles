@@ -311,6 +311,10 @@
       # Whether to warn about dirty Git/Mercurial trees.
       warn-dirty = false;
 
+      # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
+      http-connections = 128;
+      max-substitution-jobs = 128;
+
       narinfo-cache-positive-ttl = 3600;
 
       # Give group special Nix privileges.
