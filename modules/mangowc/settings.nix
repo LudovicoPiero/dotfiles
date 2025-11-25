@@ -1,14 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.mine.mangowc;
   cfgmine = config.mine;
   inherit (config.mine.theme.colorScheme) palette;
-  inherit (lib) getExe mkIf;
+  inherit (lib) mkIf;
 in
 mkIf cfgmine.mangowc.enable {
   hj = {
@@ -28,15 +23,6 @@ mkIf cfgmine.mangowc.enable {
       env=SDL_IM_MODULE,fcitx
       env=XMODIFIERS,@im=fcitx
       env=GLFW_IM_MODULE,ibus
-
-      # Startup Applications
-      exec-once=uwsm finalize
-      exec-once=systemctl --user stop xdg-desktop-portal-hyprland.service
-      exec-once=systemctl status --user xdg-desktop-portal.service xdg-desktop-portal-gtk.service xdg-desktop-portal-wlr.service
-      exec-once=${getExe pkgs.brightnessctl} set 10%
-      exec-once=uwsm app -- ${getExe pkgs.thunderbird}
-      exec-once=uwsm app -- ${getExe pkgs.waybar}
-      exec-once=uwsm app -- ${getExe pkgs.mako}
 
       # Window effect
       blur=0
