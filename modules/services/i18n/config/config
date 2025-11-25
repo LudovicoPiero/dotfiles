@@ -1,12 +1,18 @@
 [Hotkey]
-# Switch every time the trigger key is pressed
+# Enumerate when holding modifier of Toggle key
 EnumerateWithTriggerKeys=True
-# Skip the first input method when switching
-EnumerateSkipFirst=False
-# Enable input method
+# Activate Input Method
 ActivateKeys=
-# Disable input method
+# Deactivate Input Method
 DeactivateKeys=
+# Temporarily Toggle Input Method
+AltTriggerKeys=
+# Enumerate Input Method Backward
+EnumerateBackwardKeys=
+# Skip first input method while enumerating
+EnumerateSkipFirst=False
+# Time limit in milliseconds for triggering modifier key shortcuts
+ModifierOnlyKeyTimeout=250
 
 [Hotkey/TriggerKeys]
 0=Control+Shift+space
