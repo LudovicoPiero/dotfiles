@@ -151,11 +151,40 @@
       # Use OCR and copy to clipboard
       wl-ocr =
         let
-          _ = lib.getExe;
+          inherit (lib) getExe getExe';
+
+          tesseract = getExe pkgs.tesseract5;
+          grim = getExe pkgs.grim;
+          slurp = getExe pkgs.slurp;
+          wl-copy = getExe' pkgs.wl-clipboard "wl-copy";
+          notify-send = getExe pkgs.libnotify;
         in
         pkgs.writeShellScriptBin "wl-ocr" ''
-          ${_ pkgs.grim} -g "$(${_ pkgs.slurp})" -t ppm - | ${_ pkgs.tesseract5} - - | ${pkgs.wl-clipboard}/bin/wl-copy
-          ${_ pkgs.libnotify} "$(${pkgs.wl-clipboard}/bin/wl-paste)"
+          # 1. Select region (Exit if cancelled)
+          GEOM=$(${slurp})
+          if [ -z "$GEOM" ]; then exit 1; fi
+
+          # 2. Extract Text
+          # specify 'eng+ind+jpn' to keep the scan fast and accurate,
+          TEXT=$(${grim} -g "$GEOM" -t ppm - | ${tesseract} -l eng+ind+jpn --psm 6 - -)
+
+          # 3. Validation: Check if text is empty or just whitespace
+          if [[ -z "''${TEXT//[[:space:]]/}" ]]; then
+            ${notify-send} -u low "OCR Failed" "No readable text found."
+            exit 1
+          fi
+
+          # 4. Copy to clipboard (strip null bytes)
+          echo "$TEXT" | tr -d '\0' | ${wl-copy}
+
+          # 5. Send Notification with a preview
+          # Collapse newlines to spaces for the notification body
+          PREVIEW=$(echo "$TEXT" | tr '\n' ' ' | cut -c 1-60)
+          if [ ''${#TEXT} -gt 60 ]; then
+            PREVIEW="''${PREVIEW}..."
+          fi
+
+          ${notify-send} "OCR Copied" "''${PREVIEW}"
         '';
 
       clipboard-picker = pkgs.writeShellScriptBin "clipboard-picker" ''
