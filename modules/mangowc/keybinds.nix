@@ -36,7 +36,12 @@ mkIf cfgmine.mangowc.enable {
     # Screenshot
     bind=none,Print,spawn,wl-ocr
     bind=CTRL,Print,spawn,${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -
-    bind=ALT,Print,spawn,${getExe pkgs.grimblast} --notify --cursor copysave output ~/Pictures/Screenshots/$(date +'%F_%H:%M:%S.png')
+    bind=ALT,Print,spawn,${pkgs.writeShellScriptBin "shot" ''
+      file="$HOME/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+      ${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" "$file"
+      ${lib.getExe' pkgs.wl-clipboard "wl-copy"} < "$file"
+      ${lib.getExe' pkgs.libnotify "notify-send"} "Screenshot taken" "Saved to $file" -i "$file"
+    ''}/bin/shot
 
     # switch window focus
     bind=SUPER,Tab,focusstack,next
