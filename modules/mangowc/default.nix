@@ -23,7 +23,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = inputs'.mangowc.packages.default;
+      inherit (inputs'.mangowc.packages) default;
       description = "The mangowc package to install.";
     };
 

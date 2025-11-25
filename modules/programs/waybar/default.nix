@@ -97,7 +97,7 @@ let
 
     clock = {
       format = "| TIME: {:%I:%M %p}";
-      tooltip-format = "\n<span size='9pt' font='${config.mine.fonts.main.name}'>{calendar}</span>";
+      tooltip-format = "{calendar}";
       calendar = {
         mode = "year";
         format = {
@@ -225,7 +225,7 @@ let
 
     "ext/workspaces" = {
       format = "{name}";
-      sort-by-number = true;
+      sort-by-id = true;
       on-click = "activate";
     };
 

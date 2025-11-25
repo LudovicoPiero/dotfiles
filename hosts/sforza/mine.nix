@@ -19,7 +19,7 @@
 
   mine = {
     # -- Desktop Environment --
-    hyprland.enable = true;
+    hyprland.enable = false;
     mangowc.enable = true;
 
     # Applications
