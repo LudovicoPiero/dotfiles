@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    makeBinPath
+    concatLists
+    ;
   cfg = config.mine.emacs;
 
   emacsPackage =
@@ -83,27 +88,27 @@ let
     fd
   ];
 
-  runtimeDeps =
+  runtimeDeps = concatLists [
     nixTools
-    ++ goTools
-    ++ pythonTools
-    ++ rustTools
-    ++ luaTools
-    ++ cppTools
-    ++ commonTools;
+    goTools
+    pythonTools
+    rustTools
+    luaTools
+    cppTools
+    commonTools
+  ];
 
-  emacsWrapped =
-    pkgs.runCommand "emacs-wrapped" { buildInputs = [ pkgs.makeWrapper ]; }
-      ''
-        mkdir -p $out/bin
-        makeWrapper ${emacsPackage}/bin/emacs $out/bin/emacs \
-          --prefix PATH : ${
-            pkgs.buildEnv {
-              name = "emacs-path";
-              paths = runtimeDeps;
-            }
-          }/bin
-      '';
+  # Symlinks all paths from emacsPackage (including share/)
+  # and wraps the binary with the required PATH.
+  emacsWrapped = pkgs.symlinkJoin {
+    name = "emacs-wrapped";
+    paths = [ emacsPackage ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/emacs \
+        --prefix PATH : ${makeBinPath runtimeDeps}
+    '';
+  };
 in
 {
   options.mine.emacs.enable = mkEnableOption "Emacs";
