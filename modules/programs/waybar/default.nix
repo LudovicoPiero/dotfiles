@@ -16,8 +16,10 @@ let
 
   # Custom script for date with Japanese/English formatting
   waybar-date = pkgs.writeShellScriptBin "waybar-date" ''
-    ja=$(LC_TIME=ja_JP.UTF-8 date "+%A, %Y年 %-m月 %-d日")
-    en=$(LC_TIME=en_US.UTF-8 date "+%A, %B %-d, %Y")
+    export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive"
+    ja=$(LC_ALL=ja_JP.UTF-8 date "+%A, %Y年 %-m月 %-d日")
+    en=$(LC_ALL=en_US.UTF-8 date "+%A, %B %-d, %Y")
+
     printf '{"text":"| DATE: %s ","tooltip":"%s"}\n' "$ja" "$en"
   '';
 in
