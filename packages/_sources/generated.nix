@@ -87,37 +87,37 @@
   };
   npins = {
     pname = "npins";
-    version = "f4e3698681704e74196fa0f905c7dfdd43cf5c86";
+    version = "84a362d77fb3c487ad759c80547facb028f4d96f";
     src = fetchgit {
       url = "https://github.com/andir/npins";
-      rev = "f4e3698681704e74196fa0f905c7dfdd43cf5c86";
+      rev = "84a362d77fb3c487ad759c80547facb028f4d96f";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-8lkiistkBemkRN4aTqGW3SvI1CqibOnvFvNJS9OOdnU=";
+      sha256 = "sha256-EWA14ovB/5UFiK9fmEYtofIMbGnVeJ/4yK0aJEJXtsI=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./npins-f4e3698681704e74196fa0f905c7dfdd43cf5c86/Cargo.lock;
+      lockFile = ./npins-84a362d77fb3c487ad759c80547facb028f4d96f/Cargo.lock;
       outputHashes = {
         "nix-compat-0.1.0" = "sha256-ehkc7ug0HkTHKxx9tQi/9vkOtQry9HdiX9UxBUvjYRY=";
       };
     };
-    date = "2025-10-12";
+    date = "2025-11-26";
   };
   runapp = {
     pname = "runapp";
-    version = "29a37370ff261fa968248a4e9d832119d5be7a3a";
+    version = "10fb4b344d06c815c1cd4c1b8bdc4f797b04230f";
     src = fetchgit {
       url = "https://github.com/c4rlo/runapp";
-      rev = "29a37370ff261fa968248a4e9d832119d5be7a3a";
+      rev = "10fb4b344d06c815c1cd4c1b8bdc4f797b04230f";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-sOrzpcec0jG2Xg+EnbFwzc8foWl5t8dIS7snGudc3Yw=";
+      sha256 = "sha256-KH/dK2aYviV5a2L/C4wb3fAHbdGChrpHP53RlLejyoA=";
     };
-    date = "2025-10-12";
+    date = "2025-11-26";
   };
   san-francisco-fonts = {
     pname = "san-francisco-fonts";
@@ -162,8 +162,8 @@
     cargoLock."Cargo.lock" = {
       lockFile = ./wezterm-ac08cdf6d72afd726cc1591c1ec9d80aa883ea41/Cargo.lock;
       outputHashes = {
-        "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
         "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
+        "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
       };
     };
     date = "2025-11-23";

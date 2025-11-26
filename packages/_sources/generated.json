@@ -122,13 +122,13 @@
     "npins": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./npins-f4e3698681704e74196fa0f905c7dfdd43cf5c86/Cargo.lock",
+                "./npins-84a362d77fb3c487ad759c80547facb028f4d96f/Cargo.lock",
                 {
                     "nix-compat-0.1.0": "sha256-ehkc7ug0HkTHKxx9tQi/9vkOtQry9HdiX9UxBUvjYRY="
                 }
             ]
         },
-        "date": "2025-10-12",
+        "date": "2025-11-26",
         "extract": null,
         "name": "npins",
         "passthru": null,
@@ -138,17 +138,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "f4e3698681704e74196fa0f905c7dfdd43cf5c86",
-            "sha256": "sha256-8lkiistkBemkRN4aTqGW3SvI1CqibOnvFvNJS9OOdnU=",
+            "rev": "84a362d77fb3c487ad759c80547facb028f4d96f",
+            "sha256": "sha256-EWA14ovB/5UFiK9fmEYtofIMbGnVeJ/4yK0aJEJXtsI=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/andir/npins"
         },
-        "version": "f4e3698681704e74196fa0f905c7dfdd43cf5c86"
+        "version": "84a362d77fb3c487ad759c80547facb028f4d96f"
     },
     "runapp": {
         "cargoLocks": null,
-        "date": "2025-10-12",
+        "date": "2025-11-26",
         "extract": null,
         "name": "runapp",
         "passthru": null,
@@ -158,13 +158,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "29a37370ff261fa968248a4e9d832119d5be7a3a",
-            "sha256": "sha256-sOrzpcec0jG2Xg+EnbFwzc8foWl5t8dIS7snGudc3Yw=",
+            "rev": "10fb4b344d06c815c1cd4c1b8bdc4f797b04230f",
+            "sha256": "sha256-KH/dK2aYviV5a2L/C4wb3fAHbdGChrpHP53RlLejyoA=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/c4rlo/runapp"
         },
-        "version": "29a37370ff261fa968248a4e9d832119d5be7a3a"
+        "version": "10fb4b344d06c815c1cd4c1b8bdc4f797b04230f"
     },
     "san-francisco-fonts": {
         "cargoLocks": null,
