@@ -24,15 +24,12 @@ mkIf cfgmine.mangowc.enable {
       exec-once=uwsm app -- ${getExe pkgs.thunderbird}
       exec-once=uwsm app -- ${getExe pkgs.waybar}
       exec-once=uwsm app -- ${getExe pkgs.mako}
+
       # Desktop portal (for obs and screen sharing)
       exec-once=systemctl --user stop xdg-desktop-portal-hyprland.service
       exec-once=systemctl status --user xdg-desktop-portal.service xdg-desktop-portal-gtk.service xdg-desktop-portal-wlr.service
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
       exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
-      # Monitor rules
-      monitorrule=HDMI-A-1,0.55,1,tile,0,1,0,0,1920,1080,180
-      monitorrule=eDP-1,0.55,1,tile,0,1,1920,0,1366,768,60
 
       # Environment Variables
       env=XCURSOR_THEME,${cfgmine.theme.cursor.name}

@@ -6,6 +6,10 @@ let
 in
 mkIf cfgmine.mangowc.enable {
   hj.xdg.config.files."mango/config.conf".text = mkAfter ''
+    # Monitor rules
+    monitorrule=HDMI-A-1,0.55,1,tile,0,1,0,0,1920,1080,180
+    monitorrule=eDP-1,0.55,1,tile,0,1,1920,0,1366,768,60
+
     # layout support:
     # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
     tagrule=id:1,layout_name:tile
