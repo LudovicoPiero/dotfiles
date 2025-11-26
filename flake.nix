@@ -110,5 +110,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    # Overlays and package sets
+    emacs-overlay = {
+      type = "github";
+      owner = "nix-community";
+      repo = "emacs-overlay";
+    };
   };
 }

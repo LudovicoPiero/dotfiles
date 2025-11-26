@@ -45,6 +45,7 @@
     };
 
     # -- Applications --
+    emacs.enable = true;
     fish.enable = true;
     fuzzel.enable = true;
     git.enable = true;
