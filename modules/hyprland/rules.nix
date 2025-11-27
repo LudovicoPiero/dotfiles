@@ -6,8 +6,21 @@ let
 in
 mkIf cfgmine.hyprland.enable {
   hj.xdg.config.files."hypr/hyprland.conf".text = mkAfter ''
-    monitor = HDMI-A-1, 1920x1080@180, auto, 1
-    monitor = eDP-1,disable
+    monitorv2 {
+      output = HDMI-A-1
+      mode = 1920x1080@180
+      position = auto
+      scale = 1
+      cm = dcip3
+      supports_hdr = true
+      supports_wide_color = true
+      bitdepth = 10
+    }
+
+    monitorv2 {
+      output = eDP-1
+      disabled = true
+    }
 
     workspace = w[tv1]s[false], gapsout:0, gapsin:0
     workspace = f[1]s[false], gapsout:0, gapsin:0

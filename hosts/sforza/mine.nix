@@ -19,8 +19,8 @@
 
   mine = {
     # -- Desktop Environment --
-    hyprland.enable = true;
-    mangowc.enable = false;
+    hyprland.enable = false;
+    mangowc.enable = true;
 
     # Applications
     hyprsunset.enable = true;
