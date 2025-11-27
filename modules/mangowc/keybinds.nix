@@ -67,9 +67,9 @@ mkIf cfgmine.mangowc.enable {
 
     # tag switch
     bind=SUPER,Left,viewtoleft,0
-    bind=CTRL,Left,viewtoleft_have_client,0
+    # bind=CTRL,Left,viewtoleft_have_client,0
     bind=SUPER,Right,viewtoright,0
-    bind=CTRL,Right,viewtoright_have_client,0
+    # bind=CTRL,Right,viewtoright_have_client,0
     bind=CTRL+SUPER,Left,tagtoleft,0
     bind=CTRL+SUPER,Right,tagtoright,0
 
