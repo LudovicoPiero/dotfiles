@@ -6,37 +6,37 @@ in
   options.mine.theme.colorScheme = {
     name = mkOption {
       type = types.str;
-      default = "onedark-deep";
+      default = "catppuccin-mocha";
       description = "Name of the active color scheme.";
     };
 
     author = mkOption {
       type = types.str;
-      default = "https://github.com/navarasu/onedark.nvim";
+      default = "https://github.com/catppuccin/catppuccin";
       description = "Color scheme author or source.";
     };
 
     palette = mkOption {
       type = types.attrsOf types.str;
-      description = "Color palette used by themable applications (OneDark Deep).";
+      description = "Color palette used by themable applications (Catppuccin mocha).";
       default = {
-        base00 = "0c0e15"; # black      (Main Background)
-        base01 = "1a212e"; # bg0        (Lighter Background / Status Bar)
-        base02 = "21283b"; # bg1        (Selection Background)
-        base03 = "283347"; # bg2        (Comments / Invisibles)
-        base04 = "455574"; # grey       (Dark Foreground)
-        base05 = "93a4c3"; # fg         (Main Foreground)
-        base06 = "6c7d9c"; # light_grey (Light Foreground)
-        base07 = "f2cc81"; # bg_yellow  (Light Background / Accent)
+        base00 = "1e1e2e"; # bg          (Main Background)
+        base01 = "181825"; # base3       (Lighter Background / Region)
+        base02 = "313244"; # base4       (Selection Background)
+        base03 = "45475a"; # base5       (Comments / Invisibles)
+        base04 = "585b70"; # base8       (Dark Foreground)
+        base05 = "cdd6f4"; # fg          (Main Foreground)
+        base06 = "f5e0dc"; # fg-alt      (Light Foreground)
+        base07 = "b4befe"; # white       (Light Background / Accent)
 
-        base08 = "f65866"; # red
-        base09 = "dd9046"; # orange
-        base0A = "efbd5d"; # yellow
-        base0B = "8bcd5b"; # green
-        base0C = "34bfd0"; # cyan
-        base0D = "41a7fc"; # blue
-        base0E = "c75ae8"; # purple
-        base0F = "a75ae8"; # dark_purple (or similar accent for deprecated)
+        base08 = "f38ba8"; # red
+        base09 = "fab387"; # orange
+        base0A = "f9e2af"; # yellow
+        base0B = "a6e3a1"; # green
+        base0C = "94e2d5"; # cyan
+        base0D = "89b4fa"; # blue
+        base0E = "cba6f7"; # magenta
+        base0F = "f2cdcd"; # violet
       };
     };
   };
