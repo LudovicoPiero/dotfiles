@@ -76,13 +76,13 @@ lib.mkIf cfgmine.waybar.enable {
     }
 
     #tags button.occupied {
-      color: #${palette.base05};
-      background: #${palette.base03};
+      color: #${palette.base0D};
+      background: #${palette.base00};
     }
 
     #tags button.focused {
-      color: #${palette.base0D};
-      background: #${palette.base00};
+      color: #${palette.base05};
+      background: #${palette.base03};
       font-weight: bold;
     }
 
