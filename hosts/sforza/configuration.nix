@@ -28,17 +28,20 @@
       ExecStart = ''${pkgs.tailscale}/bin/tailscale systray'';
     };
   };
+  boot = {
+    loader = {
+      # Use the systemd-boot EFI boot loader.
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 5;
+      efi.canTouchEfiVariables = true;
+    }; # Added manually
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
-  boot.loader.efi.canTouchEfiVariables = true;
+    # Use latest kernel.
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
+  };
 
   # Chaotic's stuff
-  chaotic.nyx.cache.enable = false; # Added manually
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
+  chaotic.nyx.cache.enable = false;
 
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
