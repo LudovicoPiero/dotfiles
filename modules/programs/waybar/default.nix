@@ -5,12 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    getExe
-    getExe'
-    ;
+  inherit (lib) mkEnableOption mkIf getExe;
 
   cfg = config.mine.waybar;
 
@@ -34,139 +29,24 @@ in
       xdg.config.files."waybar/config.jsonc" = {
         text = ''
           {
-            "modules-center": [
-                "hyprland/submap"
-            ],
+            "position": "bottom",
+            "layer": "top",
+            "height": 24,
+            "spacing": 0,
             "modules-left": [
-                "custom/menu",
                 "hyprland/workspaces",
-                "niri/workspaces",
                 "dwl/tags"
             ],
             "modules-right": [
                 "tray",
                 "idle_inhibitor",
                 "mpd",
-                "pulseaudio",
-                "bluetooth",
                 "network",
+                "pulseaudio",
                 "battery",
                 "clock",
-                "custom/date",
-                "custom/power"
+                "custom/date"
             ],
-            "position": "bottom",
-            "spacing": 6,
-            "ipc": true,
-            "layer": "top",
-            "fixed-center": true,
-            "height": 32,
-            "backlight": {
-                "format": "| BACKLIGHT: {percent}%",
-                "interval": 2,
-                "on-scroll-down": "${getExe pkgs.light} -U 5%",
-                "on-scroll-up": "${getExe pkgs.light} -A 5%"
-            },
-
-            "battery": {
-                "format": "| BAT: {capacity}%",
-                "format-alt": "| BAT: {time}",
-                "format-charging": "| BAT+: {capacity}%",
-                "format-full": "| BAT: FULL",
-                "format-plugged": "| BAT(AC): {capacity}%",
-                "interval": 60,
-                "tooltip": true
-            },
-            "bluetooth": {
-                "format": "| BT {status}",
-                "format-connected": "| BT {device_alias}",
-                "format-connected-battery": "| BT {device_battery_percentage}%",
-                "format-disabled": "| BT DIS",
-                "format-off": "| BT OFF",
-                "format-on": "| BT {status}",
-                "tooltip": true
-            },
-            "clock": {
-                "calendar": {
-                    "format": {
-                        "days": "<span color='#ecc6d9'><b>{}</b></span>",
-                        "months": "<span color='#ffead3'><b>{}</b></span>",
-                        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
-                        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-                        "weeks": "<span color='#99ffdd'><b>W{}</b></span>"
-                    },
-                    "mode": "year"
-                },
-                "format": "| TIME: {:%I:%M %p}",
-                "tooltip-format": "{calendar}"
-            },
-            "cpu": {
-                "format": "| CPU: {usage}%",
-                "interval": 5
-            },
-            "custom/date": {
-                "exec": "${getExe waybar-date}",
-                "interval": 3600,
-                "return-type": "json"
-            },
-            "custom/disk_home": {
-                "exec": "df -h --output=avail /dev/disk/by-label/HOME | tail -1 | tr -d ' '",
-                "format": "| HOME: {}",
-                "interval": 30,
-                "tooltip-format": "Size of /home"
-            },
-            "custom/disk_root": {
-                "exec": "df -h --output=avail / | tail -1 | tr -d ' '",
-                "format": "| ROOT: {}",
-                "interval": 30,
-                "tooltip-format": "Size of /"
-            },
-            "custom/menu": {
-                "format": "MENU",
-                "on-click": "${getExe pkgs.fuzzel}",
-                "tooltip": false
-            },
-            "custom/power": {
-                "format": "POWER",
-                "on-click": "${getExe pkgs.wleave}",
-                "tooltip": false
-            },
-            "custom/tailscale": {
-                "exec": "ip link show tailscale0 >/dev/null 2>&1 && echo '{\"class\": \"connected\"}' || echo '{}'",
-                "format": "| TAILSCALE",
-                "interval": 5,
-                "return-type": "json"
-            },
-            "custom/wireguard": {
-                "exec": "echo '{\"class\": \"connected\"}'",
-                "exec-if": "test -d /proc/sys/net/ipv4/conf/wg0",
-                "format": "| WIREGUARD",
-                "interval": 5,
-                "return-type": "json"
-            },
-            "dwl/tags": {
-                "disable-click": false,
-                "num-tags": 9
-            },
-            "dwl/window": {
-                "format": "[{layout}]"
-            },
-            "ext/workspaces": {
-                "format": "{name}",
-                "on-click": "activate",
-                "sort-by-id": true
-            },
-            "hyprland/submap": {
-                "format": "| {}",
-                "max-length": 8,
-                "tooltip": false
-            },
-            "hyprland/workspaces": {
-                "format": "{icon}",
-                "on-click": "activate",
-                "on-scroll-down": "${getExe' pkgs.hyprland "hyprctl"} dispatch workspace e+1",
-                "on-scroll-up": "${getExe' pkgs.hyprland "hyprctl"} dispatch workspace e-1"
-            },
             "idle_inhibitor": {
                 "format": "| {icon}",
                 "format-icons": {
@@ -174,9 +54,18 @@ in
                     "deactivated": "INHIBIT OFF"
                 }
             },
-            "memory": {
-                "format": "| MEM: {used:0.1f}G",
-                "interval": 10
+            "custom/date": {
+                "exec": "${getExe waybar-date}",
+                "interval": 3600,
+                "return-type": "json"
+            },
+            "hyprland/workspaces": {
+                "format": "{name}",
+                "on-click": "activate",
+                "sort-by-number": true
+            },
+            "dwl/tags": {
+                "num-tags": 9
             },
             "mpd": {
                 "artist-len": 8,
@@ -198,19 +87,6 @@ in
                 "tooltip-format": "MPD (connected)",
                 "tooltip-format-disconnected": "MPD (disconnected)"
             },
-            "network": {
-                "format-alt": "| IP LEAK: {ipaddr}/{cidr}",
-                "format-disconnected": "| NET: DISCONNECTED",
-                "format-ethernet": "| IP LEAK: {ipaddr}/{cidr}",
-                "format-linked": "| IP LEAK: (No IP)",
-                "format-wifi": "| NET: DOWN {bandwidthDownBits} UP {bandwidthUpBits}",
-                "interval": 5
-            },
-            "niri/workspaces": {
-                "format": "{value}",
-                "on-click": "activate",
-                "tooltip": false
-            },
             "pulseaudio": {
                 "format": "| VOL: {volume}% {format_source}",
                 "format-bluetooth": "| VOL: BT {volume}% {format_source}",
@@ -222,12 +98,47 @@ in
                 "on-click-right": "${getExe pkgs.ponymix} -N -t source toggle",
                 "scroll-step": 5
             },
-            "sway/workspaces": {
-                "format": "{name}"
+            "network": {
+                "format-alt": "| IP LEAK: {ipaddr}/{cidr}",
+                "format-disconnected": "| NET: DISCONNECTED",
+                "format-ethernet": "| IP LEAK: {ipaddr}/{cidr}",
+                "format-linked": "| IP LEAK: (No IP)",
+                "format-wifi": "| NET: DOWN {bandwidthDownBits} UP {bandwidthUpBits}",
+                "interval": 5
+            },
+            "disk": {
+                "format": "| HDD: {percentage_used}%",
+                "path": "/",
+                "interval": 60,
+                "tooltip": false
+            },
+            "memory": {
+                "format": "| RAM: {used:0.1f}G",
+                "interval": 10,
+                "tooltip": false
+            },
+            "cpu": {
+                "format": "| CPU: {usage}%",
+                "interval": 5,
+                "tooltip": false
+            },
+            "battery": {
+                "format": "| BAT: {capacity}%",
+                "format-charging": "| CHR: {capacity}%",
+                "format-plugged": "| AC: {capacity}%",
+                "states": {
+                    "warning": 30,
+                    "critical": 15
+                },
+                "tooltip": false
+            },
+            "clock": {
+                "format": "| TIME: {:%I:%M %p}",
+                "tooltip": "{calendar}"
             },
             "tray": {
-                "icon-size": 16,
-                "spacing": 10
+                "icon-size": 14,
+                "spacing": 5
             }
           }
         '';

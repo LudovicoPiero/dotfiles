@@ -4,147 +4,102 @@ let
   cfgmine = config.mine;
 in
 lib.mkIf cfgmine.waybar.enable {
-  hj.xdg.config.files."waybar/style.css".text = ''
-    * {
-      font-family: "${config.mine.fonts.terminal.name}", "${config.mine.fonts.icon.name}", monospace;
-      font-size: ${toString (config.mine.fonts.size - 1)}px;
-      border-radius: 0;
-    }
+  hj = {
+    xdg.config.files."waybar/style.css".text = ''
+      /* Reset all styles to ensure square, monospace look */
+      * {
+          border: none;
+          border-radius: 0;
+          font-family: monospace;
+          font-size: 13px;
+          min-height: 0;
+          margin: 0;
+          padding: 0;
+      }
 
-    window#waybar {
-      background: #${palette.base00};
-      color: #${palette.base05};
-      border-bottom: 1px solid #${palette.base01};
-      border-radius: 0;
-      padding: 1px 0;
-    }
+      window#waybar {
+          background-color: #${palette.base00};
+          color: #${palette.base05};
+      }
 
-    /* --- Workspaces --- */
-    #workspaces {
-      margin: 0 4px;
-    }
+      #waybar box.right.modules > widget > label,
+      #waybar box.right.modules > widget > box {
+          padding: 0 5px;
+          background-color: #${palette.base00};
+          color: #${palette.base05};
+      }
 
-    #workspaces button {
-      border: none;
-      margin: 0 1px;
-      padding: 1px 6px;
-      background: transparent;
-      color: #${palette.base05};
-      border-radius: 0;
-      transition: background 0.2s, color 0.2s;
-    }
+      /* Workspaces Default state (Hidden/Empty) */
+      #workspaces button,
+      #tags button {
+          padding: 0 5px;
+          background-color: #${palette.base00};
+          color: #${palette.base03}; /* Dim color for empty/unused */
+          border-bottom: 2px solid transparent;
+      }
 
-    /* Empty workspace (no windows) */
-    #workspaces button.empty {
-      color: #${palette.base04};
-      opacity: 0.6;
-    }
+      /* Occupied State */
+      /* Hyprland: Default button is occupied. .empty is empty. */
+      #workspaces button {
+          color: #${palette.base0D};
+      }
+      #workspaces button.empty {
+          color: #${palette.base03};
+      }
 
-    /* Workspace with windows but not focused */
-    #workspaces button.visible,
-    #workspaces button.active {
-      color: #${palette.base05};
-      background: #${palette.base03};
-    }
+      /* DWL/Tags: Explicit .occupied class */
+      #tags button.occupied {
+          color: #${palette.base0D};
+      }
 
-    /* Focused workspace */
-    #workspaces button.focused {
-      color: #${palette.base0D};
-      background: #${palette.base00};
-      font-weight: bold;
-    }
+      /* Active/Focused Workspace */
+      #workspaces button.active,
+      #workspaces button.focused,
+      #tags button.focused {
+          background-color: #${palette.base02};
+          color: #${palette.base05};
+          border-bottom: 2px solid #${palette.base05};
+      }
 
-    /* Hover effect */
-    #workspaces button:hover {
-      background: #${palette.base05};
-      color: #${palette.base03};
-    }
+      /* Urgent Workspace */
+      #workspaces button.urgent,
+      #tags button.urgent {
+          background-color: #${palette.base08};
+          color: #${palette.base00};
+      }
 
-    /* --- Tags (River, dwl) --- */
-    #tags {
-      margin: 0 4px;
-    }
+      #battery.charging { color: #${palette.base0B}; }
+      #battery.warning:not(.charging) { color: #${palette.base0A}; }
+      #battery.critical:not(.charging) { color: #${palette.base08}; }
 
-    #tags button {
-      border: none;
-      margin: 0 1px;
-      padding: 1px 6px;
-      background: transparent;
-      color: #${palette.base05};
-      border-radius: 0;
-      transition: background 0.2s, color 0.2s;
-    }
+      #network.disconnected { color: #${palette.base08}; }
 
-    #tags button.occupied {
-      color: #${palette.base0D};
-      background: #${palette.base00};
-    }
+      #memory.warning { color: #${palette.base0A}; }
+      #memory.critical { color: #${palette.base08}; }
 
-    #tags button.focused {
-      color: #${palette.base05};
-      background: #${palette.base03};
-      font-weight: bold;
-    }
+      #cpu.warning { color: #${palette.base0A}; }
+      #cpu.critical { color: #${palette.base08}; }
+      #custom-date {
+        color: #${palette.base05};
+        padding-right: 5px;
+        margin-top: -3px;
+      }
 
-    #tags button.urgent {
-      color: #${palette.base08};
-      background: #${palette.base00};
-    }
+      #pulseaudio.muted {
+          color: #${palette.base03};
+      }
 
-    #tags button:hover {
-      background: #${palette.base05};
-      color: #${palette.base03};
-    }
+      #mpd.playing {
+        color: #${palette.base0B};
+      }
 
-    #clock,
-    #battery,
-    #cpu,
-    #disk,
-    #pulseaudio,
-    #network,
-    #bluetooth,
-    #tray,
-    #mpd,
-    #custom-spotify,
-    #custom-menu,
-    #custom-tailscale,
-    #custom-wireguard,
-    #custom-disk_home,
-    #custom-disk_root,
-    #custom-power {
-      padding: 0 4px;
-      margin: 0 1px;
-      border-radius: 0;
-    }
+      #mpd.stopped {
+        color: #${palette.base05};
+      }
 
-    #battery.critical:not(.charging) {
-      color: #${palette.base08};
-    }
-
-    #pulseaudio.muted {
-      color: #${palette.base03};
-    }
-
-    #mpd.playing,
-    #custom-spotify.playing {
-      color: #${palette.base0B};
-    }
-
-    #mpd.stopped,
-    #custom-spotify.paused {
-      color: #${palette.base05};
-    }
-
-    #custom-menu,
-    #custom-power {
-      background: #${palette.base08};
-      color: #${palette.base00};
-      padding: 0 6px;
-      border-radius: 0;
-    }
-
-    #tray > .needs-attention {
-      -gtk-icon-effect: highlight;
-    }
-  '';
+      #tray > .needs-attention {
+        -gtk-icon-effect: highlight;
+      }
+    '';
+  };
 }
