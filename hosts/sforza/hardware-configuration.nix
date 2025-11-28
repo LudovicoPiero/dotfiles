@@ -11,22 +11,23 @@
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
-  boot.kernelParams = [
-    "video=eDP-1:d" # Disable eDP-1
-    "video=HDMI-A-1:1920x1080@180"
-  ];
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "ahci"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    kernelParams = [
+      "video=eDP-1:d" # Disable eDP-1
+      "video=HDMI-A-1:1920x1080@180"
+    ];
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+    ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
 
   hardware = {
     bluetooth = {
@@ -54,66 +55,67 @@
       # amdvlk.support32Bit.enable = true;
     };
   };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/ROOT";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+    "/Persist" = {
+      device = "/dev/disk/by-uuid/d8b7c41e-511d-41d5-9f4c-fb62604dc5be";
+      neededForBoot = true;
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/Persist" = {
-    device = "/dev/disk/by-uuid/d8b7c41e-511d-41d5-9f4c-fb62604dc5be";
-    neededForBoot = true;
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+    "/home" = {
+      device = "/dev/disk/by-uuid/70933cfc-f459-49e4-8112-b042fc87030c";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/70933cfc-f459-49e4-8112-b042fc87030c";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+    "/home/${config.vars.username}/WinE" = {
+      device = "/dev/disk/by-label/WinE";
+      fsType = "ntfs";
+      options = [
+        "uid=${toString config.users.users.${config.vars.username}.uid}"
+        "gid=100"
+        "rw"
+        "user"
+        "exec"
+        "dmask=0022" # Directories: 755 (Owner: rwx, Others: r-x)
+        "fmask=0133" # Files: 644 (Owner: rw-, Others: r--)
+        "nofail"
+      ];
+    };
 
-  fileSystems."/home/${config.vars.username}/WinE" = {
-    device = "/dev/disk/by-label/WinE";
-    fsType = "ntfs";
-    options = [
-      "uid=${toString config.users.users.${config.vars.username}.uid}"
-      "gid=100"
-      "rw"
-      "user"
-      "exec"
-      "dmask=0022" # Directories: 755 (Owner: rwx, Others: r-x)
-      "fmask=0133" # Files: 644 (Owner: rw-, Others: r--)
-      "nofail"
-    ];
-  };
+    "/home/${config.vars.username}/Media" = {
+      device = "/dev/disk/by-label/Media";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/home/${config.vars.username}/Media" = {
-    device = "/dev/disk/by-label/Media";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
   };
 
   # slows down boot time
