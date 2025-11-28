@@ -1,36 +1,15 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.mine.mangowc;
   cfgmine = config.mine;
   inherit (config.mine.theme.colorScheme) palette;
-  inherit (lib) getExe mkIf;
+  inherit (lib) mkIf;
 in
 mkIf cfgmine.mangowc.enable {
   hj = {
     packages = [ cfg.package ];
     xdg.config.files."mango/config.conf".text = ''
       # More option see https://github.com/DreamMaoMao/mango/wiki/
-
-      # UWSM finalize for proper session management
-      exec-once=uwsm finalize SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
-      # Startup Applications
-      exec-once=${getExe pkgs.brightnessctl} set 10%
-      exec-once=uwsm app -- ${getExe pkgs.thunderbird}
-      exec-once=uwsm app -- ${getExe pkgs.waybar}
-      exec-once=uwsm app -- ${getExe pkgs.mako}
-
-      # Desktop portal (for obs and screen sharing)
-      exec-once=systemctl --user stop xdg-desktop-portal-hyprland.service
-      exec-once=systemctl status --user xdg-desktop-portal.service xdg-desktop-portal-gtk.service xdg-desktop-portal-wlr.service
-      exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
-      exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
       # Environment Variables
       env=XCURSOR_THEME,${cfgmine.theme.cursor.name}
       env=XCURSOR_SIZE,${toString cfgmine.theme.cursor.size}
