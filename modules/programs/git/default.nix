@@ -8,6 +8,10 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.mine.git;
+
+  difftastic-wrapper = pkgs.writeShellScript "difftastic-wrapper" ''
+    ${pkgs.difftastic}/bin/difft "$2" "$5"
+  '';
 in
 {
   options.mine.git = {
@@ -33,11 +37,11 @@ in
 
         # Configures difftastic as the default external diff tool
         pager.difftool = true;
-        diff.external = "difft";
+        diff.external = "${difftastic-wrapper}";
         diff.tool = "difftastic";
         difftool.prompt = false;
         "difftool \"difftastic\"".cmd =
-          "${pkgs.difftastic}/bin/difft \"$MERGED\" \"$LOCAL\" \"abcdef1\" \"100644\" \"$REMOTE\" \"abcdef2\" \"100644\"";
+          "${pkgs.difftastic}/bin/difft \"$LOCAL\" \"$REMOTE\"";
 
         alias = {
           # Basic Commands
@@ -72,6 +76,10 @@ in
           s1ft = "reset --soft HEAD~1";
           h1rd = "reset --hard HEAD~1";
 
+          # Show
+          sh = "show --ext-diff"; # fancy
+          shr = "show --no-ext-diff"; # raw
+
           # Stash
           stsh = "stash";
           stls = "stash list";
@@ -86,7 +94,6 @@ in
           d = "diff";
           dc = "diff --cached";
           ds = "diff --staged";
-          dl = "log -p --ext-diff";
           d1 = "diff HEAD~1 HEAD";
           d2 = "diff HEAD~2 HEAD";
 
@@ -96,6 +103,7 @@ in
 
           # Logging
           l = "log --oneline --decorate --graph --all";
+          dl = "log -p --ext-diff";
           last = "log -1 HEAD";
           lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
           plog = "log --graph --pretty=format:'%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'";
