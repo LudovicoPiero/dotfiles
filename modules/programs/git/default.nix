@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
 
@@ -10,6 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    hj.packages = with pkgs; [ difftastic ];
     programs.git = {
       enable = true;
       config = {
@@ -24,6 +30,14 @@ in
         commit.gpgSign = true;
         format.signOff = true;
         pull.rebase = true;
+
+        # Configures difftastic as the default external diff tool
+        pager.difftool = true;
+        diff.external = "difft";
+        diff.tool = "difftastic";
+        difftool.prompt = false;
+        "difftool \"difftastic\"".cmd =
+          "${pkgs.difftastic}/bin/difft \"$MERGED\" \"$LOCAL\" \"abcdef1\" \"100644\" \"$REMOTE\" \"abcdef2\" \"100644\"";
 
         alias = {
           # Basic Commands
@@ -72,9 +86,13 @@ in
           d = "diff";
           dc = "diff --cached";
           ds = "diff --staged";
+          dl = "log -p --ext-diff";
           d1 = "diff HEAD~1 HEAD";
           d2 = "diff HEAD~2 HEAD";
-          wdiff = "diff --word-diff";
+
+          # Triggers semantic diff using difftastic
+          dft = "difftool";
+          dftl = "difftool --cached";
 
           # Logging
           l = "log --oneline --decorate --graph --all";
@@ -100,87 +118,91 @@ in
       };
     };
 
-    hj.files.".config/git/ignore".text = ''
-      # Compiled sources #
-      ####################
-      *.o
-      *.so
-      *.a
-      *.la
-      *.lo
-      *.class
-      *.dll
-      *.exe
-      *.out
-      *.pyc
-      *.elc
+    hj = {
+      files.".config/git/ignore".text = ''
+        # Compiled sources #
+        ####################
+        *.o
+        *.so
+        *.a
+        *.la
+        *.lo
+        *.class
+        *.dll
+        *.exe
+        *.out
+        *.pyc
+        *.elc
 
-      # Caches #
-      ##########
-      __pycache__/
-      .ccls-cache/
-      .sass-cache/
+        # Caches #
+        ##########
+        __pycache__/
+        .ccls-cache/
+        .sass-cache/
 
-      # Backup and temporary files #
-      #############################
-      *~
-      *.*~
-      *.bak
-      *.swp
-      .*.sw[a-z]
-      *.un~
-      # Emacs autosaves
-      \#*
-      .\#*
-      # Vim
-      .netrwhist
-      # Misc
-      tmp
-      TODO
+        # Backup and temporary files #
+        #############################
+        *~
+        *.*~
+        *.bak
+        *.swp
+        .*.sw[a-z]
+        *.un~
+        # Emacs autosaves
+        \#*
+        .\#*
+        # Vim
+        .netrwhist
+        # Misc
+        tmp
+        TODO
 
-      # Project artifacts #
-      #####################
-      *result*
-      .direnv
-      node_modules
+        # Project artifacts #
+        #####################
+        *result*
+        .direnv
+        node_modules
 
-      # Nix #
-      #######
-      .nix-defexpr/
+        # Nix #
+        #######
+        .nix-defexpr/
 
-      # OS-generated files #
-      ######################
-      .DS_Store
-      .DS_Store?
-      .CFUserTextEncoding
-      .Trash
-      .Xauthority
-      thumbs.db
-      Thumbs.db
-      Icon?
-    '';
+        # OS-generated files #
+        ######################
+        .DS_Store
+        .DS_Store?
+        .CFUserTextEncoding
+        .Trash
+        .Xauthority
+        thumbs.db
+        Thumbs.db
+        Icon?
+      '';
 
-    # lazygit
-    hj.xdg.config.files."lazygit/config.yml".text = ''
-      git:
-        commit:
-          # Automatically add "Signed-off-by: Name <email>"
-          signOff: true
+      # lazygit
+      xdg.config.files."lazygit/config.yml".text = ''
+        git:
+          pagers:
+            - externalDiffCommand: ${pkgs.difftastic}/bin/difft --color=always --display=side-by-side
 
-      gui:
-        # Make it look pretty with your Nerd Fonts
-        nerdFontsVersion: "3"
-        showIcons: true
+          commit:
+            signOff: true
 
-        theme:
-          activeBorderColor:
-            - "${config.mine.theme.colorScheme.palette.base0D}" # Blue
-          inactiveBorderColor:
-            - "${config.mine.theme.colorScheme.palette.base03}" # Grey
-          optionsTextColor:
-            - "${config.mine.theme.colorScheme.palette.base0D}"
-          selectedLineBgColor:
-            - "${config.mine.theme.colorScheme.palette.base02}"
-    '';
+        gui:
+          nerdFontsVersion: "3"
+          showIcons: true
+
+          theme:
+            activeBorderColor:
+              - "${config.mine.theme.colorScheme.palette.base0D}" # Blue
+            inactiveBorderColor:
+              - "${config.mine.theme.colorScheme.palette.base03}" # Grey
+            optionsTextColor:
+              - "${config.mine.theme.colorScheme.palette.base0D}"
+            selectedLineBgColor:
+              - "${config.mine.theme.colorScheme.palette.base02}"
+      '';
+    };
+
   };
 }
