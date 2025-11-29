@@ -31,7 +31,7 @@ mkIf cfgmine.mangowc.enable {
     windowrule=tags:2,noblur:1,isnoshadow:1,appid:^(brave-browser|firefox|floorp|zen-beta|Chromium-browser|chromium-browser)$
 
     # chat apps
-    windowrule=tags:9,appid:^(thunderbird)$
+    windowrule=tags:9,isopensilent:1,appid:^(thunderbird)$
     windowrule=tags:8,appid:^(whatsapp-for-linux)$
 
     # discord/vesktop -> tag 3

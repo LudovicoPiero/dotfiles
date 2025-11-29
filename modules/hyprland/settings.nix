@@ -13,6 +13,10 @@ in
 mkIf cfgmine.hyprland.enable {
   hj.xdg.config.files."hypr/hyprland.conf".text = mkOrder 100 ''
     exec-once = uwsm finalize
+    # Stop the wlr portal ( incase config.mangowc.enable is true )
+    exec-once = systemctl --user stop xdg-desktop-portal-wlr.service
+    # Restart portals
+    exec-once = systemctl restart --user xdg-desktop-portal.service xdg-desktop-portal-gtk.service xdg-desktop-portal-hyprland.service
     exec-once = ${getExe pkgs.brightnessctl} set 10%
     exec-once = [workspace 9 silent;noanim] uwsm app -- ${getExe pkgs.thunderbird}
     exec-once = uwsm app -- ${getExe pkgs.waybar}
