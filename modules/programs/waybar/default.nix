@@ -34,111 +34,130 @@ in
             "height": 24,
             "spacing": 0,
             "modules-left": [
-                "hyprland/workspaces",
-                "dwl/tags"
+              "hyprland/workspaces",
+              "dwl/tags"
             ],
             "modules-right": [
-                "tray",
-                "idle_inhibitor",
-                "mpd",
-                "network",
-                "pulseaudio",
-                "battery",
-                "clock",
-                "custom/date"
+              "tray",
+              "idle_inhibitor",
+              "mpd",
+              "network",
+              "pulseaudio",
+              "battery",
+              "clock",
+              "custom/date"
             ],
             "idle_inhibitor": {
-                "format": "| {icon}",
-                "format-icons": {
-                    "activated": "INHIBIT ON",
-                    "deactivated": "INHIBIT OFF"
-                }
+              "format": "| {icon}",
+              "format-icons": {
+                "activated": "INHIBIT ON",
+                "deactivated": "INHIBIT OFF"
+              }
             },
             "custom/date": {
-                "exec": "${getExe waybar-date}",
-                "interval": 3600,
-                "return-type": "json"
+              "exec": "${getExe waybar-date}",
+              "interval": 3600,
+              "return-type": "json"
             },
             "hyprland/workspaces": {
-                "format": "{name}",
-                "on-click": "activate",
-                "sort-by-number": true
+              "format": "{name}",
+              "on-click": "activate",
+              "sort-by-number": true
             },
             "dwl/tags": {
-                "num-tags": 9
+              "num-tags": 9
             },
             "mpd": {
-                "artist-len": 8,
-                "format": "| MPD: {stateIcon} {artist} - {title}",
-                "format-disconnected": "| MPD DISCONNECTED",
-                "format-paused": "| MPD PAUSED: {artist} - {title}",
-                "format-stopped": "| MPD STOPPED",
-                "interval": 2,
-                "on-click": "${getExe pkgs.mpc} toggle",
-                "on-click-middle": "${getExe pkgs.mpc} prev",
-                "on-click-right": "${getExe pkgs.mpc} next",
-                "on-scroll-down": "${getExe pkgs.mpc} seek -00:00:01",
-                "on-scroll-up": "${getExe pkgs.mpc} seek +00:00:01",
-                "state-icons": {
-                    "paused": "PAUSE",
-                    "playing": "PLAY"
-                },
-                "title-len": 12,
-                "tooltip-format": "MPD (connected)",
-                "tooltip-format-disconnected": "MPD (disconnected)"
+              "artist-len": 8,
+              "format": "| MPD: {stateIcon} {artist} - {title}",
+              "format-disconnected": "| MPD DISCONNECTED",
+              "format-paused": "| MPD PAUSED: {artist} - {title}",
+              "format-stopped": "| MPD STOPPED",
+              "interval": 2,
+              "on-click": "${getExe pkgs.mpc} toggle",
+              "on-click-middle": "${getExe pkgs.mpc} prev",
+              "on-click-right": "${getExe pkgs.mpc} next",
+              "on-scroll-down": "${getExe pkgs.mpc} seek -00:00:01",
+              "on-scroll-up": "${getExe pkgs.mpc} seek +00:00:01",
+              "state-icons": {
+                "paused": "PAUSE",
+                "playing": "PLAY"
+              },
+              "title-len": 12,
+              "tooltip-format": "MPD (connected)",
+              "tooltip-format-disconnected": "MPD (disconnected)"
             },
             "pulseaudio": {
-                "format": "| VOL: {volume}% {format_source}",
-                "format-bluetooth": "| VOL: BT {volume}% {format_source}",
-                "format-bluetooth-muted": "| VOL: BT MUTE {format_source}",
-                "format-muted": "| VOL: MUTE {format_source}",
-                "format-source": "MIC: {volume}%",
-                "format-source-muted": "MIC: MUTE",
-                "on-click": "${getExe pkgs.ponymix} -N -t sink toggle",
-                "on-click-right": "${getExe pkgs.ponymix} -N -t source toggle",
-                "scroll-step": 5
+              "format": "| VOL: {volume}% {format_source}",
+              "format-bluetooth": "| VOL: BT {volume}% {format_source}",
+              "format-bluetooth-muted": "| VOL: BT MUTE {format_source}",
+              "format-muted": "| VOL: MUTE {format_source}",
+              "format-source": "MIC: {volume}%",
+              "format-source-muted": "MIC: MUTE",
+              "on-click": "${getExe pkgs.ponymix} -N -t sink toggle",
+              "on-click-right": "${getExe pkgs.ponymix} -N -t source toggle",
+              "scroll-step": 5
             },
             "network": {
-                "format-alt": "| IP LEAK: {ipaddr}/{cidr}",
-                "format-disconnected": "| NET: DISCONNECTED",
-                "format-ethernet": "| IP LEAK: {ipaddr}/{cidr}",
-                "format-linked": "| IP LEAK: (No IP)",
-                "format-wifi": "| NET: DOWN {bandwidthDownBits} UP {bandwidthUpBits}",
-                "interval": 5
+              "format-alt": "| IP LEAK: {ipaddr}/{cidr}",
+              "format-disconnected": "| NET: DISCONNECTED",
+              "format-ethernet": "| IP LEAK: {ipaddr}/{cidr}",
+              "format-linked": "| IP LEAK: (No IP)",
+              "format-wifi": "| NET: DOWN {bandwidthDownBits} UP {bandwidthUpBits}",
+              "interval": 5
             },
             "disk": {
-                "format": "| HDD: {percentage_used}%",
-                "path": "/",
-                "interval": 60,
-                "tooltip": false
+              "format": "| HDD: {percentage_used}%",
+              "path": "/",
+              "interval": 60,
+              "tooltip": false
             },
             "memory": {
-                "format": "| RAM: {used:0.1f}G",
-                "interval": 10,
-                "tooltip": false
+              "format": "| RAM: {used:0.1f}G",
+              "interval": 10,
+              "tooltip": false
             },
             "cpu": {
-                "format": "| CPU: {usage}%",
-                "interval": 5,
-                "tooltip": false
+              "format": "| CPU: {usage}%",
+              "interval": 5,
+              "tooltip": false
             },
             "battery": {
-                "format": "| BAT: {capacity}%",
-                "format-charging": "| CHR: {capacity}%",
-                "format-plugged": "| AC: {capacity}%",
-                "states": {
-                    "warning": 30,
-                    "critical": 15
-                },
-                "tooltip": false
+              "format": "| BAT: {capacity}%",
+              "format-charging": "| CHR: {capacity}%",
+              "format-plugged": "| AC: {capacity}%",
+              "states": {
+                "warning": 30,
+                "critical": 15
+              },
+              "tooltip": false
             },
             "clock": {
-                "format": "| TIME: {:%I:%M %p}",
-                "tooltip": "{calendar}"
+              "format": "| TIME: {:%I:%M %p}",
+              "format-alt": "| {:%A, %B %d, %Y (%R)}",
+              "tooltip-format": "<tt><small>{calendar}</small></tt>",
+              "calendar": {
+                "mode": "year",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "format": {
+                  "months": "<span color='#ffead3'><b>{}</b></span>",
+                  "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                  "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                  "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                  "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+              },
+              "actions": {
+                "on-click-right": "mode",
+                "on-scroll-up": "shift_up",
+                "on-scroll-down": "shift_down"
+              }
             },
             "tray": {
-                "icon-size": 14,
-                "spacing": 5
+              "icon-size": 14,
+              "spacing": 5
             }
           }
         '';
