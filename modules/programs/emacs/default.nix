@@ -16,7 +16,7 @@ let
 
   emacsPackage =
     with pkgs;
-    (emacsPackagesFor emacs-pgtk).emacsWithPackages (
+    (emacsPackagesFor emacs-git-pgtk).emacsWithPackages (
       epkgs: with epkgs; [
         treesit-grammars.with-all-grammars
         vterm
@@ -27,7 +27,7 @@ let
   nixTools = with pkgs; [
     statix
     nixfmt
-    nixd
+    nil
   ];
 
   goTools = with pkgs; [
