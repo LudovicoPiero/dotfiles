@@ -60,7 +60,12 @@ mkIf cfgmine.mangowc.enable {
     bind=ALT,Tab,toggleoverview,
     bind=SUPER,space,togglefloating,
     bind=SUPER,f,togglefullscreen,
+
+
+    # scratchpad
     bind=SUPER,q,toggle_scratchpad
+    bind=SUPER+SHIFT,q,minimized,
+    bind=ALT+SHIFT,q,restore_minimized
 
     # switch layout
     bind=SUPER,n,switch_layout
