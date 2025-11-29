@@ -554,6 +554,7 @@ in
                   import ./profiles/_search.nix {
                     inherit (args) config;
                     inherit lib pkgs appName;
+                    package = cfg.finalPackage;
                     modulePath = modulePath ++ [
                       "profiles"
                       name

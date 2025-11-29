@@ -3,6 +3,7 @@
   lib,
   pkgs,
   appName,
+  package,
   modulePath,
   profilePath,
 }:
@@ -175,7 +176,18 @@ let
     else
       null;
 
-  appNameVariable = "appName=${lib.escapeShellArg appName}";
+  appNameVariable =
+    if package == null then
+      "appName=${lib.escapeShellArg appName}"
+    else
+      ''
+        applicationIni="$(find ${lib.escapeShellArg package} -maxdepth 3 -path ${lib.escapeShellArg package}'/lib/*/application.ini' -print -quit)"
+        if test -n "$applicationIni"; then
+          appName="$(sed -n 's/^Name=\(.*\)$/\1/p' "$applicationIni" | head -n1)"
+        else
+          appName=${lib.escapeShellArg appName}
+        fi
+      '';
 
   file =
     pkgs.runCommand "search.json.mozlz4"
@@ -417,9 +429,6 @@ let
 in
 {
   imports = [ (pkgs.path + "/nixos/modules/misc/meta.nix") ];
-
-  meta.maintainers = with lib.maintainers; [ kira-bruneau ];
-
   options = {
     enable = mkOption {
       type = with types; bool;
