@@ -109,6 +109,7 @@ mkIf cfgmine.mangowc.enable {
       repeat_delay=300
       numlockon=0
       xkb_rules_layout=us
+      xkb_rules_options=ctrl:nocaps
 
       # Trackpad
       # need relogin to make it apply
