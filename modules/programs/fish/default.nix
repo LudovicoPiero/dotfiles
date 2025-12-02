@@ -30,6 +30,7 @@ in
       direnv = {
         enable = true;
         nix-direnv.enable = true;
+        angrr.enable = config.services.angrr.enable;
       };
     };
 

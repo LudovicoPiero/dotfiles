@@ -22,11 +22,11 @@
     nh = {
       enable = true;
       flake = "${config.vars.homeDirectory}/Code/nixos";
-      clean = {
-        enable = true;
-        dates = "weekly";
-        extraArgs = "--keep 3";
-      };
+      # clean = {
+      #   enable = false;
+      #   dates = "weekly";
+      #   extraArgs = "--keep 3";
+      # };
     };
   };
 
@@ -201,8 +201,7 @@
     enable = true;
     dbPath = inputs'.programsdb.packages.programs-sqlite;
   };
-  environment.etc."programs.sqlite".source =
-    inputs'.programsdb.packages.programs-sqlite;
+  environment.etc."programs.sqlite".source = inputs'.programsdb.packages.programs-sqlite;
 
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer
@@ -217,6 +216,11 @@
   services = {
     gvfs.enable = config.vars.withGui; # Mount, trash, and other functionalities
     tumbler.enable = config.vars.withGui; # Thumbnail support for images
+
+    angrr = {
+      enable = true;
+      enableNixGcIntegration = true;
+    };
   };
 
   security = {
@@ -258,6 +262,7 @@
 
     # Improve Nix store disk usage
     optimise.automatic = true;
+    gc.automatic = true;
 
     settings = {
       experimental-features = [
