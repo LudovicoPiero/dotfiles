@@ -18,21 +18,17 @@
       inherits = "ss14"
 
         [buildPlans.IosevkaQ.variants.design]
-        # --- Base Alphabet & Numerals ---
         one = "base"
         three = "two-arcs"
         seven = "straight-serifless-crossbar"
         eight = "crossing-asymmetric"
         nine = "open-contour"
         zero = "tall-slashed"
-
-        # --- Letter Variants (Optimization for Readability) ---
         capital-j = "serifless"
         capital-l = "serifless"
         capital-q = "straight"
         capital-z = "straight-serifless"
-
-        g = "double-storey"
+        g = "single-storey-serifless"
         i = "serifed"
         j = "flat-hook-serifed"
         l = "serifed-flat-tailed"
@@ -45,40 +41,29 @@
         y = "straight-serifless"
         z = "straight-serifless"
         lower-alpha = "crossing"
-
-        # --- Cyrillic Support ---
         cyrl-em = "hanging-serifless"
         cyrl-capital-u = "straight-serifless"
         cyrl-u = "straight-serifless"
-
-        # --- Punctuation & Symbols (C++ & LaTeX Optimized) ---
         punctuation-dot = "round"
         braille-dot = "round"
         tilde = "low"
-
-        asterisk = "hex-high"
+        asterisk = "penta-low"
         underscore = "high"
         caret = "medium"
-
         ascii-grave = "straight"
         ascii-single-quote = "straight"
-
         paren = "flat-arc"
-        brace = "curly"
+        brace = "curly-flat-boundary"
         guillemet = "straight"
-
-        number-sign = "straight"
-        ampersand = "upper-open"
+        number-sign = "slanted"
+        ampersand = "closed"
         at = "fourfold"
         dollar = "through"
         cent = "through"
         percent = "rings-segmented-slash"
         bar = "natural-slope"
         question = "smooth"
-
         decorative-angle-brackets = "middle"
-
-        # --- Ligature Tweaks ---
         lig-ltgteq = "slanted"
         lig-neq = "slightly-slanted"
         lig-equal-chain = "without-notch"
@@ -87,22 +72,18 @@
         lig-double-arrow-bar = "without-notch"
         lig-single-arrow-bar = "without-notch"
 
-      # --- Ligations (Standard C/C++ Friendly) ---
       [buildPlans.IosevkaQ.ligations]
       inherits = "matlab"
 
-      # --- Width Definitions ---
-      # Use 'Condensed' (500) for split-screen coding
-      # Use 'Normal' (600) for prose/LaTeX writing to reduce eye strain
-      [buildPlans.IosevkaQ.widths.Condensed]
-      shape = 500
-      menu = 3
-      css = "condensed"
+    [buildPlans.IosevkaQ.widths.Condensed]
+    shape = 500
+    menu = 3
+    css = "condensed"
 
-      [buildPlans.IosevkaQ.widths.Normal]
-      shape = 600
-      menu = 5
-      css = "normal"
+    [buildPlans.IosevkaQ.widths.Normal]
+    shape = 600
+    menu = 5
+    css = "normal"
   '',
   extraParameters ? null,
   set ? "Q",
