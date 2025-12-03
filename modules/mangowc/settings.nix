@@ -1,23 +1,57 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.mine.mangowc;
   cfgmine = config.mine;
   inherit (config.mine.theme.colorScheme) palette;
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe;
+
+  wallpaper = pkgs.fetchurl {
+    # https://github.com/zhichaoh/catppuccin-wallpapers/
+    url = "https://raw.githubusercontent.com/zhichaoh/catppuccin-wallpapers/refs/heads/main/os/gentoo-black-4k.png";
+    hash = "sha256-7pmoLgaZR8XgnTd1JqkVDulfMHY6B2IJ74Hc8gLrDgM=";
+  };
 in
 mkIf cfgmine.mangowc.enable {
   hj = {
     packages = [ cfg.package ];
     xdg.config.files."mango/config.conf".text = ''
+      # Finalize uwsm session to signal compositor is ready
+      exec-once=uwsm finalize SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+      # Update DBus and Systemd environment before restarting portals
+      exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
+      exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+      # Stop the Hyprland-specific portal ( incase config.hyprland.enable is true )
+      exec-once=systemctl --user stop xdg-desktop-portal-hyprland.service
+      # Restart portals
+      exec-once=systemctl restart --user xdg-desktop-portal.service xdg-desktop-portal-gtk.service xdg-desktop-portal-wlr.service
+
+      # Set brightness
+      exec-once=${getExe pkgs.brightnessctl} set 10%
+
+      # Set wallpaper
+      exec-once=${getExe pkgs.swaybg} -i ${wallpaper}
+
+      # Launch apps via uwsm
+      exec-once=uwsm app -- ${getExe pkgs.thunderbird}
+      exec-once=uwsm app -- ${getExe pkgs.waybar}
+      exec-once=uwsm app -- ${getExe pkgs.mako}
+
       # More option see https://github.com/DreamMaoMao/mango/wiki/
       # Environment Variables
-      env=XCURSOR_THEME,${cfgmine.theme.cursor.name}
-      env=XCURSOR_SIZE,${toString cfgmine.theme.cursor.size}
-      env=GTK_IM_MODULE,fcitx
-      env=QT_IM_MODULE,fcitx
-      env=SDL_IM_MODULE,fcitx
-      env=XMODIFIERS,@im=fcitx
-      env=GLFW_IM_MODULE,ibus
+      #env=XCURSOR_THEME,${cfgmine.theme.cursor.name}
+      #env=XCURSOR_SIZE,${toString cfgmine.theme.cursor.size}
+      #env=GTK_IM_MODULE,fcitx
+      #env=QT_IM_MODULE,fcitx
+      #env=SDL_IM_MODULE,fcitx
+      #env=XMODIFIERS,@im=fcitx
+      #env=GLFW_IM_MODULE,ibus
 
       # Window effect
       blur=0
