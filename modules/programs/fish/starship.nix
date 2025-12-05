@@ -1,0 +1,344 @@
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+  cfg = config.mine.fish;
+in
+mkIf cfg.enable {
+
+  hj = {
+    packages = [ pkgs.starship ];
+    xdg.config.files."starship.toml".text = ''
+      "$schema" = 'https://starship.rs/config-schema.json'
+
+      continuation_prompt = "[.](bright-black) "
+
+      [character]
+      success_symbol = "[❯](purple)"
+      error_symbol = "[❯](red)"
+      vimcmd_symbol = "[❮](green)"
+      vimcmd_visual_symbol = "[❮](bold yellow)"
+      vimcmd_replace_symbol = "[❮](bold purple)"
+      vimcmd_replace_one_symbol = "[❮](bold purple)"
+
+      [git_commit]
+      tag_symbol = " tag "
+
+      [git_status]
+      ahead = ">"
+      behind = "<"
+      diverged = "<>"
+      renamed = "r"
+      deleted = "x"
+
+      [aws]
+      symbol = "aws "
+
+      [azure]
+      symbol = "az "
+
+      [battery]
+      full_symbol = "full "
+      charging_symbol = "charging "
+      discharging_symbol = "discharging "
+      unknown_symbol = "unknown "
+      empty_symbol = "empty "
+
+      [buf]
+      symbol = "buf "
+
+      [bun]
+      symbol = "bun "
+
+      [c]
+      symbol = "C "
+
+      [cpp]
+      symbol = "C++ "
+
+      [cobol]
+      symbol = "cobol "
+
+      [conda]
+      symbol = "conda "
+
+      [container]
+      symbol = "container "
+
+      [crystal]
+      symbol = "cr "
+
+      [cmake]
+      symbol = "cmake "
+
+      [daml]
+      symbol = "daml "
+
+      [dart]
+      symbol = "dart "
+
+      [deno]
+      symbol = "deno "
+
+      [dotnet]
+      format = "via [$symbol($version )(target $tfm )]($style)"
+      symbol = ".NET "
+
+      [directory]
+      read_only = " ro"
+
+      [docker_context]
+      symbol = "docker "
+
+      [elixir]
+      symbol = "exs "
+
+      [elm]
+      symbol = "elm "
+
+      [erlang]
+      symbol = "erl "
+
+      [fennel]
+      symbol = "fnl "
+
+      [fortran]
+      symbol = "fortran "
+
+      [fossil_branch]
+      symbol = "fossil "
+      truncation_symbol = "..."
+
+      [gcloud]
+      symbol = "gcp "
+
+      [git_branch]
+      symbol = "git "
+      truncation_symbol = "..."
+
+      [gleam]
+      symbol = "gleam "
+
+      [golang]
+      symbol = "go "
+
+      [gradle]
+      symbol = "gradle "
+
+      [guix_shell]
+      symbol = "guix "
+
+      [haskell]
+      symbol = "haskell "
+
+      [haxe]
+      symbol = "hx "
+
+      [helm]
+      symbol = "helm "
+
+      [hg_branch]
+      symbol = "hg "
+      truncation_symbol = "..."
+
+      [hostname]
+      ssh_symbol = "ssh "
+
+      [java]
+      symbol = "java "
+
+      [jobs]
+      symbol = "*"
+
+      [julia]
+      symbol = "jl "
+
+      [kotlin]
+      symbol = "kt "
+
+      [kubernetes]
+      symbol = "kubernetes "
+
+      [lua]
+      symbol = "lua "
+
+      [nodejs]
+      symbol = "nodejs "
+
+      [memory_usage]
+      symbol = "memory "
+
+      [meson]
+      symbol = "meson "
+      truncation_symbol = "..."
+
+      [mojo]
+      symbol = "mojo "
+
+      [nats]
+      symbol = "nats "
+
+      [netns]
+      symbol = "netns "
+
+      [nim]
+      symbol = "nim "
+
+      [nix_shell]
+      symbol = "nix "
+
+      [ocaml]
+      symbol = "ml "
+
+      [odin]
+      symbol = "odin "
+
+      [opa]
+      symbol = "opa "
+
+      [openstack]
+      symbol = "openstack "
+
+      [os.symbols]
+      AIX = "aix "
+      Alpaquita = "alq "
+      AlmaLinux = "alma "
+      Alpine = "alp "
+      Amazon = "amz "
+      Android = "andr "
+      AOSC = "aosc "
+      Arch = "rch "
+      Artix = "atx "
+      Bluefin = "blfn "
+      CachyOS = "cach "
+      CentOS = "cent "
+      Debian = "deb "
+      DragonFly = "dfbsd "
+      Emscripten = "emsc "
+      EndeavourOS = "ndev "
+      Fedora = "fed "
+      FreeBSD = "fbsd "
+      Garuda = "garu "
+      Gentoo = "gent "
+      HardenedBSD = "hbsd "
+      Illumos = "lum "
+      Kali = "kali "
+      Linux = "lnx "
+      Mabox = "mbox "
+      Macos = "mac "
+      Manjaro = "mjo "
+      Mariner = "mrn "
+      MidnightBSD = "mid "
+      Mint = "mint "
+      NetBSD = "nbsd "
+      NixOS = "nix "
+      Nobara = "nbra "
+      OpenBSD = "obsd "
+      OpenCloudOS = "ocos "
+      openEuler = "oeul "
+      openSUSE = "osuse "
+      OracleLinux = "orac "
+      Pop = "pop "
+      Raspbian = "rasp "
+      Redhat = "rhl "
+      RedHatEnterprise = "rhel "
+      RockyLinux = "rky "
+      Redox = "redox "
+      Solus = "sol "
+      SUSE = "suse "
+      Ubuntu = "ubnt "
+      Ultramarine = "ultm "
+      Unknown = "unk "
+      Uos = "uos "
+      Void = "void "
+      Windows = "win "
+
+      [package]
+      symbol = "pkg "
+
+      [perl]
+      symbol = "pl "
+
+      [php]
+      symbol = "php "
+
+      [pijul_channel]
+      symbol = "pijul "
+      truncation_symbol = "..."
+
+      [pixi]
+      symbol = "pixi "
+
+      [pulumi]
+      symbol = "pulumi "
+
+      [purescript]
+      symbol = "purs "
+
+      [python]
+      symbol = "py "
+
+      [quarto]
+      symbol = "quarto "
+
+      [raku]
+      symbol = "raku "
+
+      [red]
+      symbol = "red "
+
+      [rlang]
+      symbol = "r "
+
+      [ruby]
+      symbol = "rb "
+
+      [rust]
+      symbol = "rs "
+
+      [scala]
+      symbol = "scala "
+
+      [shlvl]
+      symbol = "shlvl "
+
+      [spack]
+      symbol = "spack "
+
+      [solidity]
+      symbol = "solidity "
+
+      [status]
+      symbol = "[x](bold red) "
+      not_executable_symbol = "noexec"
+      not_found_symbol = "notfound"
+      sigint_symbol = "sigint"
+      signal_symbol = "sig"
+
+      [sudo]
+      symbol = "sudo "
+
+      [swift]
+      symbol = "swift "
+
+      [typst]
+      symbol = "typst "
+
+      [vagrant]
+      symbol = "vagrant "
+
+      [terraform]
+      symbol = "terraform "
+
+      [xmake]
+      symbol = "xmake "
+
+      [zig]
+      symbol = "zig "
+    '';
+  };
+}

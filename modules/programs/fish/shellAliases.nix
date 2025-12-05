@@ -1,125 +1,103 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 let
   _ = lib.getExe;
 
-  cfg = config.mine.fish;
-in
-with pkgs;
-{
-  config = lib.mkIf cfg.enable {
-    hj.mine.programs.fish = {
-      config = lib.mkAfter ''
-        alias cu="${_ curlie}"
-        alias cat="${_ bat}"
-        alias c="cd ~/Code/nixos"
-        alias config="cd ~/Code/nixos"
-        alias v="nvim"
-        alias nv="nvim"
+  mkAlias = name: value: "alias ${name} \"${value}\"";
 
-        alias ls="${_ eza} --color=always --group-directories-first --icons"
-        alias ll="${_ eza} -la --icons --octal-permissions --group-directories-first"
-        alias l="${_ eza} -bGF --header --git --color=always --group-directories-first --icons"
-        alias llm="${_ eza} -lbGd --header --git --sort=modified --color=always --group-directories-first --icons"
-        alias la="${_ eza} --long --all --group --group-directories-first"
-        alias lx="${_ eza} -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons"
-        alias lS="${_ eza} -1 --color=always --group-directories-first --icons"
-        alias lt="${_ eza} --tree --level=2 --color=always --group-directories-first --icons"
-        alias "l."="${_ eza} -a | grep -E '^\\.'"
-        alias t="${_ eza} --icons --tree"
-        alias tree="${_ eza} --icons --tree"
+  aliases = {
+    # Utils
+    cu = "${_ pkgs.curlie}";
+    cat = "${_ pkgs.bat}";
+    c = "cd ~/Code/nixos";
+    config = "cd ~/Code/nixos";
+    v = "nvim";
+    nv = "nvim";
+    mkdir = "mkdir -p";
+    grep = "grep --color=auto";
+    jq = "${_ pkgs.jq}";
 
-        alias nr="${_ nixpkgs-review}"
-        alias mkdir="mkdir -p"
+    # Eza (LS replacements)
+    ls = "${_ pkgs.eza} --color=always --group-directories-first --icons";
+    ll = "${_ pkgs.eza} -la --icons --octal-permissions --group-directories-first";
+    l = "${_ pkgs.eza} -bGF --header --git --color=always --group-directories-first --icons";
+    llm = "${_ pkgs.eza} -lbGd --header --git --sort=modified --color=always --group-directories-first --icons";
+    la = "${_ pkgs.eza} --long --all --group --group-directories-first";
+    lx = "${_ pkgs.eza} -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons";
+    lS = "${_ pkgs.eza} -1 --color=always --group-directories-first --icons";
+    lt = "${_ pkgs.eza} --tree --level=2 --color=always --group-directories-first --icons";
+    "l." = "${_ pkgs.eza} -a | grep -E '^\\.'";
+    t = "${_ pkgs.eza} --icons --tree";
+    tree = "${_ pkgs.eza} --icons --tree";
 
-        alias ..="cd .."
-        alias ...="cd ../.."
+    # Navigation
+    ".." = "cd ..";
+    "..." = "cd ../..";
 
-        alias grep="grep --color=auto"
-        alias f="${_ fzf}"
-        alias ff="find . -type f | ${_ fzf}"
-        alias rg="${_ ripgrep}"
-        alias rgr="${_ repgrep}"
-        alias jq="${_ jq}"
+    # Nix
+    nr = "${_ pkgs.nixpkgs-review}";
 
-        # Git
-        alias g="${_ git}"
+    # Fuzzy Finding
+    f = "${_ pkgs.fzf}";
+    ff = "find . -type f | ${_ pkgs.fzf}";
+    rg = "${_ pkgs.ripgrep}";
+    rgr = "${_ pkgs.repgrep}";
 
-        # Basic Commands
-        alias ga="git add -p"
-        alias gbr="git branch"
-        alias gco="git checkout"
-        alias gci="git commit"
-        alias gcob="git checkout -b"
-        alias gcl="git clone"
-        alias gba="git branch -a"
-        alias gbd="git branch -d"
-        alias gbD="git branch -D"
-
-        # Fetch & Syncing
-        alias gf="git fetch"
-        alias gfp="git fetch --prune"
-        alias gpl="git pull"
-        alias gup="git pull --rebase --autostash"
-        alias gp="git push"
-        alias gpushf="git push --force-with-lease"
-
-        # Commit & Amend
-        alias gc="git commit -s -v"
-        alias gca="git commit --amend"
-        alias gcan="git commit --amend --no-edit"
-
-        # Restore & Reset
-        alias gr="git restore"
-        alias grs="git restore --staged"
-        alias gsoft="git reset --soft"
-        alias ghard="git reset --hard"
-        alias gs1ft="git reset --soft HEAD~1"
-        alias gh1rd="git reset --hard HEAD~1"
-
-        # Stash
-        alias gstsh="git stash"
-        alias gstls="git stash list"
-        alias gstp="git stash pop"
-
-        # Status
-        alias gs="git status"
-        alias gst="git status -sb"
-        alias gsti="git status --ignored"
-
-        # Diff & Comparison
-        alias gd="git diff"
-        alias gdc="git diff --cached"
-        alias gds="git diff --staged"
-        alias gd1="git diff HEAD~1 HEAD"
-        alias gd2="git diff HEAD~2 HEAD"
-        alias gwdf="git diff --word-diff"
-
-        # Logging
-        alias gl="git log --oneline --decorate --graph --all"
-        alias glast="git log -1 HEAD"
-        alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-        alias gplog="git log --graph --pretty=format:'%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'"
-        alias gtlog="git log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative"
-        alias grank="git shortlog -sn --no-merges"
-
-        # Bisect
-        alias gbis="git bisect"
-        alias gbisg="git bisect good"
-        alias gbisb="git bisect bad"
-        alias gbisr="git bisect reset"
-
-        # Rebase & Cleanup
-        alias grba="git rebase --abort"
-        alias grbc="git rebase --continue"
-        alias grbi="git rebase -i HEAD~5"
-        alias gclean="git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-        alias gbdm="git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-      '';
-    };
+    # Git
+    g = "${_ pkgs.git}";
+    ga = "git add -p";
+    gbr = "git branch";
+    gco = "git checkout";
+    gci = "git commit";
+    gcob = "git checkout -b";
+    gcl = "git clone";
+    gba = "git branch -a";
+    gbd = "git branch -d";
+    gbD = "git branch -D";
+    gf = "git fetch";
+    gfp = "git fetch --prune";
+    gpl = "git pull";
+    gup = "git pull --rebase --autostash";
+    gp = "git push";
+    gpushf = "git push --force-with-lease";
+    gc = "git commit -s -v";
+    gca = "git commit --amend";
+    gcan = "git commit --amend --no-edit";
+    gr = "git restore";
+    grs = "git restore --staged";
+    gsoft = "git reset --soft";
+    ghard = "git reset --hard";
+    gs1ft = "git reset --soft HEAD~1";
+    gh1rd = "git reset --hard HEAD~1";
+    gstsh = "git stash";
+    gstls = "git stash list";
+    gstp = "git stash pop";
+    gs = "git status";
+    gst = "git status -sb";
+    gsti = "git status --ignored";
+    gd = "git diff";
+    gdc = "git diff --cached";
+    gds = "git diff --staged";
+    gd1 = "git diff HEAD~1 HEAD";
+    gd2 = "git diff HEAD~2 HEAD";
+    gwdf = "git diff --word-diff";
+    gl = "git log --oneline --decorate --graph --all";
+    glast = "git log -1 HEAD";
+    glg = "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+    gplog = "git log --graph --pretty=format:'%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'";
+    gtlog = "git log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative";
+    grank = "git shortlog -sn --no-merges";
+    gbis = "git bisect";
+    gbisg = "git bisect good";
+    gbisb = "git bisect bad";
+    gbisr = "git bisect reset";
+    grba = "git rebase --abort";
+    grbc = "git rebase --continue";
+    grbi = "git rebase -i HEAD~5";
+    gclean = "git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d";
+    gbdm = "git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d";
   };
+in
+{
+  hj.xdg.config.files."fish/conf.d/aliases.fish".text =
+    lib.concatStringsSep "\n" (lib.mapAttrsToList mkAlias aliases);
 }

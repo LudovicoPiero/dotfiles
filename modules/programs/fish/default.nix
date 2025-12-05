@@ -5,9 +5,14 @@
   ...
 }:
 let
-  _ = lib.getExe;
+  inherit (lib)
+    getExe
+    mkEnableOption
+    mkIf
+    optionalString
+    ;
 
-  inherit (lib) mkEnableOption mkIf optionalString;
+  _ = getExe;
 
   cfg = config.mine.fish;
 in
@@ -19,12 +24,15 @@ in
   config = mkIf cfg.enable {
     users.users.root.shell = pkgs.fish;
     users.users.${config.vars.username}.shell = pkgs.fish;
+
     sops = {
       secrets."shells/githubToken" = {
         mode = "0444";
       };
     };
+
     environment.pathsToLink = [ "/share/fish" ];
+
     programs = {
       fish.enable = true;
       direnv = {
@@ -34,8 +42,6 @@ in
       };
     };
 
-    hjem.extraModules = [ ./_modules.nix ];
-
     hj = {
       packages = with pkgs; [
         zoxide
@@ -44,73 +50,33 @@ in
         bat
         lazygit
       ];
-    };
 
-    hj.mine.programs.fish = {
-      enable = true;
+      xdg.config.files."fish/config.fish".text = ''
+        if test -f ${config.sops.secrets."shells/githubToken".path}
+          source ${config.sops.secrets."shells/githubToken".path}
+        end
 
-      plugins = { inherit (pkgs.fishPlugins) tide fzf-fish; };
+        set -U fish_greeting
 
-      earlyConfigFiles.tide = ''
-        set -x tide_character_color brgreen
-        set -x tide_character_color_failure brred
-        set -x tide_character_icon ❯
-        set -x tide_character_vi_icon_default ❮
-        set -x tide_character_vi_icon_replace ▶
-        set -x tide_character_vi_icon_visual V
+        ${optionalString (!config.vars.withGui && config.vars.isALaptop) ''
+          ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
+        ''}
 
-        set -x tide_status_bg_color normal
-        set -x tide_status_bg_color_failure normal
-        set -x tide_status_color green
-        set -x tide_status_color_failure red
-        set -x tide_status_icon ✔
-        set -x tide_status_icon_failure ✘
+        if status is-interactive
+          ${_ pkgs.starship} init fish | source
+          ${_ pkgs.nix-your-shell} fish | source
+          ${_ pkgs.zoxide} init fish | source
+          ${_ pkgs.direnv} hook fish | source
 
-        set -x tide_prompt_add_newline_before true
-        set -x tide_prompt_color_frame_and_connection 6C6C6C
-        set -x tide_prompt_color_separator_same_color 949494
-        set -x tide_prompt_min_cols 34
-        set -x tide_prompt_pad_items false
-        set -x tide_prompt_transient_enabled true
+          set -p fish_function_path ${pkgs.fishPlugins.fzf-fish}/share/fish/vendor_functions.d
+          set -p fish_complete_path ${pkgs.fishPlugins.fzf-fish}/share/fish/vendor_completions.d
+          source ${pkgs.fishPlugins.fzf-fish}/share/fish/vendor_conf.d/fzf.fish
 
-        set -x tide_left_prompt_items pwd git newline character
-        set -x tide_left_prompt_frame_enabled false
-        set -x tide_left_prompt_prefix
-        set -x tide_left_prompt_separator_diff_color " "
-        set -x tide_left_prompt_separator_same_color " "
-        set -x tide_left_prompt_suffix " "
-
-        set -x tide_right_prompt_frame_enabled false
-        set -x tide_right_prompt_items status context jobs direnv node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir zig
-        set -x tide_right_prompt_prefix " "
-        set -x tide_right_prompt_separator_diff_color " "
-        set -x tide_right_prompt_separator_same_color " "
-        set -x tide_right_prompt_suffix ""
-
-        set -x tide_pwd_bg_color normal
-        set -x tide_pwd_color_anchors brcyan
-        set -x tide_pwd_color_dirs cyan
-        set -x tide_pwd_color_truncated_dirs magenta
-        set -x tide_pwd_icon
-        set -x tide_pwd_icon_home
-        set -x tide_pwd_icon_unwritable 
-        set -x tide_pwd_markers .bzr .citc .git .hg .node-version .python-version .ruby-version .shorten_folder_marker .svn .terraform Cargo.toml composer.json CVS go.mod package.json build.zig
+          if functions -q fzf_configure_bindings
+            fzf_configure_bindings --directory=\eF --git_log=\cg --history=\cr --variables=\cv
+          end
+        end
       '';
-
-      config =
-        with pkgs;
-        ''
-          . ${config.sops.secrets."shells/githubToken".path}
-          ${_ nix-your-shell} fish | source
-          ${_ zoxide} init fish | source
-          ${_ direnv} hook fish | source
-        ''
-        +
-          optionalString (!config.vars.withGui && config.vars.isALaptop)
-            # Automatically turn off screen after 1 minute. (For laptop)
-            ''
-              ${pkgs.util-linux}/bin/setterm -blank 1 --powersave on
-            '';
     };
   };
 }
