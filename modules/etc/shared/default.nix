@@ -201,8 +201,7 @@
     enable = true;
     dbPath = inputs'.programsdb.packages.programs-sqlite;
   };
-  environment.etc."programs.sqlite".source =
-    inputs'.programsdb.packages.programs-sqlite;
+  environment.etc."programs.sqlite".source = inputs'.programsdb.packages.programs-sqlite;
 
   programs = {
     evince.enable = config.vars.withGui; # Document Viewer

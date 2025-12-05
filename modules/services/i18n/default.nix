@@ -92,8 +92,8 @@ in
     };
 
     # Symlink config for fcitx5 styling
-    systemd.user.tmpfiles.users.${config.vars.username}.rules = mkIf (
-      selectedInputMethod == "fcitx5"
-    ) [ "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}" ];
+    systemd.user.tmpfiles.users.${config.vars.username}.rules = mkIf (selectedInputMethod == "fcitx5") [
+      "L+ %h/.config/fcitx5 0755 ${config.vars.username} users - ${./config}"
+    ];
   };
 }

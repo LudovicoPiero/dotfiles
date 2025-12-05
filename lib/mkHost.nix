@@ -10,10 +10,7 @@ let
 
   # Optional per-host system.nix (can be string or { system = "..."; })
   systemFile =
-    if pathExists (hostDir + "/system.nix") then
-      import (hostDir + "/system.nix")
-    else
-      null;
+    if pathExists (hostDir + "/system.nix") then import (hostDir + "/system.nix") else null;
 
   system =
     if isAttrs systemFile && systemFile ? system then

@@ -83,8 +83,7 @@ in
       ".config/qt5ct/qt5ct.conf".source = qt5ctConf;
       ".config/qt6ct/qt6ct.conf".source = qt5ctConf; # Use the same config for qt6
       ".config/Kvantum/kvantum.kvconfig".source = kvantumConf;
-      ".config/Kvantum/${cfg.gtk.theme.name}/${cfg.gtk.theme.name}.kvconfig".source =
-        kvantumConf;
+      ".config/Kvantum/${cfg.gtk.theme.name}/${cfg.gtk.theme.name}.kvconfig".source = kvantumConf;
     };
   };
 }

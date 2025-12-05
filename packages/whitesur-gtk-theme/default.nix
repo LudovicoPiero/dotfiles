@@ -28,9 +28,7 @@ let
   single = x: lib.optional (x != null) x;
 
 in
-lib.checkListOfEnum "${pname}: window control buttons variants"
-  [ "normal" "alt" "all" ]
-  altVariants
+lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt" "all" ] altVariants
   lib.checkListOfEnum
   "${pname}: color variants"
   [ "light" "dark" ]
@@ -136,24 +134,12 @@ lib.checkListOfEnum "${pname}: window control buttons variants"
         ${toString (map (x: "--opacity " + x) opacityVariants)} \
         ${toString (map (x: "--theme " + x) themeVariants)} \
         ${toString (map (x: "--scheme " + x) schemeVariants)} \
-        ${
-          lib.optionalString (nautilusStyle != null) ("--nautilus " + nautilusStyle)
-        } \
+        ${lib.optionalString (nautilusStyle != null) ("--nautilus " + nautilusStyle)} \
         ${lib.optionalString roundedMaxWindow "--roundedmaxwindow"} \
         ${lib.optionalString darkerColor "--darkercolor"} \
-        ${
-          lib.optionalString (iconVariant != null) ("--gnome-shell -i " + iconVariant)
-        } \
-        ${
-          lib.optionalString (panelSize != null) (
-            "--gnome-shell -panelheight " + panelSize
-          )
-        } \
-        ${
-          lib.optionalString (panelOpacity != null) (
-            "--gnome-shell -panelopacity " + panelOpacity
-          )
-        } \
+        ${lib.optionalString (iconVariant != null) ("--gnome-shell -i " + iconVariant)} \
+        ${lib.optionalString (panelSize != null) ("--gnome-shell -panelheight " + panelSize)} \
+        ${lib.optionalString (panelOpacity != null) ("--gnome-shell -panelopacity " + panelOpacity)} \
         --dest $out/share/themes
 
       jdupes --quiet --link-soft --recurse $out/share

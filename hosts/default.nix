@@ -18,9 +18,7 @@ let
 
   mkHost = import ../lib/mkHost.nix { inherit withSystem inputs; };
 
-  hostConfigs = filter (p: hasSuffix "/configuration.nix" (toString p)) (
-    listFilesRecursive ./.
-  );
+  hostConfigs = filter (p: hasSuffix "/configuration.nix" (toString p)) (listFilesRecursive ./.);
 
   mkHostEntry =
     path:

@@ -9,9 +9,7 @@
 }:
 let
   runtimePath = lib.makeBinPath (
-    [ dbus ]
-    ++ (lib.lists.optionals (systemPath != null) [ systemPath ])
-    ++ additionalPathEntries
+    [ dbus ] ++ (lib.lists.optionals (systemPath != null) [ systemPath ]) ++ additionalPathEntries
   );
 in
 stdenvNoCC.mkDerivation {
