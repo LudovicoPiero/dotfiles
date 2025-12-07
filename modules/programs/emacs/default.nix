@@ -68,6 +68,8 @@ let
   ];
 
   commonTools = with pkgs; [
+    librsvg
+    emacs-lsp-booster
     copilot-language-server
     bash-language-server
     shellharden
