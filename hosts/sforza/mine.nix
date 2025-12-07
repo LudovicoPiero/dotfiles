@@ -26,9 +26,9 @@
     hyprsunset.enable = true;
     greetd.enable = true;
     lockscreen.enable = true;
-    waybar.enable = true;
     mako.enable = true;
     xdg-portal.enable = true;
+    quickshell.enable = true;
 
     # -- System Services --
     pipewire.enable = true;

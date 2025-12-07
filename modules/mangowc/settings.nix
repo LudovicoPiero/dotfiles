@@ -40,7 +40,7 @@ mkIf cfgmine.mangowc.enable {
 
       # Launch apps via uwsm
       exec-once=uwsm app -- ${getExe pkgs.thunderbird}
-      exec-once=uwsm app -- ${getExe pkgs.waybar}
+      exec-once=uwsm app -- ${getExe pkgs.quickshell}
       exec-once=uwsm app -- ${getExe pkgs.mako}
 
       # More option see https://github.com/DreamMaoMao/mango/wiki/
