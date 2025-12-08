@@ -20,6 +20,8 @@ let
 in
 {
   imports = filter (p: hasSuffix ".nix" p && validPath p) (
-    map toString (filter (p: p != ./default.nix && validPath p) (listFilesRecursive ./.))
+    map toString (
+      filter (p: p != ./default.nix && validPath p) (listFilesRecursive ./.)
+    )
   );
 }

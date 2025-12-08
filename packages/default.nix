@@ -20,7 +20,8 @@
 
       # Detect subdirectories that contain default.nix
       dirs = lib.filter (
-        name: builtins.pathExists ./${name}/default.nix && !(lib.strings.hasPrefix "_" name)
+        name:
+        builtins.pathExists ./${name}/default.nix && !(lib.strings.hasPrefix "_" name)
       ) (builtins.attrNames (builtins.readDir ./.));
 
       # Safely call each package:
@@ -31,7 +32,10 @@
           fn = import path;
           args = builtins.functionArgs fn;
         in
-        if args ? sources then _pkgs.callPackage path { inherit sources; } else _pkgs.callPackage path { };
+        if args ? sources then
+          _pkgs.callPackage path { inherit sources; }
+        else
+          _pkgs.callPackage path { };
 
       packages = lib.listToAttrs (
         map (dir: {
