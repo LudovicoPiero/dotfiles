@@ -116,6 +116,7 @@
       type = "github";
       owner = "nix-community";
       repo = "emacs-overlay";
+      rev = "4c69fe4d8b665d3f77f2574e8b3fa1b07e9cc841"; # Hopefully fixes download errors
     };
   };
 }
