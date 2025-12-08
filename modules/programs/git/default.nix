@@ -40,7 +40,8 @@ in
         diff.external = "${difftastic-wrapper}";
         diff.tool = "difftastic";
         difftool.prompt = false;
-        "difftool \"difftastic\"".cmd = "${pkgs.difftastic}/bin/difft \"$LOCAL\" \"$REMOTE\"";
+        "difftool \"difftastic\"".cmd =
+          "${pkgs.difftastic}/bin/difft \"$LOCAL\" \"$REMOTE\"";
 
         alias = {
           # Basic Commands

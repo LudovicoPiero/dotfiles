@@ -31,7 +31,9 @@ rustPlatform.buildRustPackage {
 
   cargoLock = sources.npins.cargoLock."Cargo.lock";
 
-  buildInputs = lib.optional stdenv.isDarwin (with darwin.apple_sdk.frameworks; [ Security ]);
+  buildInputs = lib.optional stdenv.isDarwin (
+    with darwin.apple_sdk.frameworks; [ Security ]
+  );
   nativeBuildInputs = [ makeWrapper ];
 
   cargoBuildFlags = [

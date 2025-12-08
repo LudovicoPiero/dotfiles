@@ -98,7 +98,6 @@ let
   };
 in
 {
-  hj.xdg.config.files."fish/conf.d/aliases.fish".text = lib.concatStringsSep "\n" (
-    lib.mapAttrsToList mkAlias aliases
-  );
+  hj.xdg.config.files."fish/conf.d/aliases.fish".text =
+    lib.concatStringsSep "\n" (lib.mapAttrsToList mkAlias aliases);
 }
