@@ -14,7 +14,7 @@ function fish_greeting
 end
 
 # Aliases
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias cat="bat"
 alias ls="lsd"
 alias l="lsd -lF --git"
