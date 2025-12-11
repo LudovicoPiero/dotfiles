@@ -1,0 +1,93 @@
+/* Reset all styles to ensure square, monospace look */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    font-size: 13px;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+#waybar box.right.modules > widget > label,
+#waybar box.right.modules > widget > box {
+    padding: 0 5px;
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+/* Workspaces Default state (Hidden/Empty) */
+#workspaces button,
+#tags button {
+    padding: 0 5px;
+    background-color: #1e1e2e;
+    color: #45475a; /* Dim color for empty/unused */
+    border-bottom: 2px solid transparent;
+}
+
+/* Occupied State */
+#workspaces button {
+    color: #89b4fa;
+}
+#workspaces button.empty {
+    color: #45475a;
+}
+
+/* DWL/Tags: Explicit .occupied class */
+#tags button.occupied {
+    color: #89b4fa;
+}
+
+/* Active/Focused Workspace */
+#workspaces button.active,
+#workspaces button.focused,
+#tags button.focused {
+    background-color: #313244;
+    color: #cdd6f4;
+    border-bottom: 2px solid #cdd6f4;
+}
+
+/* Urgent Workspace */
+#workspaces button.urgent,
+#tags button.urgent {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+}
+
+#battery.charging { color: #a6e3a1; }
+#battery.warning:not(.charging) { color: #f9e2af; }
+#battery.critical:not(.charging) { color: #f38ba8; }
+
+#network.disconnected { color: #f38ba8; }
+
+#memory.warning { color: #f9e2af; }
+#memory.critical { color: #f38ba8; }
+
+#cpu.warning { color: #f9e2af; }
+#cpu.critical { color: #f38ba8; }
+#custom-date {
+    color: #cdd6f4;
+    padding-right: 5px;
+    margin-top: -3px;
+}
+
+#pulseaudio.muted {
+    color: #45475a;
+}
+
+#mpd.playing {
+    color: #a6e3a1;
+}
+
+#mpd.stopped {
+    color: #cdd6f4;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
