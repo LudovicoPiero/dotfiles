@@ -3,7 +3,7 @@ gui-wm/hyprland -systemd X
 gui-libs/wlroots -systemd
 
 # Waybar (Status Bar)
-gui-apps/waybar -systemd tray mpd network wifi experimental +logind pipewire pulseaudio sndio
+gui-apps/waybar -systemd tray mpd network wifi experimental logind pipewire pulseaudio sndio
 
 # Screenshot / Interaction Tools
 gui-apps/grimblast man
