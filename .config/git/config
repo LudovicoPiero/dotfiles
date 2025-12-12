@@ -92,3 +92,6 @@
     rbi = rebase -i HEAD~5
     clean = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
     bdm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+[core]
+	excludesFile = .config/git/ignore
