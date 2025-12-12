@@ -13,6 +13,13 @@ gpgconf --launch gpg-agent
 function fish_greeting
 end
 
+# Launch Hyprland automatically on TTY1 (Login Shell)
+# Check if $DISPLAY is empty (no graphical session) AND
+# check if $XDG_VTNR is '1' (the first virtual terminal).
+if test -z "$DISPLAY"; and test "$XDG_VTNR" = 1
+    exec dbus-run-session Hyprland
+end
+
 # Aliases
 alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias cat="bat"
