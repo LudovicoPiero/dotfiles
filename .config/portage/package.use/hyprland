@@ -1,0 +1,46 @@
+# ==========================================
+# 1. CORE HYPRLAND & WAYLAND
+# ==========================================
+# Disable systemd, ensure XWayland support
+gui-wm/hyprland -systemd X
+gui-libs/wlroots -systemd
+
+# Screenshot tools (Grimblast needs man pages to build correctly sometimes)
+gui-apps/grimblast man
+
+# ==========================================
+# 2. AUDIO (PIPEWIRE)
+# ==========================================
+# 'sound-server' makes Pipewire replace PulseAudio (REQUIRED for OpenRC audio)
+# 'extra' adds Bluetooth codecs (aptX, LDAC)
+media-video/pipewire sound-server extra pipewire-alsa
+
+# Session management for audio
+media-video/wireplumber elogind
+
+# ==========================================
+# 3. AUTHENTICATION & SESSION
+# ==========================================
+# Tell the base system to use elogind for login/seat management
+sys-auth/pambase elogind -systemd
+
+# Polkit needs a GUI agent (you are using the KDE one in your config)
+sys-auth/polkit-kde-agent qt6
+
+# ==========================================
+# 4. APPS FROM YOUR CONFIG
+# ==========================================
+# Thunar: Add thumbnails and trash support
+xfce-base/thunar thumbnail trash-panel-plugin
+
+# QT: Needed for Quickshell and other modern GUI apps
+dev-qt/qtwayland compositor
+
+# Network: If you use NetworkManager (recommended for simple setups)
+net-misc/networkmanager -modemmanager -bluetooth wifi 
+
+# Python: Swappy/Grim often need python wrappers
+gui-apps/slurp -man
+media-video/ffmpeg -sdl
+
+gui-apps/waybar -systemd tray mpd network wifi experimental +logind pipewire pulseaudio sndio

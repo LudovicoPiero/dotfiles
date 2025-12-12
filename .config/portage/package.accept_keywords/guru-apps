@@ -1,0 +1,9 @@
+net-im/vesktop-bin ~amd64
+app-misc/brightnessctl ~amd64
+sys-auth/hyprpolkitagent ~amd64
+x11-terms/wezterm ~amd64
+app-misc/nwg-look ~amd64
+x11-apps/xcur2png ~amd64
+app-shells/zoxide ~amd64
+app-misc/yazi ~amd64
+app-misc/tealdeer ~amd64
