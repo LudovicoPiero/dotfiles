@@ -1,16 +1,14 @@
 [Hotkey]
-# Enumerate when holding modifier of Toggle key
+# Enumerate when press trigger key repeatedly
 EnumerateWithTriggerKeys=True
+# Temporally switch between first and current Input Method
+AltTriggerKeys=
+# Skip first input method while enumerating
+EnumerateSkipFirst=False
 # Activate Input Method
 ActivateKeys=
 # Deactivate Input Method
 DeactivateKeys=
-# Temporarily Toggle Input Method
-AltTriggerKeys=
-# Enumerate Input Method Backward
-EnumerateBackwardKeys=
-# Skip first input method while enumerating
-EnumerateSkipFirst=False
 # Time limit in milliseconds for triggering modifier key shortcuts
 ModifierOnlyKeyTimeout=250
 
@@ -45,25 +43,27 @@ ModifierOnlyKeyTimeout=250
 0=Control+Alt+P
 
 [Behavior]
-# Enable by default
+# Active By Default
 ActiveByDefault=True
-# Share input state
+# Reset state on Focus In
+resetStateWhenFocusIn=No
+# Share Input State
 ShareInputState=No
-# Display preedit in applications
+# Show preedit in application
 PreeditEnabledByDefault=True
-# Display input method information when switching input methods
+# Show Input Method Information when switch input method
 ShowInputMethodInformation=True
-# Display input method information when changing focus
+# Show Input Method Information when changing focus
 showInputMethodInformationWhenFocusIn=False
-# Display input method information compactly
+# Show compact input method information
 CompactInputMethodInformation=True
-# Display information of the first input method
+# Show first input method information
 ShowFirstInputMethodInformation=True
 # Default page size
 DefaultPageSize=5
-# Override XKB option
+# Override Xkb Option
 OverrideXkbOption=False
-# Custom XKB option
+# Custom Xkb Option
 CustomXkbOption=
 # Force Enabled Addons
 EnabledAddons=
@@ -71,4 +71,10 @@ EnabledAddons=
 DisabledAddons=
 # Preload input method to be used by default
 PreloadInputMethod=True
+# Allow input method in the password field
+AllowInputMethodForPassword=False
+# Show preedit text when typing password
+ShowPreeditForPassword=False
+# Interval of saving user data in minutes
+AutoSavePeriod=30
 

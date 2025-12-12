@@ -8,6 +8,12 @@ DefaultIM=keyboard-us
 
 [Groups/0/Items/0]
 # Name
+Name=mozc
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
 Name=keyboard-us
 # Layout
 Layout=

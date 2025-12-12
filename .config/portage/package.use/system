@@ -10,3 +10,6 @@ sys-auth/polkit-kde-agent qt6
 # Networking (NetworkManager minimal setup)
 net-misc/networkmanager -modemmanager -bluetooth wifi
     
+# Fcitx5
+app-i18n/mozc fcitx5
+app-i18n/fcitx emoji enchant
