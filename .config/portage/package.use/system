@@ -1,0 +1,12 @@
+# Kernel installation (Grub + Dracut support)
+sys-kernel/installkernel grub dracut
+
+# Authentication (Use elogind, ban systemd)
+sys-auth/pambase elogind -systemd
+
+# GUI Authentication Agent (KDE Agent using Qt6)
+sys-auth/polkit-kde-agent qt6
+
+# Networking (NetworkManager minimal setup)
+net-misc/networkmanager -modemmanager -bluetooth wifi
+    

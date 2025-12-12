@@ -1,0 +1,20 @@
+# Hyprland & Wayland Core
+gui-wm/hyprland -systemd X
+gui-libs/wlroots -systemd
+
+# Waybar (Status Bar)
+gui-apps/waybar -systemd tray mpd network wifi experimental +logind pipewire pulseaudio sndio
+
+# Screenshot / Interaction Tools
+gui-apps/grimblast man
+gui-apps/slurp -man
+
+# File Manager (Thunar extras)
+xfce-base/thunar thumbnail trash-panel-plugin
+
+# Qt Wayland Support
+dev-qt/qtwayland compositor
+
+# Dependencies
+# Required by Thunar for the trash panel plugin
+dev-libs/libdbusmenu gtk3

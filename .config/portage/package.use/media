@@ -1,0 +1,13 @@
+# PipeWire Audio (Replace PulseAudio, add Bluetooth codecs)
+media-video/pipewire sound-server extra pipewire-alsa
+
+# Session management for audio
+media-video/wireplumber elogind
+
+# FFmpeg (Combined: Telegram deps + Config deps)
+# 'vpx opus' required for Telegram Video
+# '-sdl' from your config
+media-video/ffmpeg vpx opus -sdl
+
+# Libvpx (Required for Thunderbird)
+media-libs/libvpx postproc
