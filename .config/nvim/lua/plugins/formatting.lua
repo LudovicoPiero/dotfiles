@@ -13,8 +13,7 @@ return {
   },
   config = function()
     local conform = require("conform")
-    
-    -- NOTE: You must install these formatters manually via emerge or Mason
+
     conform.setup({
       notify_on_error = false,
       formatters_by_ft = {

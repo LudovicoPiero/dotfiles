@@ -15,8 +15,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
-    "help", "qf", "man", "notify", "checkhealth", "lspinfo",
-    "startuptime", "tsplayground", "PlenaryTestPopup", "gitsigns.blame",
+    "help",
+    "qf",
+    "man",
+    "notify",
+    "checkhealth",
+    "lspinfo",
+    "startuptime",
+    "tsplayground",
+    "PlenaryTestPopup",
+    "gitsigns.blame",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -28,7 +36,9 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("auto_create_dir"),
   callback = function(event)
-    if event.match:match("^%w%w+://") then return end
+    if event.match:match("^%w%w+://") then
+      return
+    end
     local file = vim.uv.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
@@ -63,7 +73,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("trim_whitespace"),
   pattern = "*",
   callback = function()
-    if vim.bo.filetype == "markdown" or vim.bo.binary then return end
+    if vim.bo.filetype == "markdown" or vim.bo.binary then
+      return
+    end
     local save = vim.fn.winsaveview()
     vim.cmd([[keeppatterns %s/\s\+$//e]])
     vim.fn.winrestview(save)

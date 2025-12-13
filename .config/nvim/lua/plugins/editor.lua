@@ -34,11 +34,19 @@ return {
           end
 
           map("n", "]c", function()
-            if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gitsigns.nav_hunk("next") end
+            if vim.wo.diff then
+              vim.cmd.normal({ "]c", bang = true })
+            else
+              gitsigns.nav_hunk("next")
+            end
           end, "Next Git Hunk")
 
           map("n", "[c", function()
-            if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gitsigns.nav_hunk("prev") end
+            if vim.wo.diff then
+              vim.cmd.normal({ "[c", bang = true })
+            else
+              gitsigns.nav_hunk("prev")
+            end
           end, "Prev Git Hunk")
 
           map("n", "<leader>gs", gitsigns.stage_hunk, "Stage Hunk")
@@ -49,7 +57,9 @@ return {
           map("n", "<leader>gp", gitsigns.preview_hunk, "Preview Hunk")
           map("n", "<leader>gb", gitsigns.blame_line, "Blame Line")
           map("n", "<leader>gd", gitsigns.diffthis, "Diff (Index)")
-          map("n", "<leader>gD", function() gitsigns.diffthis("@") end, "Diff (Commit)")
+          map("n", "<leader>gD", function()
+            gitsigns.diffthis("@")
+          end, "Diff (Commit)")
           map("n", "<leader>tb", gitsigns.toggle_current_line_blame, "Toggle Git Blame")
           map("n", "<leader>td", gitsigns.toggle_deleted, "Toggle Deleted")
         end,
@@ -68,11 +78,46 @@ return {
       modes = { char = { jump_labels = true } },
     },
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<C-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
     },
   },
 
@@ -80,7 +125,9 @@ return {
   {
     "nmac427/guess-indent.nvim",
     event = "BufReadPre",
-    config = function() require("guess-indent").setup({}) end,
+    config = function()
+      require("guess-indent").setup({})
+    end,
   },
 
   -- Todo Comments

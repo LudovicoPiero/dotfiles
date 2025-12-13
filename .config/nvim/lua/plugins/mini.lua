@@ -24,7 +24,9 @@ return {
     -- Statusline
     local statusline = require("mini.statusline")
     statusline.setup({ use_icons = has_icons })
-    statusline.section_location = function() return "%2l:%-2v" end
+    statusline.section_location = function()
+      return "%2l:%-2v"
+    end
 
     -- Misc
     local misc = require("mini.misc")
@@ -32,11 +34,11 @@ return {
     vim.filetype.add({
       filename = {
         ["COMMIT_EDITMSG"] = "gitcommit",
-        ["git-rebase-todo"] = "gitrebase"
+        ["git-rebase-todo"] = "gitrebase",
       },
     })
     misc.setup_restore_cursor({
-      ignore_filetypes = { "gitcommit", "gitrebase" }
+      ignore_filetypes = { "gitcommit", "gitrebase" },
     })
   end,
 }
