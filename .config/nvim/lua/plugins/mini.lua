@@ -31,14 +31,7 @@ return {
     -- Misc
     local misc = require("mini.misc")
     misc.setup()
-    vim.filetype.add({
-      filename = {
-        ["COMMIT_EDITMSG"] = "gitcommit",
-        ["git-rebase-todo"] = "gitrebase",
-      },
-    })
-    misc.setup_restore_cursor({
-      ignore_filetypes = { "gitcommit", "gitrebase" },
-    })
+    misc.setup_restore_cursor()
+    misc.setup_termbg_sync()
   end,
 }
