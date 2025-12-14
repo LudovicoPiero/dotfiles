@@ -1,5 +1,5 @@
 # Hyprland & Wayland Core
-gui-wm/hyprland -systemd X
+gui-wm/hyprland::local -uwsm -systemd X 
 gui-libs/wlroots -systemd
 
 # Waybar (Status Bar)
@@ -18,3 +18,10 @@ dev-qt/qtwayland compositor
 # Dependencies
 # Required by Thunar for the trash panel plugin
 dev-libs/libdbusmenu gtk3
+
+gui-apps/qtgreet qt6 -qt5
+gui-dfl/dfl-applications qt6 -qt5
+gui-dfl/dfl-ipc qt6 -qt5
+gui-dfl/dfl-login1 qt6 -qt5
+gui-dfl/dfl-utils qt6 -qt5
+gui-libs/wayqt qt6 -qt5

@@ -13,5 +13,6 @@ net-misc/networkmanager -modemmanager -bluetooth wifi
 # Fcitx5
 app-i18n/mozc fcitx5
 app-i18n/fcitx emoji enchant
-
+# required by gui-wm/cage-0.2.1::guru[X]
+# required by gui-wm/cage (argument)
 >=gui-libs/wlroots-0.19.2 x11-backend

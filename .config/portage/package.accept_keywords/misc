@@ -1,0 +1,31 @@
+gui-apps/fuzzel ~amd64
+gui-apps/waybar ~amd64
+net-im/vesktop ~amd64
+gui-apps/grimblast ~amd64
+gui-apps/swappy ~amd64
+gui-apps/wleave ~amd64
+gui-libs/uwsm ~amd64 gui-apps/waybar ~amd64
+gui-apps/mako ~amd64
+gui-apps/fuzzel ~amd64
+gui-apps/grimblast ~amd64
+gui-apps/swappy ~amd64
+gui-libs/uwsm ~amd64
+gui-apps/waybar ~amd64
+gui-apps/mako ~amd64
+gui-apps/fuzzel ~amd64
+gui-apps/grimblast ~amd64
+gui-apps/swappy ~amd64
+gui-libs/uwsm ~amd64
+dev-cpp/sdbus-c++ ~amd64
+# required by dev-vcs/lazygit (argument)
+=dev-vcs/lazygit-0.57.0 ~amd64
+app-misc/cliphist ~amd64
+gui-apps/wl-clip-persist ~amd64
+gui-apps/qtgreet ~amd64
+gui-dfl/dfl-applications ~amd64
+gui-dfl/dfl-ipc ~amd64
+gui-dfl/dfl-login1 ~amd64
+gui-dfl/dfl-utils ~amd64
+gui-libs/wayqt ~amd64
+gui-apps/gtkgreet ~amd64
+gui-wm/cage ~amd64
