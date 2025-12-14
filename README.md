@@ -1,86 +1,88 @@
-# 🍙 Airi's Gentoo Dotfiles
+# 🍙 Airi's Arch Dotfiles
 
-![Gentoo](https://img.shields.io/badge/Gentoo-OpenRC-purple?style=for-the-badge&logo=gentoo)
+![Arch Linux](https://img.shields.io/badge/Arch_Linux-Systemd-blue?style=for-the-badge&logo=arch-linux)
 ![Hyprland](https://img.shields.io/badge/Hyprland-Wayland-blue?style=for-the-badge&logo=wayland)
 ![Theme](https://img.shields.io/badge/Theme-Catppuccin_Mocha-pink?style=for-the-badge)
 
-My personal configuration for a minimal, high-performance Gentoo Linux system.
+My personal configuration for a minimal, high-performance Arch Linux system.
 
 ## 🖼️ Overview
-* **OS:** Gentoo Linux (OpenRC)
-* **WM:** Hyprland
-* **Shell:** Fish (with Starship)
-* **Terminal:** Alacritty / Foot (Configured via Home)
-* **Bar:** Waybar
-* **Editor:** Neovim
-* **Launcher:** Fuzzel
-* **File Manager:** Yazi (Terminal) + Thunar (GUI)
-* **Audio:** PipeWire + MPD + RMPC
-* **Input Method:** Fcitx5 (Japanese/Korean)
-* **Browser:** Firefox / Brave (User preference)
+
+- **OS:** Arch Linux
+- **WM:** Hyprland
+- **Shell:** Fish (with Starship)
+- **Terminal:** Alacritty / Foot
+- **Bar/Shell:** Quickshell (Qt6)
+- **Idle Daemon:** Hypridle
+- **Blue Light:** Hyprsunset
+- **Editor:** Neovim
+- **Launcher:** Fuzzel / FFF
+- **File Manager:** Yazi (Terminal) + Thunar (GUI)
+- **Audio:** PipeWire + MPD + RMPC
+- **Input Method:** Fcitx5 (Japanese/Korean)
+- **Browser:** Zen Browser / Firefox
 
 ---
 
 ## 📦 Installation Guide
 
-### 1. Base System Requirements
-These dotfiles assume you have a working minimal Gentoo installation with **OpenRC**.
-* **Profile:** `default/linux/amd64/23.0/desktop` (or similar)
-* **User:** `airi` (Adjust commands if different)
+### 1. Prerequisites
+
+These dotfiles assume you have a working base Arch installation.
+
+- **AUR Helper:** `yay` (Required for Quickshell & Hypr-tools)
+- **User:** `airi` (Adjust commands if different)
 
 ### 2. Core Packages (The "One-Liner")
+
 Install these packages to establish the base environment.
 
 ```bash
-# 1. Enable GURU overlay (Required for some Wayland/Media tools)
-sudo emerge --ask app-eselect/eselect-repository
-sudo eselect repository enable guru
-sudo emaint sync -r guru
+# 1. Update & Install Base
+yay -Syu
 
 # 2. Install World
-sudo emerge --ask \
+yay -S --needed \
   # System Core & Kernel Tools
-  sys-kernel/gentoo-sources sys-kernel/linux-firmware sys-apps/pciutils \
-  app-portage/gentoolkit app-portage/cpuid2cpuflags sys-process/cronie \
-  app-admin/sudo sys-apps/earlyoom \
+  linux linux-firmware base-devel git sudo \
+  cpupower cronie man-db \
   \
   # Wayland & Hyprland Stack
-  gui-wm/hyprland gui-apps/waybar gui-apps/mako gui-apps/swaybg \
-  gui-apps/xdg-desktop-portal-hyprland gui-apps/wl-clipboard \
-  gui-apps/grim gui-apps/slurp gui-apps/libnotify \
-  gui-apps/fuzzel gui-apps/cliphist \
+  hyprland-git hypridle hyprlock hyprsunset \
+  quickshell-git mako swaybg \
+  xdg-desktop-portal-hyprland wl-clipboard \
+  grim slurp libnotify \
+  fuzzel cliphist \
   \
   # Audio & Music (MPD Stack)
-  media-video/pipewire media-video/wireplumber media-libs/libpulse \
-  media-sound/mpd media-sound/mpdris2 media-sound/rmpc \
+  pipewire pipewire-pulse wireplumber \
+  mpd mpdris2 rmpc-git \
   \
   # Shell & CLI Tools
-  app-shells/fish app-shells/starship app-shells/zoxide app-shells/fzf \
-  sys-apps/bat sys-apps/lsd sys-apps/ripgrep sys-apps/fd \
-  app-misc/jq app-misc/tealdeer app-misc/neofetch \
-  app-editors/neovim dev-vcs/git dev-vcs/github-cli \
+  fish starship zoxide fzf \
+  bat lsd ripgrep fd \
+  jq tealdeer fastfetch \
+  neovim github-cli \
   \
   # File Management
-  app-misc/yazi xfce-base/thunar xfce-extra/thunar-archive-plugin \
-  xfce-extra/thunar-volman xfce-extra/tumbler gnome-base/gvfs \
-  app-arch/unzip app-arch/p7zip app-arch/unrar \
+  yazi thunar thunar-archive-plugin thunar-volman tumbler gvfs \
+  unzip p7zip unrar \
   \
   # Media & Viewers
-  media-video/mpv net-misc/yt-dlp net-misc/streamlink \
-  media-gfx/imv media-gfx/viewnior \
+  mpv yt-dlp streamlink \
+  imv viewnior \
   \
   # Network
-  net-misc/curl net-misc/rsync net-misc/whois net-analyzer/nmap \
-  net-dns/bind-tools net-p2p/qbittorrent \
+  curl rsync whois nmap \
+  bind-tools qbittorrent \
   \
   # Input Method & Fonts
-  app-i18n/fcitx5 app-i18n/fcitx5-configtool app-i18n/fcitx5-gtk \
-  app-i18n/fcitx5-qt app-i18n/mozc app-i18n/fcitx-hangul \
-  media-fonts/noto media-fonts/noto-cjk media-fonts/fontawesome \
-  media-fonts/symbols-nerd-font
-````
+  fcitx5-im fcitx5-mozc-ut fcitx5-hangul fcitx5-gtk \
+  noto-fonts noto-fonts-cjk ttf-font-awesome \
+  ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols
+```
 
------
+---
 
 ## 🚀 How to Apply Dotfiles (Fresh Install)
 
@@ -101,7 +103,7 @@ alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 c checkout
 ```
 
-  * **Note:** If `checkout` fails because of existing files (like default `.bashrc`), delete or back up those specific files and run `c checkout` again.
+- **Note:** If `checkout` fails because of existing files (like default `.bashrc`), delete or back up those specific files and run `c checkout` again.
 
 ### Step 2: Configure Git
 
@@ -111,55 +113,37 @@ Hide untracked files so `c status` isn't messy.
 c config --local status.showUntrackedFiles no
 ```
 
-### Step 3: Symlink System Configs
-
-Since Gentoo configs live in `/etc`, we need to link the versions stored in `~/.config/portage` back to the system.
-
-```bash
-# Backup original (just in case)
-sudo mv /etc/portage /etc/portage.bak
-
-# Create directory structure
-sudo mkdir -p /etc/portage
-
-# Symlink your tracked configs
-sudo ln -s ~/.config/portage/make.conf /etc/portage/make.conf
-sudo ln -s ~/.config/portage/package.use /etc/portage/package.use
-sudo ln -s ~/.config/portage/package.accept_keywords /etc/portage/package.accept_keywords
-sudo ln -s ~/.config/portage/package.mask /etc/portage/package.mask
-sudo ln -s ~/.config/portage/repos.conf /etc/portage/repos.conf
-sudo ln -s ~/.config/portage/savedconfig /etc/portage/savedconfig
-```
-
------
+---
 
 ## 🛠️ Post-Install Configuration
 
-### 1\. Enable Services (OpenRC)
+### 1\. Enable Services (Systemd)
+
+Unlike OpenRC, we use `systemctl` to enable background daemons.
 
 ```bash
-# Display Manager (Login)
-sudo rc-update add agetty.tty1 default
+# Audio & Bluetooth
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
+systemctl --user enable --now mpd
+systemctl --user enable --now mpdris2
 
-# Audio & Hardware
-sudo rc-update add elogind boot
-sudo rc-update add dbus default
-sudo rc-update add earlyoom default
-sudo rc-update add cronie default # For fstrim
+# System Maintenance
+sudo systemctl enable --now cronie      # For cron jobs
+sudo systemctl enable --now fstrim.timer # SSD maintenance
 ```
 
-### 2\. User Services (Hyprland Autostart)
+### 2\. Hyprland Autostart
 
-These services start automatically when Hyprland launches (configured in `~/.config/hypr/hyprland.conf`):
+The following tools are launched directly via `~/.config/hypr/hyprland.conf`:
 
-  * `fcitx5` (Input Method)
-  * `waybar` (Status Bar)
-  * `mako` (Notifications)
-  * `mpd` (Music Daemon)
-  * `mpdris2` (Media Keys)
+- `quickshell` (Bar & Widgets)
+- `hypridle` (Idle Daemon)
+- `hyprsunset` (Blue Light Filter)
+- `fcitx5` (Input Method)
+- `mako` (Notifications)
 
 ### 3\. Final Checks
 
-  * **Fish Shell:** Set as default: `chsh -s /bin/fish`
-  * **Fonts:** Refresh cache: `fc-cache -fv`
-  * **MPD:** Create playlists dir: `mkdir -p ~/.local/state/mpd/playlists`
+- **Fish Shell:** Set as default: `chsh -s /usr/bin/fish`
+- **Quickshell:** Ensure the socket is active (happens automatically on first run).
+- **MPD:** Create playlists dir: `mkdir -p ~/.local/state/mpd/playlists`
