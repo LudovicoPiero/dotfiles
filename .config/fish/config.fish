@@ -20,6 +20,13 @@ end
 #     exec dbus-run-session Hyprland
 # end
 
+# Use the old fish behavior
+bind alt-backspace backward-kill-word
+bind ctrl-alt-h backward-kill-word
+bind ctrl-backspace backward-kill-token
+bind alt-delete kill-word
+bind ctrl-delete kill-token
+
 # Aliases
 alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias cat="bat"
@@ -30,7 +37,7 @@ alias ll="lsd --git"
 alias llm="lsd -lGF --git --sort=time"
 alias t="lsd --tree"
 alias tree="lsd --tree"
-alias nr="nixpkgs-review"
+# alias nr="nixpkgs-review"
 alias nv="nvim"
 alias v="nvim"
 alias mkdir="mkdir -p"
