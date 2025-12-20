@@ -1,0 +1,9 @@
+#!/bin/bash
+# Catppuccin Mocha Colors
+NB="#1e1e2e"  # Normal Background (Base)
+NF="#cdd6f4"  # Normal Foreground (Text)
+SB="#cba6f7"  # Selected Background (Mauve)
+SF="#1e1e2e"  # Selected Foreground (Base)
+
+# Run dmenu with these colors and your font
+dmenu_run -fn "Iosevka-11" -nb "$NB" -nf "$NF" -sb "$SB" -sf "$SF" "$@"

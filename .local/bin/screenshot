@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Directory setup
+DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$DIR"
+NAME="Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+FILE="$DIR/$NAME"
+
+# Logic based on argument
+case $1 in
+    --full)
+        grim "$FILE"
+        ;;
+    --region)
+        # Check if slurp is installed
+        REGION=$(slurp) || exit 1
+        grim -g "$REGION" "$FILE"
+        ;;
+    *)
+        echo "Usage: screenshot [--full | --region]"
+        exit 1
+        ;;
+esac
+
+# Post-processing: Copy to clipboard and notify
+if [ -f "$FILE" ]; then
+    wl-copy < "$FILE"
+    notify-send "Screenshot Captured" "Saved to $NAME and copied to clipboard" -i "$FILE"
+fi
