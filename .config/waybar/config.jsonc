@@ -5,7 +5,8 @@
     "spacing": 0,
     "modules-left": [
         "hyprland/workspaces",
-        "dwl/tags"
+        "dwl/tags",
+        "dwl/window"
     ],
     "modules-right": [
         "tray",
