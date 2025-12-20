@@ -27,11 +27,5 @@ return {
     statusline.section_location = function()
       return "%2l:%-2v"
     end
-
-    -- Misc
-    local misc = require("mini.misc")
-    misc.setup()
-    misc.setup_restore_cursor()
-    misc.setup_termbg_sync()
   end,
 }
