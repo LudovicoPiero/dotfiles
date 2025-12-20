@@ -1,0 +1,423 @@
+-- [[ ----------------------------------------------------------------------- ]]
+--    NEOVIM v0.12+ CONFIGURATION
+--    "The efficient shit"
+-- [[ ----------------------------------------------------------------------- ]]
+
+-- 1. BOOTSTRAP LAZY.NVIM
+-- Automatically installs the plugin manager if not present.
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- 2. BASIC OPTIONS
+-- Setting the groundwork before plugins load.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+vim.opt.number = true -- Line numbers
+vim.opt.relativenumber = true -- Relative line numbers for easy jumping
+vim.opt.mouse = "a" -- Mouse support (if you're into that)
+vim.opt.clipboard = "unnamedplus" -- Sync with system clipboard
+vim.opt.breakindent = true -- Keep indentation on wrapped lines
+vim.opt.undofile = true -- Persistent undo history
+vim.opt.ignorecase = true -- Case insensitive searching
+vim.opt.smartcase = true -- ...unless you type a capital
+vim.opt.signcolumn = "yes" -- Always show sign column (prevents shift)
+vim.opt.updatetime = 250 -- Faster update time
+vim.opt.timeoutlen = 300 -- Faster key sequence completion
+vim.opt.splitright = true -- Vertical splits go right
+vim.opt.splitbelow = true -- Horizontal splits go down
+vim.opt.list = true -- Show invisible characters
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.scrolloff = 10 -- Keep cursor away from edges
+vim.opt.termguicolors = true -- True color support
+
+-- 3. PLUGIN SPECIFICATIONS
+require("lazy").setup({
+	-- [[ THEME: TokyoNight ]]
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("tokyonight-night")
+		end,
+	},
+
+	-- [[ UI & UTILS: Snacks.nvim ]]
+	-- Consolidates Dashboard, Terminal, Notifications, Picker (Telescope replacement)
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		opts = {
+			bigfile = { enabled = true }, -- Handle huge files gracefully
+			dashboard = { enabled = true }, -- Nice start screen
+			indent = { enabled = true }, -- Indent guides
+			input = { enabled = true }, -- Better vim.ui.input
+			notifier = { enabled = true }, -- Better notifications
+			picker = { enabled = true }, -- Replaces Telescope (Faster)
+			quickfile = { enabled = true },
+			scroll = { enabled = true }, -- Smooth scrolling
+			statuscolumn = { enabled = true },
+			words = { enabled = true }, -- Highlight word under cursor
+		},
+		keys = {
+			-- Top Pickers
+			{
+				"<leader><space>",
+				function()
+					Snacks.picker.smart()
+				end,
+				desc = "Smart Find Files",
+			},
+			{
+				"<leader>sb",
+				function()
+					Snacks.picker.buffers()
+				end,
+				desc = "Buffers",
+			},
+			{
+				"<leader>sg",
+				function()
+					Snacks.picker.grep()
+				end,
+				desc = "Grep Project",
+			},
+			{
+				"<leader>sn",
+				function()
+					Snacks.picker.notifications()
+				end,
+				desc = "Notification History",
+			},
+			-- Git
+			{
+				"<leader>gg",
+				function()
+					Snacks.lazygit()
+				end,
+				desc = "Lazygit",
+			},
+			{
+				"<leader>gl",
+				function()
+					Snacks.picker.git_log()
+				end,
+				desc = "Git Log",
+			},
+			-- Utils
+			{
+				"<c-/>",
+				function()
+					Snacks.terminal()
+				end,
+				desc = "Toggle Terminal",
+			},
+		},
+	},
+
+	-- [[ FILE EXPLORER: Oil.nvim ]]
+	-- Edit your filesystem like a normal buffer.
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("oil").setup({
+				view_options = { show_hidden = true },
+				default_file_explorer = true,
+			})
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open Parent Directory" })
+		end,
+	},
+
+	-- [[ KEYBINDING HELPER: Which-Key ]]
+	-- Displays available keybindings in a popup.
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = function()
+			local wk = require("which-key")
+			wk.setup()
+			-- Categorize the mess
+			wk.add({
+				{ "<leader>c", group = "[C]ode" },
+				{ "<leader>d", group = "[D]iagnostics" },
+				{ "<leader>g", group = "[G]it" },
+				{ "<leader>s", group = "[S]earch" },
+				{ "<leader>w", group = "[W]indow" },
+				{ "<leader>b", group = "[B]uffers" },
+				{ "<leader>x", group = "[X]Trouble/Quickfix" },
+			})
+		end,
+	},
+
+	-- [[ HIGHLIGHTING: Treesitter ]]
+	-- Better syntax highlighting and code parsing.
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "lua", "vim", "vimdoc", "go", "python", "rust", "nix", "markdown", "bash" },
+				auto_install = true,
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
+		end,
+	},
+
+	-- [[ NAVIGATION: Flash.nvim ]]
+	-- Jump anywhere in the visible buffer instantly.
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			{
+				"S",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+		},
+	},
+
+	-- [[ GIT: Gitsigns ]]
+	-- Show git changes in the gutter.
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+		},
+	},
+
+	-- [[ COLORIZER: Highlight Colors ]]
+	-- Renders hex codes and css colors (e.g. #ff0000).
+	{
+		"brenoprata10/nvim-highlight-colors",
+		opts = { render = "background", enable_named_colors = true },
+	},
+
+	-- [[ TABS: Bufferline ]]
+	-- Make buffers look like tabs.
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		opts = {
+			options = {
+				mode = "buffers",
+				separator_style = "slant",
+				diagnostics = "nvim_lsp",
+				offsets = {
+					{ filetype = "NvimTree", text = "File Explorer", text_align = "left", separator = true },
+				},
+			},
+		},
+		keys = {
+			{ "gt", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+			{ "gT", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+		},
+	},
+
+	-- [[ EDITING: Autopairs ]]
+	-- Auto-close brackets and quotes.
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {},
+	},
+
+	-- [[ LSP & TOOLS: Mason + LSPConfig ]]
+	-- The meat and potatoes. Installs servers and connects them.
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			-- Manager for external tools (LSPs, Formatters)
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			-- Status updates for LSP
+			{ "j-hui/fidget.nvim", opts = {} },
+			-- Schema store for JSON/YAML
+			"b0o/schemastore.nvim",
+			-- Auto completion source
+			"saghen/blink.cmp",
+		},
+		config = function()
+			-- 1. Setup Mason (The installer)
+			require("mason").setup()
+
+			-- 2. Define tools to install
+			local ensure_installed = {
+				"gopls", -- Go
+				"basedpyright", -- Python (Better than pyright)
+				"nil_ls", -- Nix
+				"rust_analyzer", -- Rust
+				"lua_ls", -- Lua
+				"stylua", -- Lua Formatter
+				"black", -- Python Formatter
+				"isort", -- Python Import sorter
+				"gofumpt", -- Go Formatter
+			}
+
+			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+			require("mason-lspconfig").setup({
+				handlers = {
+					function(server_name)
+						local capabilities = require("blink.cmp").get_lsp_capabilities()
+						local server_opts = { capabilities = capabilities }
+
+						-- Specialized config for Lua
+						if server_name == "lua_ls" then
+							server_opts.settings = {
+								Lua = {
+									diagnostics = { globals = { "vim" } },
+									completion = { callSnippet = "Replace" },
+								},
+							}
+						end
+
+						-- Specialized config for Python
+						if server_name == "basedpyright" then
+							server_opts.settings = {
+								basedpyright = {
+									analysis = {
+										typeCheckingMode = "standard",
+										autoSearchPaths = true,
+									},
+								},
+							}
+						end
+
+						require("lspconfig")[server_name].setup(server_opts)
+					end,
+				},
+			})
+		end,
+	},
+
+	-- [[ FORMATTING: Conform ]]
+	-- Auto-formatting on save.
+	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>lf",
+				function()
+					require("conform").format({ async = true, lsp_fallback = true })
+				end,
+				mode = "",
+				desc = "Format Buffer",
+			},
+		},
+		opts = {
+			notify_on_error = false,
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_fallback = true,
+			},
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "isort", "black" },
+				go = { "gofumpt", "goimports" },
+				rust = { "rustfmt" },
+				nix = { "nixpkgs_fmt" },
+				-- Use the "*" filetype to run formatters on all filetypes.
+				["*"] = { "trim_whitespace" },
+			},
+		},
+	},
+
+	-- [[ COMPLETION: Blink.cmp ]]
+	-- The new speed demon. Replaces nvim-cmp.
+	{
+		"saghen/blink.cmp",
+		dependencies = "rafamadriz/friendly-snippets",
+		version = "*",
+		opts = {
+			keymap = { preset = "default" }, -- uses tab/enter automatically
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				nerd_font_variant = "mono",
+			},
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
+			},
+		},
+		opts_extend = { "sources.default" },
+	},
+})
+
+-- 4. AUTOCMDS & GENERAL KEYMAPS
+-- Restore cursor position
+vim.api.nvim_create_autocmd("BufReadPost", {
+	callback = function()
+		local mark = vim.api.nvim_buf_get_mark(0, '"')
+		local lcount = vim.api.nvim_buf_line_count(0)
+		if mark[1] > 0 and mark[1] <= lcount then
+			pcall(vim.api.nvim_win_set_cursor, 0, mark)
+		end
+	end,
+})
+
+-- Keymaps (Non-plugin specific)
+local map = vim.keymap.set
+
+-- Window movement (Your inspiration style)
+map("n", "<C-h>", "<C-w>h", { desc = "Move Left" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move Down" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move Up" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move Right" })
+
+-- Better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
+-- Quit quickly
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+
+-- LSP Keybinds (Attach only when LSP is active logic is handled by modern plugins usually,
+-- but here are Global LSP binds via Snacks/LSPConfig hooks implied)
+map("n", "gd", function()
+	vim.lsp.buf.definition()
+end, { desc = "Goto Definition" })
+map("n", "K", function()
+	vim.lsp.buf.hover()
+end, { desc = "Hover Doc" })
+map("n", "<leader>ca", function()
+	vim.lsp.buf.code_action()
+end, { desc = "Code Action" })
+map("n", "<leader>rn", function()
+	vim.lsp.buf.rename()
+end, { desc = "Rename" })
