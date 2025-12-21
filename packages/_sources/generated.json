@@ -122,13 +122,13 @@
     "npins": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./npins-84a362d77fb3c487ad759c80547facb028f4d96f/Cargo.lock",
+                "./npins-5eb1bde1898a3c32a3aacb36ae120897a58c9ed8/Cargo.lock",
                 {
                     "nix-compat-0.1.0": "sha256-ehkc7ug0HkTHKxx9tQi/9vkOtQry9HdiX9UxBUvjYRY="
                 }
             ]
         },
-        "date": "2025-11-26",
+        "date": "2025-12-21",
         "extract": null,
         "name": "npins",
         "passthru": null,
@@ -138,13 +138,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "84a362d77fb3c487ad759c80547facb028f4d96f",
-            "sha256": "sha256-EWA14ovB/5UFiK9fmEYtofIMbGnVeJ/4yK0aJEJXtsI=",
+            "rev": "5eb1bde1898a3c32a3aacb36ae120897a58c9ed8",
+            "sha256": "sha256-thc8sd3GB85p12O4nYnlbjpx/Jk5BN3NAtL7nLpoxhI=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/andir/npins"
         },
-        "version": "84a362d77fb3c487ad759c80547facb028f4d96f"
+        "version": "5eb1bde1898a3c32a3aacb36ae120897a58c9ed8"
     },
     "runapp": {
         "cargoLocks": null,
@@ -236,7 +236,7 @@
     },
     "whitesur-gtk-theme": {
         "cargoLocks": null,
-        "date": "2025-11-09",
+        "date": "2025-12-18",
         "extract": null,
         "name": "whitesur-gtk-theme",
         "passthru": null,
@@ -246,12 +246,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "60e7f1b4c26cde034049d0da89d415218f479314",
-            "sha256": "sha256-XXGWMdBgGC2uB2TnAYxcYVCySZJc28EIyLAE4ZNwVtM=",
+            "rev": "aa1ff7de4f25c1763de26abac63c9e3aebc78702",
+            "sha256": "sha256-M3N2goNThSWkzpq28q/n+pfN60IqXSmxpOUZbuTaPwQ=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/vinceliuice/WhiteSur-gtk-theme"
         },
-        "version": "60e7f1b4c26cde034049d0da89d415218f479314"
+        "version": "aa1ff7de4f25c1763de26abac63c9e3aebc78702"
     }
 }
