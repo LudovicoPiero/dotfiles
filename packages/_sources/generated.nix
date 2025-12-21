@@ -87,23 +87,23 @@
   };
   npins = {
     pname = "npins";
-    version = "84a362d77fb3c487ad759c80547facb028f4d96f";
+    version = "5eb1bde1898a3c32a3aacb36ae120897a58c9ed8";
     src = fetchgit {
       url = "https://github.com/andir/npins";
-      rev = "84a362d77fb3c487ad759c80547facb028f4d96f";
+      rev = "5eb1bde1898a3c32a3aacb36ae120897a58c9ed8";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-EWA14ovB/5UFiK9fmEYtofIMbGnVeJ/4yK0aJEJXtsI=";
+      sha256 = "sha256-thc8sd3GB85p12O4nYnlbjpx/Jk5BN3NAtL7nLpoxhI=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./npins-84a362d77fb3c487ad759c80547facb028f4d96f/Cargo.lock;
+      lockFile = ./npins-5eb1bde1898a3c32a3aacb36ae120897a58c9ed8/Cargo.lock;
       outputHashes = {
         "nix-compat-0.1.0" = "sha256-ehkc7ug0HkTHKxx9tQi/9vkOtQry9HdiX9UxBUvjYRY=";
       };
     };
-    date = "2025-11-26";
+    date = "2025-12-21";
   };
   runapp = {
     pname = "runapp";
@@ -170,16 +170,16 @@
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
-    version = "60e7f1b4c26cde034049d0da89d415218f479314";
+    version = "aa1ff7de4f25c1763de26abac63c9e3aebc78702";
     src = fetchgit {
       url = "https://github.com/vinceliuice/WhiteSur-gtk-theme";
-      rev = "60e7f1b4c26cde034049d0da89d415218f479314";
+      rev = "aa1ff7de4f25c1763de26abac63c9e3aebc78702";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-XXGWMdBgGC2uB2TnAYxcYVCySZJc28EIyLAE4ZNwVtM=";
+      sha256 = "sha256-M3N2goNThSWkzpq28q/n+pfN60IqXSmxpOUZbuTaPwQ=";
     };
-    date = "2025-11-09";
+    date = "2025-12-18";
   };
 }
