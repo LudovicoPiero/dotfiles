@@ -4,6 +4,9 @@ set -gx EDITOR nvim
 set -gx PATH $HOME/.local/bin $PATH
 set -gx PATH "$PATH:$HOME/.local/bin:"
 
+set -gx LESSHISTFILE "-"                   # Don't create ~/.lesshst history files
+set -gx WGETRC "$HOME/.config/wget/wgetrc" # Move wget config out of home root
+
 # GPG
 set -gx GPG_TTY (tty)
 set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
