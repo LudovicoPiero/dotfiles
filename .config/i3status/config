@@ -15,10 +15,19 @@ order += "ipv6"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
+order += "volume master"
 order += "disk /"
 order += "load"
 order += "memory"
 order += "tztime local"
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "pulse"
+        mixer = "Master"
+        mixer_idx = 0
+}
 
 wireless _first_ {
         format_up = "IP LEAK: %ip"
@@ -49,5 +58,5 @@ memory {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%Y年 %m月 %d日 %H:%M:%S"
 }

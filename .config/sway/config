@@ -65,7 +65,7 @@ exec wl-paste --type image --watch cliphist store
 ### Autostart: Applications
 exec sleep 1 && mpd &
 exec sleep 1 && mpd-mpris &
-exec thunderbird
+exec thunderbird-bin
 
 ### Bindings: System & Apps
 bindsym $mod+Return exec $term
@@ -133,6 +133,10 @@ bindsym $mod+q scratchpad show
 # Mouse Interaction
 floating_modifier $mod normal
 
+smart_borders no_gaps
+smart_gaps on
+default_border pixel 2px
+
 ### Bindings: Hardware Keys
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -169,8 +173,8 @@ client.background       $base
 ### Status Bar
 bar {
     position bottom
-    font pango:Iosevka Semibold 10
-    status_command i3status
+    font pango:Iosevka Semibold 11
+    status_command i3status-rs
 
     colors {
         statusline $text
@@ -190,7 +194,7 @@ bar {
 # 9: Mail
 assign [app_id="^(thunderbird|thunderbird-esr)$"] workspace number 9
 # 8: Social
-assign [app_id="^whatsapp-for-linux$"] workspace number 8
+assign [app_id="^(whatsapp-for-linux|whatsapp-desktop)$"] workspace number 8
 # 7: Torrent
 assign [app_id="^(qBittorrent|org.qbittorrent.qBittorrent)$"] workspace number 7
 # 6: Steam
