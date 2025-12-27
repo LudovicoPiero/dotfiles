@@ -25,7 +25,7 @@ volume master {
         format = "♪: %volume"
         format_muted = "♪: muted (%volume)"
         device = "pulse"
-        mixer = "Master"
+        # mixer = "Master"
         mixer_idx = 0
 }
 

@@ -35,12 +35,15 @@ set $crust #11111b
 
 ### Hardware & System
 output HDMI-A-1 mode 1920x1080@180Hz
+output eDP-1 disable
 
-# Idle & Lock (Lock at 5m, Screen off at 10m)
-exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c 000000'
+input keyboard {
+  repeat_rate 30
+  repeat_delay 300
+}
+
+# Idle & Lock
+exec hypridle
 
 ### Autostart: Core Services
 # DBus & Polkit
@@ -48,11 +51,10 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec /usr/libexec/polkit-gnome-authentication-agent-1
 
 # Portals & Audio (Gentoo quirks)
-exec pkill -9 xdg-desktop-portal-wlr xdg-desktop-portal-gtk xdg-desktop-portal pipewire wireplumber pipewire-pulse mpd
-exec gentoo-pipewire-launcher &
-exec sleep 1 && /usr/libexec/xdg-desktop-portal-wlr &
-exec sleep 2 && /usr/libexec/xdg-desktop-portal-gtk &
-exec sleep 2 && /usr/libexec/xdg-desktop-portal &
+exec pkill -9 xdg-desktop-portal-wlr xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-desktop-portal mpd
+exec sleep 1 && /usr/lib/xdg-desktop-portal-wlr &
+exec sleep 2 && /usr/lib/xdg-desktop-portal-gtk &
+exec sleep 2 && /usr/lib/xdg-desktop-portal &
 
 # Environment
 exec brightnessctl set 10%
@@ -65,7 +67,7 @@ exec wl-paste --type image --watch cliphist store
 ### Autostart: Applications
 exec sleep 1 && mpd &
 exec sleep 1 && mpd-mpris &
-exec thunderbird-bin
+exec thunderbird
 
 ### Bindings: System & Apps
 bindsym $mod+Return exec $term
@@ -173,8 +175,8 @@ client.background       $base
 ### Status Bar
 bar {
     position bottom
-    font pango:Iosevka Semibold 11
-    status_command i3status-rs
+    font pango:Iosevka 11
+    status_command i3status
 
     colors {
         statusline $text
@@ -192,7 +194,7 @@ bar {
 
 ### Window Rules & Assignments
 # 9: Mail
-assign [app_id="^(thunderbird|thunderbird-esr)$"] workspace number 9
+assign [app_id="^(thunderbird|thunderbird-esr|org.mozilla.Thunderbird)$"] workspace number 9
 # 8: Social
 assign [app_id="^(whatsapp-for-linux|whatsapp-desktop)$"] workspace number 8
 # 7: Torrent

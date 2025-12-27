@@ -4,9 +4,9 @@
     "height": 24,
     "spacing": 0,
     "modules-left": [
-        "hyprland/workspaces",
-        "dwl/tags",
-        "dwl/window"
+        "hyprland/workspaces"
+        // "dwl/tags",
+        // "dwl/window"
     ],
     "modules-right": [
         "tray",
