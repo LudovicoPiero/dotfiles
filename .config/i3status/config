@@ -1,11 +1,3 @@
-# i3status configuration file.
-# see "man i3status" for documentation.
-
-# It is important that this file is edited as UTF-8.
-# The following line should contain a sharp s:
-# ß
-# If the above line is not correctly displayed, fix your editor first!
-
 general {
         colors = true
         interval = 5
@@ -14,6 +6,7 @@ general {
 order += "ipv6"
 order += "wireless _first_"
 order += "ethernet _first_"
+order += "cpu_temperature 0"
 order += "battery all"
 order += "volume master"
 order += "disk /"
@@ -37,6 +30,12 @@ wireless _first_ {
 ethernet _first_ {
         format_up = "E: %ip (%speed)"
         format_down = "E: Disconnected"
+}
+
+cpu_temperature 0 {
+    format = "T: %degrees °C"
+    path = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon*/temp1_input"
+    max_threshold = 95
 }
 
 battery all {

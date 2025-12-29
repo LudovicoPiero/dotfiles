@@ -43,7 +43,10 @@ input keyboard {
 }
 
 # Idle & Lock
-exec hypridle
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
 
 ### Autostart: Core Services
 # DBus & Polkit
@@ -51,10 +54,13 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec /usr/libexec/polkit-gnome-authentication-agent-1
 
 # Portals & Audio (Gentoo quirks)
-exec pkill -9 xdg-desktop-portal-wlr xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-desktop-portal mpd
-exec sleep 1 && /usr/lib/xdg-desktop-portal-wlr &
-exec sleep 2 && /usr/lib/xdg-desktop-portal-gtk &
-exec sleep 2 && /usr/lib/xdg-desktop-portal &
+exec pkill -9 xdg-desktop-portal-wlr xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-desktop-portal mpd pipewire wireplumber pipewire-pulse
+exec sleep 1 && /usr/libexec/xdg-desktop-portal-wlr &
+exec sleep 2 && /usr/libexec/xdg-desktop-portal-gtk &
+exec sleep 2 && /usr/libexec/xdg-desktop-portal &
+exec pipewire
+exec wireplumber
+exec pipewire-pulse
 
 # Environment
 exec brightnessctl set 10%
@@ -68,11 +74,14 @@ exec wl-paste --type image --watch cliphist store
 exec sleep 1 && mpd &
 exec sleep 1 && mpd-mpris &
 exec thunderbird
+exec emacs --daemon
 
 ### Bindings: System & Apps
 bindsym $mod+Return exec $term
 bindsym $mod+p exec $menu
+bindsym $mod+o exec $HOME/.local/bin/clipboard-picker
 bindsym $mod+w kill
+bindsym $mod+e exec emacsclient -c
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
 bindsym Print exec grim
@@ -124,7 +133,6 @@ bindsym $mod+b splith
 bindsym $mod+v splitv
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
@@ -193,39 +201,48 @@ bar {
 }
 
 ### Window Rules & Assignments
+
 # 9: Mail
-assign [app_id="^(thunderbird|thunderbird-esr|org.mozilla.Thunderbird)$"] workspace number 9
+assign [app_id="^([Tt]hunderbird|[Tt]hunderbird-esr|org.mozilla.Thunderbird)$"] workspace number 9
+
 # 8: Social
-assign [app_id="^(whatsapp-for-linux|whatsapp-desktop)$"] workspace number 8
+assign [app_id="^([Ww]hatsapp-for-linux|[Ww]hatsapp-desktop)$"] workspace number 8
+
 # 7: Torrent
-assign [app_id="^(qBittorrent|org.qbittorrent.qBittorrent)$"] workspace number 7
+assign [app_id="^([Qq]Bittorrent|org.qbittorrent.qBittorrent)$"] workspace number 7
+
 # 6: Steam
-assign [app_id="^steam$"] workspace number 6
-assign [app_id="^steam$" title="^Sign in to Steam$"] workspace number 6
+assign [app_id="^[Ss]team$"] workspace number 6
+assign [app_id="^[Ss]team$" title="^Sign in to Steam$"] workspace number 6
+
 # 5: Media
-assign [app_id="^spotify$"] workspace number 5
+assign [app_id="^[Ss]potify$"] workspace number 5
 assign [app_id="org.fooyin.fooyin"] workspace number 5
-assign [app_id="tidal-hifi"] workspace number 5
-assign [app_id="^foobar2000.exe$"] workspace number 5
+assign [app_id="^[Tt]idal-hifi$"] workspace number 5
+assign [app_id="^[Ff]oobar2000.exe$"] workspace number 5
+
 # 4: Telegram
 assign [app_id="^org.telegram.desktop$"] workspace number 4
+
 # 3: Discord
-assign [app_id="^vesktop$"] workspace number 3
+assign [app_id="^[Vv]esktop$"] workspace number 3
 assign [title=".*(Disc|ArmC|WebC)ord.*"] workspace number 3
+
 # 2: Browsers
-assign [app_id="^(brave-browser|firefox|firefox-esr|floorp|zen|zen-beta|Chromium-browser|chromium-browser)$"] workspace number 2
+assign [app_id="^([Bb]rave-browser|[Ff]irefox|[Ff]irefox-esr|[Ff]loorp|[Zz]en|[Zz]en-beta|[Cc]hromium-browser)$"] workspace number 2
+
 # 1: Dev/Games
-assign [app_id="^jetbrains-.*$"] workspace number 1
-assign [app_id="^Albion-Online$"] workspace number 1
+assign [app_id="^[Jj]etbrains-.*$"] workspace number 1
+assign [app_id="^[Aa]lbion-[Oo]nline$"] workspace number 1
 
 # Floating & Focus Logic
-for_window [app_id="^foobar2000.exe$"] floating disable
+for_window [app_id="^[Ff]oobar2000.exe$"] floating disable
 for_window [app_id="^org.telegram.desktop$" title="^Media viewer$"] floating enable
-for_window [app_id="^steam$" title="^Special Offers$"] floating enable
-for_window [app_id="^steam$" title="^Steam - News$"] floating enable
-for_window [app_id="^steam$" title="^notificationtoasts_.*_desktop$"] floating enable, no_focus
-for_window [app_id="^steam$" title="^notificationtoasts.*"] floating enable, no_focus
-for_window [app_id="^steam$" title="^$"] floating enable
+for_window [app_id="^[Ss]team$" title="^Special Offers$"] floating enable
+for_window [app_id="^[Ss]team$" title="^Steam - News$"] floating enable
+for_window [app_id="^[Ss]team$" title="^notificationtoasts_.*_desktop$"] floating enable, no_focus
+for_window [app_id="^[Ss]team$" title="^notificationtoasts.*"] floating enable, no_focus
+for_window [app_id="^[Ss]team$" title="^$"] floating enable
 for_window [title="^Extension: \(Bitwarden Password Manager\)$"] floating enable
 for_window [title="^notificationtoasts.*"] floating enable, no_focus
 for_window [app_id="^xdg-desktop-portal-gtk$"] floating enable
