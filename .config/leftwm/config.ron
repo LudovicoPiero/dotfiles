@@ -1,0 +1,187 @@
+// LeftWM Config mimicking DWM
+
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+(
+    modkey: "Mod4",
+    mousekey: "Mod4",
+    workspaces: [],
+
+    // Tags matching your DWM config
+    tags: [
+        "1", "2", "3", "4", "5", "6", "7", "8", "9",
+    ],
+
+    // Layouts matching your DWM "vanitygaps" setup
+    layouts: [
+        "MainAndVertStack",       // []= Tile
+        "Monocle",                // [M] Monocle
+        "Fibonacci",              // [@] Spiral
+        "Dwindle",                // [\] Dwindle
+        "MainAndDeck",            // H[] Deck
+        "Grid",                   // HHH Grid
+        "CenterMain",             // |M| CenteredMaster
+    ],
+
+    layout_definitions: [
+        // Tile ([]=)
+        (name: "MainAndVertStack", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.55, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: Horizontal), second_stack: None)),
+        // Monocle ([M])
+        (name: "Monocle", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: None, stack: (flip: None, rotate: North, split: None), second_stack: None)),
+        // Spiral ([@])
+        (name: "Fibonacci", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.55, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: Fibonacci), second_stack: None)),
+        // Dwindle ([\\])
+        (name: "Dwindle", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.55, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: Dwindle), second_stack: None)),
+        // Deck (H[])
+        (name: "MainAndDeck", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.55, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: None), second_stack: None)),
+        // Grid (HHH)
+        (name: "Grid", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: None, stack: (flip: None, rotate: North, split: Grid), second_stack: None)),
+        // CenteredMaster (|M|)
+        (name: "CenterMain", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.55, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: None), second_stack: (flip: None, rotate: North, split: Horizontal))),
+    ],
+
+    layout_mode: Tag,
+    insert_behavior: Top, // DWM puts new windows in Master
+    scratchpad: [
+        (name: "spterm", value: "spterm", x: 860, y: 390, height: 300, width: 200),
+    ],
+
+    // Window Rules translated from your DWM rules array
+    window_rules: [
+        // --- Workspace 9: Email ---
+        (window_class: "Thunderbird", spawn_on_tag: 9),
+
+        // --- Workspace 8: Whatsapp ---
+        (window_class: "whatsapp-for-linux", spawn_on_tag: 8),
+
+        // --- Workspace 7: Torrent ---
+        (window_class: "qBittorrent", spawn_on_tag: 7),
+        (window_class: "org.qbittorrent.qBittorrent", spawn_on_tag: 7),
+
+        // --- Workspace 6: Steam ---
+        // Main Steam window
+        (window_class: "Steam", spawn_on_tag: 6),
+        (window_class: "steam", spawn_on_tag: 6),
+        // Steam Popups (Floating)
+        (window_class: "Steam", window_title: "Special Offers", spawn_floating: true),
+        (window_class: "Steam", window_title: "Steam - News", spawn_floating: true),
+        (window_class: "Steam", window_title: "Friends List", spawn_floating: true),
+
+        // --- Workspace 5: Media ---
+        (window_class: "Spotify", spawn_on_tag: 5),
+        (window_class: "fooyin", spawn_on_tag: 5),
+        (window_class: "tidal-hifi", spawn_on_tag: 5),
+        (window_class: "foobar2000.exe", spawn_on_tag: 5),
+
+        // --- Workspace 4: Communication ---
+        (window_class: "TelegramDesktop", spawn_on_tag: 4),
+        (window_class: "org.telegram.desktop", spawn_on_tag: 4),
+        // Telegram Media Viewer (Floating)
+        (window_class: "TelegramDesktop", window_title: "Media viewer", spawn_floating: true),
+
+        // --- Workspace 3: Discord ---
+        (window_class: "vesktop", spawn_on_tag: 3),
+        (window_class: "discord", spawn_on_tag: 3),
+        (window_class: "WebCord", spawn_on_tag: 3),
+
+        // --- Workspace 2: Browsers ---
+        (window_class: "Firefox", spawn_on_tag: 2),
+        (window_class: "Brave-browser", spawn_on_tag: 2),
+        (window_class: "Chromium", spawn_on_tag: 2),
+        (window_class: "zen", spawn_on_tag: 2),
+        (window_class: "zen-beta", spawn_on_tag: 2),
+        (window_class: "floorp", spawn_on_tag: 2),
+
+        // --- Workspace 1: Dev / Games ---
+        (window_class: "jetbrains", spawn_on_tag: 1),
+        (window_class: "Albion-Online", spawn_on_tag: 1),
+
+        // --- Utilities / Floating ---
+        (window_title: "Bitwarden Password Manager", spawn_floating: true),
+        (window_class: "xdg-desktop-portal-gtk", spawn_floating: true),
+        (window_class: "KeePassXC", window_title: "Generate Password", spawn_floating: true),
+        (window_class: "KeePassXC", window_title: "Browser Access Request", spawn_floating: true),
+        (window_class: "spterm", spawn_floating: true),
+    ],
+
+    disable_current_tag_swap: false,
+    disable_tile_drag: false,
+    disable_window_snap: true,
+    focus_behaviour: Sloppy,
+    focus_new_windows: true,
+    focus_on_activation: MarkUrgent,
+    create_follows_cursor: true,
+    single_window_border: true,
+    sloppy_mouse_follows_focus: true,
+    reposition_cursor_on_resize: true,
+    auto_derive_workspaces: true,
+
+    keybind: [
+        // --- Core ---
+        // Mod+p -> j4-dmenu-desktop / Dmenu with .desktop support
+        (command: Execute, value: "j4-dmenu-desktop", modifier: ["modkey"], key: "p"),
+        // Mod+Return -> Terminal (st)
+        (command: Execute, value: "st", modifier: ["modkey"], key: "Return"),
+        // Mod+Shift+q -> Quit
+        // (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "q"),
+        (command: Execute, value: "pkill leftwm", modifier: ["modkey", "Shift"], key: "q"),
+        // Mod+w -> Kill Client (Matches your DWM config)
+        (command: CloseWindow, value: "", modifier: ["modkey"], key: "w"),
+        // Mod+o -> Clipboard Picker
+        (command: Execute, value: "clipmenu", modifier: ["modkey"], key: "o"),
+        // Soft Reload
+        (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
+
+        // --- Navigation ---
+        // Mod+j -> Focus Down
+        (command: FocusWindowDown, value: "", modifier: ["modkey"], key: "j"),
+        // Mod+k -> Focus Up
+        (command: FocusWindowUp, value: "", modifier: ["modkey"], key: "k"),
+        // Mod+Shift+Return -> Zoom (Promote to Master)
+        (command: SwapWindowTop, value: "", modifier: ["modkey", "Shift"], key: "Return"),
+        // Mod+Comma -> Focus Monitor Previous
+        (command: FocusWorkspacePrevious, value: "", modifier: ["modkey"], key: "comma"),
+        // Mod+Period -> Focus Monitor Next
+        (command: FocusWorkspaceNext, value: "", modifier: ["modkey"], key: "period"),
+
+        // --- Layout Manipulation ---
+        // Mod+h -> Decrease Master Width (setmfact -0.05)
+        (command: DecreaseMainWidth, value: "5", modifier: ["modkey"], key: "h"),
+        // Mod+l -> Increase Master Width (setmfact +0.05)
+        (command: IncreaseMainWidth, value: "5", modifier: ["modkey"], key: "l"),
+        // Mod+i -> Increase Master Count (incnmaster +1)
+        (command: IncreaseMainCount, value: "", modifier: ["modkey"], key: "i"),
+        // Mod+d -> Decrease Master Count (incnmaster -1)
+        (command: DecreaseMainCount, value: "", modifier: ["modkey"], key: "d"),
+
+        // --- Layout Switching ---
+        // Mod+Space -> Next Layout
+        (command: NextLayout, value: "", modifier: ["modkey", "Shift"], key: "space"),
+        // Mod+Shift+Space -> Toggle Floating (In LeftWM usually just NextLayout or explicit float)
+        // Mapping to ToggleFloating explicitly
+        (command: ToggleFloating, value: "", modifier: ["modkey"], key: "space"),
+
+        // --- Tag Switching ---
+        (command: GotoTag, value: "1", modifier: ["modkey"], key: "1"),
+        (command: GotoTag, value: "2", modifier: ["modkey"], key: "2"),
+        (command: GotoTag, value: "3", modifier: ["modkey"], key: "3"),
+        (command: GotoTag, value: "4", modifier: ["modkey"], key: "4"),
+        (command: GotoTag, value: "5", modifier: ["modkey"], key: "5"),
+        (command: GotoTag, value: "6", modifier: ["modkey"], key: "6"),
+        (command: GotoTag, value: "7", modifier: ["modkey"], key: "7"),
+        (command: GotoTag, value: "8", modifier: ["modkey"], key: "8"),
+        (command: GotoTag, value: "9", modifier: ["modkey"], key: "9"),
+
+        // --- Move Window to Tag ---
+        (command: MoveToTag, value: "1", modifier: ["modkey", "Shift"], key: "1"),
+        (command: MoveToTag, value: "2", modifier: ["modkey", "Shift"], key: "2"),
+        (command: MoveToTag, value: "3", modifier: ["modkey", "Shift"], key: "3"),
+        (command: MoveToTag, value: "4", modifier: ["modkey", "Shift"], key: "4"),
+        (command: MoveToTag, value: "5", modifier: ["modkey", "Shift"], key: "5"),
+        (command: MoveToTag, value: "6", modifier: ["modkey", "Shift"], key: "6"),
+        (command: MoveToTag, value: "7", modifier: ["modkey", "Shift"], key: "7"),
+        (command: MoveToTag, value: "8", modifier: ["modkey", "Shift"], key: "8"),
+        (command: MoveToTag, value: "9", modifier: ["modkey", "Shift"], key: "9"),
+    ],
+    state_path: None,
+)

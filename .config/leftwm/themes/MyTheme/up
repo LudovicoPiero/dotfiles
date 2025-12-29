@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Get the absolute path to this theme folder
+export SCRIPTPATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
+
+# If a previous theme is running, run its 'down' script first
+if [ -f "/tmp/leftwm-theme-down" ]; then
+  /tmp/leftwm-theme-down
+  rm /tmp/leftwm-theme-down
+fi
+# Register THIS theme's down script for the next reload
+ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
+
+# Load the theme
+leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
+
+# Start Polybar using the config INSIDE the theme folder
+polybar main -c "$SCRIPTPATH/polybar.config" &
