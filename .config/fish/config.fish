@@ -47,6 +47,7 @@ alias nv="nvim"
 alias v="nvim"
 alias mkdir="mkdir -p"
 alias g="git"
+alias x="startx ~/.xinitrc"
 alias ..="cd .."
 alias ...="cd ../.."
 
