@@ -221,6 +221,40 @@
     angrr = {
       enable = true;
       enableNixGcIntegration = true;
+      settings = {
+        profile-policies = {
+          system = {
+            keep-booted-system = true;
+            keep-current-system = true;
+            keep-latest-n = 5;
+            keep-since = "14d";
+            profile-paths = [
+              "/nix/var/nix/profiles/system"
+            ];
+          };
+          user = {
+            enable = false;
+            keep-booted-system = false;
+            keep-current-system = false;
+            keep-latest-n = 1;
+            keep-since = "1d";
+            profile-paths = [
+              "~/.local/state/nix/profiles/profile"
+              "/nix/var/nix/profiles/per-user/root/profile"
+            ];
+          };
+        };
+        temporary-root-policies = {
+          direnv = {
+            path-regex = "/\\.direnv/";
+            period = "14d";
+          };
+          result = {
+            path-regex = "/result[^/]*$";
+            period = "3d";
+          };
+        };
+      };
     };
   };
 
