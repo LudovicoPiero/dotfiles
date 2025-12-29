@@ -1,6 +1,6 @@
 ### Variables
 set $mod Mod4
-set $term wezterm
+set $term foot
 set $menu fuzzel
 set $left h
 set $down j
