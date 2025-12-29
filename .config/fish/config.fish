@@ -33,14 +33,15 @@ bind ctrl-delete kill-token
 
 # Aliases
 alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias cat="bat"
-alias ls="lsd"
-alias l="lsd -lF --git"
-alias la="lsd -la --git"
-alias ll="lsd --git"
-alias llm="lsd -lGF --git --sort=time"
-alias t="lsd --tree"
-alias tree="lsd --tree"
+alias i='sudo xbps-install'
+# alias cat="bat"
+alias ls="eza --icons=always"
+alias l="eza --icons=always -lF --git"
+alias la="eza --icons=always -la --git"
+alias ll="eza --icons=always --git"
+alias llm="eza --icons=always -lGF --git --sort=time"
+alias t="eza --icons=always --tree"
+alias tree="eza --icons=always --tree"
 # alias nr="nixpkgs-review"
 alias nv="nvim"
 alias v="nvim"
