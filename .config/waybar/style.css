@@ -3,7 +3,8 @@
   border-radius: 0;
   font-family: "Iosevka", "Symbols Nerd Font", "Noto Sans CJK JP", sans-serif;
   font-size: 13px;
-  font-weight: 600; /* semibold */
+  font-weight: 600;
+  /* semibold */
   min-height: 0;
 }
 
@@ -85,6 +86,7 @@ window#waybar {
 #clock {
   background-color: #bb9af7;
   color: #16161e;
+  margin-top: -3px;
 }
 
 #tray {
