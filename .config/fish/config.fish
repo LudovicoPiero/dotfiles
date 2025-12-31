@@ -1,9 +1,9 @@
 # Environment
 set -gx GNUPGHOME $HOME/.config/gnupg
 set -gx EDITOR nvim
-set -gx PATH $HOME/.local/bin $PATH
-set -gx PATH "$PATH:$HOME/.local/bin:"
-set -gx PATH "$PATH:$HOME/.config/emacs/bin:"
+fish_add_path /usr/local/bin
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.config/emacs/bin
 
 set -gx LESSHISTFILE "-"                   # Don't create ~/.lesshst history files
 set -gx WGETRC "$HOME/.config/wget/wgetrc" # Move wget config out of home root
@@ -12,6 +12,16 @@ set -gx WGETRC "$HOME/.config/wget/wgetrc" # Move wget config out of home root
 set -gx GPG_TTY (tty)
 set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+
+# Hydro Prompt
+set --global hydro_fetch true
+set --global hydro_multiline true
+# Tokyo Night Color Scheme for Hydro
+set --global hydro_color_pwd 7aa2f7      # Blue
+set --global hydro_color_git bb9af7      # Magenta
+set --global hydro_color_error f7768e    # Red
+set --global hydro_color_prompt 9ece6a   # Green
+set --global hydro_color_duration e0af68 # Yellow
 
 # Disable greeting
 function fish_greeting
@@ -47,8 +57,4 @@ alias ...="cd ../.."
 # Initialization
 if type -q zoxide
     zoxide init fish | source
-end
-
-if type -q starship
-    starship init fish | source
 end
