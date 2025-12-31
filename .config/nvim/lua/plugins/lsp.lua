@@ -8,7 +8,23 @@ require("mason").setup()
 local lspconfig = require("lspconfig")
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  severity_sort = true,
+})
+
 local servers = {
+  html = {},
+  cssls = {},
+  ts_ls = {},
+  jsonls = {},
+  yamlls = {},
+  taplo = {},
+  marksman = {},
+  dockerls = {},
+  bashls = {},
   basedpyright = {
     settings = {
       basedpyright = {
