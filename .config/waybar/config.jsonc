@@ -4,10 +4,11 @@
   "height": 24,
   "spacing": 0,
   "modules-left": [
-    "niri/workspaces",
+    "niri/workspaces"
+  ],
+  "modules-center": [
     "niri/window"
   ],
-  "modules-center": [],
   "modules-right": [
     "network",
     "pulseaudio",
