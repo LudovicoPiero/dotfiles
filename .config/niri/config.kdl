@@ -101,6 +101,8 @@ layout {
 environment {
     QT_QPA_PLATFORM "wayland;xcb"
     GDK_BACKEND "wayland,x11,*"
+    XCURSOR_THEME "phinger-cursors-light"
+    XCURSOR_SIZE "24"
 }
 
 cursor {
