@@ -17,13 +17,6 @@ gpgconf --launch gpg-agent
 function fish_greeting
 end
 
-# Launch Hyprland automatically on TTY1 (Login Shell)
-# Check if $DISPLAY is empty (no graphical session) AND
-# check if $XDG_VTNR is '1' (the first virtual terminal).
-# if test -z "$DISPLAY"; and test "$XDG_VTNR" = 1
-#     exec dbus-run-session Hyprland
-# end
-
 # Use the old fish behavior
 bind alt-backspace backward-kill-word
 bind ctrl-alt-h backward-kill-word
