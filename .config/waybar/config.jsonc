@@ -35,11 +35,12 @@
     }
   },
   "network": {
-    "format-wifi": "   {essid} ",
-    "format-ethernet": "   Eth ",
+    "interval": 1, // Update every second to show real-time speed
+    "format-wifi": "  {bandwidthDownBytes}  {bandwidthUpBytes} |  {essid} ",
+    "format-ethernet": "  {bandwidthDownBytes}  {bandwidthUpBytes} | 󰈀 Eth ",
     "format-disconnected": " ⚠ No Net ",
     "tooltip-format": "{ifname} via {gwaddr}",
-    "max-length": 20
+    "max-length": 50 // Increased to fit the speed text
   },
   "pulseaudio": {
     "format": " {icon} {volume}% | {format_source} ",
