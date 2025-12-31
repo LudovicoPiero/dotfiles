@@ -4,12 +4,12 @@
   "height": 24,
   "spacing": 0,
   "modules-left": [
-    "niri/workspaces"
-  ],
-  "modules-center": [
+    "niri/workspaces",
     "niri/window"
   ],
+  "modules-center": [],
   "modules-right": [
+    "idle_inhibitor",
     "network",
     "pulseaudio",
     "battery",
@@ -20,9 +20,9 @@
     // "format": "{index} {value}"
     "format": "{icon}",
     "format-icons": {
-      "mail": "1 mail ",
-      "chat": "2 chat ",
-      "main": "3 main ",
+      "main": "1 main",
+      "chat": "2 chat",
+      "mail": "3 mail",
       "default": ""
     }
   },
@@ -32,6 +32,13 @@
     "rewrite": {
       "(.*) - Mozilla Firefox": "Firefox",
       "(.*) - Discord": "Discord"
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
     }
   },
   "network": {
