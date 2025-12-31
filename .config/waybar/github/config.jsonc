@@ -41,10 +41,8 @@
     "max-length": 20
   },
   "pulseaudio": {
-    "format": " {icon} {volume}% | {format_source} ",
-    "format-muted": "  Muted | {format_source} ",
-    "format-source": ": {volume}%",
-    "format-source-muted": ": MUTE",
+    "format": " {icon} {volume}% ",
+    "format-muted": "  Muted ",
     "format-icons": {
       "default": [
         "",
