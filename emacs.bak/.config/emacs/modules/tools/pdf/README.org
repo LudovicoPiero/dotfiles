@@ -1,0 +1,124 @@
+#+title:    :tools pdf
+#+subtitle: Emacs, your next PDF reader
+#+created:  February 06, 2018
+#+since:    21.12.0
+
+* Description :unfold:
+This module improves support for reading and interacting with PDF files in
+Emacs.
+
+It uses [[doom-package:pdf-tools]], which is a replacement for the built-in ~doc-view-mode~ for
+PDF files. The key difference being pages are not pre-rendered, but instead
+rendered on-demand and stored in memory; a much faster approach, especially for
+larger PDFs.
+
+Displaying PDF files is just one function of [[doom-package:pdf-tools]]. See [[https://github.com/vedang/pdf-tools][its project website]]
+for details and videos.
+
+** Maintainers
+/This module has no dedicated maintainers./ [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+/This module has no flags./
+
+** Packages
+- [[doom-package:pdf-tools]]
+- [[doom-package:saveplace-pdf-view]]
+
+** TODO Hacks
+#+begin_quote
+ 󱌣 This module's hacks haven't been documented yet. [[doom-contrib-module:][Document them?]]
+#+end_quote
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module requires the =epdfinfo= program. Unless you're on Windows, the
+[[doom-package:pdf-tools]] plugin will (re)build this program for you, if you issue the ~M-x
+pdf-tools-install~ command. See the next section for instructions on how to
+build the =epdfinfo= program on Windows.
+
+Build instructions for various OSes can be found [[https://github.com/vedang/pdf-tools?tab=readme-ov-file#installing-the-epdfinfo-server-from-package-managers][on the pdf-tools README]].
+
+** Building epdfinfo on Guix
+The [[https://packages.guix.gnu.org/packages/emacs-pdf-tools][emacs-pdf-tools]] package provides a prebuilt =epdfinfo=.
+
+** Building =epdfinfo= on Windows
+1. [[https://www.msys2.org/][Install MSYS2]] and update the package database and core packages using the
+   instructions provided.
+
+2. Update and install dependencies, skipping any you already have:
+   #+begin_src sh
+   pacman -Syu
+   pacman -S base-devel
+   pacman -S mingw-w64-x86_64-toolchain
+   pacman -S mingw-w64-x86_64-zlib
+   pacman -S mingw-w64-x86_64-libpng
+   pacman -S mingw-w64-x86_64-poppler
+   pacman -S mingw-w64-x86_64-imagemagick
+   #+end_src
+
+3. Install PDF tools in Emacs, but do not try to compile the server. Instead,
+   get a separate copy of the source somewhere else:
+   #+begin_src sh
+   git clone https://github.com/vedang/pdf-tools
+   #+end_src
+
+4. Open mingw64 shell (Note: You must use mingw64.exe and not msys2.exe)
+
+5. Compile pdf-tools:
+   #+begin_src sh
+   # Cask requires python2 (important: not 3!)
+   pacman -S python2
+
+   # Make the mingw-shell aware of your python installation. Adjust the path if
+   # Emacs is installed elsewhere!
+   export PATH="/c/Program Files (x86)/Emacs/bin/:$PATH"
+
+   # Cask needs to know where git.exe is; change this path if git is installed
+   # elsewhere!
+   export PATH="/c/Program Files/Git/bin:$PATH"
+
+   # Install cask. Certificate errors can be ignored with (unsafe) -k option.
+   curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+
+   # Make sure the build process can see cask
+   export PATH="$HOME/.cask/bin:$PATH"
+
+   cd /path/to/pdf-tools
+   make -s
+   #+end_src
+
+6. This should produce a file =server/epdfinfo.exe=. Copy this file into the
+   =$HOME/.emacs.d/.local/straight/build/pdf-tools/=.
+
+7. Start Emacs.
+
+8. Open a pdf file (or run ~M-x pdf-tools-install~)
+
+9. Test it out: ~M-x pdf-info-check-epdfinfo~
+
+* TODO Usage
+#+begin_quote
+ 󱌣 This module has no usage documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

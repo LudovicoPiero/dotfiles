@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Tell LeftWM to unload theme-specifics
+leftwm command "UnloadTheme"
+
+# Kill the specific apps we started in 'up'
+pkill polybar

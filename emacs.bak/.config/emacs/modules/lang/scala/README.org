@@ -1,0 +1,128 @@
+#+title:    :lang scala
+#+subtitle: Java, but good
+#+created:  May 12, 2016
+#+since:    1.0
+
+* Description :unfold:
+This module adds [[https://www.scala-lang.org][scala]] and [[https://www.scala-sbt.org/][sbt]] support to Doom Emacs.
+
+Through the power of [[https://scalameta.org/metals/docs/editors/overview.html][Metals]] (LSP) this module offers:
+- Goto Definition
+- Completions
+- Hover
+- Paremeter Hints
+- Find References
+- Run/Debug
+- Find Implementations
+- Rename Symbol
+- Code Actions
+- Document Symbols
+- Formatting
+- Folding
+- Organize Imports
+
+** Maintainers
+/This module has no dedicated maintainers./ [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +lsp ::
+  Enable LSP support for ~scala-mode~. Requires [[doom-module::tools lsp]] and a langserver
+  (supports metals).
+- +tree-sitter ::
+  Leverages tree-sitter for better syntax highlighting and structural text
+  editing. Requires Emacs 29.1+ and [[doom-module::tools tree-sitter]].
+
+** Packages
+- [[doom-package:sbt-mode]]
+- [[doom-package:scala-mode]]
+- [[doom-package:scala-ts-mode]] if [[doom-module:+tree-sitter]]
+- [[doom-package:lsp-metals]] if [[doom-module:+lsp]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+** =+lsp= Integration
+To set up LSP support for Scala you'll need the Metals LSP server. To install it
+you need Coursier installed first:
+
+*** Coursier
+Coursier is only required to install Metals. If you're on Arch linux this step
+can be skipped.
+
+**** Ubuntu / Debian / Fedora
+#+begin_src sh
+curl -fLo cs https://git.io/coursier-cli-linux &&
+    chmod +x cs &&
+    ./cs
+#+end_src
+
+**** MacOS
+#+begin_src sh
+curl -fLo cs https://git.io/coursier-cli-macos &&
+    chmod +x cs &&
+    (xattr -d com.apple.quarantine cs || true) &&
+    ./cs
+#+end_src
+
+**** Arch Linux
+#+begin_src sh
+yay -S coursier
+#+end_src
+
+*** Metals
+**** Ubuntu / Debian / Fedora / MacOS
+Update following command to latest version of metals [[https://scalameta.org/metals/docs/editors/emacs.html][found here]].
+
+#+begin_src sh
+coursier bootstrap \
+  --java-opt -Xss4m \
+  --java-opt -Xms100m \
+  --java-opt -Dmetals.client=emacs \
+  org.scalameta:metals_2.12:0.9.4 \
+  -r bintray:scalacenter/releases \
+  -r sonatype:snapshots \
+  -o /usr/local/bin/metals -f
+#+end_src
+
+**** Arch Linux
+#+begin_src sh
+yay -S metals
+#+end_src
+
+** Formatter
+
+Formatting is handled using the [[doom-module::editor format]] module via [[https://scalameta.org/scalafmt/docs/installation.html#cli][scalafmt]].
+
+* TODO Usage
+#+begin_quote
+ 󱌣 This module has no usage documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+[[doom-report:][Report an issue?]]
+
+- Projects are required to have scala version =2.11.12=, =2.12.8=, =2.13.0= or
+  greater.
+- Latest version of sbt is recommended.
+- Running ~M-x lsp-metals-doctor-run~ helps diagnose problems.
+- Full reference here: https://scalameta.org/metals/docs/editors/emacs.html
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

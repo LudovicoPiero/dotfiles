@@ -1,0 +1,105 @@
+#+title:    :lang ess
+#+subtitle: 73.6% of all statistics are made up
+#+created:  February 05, 2018
+#+since:    21.12.0 (#410)
+
+* Description :unfold:
+This module adds support for various statistics languages, including R, S-Plus,
+SAS, Julia and Stata.
+
+** Maintainers
+/This module has no dedicated maintainers./ [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +stan ::
+  Enable support for ~stan-mode~, including code completion and syntax checking.
+
+** Packages
+- [[doom-package:ess]]
+- [[doom-package:ess-view-data]]
+- [[doom-package:polymode]]
+- [[doom-package:poly-R]]
+- [[doom-package:quarto-mode]]
+- if [[doom-module:+stan]]
+  - [[doom-package:company-stan]] if [[doom-module::completion company]]
+  - [[doom-package:eldoc-stan]]
+  - [[doom-package:flycheck-stan]] if [[doom-module::checkers syntax]]
+  - [[doom-package:stan-mode]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module has several optional dependencies:
+
+- [[https://github.com/jimhester/lintr][lintr]]: for R linting.
+- [[https://github.com/REditorSupport/languageserver][languageserver]]: for LSP support in an R buffer (with [[doom-module:+lsp]] flag).
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** :map ess-doc-map
+| key | command                    |
+|-----+----------------------------|
+| "h" | ess-display-help-on-object |
+| "p" | ess-R-dv-pprint            |
+| "t" | ess-R-dv-ctable            |
+
+** :map ess-mode-map
+| key          | command               |
+|--------------+-----------------------|
+| "<s-return>" | ess-eval-line         |
+| "<up>"       | comint-next-input     |
+| "<down>"     | comint-previous-input |
+
+** :localleader
+| state | key         | command                                           |
+|-------+-------------+---------------------------------------------------|
+| :nv   | ","         | ess-eval-region-or-function-or-paragraph-and-step |
+| :n    | "'"         | R                                                 |
+| :n    | "<tab>"     | ess-switch-to-inferior-or-script-buffer           |
+| :n    | "<backtab>" | ess-switch-process                                |
+| :n    | "B"         | ess-eval-buffer-and-go                            |
+| :n    | "b"         | ess-eval-buffer                                   |
+| :nv   | "d"         | ess-eval-region-or-line-and-step                  |
+| :n    | "D"         | ess-eval-function-or-paragraph-and-step           |
+| :n    | "L"         | ess-eval-line-and-go                              |
+| :n    | "l"         | ess-eval-line                                     |
+| :nv   | "R"         | ess-eval-region-and-go                            |
+| :nv   | "r"         | ess-eval-region                                   |
+| :n    | "F"         | ess-eval-function-and-go                          |
+| :n    | "f"         | ess-eval-function                                 |
+| :n    | "h"         | ess-doc-map                                       |
+| :n    | "x"         | ess-extra-map                                     |
+| :n    | "p"         | ess-r-package-dev-map                             |
+| :n    | "v"         | ess-dev-map                                       |
+| :n    | "cC"        | ess-eval-chunk-and-go                             |
+| :n    | "cc"        | ess-eval-chunk                                    |
+| :n    | "cd"        | ess-eval-chunk-and-step                           |
+| :n    | "cm"        | ess-noweb-mark-chunk                              |
+| :n    | "cp"        | ess-noweb-previous-chunk                          |
+| :n    | "cn"        | ess-noweb-next-chunk                              |
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

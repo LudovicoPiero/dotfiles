@@ -1,0 +1,72 @@
+#+title:    :ui emoji
+#+subtitle: 💩
+#+created:  September 30, 2020
+#+since:    21.12.0
+
+* Description :unfold:
+This module can redisplay ASCII/GitHub emoticon strings as corresponding Unicode
+emoji. In addition, a completion command is provided to insert these strings as
+well as the typical Unicode representations.
+
+Note: Emacs 29 provides [[https://git.savannah.gnu.org/cgit/emacs.git/tree/etc/NEWS?h=emacs-29.1#n884][native support]] for inserting Unicode emojis. This module
+only remains useful if you want ASCII/GitHub emoticon string
+insertion/conversion or need PNG/ASCII emoji rendering on a system with limited
+font configuration.
+
+** Maintainers
+*This module needs a maintainer.* [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +ascii ::
+  Include plain text emojis like =:)=.
+- +github ::
+  Include Github-style emojis like =:smile:=.
+- +unicode ::
+  Include unicode emojis like 🙂.
+
+** Packages
+- [[doom-package:emojify]]
+ 
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+From the [[https://github.com/iqbalansari/emacs-emojify/blob/master/README.org#requirements][emojify requirements]] docs:
+#+begin_quote
+The [[https://github.com/iqbalansari/emacs-emojify][emojify]] package requires Emacs *v24.3* and above. Emacs should be compiled
+with support for *PNG* images to display emojis as images. It is *recommended*
+that Emacs is compiled with *ImageMagick* support. ~emojify~ will use it to
+resize emojis if needed, additionally imagemagick is used to set background
+color for emojis to workaround the bug described in [[https://github.com/iqbalansari/emacs-emojify/issues/7][issue 7]]. However these are
+*completely optional*.
+
+PNG support might require some additional steps to on Windows, you might find
+[[http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files][this]] stackoverflow answer helpful.
+#+end_quote
+
+* TODO Usage
+#+begin_quote
+ 󱌣 This module has no usage documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

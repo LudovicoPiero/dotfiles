@@ -1,0 +1,17 @@
+#![enable(implicit_some)]
+(
+    // Border Thickness
+    border_width: 2,
+
+    // Gaps between windows
+    // [Top, Right, Bottom, Left]
+    margin: [5, 5, 5, 5],
+
+    // Gaps between windows and the screen edge
+    workspace_margin: 2,
+
+    // Colors (Tokyo Night)
+    default_border_color: "#1a1b26", // Inactive border (Background)
+    floating_border_color: "#414868", // Floating window border (Surface)
+    focused_border_color: "#7aa2f7", // Active border (Blue)
+)

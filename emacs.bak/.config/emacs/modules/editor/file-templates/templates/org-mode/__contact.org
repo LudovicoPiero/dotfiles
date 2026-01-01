@@ -1,0 +1,17 @@
+#+title:${1:Contact Name}
+#+date:     `(format-time-string "%Y-%m-%d")`
+#+email:    ${2:email@address.com}
+#+address:  $3
+#+city:     $4
+#+country:  $5
+
+${0:...}
+
+* Associates
++ Associate's name :: associates@email.com
+* Projects [/]
+** ACTIVE ... [/]
+* Invoices [/]
+** PENDING YYMM-0000 *1,000 USD*
+* Notes
+* Correspondence

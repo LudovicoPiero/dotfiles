@@ -1,0 +1,344 @@
+:PROPERTIES:
+:ID:       e103c1bc-be8e-4451-8e43-a93d9e35e692
+:END:
+#+title:    Examples
+#+subtitle: Samples of Emacs/Doom dotfiles, concepts, and sub-projects
+#+property: header-args:elisp :results pp
+
+#+begin_quote
+ 󰐃 Our documentation was designed to be read in Doom Emacs ([[kbd:][M-x doom/help]]) or
+    online at https://docs.doomemacs.org. Avoid reading it elsewhere (like
+    Github), where it will be rendered incorrectly.
+#+end_quote
+
+* Introduction
+Examples speak louder than technical explanations, so this file exists to house
+examples of Doom's (and Emacs') concepts, libraries, dotfiles, and more, for
+your own reference. They are divided into Emacs-specific and Doom-specific
+examples; where the former can also be useful to users who don't use Doom.
+
+Some of Doom's components will read this file to generate documentation for you,
+for example:
+
+- Doom's [[doom-module:][:lang emacs-lisp]] module installs the [[doom-package:elisp-demos]] package. This displays
+  usage examples alongside documentation in [[doom-package:help]] and [[doom-package:helpful]] buffers (produced
+  by =describe-*= and =helpful-*= commands; e.g. [[kbd:][<help> h f]]). Doom has extended
+  this package to search this file as well.
+- [[id:1b8b8fa9-6233-4ed8-95c7-f46f8e4e2592][Some Doom's CLI commands]] will emit documentation informed by Doom's org files,
+  including this file.
+
+If you're interested in adding to this document, read [[id:9ac0c15c-29e7-43f8-8926-5f0edb1098f0][the documentation section]]
+of our contributing guide first.
+
+* TODO Emacs
+This section is dedicated to examples of concepts and libraries that can benefit
+all Emacs users, whether or not they use Doom.
+
+** TODO Templates
+*** TODO Emacs package
+*** TODO Dynamic module
+
+* TODO Doom Emacs
+This section is dedicated to examples of concepts and libraries only relevant to
+Doom and its users. These are intended to be demonstrations, not substitutes for
+documentation.
+
+** TODO Configuration files
+*** =profiles.el=
+:PROPERTIES:
+:ID:       f9bce7da-d155-4727-9b6f-b566b5b8d824
+:END:
+This file can live in any of:
+
+- =$DOOMDIR/profiles.el=
+- =$EMACSDIR/profiles.el=
+- =~/.config/doom-profiles.el=
+- =~/.doom-profiles.el=
+
+Here is an exhaustive example of all its syntax and capabilities:
+#+begin_src emacs-lisp
+;; -*- mode: emacs-lisp; -*-
+((profile1
+  ;; The permitted formats of each entry:
+  (var . value)
+  ("envvar" . value)
+  (var :directive values...)
+
+  ;; `user-emacs-directory' is often the first variable you want to set, so
+  ;; Emacs knows where this profile lives. If you don't, it'll use the config
+  ;; living in the default locations (~/.config/emacs or ~/.emacs.d).
+  (user-emacs-directory . "~/another/emacs/config/")
+  ;; If this is a Doom config, you'll also want to set `doom-user-dir', which
+  ;; defaults to ~/.config/doom or ~/.doom.d:
+  (doom-user-dir . "~/another/doom/config/")
+  ;; If a CAR is a string, it is assumed you want to set an environment
+  ;; variable. (Side-note: setting DOOMDIR will be unnecessary if you're setting
+  ;; `doom-user-dir' above).
+  ("DOOMDIR" . "~/another/doom/config/")
+
+  ;; Doom profiles support a number of special directives. They are:
+  ;;
+  ;; (VAR :path SEGMENTS...) -- set VAR to an exapnded path built from SEGMENTS,
+  ;; relative to `user-emacs-directory', unless an absolute path is in SEGMENTS.
+  (doom-cache-dir :path doom-user-dir ".local/cache")
+  (doom-data-dir  :path doom-user-dir ".local/data")
+  (doom-state-dir :path doom-user-dir ".local/state")
+  ;; (VAR :plist VALUE) -- use VALUE as a literal plist; ignoring any profile
+  ;; directives that may be in it.
+  (some-plist :plist (:foo bar :baz womp))
+  ;; (VAR :eval FORMS...) -- use to evaluate arbitrary elisp forms. Note that
+  ;; his runs early in early-init.el. It's wise to assume no APIs are available
+  ;; or loaded, only the previous bindings in this profile.
+  (doom-theme :eval (if (equal (system-name) "foo") 'doom-one 'doom-dracula))
+  ;; Though discouraged, you may evaluate forms without a binding by using `_'.
+  ;; You really should be doing this in the profile though...
+  (_ :eval (message "Hello world!"))
+  (_ :eval (with-eval-after-load 'company (setq-default company-idle-delay 2.0)))
+  ;; (VAR :prepend FORMS...) or (VAR :append FORMS...) -- prepend or append the
+  ;; evaluated result of each form in FORMS to VAR (a list). If VAR is undefined
+  ;; at startup, it will be deferred until the variable is available.
+  (load-path :prepend (expand-file-name "packages/" doom-user-dir))
+  (load-path :prepend (expand-file-name "lisp/" doom-user-dir))
+  (load-path :append  (expand-file-name "fallback/" doom-user-dir))
+  (exec-path :prepend (expand-file-name "bin/" doom-user-dir))
+  (auto-mode-alist :prepend '("\\.el\\'" . lisp-mode)))
+
+ (profile2
+  ...)
+
+ (profile3
+  ...))
+#+end_src
+
+*** =.doomprofile=
+:PROPERTIES:
+:ID:       ac37ac6f-6082-4c34-b98c-962bc1e528c9
+:END:
+This file takes after the second level of =profiles.el='s format (see a more
+complete example in [[id:f9bce7da-d155-4727-9b6f-b566b5b8d824][the previous section]]). For example:
+
+#+begin_src emacs-lisp
+;;; -*- mode: emacs-lisp -*-
+;; A .doomprofile can be placed under an implicit profile. Same rules as
+;; .doom-profiles.el, but one level deeper.
+
+((var . value)
+ ("envvar" . value)
+ (var :directive values...))
+#+end_src
+
+*** TODO =.doom=
+*** TODO =.doom.el=
+*** TODO =.doommodule=
+** TODO Templates
+*** TODO User configuration
+*** TODO Module
+*** TODO Project
+*** TODO Theme
+*** TODO Command-line interface
+**** Unix utilities, rewritten as Doom scripts
+To show off the syntax and capabilities of Doom's CLI framework, here are some
+popular scripts ported to doomscripts for reference. They will all operate under
+these assumptions:
+
+1. The script lives somewhere in your =$PATH=,
+2. =$EMACSDIR/bin/doomscript= lives in your =$PATH=.
+3. The script is executable,
+4. The script's filename matches the first argument of ~run!~ (by convention,
+   not a requirement),
+
+***** ~mkdir~
+#+begin_src emacs-lisp :eval no
+#!/usr/bin/env doomscript
+
+(defcli! mkdir
+    ((mode     ("-m" "--mode" mode))
+     (parents? ("-p" "--parents"))
+     (verbose? ("-v" "--verbose"))
+     &args directories)
+  "Create the DIRECTORIES, if do not already exist.
+
+Mandatory arguments to long options are mandatory for short options too.
+
+OPTIONS:
+  -m, --mode
+    set file mode (as in chmod), not a=rwx - umask.
+  -p, --parents
+    no error if existing, make parent directories as needed, with their file
+    modes unaffected by any `-m' option.
+  -v, --verbose
+    print a message for each created directory
+
+AUTHOR:
+  Original program by David MacKenzie. Doomscript port by Henrik Lissner.
+
+SEE ALSO:
+  `mkdir(2)`
+
+  Full documentation <https://www.gnu.org/software/coreutils/mkdir>
+  or available locally via: info '(coreutils) mkdir invocation'
+
+  Packaged by https://nixos.org
+  Copyright © 2022 Free Software Foundation, Inc.
+  License  GPLv3+:  GNU  GPL  version 3 or later <https://gnu.org/li‐
+  censes/gpl.html>.
+  This is free software: you are free to change and redistribute it.
+  There is NO WARRANTY, to the extent permitted by law."
+  (dolist (dir directories)
+    (unless (file-directory-p dir)
+      (make-directory dir parents?)
+      (when mode
+        (set-file-modes dir mode))
+      (when verbose?
+        (print! "mkdir: created directory '%s'" dir)))))
+#+end_src
+
+****** Notes
+- Docstrings for Doom CLIs recognize indented sections with a capitalized
+  heading followed by a colon (like ~SEE ALSO:~, ~OPTIONS:~, etc). They will be
+  appended to the --help output for this command. ~OPTIONS~ and ~ARGUMENTS~ are
+  special, in that they decorate pre-existing documentation for referenced
+  options/arguments.
+
+- The options were documented in the CLI's docstring, instead of inline like so:
+
+  #+begin_src emacs-lisp
+      ((mode     ("-m" "--mode" mode) "set file modes (as in chmod), not a=rwx - umask.")
+       (parents? ("-p" "--parents") "no error if existing, make parent directories as needed, with their file modes unaffected by any `-m' option.")
+       (verbose? ("-v" "--verbose") "print a message for each created directory")
+       &args directories)
+  #+end_src
+
+  Either is acceptable, but for long docs like this, it's better suited to the
+  docstring. If both were present, Doom's help docs would have concatenated them
+  (separated by two newlines).
+
+- The ~mode~ option takes one argument, a chmod mask. I indicate this with
+  ~"`MODE'"~. This is a special syntax for highlighting arguments in the help
+  docs of this command. If I had used a symbol, instead (one of the predefined
+  types in [[var:][doom-cli-argument-value-types]]), I would've gotten free type-checking
+  and error handling, but there is no predefined type for chmod masks (yet), so
+  I'd have to do my own checks:
+
+  #+begin_src emacs-lisp :eval no
+  (defcli! mkdir
+      ((mode     ("-m" "--mode" "`MODE'"))
+       (parents? ("-p" "--parents"))
+       (verbose? ("-v" "--verbose"))
+       &args directories)
+    (unless (string-match-p "^[0-9]\\{3,4\\}$" mode)
+      (user-error "Invalid mode: %s" mode))
+    (setq mode (string-to-number mode 8))
+    (dolist (dir directories)
+      (unless (file-directory-p dir)
+        (make-directory dir parents?)
+        (when mode
+          (set-file-modes dir mode))
+        (when verbose?
+          (print! "mkdir: created directory '%s'" dir)))))
+  #+end_src
+
+  That said, set-file-modes will throw its own type error, but it likely won't
+  be as user friendly.
+
+***** TODO ~say~
+#+begin_src emacs-lisp :eval no
+#!/usr/bin/env doomscript
+
+(defcli! say
+    ((name ("--speaker" name) "Who is speaking?")
+     &args args)
+  "This command repeats what you say to it.
+
+It serves as an example of the bare minimum you need to write a Doom-based CLI.
+Naturally, it could be more useful; it could process more complex options and
+arguments, call other Doom CLIs, read/write data from files or over networks --
+but that can wait for more complicated examples.
+
+ARGUMENTS:
+  ARGS
+    The message to be repeated back at you.
+
+OPTIONS:
+  --speaker
+    If not specified, it is assumed that Emacs is speaking."
+  (print! "%s says: %S"
+          (or name "Emacs")
+          (string-join args " ")))
+
+(run! "say" (cdr (member "--" argv)))
+#+end_src
+
+#+begin_src bash :eval no
+$ say hello world
+Emacs says: "Hello world"
+$ say --speaker Henrik "I've doomed us all"
+Henrik says: "I've doomed us all"
+$ say --help
+TODO
+#+end_src
+
+***** emacs
+This isn't useful, but it should hopefully demonstrate the full spectrum of
+Doom's CLI, by reimplementing a subset of ~emacs~'s options and arguments (and
+none of its documentation). It will simply forward them to the real program
+afterwards.
+
+Since I don't want to override the real ~emacs~ in the ~$PATH~, I'll just call
+it ~demacs~:
+
+#+begin_src emacs-lisp :eval no
+#!/usr/bin/env doomscript
+
+(defcli! demacs
+    ((cd ("--chdir" dir))
+     (quick?     ("-Q" "--quick"))
+     (no-init?   ("-q" "--no-init-file"))
+     (no-slisp?  ("-nsl" "--no-site-lisp"))
+     (no-sfile?  ("--no-site-file"))
+     (initdir    ("--init-directory" dir))
+     (batch?     ("--batch"))
+     (batch      (("-l" "--load" (file) ...))
+                 (("-e" "--eval" (form) ...))
+                 (("-f" "--funcall" (fn) ...))
+                 (("-L" "--directory" (dir) ...))
+                 (("--kill")))
+     (script     ("--script" (file)))
+     &args (args (file linecol)))
+  "Demacs is a thin wrapper around Emacs, made to demo of Doom's CLI Framework.
+
+Since documentation isn't the focus of this example, this is all you'll get!"
+  (cond (script (load script))
+        (batch?
+         (dolist (do batch)
+           (pcase do
+             (`(,(or "-l" "--load") . ,file) (load file))
+             (`(,(or "-e" "--eval") . ,form) (eval (read form) t))
+             (`(,(or "-f" "--funcall") . ,fn) (funcall (read fn)))
+             (`("--kill" . t) (kill-emacs 0)))))
+        ((exit! :then (cons "emacs"
+                            (append (if quick '("-Q"))
+                                    (if no-init? '("-q"))
+                                    (if no-slisp? '("-nsl"))
+                                    (if no-sfile? '("--no-site-file"))
+                                    (if initdir `("--init-directory" ,initdir))
+                                    args))))))
+#+end_src
+
+****** Notes
+There's a lot of (intentional) redundancy here, for posterity. A *much* simpler
+(and more reliable) version of this command would've looked like this:
+
+#+begin_src emacs-lisp
+(defcli! demacs (&rest args)
+  (exit! :then (cons "emacs" args)))
+#+end_src
+
+But that wouldn't demonstrate enough. Though, it wouldn't forward ~--version~ or
+~--help~ either.
+
+** TODO Use cases
+*** TODO Note-taking
+*** TODO Game development
+*** TODO Web development
+*** TODO Emacs as your terminal

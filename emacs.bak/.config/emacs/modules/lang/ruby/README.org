@@ -1,0 +1,141 @@
+#+title:    :lang ruby
+#+subtitle: 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+#+created:  January 16, 2007
+#+since:    1.3
+
+* Description :unfold:
+This module add Ruby and optional Ruby on Rails support to Emacs. IDE features
+(like code completion, jump-to-definition, etc) are provided by a supported LSP
+client (recommended: [[https://github.com/Shopify/ruby-lsp][ruby-lsp]] or [[https://github.com/castwide/solargraph][solargraph]]).
+
+** Maintainers
+- [[doom-user:][@hlissner]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +chruby ::
+  Enable chruby integration.
+- +lsp ::
+  Enable LSP support for ~ruby-mode~. Requires [[doom-module::tools lsp]] and a
+  langserver (recommended: [[https://github.com/Shopify/ruby-lsp][ruby-lsp]] or [[https://github.com/castwide/solargraph][solargraph]]).
+- +rails ::
+  Enable rails navigational commands, plus server+console integration.
+- +rbenv ::
+  Enable rbenv integration.
+- +rvm ::
+  Enable RVM (Ruby Version Manager) integration.
+- +tree-sitter ::
+  Leverages tree-sitter for better syntax highlighting and structural text
+  editing. Requires [[doom-module::tools tree-sitter]].
+
+** Packages
+- [[doom-package:bundler]]
+- [[doom-package:chruby]] if [[doom-module:+chruby]]
+- [[doom-package:company-inf-ruby]] if :completion company
+- [[doom-package:inf-ruby]]
+- [[doom-package:minitest]]
+- [[doom-package:rake]]
+- [[doom-package:rbenv]] if [[doom-module:+rbenv]]
+- [[doom-package:rspec-mode]]
+- [[doom-package:rvm]] if [[doom-module:+rvm]]
+- if [[doom-module:+rails]]
+  - [[doom-package:inflections]]
+  - [[doom-package:projectile-rails]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module requires Ruby. It is recommended you install it with some version
+manager (e.g. RVM or Rbenv).
+
+These guides will help you install Ruby:
+- [[https://gorails.com/setup/ubuntu/18.04][Ubuntu]]
+- [[https://gorails.com/setup/osx/10.15-catalina][MacOS]]
+- [[https://gorails.com/setup/windows/10][Windows]]
+
+** Formatter
+Formatting is handled using the [[doom-module::editor format]] module via [[https://prettier.io/docs/en/install.html][prettier]].
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** Commands
+*** projectile-rails
+The projectile-rails prefix is [[kbd:][<localleader> r]]:
+| command                       | key / ex command  | description                                       |
+|-------------------------------+-------------------+---------------------------------------------------|
+| ~projectile-rails-console~    | [[kbd:][<localleader> r r]] | Open Rails console                                |
+| ~projectile-rails-server~     | [[kbd:][<localleader> r R]] | Open Rails server                                 |
+| ~projectile-rails-find-model~ | [[kbd:][<localleader> r m]] | Find any model of the project                     |
+| ~projectile-rails-find-model~ | [[kbd:][<localleader> r M]] | Find the model related of currently open resource |
+
+*** bundler
+The bundler prefix is [[kbd:][<localleader> b]]:
+| command          | key / ex command  | description         |
+|------------------+-------------------+---------------------|
+| ~bundle-install~ | [[kbd:][<localleader> b i]] | Runs bundle install |
+| ~bundle-update~  | [[kbd:][<localleader> b u]] | Runs bundle update  |
+
+*** rspec-mode
+The rspec-mode prefix is [[kbd:][<localleader> t]]:
+| command               | key / ex command | description                       |
+|-----------------------+------------------+-----------------------------------|
+| ~rspec-verify~        | =SPC m t v=      | Runs rspec on current file        |
+| ~rspec-verify-method~ | =SPC m t s=      | Runs rspec for the item on cursor |
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+** Known imenu issues
+These are recorded issues with ruby-mode's imenu integration that need to be
+addressed upstream. PRs to fix them locally are welcome.
+
+- Incorrectly parses methods/items after an array accessor [[https://github.com/ruby/ruby/pull/2996/files][endless method]]
+  definition (Ruby 3+):
+  #+begin_src ruby
+  class Foo
+    def bar; end
+    def baz; end
+    def [](key) = x + x
+    def wop; end
+    def gop; end
+  end
+  #+end_src
+
+  Imenu will list =Foo#bar=, =Foo#baz=, and =Foo#[]= but stops there, sometimes
+  listing the rest as if there were top-level.
+
+- Does not recognize inline Struct definitions as classes:
+  #+begin_src ruby
+  Foo = Struct.new(:a, :b, :c) do
+    def test; end
+  end
+  #+end_src
+
+  Imenu should recognize this method as =Foo#test=, not =test=. ~class Foo <
+  Struct.new(...)~ is not an acceptable workaround because it creates an
+  intermediary class (i.e. has side-effects).
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

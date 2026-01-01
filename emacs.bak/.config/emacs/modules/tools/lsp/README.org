@@ -1,0 +1,142 @@
+#+title:    :tools lsp
+#+subtitle: M-x vscode
+#+created:  March 05, 2019
+#+since:    21.12.0
+
+* Description :unfold:
+This module integrates [[https://langserver.org/][language servers]] into Doom Emacs. They provide features
+you'd expect from IDEs, like code completion, realtime linting, language-aware
+[[doom-package:imenu]]/[[doom-package:xref]] integration, jump-to-definition/references support, and more.
+
+Depending on the presence of the =+eglot= flag, this module is powered by either
+[[doom-package:lsp-mode]] or [[doom-package:eglot]]. A comprehensive list of LSP clients that are supported
+out-of-the-box (as well as documentation on adding more) can be found [[https://emacs-lsp.github.io/lsp-mode/page/languages/][here]] (for
+lsp-mode) or [[https://github.com/joaotavora/eglot?tab=readme-ov-file#connecting-to-a-server][here]] (for eglot).
+
+Each of Doom's :lang modules may add new, extend existing, or change support for
+existing LSP clients. Remember to check out their documentation (particularly
+for its =+lsp= flag).
+
+** Maintainers
+/This module has no dedicated maintainers./ [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +booster ::
+  Speed up I/O between LSP clients and Emacs by converting JSON output from LSP
+  servers into Elisp bytecode. Only works for Eglot, at the moment, and requires
+  [[https://github.com/blahgeek/emacs-lsp-booster][emacs-lsp-booster]] (also needed on remote systems if editing over TRAMP).
+- +eglot ::
+  Use [[https://elpa.gnu.org/packages/eglot.html][Eglot]] instead of [[https://github.com/emacs-lsp/lsp-mode][LSP-mode]] to implement the LSP client in Emacs.
+- +peek ::
+  Use ~lsp-ui-peek~ when looking up definitions and references with
+  functionality from the [[doom-module::tools lookup]] module.
+
+** Packages
+- [[doom-package:lsp-mode]]
+- [[doom-package:lsp-ui]]
+- [[doom-package:lsp-ivy]] ([[doom-module::completion ivy]])
+- [[doom-package:helm-lsp]] ([[doom-module::completion helm]])
+- [[doom-package:consult-lsp]] ([[doom-module::completion vertico]])
+- [[doom-package:eglot]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+To get LSP working, you'll need to do three things:
+
+1. Enable this module,
+2. Install a language server appropriate for your targeted language(s).
+3. Enable the [[doom-module:+lsp]] flag on the [[doom-module::lang]] modules you want to enable LSP support for.
+
+Different languages will need different language servers, some of which [[doom-package:lsp-mode]]
+will prompt you to auto-install, but [[doom-package:eglot]] will not.
+
+A table that lists available language servers and how to install them can be
+found [[https://emacs-lsp.github.io/lsp-mode/page/languages/][on the lsp-mode project README]]. The documentation of the module for your
+targeted language will contain brief instructions as well.
+
+For eglot users, a list of [[https://github.com/joaotavora/eglot/blob/master/README.md#connecting-to-a-server][default servers supported is on Eglot's README]],
+including instructions to register your own.
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** LSP-powered project search
+Without the [[doom-module:+eglot]] flag, and when [[doom-module::completion ivy]], [[doom-module::completion helm]] or
+[[doom-module::completion vertico]] is active, LSP is used to search a symbol indexed by the LSP
+server:
+| Keybind | Description                         |
+|---------+-------------------------------------|
+| [[kbd:][SPC c j]] | Jump to symbol in current workspace |
+| [[kbd:][SPC c J]] | Jump to symbol in any workspace     |
+
+** Differences between eglot and lsp-mode
+The two projects are large and actively developed, so without writing a novel,
+it can only be compared in (very) broad strokes:
+
+- [[doom-package:lsp-mode]] tends to be more featureful, beginner-friendly (e.g. offers to
+  install servers for you and has more [[https://emacs-lsp.github.io/lsp-mode][helpful documentation]]), and has a user
+  experience that feels familiar to modern editors/IDEs, but at the cost of
+  performance (at baseline) and complexity (it has more moving parts and
+  reinvents a number of wheels to achieve a slicker UI, like ~lsp-ui-peek~,
+  ~lsp-ui-sideline~, etc).
+
+- [[doom-package:eglot]] has fewer bells and whistles: it relies on built-in Emacs functionality
+  more (eldoc, xref, capf, project.el, etc), offers less pre-configuration for
+  you, and is more performant than lsp-mode (again, at baseline). It also works
+  with TRAMP out-of-the-box (lsp-mode needs some extra configuration).
+
+#+begin_quote
+ 󰟶 I recommend beginners use lsp-mode. More experienced users may also opt to
+    disable many of [[https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/][its inessential features]] to gain back some ground on
+    performance and complexity costs.
+#+end_quote
+
+All that said, it's easy to switch between the two implementations by swapping
+in/out the [[doom-module:+lsp]] or [[doom-module:+eglot]] flag when [[id:01cffea4-3329-45e2-a892-95a384ab2338][enabling this module]].
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 /This module's configuration documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** Turn off lsp-mode's intrusive features
+Many users may not like how many UI elements that lsp-mode adds. They have [[https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/][some
+excellent documentation]] outlining what these features are called and how to turn
+them off.
+
+* Troubleshooting
+[[doom-report:][Report an issue?]]
+
+** My language server is not found
+Check the entry in the [[../../../docs/faq.org][FAQ]] about "Doom can't find my executables/doesn't inherit
+the correct ~PATH~"
+
+** LSP/Eglot is not started automatically in my buffer
+Make sure that you have enabled the [[doom-module:+lsp]] flag on the appropriate module(s) (in
+your ~doom!~ block in =$DOOMDIR/init.el=):
+#+begin_src diff
+:lang
+-python
++(python +lsp)
+#+end_src
+
+** LSP is slow
+Follow [[https://emacs-lsp.github.io/lsp-mode/page/performance/#tuning][lsp-tuning-guide]] to further fine-tune LSP mode performance.
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

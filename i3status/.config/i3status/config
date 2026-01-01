@@ -1,0 +1,61 @@
+general {
+        colors = true
+        interval = 5
+}
+
+order += "ipv6"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "cpu_temperature 0"
+order += "battery all"
+order += "volume master"
+order += "disk /"
+order += "load"
+order += "memory"
+order += "tztime local"
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "pulse"
+        # mixer = "Master"
+        mixer_idx = 0
+}
+
+wireless _first_ {
+        format_up = "IP LEAK: %ip"
+        format_down = "W: Disconnected"
+}
+
+ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: Disconnected"
+}
+
+cpu_temperature 0 {
+    format = "T: %degrees °C"
+    path = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon*/temp1_input"
+    max_threshold = 95
+}
+
+battery all {
+        format = "%status %percentage %remaining"
+}
+
+disk "/" {
+        format = "/: %avail"
+}
+
+load {
+        format = "Load: %1min"
+}
+
+memory {
+        format = "Memory: %used / %available"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "%Y年 %m月 %d日 %H:%M:%S"
+}

@@ -1,0 +1,194 @@
+# i3config
+font pango:Iosevka Semibold 11
+
+### Variables
+set $mod Mod4
+set $term wezterm
+set $menu dmenu_run
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Catppuccin Mocha Colors
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f8497
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+### Autostart: Core Services
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
+exec --no-startup-id fcitx5 -d --replace
+exec --no-startup-id mako
+
+# Audio (Gentoo quirks)
+exec --no-startup-id gentoo-pipewire-launcher &
+
+### Autostart: Applications
+exec --no-startup-id sleep 1 && mpd &
+exec --no-startup-id sleep 1 && mpd-mpris &
+exec --no-startup-id thunderbird-bin
+
+### Bindings: System & Apps
+bindsym $mod+Return exec $term
+bindsym $mod+p exec --no-startup-id $menu
+bindsym $mod+w kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+
+# Hardware Keys
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+### Bindings: Navigation
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+### Bindings: Layout
+bindsym $mod+v split v
+bindsym $mod+s layout stacking
+bindsym $mod+e layout toggle split tabbed stacking
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Mouse & Borders
+# floating_modifier $mod normal
+default_border pixel 2
+default_floating_border pixel 2
+
+### Resize Mode
+mode "resize" {
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Visuals: Window Borders
+# class                 border    backgr    text    indicator child_border
+client.focused          $lavender $base     $text   $rosewater $lavender
+client.focused_inactive $overlay0 $base     $text   $rosewater $overlay0
+client.unfocused        $overlay0 $base     $text   $rosewater $overlay0
+client.urgent           $red      $base     $peach  $overlay0  $red
+client.placeholder      $overlay0 $base     $text   $overlay0  $overlay0
+client.background       $base
+
+### Status Bar
+bar {
+    status_command i3status
+    position bottom
+    font pango:Iosevka Semibold 11
+    colors {
+        statusline $text
+        background $base
+        separator $overlay0
+
+        # Class            Border    Backgr    Text
+        focused_workspace  $base     $mauve    $base
+        active_workspace   $surface1 $surface1 $text
+        inactive_workspace $base     $base     $text
+        urgent_workspace   $base     $red      $base
+        binding_mode       $base     $red      $base
+    }
+}
+
+### Window Rules & Assignments (X11 translation)
+assign [class="(?i)thunderbird"] workspace number 9
+assign [class="(?i)whatsapp"] workspace number 8
+assign [class="(?i)qBittorrent"] workspace number 7
+assign [class="(?i)steam"] workspace number 6
+assign [class="(?i)spotify|fooyin|tidal-hifi|foobar2000.exe"] workspace number 5
+assign [class="(?i)telegram"] workspace number 4
+assign [class="(?i)vesktop|discord"] workspace number 3
+assign [class="(?i)brave-browser|firefox|floorp|zen|chromium"] workspace number 2
+assign [class="(?i)jetbrains-.*|Albion-Online"] workspace number 1
+
+# Floating & Focus Logic
+for_window [class="(?i)foobar2000.exe"] floating disable
+for_window [class="(?i)telegram" title="(?i)Media viewer"] floating enable
+for_window [class="(?i)steam" title="Special Offers"] floating enable
+for_window [class="(?i)steam" title="Steam - News"] floating enable
+for_window [class="(?i)steam" title="notificationtoasts.*"] floating enable, no_focus
+for_window [title="^Extension: \(Bitwarden Password Manager\)$"] floating enable
+for_window [class="(?i)KeePassXC" title="Generate Password"] floating enable

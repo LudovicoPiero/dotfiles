@@ -1,0 +1,252 @@
+### Variables
+set $mod Mod4
+set $term foot
+set $menu fuzzel
+set $left h
+set $down j
+set $up k
+set $right l
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f8497
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+### Hardware & System
+output HDMI-A-1 mode 1920x1080@180Hz
+output eDP-1 disable
+
+input keyboard {
+  repeat_rate 30
+  repeat_delay 300
+}
+
+# Idle & Lock
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+### Autostart: Core Services
+# DBus & Polkit
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+
+# Portals & Audio (Gentoo quirks)
+exec pkill -9 xdg-desktop-portal-wlr xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-desktop-portal mpd pipewire wireplumber pipewire-pulse
+exec sleep 1 && /usr/libexec/xdg-desktop-portal-wlr &
+exec sleep 2 && /usr/libexec/xdg-desktop-portal-gtk &
+exec sleep 2 && /usr/libexec/xdg-desktop-portal &
+exec pipewire
+exec wireplumber
+exec pipewire-pulse
+
+# Environment
+exec brightnessctl set 10%
+exec swaybg -i $HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png
+exec fcitx5 -d --replace
+exec mako
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+
+### Autostart: Applications
+exec sleep 1 && mpd &
+exec sleep 1 && mpd-mpris &
+exec thunderbird
+exec emacs --daemon
+
+### Bindings: System & Apps
+bindsym $mod+Return exec $term
+bindsym $mod+p exec $menu
+bindsym $mod+o exec $HOME/.local/bin/clipboard-picker
+bindsym $mod+w kill
+bindsym $mod+e exec emacsclient -c
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
+bindsym Print exec grim
+
+### Bindings: Navigation
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+### Bindings: Layout
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+q move scratchpad
+bindsym $mod+q scratchpad show
+
+# Mouse Interaction
+floating_modifier $mod normal
+
+smart_borders no_gaps
+smart_gaps on
+default_border pixel 2px
+
+### Bindings: Hardware Keys
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+### Resize Mode
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Visuals: Window Borders
+# class                 border    backgr    text    indicator child_border
+client.focused          $lavender $base     $text   $rosewater $lavender
+client.focused_inactive $overlay0 $base     $text   $rosewater $overlay0
+client.unfocused        $overlay0 $base     $text   $rosewater $overlay0
+client.urgent           $red      $base     $peach  $overlay0  $red
+client.placeholder      $overlay0 $base     $text   $overlay0  $overlay0
+client.background       $base
+
+### Status Bar
+bar {
+    position bottom
+    font pango:Iosevka 11
+    status_command i3status
+
+    colors {
+        statusline $text
+        background $base
+        separator $overlay0
+
+        # Class            Border    Backgr    Text
+        focused_workspace  $base     $mauve    $base
+        active_workspace   $surface1 $surface1 $text
+        inactive_workspace $base     $base     $text
+        urgent_workspace   $base     $red      $base
+        binding_mode       $base     $red      $base
+    }
+}
+
+### Window Rules & Assignments
+
+# 9: Mail
+assign [app_id="^([Tt]hunderbird|[Tt]hunderbird-esr|org.mozilla.Thunderbird)$"] workspace number 9
+
+# 8: Social
+assign [app_id="^([Ww]hatsapp-for-linux|[Ww]hatsapp-desktop)$"] workspace number 8
+
+# 7: Torrent
+assign [app_id="^([Qq]Bittorrent|org.qbittorrent.qBittorrent)$"] workspace number 7
+
+# 6: Steam
+assign [app_id="^[Ss]team$"] workspace number 6
+assign [app_id="^[Ss]team$" title="^Sign in to Steam$"] workspace number 6
+
+# 5: Media
+assign [app_id="^[Ss]potify$"] workspace number 5
+assign [app_id="org.fooyin.fooyin"] workspace number 5
+assign [app_id="^[Tt]idal-hifi$"] workspace number 5
+assign [app_id="^[Ff]oobar2000.exe$"] workspace number 5
+
+# 4: Telegram
+assign [app_id="^org.telegram.desktop$"] workspace number 4
+
+# 3: Discord
+assign [app_id="^[Vv]esktop$"] workspace number 3
+assign [title=".*(Disc|ArmC|WebC)ord.*"] workspace number 3
+
+# 2: Browsers
+assign [app_id="^([Bb]rave-browser|[Ff]irefox|[Ff]irefox-esr|[Ff]loorp|[Zz]en|[Zz]en-beta|[Cc]hromium-browser)$"] workspace number 2
+
+# 1: Dev/Games
+assign [app_id="^[Jj]etbrains-.*$"] workspace number 1
+assign [app_id="^[Aa]lbion-[Oo]nline$"] workspace number 1
+
+# Floating & Focus Logic
+for_window [app_id="^[Ff]oobar2000.exe$"] floating disable
+for_window [app_id="^org.telegram.desktop$" title="^Media viewer$"] floating enable
+for_window [app_id="^[Ss]team$" title="^Special Offers$"] floating enable
+for_window [app_id="^[Ss]team$" title="^Steam - News$"] floating enable
+for_window [app_id="^[Ss]team$" title="^notificationtoasts_.*_desktop$"] floating enable, no_focus
+for_window [app_id="^[Ss]team$" title="^notificationtoasts.*"] floating enable, no_focus
+for_window [app_id="^[Ss]team$" title="^$"] floating enable
+for_window [title="^Extension: \(Bitwarden Password Manager\)$"] floating enable
+for_window [title="^notificationtoasts.*"] floating enable, no_focus
+for_window [app_id="^xdg-desktop-portal-gtk$"] floating enable
+for_window [app_id="^org.keepassxc.KeePassXC$" title="^Generate Password$"] floating enable
+for_window [app_id="^org.keepassxc.KeePassXC$" title="^KeePassXC - Browser Access Request$"] floating enable
+
+include /etc/sway/config.d/*

@@ -1,0 +1,46 @@
+{
+  "buttons": [
+    {
+      "label": "lock",
+      "action": "swaylock",
+      "text": "Lock",
+      "keybind": "l",
+      "icon": ".config/wleave/icons/lock.svg"
+    },
+    {
+      "label": "hibernate",
+      "action": "loginctl hibernate",
+      "text": "Hibernate",
+      "keybind": "h",
+      "icon": ".config/wleave/icons/hibernate.svg"
+    },
+    {
+      "label": "logout",
+      "action": "niri msg action quit",
+      "text": "Logout",
+      "keybind": "e",
+      "icon": ".config/wleave/icons/logout.svg"
+    },
+    {
+      "label": "shutdown",
+      "action": "loginctl poweroff",
+      "text": "Shutdown",
+      "keybind": "s",
+      "icon": ".config/wleave/icons/shutdown.svg"
+    },
+    {
+      "label": "suspend",
+      "action": "loginctl suspend",
+      "text": "Suspend",
+      "keybind": "u",
+      "icon": ".config/wleave/icons/suspend.svg"
+    },
+    {
+      "label": "reboot",
+      "action": "loginctl reboot",
+      "text": "Reboot",
+      "keybind": "r",
+      "icon": ".config/wleave/icons/reboot.svg"
+    }
+  ]
+}

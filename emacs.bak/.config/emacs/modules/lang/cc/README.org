@@ -1,0 +1,225 @@
+#+title:    :lang cc
+#+subtitle: C > C++ == 1
+#+created:  February 20, 2017
+#+since:    2.0.0
+
+* Description :unfold:
+This module adds support for the C-family of languages: C, C++, and Objective-C.
+
+Through LSP, this module offers:
+- Code completion
+- eldoc support
+- Syntax-checking
+- Code navigation
+- File Templates ([[../../editor/file-templates/templates/c-mode][c-mode]], [[../../editor/file-templates/templates/c++-mode][c++-mode]])
+- Snippets ([[https://github.com/hlissner/doom-snippets/tree/master/cc-mode][cc-mode]], [[https://github.com/hlissner/doom-snippets/tree/master/c-mode][c-mode]], [[https://github.com/hlissner/doom-snippets/tree/master/c++-mode][c++-mode]])
+- Several improvements to C++11 indentation and syntax highlighting.
+
+** Maintainers
+- [[doom-user:][@hlissner]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- lsp ::
+  Enable LSP support for ~c-mode~, ~c++-mode~, and ~objc-mode~. Requires [[doom-module::tools lsp]]
+  and a langserver (supports clangd, ccls, and cquery).
+- +tree-sitter ::
+  Leverages tree-sitter for better syntax highlighting and structural text
+  editing. Requires [[doom-module::tools tree-sitter]].
+
+** Packages
+- [[doom-package:cmake-mode]]
+- [[doom-package:cuda-mode]]
+- [[doom-package:demangle-mode]]
+- [[doom-package:disaster]]
+- [[doom-package:glsl-mode]]
+  - [[doom-package:company-glsl]]
+- [[doom-package:modern-cpp-font-lock]] unless [[doom-module:+tree-sitter]]
+- [[doom-package:opencl-mode]]
+- if [[doom-module:+lsp]]
+  - [[doom-package:ccls]] if [[doom-module::tools lsp -eglot]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module's requirements change depending on how you use it.
+
+- If [[doom-module:+lsp]] is enabled, you need one of *clangd v9+* or *ccls*.
+- Other features in this module depend on:
+  - (optional) glslangValidator, for GLSL completion in ~glsl-mode~
+  - (optional) cmake, for code completion in ~cmake-mode~
+- You will need a C/C++ compiler, like =gcc= or =clang=.
+
+** LSP servers
+=lsp-mode= and =eglot= support a few LSP servers, but =clangd= is recommend:
+
++ clangd (must be v9 or newer) :: clangd is included with =llvm= which should be
+  available through your OS' package manager.
+  - Linux:
+    - Debian & Ubuntu: ~$ apt-get install clangd~
+    - Fedora & CentOS/RHEL 8+: ~$ dnf install clang-tools-extra~
+    - openSUSE: ~$ zypper install clang~
+    - Arch: ~$ pacman -S clang~
+  - BSDs:
+    - NetBSD & OpenBSD: ~$ pkg_add clang-tools-extra~
+  - macOS: ~$ brew install llvm~ // 1GB+ installation! May take a while!
+  - Windows: use the win64 installer from [[https://releases.llvm.org/download.html][LLVM's GitHub release page]].
++ ccls :: Available in many OS' package managers as =ccls=. Otherwise, there are
+  alternative install methods listed [[https://github.com/MaskRay/ccls/wiki/Install][in the project's wiki]].
++ cmake-language-server :: available through ~pip~ on most distributions
+
+** =:editor format=
+The formatter used is [[doom-executable:clang-format]] which should be installed alongside
+=clang=.
+
+For more info, see [[doom-module::editor format]].
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+1. Enable this module.
+2. Enable the ~+lsp~ flag for the appropriate modules you want LSP support for
+   (e.g. ~:lang (python +lsp)~ or ~:lang (rust +lsp)~),
+3. Install the prerequisite LSP servers through your package manager or other
+   means. You can find a list of supported servers on [[https://github.com/emacs-lsp/lsp-mode#supported-languages][the lsp-mode project page]].
+4. Run ~$ doom sync~ on the command line and restart Emacs.
+
+** Eglot-specific bindings
+When using [[doom-module:+lsp]] and [[doom-module::tools lsp +eglot]], [[doom-package:lsp-mode]] is replaced with [[doom-package:eglot]], and an
+additional function to get inheritance type hierarchy is added:
+| Binding                    | Description                                    |
+|----------------------------+------------------------------------------------|
+| [[kbd:][<localleader> c t]]          | Display inheritance type hierarchy (upwards)   |
+| [[kbd:][<prefix> <localleader> c t]] | Display inheritance type hierarchy (downwards) |
+
+* TODO Configure
+#+begin_quote
+ 󱌣 /This module's configuration documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** Project compile settings
+LSP servers and Flycheck will recognize a [[https://sarcasm.github.io/notes/dev/compilation-database.html#ninja][compilation database]] (a
+~compile_commands.json~ file). There are [[https://sarcasm.github.io/notes/dev/compilation-database.html][many ways to generate one]]. Here is an
+example using [[http://www.cmake.org/][CMake]] and [[https://github.com/rizsotto/Bear][bear]]:
+#+begin_src sh
+# For CMake projects
+$ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
+#+end_src
+
+#+begin_src sh
+# For non-CMake projects
+$ make clean
+$ bear -- make
+#+end_src
+
+*** Known issues with bear on macOS
+MacOS' [[https://support.apple.com/en-us/HT204899][System Integrity Protection (SIP)]] might interfere with bear if ~make~ is
+under ~/usr/bin/~ which results in an empty compilation database.
+
+From the bear [[https://github.com/rizsotto/Bear#empty-compilation-database-on-os-x-captain-or-fedora][readme]]:
+#+begin_quote
+Security extension/modes on different operating systems might disable library
+preloads. This case Bear behaves normally, but the result compilation database
+will be empty. (Please make sure it's not the case when reporting bugs.) Notable
+examples for enabled security modes are: OS X 10.11 (check with csrutil status |
+grep 'System Integrity Protection'), and Fedora, CentOS, RHEL (check with
+sestatus | grep 'SELinux status').
+
+Workaround could be to disable the security feature while running Bear. (This
+might involve reboot of your computer, so might be heavy workaround.) Another
+option if the build tool is not installed under certain directories. Or use
+tools which are using compiler wrappers. (It injects a fake compiler which does
+record the compiler invocation and calls the real compiler too.) An example for
+such tool might be scan-build. The build system shall respect CC and CXX
+environment variables.
+#+end_quote
+
+A workaround might be to install ~make~ via Homebrew which puts ~gmake~ under
+=/usr/local/=:
+#+begin_src sh
+brew install make
+#+end_src
+#+begin_src sh
+make clean
+bear -- gmake
+#+end_src
+
+Additional info:
+- [[https://github.com/rizsotto/Bear/issues/158][Empty compilation database with compiler in /usr/local]]
+- [[https://github.com/rizsotto/Bear/issues/152][Workaround for 'Empty compilation database on OS X Captain]]
+
+** Configure LSP servers
+Search for your combination of =(LSP client package, LSP server)=. You are using
+[[doom-package:lsp-mode]] by default, [[doom-package:eglot]] if you have [[doom-module::tools lsp +eglot]] active in
+=$DOOMDIR/init.el= file.
+
+*** LSP-mode with clangd
+#+begin_src emacs-lisp
+;;; add to $DOOMDIR/config.el
+(after! lsp-clangd
+  (setq lsp-clients-clangd-args
+        '("-j=3"
+          "--background-index"
+          "--clang-tidy"
+          "--completion-style=detailed"
+          "--header-insertion=never"
+          "--header-insertion-decorators=0"))
+  (set-lsp-priority! 'clangd 2))
+#+end_src
+
+This will both set your clangd flags and choose =clangd= as the default LSP
+server everywhere clangd can be used.
+
+*** LSP-mode with ccls
+#+begin_src emacs-lisp
+;;; add to $DOOMDIR/config.el
+(after! ccls
+  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+  (set-lsp-priority! 'ccls 1))
+#+end_src
+
+This will prioritize =ccls= over =clangd=, if both are present on your system. Also
+feel free to tweak [[var:ccls-initialization-options]] to reconfigure it ([[https://github.com/MaskRay/ccls/wiki/Customization#--initjson][CCLS
+documentation]] lists available options; use =t= for ~true~, =:json-false= for ~false~,
+and =:json-null= for ~null~).
+
+*** Eglot with clangd
+=clangd= will work with Eglot out of the box, but to customize its startup
+command, use [[fn:set-eglot-client!]]:
+#+begin_src emacs-lisp
+;;; add to $DOOMDIR/config.el
+(after! cc-mode
+  (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy")))
+#+end_src
+
+*** Eglot with ccls
+=ccls= will work with Eglot out of the box, but to customize its startup command,
+use [[fn:set-eglot-client!]]:
+#+begin_src emacs-lisp
+;;; add to $DOOMDIR/config.el
+(after! cc-mode
+  (set-eglot-client! 'cc-mode '("ccls" "--init={\"index\": {\"threads\": 3}}")))
+#+end_src
+
+[[https://github.com/MaskRay/ccls/wiki/Customization#--initjson][CCLS documentation]] lists available options
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

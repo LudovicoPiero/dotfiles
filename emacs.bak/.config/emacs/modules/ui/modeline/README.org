@@ -1,0 +1,193 @@
+#+title:    :ui modeline
+#+subtitle: Snazzy, Atom-inspired modeline, plus API
+#+created:  February 20, 2017
+#+since:    2.0.0
+
+* Description :unfold:
+This module provides an Atom-inspired, minimalistic modeline for Doom Emacs,
+powered by the [[doom-package:doom-modeline]] package (where you can find screenshots).
+
+** Maintainers
+- [[doom-user:][@hlissner]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +light ::
+  Enable a lighter, less featureful version of the modeline that does not depend
+  on [[doom-package:doom-modeline]], which has performances issues in some cases.
+
+** Packages
+- [[doom-package:anzu]]
+- [[doom-package:doom-modeline]] unless [[doom-module:+light]]
+- [[doom-package:evil-anzu]] if [[doom-module::editor evil]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+/This module has no external requirements./
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** Hiding the modeline
+- You can use ~M-x hide-mode-line-mode RET~ to hide modeline for the current
+  buffer.
+- Also, there is ~global-hide-mode-line-mode~ for globally hiding modeline. You
+  can just add =(global-hide-mode-line-mode)= into =~/.doom.d/config.el~.
+- ~hide-mode-line-excluded-modes~ can be set for preventing
+  ~global-hide-mode-line-mode~ hiding modeline for buffers with the
+  corresponding major modes.
+
+** TODO Switching the modeline and header line
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 /This module's configuration documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** TODO Changing the default modeline
+
+** TODO Activating a format
+
+** TODO Defining a modeline format
+
+** TODO Defining a modeline segment
+
+** TODO Extracting Doom's modeline into your config
+
+* Troubleshooting
+[[doom-report:][Report an issue?]]
+
+** Where are my minor modes?
+I rarely need to know what minor modes are active, so I removed them. ~M-x
+doom/describe-active-minor-mode~ was written to substitute for it.
+
+** Icons in my modeline look strange
+1. Check whether ~nerd-icons~ are installed. Run ~M-x
+   nerd-icons-install-fonts~ to install the resource fonts. Note that
+   ~nerd-icons~ only support GUI. See [[https://github.com/domtronn/nerd-icons.el][nerd-icons]] for details.
+
+2. ~cnfonts~ will conflict with ~nerd-icons~. You can refer the following
+   workaround:
+    #+begin_src emacs-lisp
+    ;; See https://github.com/seagle0128/doom-modeline/issues/278#issuecomment-569510336
+    ;; Add to $DOOMDIR/packages.el
+    (package! cnfonts)
+    ;; Add to $DOOMDIR/config.el
+    (add-hook 'after-setting-font-hook #'cnfonts-set-font)
+    #+end_src
+
+** The right side of the modeline is cut off
+I believe the consensus is: this is due to oversized icons, i.e. a font issue.
+Some possible solutions:
+
+1. Add some padding to the modeline definition:
+    #+begin_src emacs-lisp
+    (after! doom-modeline
+      (doom-modeline-def-modeline 'main
+        '(bar matches buffer-info remote-host buffer-position parrot selection-info)
+        '(misc-info minor-modes check input-method buffer-encoding major-mode process vcs "  "))) ; <-- added padding here
+    #+end_src
+
+2. Use another font for the mode line (or a different ~:height~) (source)
+    #+begin_src emacs-lisp
+    (custom-set-faces!
+      '(mode-line :family "Noto Sans" :height 0.9)
+      '(mode-line-inactive :family "Noto Sans" :height 0.9))
+    #+end_src
+
+(Mentioned in [[doom-ref:][#1680]], [[doom-ref:][#278]] and [[https://github.com/seagle0128/doom-modeline/issues/334][seagle0128/doom-modeline#334]])
+
+4. Change the width of icon characters in ~char-width-table~:
+    #+begin_src emacs-lisp
+    (add-hook! 'doom-modeline-mode-hook
+      (let ((char-table char-width-table))
+        (while (setq char-table (char-table-parent char-table)))
+        (dolist (pair doom-modeline-rhs-icons-alist)
+          (let ((width 2)  ; <-- tweak this
+                (chars (cdr pair))
+                (table (make-char-table nil)))
+            (dolist (char chars)
+              (set-char-table-range table char width))
+            (optimize-char-table table)
+            (set-char-table-parent table char-table)
+            (setq char-width-table table)))))
+    #+end_src
+
+   If this doesn't help, try different values for ~width~ such as ~width 1~ or
+   ~width 3~.
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 /This module's appendix is incomplete./ [[doom-contrib-module:][Write more?]]
+#+end_quote
+
+** Autodefs
+- ~def-modeline-format! NAME LEFT &optional RIGHT~
+- ~def-modeline-segment! NAME &rest REST~
+- ~set-modeline! NAME &optional DEFAULT~
+
+** Variables
+- doom-modeline-height
+- doom-modeline-bar-width
+- doom-modeline-buffer-file-name-style
+- doom-modeline-icon
+- doom-modeline-major-mode-icon
+- doom-modeline-major-mode-color-icon
+- doom-modeline-buffer-state-icon
+- doom-modeline-buffer-modification-icon
+- doom-modeline-minor-modes
+- doom-modeline-enable-word-count
+- doom-modeline-buffer-encoding
+- doom-modeline-indent-info
+- doom-modeline-checker-simple-format
+- doom-modeline-vcs-max-length
+- doom-modeline-persp-name
+- doom-modeline-lsp
+- doom-modeline-github
+- doom-modeline-github-interval
+- doom-modeline-env-version
+- doom-modeline-mu4e
+- doom-modeline-irc
+- doom-modeline-irc-stylize
+
+** Faces
+- doom-modeline-buffer-path
+- doom-modeline-buffer-file
+- doom-modeline-buffer-modified
+- doom-modeline-buffer-major-mode
+- doom-modeline-buffer-minor-mode
+- doom-modeline-project-parent-dir
+- doom-modeline-project-dir
+- doom-modeline-project-root-dir
+- doom-modeline-highlight
+- doom-modeline-panel
+- doom-modeline-debug
+- doom-modeline-info
+- doom-modeline-warning
+- doom-modeline-urgent
+- doom-modeline-unread-number
+- doom-modeline-bar
+- doom-modeline-inactive-bar
+- doom-modeline-evil-emacs-state
+- doom-modeline-evil-insert-state
+- doom-modeline-evil-motion-state
+- doom-modeline-evil-normal-state
+- doom-modeline-evil-operator-state
+- doom-modeline-evil-visual-state
+- doom-modeline-evil-replace-state
+- doom-modeline-persp-name
+- doom-modeline-persp-buffer-not-in-persp

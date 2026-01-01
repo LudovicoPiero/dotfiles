@@ -1,0 +1,69 @@
+#+title:    :editor fold
+#+subtitle: What you can't see won't hurt you
+#+created:  May 15, 2019
+#+since:    21.12.0
+
+* Description :unfold:
+This module marries [[doom-package:hideshow]], [[doom-package:vimish-fold]], and ~outline-minor-mode~ to bring you
+marker, indent and syntax-based code folding for as many languages as possible.
+
+** Maintainers
+- [[doom-user:][@hlissner]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+/This module has no flags./
+
+** Packages
+- [[doom-package:evil-vimish-fold]]
+- [[doom-package:vimish-fold]]
+- if [[doom-module::tools tree-sitter]]
+  - [[doom-package:ts-fold]]
+
+** TODO Hacks
+#+begin_quote
+ 󱌣 This module's hacks haven't been documented yet. [[doom-contrib-module:][Document them?]]
+#+end_quote
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+/This module has no external requirements./
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+Emacs keybinds when [[doom-module::editor evil +everywhere]] is disabled:
+| Keybind            | Description               |
+|--------------------+---------------------------|
+| [[kbd:][C-c C-f C-f]]        | Fold region               |
+| [[kbd:][C-c C-f C-u]] or [[kbd:][C `]] | Unfold region             |
+| [[kbd:][C-c C-f C-d]]        | Delete folded region      |
+| [[kbd:][C-c C-f C-a C-f]]    | Fold all regions          |
+| [[kbd:][C-c C-f C-a C-u]]    | Unfold all regions        |
+| [[kbd:][C-c C-a C-d]]        | Delete all folded regions |
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+- Sometimes, an unfolded region won't fold back with [[kbd:][C-c C-f C-f]]. To bypass this
+  bug you must delete the folded region ([[kbd:][C-c C-f C-d]]) and then fold it ([[kbd:][C-c C-f
+  C-f]]) again.
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

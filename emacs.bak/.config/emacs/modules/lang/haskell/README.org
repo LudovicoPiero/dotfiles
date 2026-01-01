@@ -1,0 +1,101 @@
+#+title:    :lang haskell
+#+subtitle: A language that's lazier than I am
+#+created:  March 29, 2016
+#+since:    0.9
+
+* Description :unfold:
+This module adds Haskell support to Doom Emacs.
+
+** Maintainers
+- [[doom-user:][@iyefrat]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +lsp ::
+  Enable LSP support for ~haskell-mode~. Requires [[doom-module::tools lsp]] and a langserver
+  (supports [[https://github.com/haskell/haskell-language-server][haskell-language-server]]).
+- +tree-sitter ::
+  Leverages tree-sitter for better syntax highlighting and structural text
+  editing. Requires [[doom-module::tools tree-sitter]].
+  
+** Packages
+- [[doom-package:haskell-mode]]
+- [[doom-package:haskell-ts-mode]] if [[doom-module:+tree-sitter]]
+- [[doom-package:lsp-haskell]] if [[doom-module:+lsp]]
+
+** Hacks
+/No hacks documented for this module./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+It is recommended to install the haskell tooling using [[https://www.haskell.org/ghcup/][ghcup]]. Only ghc is needed
+for basic functionality:
+
+#+begin_src sh
+ghcup install ghc
+#+end_src
+
+but =+lsp= users should also install the language server:
+
+#+begin_src sh
+ghcup install hls
+#+end_src
+
+Installing [[https://www.haskell.org/cabal/][cabal]] or [[https://docs.haskellstack.org/en/stable/README/][stack]] as well is recommended, and can be done through
+=ghcup=.
+
+=haskell-mode= provides support for [[https://github.com/ndmitchell/hoogle][hoogle]], which can be installed through
+system package manager, cabal, or stack.
+
+=haskell-language-server= provides support for [[https://github.com/ndmitchell/hlint/][hlint]], and haskell code
+formatters such as [[https://github.com/lspitzner/brittany][brittany]], [[https://github.com/ennocramer/floskell][floskell]], [[https://github.com/tweag/ormolu][ormolu]], [[https://github.com/fourmolu/fourmolu][fourmolu]], and [[https://github.com/haskell/stylish-haskell][stylish-haskell]],
+which can be installed through system package manager, cabal, or stack.
+
+** Formatter
+
+[[doom-module::editor format]] by default uses [[https://github.com/fourmolu/fourmolu#installation][fourmolu]] to format code when not
+relying on hls, follow the linked install instructions.
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+This module integrates the haskell packages into Doom by providing things such
+as REPL support, project root recognition, etc. It also provide the following
+keybindings:
+
+| Keybinding      | Description                                 |
+|-----------------+---------------------------------------------|
+| [[kbd:][<localleader> b]] | Build the current cabal project             |
+| [[kbd:][<localleader> c]] | Visit the =.cabal= file of the current buffer |
+| [[kbd:][<localleader> h]] | Toggle visibility of the form at point      |
+| [[kbd:][<localleader> H]] | hides all top level functions               |
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 /This module's configuration documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+After installing your preferred formatter, make sure to set
+=lsp-haskell-formatting-provider= to it.
+
+Make sure to configure the lsp to use your perfered formatter, e.g.:
+#+begin_src emacs-lisp
+;; ~/.doom.d/config.el
+(after! lsp-haskell
+  (setq lsp-haskell-formatting-provider "brittany"))
+#+end_src
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

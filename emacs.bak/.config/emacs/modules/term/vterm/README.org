@@ -1,0 +1,161 @@
+#+title:    :term vterm
+#+subtitle: As good as terminal emulation gets in Emacs
+#+created:  January 16, 2019
+#+since:    21.12.0 (#1144)
+
+* Description :unfold:
+This module provides a terminal emulator powered by libvterm. It is still in
+alpha and requires a component be compiled (=vterm-module.so=).
+
+#+begin_quote
+ 💡 [[doom-package:vterm]] is as good as terminal emulation gets in Emacs (at the
+    time of writing) and the most performant, as it is implemented in C.
+    However, it requires extra steps to set up.
+#+end_quote
+
+** Maintainers
+- [[doom-user:][@hlissner]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+/This module has no flags./
+
+** Packages
+- [[doom-package:vterm]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+Prerequisites:
++ Emacs with dynamic module support (i.e. compiled with the =--with-modules=
+  option),
++ =libvterm= (usually available through your OS package manager),
++ (if you want to compile =vterm-module.so= yourself) =make=, =cmake= and a C compiler
+  such as =gcc=.
+
+** Dynamic Module support
+To check if your build of Emacs has dynamic module support, run ~$ doom info~ in
+the shell and look for ~MODULES~ next to "features". If it isn't, you'll need to
+find another source to install Emacs from or recompile it with the appropriate
+build options.
+
+Alternatively, look for ~--with-modules~ in ~system-configuration-options~ ([[kbd:][SPC h v
+system-configuration-options]]).
+
+Follow [[id:9570ba6a-50cc-4c46-a832-fb90192288af][our installation guide]] to ensure your build of Emacs includes dynamic
+module support.
+
+** libvterm
+- Ubuntu or Debian users: ~$ apt-get install libvterm-dev~
+- ArchLinux or Manjaro: ~$ pacman -S libvterm~
+- MacOS: ~$ brew install libvterm~
+- NixOS:
+  #+begin_src nix
+  systemPackages = with pkgs; [
+    # emacs    # no need for this, the next line includes emacs
+    ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
+      epkgs.vterm
+    ]))
+  ];
+  #+end_src
+
+  Or for home-manager users:
+  #+begin_src nix
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [ epkgs.vterm ];
+  };
+  #+end_src
+
+  This already contains a version of =vterm-module.so=, so NixOS users need not
+  compile the module themselves as described below.
+
+  Note: The =nixpkgs=-version used must be compatible with the packages Doom
+  installs, so it might be necessary to pull in =emacs= and/or =emacsPackagesFor=
+  from =unstable= or another channel. Otherwise arbitrary functionality of =vterm=
+  might not work.
+- Guix: ~$ guix install emacs-vterm~
+
+  [[https://packages.guix.gnu.org/packages/emacs-vterm/][emacs-vterm]] provides a pre-built =vterm-module.so=, so you don't have to
+  compile it yourself. It can also be installed through system or home packages.
+
+** Compilation tools for vterm-module.so
+When you first load vterm, it will attempt to compile =vterm-module.so= for you.
+For this to succeed, you need the following:
+
+- =make=
+- =cmake=
+- A C compiler like =gcc=
+- An internet connection (=cmake= will download needed libraries)
+
+There are several ways to manually install the module:
+
+1. You can use ~M-x vterm-module-compile~ to let emacs automatically compile and
+   install the module.
+
+   Modify ~vterm-module-cmake-args~ to pass arguments to the cmake build script.
+   e.g. To use a local build of libvterm instead of the included one:
+   #+begin_src emacs-lisp
+   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=yes")
+   #+end_src
+
+   #+begin_quote
+     Emacs will hang during the compilation. It may take a while.
+   #+end_quote
+
+2. You can compile and install the module yourself. Go to the vterm installation
+   directory (usually =$HOME/.emacs.d/.local/packages/elpa/vterm-<version>=) and
+   run the following:
+   #+begin_src sh
+   mkdir -p build
+   cd build
+   cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+   make
+   #+end_src
+
+3. You can also compile =vterm-module.so= elsewhere, but the module must be
+   moved/symlinked to
+   =$HOME/.emacs.d/.local/packages/elpa/vterm-<version>/vterm-module.so=
+   =vterm-module.so=. Keep in mind that this folder will be deleted whenever the
+   vterm package is updated.
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+The following commands are available to open it:
+
+- ~+vterm/toggle~ ([[kbd:][<leader> o t]]) -- Toggle vterm pop up window in the current
+  project.
+- ~+vterm/here~ ([[kbd:][<leader> o T]]) -- Opens vterm in the current window.
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+[[doom-report:][Report an issue?]]
+
+** Permission errors when compiling vterm on OpenSUSE Tumbleweed
+Emacs on Tumbleweed comes with =emacs-vterm=, which is deployed to a read-only
+directory, but the vterm installation script depends on that directory being
+writeable in order to compile. Uninstall =emacs-vterm= via zypper, then ~doom sync~
+again and you should end up with a proper build of vterm.
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

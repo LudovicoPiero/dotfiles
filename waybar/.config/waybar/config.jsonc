@@ -1,0 +1,90 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "spacing": 0,
+  "modules-left": [
+    "niri/workspaces",
+    "niri/window"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "idle_inhibitor",
+    "network",
+    "pulseaudio",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "niri/workspaces": {
+    // "format": "{index} {value}"
+    "format": "{icon}",
+    "format-icons": {
+      "main": "1 main",
+      "chat": "2 chat",
+      "mail": "3 mail",
+      "default": ""
+    }
+  },
+  "niri/window": {
+    "format": " [{title}]",
+    "max-length": 40,
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "Firefox",
+      "(.*) - Discord": "Discord"
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "network": {
+    "interval": 1, // Update every second to show real-time speed
+    "format-wifi": "  {bandwidthDownBytes}  {bandwidthUpBytes} |  {essid} ",
+    "format-ethernet": "  {bandwidthDownBytes}  {bandwidthUpBytes} | 󰈀 Eth ",
+    "format-disconnected": " ⚠ No Net ",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "max-length": 50 // Increased to fit the speed text
+  },
+  "pulseaudio": {
+    "format": " {icon} {volume}% | {format_source} ",
+    "format-muted": "  Muted | {format_source} ",
+    "format-source": ": {volume}%",
+    "format-source-muted": ": MUTE",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "ponymix -N -t sink toggle",
+    "on-click-right": "ponymix -N -t source toggle"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": " {icon} {capacity}% ",
+    "format-charging": "  {capacity}% ",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "clock": {
+    "format": "  {:%Y年%m月%d日   %H:%M} ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>"
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 8
+  }
+}

@@ -1,0 +1,69 @@
+#+title:    :ui minimap
+#+subtitle: A map for lost programmers
+#+created:  May 08, 2020
+#+since:    21.12.0
+
+* Description :unfold:
+This module displays a minimap of the buffer in a sidebar, similar to the
+feature found in many other editors.
+
+** Maintainers
+/This module has no dedicated maintainers./ [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+/This module has no flags./
+
+** Packages
+- [[doom-package:demap]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Usage
+Press [[kbd:][SPC t m]] to toggle the minimap.
+
+A minimap provides an overview of the current buffer to the side, displaying the
+currently visible region and the current line. You can left-click inside the
+minimap to create a region, or scroll to move the minimap up & down.
+
+* Configuration
+There are a number of options provided by the =demap.el= package this module
+is based on. The easiest way to see all of them is [[kbd:][SPC h v demap]].
+
+** Changing the side that the minimap window opens in
+You can change the variable [[var:demap-minimap-window-side][demap-minimap-window-side]] which controls the side of
+the frame the minimap window opens in, it supports these options:
+- =right=
+- =left=
+
+** Changing the width of the minimap window
+The [[var:demap-minimap-window-width][demap-minimap-window-width]] variable controls the width of the minimap
+window, by default it is set to =20=.
+
+** Changing the name of the minimap buffer
+The [[var:demap-minimap-default-name][demap-minimap-default-name]] variable controls the name of the minimap buffer,
+by default it is set to ="**Minimap**"=.
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+** Variables
+- demap-minimap-change-major-mode-hook
+- demap-minimap-default-name
+- demap-minimap-window-width
+- demap-minimap-window-side
+- demap-minimap-kill-hook
+- demap-minimap-construct-hook
+- demap-minimap-window-set-hook
+- demap-minimap-change-functions
+- demap-minimap-window-sleep-hook
+- demap-minimap-protected-variables
+- demap-minimap-close-kill-minimap-p

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# group: file templates
+# contributor: Edmund Miller
+# name: solidity template
+# --
+// SPDX-License-Identifier: ${1:UNLICENSED}
+
+pragma solidity ${2:>=0.8.7 <0.9.0};
+
+contract $3 {
+    $0
+}

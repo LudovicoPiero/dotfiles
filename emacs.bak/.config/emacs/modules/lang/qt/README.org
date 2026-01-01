@@ -1,0 +1,59 @@
+#+title:    :lang qt
+#+subtitle: The cutest GUI framework ever
+#+created:  June 02, 2018
+#+since:    21.12.0
+
+* Description :unfold:
+This module provides language functionality for [[https://qt.io][Qt]] specific files.
+
+- Syntax highlighting for [[https:://en.wikipedia.org/wiki/QML][qml]] files
+- Syntax highlighting for =.pro= and =.pri= files used by [[https://doc.qt.io/qt-5/qmake-project-files.html][qmake]]
+
+** Maintainers
+*This module needs a maintainer.* [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +lsp ::
+  Enable LSP support for ~qml-mode~/~qml-ts-mode~. Requires [[doom-module::tools lsp]]
+  and a langserver (supports [[https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html][qmlls]]).
+- +tree-sitter ::
+  Leverages tree-sitter for better syntax highlighting and structural text
+  editing. Requires [[doom-module::tools tree-sitter]].
+
+** Packages
+- [[doom-package:qml-mode]]
+- [[doom-package:qml-ts-mode]] if [[doom-module:+tree-sitter]]
+- [[doom-package:qt-pro-mode]]
+
+** Hacks
+/No hacks documented for this module./
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+/This module has no external requirements./
+
+* TODO Usage
+#+begin_quote
+ 󱌣 This module has no usage documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

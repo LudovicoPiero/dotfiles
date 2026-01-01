@@ -1,0 +1,90 @@
+#+title:    :checkers syntax
+#+subtitle: Tasing you for every semicolon you forget
+#+created:  February 20, 2017
+#+since:    2.0.0
+
+* Description :unfold:
+This module provides syntax checking and error highlighting, powered by
+[[doom-package:flycheck]].
+
+** Maintainers
+/This module has no dedicated maintainers./ [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +childframe ::
+  Display errors/warnings in a [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Child-Frames.html][child frame]] rather than an overlay or tooltip.
+  *Requires GUI Emacs.*
+- +flymake :: Leverages the inbuilt [[doom-package:flymake]] for error and
+  diagnostics highlighting.
+- +icons :: Use unicode icons rather than ASCII prefixes in error tooltips or
+  childframes.
+
+** Packages
+- [[doom-package:flycheck]]
+- [[doom-package:flycheck-popup-tip]]
+- [[doom-package:flycheck-posframe]] if [[doom-module:+childframe]]
+
+** Hacks
+- If ~lsp-ui-mode~ is active, most of the aesthetic functionality of this module
+  is turned off, as they show the same information.
+- If childframes are enabled, and the flycheck childframe is shown, it will be
+  hidden on the next user input (as well as the default behavior: to hide it the
+  next time the user is idle for ~flycheck-display-errors-delay~ seconds).
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module has no direct requirements, but some languages may have their own
+requirements to fulfill before you get syntax checking in them (and some
+languages may lack syntax checking support altogether). Run ~$ doom doctor~ to
+find out if you're missing any dependencies.
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+Most of flycheck's features are under [[kbd:][C-c !]], regardless of whether evil mode is
+used.
+
+| Keybind | Description                 |
+|---------+-----------------------------|
+| [[kbd:][C-c ! ?]] | Describe Checker            |
+| [[kbd:][C-c ! c]] | Check syntax in buffer      |
+| [[kbd:][C-c ! l]] | List errors                 |
+| [[kbd:][C-c ! n]] | Next Error                  |
+| [[kbd:][C-c ! p]] | Previous error              |
+| [[kbd:][C-c ! C]] | Clear all errors in buffer  |
+| [[kbd:][C-c ! e]] | Explain error at point      |
+| [[kbd:][C-c ! h]] | Display all errors at point |
+
+Evil Specific:
+| Keybind | Description     |
+|---------+-----------------|
+| [[kbd:][SPC t f]] | Toggle Flycheck |
+| [[kbd:][SPC c x]] | List errors     |
+| [[kbd:][] e]]     | Next error      |
+| [[kbd:][[ e]]     | Prevous error   |
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+[[doom-report:][Report an issue?]]
+
+- Use ~M-x flycheck-verify-setup~ to determine what checkers are available in a
+  buffer and whether they're active or not (and why).
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

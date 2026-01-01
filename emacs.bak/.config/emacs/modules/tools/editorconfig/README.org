@@ -1,0 +1,81 @@
+#+title:    :tools editorconfig
+#+subtitle: Let someone else argue tabs and spaces
+#+created:  December 27, 2015
+#+since:    0.9
+
+* Description :unfold:
+This module adds [[https://editorconfig.org/][EditorConfig]] support to Emacs, allowing users to dictate code
+style on a per-project basis with =.editorconfig= files ([[https://editorconfig-specification.readthedocs.io/][formal specification]]),
+with or without the native editorconfig binary.
+
+** Maintainers
+- [[doom-user:][@hlissner]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+/This module has no flags./
+
+** Packages
+- [[doom-package:editorconfig-emacs]]
+ 
+** Hacks
+- *Special integration for =ws-butler=:* this module will use [[doom-package:ws-butler]] to
+  enforce ~trim_trailing_whitespace~.
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module has one optional dependency: the native ~editorconfig~ binary.
+Without it, a built-in elisp implementation will be used, which is claimed to be
+faster and more secure.
+
+If you choose to install the binary, [[https://github.com/editorconfig#contributing][many implementations]] are available, usually
+through your OS package manager (if not built from source yourself).
+
+* Usage
+A ~.editorconfig~ file in your project (usually in the root directory of the
+project) is needed to configure code style for files in the same directory or
+below. Documentation on editorconfig's properties can be found [[https://editorconfig.org/#example-file][here]].
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 /This module's configuration documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+** Adding support for more major modes
+Out the box, the editorconfig plugin supports many Emacs major modes, but it's
+possible you'll find one it doesn't support. Adding support is easy so long as
+you know that mode's indentation variables. For example, ~coffee-mode~ has a
+~coffee-tab-width~ variable that controls indentation width in CoffeeScript
+files. Editorconfig already supports this language, but let's pretend it
+doesn't:
+
+The ~editorconfig-indentation-alist~ variable contains a list of major modes and
+their indentation variables. To add coffee-mode to it:
+#+begin_src emacs-lisp
+;; in $DOOMDIR/config.el
+(after! editorconfig
+  (add-to-list 'editorconfig-indentation-alist '(coffee-mode coffee-tab-width)))
+#+end_src
+
+But what if you don't know the correct indentation variable(s). Use [[kbd:][SPC h v]] ([[kbd:][C-h
+v]] for non-evil users) to peruse all the available variables in your current
+session of Emacs. Look for variables that have the words =indent=, =offset= or
+=tab-width= in them. They will be prefixed with the plugin they belong to (e.g.
+~rustic-indent-offset~).
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

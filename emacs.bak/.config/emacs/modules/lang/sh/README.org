@@ -1,0 +1,71 @@
+#+title:    :lang sh
+#+subtitle: She sells {ba,z,fi}sh shells on the C xor
+#+created:  September 28, 2015
+#+since:    0.7
+
+* Description :unfold:
+This module adds support for shell scripting languages (including Powershell and
+Fish script) to Doom Emacs.
+
+- Code completion ([[doom-package:company-shell]])
+- Syntax Checking ([[doom-package:flycheck]])
+
+** Maintainers
+- [[doom-user:][@hlissner]]
+
+[[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +fish ::
+  Add syntax highlighting for fish script files.
+- +lsp ::
+  Enable LSP support for ~sh-mode~. Requires [[doom-module::tools lsp]] and a langserver
+  (supports bash-language-server).
+- +powershell ::
+  Add syntax highlighting for Powershell script files (=.ps1= and =.psm1=).
+
+** Packages
+- [[doom-package:company-shell]] if [[doom-module::completion company]]
+- [[doom-package:fish-mode]] if [[doom-module:+fish]]
+- [[doom-package:powershell-mode]] if [[doom-module:+powershell]]
+
+** Hacks
+- Interpolated variables are fontified.
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module has several optional dependencies:
+
+- [[https://github.com/koalaman/shellcheck][shellcheck]]: Enables advanced shell script linting.
+- [[https://github.com/mads-hartmann/bash-language-server][bash-language-server]]: Enables LSP support (with [[doom-module:+lsp]] flag).
+- With the [[doom-module::tools debugger]] module
+  - [[http://bashdb.sourceforge.net/][bashdb]]: Enables debugging for bash scripts
+  - [[https://github.com/rocky/zshdb][zshdb]]: Enables debugging for zsh scripts
+- With the [[doom-module::editor format]] module
+  - [[https://github.com/patrickvane/shfmt][shfmt]]: Enables formatting for {posix,ba,mk}sh scripts
+
+* TODO Usage
+#+begin_quote
+ 󱌣 This module has no usage documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 This module has no configuration documentation yet. [[doom-contrib-module:][Write some?]]
+#+end_quote
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote

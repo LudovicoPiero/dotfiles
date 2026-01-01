@@ -1,0 +1,114 @@
+#+title:    :lang ocaml
+#+subtitle: An objective camel
+#+created:  June 27, 2017
+#+since:    2.0.4 (#128)
+
+* Description :unfold:
+This module adds [[https://ocaml.org/][OCaml]] support to Doom Emacs, powered by [[doom-package:tuareg]].
+
+- Code completion, documentation look-up, code navigation and refactoring
+  ([[doom-package:merlin]])
+- Type, documentation and function argument display on idle ([[doom-package:merlin-eldoc]])
+- REPL ([[doom-package:utop]])
+- Syntax-checking ([[doom-package:merlin]] with [[doom-package:flycheck-ocaml]])
+- Auto-indentation ([[doom-package:ocp-indent]])
+- Code formatting ([[doom-package:ocamlformat]])
+- Dune file format ([[doom-package:dune]])
+- Opam switch selection ([[doom-package:opam-switch-mode]])
+
+** Maintainers
+*This module needs a maintainer.* [[doom-contrib-maintainer:][Become a maintainer?]]
+
+** Module flags
+- +lsp ::
+  Enable LSP support for ~tuareg-mode~. Requires [[doom-module::tools lsp]] and a langserver
+  (supports [[https://github.com/freebroccolo/ocaml-language-server][ocaml-language-server]]).
+
+** Packages
+- [[doom-package:dune]]
+- [[doom-package:ocamlformat]] if [[doom-module::editor format]]
+- [[doom-package:ocp-indent]]
+- [[doom-package:tuareg]]
+- [[doom-package:opam-switch-mode]]
+- [[doom-package:utop]] if [[doom-module::tools eval]]
+- unless [[doom-module:+lsp]]
+  - [[doom-package:flycheck-ocaml]] if [[doom-module::checkers syntax]]
+  - [[doom-package:merlin]]
+  - [[doom-package:merlin-company]]
+  - [[doom-package:merlin-eldoc]]
+
+** Hacks
+- ~set-ligatures!~ is called with the full tuareg prettify symbol list, this can
+  cause columns to change as certain keywords are shortened (e.g. =fun= becomes
+  \lambda).
+- ~opam-switch-set-switch~ is called the first time [[doom-package:tuareg]] and subsequently [[doom-package:opam-switch-mode]] are loaded
+
+** TODO Changelog
+# This section will be machine generated. Don't edit it by hand.
+/This module does not have a changelog yet./
+
+* Installation
+[[id:01cffea4-3329-45e2-a892-95a384ab2338][Enable this module in your ~doom!~ block.]]
+
+This module requires the following packages available through [[http://opam.ocaml.org/][opam]]:
+- merlin
+- utop
+- ocp-indent
+- dune
+- ocamlformat
+
+* TODO Usage
+#+begin_quote
+ 󱌣 /This module's usage documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+- The following files should have syntax highlighting support: ~.ml{i,p,y,}~,
+  ~.eliom{i,}~, ~jbuild~, ~dune~, ~opam~
+- ~merlin-mode~ is activated whenever a =.merlin= file is found (including in a
+  parent directory) and =ocamlmerlin= executable is present
+- Line-based auto-indentation is provided by =ocp-indent=, if it is available.
+
+| Command                      | Key             | Description                                               |
+|------------------------------+-----------------+-----------------------------------------------------------|
+| ~merlin-type-enclosing~      | [[kbd:][<localleader> t]] | display type under point                                  |
+| ~tuareg-find-alternate-file~ | [[kbd:][<localleader> a]] | switch between =.ml= and =.mli=                           |
+| ~merlin-locate~              | [[kbd:][g d]]             | lookup definition                                         |
+| ~merlin-occurences~          | [[kbd:][SPC c D]]         | lookup references                                         |
+| ~merlin-document~            | [[kbd:][K]]               | lookup documentation                                      |
+| ~merlin-imenu~               | [[kbd:][SPC s i]]         | symbol lookup in file                                     |
+| ~merlin-iedit-occurrences~   | [[kbd:][v R]]             | visual refactor identifier under point (multiple cursors) |
+| ~utop~                       | [[kbd:][SPC o r]]         | open =utop= as REPL                                       |
+| ~utop-eval-region~           | [[kbd:][SPC c e]]         | evaluate selected region in =utop=                        |
+| ~opam-switch-set-switch~     | [[kbd:][<localleader> w]] | evaluate selected region in =utop=                        |
+
+* TODO Configuration
+#+begin_quote
+ 󱌣 /This module's configuration documentation is incomplete./ [[doom-contrib-module:][Complete it?]]
+#+end_quote
+
+- If [[doom-module::completion company]] is enabled then autocomplete is provided by [[doom-package:merlin]]
+- When [[doom-module::checkers syntax]] is enabled then [[doom-package:flycheck-ocaml]] is activated to do
+  on-the-fly syntax/type checking via [[doom-package:merlin]], otherwise this is only done when
+  the file is saved.
+- Spell checking is activated in comments if [[doom-module::checkers spell]] is active
+- A REPL is provided if [[doom-package:utop]] is installed and [[doom-module::tools eval]] is active
+- If [[doom-module::editor format]] is enabled, the =ocamlformat= executable is available and
+  there is an =.ocamlformat= file present then ~format-all-buffer~ is bound to
+  =ocamlformat=, otherwise to =ocp-indent=
+- If [[doom-module::editor multiple-cursors]] is enabled then identifiers can be refactored with
+  [[kbd:][v R]] and multiple cursors (this correctly matches identifier occurrences
+  according to scope, it is not purely a textual match)
+
+Run ~$ doom sync~ to install all packages and ~$ doom doctor~ to diagnose
+missing tools.
+
+* Troubleshooting
+/There are no known problems with this module./ [[doom-report:][Report one?]]
+
+* Frequently asked questions
+/This module has no FAQs yet./ [[doom-suggest-faq:][Ask one?]]
+
+* TODO Appendix
+#+begin_quote
+ 󱌣 This module has no appendix yet. [[doom-contrib-module:][Write one?]]
+#+end_quote
