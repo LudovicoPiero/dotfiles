@@ -13,6 +13,11 @@ let
     getExe'
     ;
   cfg = config.mine.niri;
+
+  clipboard-picker = pkgs.writeShellScriptBin "clipboard-picker" ''
+    #!/usr/bin/env bash
+    cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy
+  '';
 in
 {
   options.mine.niri = {
@@ -223,6 +228,7 @@ in
           Mod+Shift+E repeat=false { spawn "${getExe pkgs.thunar}"; }
           Mod+M repeat=false { spawn "${getExe pkgs.thunderbird}"; }
           Mod+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "drun"; }
+          Mod+o repeat=false { spawn-sh "${getExe clipboard-picker}"; }
           Mod+Shift+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "window"; }
           Mod+D repeat=false { spawn "${getExe pkgs.vesktop}"; }
 
