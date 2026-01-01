@@ -80,7 +80,7 @@ in
 
           alias nv="nvim"
           alias v="nvim"
-	  alias config="cd ~/Code/nixos"
+          alias config="cd ~/Code/nixos"
           alias mkdir="mkdir -p"
           alias g="${getExe pkgs.git}"
           alias ..="cd .."
