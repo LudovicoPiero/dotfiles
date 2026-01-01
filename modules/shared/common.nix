@@ -22,6 +22,8 @@
     fd
     bat
     ente-auth
+    wl-clipboard
+    cliphist
   ];
 
   # Nix command-not-found handler using programs database
