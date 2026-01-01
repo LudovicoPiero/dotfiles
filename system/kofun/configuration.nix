@@ -86,7 +86,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.neovim-config.packages.${stdenv.hostPlatform.system}.default
+    inputs.nvim-flake.packages.${stdenv.hostPlatform.system}.default
     eza
     git
     wget

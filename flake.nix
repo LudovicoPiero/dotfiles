@@ -1,9 +1,33 @@
 {
   description = "NixOS Configuration";
 
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations.kofun = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./system/kofun/configuration.nix
+          ./modules
+        ];
+      };
+    };
+
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    neovim-config.url = "github:ludovicopiero/nvim-flake";
+    nixpkgs-unstable = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixos-unstable";
+    };
+    nixpkgs.follows = "nixpkgs-unstable";
+
+    nvim-flake = {
+      type = "github";
+      owner = "LudovicoPiero";
+      repo = "nvim-flake";
+    };
 
     # Hjem for managing user configuration
     hjem = {
@@ -21,17 +45,4 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs =
-    { nixpkgs, ... }@inputs:
-    {
-      nixosConfigurations.kofun = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./system/kofun/configuration.nix
-          ./modules
-        ];
-      };
-    };
 }

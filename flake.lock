@@ -55,27 +55,6 @@
         "type": "github"
       }
     },
-    "neovim-config": {
-      "inputs": {
-        "flake-parts": "flake-parts",
-        "mnw": "mnw",
-        "nixpkgs": "nixpkgs",
-        "nvim-overlay": "nvim-overlay"
-      },
-      "locked": {
-        "lastModified": 1767294483,
-        "narHash": "sha256-XrOX5W7ogSgqoyB/F+mtTgBwiz00GdEgGixS8VMN3bc=",
-        "owner": "ludovicopiero",
-        "repo": "nvim-flake",
-        "rev": "845458164a052b1d42e1947d173ef0767152cf39",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ludovicopiero",
-        "repo": "nvim-flake",
-        "type": "github"
-      }
-    },
     "neovim-src": {
       "flake": false,
       "locked": {
@@ -144,31 +123,52 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1767116409,
         "narHash": "sha256-5vKw92l1GyTnjoLzEagJy5V5mDFck72LiQWZSOnSicw=",
-        "owner": "nixos",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "cad22e7d996aea55ecab064e84834289143e44a0",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nvim-flake": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "mnw": "mnw",
+        "nixpkgs": "nixpkgs",
+        "nvim-overlay": "nvim-overlay"
+      },
+      "locked": {
+        "lastModified": 1767294483,
+        "narHash": "sha256-XrOX5W7ogSgqoyB/F+mtTgBwiz00GdEgGixS8VMN3bc=",
+        "owner": "LudovicoPiero",
+        "repo": "nvim-flake",
+        "rev": "845458164a052b1d42e1947d173ef0767152cf39",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LudovicoPiero",
+        "repo": "nvim-flake",
         "type": "github"
       }
     },
     "nvim-overlay": {
       "inputs": {
         "flake-parts": [
-          "neovim-config",
+          "nvim-flake",
           "flake-parts"
         ],
         "neovim-src": "neovim-src",
         "nixpkgs": [
-          "neovim-config",
+          "nvim-flake",
           "nixpkgs"
         ]
       },
@@ -210,8 +210,11 @@
     "root": {
       "inputs": {
         "hjem": "hjem",
-        "neovim-config": "neovim-config",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvim-flake": "nvim-flake",
         "programsdb": "programsdb"
       }
     },
