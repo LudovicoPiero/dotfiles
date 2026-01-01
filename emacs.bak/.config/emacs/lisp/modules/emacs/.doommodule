@@ -1,3 +1,0 @@
-"3.0.0-pre"
-((name :doom emacs)
- (depth -100 100))
