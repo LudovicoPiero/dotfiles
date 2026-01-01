@@ -1,43 +1,56 @@
-# This is the configuration file for Ghostty.
-#
-# This template file has been automatically created at the following
-# path since Ghostty couldn't find any existing config files on your system:
-#
-#   /home/airi/.config/ghostty/config
-#
-# The template does not set any default options, since Ghostty ships
-# with sensible defaults for all options. Users should only need to set
-# options that they want to change from the default.
-#
-# Run `ghostty +show-config --default --docs` to view a list of
-# all available config options and their default values.
-#
-# Additionally, each config option is also explained in detail
-# on Ghostty's website, at https://ghostty.org/docs/config.
+# --- Fonts ---
+font-family = Iosevka
+font-family = Symbols Nerd Font
+font-family = Noto Emoji
+font-size = 15
 
-# Config syntax crash course
-# ==========================
-# # The config file consists of simple key-value pairs,
-# # separated by equals signs.
-# font-family = Iosevka
-# window-padding-x = 2
-#
-# # Spacing around the equals sign does not matter.
-# # All of these are identical:
-# key=value
-# key= value
-# key =value
-# key = value
-#
-# # Any line beginning with a # is a comment. It's not possible to put
-# # a comment after a config option, since it would be interpreted as a
-# # part of the value. For example, this will have a value of "#123abc":
-# background = #123abc
-#
-# # Empty values are used to reset config keys to default.
-# key =
-#
-# # Some config options have unique syntaxes for their value,
-# # which is explained in the docs for that config option.
-# # Just for example:
-# resize-overlay-duration = 4s 200ms
+# --- Theme & Window ---
+theme = tokyonight
+background-opacity = 1.0
+window-decoration = false
+confirm-close-surface = false
+
+# --- Cursor ---
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+#  KEYBINDINGS (Leader: Ctrl+a)
+# Split Management
+keybind = ctrl+a>v=new_split:down
+keybind = ctrl+a>;=new_split:right
+
+# Tab Management
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>1=goto_tab:1
+keybind = ctrl+a>2=goto_tab:2
+keybind = ctrl+a>3=goto_tab:3
+keybind = ctrl+a>4=goto_tab:4
+keybind = ctrl+a>5=goto_tab:5
+keybind = ctrl+a>6=goto_tab:6
+keybind = ctrl+a>7=goto_tab:7
+keybind = ctrl+a>8=goto_tab:8
+
+# Send Literal Ctrl+A (Double press)
+# keybind = ctrl+a>ctrl+a=text:\x01
+
+#  STANDARD NAVIGATION
+# Resize Splits
+keybind = alt+h=resize_split:left,20
+keybind = alt+j=resize_split:down,20
+keybind = alt+k=resize_split:up,20
+keybind = alt+l=resize_split:right,20
+
+# Move Focus
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
+
+# Font Sizing
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+
+# Clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
