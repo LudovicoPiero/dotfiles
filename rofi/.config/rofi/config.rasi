@@ -1,0 +1,35 @@
+configuration {
+    /* General Settings */
+    modi:                       ["emoji", "drun", "run", "filebrowser","window" ];
+    font:                       "Iosevka 13";
+    terminal:                   "alacritty";
+    show-icons:                 true;
+    display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "";
+    display-emoji:              "😅";
+    drun-display-format:        "{icon} {name}";
+    window-format:              "{w} · {c} · {t}";
+
+    /* Vim-style Navigation Bindings */
+    kb-row-up:                  "Up,,Control+p";
+    kb-row-down:                "Down,Control+n";
+    kb-move-char-back:          "Left,Control+b";
+    kb-move-char-forward:       "Right,Control+f";
+    kb-remove-to-eol:           ""; /* Unbind default to avoid conflict */
+    kb-accept-entry:            "Control+m,Return,KP_Enter";
+
+    /* Interaction behavior */
+    click-to-exit:              true;
+    hover-select:               false; /* set true if you want mouse hover to select */
+
+    /* File browser settings */
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
+}
+
+@theme "/home/airi/.config/rofi/tokyonight-big1.rasi"
+// @theme "/home/airi/.config/rofi/tokyonight.rasi"
