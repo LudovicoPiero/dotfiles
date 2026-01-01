@@ -1,0 +1,69 @@
+! 96 is standard. 120-144+ for HiDPI/4k
+Xft.dpi: 96
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+
+
+! Normal = Inactive windows/tags
+dwm.normbgcolor:     #1a1b26
+dwm.normfgcolor:     #a9b1d6
+dwm.normbordercolor: #1a1b26
+
+! Selected = Active window/tag
+dwm.selbgcolor:      #7aa2f7
+dwm.selfgcolor:      #1a1b26
+dwm.selbordercolor:  #7aa2f7
+
+! Urgent = Windows demanding attention
+dwm.urgbgcolor:      #f7768e
+dwm.urgfgcolor:      #1a1b26
+dwm.urgbordercolor:  #f7768e
+
+! Title = The window title text (optional, if your patch supports it)
+dwm.titlebgcolor:    #1a1b26
+dwm.titlefgcolor:    #c0caf5
+dwm.titlebordercolor:#1a1b26
+
+! Font Configuration (Change size here to avoid recompiling)
+dwm.font:            Iosevka:size=12
+
+! Special
+*.foreground:   #a9b1d6
+*.background:   #1a1b26
+*.cursorColor:  #c0caf5
+
+! Black
+*.color0:       #414868
+*.color8:       #414868
+
+! Red
+*.color1:       #f7768e
+*.color9:       #f7768e
+
+! Green
+*.color2:       #9ece6a
+*.color10:      #9ece6a
+
+! Yellow
+*.color3:       #e0af68
+*.color11:      #e0af68
+
+! Blue
+*.color4:       #7aa2f7
+*.color12:      #7aa2f7
+
+! Magenta
+*.color5:       #bb9af7
+*.color13:      #bb9af7
+
+! Cyan
+*.color6:       #7dcfff
+*.color14:      #7dcfff
+
+! White
+*.color7:       #c0caf5
+*.color15:      #c0caf5
