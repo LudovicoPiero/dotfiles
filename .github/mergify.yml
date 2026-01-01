@@ -1,0 +1,30 @@
+pull_request_rules:
+  - name: Automatic rebase for PRs marked as "keep-up-to-date"
+    conditions:
+      - label=keep-up-to-date
+      - -draft
+      - -closed
+      - -merged
+    actions:
+      update:
+
+  - name: Automatic merge when CI passes
+    conditions:
+      - check-success=All Garnix checks
+      - -conflict
+      - -draft
+      - -title~= (?i)wip
+      - status-success=All Garnix checks
+    actions:
+      queue:
+      delete_head_branch:
+
+  - name: Toggle conflict label based on mergeability
+    conditions:
+      - conflict
+    actions:
+      label:
+        toggle:
+          - conflict
+      comment:
+        message: "@{{author}} this pull request is now in conflict 😩"

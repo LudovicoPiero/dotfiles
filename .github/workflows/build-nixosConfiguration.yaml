@@ -1,0 +1,36 @@
+# https://github.com/thiagokokada/nix-configs
+name: build-nixos-configuration-and-populate
+on:
+  workflow_dispatch: # Do not run unless i run it manually
+
+jobs:
+  build-nixosConfiguration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: easimon/maximize-build-space@v10
+        with:
+          overprovision-lvm: true
+          remove-android: true
+          remove-codeql: true
+          remove-docker-images: true
+          remove-dotnet: true
+          remove-haskell: true
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+
+      - uses: actions/checkout@v6
+
+      - name: Install Lix
+        uses: samueldr/lix-gha-installer-action@latest
+
+      - uses: cachix/cachix-action@v16
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          name: sforza-config
+
+      - name: Set default git branch (to reduce log spam)
+        run: git config --global init.defaultBranch flake-parts
+
+      - name: "Build nixosConfiguration for: sforza"
+        run: |-
+          nix build --print-build-logs '.#nixosConfigurations.sforza.config.system.build.toplevel'
