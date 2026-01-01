@@ -1,2 +1,4 @@
 mpdscrobble/
 fish/.config/fish/fish_variables
+emacs/.config/emacs/var
+emacs/.config/emacs/eln-cache/
