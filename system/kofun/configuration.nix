@@ -16,6 +16,7 @@
     # Apps
     alacritty.enable = true;
     fish.enable = true;
+    firefox.enable = true;
     git.enable = true;
     fonts.enable = true;
     gtk.enable = true;
