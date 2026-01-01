@@ -202,7 +202,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // -- Apps --
-    Mod+Return repeat=false { spawn "ghostty"; }
+    Mod+Return repeat=false { spawn "alacritty"; }
     Mod+E repeat=false { spawn "emacsclient" "-c"; }
     Mod+Shift+E repeat=false { spawn "thunar"; }
     Mod+M repeat=false { spawn "thunderbird"; }
