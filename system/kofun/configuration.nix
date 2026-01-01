@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -76,27 +75,7 @@
     ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd"
     ++ lib.optional config.virtualisation.docker.enable "docker"
     ++ lib.optional config.networking.networkmanager.enable "networkmanager";
-    packages = with pkgs; [
-      tmux
-      tree
-      wl-clipboard
-      cliphist
-      thunderbird
-      waybar
-    ];
   };
-
-  environment.systemPackages = with pkgs; [
-    inputs.nvim-flake.packages.${stdenv.hostPlatform.system}.default
-    eza
-    git
-    wget
-    firefox
-    fzf
-    ripgrep
-    fd
-    bat
-  ];
 
   system.stateVersion = "25.11";
 }

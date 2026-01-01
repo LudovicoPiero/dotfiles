@@ -11,6 +11,19 @@
   hardware.enableAllFirmware = true;
   time.timeZone = config.mine.vars.timezone;
 
+  environment.systemPackages = with pkgs; [
+    inputs.nvim-flake.packages.${stdenv.hostPlatform.system}.default
+    tmux
+    eza
+    git
+    wget
+    fzf
+    ripgrep
+    fd
+    bat
+    ente-auth
+  ];
+
   # Nix command-not-found handler using programs database
   programs.command-not-found = {
     enable = true;
