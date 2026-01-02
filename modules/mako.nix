@@ -27,7 +27,7 @@ in
     hj = {
       packages = [ cfg.package ];
       xdg.config.files."mako/config".text = ''
-        font=${config.mine.fonts.main.name} ${toString config.mine.fonts.size}
+        font=${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}
         background-color=#1e1e2e
         border-color=#cba6f7
         text-color=#cdd6f4
