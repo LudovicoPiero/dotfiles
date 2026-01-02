@@ -8,6 +8,19 @@ let
   _ = lib.getExe;
   __ = lib.getExe';
 
+  # Source: https://www.tonybtw.com/tutorial/nixos-hyprland/#nix-search-tv
+  nsScript = pkgs.writeShellApplication {
+    name = "ns-cli";
+    runtimeInputs = with pkgs; [
+      fzf
+      nix-search-tv
+    ];
+    text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+
+    # FIX: Disable shellcheck because the upstream script has linting errors
+    checkPhase = "";
+  };
+
   functions = {
     gitignore = "curl -sL https://www.toptal.com/developers/gitignore/api/$argv";
 
@@ -20,23 +33,7 @@ let
     '';
 
     ns = ''
-      if test (count $argv) -eq 0
-          echo "Usage: ns <packages...> [--nix-flags...]"
-          return 1
-      end
-
-      set -l pkgs
-      set -l args
-
-      for arg in $argv
-          if string match -q -- "-*" $arg
-              set args $args $arg
-          else
-              set pkgs $pkgs nixpkgs#$arg
-          end
-      end
-
-      nix shell $pkgs $args
+      ${_ nsScript} $argv
     '';
 
     notify = ''
