@@ -37,7 +37,7 @@ let
   '';
 
   clipboard-picker = pkgs.writeShellScriptBin "clipboard-picker" ''
-    ${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}
+    ${getExe pkgs.cliphist} list | ${getExe pkgs.rofi} -dmenu display-columns 2 | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}
   '';
 in
 {
