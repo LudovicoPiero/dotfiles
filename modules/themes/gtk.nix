@@ -14,13 +14,13 @@ let
   };
 
   iconTheme = {
-    name = "Papirus-Dark";
-    package = pkgs.papirus-icon-theme;
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
   };
 
   cursorTheme = {
-    name = "phinger-cursors-light";
-    package = pkgs.phinger-cursors;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
     size = 24;
   };
 
