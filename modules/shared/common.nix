@@ -11,20 +11,59 @@
   hardware.enableAllFirmware = true;
   time.timeZone = config.mine.vars.timezone;
 
-  environment.systemPackages = with pkgs; [
-    inputs.nvim-flake.packages.${stdenv.hostPlatform.system}.default
-    tmux
-    eza
-    git
-    wget
-    fzf
-    ripgrep
-    fd
-    bat
-    ente-auth
-    wl-clipboard
-    cliphist
-  ];
+  # Install bloat
+  environment.systemPackages = lib.attrValues {
+    inherit (pkgs)
+      # Core / Utilities
+      tmux # Terminal multiplexer
+      eza # Modern replacement for 'ls'
+      wget # Tool for retrieving files using HTTP, HTTPS, and FTP
+      curl # Command line tool for transferring data with URLs
+      git # Distributed version control system
+      gh # GitHub CLI tool
+      bat # Cat clone with syntax highlighting and Git integration
+      fd # Simple, fast and user-friendly alternative to 'find'
+      ripgrep # Fast line-oriented search tool (grep alternative)
+      fzf # Command-line fuzzy finder
+      jq # Lightweight and flexible command-line JSON processor
+      tealdeer # Fast implementation of tldr (simplified man pages)
+      bottom # Cross-platform graphical process/system monitor
+      unzip # Extraction utility for .zip compressed archives
+      file # Utility to determine the type of a file
+      file-roller # Archive manager for the GNOME desktop environment
+      wl-clipboard # Command-line copy/paste utilities for Wayland
+      cliphist # Wayland clipboard manager
+      rsync # Fast incremental file transfer utility
+      nix-index # Database of all files in nixpkgs (provides command-not-found)
+      nh # Yet another nix CLI helper for managing configurations
+      nixpkgs-review # Tool to review nixpkgs pull requests locally
+      sbctl # Secure Boot key manager
+
+      # Networking
+      teavpn2 # SSL VPN client
+      iputils # Network monitoring tools (ping, tracepath, etc.)
+      dnsutils # DNS utilities (dig, nslookup)
+      nmap # Network exploration tool and security / port scanner
+      whois # Client for the WHOIS directory service
+
+      # GUI Apps
+      qbittorrent # Free and open-source BitTorrent client
+      imv # Image viewer intended for use with tiling window managers
+      viewnior # Simple, fast and elegant image viewer
+      ente-auth # Open source 2FA authenticator (Desktop client)
+      thunderbird # Full-featured email, RSS, and newsgroup client
+      telegram-desktop # Official desktop client for Telegram
+      mpv # General-purpose media player
+      vesktop # Custom Discord client with Vencord embedded
+      # tidal-hifi # Web wrapper for Tidal music streaming
+
+      # Terminal Apps
+      yazi # Blazing fast terminal file manager written in Rust
+      ;
+
+    # Flake Packages
+    nvim = inputs.nvim-flake.packages.${pkgs.stdenv.hostPlatform.system}.default; # Custom Neovim configuration
+  };
 
   # Nix command-not-found handler using programs database
   programs.command-not-found = {
@@ -66,9 +105,13 @@
       ];
     };
   };
+
   services = {
     gvfs.enable = config.mine.vars.withGui; # Mount, trash, and other functionalities
     tumbler.enable = config.mine.vars.withGui; # Thumbnail support for images
+
+    # Use dbus-broker
+    dbus.implementation = "broker";
 
     angrr = {
       enable = true;
@@ -106,16 +149,28 @@
         };
       };
     };
-  };
 
-  services = {
     # Service that makes Out of Memory Killer more effective
     earlyoom.enable = true;
 
     # Enable periodic SSD TRIM of mounted partitions in background
     fstrim.enable = true;
 
+    # Enable playerctl for media key support
     playerctld.enable = config.mine.vars.withGui;
+  };
+
+  # Show a pretty diff
+  system = {
+    # https://github.com/pluiedev/flake/blob/main/systems/laptop.nix#L102
+    # Thank @luishfonseca for this
+    # https://github.com/luishfonseca/dotfiles/blob/ab7625ec406b48493eda701911ad1cd017ce5bc1/modules/upgrade-diff.nix
+    activationScripts.diff = {
+      supportsDryActivation = true;
+      text = ''
+        ${lib.getExe pkgs.nvd} --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+      '';
+    };
   };
 
   systemd.services.nix-daemon = lib.mkIf config.boot.tmp.useTmpfs {
