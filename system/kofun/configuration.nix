@@ -53,6 +53,8 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  environment.systemPackages = with pkgs; [ brave ];
+
   networking.hostName = "kofun";
   networking.networkmanager.enable = true;
 
