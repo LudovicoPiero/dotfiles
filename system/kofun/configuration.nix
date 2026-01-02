@@ -27,6 +27,7 @@
     gpg.enable = true;
     mako.enable = true;
     rofi.enable = true;
+    tmux.enable = true;
     waybar.enable = true;
 
     # Vars
