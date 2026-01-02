@@ -17,6 +17,11 @@
     fish.enable = true;
     firefox.enable = true;
     git.enable = true;
+    inputMethod = {
+      enable = true;
+      type = "fcitx5";
+
+    };
     fonts.enable = true;
     gtk.enable = true;
     gpg.enable = true;
