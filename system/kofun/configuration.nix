@@ -10,12 +10,14 @@
 
   mine = {
     # WM / Compositor
-    niri.enable = true;
+    niri.enable = false;
+    hyprland.enable = true;
 
     # Apps
     alacritty.enable = true;
     fish.enable = true;
     firefox.enable = true;
+    keyring.enable = true;
     git.enable = true;
     inputMethod = {
       enable = true;
@@ -29,6 +31,7 @@
     rofi.enable = true;
     tmux.enable = true;
     waybar.enable = true;
+    portal.enable = true;
 
     # Vars
     vars = {

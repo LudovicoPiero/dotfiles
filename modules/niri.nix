@@ -37,10 +37,13 @@ in
   config = mkIf cfg.enable {
     hj.packages = [ cfg.package ];
 
-    hj.xdg.config.files."niri/config.kdl".text = ''
-      // Core Services
-      spawn-at-startup "${getExe pkgs.xwayland-satellite}"
+    security.pam.services.swaylock = {
+      text = ''
+        auth include login
+      '';
+    };
 
+    hj.xdg.config.files."niri/config.kdl".text = ''
       // Env vars
       spawn-at-startup "${getExe' pkgs.dbus "dbus-update-activation-environment"}" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 
@@ -152,6 +155,12 @@ in
               offset x=0 y=10
               color "#00000050"
           }
+      }
+
+      xwayland-satellite {
+        // off
+        // path "/usr/bin/xwayland-satellite"
+        path "${getExe pkgs.xwayland-satellite}"
       }
 
       window-rule {

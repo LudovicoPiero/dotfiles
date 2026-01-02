@@ -36,6 +36,7 @@ in
     environment.pathsToLink = [ "/share/fish" ];
     programs = {
       fish.enable = true;
+      fish.useBabelfish = true;
 
       direnv = {
         enable = true;

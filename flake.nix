@@ -37,6 +37,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Hypr
+    hyprland = {
+      type = "github";
+      owner = "hyprwm";
+      repo = "hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Bloat
     programsdb = {
       type = "github";

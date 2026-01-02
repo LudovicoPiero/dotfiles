@@ -39,7 +39,8 @@ in
           "spacing": 0,
           "modules-left": [
             "niri/workspaces",
-            "niri/window"
+            "niri/window",
+            "hyprland/workspaces"
           ],
           "modules-center": [],
           "modules-right": [
