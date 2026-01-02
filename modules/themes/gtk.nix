@@ -19,8 +19,8 @@ let
   };
 
   cursorTheme = {
-    name = "Bibata-Modern-Ice";
-    package = pkgs.bibata-cursors;
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
     size = 24;
   };
 
