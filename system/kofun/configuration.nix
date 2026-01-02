@@ -56,16 +56,9 @@
     };
   };
 
-  programs = {
-    niri.enable = true;
-    fish.enable = true;
-    gnupg.agent.enable = true;
-  };
-
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
-  users.users.airi = {
-    shell = pkgs.fish;
+  users.users.${config.mine.vars.username} = {
     isNormalUser = true;
     extraGroups = [
       "seat"
