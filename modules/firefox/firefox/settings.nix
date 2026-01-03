@@ -155,6 +155,17 @@
     "network.trr.uri" = "https://dns.nextdns.io/518d18/nixos-firefox";
     "network.trr.bootstrapAddress" = "1.1.1.1";
 
+    # --- EXTREME DEBLOAT ---
+    # Disable captive portal detection (pings Google/Mozilla/Cloudflare on startup)
+    "network.captive-portal-service.enabled" = false;
+    "network.connectivity-service.enabled" = false;
+
+    # Disable checks for "missing plugins"
+    "plugins.hide_infobar_for_missing_plugin" = true;
+
+    # Disable System Add-on updates (Warning: Security trade-off)
+    "extensions.systemAddon.update.enabled" = false;
+
     # --- SMOOTHFOX ---
     "apz.overscroll.enabled" = true;
     "general.smoothScroll" = true;
