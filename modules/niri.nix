@@ -167,18 +167,35 @@ in
           match is-floating=false
       }
 
+      // -- Workspaces --
       workspace "main"
-      workspace "chat"
-      workspace "mail"
+      workspace "browser" // Firefox (2)
+      workspace "zen"     // Zen (3)
+      workspace "chat"    // Discord/Telegram (4)
+      workspace "mail"    // Mail (5)
 
-      // Chat Workspace
+      // Workspace 2: Firefox
+      window-rule {
+          match app-id=r#"(?i)(firefox|firefox-esr|floorp)"#
+          open-on-workspace "browser"
+          default-column-width { proportion 1.0; }
+      }
+
+      // Workspace 3: Zen
+      window-rule {
+          match app-id=r#"(?i)(zen|zen-browser|zen-beta|chromium|brave)"#
+          open-on-workspace "zen"
+          default-column-width { proportion 1.0; }
+      }
+
+      // Workspace 4: Chat
       window-rule {
           match app-id=r#"(?i)(discord|vesktop|webcord|slack|telegram|element)"#
           open-on-workspace "chat"
           default-column-width { proportion 1.0; }
       }
 
-      // Mail Workspace
+      // Workspace 5: Mail
       window-rule {
           match app-id=r#"(?i)(thunderbird|mailspring|geary|evolution|kmail)"#
           open-on-workspace "mail"
@@ -272,13 +289,17 @@ in
 
           // -- Workspaces --
           Mod+1 { focus-workspace "main"; }
-          Mod+2 { focus-workspace "chat"; }
-          Mod+3 { focus-workspace "mail"; }
+          Mod+2 { focus-workspace "browser"; }
+          Mod+3 { focus-workspace "zen"; }
+          Mod+4 { focus-workspace "chat"; }
+          Mod+5 { focus-workspace "mail"; }
 
           // Move to workspace
           Mod+Shift+1 { move-column-to-workspace "main"; }
-          Mod+Shift+2 { move-column-to-workspace "chat"; }
-          Mod+Shift+3 { move-column-to-workspace "mail"; }
+          Mod+Shift+2 { move-column-to-workspace "browser"; }
+          Mod+Shift+3 { move-column-to-workspace "zen"; }
+          Mod+Shift+4 { move-column-to-workspace "chat"; }
+          Mod+Shift+5 { move-column-to-workspace "mail"; }
 
           // -- Audio & Media --
           XF86AudioRaiseVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5%+"; }

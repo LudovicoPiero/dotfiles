@@ -40,8 +40,8 @@ in
           workspace = 1
       }
 
-      # Workspace 2: Firefox
-      $firefox = ^(firefox|firefox-esr|floorp|zen|zen-beta)$
+      # Workspace 2: Firefox (Main)
+      $firefox = ^(firefox|firefox-esr|floorp)$
       windowrule {
           name = firefox-main
           match:class = $firefox
@@ -61,23 +61,23 @@ in
           idle_inhibit = focus
       }
 
-      # Workspace 3: Brave/Chromium
-      $chromium = ^(brave-browser|Chromium-browser|chromium-browser|google-chrome|chrome)$
+      # Workspace 3: Zen & Chromium
+      $secondary = ^(zen|zen-beta|zen-browser|brave-browser|Chromium-browser|chromium-browser|google-chrome|chrome)$
       windowrule {
-          name = chromium-main
-          match:class = $chromium
+          name = secondary-main
+          match:class = $secondary
           workspace = 3
       }
       windowrule {
-          name = chromium-perf
-          match:class = $chromium
+          name = secondary-perf
+          match:class = $secondary
           no_blur = on
           no_shadow = on
           idle_inhibit = fullscreen
       }
       windowrule {
-          name = chromium-video
-          match:class = $chromium
+          name = secondary-video
+          match:class = $secondary
           match:title = ^(.*YouTube.*)$
           idle_inhibit = focus
       }
@@ -233,8 +233,6 @@ in
           match:title = ^(KeePassXC - Browser Access Request)$
           float = on
       }
-
     '';
   };
-
 }
