@@ -152,7 +152,7 @@
     "urlclassifier.features.socialtracking.skipURLs" = "";
     "network.trr.mode" = 2;
     "network.trr.max-fails" = 5;
-    "network.trr.uri" = "https://dns.nextdns.io/518d18/nixos";
+    "network.trr.uri" = "https://dns.nextdns.io/518d18/nixos-firefox";
     "network.trr.bootstrapAddress" = "1.1.1.1";
 
     # --- SMOOTHFOX ---

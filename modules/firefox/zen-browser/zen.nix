@@ -1,34 +1,30 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }:
 let
-  cfg = config.mine.firefox;
+  cfg = config.mine.zen-browser;
 in
 {
-  imports = [
-    ./_modules.nix
-    ./_mozilla.nix
-  ];
-
-  options.mine.firefox = {
+  options.mine.zen-browser = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
-      description = "Enable Firefox.";
+      description = "Enable zen-browser.";
     };
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.firefox;
-      description = "The Firefox package to install.";
+      default = inputs.zen-browser.packages.${pkgs.stdenv.system}.beta;
+      description = "The zen-browser package to install.";
     };
   };
 
   config = lib.mkIf cfg.enable {
-    mine.programs.firefox = {
+    mine.programs.zen-browser = {
       enable = true;
       inherit (cfg) package;
 

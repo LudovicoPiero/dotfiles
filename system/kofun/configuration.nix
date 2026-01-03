@@ -17,6 +17,7 @@
     alacritty.enable = true;
     fish.enable = true;
     firefox.enable = true;
+    zen-browser.enable = true;
     keyring.enable = true;
     git.enable = true;
     inputMethod = {
