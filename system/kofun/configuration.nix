@@ -33,6 +33,11 @@
     waybar.enable = true;
     portal.enable = true;
 
+    music = {
+      mpd.enable = true;
+      rmpc.enable = true;
+    };
+
     # Vars
     vars = {
       email = "lewdovico@gnuweeb.org";
