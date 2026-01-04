@@ -1,8 +1,8 @@
-{ inputs, pkgs, ... }:
+{ inputs', ... }:
 {
   mine.programs.zen-browser.profiles.ludovico.extensions = {
     force = true;
-    packages = with inputs.firefox-addons.packages.${pkgs.stdenv.system}; [
+    packages = with inputs'.firefox-addons.packages; [
       bitwarden
       refined-github
       sponsorblock

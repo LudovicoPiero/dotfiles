@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  inputs,
+  inputs',
   ...
 }:
 let
@@ -22,7 +22,7 @@ in
     enable = mkEnableOption "Hyprland compositor";
     package = mkOption {
       type = lib.types.package;
-      default = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      default = inputs'.hyprland.packages.hyprland;
       description = "The Hyprland package to install.";
     };
   };
@@ -32,8 +32,7 @@ in
       hyprland = {
         enable = true;
         inherit (cfg) package;
-        portalPackage =
-          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
       };
     };
     security.pam.services.hypridle.text = "auth include login";

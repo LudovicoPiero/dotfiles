@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  inputs',
   pkgs,
   ...
 }:
@@ -61,21 +62,17 @@
       ;
 
     # Flake Packages
-    inherit
-      (inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system})
-      vesktop
-      ;
-    nvim = inputs.nvim-flake.packages.${pkgs.stdenv.hostPlatform.system}.default; # Custom Neovim configuration
+    inherit (inputs'.nixpkgs-master.legacyPackages) vesktop;
+    nvim = inputs'.nvim-flake.packages.default;
   };
 
   # Nix command-not-found handler using programs database
   programs.command-not-found = {
     enable = true;
-    dbPath =
-      inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
+    dbPath = inputs'.programsdb.packages.programs-sqlite;
   };
   environment.etc."programs.sqlite".source =
-    inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
+    inputs'.programsdb.packages.programs-sqlite;
 
   security = {
     sudo = {

@@ -1,18 +1,17 @@
-{ inputs, pkgs, ... }:
+{ inputs', ... }:
 {
   mine.programs.firefox.profiles.ludovico.extensions = {
     force = true;
-    packages =
-      with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-        bitwarden
-        refined-github
-        sponsorblock
-        to-deepl
-        ublock-origin
-        search-by-image
-        violentmonkey
-        vimium
-      ];
+    packages = with inputs'.firefox-addons.packages; [
+      bitwarden
+      refined-github
+      sponsorblock
+      to-deepl
+      ublock-origin
+      search-by-image
+      violentmonkey
+      vimium
+    ];
     settings = {
       "uBlock0@raymondhill.net" = {
         settings = {

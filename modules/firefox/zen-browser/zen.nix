@@ -1,8 +1,7 @@
 {
   config,
   lib,
-  inputs,
-  pkgs,
+  inputs',
   ...
 }:
 let
@@ -18,7 +17,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = inputs.zen-browser.packages.${pkgs.stdenv.system}.beta;
+      default = inputs'.zen-browser.packages.beta;
       description = "The zen-browser package to install.";
     };
   };
