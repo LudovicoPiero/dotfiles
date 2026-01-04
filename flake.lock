@@ -726,6 +726,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nvim-flake": "nvim-flake",
         "programsdb": "programsdb",
+        "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"
       }
@@ -744,6 +745,26 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "08895cce80433978d5bfd668efa41c5e24578cbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767495280,
+        "narHash": "sha256-hEEgtE/RSRigw8xscchGymf/t1nluZwTfru4QF6O1CQ=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "cb24c5cc207ba8e9a4ce245eedd2d37c3a988bc1",
         "type": "github"
       },
       "original": {

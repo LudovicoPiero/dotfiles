@@ -6,12 +6,16 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs";
 
     flake-parts = {
-      url = "github:hercules-ci/flake-parts";
+      type = "github";
+      owner = "hercules-ci";
+      repo = "flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      type = "github";
+      owner = "Mic92";
+      repo = "sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -19,6 +23,13 @@
       type = "github";
       owner = "LudovicoPiero";
       repo = "nvim-flake";
+    };
+
+    rust-overlay = {
+      type = "github";
+      owner = "oxalica";
+      repo = "rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hjem = {
@@ -68,24 +79,13 @@
         ];
 
         _module.args.extendedLib = nixpkgs.lib.extend (
-          import ./lib/default.nix { inherit inputs withSystem; }
+          import ./lib { inherit inputs withSystem; }
         );
 
-        imports = [ ./system/default.nix ];
-
-        # #TODO:
-        # perSystem =
-        #   {
-        #     config,
-        #     self',
-        #     inputs',
-        #     pkgs,
-        #     system,
-        #     ...
-        #   }:
-        #   {
-        #     # packages.default = ...
-        #   };
+        imports = [
+          ./system
+          ./packages
+        ];
       }
     );
 }
