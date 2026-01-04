@@ -1,31 +1,14 @@
 {
   description = "NixOS Configuration";
 
-  outputs =
-    { nixpkgs, ... }@inputs:
-    let
-      lib = nixpkgs.lib.extend (_final: prev: import ./lib/default.nix prev);
-    in
-    {
-      nixosConfigurations.kofun = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs lib; };
-        modules = [
-          ./system/kofun/configuration.nix
-          ./modules
-        ];
-      };
-    };
-
   inputs = {
-    nixpkgs-unstable = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixpkgs";
-      ref = "nixos-unstable";
-    };
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
     nvim-flake = {
       type = "github";
@@ -33,7 +16,6 @@
       repo = "nvim-flake";
     };
 
-    # Hjem for managing user configuration
     hjem = {
       type = "github";
       owner = "feel-co";
@@ -41,7 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hypr
     hyprland = {
       type = "github";
       owner = "hyprwm";
@@ -49,7 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Bloat
     programsdb = {
       type = "github";
       owner = "wamserma";
@@ -71,4 +51,36 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    inputs@{ flake-parts, nixpkgs, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { withSystem, ... }:
+      {
+        systems = [
+          "x86_64-linux"
+          # "aarch64-linux"
+        ];
+
+        _module.args.extendedLib = nixpkgs.lib.extend (
+          import ./lib/default.nix { inherit inputs withSystem; }
+        );
+
+        imports = [ ./system/default.nix ];
+
+        # #TODO:
+        # perSystem =
+        #   {
+        #     config,
+        #     self',
+        #     inputs',
+        #     pkgs,
+        #     system,
+        #     ...
+        #   }:
+        #   {
+        #     # packages.default = ...
+        #   };
+      }
+    );
 }
