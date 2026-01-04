@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+self',
   ...
 }:
 let
@@ -20,22 +21,22 @@ in
     main = {
       name = mkOption {
         type = types.str;
-        default = "Cantarell";
+        default = "SF Pro";
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.cantarell-fonts;
+        default = self'.packages.san-francisco-pro;
       };
     };
 
     terminal = {
       name = mkOption {
         type = types.str;
-        default = "Iosevka";
+        default = "Iosevka q";
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.iosevka;
+        default = self'.packages.iosevka-q;
       };
     };
 

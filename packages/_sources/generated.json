@@ -1,0 +1,257 @@
+{
+    "app2unit": {
+        "cargoLocks": null,
+        "date": "2025-11-28",
+        "extract": null,
+        "name": "app2unit",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "83e2656fb8d39ad71e2f8a5ba113a9cedc90841f",
+            "sha256": "sha256-DZ0W7SygOUmjIO0+K8hS9K1U+gSp1gA6Q15eXr6rOmo=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/Vladimir-csp/app2unit"
+        },
+        "version": "83e2656fb8d39ad71e2f8a5ba113a9cedc90841f"
+    },
+    "catppuccin-fcitx5": {
+        "cargoLocks": null,
+        "date": "2025-05-16",
+        "extract": null,
+        "name": "catppuccin-fcitx5",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "393845cf3ed0e0000bfe57fe1b9ad75748e2547f",
+            "sha256": "sha256-ss0kW+ulvMhxeZKBrjQ7E5Cya+02eJrGsE4OLEkqKks=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/catppuccin/fcitx5"
+        },
+        "version": "393845cf3ed0e0000bfe57fe1b9ad75748e2547f"
+    },
+    "firefox-csshacks": {
+        "cargoLocks": null,
+        "date": "2026-01-04",
+        "extract": null,
+        "name": "firefox-csshacks",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "1a3b86bff806571f5f235a779263a2c9c7b7419b",
+            "sha256": "sha256-Oq6n8Ag5x1IahEg+1KpJgRdd+YyaJHuxLt7KSGEzAZM=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/MrOtherGuy/firefox-csshacks"
+        },
+        "version": "1a3b86bff806571f5f235a779263a2c9c7b7419b"
+    },
+    "firefox-gnome-theme": {
+        "cargoLocks": null,
+        "date": "2025-12-04",
+        "extract": null,
+        "name": "firefox-gnome-theme",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "f7ffd917ac0d253dbd6a3bf3da06888f57c69f92",
+            "sha256": "sha256-1XPewtGMi+9wN9Ispoluxunw/RwozuTRVuuQOmxzt+A=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/rafaelmardojai/firefox-gnome-theme"
+        },
+        "version": "f7ffd917ac0d253dbd6a3bf3da06888f57c69f92"
+    },
+    "firefox-ui-fix": {
+        "cargoLocks": null,
+        "date": "2026-01-01",
+        "extract": null,
+        "name": "firefox-ui-fix",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "556924cc43f228991adb8f8e3170230774b2849c",
+            "sha256": "sha256-cWk72ZgZSBDVD1uJA5gC2kbiYtJcUY059oy+VhC8UWg=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/black7375/Firefox-UI-Fix"
+        },
+        "version": "556924cc43f228991adb8f8e3170230774b2849c"
+    },
+    "fuzzmoji": {
+        "cargoLocks": null,
+        "date": "2025-07-06",
+        "extract": null,
+        "name": "fuzzmoji",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "af4baa86611f2dfbe66c845f1b7edb582efc6cb5",
+            "sha256": "sha256-M3Sv7OLpUO84A1yS/TobxHVrBbwgedX8wNq58ZuJhKM=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://codeberg.org/codingotaku/fuzzmoji"
+        },
+        "version": "af4baa86611f2dfbe66c845f1b7edb582efc6cb5"
+    },
+    "npins": {
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./npins-0d6aaa4b3dcd1d8badbed2b66e0c50867330a86e/Cargo.lock",
+                {
+                    "nix-compat-0.1.0": "sha256-w8N09ZUm0V+6LdjGyL6g0mb3COoNWONfmr/M3S9C+do="
+                }
+            ]
+        },
+        "date": "2025-12-27",
+        "extract": null,
+        "name": "npins",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "0d6aaa4b3dcd1d8badbed2b66e0c50867330a86e",
+            "sha256": "sha256-9N14/tliOiA49Us2uFUWHcrhYN8AmJjR+bnwzcxejgs=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/andir/npins"
+        },
+        "version": "0d6aaa4b3dcd1d8badbed2b66e0c50867330a86e"
+    },
+    "runapp": {
+        "cargoLocks": null,
+        "date": "2025-11-26",
+        "extract": null,
+        "name": "runapp",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "10fb4b344d06c815c1cd4c1b8bdc4f797b04230f",
+            "sha256": "sha256-KH/dK2aYviV5a2L/C4wb3fAHbdGChrpHP53RlLejyoA=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/c4rlo/runapp"
+        },
+        "version": "10fb4b344d06c815c1cd4c1b8bdc4f797b04230f"
+    },
+    "san-francisco-fonts": {
+        "cargoLocks": null,
+        "date": "2020-08-27",
+        "extract": null,
+        "name": "san-francisco-fonts",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "5a8fc7d569fa2b4fb5fe9a63ad66e5cf9ae00eae",
+            "sha256": "sha256-NBvWqHMaieaCZffqNitnhn979Sl2bAkIwC5sWW24z7g=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/oyezcubed/Apple-Fonts-San-Francisco-New-York"
+        },
+        "version": "5a8fc7d569fa2b4fb5fe9a63ad66e5cf9ae00eae"
+    },
+    "san-francisco-pro": {
+        "cargoLocks": null,
+        "date": "2021-06-22",
+        "extract": null,
+        "name": "san-francisco-pro",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "8bfea09aa6f1139479f80358b2e1e5c6dc991a58",
+            "sha256": "sha256-mAXExj8n8gFHq19HfGy4UOJYKVGPYgarGd/04kUIqX4=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts"
+        },
+        "version": "8bfea09aa6f1139479f80358b2e1e5c6dc991a58"
+    },
+    "wezterm": {
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./wezterm-d3b0fdad453e8b5f12b583c5d6849b33d975c19c/Cargo.lock",
+                {
+                    "finl_unicode-1.3.0": "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=",
+                    "xcb-imdkit-0.3.0": "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU="
+                }
+            ]
+        },
+        "date": "2025-12-01",
+        "extract": null,
+        "name": "wezterm",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": true,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "d3b0fdad453e8b5f12b583c5d6849b33d975c19c",
+            "sha256": "sha256-UmhJ0Z9A9AnbHG8/fADbXIjNm+Mpt2+h6xznJs39M8E=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/wez/wezterm"
+        },
+        "version": "d3b0fdad453e8b5f12b583c5d6849b33d975c19c"
+    },
+    "whitesur-gtk-theme": {
+        "cargoLocks": null,
+        "date": "2025-12-27",
+        "extract": null,
+        "name": "whitesur-gtk-theme",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "2d48e916b074ac548eaf32024af7d31c69a142ca",
+            "sha256": "sha256-5jsHGplLAiA2K65qPuRSap6ThvBx/SKbohcAsaNeNEc=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/vinceliuice/WhiteSur-gtk-theme"
+        },
+        "version": "2d48e916b074ac548eaf32024af7d31c69a142ca"
+    }
+}
