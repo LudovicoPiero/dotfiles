@@ -8,6 +8,7 @@
   clang_20,
   libsecret,
   ripgrep,
+  nodejs_22,
 }:
 
 buildNpmPackage (finalAttrs: {
@@ -20,6 +21,8 @@ buildNpmPackage (finalAttrs: {
     tag = "v${finalAttrs.version}";
     hash = "sha256-3d9Lq3IulIgp4QGNtSvkwz10kfygX6vsmVdlU3lE6Gw=";
   };
+
+  nodejs = nodejs_22;
 
   npmDepsHash = "sha256-6NqpkUgez7CqQAMDQW3Zdi86sF5qXseKXMw1Vw/5zWU=";
 
@@ -45,12 +48,31 @@ buildNpmPackage (finalAttrs: {
 
     # Remove node-pty dependency from packages/core/package.json
     ${jq}/bin/jq 'del(.optionalDependencies."node-pty")' packages/core/package.json > packages/core/package.json.tmp && mv packages/core/package.json.tmp packages/core/package.json
+
+    # Ideal method to disable auto-update
+    sed -i '/disableAutoUpdate: {/,/}/ s/default: false/default: true/' packages/cli/src/config/settingsSchema.ts
+
+    # Disable auto-update for real because the default value in settingsSchema isn't cleanly applied
+    # https://github.com/google-gemini/gemini-cli/issues/13569
+    substituteInPlace packages/cli/src/utils/handleAutoUpdate.ts \
+      --replace-fail "settings.merged.general?.disableAutoUpdate ?? false" "settings.merged.general?.disableAutoUpdate ?? true" \
+      --replace-fail "settings.merged.general?.disableAutoUpdate" "(settings.merged.general?.disableAutoUpdate ?? true)"
+    substituteInPlace packages/cli/src/ui/utils/updateCheck.ts \
+      --replace-fail "settings.merged.general?.disableUpdateNag" "(settings.merged.general?.disableUpdateNag ?? true)"
   '';
+
+  # Prevent npmDeps and python from getting into the closure
+  disallowedReferences = [
+    finalAttrs.npmDeps
+    nodejs_22.python
+  ];
 
   installPhase = ''
     runHook preInstall
     mkdir -p $out/{bin,share/gemini-cli}
 
+    npm prune --omit=dev
+    rm node_modules/shell-quote/print.py # remove python demo to prevent python from getting into the closure
     cp -r node_modules $out/share/gemini-cli/
 
     rm -f $out/share/gemini-cli/node_modules/@google/gemini-cli
@@ -73,6 +95,7 @@ buildNpmPackage (finalAttrs: {
     homepage = "https://github.com/google-gemini/gemini-cli";
     license = lib.licenses.asl20;
     sourceProvenance = with lib.sourceTypes; [ fromSource ];
+    maintainers = with lib.maintainers; [ ludovicopiero ];
     platforms = lib.platforms.all;
     mainProgram = "gemini";
   };

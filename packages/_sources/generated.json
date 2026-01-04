@@ -41,7 +41,7 @@
     },
     "firefox-csshacks": {
         "cargoLocks": null,
-        "date": "2025-12-21",
+        "date": "2026-01-04",
         "extract": null,
         "name": "firefox-csshacks",
         "passthru": null,
@@ -51,13 +51,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "ab752a5b27561e61587e54bec0126194794ae2ca",
-            "sha256": "sha256-FVMtbOz0ms5Wob5gzAFpN8g2yw6kGE7rdOY2kmc/o0c=",
+            "rev": "1a3b86bff806571f5f235a779263a2c9c7b7419b",
+            "sha256": "sha256-Oq6n8Ag5x1IahEg+1KpJgRdd+YyaJHuxLt7KSGEzAZM=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/MrOtherGuy/firefox-csshacks"
         },
-        "version": "ab752a5b27561e61587e54bec0126194794ae2ca"
+        "version": "1a3b86bff806571f5f235a779263a2c9c7b7419b"
     },
     "firefox-gnome-theme": {
         "cargoLocks": null,
@@ -81,7 +81,7 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2025-11-30",
+        "date": "2026-01-01",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -91,13 +91,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "9942096af6ebf7e2653f5178851848e286bd679f",
-            "sha256": "sha256-+uYMq5ZGpW99mE6fl0Uy9+ardhyPbDirw4JZLFtutZo=",
+            "rev": "556924cc43f228991adb8f8e3170230774b2849c",
+            "sha256": "sha256-cWk72ZgZSBDVD1uJA5gC2kbiYtJcUY059oy+VhC8UWg=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/black7375/Firefox-UI-Fix"
         },
-        "version": "9942096af6ebf7e2653f5178851848e286bd679f"
+        "version": "556924cc43f228991adb8f8e3170230774b2849c"
     },
     "fuzzmoji": {
         "cargoLocks": null,
