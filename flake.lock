@@ -558,6 +558,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1767483688,
+        "narHash": "sha256-qZo80x8T2E6RLh21qV+618EZb0mEx6u3783YTzl1SlY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "356371ed0e66637c3914440003200a47cc575145",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1767379071,
@@ -689,6 +704,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim-flake": "nvim-flake",
         "programsdb": "programsdb",

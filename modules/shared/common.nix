@@ -54,7 +54,6 @@
       thunderbird # Full-featured email, RSS, and newsgroup client
       telegram-desktop # Official desktop client for Telegram
       mpv # General-purpose media player
-      vesktop # Custom Discord client with Vencord embedded
       # tidal-hifi # Web wrapper for Tidal music streaming
 
       # Terminal Apps
@@ -62,6 +61,10 @@
       ;
 
     # Flake Packages
+    inherit
+      (inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system})
+      vesktop
+      ;
     nvim = inputs.nvim-flake.packages.${pkgs.stdenv.hostPlatform.system}.default; # Custom Neovim configuration
   };
 

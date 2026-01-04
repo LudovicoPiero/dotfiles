@@ -22,6 +22,7 @@
       ref = "nixos-unstable";
     };
     nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs";
 
     nvim-flake = {
       type = "github";

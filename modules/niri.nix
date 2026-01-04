@@ -256,7 +256,6 @@ in
           Mod+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "drun"; }
           Mod+o repeat=false { spawn-sh "${getExe clipboard-picker}"; }
           Mod+Shift+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "window"; }
-          Mod+D repeat=false { spawn "${getExe pkgs.vesktop}"; }
 
           // -- Utils --
           // Mod+Shift+O repeat=false { spawn "${getExe pkgs.rofi}" "-show" "emoji"; }

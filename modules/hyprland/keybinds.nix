@@ -51,8 +51,6 @@ in
       bind = $mod, M, exec, ${getExe pkgs.thunderbird}
       bind = $mod, P, exec, ${getExe pkgs.rofi} -show drun
       bind = $mod SHIFT, P, exec, ${getExe pkgs.rofi} -show window
-      # bind = $mod, D, exec, ${getExe pkgs.vesktop}
-      # bind = $mod, G, exec, ${getExe pkgs.firefox}
 
       # Custom Scripts
       bind = $mod, O, exec, ${getExe clipboard-picker}
