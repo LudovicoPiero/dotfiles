@@ -3,10 +3,13 @@
 
   outputs =
     { nixpkgs, ... }@inputs:
+    let
+      lib = nixpkgs.lib.extend (_final: prev: import ./lib/default.nix prev);
+    in
     {
       nixosConfigurations.kofun = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs lib; };
         modules = [
           ./system/kofun/configuration.nix
           ./modules

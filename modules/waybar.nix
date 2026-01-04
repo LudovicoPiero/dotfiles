@@ -12,6 +12,7 @@ let
     mkIf
     ;
   cfg = config.mine.waybar;
+  c = config.mine.theme.colors;
 in
 {
   options.mine.waybar = {
@@ -137,8 +138,8 @@ in
         }
 
         window#waybar {
-          background-color: #1a1b26;
-          color: #c0caf5;
+          background-color: ${c.base00};
+          color: ${c.base05};
         }
 
         #workspaces button,
@@ -154,84 +155,84 @@ in
         }
 
         #workspaces {
-          background-color: #16161e;
+          background-color: ${c.base00};
           padding: 0;
         }
 
         #workspaces button {
-          color: #565f89;
+          color: ${c.base03};
           padding: 0 12px;
         }
 
         #workspaces button.active {
-          background-color: #7aa2f7;
-          color: #16161e;
+          background-color: ${c.base0D};
+          color: ${c.base00};
         }
 
         #workspaces button.urgent {
-          background-color: #f7768e;
-          color: #16161e;
+          background-color: ${c.base08};
+          color: ${c.base00};
         }
 
         #window {
           background-color: transparent;
-          color: #a9b1d6;
+          color: ${c.base04};
         }
 
         #idle_inhibitor {
-          background-color: #f7768e;
-          color: #16161e;
+          background-color: ${c.base08};
+          color: ${c.base00};
           padding: 0 10px;
           margin: 0;
         }
 
         #idle_inhibitor.activated {
-          background-color: #ff9e64;
-          color: #16161e;
+          background-color: ${c.base09};
+          color: ${c.base00};
         }
 
         #network {
-          background-color: #2ac3de;
-          color: #16161e;
+          background-color: ${c.base0C};
+          color: ${c.base00};
         }
 
         #network.disconnected {
-          background-color: #f7768e;
-          color: #16161e;
+          background-color: ${c.base08};
+          color: ${c.base00};
         }
 
         #pulseaudio {
-          background-color: #e0af68;
-          color: #16161e;
+          background-color: ${c.base0A};
+          color: ${c.base00};
         }
 
         #pulseaudio.muted {
-          background-color: #f7768e;
-          color: #16161e;
+          background-color: ${c.base08};
+          color: ${c.base00};
         }
 
         #battery {
-          background-color: #9ece6a;
-          color: #16161e;
+          background-color: ${c.base0B};
+          color: ${c.base00};
         }
 
         #battery.warning {
-          background-color: #e0af68;
+          background-color: ${c.base0A};
         }
 
         #battery.critical {
-          background-color: #f7768e;
-          color: #16161e;
+          background-color: ${c.base08};
+          color: ${c.base00};
         }
 
         #clock {
-          background-color: #bb9af7;
-          color: #16161e;
+          background-color: ${c.base0E};
+          color: ${c.base00};
           margin-top: -3px;
         }
 
         #tray {
-          background-color: #24283b;
+          background-color: ${c.base01};
         }
       '';
     };

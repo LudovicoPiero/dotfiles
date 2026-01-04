@@ -14,6 +14,8 @@ let
     getExe'
     ;
   cfg = config.mine.hyprland;
+  c = config.mine.theme.colors;
+  strip = color: lib.substring 1 6 color;
 in
 {
   options.mine.hyprland = {
@@ -96,8 +98,8 @@ in
       # LOOK & FEEL
       general {
           border_size = 2
-          col.active_border = rgb(89b4fa)
-          col.inactive_border = rgb(313244)
+          col.active_border = rgb(${strip c.base0D})
+          col.inactive_border = rgb(${strip c.base02})
           gaps_in = 0
           gaps_out = 0
           layout = dwindle
@@ -151,18 +153,18 @@ in
       }
 
       group {
-          col.border_active = rgb(89b4fa)
-          col.border_inactive = rgb(313244)
+          col.border_active = rgb(${strip c.base0D})
+          col.border_inactive = rgb(${strip c.base02})
           groupbar {
-              col.active = rgb(89b4fa)
-              col.inactive = rgb(313244)
+              col.active = rgb(${strip c.base0D})
+              col.inactive = rgb(${strip c.base02})
               render_titles = false
-              text_color = rgb(cdd6f4)
+              text_color = rgb(${strip c.base05})
           }
       }
 
       misc {
-          background_color = rgb(1e1e2e)
+          background_color = rgb(${strip c.base00})
           disable_hyprland_logo = false
           disable_splash_rendering = true
           force_default_wallpaper = -1

@@ -2,6 +2,8 @@
 let
   inherit (lib) mkIf;
   cfg = config.mine.hyprland;
+  c = config.mine.theme.colors;
+  strip = color: lib.substring 1 6 color;
 in
 {
   config = mkIf cfg.enable {
@@ -30,19 +32,19 @@ in
           size = 20%, 5%
           outline_thickness = 3
 
-          # Transparent background
-          inner_color = rgba(30, 30, 46, 0.0) # base00 with 0 alpha
+          # Transparent background (Base00 with 0 alpha)
+          inner_color = rgba(${strip c.base00}00)
 
           # Cyan -> Green
-          outer_color = rgb(94e2d5) rgb(a6e3a1) 45deg
+          outer_color = rgb(${strip c.base0C}) rgb(${strip c.base0B}) 45deg
 
           # Green -> Orange
-          check_color = rgb(a6e3a1) rgb(fab387) 120deg
+          check_color = rgb(${strip c.base0B}) rgb(${strip c.base09}) 120deg
 
           # Red -> Orange
-          fail_color = rgb(f38ba8) rgb(fab387) 40deg
+          fail_color = rgb(${strip c.base08}) rgb(${strip c.base09}) 40deg
 
-          font_color = rgb(cdd6f4) # base05
+          font_color = rgb(${strip c.base05})
           fade_on_empty = false
           rounding = 5
 

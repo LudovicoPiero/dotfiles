@@ -5,13 +5,9 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkOption
-    types
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkOption types mkIf;
   cfg = config.mine.tmux;
+  c = config.mine.theme.colors;
 in
 {
   options.mine.tmux = {
@@ -83,31 +79,30 @@ in
       # Reload
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config Reloaded!"
 
-      # Tokyo Night Theme
-      # Colors
-      set -g mode-style "fg=#7aa2f7,bg=#3b4261"
-      set -g message-style "fg=#7aa2f7,bg=#3b4261"
-      set -g message-command-style "fg=#7aa2f7,bg=#3b4261"
-      set -g pane-border-style "fg=#3b4261"
-      set -g pane-active-border-style "fg=#7aa2f7"
+      # Theme
+      set -g mode-style "fg=${c.base0D},bg=${c.base02}"
+      set -g message-style "fg=${c.base0D},bg=${c.base02}"
+      set -g message-command-style "fg=${c.base0D},bg=${c.base02}"
+      set -g pane-border-style "fg=${c.base02}"
+      set -g pane-active-border-style "fg=${c.base0D}"
       set -g status "on"
       set -g status-justify "left"
-      set -g status-style "fg=#7aa2f7,bg=#1a1b26"
+      set -g status-style "fg=${c.base0D},bg=${c.base00}"
       set -g status-left-length "100"
       set -g status-right-length "100"
       set -g status-left-style NONE
       set -g status-right-style NONE
 
       # Status Bar
-      set -g status-left "#[fg=#15161e,bg=#7aa2f7,bold] #S #[fg=#7aa2f7,bg=#1a1b26,nobold,nounderscore,noitalics]"
-      set -g status-right "#[fg=#1a1b26,bg=#1a1b26,nobold,nounderscore,noitalics]#[fg=#7aa2f7,bg=#1a1b26] #{?client_prefix,#[fg=#f7768e],}  #[fg=#3b4261,bg=#1a1b26,nobold,nounderscore,noitalics]#[fg=#7aa2f7,bg=#3b4261] %Y-%m-%d  %I:%M %p #[fg=#7aa2f7,bg=#3b4261,nobold,nounderscore,noitalics]#[fg=#15161e,bg=#7aa2f7,bold] #h "
+      set -g status-left "#[fg=${c.base01},bg=${c.base0D},bold] #S #[fg=${c.base0D},bg=${c.base00},nobold,nounderscore,noitalics]"
+      set -g status-right "#[fg=${c.base00},bg=${c.base00},nobold,nounderscore,noitalics]#[fg=${c.base0D},bg=${c.base00}] #{?client_prefix,#[fg=${c.base08}],}  #[fg=${c.base02},bg=${c.base00},nobold,nounderscore,noitalics]#[fg=${c.base0D},bg=${c.base02}] %Y-%m-%d  %I:%M %p #[fg=${c.base0D},bg=${c.base02},nobold,nounderscore,noitalics]#[fg=${c.base01},bg=${c.base0D},bold] #h "
 
       # Windows
-      setw -g window-status-activity-style "underscore,fg=#a9b1d6,bg=#1a1b26"
+      setw -g window-status-activity-style "underscore,fg=${c.base04},bg=${c.base00}"
       setw -g window-status-separator ""
-      setw -g window-status-style "NONE,fg=#a9b1d6,bg=#1a1b26"
-      setw -g window-status-format "#[fg=#1a1b26,bg=#1a1b26,nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=#1a1b26,bg=#1a1b26,nobold,nounderscore,noitalics]"
-      setw -g window-status-current-format "#[fg=#1a1b26,bg=#3b4261,nobold,nounderscore,noitalics]#[fg=#7aa2f7,bg=#3b4261,bold] #I  #W #F #[fg=#3b4261,bg=#1a1b26,nobold,nounderscore,noitalics]"
+      setw -g window-status-style "NONE,fg=${c.base04},bg=${c.base00}"
+      setw -g window-status-format "#[fg=${c.base00},bg=${c.base00},nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=${c.base00},bg=${c.base00},nobold,nounderscore,noitalics]"
+      setw -g window-status-current-format "#[fg=${c.base00},bg=${c.base02},nobold,nounderscore,noitalics]#[fg=${c.base0D},bg=${c.base02},bold] #I  #W #F #[fg=${c.base02},bg=${c.base00},nobold,nounderscore,noitalics]"
     '';
   };
 }

@@ -7,6 +7,7 @@
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.alacritty;
+  c = config.mine.theme.colors;
 in
 {
   options.mine.alacritty = {
@@ -63,28 +64,28 @@ in
       style = "Bold Italic"
 
       [colors.primary]
-      background = "#1a1b26"
-      foreground = "#c0caf5"
+      background = "${c.base00}"
+      foreground = "${c.base05}"
 
       [colors.normal]
-      black =   "#15161e"
-      red =     "#f7768e"
-      green =   "#9ece6a"
-      yellow =  "#e0af68"
-      blue =    "#7aa2f7"
-      magenta = "#bb9af7"
-      cyan =    "#7dcfff"
-      white =   "#a9b1d6"
+      black   = "${c.base01}"
+      red     = "${c.base08}"
+      green   = "${c.base0B}"
+      yellow  = "${c.base0A}"
+      blue    = "${c.base0D}"
+      magenta = "${c.base0E}"
+      cyan    = "${c.base0C}"
+      white   = "${c.base05}"
 
       [colors.bright]
-      black =   "#414868"
-      red =     "#f7768e"
-      green =   "#9ece6a"
-      yellow =  "#e0af68"
-      blue =    "#7aa2f7"
-      magenta = "#bb9af7"
-      cyan =    "#7dcfff"
-      white =   "#c0caf5"
+      black   = "${c.base02}"
+      red     = "${c.base08}"
+      green   = "${c.base0B}"
+      yellow  = "${c.base0A}"
+      blue    = "${c.base0D}"
+      magenta = "${c.base0E}"
+      cyan    = "${c.base0C}"
+      white   = "${c.base07}"
 
       [cursor]
       style = { shape = "Block", blinking = "Off" }

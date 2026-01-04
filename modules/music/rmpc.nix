@@ -9,6 +9,7 @@ let
 
   cfg = config.mine.music.rmpc;
   xdgConfig = config.hj.xdg.config.directory;
+  c = config.mine.theme.colors;
 in
 {
   options.mine.music.rmpc = {
@@ -50,32 +51,32 @@ in
           ),
           keybinds: (
             global: {
-              ":":       CommandMode,
-              ",":       VolumeDown,
-              "s":       Stop,
-              ".":       VolumeUp,
-              "<Tab>":   NextTab,
+              ":":        CommandMode,
+              ",":        VolumeDown,
+              "s":        Stop,
+              ".":        VolumeUp,
+              "<Tab>":    NextTab,
               "<S-Tab>": PreviousTab,
-              "1":       SwitchToTab("Queue"),
-              "2":       SwitchToTab("Artists"),
-              "3":       SwitchToTab("Albums"),
-              "4":       SwitchToTab("Search"),
-              "5":       SwitchToTab("Directories"),
-              "6":       SwitchToTab("Lyrics"),
-              "q":       Quit,
-              ">":       NextTrack,
-              "p":       TogglePause,
-              "<":       PreviousTrack,
-              "f":       SeekForward,
-              "z":       ToggleRepeat,
-              "x":       ToggleRandom,
-              "c":       ToggleConsume,
-              "v":       ToggleSingle,
-              "b":       SeekBack,
-              "~":       ShowHelp,
-              "I":       ShowCurrentSongInfo,
-              "O":       ShowOutputs,
-              "P":       ShowDecoders,
+              "1":        SwitchToTab("Queue"),
+              "2":        SwitchToTab("Artists"),
+              "3":        SwitchToTab("Albums"),
+              "4":        SwitchToTab("Search"),
+              "5":        SwitchToTab("Directories"),
+              "6":        SwitchToTab("Lyrics"),
+              "q":        Quit,
+              ">":        NextTrack,
+              "p":        TogglePause,
+              "<":        PreviousTrack,
+              "f":        SeekForward,
+              "z":        ToggleRepeat,
+              "x":        ToggleRandom,
+              "c":        ToggleConsume,
+              "v":        ToggleSingle,
+              "b":        SeekBack,
+              "~":        ShowHelp,
+              "I":        ShowCurrentSongInfo,
+              "O":        ShowOutputs,
+              "P":        ShowDecoders,
             },
             navigation: {
               "k":          Up,
@@ -111,25 +112,25 @@ in
               "D":          Delete,
             },
             queue: {
-              "D":        DeleteAll,
-              "<CR>":     Play,
-              "<C-s>":    Save,
-              "a":        AddToPlaylist,
-              "d":        Delete,
-              "i":        ShowInfo,
-              "C":        JumpToCurrent,
+              "D":         DeleteAll,
+              "<CR>":      Play,
+              "<C-s>":     Save,
+              "a":         AddToPlaylist,
+              "d":         Delete,
+              "i":         ShowInfo,
+              "C":         JumpToCurrent,
             },
           ),
           search: (
             case_sensitive: false,
             mode: Contains,
             tags: [
-              (value: "any",         label: "Any Tag"),
-              (value: "artist",      label: "Artist"),
-              (value: "album",       label: "Album"),
-              (value: "title",       label: "Title"),
-              (value: "filename",    label: "Filename"),
-              (value: "genre",       label: "Genre"),
+              (value: "any",          label: "Any Tag"),
+              (value: "artist",       label: "Artist"),
+              (value: "album",        label: "Album"),
+              (value: "title",        label: "Title"),
+              (value: "filename",     label: "Filename"),
+              (value: "genre",        label: "Genre"),
               (value: "albumartist", label: "Featured"),
             ],
           ),
@@ -148,7 +149,7 @@ in
         )
       '';
 
-      # -- RMPC Theme (Hardcoded Colors) --
+      # -- RMPC Theme (Dynamic) --
       "rmpc/themes/onedark_deep.ron".text = ''
         #![enable(implicit_some)]
         #![enable(unwrap_newtypes)]
@@ -158,36 +159,36 @@ in
           show_song_table_header: true,
           draw_borders: true,
           browser_column_widths: [20, 38, 42],
-          background_color: "#1a1b26",
-          text_color: "#c0caf5",
+          background_color: "${c.base00}",
+          text_color: "${c.base05}",
           header_background_color: None,
-          modal_background_color: "#24283b",
+          modal_background_color: "${c.base01}",
           tab_bar: (
             enabled: true,
-            active_style: (fg: "#1a1b26", bg: "#7aa2f7", modifiers: "Bold"),
+            active_style: (fg: "${c.base00}", bg: "${c.base0D}", modifiers: "Bold"),
             inactive_style: (),
           ),
-          highlighted_item_style: (fg: "#bb9af7", modifiers: "Bold"),
-          current_item_style: (fg: "#1a1b26", bg: "#7aa2f7", modifiers: "Bold"),
-          borders_style: (fg: "#7aa2f7"),
-          highlight_border_style: (fg: "#7aa2f7"),
+          highlighted_item_style: (fg: "${c.base0E}", modifiers: "Bold"),
+          current_item_style: (fg: "${c.base00}", bg: "${c.base0D}", modifiers: "Bold"),
+          borders_style: (fg: "${c.base0D}"),
+          highlight_border_style: (fg: "${c.base0D}"),
           symbols: (song: "󰎇", dir: "󰉋", marker: " ", ellipsis: "..."),
           progress_bar: (
             symbols: ["", "", " "],
-            track_style: (fg: "#414868"),
-            elapsed_style: (fg: "#7aa2f7"),
-            thumb_style: (fg: "#7aa2f7", bg: "#414868"),
+            track_style: (fg: "${c.base02}"),
+            elapsed_style: (fg: "${c.base0D}"),
+            thumb_style: (fg: "${c.base0D}", bg: "${c.base02}"),
           ),
           scrollbar: (
             symbols: ["│", "█", "▲", "▼"],
             track_style: (),
             ends_style: (),
-            thumb_style: (fg: "#7aa2f7"),
+            thumb_style: (fg: "${c.base0D}"),
           ),
           song_table_format: [
             (prop: (kind: Property(Artist), default: (kind: Text("Unknown"))), width: "15%"),
             (prop: (kind: Property(Title), default: (kind: Text("Unknown"))), width: "55%"),
-            (prop: (kind: Property(Album), style: (fg: "#c0caf5"), default: (kind: Text("Unknown Album"), style: (fg: "#c0caf5"))), width: "20%"),
+            (prop: (kind: Property(Album), style: (fg: "${c.base05}"), default: (kind: Text("Unknown Album"), style: (fg: "${c.base05}"))), width: "20%"),
             (prop: (kind: Sticker("playCount"), default: (kind: Text("0"))), width: "9", alignment: Right, label: "Playcount"),
             (prop: (kind: Property(Duration), default: (kind: Text("-"))), width: "10%", alignment: Right),
           ],
@@ -204,15 +205,15 @@ in
             rows: [
               (
                 left: [
-                  (kind: Text("["), style: (fg: "#e0af68", modifiers: "Bold")),
-                  (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "#e0af68", modifiers: "Bold")),
-                  (kind: Text("]"), style: (fg: "#e0af68", modifiers: "Bold"))
+                  (kind: Text("["), style: (fg: "${c.base0A}", modifiers: "Bold")),
+                  (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "${c.base0A}", modifiers: "Bold")),
+                  (kind: Text("]"), style: (fg: "${c.base0A}", modifiers: "Bold"))
                 ],
                 center: [
                   (kind: Property(Song(Title)), style: (modifiers: "Bold"), default: (kind: Text("No Song"), style: (modifiers: "Bold")))
                 ],
                 right: [
-                  (kind: Property(Widget(Volume)), style: (fg: "#7aa2f7"))
+                  (kind: Property(Widget(Volume)), style: (fg: "${c.base0D}"))
                 ]
               ),
               (
@@ -225,14 +226,14 @@ in
                   (kind: Text(" kbps)"))
                 ],
                 center: [
-                  (kind: Property(Song(Artist)), style: (fg: "#e0af68", modifiers: "Bold"), default: (kind: Text("Unknown"), style: (fg: "#e0af68", modifiers: "Bold"))),
+                  (kind: Property(Song(Artist)), style: (fg: "${c.base0A}", modifiers: "Bold"), default: (kind: Text("Unknown"), style: (fg: "${c.base0A}", modifiers: "Bold"))),
                   (kind: Text(" - ")),
                   (kind: Property(Song(Album)), default: (kind: Text("Unknown Album")))
                 ],
                 right: [
                   (
-                    kind: Property(Widget(States(active_style: (fg: "#c0caf5", modifiers: "Bold"), separator_style: (fg: "#c0caf5")))),
-                    style: (fg: "#565f89")
+                    kind: Property(Widget(States(active_style: (fg: "${c.base05}", modifiers: "Bold"), separator_style: (fg: "${c.base05}")))),
+                    style: (fg: "${c.base03}")
                   ),
                 ]
               ),

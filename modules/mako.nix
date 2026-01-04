@@ -7,6 +7,7 @@
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.mako;
+  c = config.mine.theme.colors;
 in
 {
   options.mine.mako = {
@@ -28,10 +29,10 @@ in
       packages = [ cfg.package ];
       xdg.config.files."mako/config".text = ''
         font=${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}
-        background-color=#1e1e2e
-        border-color=#cba6f7
-        text-color=#cdd6f4
-        progress-color=over #313244
+        background-color=${c.base00}
+        border-color=${c.base0D}
+        text-color=${c.base05}
+        progress-color=over ${c.base02}
 
         anchor=top-right
         border-radius=5

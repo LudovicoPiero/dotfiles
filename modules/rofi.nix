@@ -7,6 +7,7 @@
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.rofi;
+  c = config.mine.theme.colors;
 in
 {
   options.mine.rofi = {
@@ -30,7 +31,6 @@ in
         files = {
           "rofi/config.rasi".text = ''
             configuration {
-                /* General Settings */
                 modi:                       ["drun", "run", "filebrowser", "window"];
                 font: "${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}";
                 terminal:                   "${config.mine.vars.terminal}";
@@ -43,54 +43,40 @@ in
                 drun-display-format:        "{icon} {name}";
                 window-format:              "{w} · {c} · {t}";
 
-                /* Vim-style Navigation Bindings */
                 kb-row-up:                  "Up,Control+p";
                 kb-row-down:                "Down,Control+n";
                 kb-move-char-back:          "Left,Control+b";
                 kb-move-char-forward:       "Right,Control+f";
                 kb-remove-to-eol:           "";
 
-                /* Unbind default to avoid conflict */
                 kb-accept-entry:            "Control+m,Return,KP_Enter";
 
-                /* Interaction behavior */
                 click-to-exit:              true;
-                hover-select:               false; /* set true if you want mouse hover to select */
+                hover-select:               false;
 
-                /* File browser settings */
                 filebrowser {
                     directories-first: true;
                     sorting-method:    "name";
                 }
             }
 
-            /* Use relative path so it works for any user */
             @theme "tokyonight-big1.rasi"
           '';
 
           "rofi/tokyonight-big1.rasi".text = ''
-            /* rofi/tokyonight-big1.rasi */
-            /*
-             * Tokyonight colorscheme (big icons) for rofi
-             * User: w8ste
-             * Source: https://github.com/w8ste/Tokyonight-rofi-theme/
-             */
-
-            // define colors etc.
             * {
-                bg: #24283b;
-                hv: #9274ca;
-                primary: #C5C8C6;
-                ug: #0B2447;
+                bg: ${c.base01};
+                hv: ${c.base0E};
+                primary: ${c.base05};
+                ug: ${c.base02};
                 font: "${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}";
                 background-color: @bg;
                 border: 0px;
-                kl: #7aa2f7;
-                black: #000000;
-                transparent: rgba(46,52,64,0);
+                kl: ${c.base0D};
+                black: ${c.base00};
+                transparent: rgba(0,0,0,0);
             }
 
-            // defines different aspects of the window
             window {
                 width: 700;
                 orientation: horizontal;
@@ -201,35 +187,21 @@ in
           '';
 
           "rofi/tokyonight.rasi".text = ''
-            /* rofi/tokyonight.rasi */
-            /*
-             * Tokyonight colorscheme for rofi
-             * User: w8ste
-             * Source: https://github.com/w8ste/Tokyonight-rofi-theme/
-             */
-
-            // define colors etc.
             * {
-                bg: #24283b;
-                hv: #9274ca;
-                primary: #C5C8C6;
-                ug: #0B2447;
+                bg: ${c.base01};
+                hv: ${c.base0E};
+                primary: ${c.base05};
+                ug: ${c.base02};
                 font: "${config.mine.fonts.terminal.name} ${toString config.mine.fonts.size}";
                 background-color: @bg;
-                //dark: @bg;
                 border: 0px;
-                kl: #7aa2f7;
-                black: #000000;
-                transparent: rgba(46,52,64,0);
+                kl: ${c.base0D};
+                black: ${c.base00};
+                transparent: rgba(0,0,0,0);
             }
 
-            // defines different aspects of the window
             window {
                 width: 700;
-                /*since line wont work with height, i comment it out
-                if you rather control the size via height
-                just comment it out */
-                //height: 500;
                 orientation: horizontal;
                 location: center;
                 anchor: center;
@@ -277,7 +249,6 @@ in
 
             listview {
                 layout: vertical;
-                //spacing: 5px;
                 padding: 8px;
                 lines: 12;
                 columns: 1;

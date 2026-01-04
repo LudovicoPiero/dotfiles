@@ -13,6 +13,7 @@ let
     getExe'
     ;
   cfg = config.mine.niri;
+  c = config.mine.theme.colors;
 
   clipboard-picker = pkgs.writeShellScriptBin "clipboard-picker" ''
     #!/usr/bin/env bash
@@ -44,23 +45,19 @@ in
     };
 
     hj.xdg.config.files."niri/config.kdl".text = ''
-      // Env vars
       spawn-at-startup "${getExe' pkgs.dbus "dbus-update-activation-environment"}" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 
       spawn-at-startup "${getExe pkgs.fcitx5}" "-d" "--replace"
       spawn-at-startup "${getExe pkgs.hypridle}"
 
-      // Clipboard
       spawn-at-startup "${getExe' pkgs.wl-clipboard "wl-paste"}" "--type" "text" "--watch" "${getExe pkgs.cliphist}" "store"
       spawn-at-startup "${getExe' pkgs.wl-clipboard "wl-paste"}" "--type" "image" "--watch" "${getExe pkgs.cliphist}" "store"
 
-      // UI & Wallpaper
       spawn-sh-at-startup "${getExe pkgs.swaybg} -i $HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png"
       spawn-at-startup "${getExe pkgs.waybar}"
       spawn-at-startup "${getExe pkgs.mako}"
       spawn-at-startup "${getExe pkgs.brightnessctl}" "set" "10%"
 
-      // Applications
       spawn-at-startup "${getExe pkgs.thunderbird}"
 
       spawn-at-startup "${getExe pkgs.swayidle}" "-w" \
@@ -73,7 +70,6 @@ in
       prefer-no-csd
       screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-      // Input configuration
       input {
           focus-follows-mouse
 
@@ -93,7 +89,6 @@ in
           }
       }
 
-      // Monitor Configuration
       output "eDP-1" {
           off
       }
@@ -119,15 +114,14 @@ in
 
           focus-ring {
               width 2
-              active-color "#7aa2f7"
-              inactive-color "#292e42"
+              active-color "${c.base0D}"
+              inactive-color "${c.base02}"
           }
 
           border {
-              // off
               width 2
-              active-color "#7aa2f7"
-              inactive-color "#292e42"
+              active-color "${c.base0D}"
+              inactive-color "${c.base02}"
           }
 
           shadow {
@@ -141,8 +135,6 @@ in
       }
 
       cursor {
-        // xcursor-theme "phinger-cursors-light"
-        // xcursor-size 24
         hide-when-typing
         hide-after-inactive-ms 1000
       }
@@ -158,8 +150,6 @@ in
       }
 
       xwayland-satellite {
-        // off
-        // path "/usr/bin/xwayland-satellite"
         path "${getExe pkgs.xwayland-satellite}"
       }
 
@@ -167,42 +157,36 @@ in
           match is-floating=false
       }
 
-      // -- Workspaces --
       workspace "main"
-      workspace "browser" // Firefox (2)
-      workspace "zen"     // Zen (3)
-      workspace "chat"    // Discord/Telegram (4)
-      workspace "mail"    // Mail (5)
+      workspace "browser"
+      workspace "zen"
+      workspace "chat"
+      workspace "mail"
 
-      // Workspace 2: Firefox
       window-rule {
           match app-id=r#"(?i)(firefox|firefox-esr|floorp)"#
           open-on-workspace "browser"
           default-column-width { proportion 1.0; }
       }
 
-      // Workspace 3: Zen
       window-rule {
           match app-id=r#"(?i)(zen|zen-browser|zen-beta|chromium|brave)"#
           open-on-workspace "zen"
           default-column-width { proportion 1.0; }
       }
 
-      // Workspace 4: Chat
       window-rule {
           match app-id=r#"(?i)(discord|vesktop|webcord|slack|telegram|element)"#
           open-on-workspace "chat"
           default-column-width { proportion 1.0; }
       }
 
-      // Workspace 5: Mail
       window-rule {
           match app-id=r#"(?i)(thunderbird|mailspring|geary|evolution|kmail)"#
           open-on-workspace "mail"
           default-column-width { proportion 1.0; }
       }
 
-      // Floating Rules
       window-rule {
           match title="Picture-in-Picture"
           open-floating true
@@ -246,7 +230,6 @@ in
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
 
-          // -- Apps --
           Mod+Return repeat=false { spawn "${
             getExe pkgs.${config.mine.vars.terminal}
           }"; }
@@ -257,15 +240,10 @@ in
           Mod+o repeat=false { spawn-sh "${getExe clipboard-picker}"; }
           Mod+Shift+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "window"; }
 
-          // -- Utils --
-          // Mod+Shift+O repeat=false { spawn "${getExe pkgs.rofi}" "-show" "emoji"; }
-
-          // -- Screenshot --
           Print { screenshot-screen; }
           Ctrl+Print { screenshot; }
           Alt+Print { screenshot-window; }
 
-          // -- Window Management --
           Mod+X { spawn "${getExe pkgs.wleave}"; }
           Mod+W { close-window; }
           Mod+Shift+C { quit; }
@@ -274,33 +252,28 @@ in
           Mod+Shift+F { fullscreen-window; }
           Mod+R { toggle-column-tabbed-display; }
 
-          // -- Focus --
           Mod+H { focus-column-left; }
           Mod+L { focus-column-right; }
           Mod+K { focus-window-up; }
           Mod+J { focus-window-down; }
 
-          // -- Move --
           Mod+Shift+H { move-column-left; }
           Mod+Shift+L { move-column-right; }
           Mod+Shift+K { move-window-up; }
           Mod+Shift+J { move-window-down; }
 
-          // -- Workspaces --
           Mod+1 { focus-workspace "main"; }
           Mod+2 { focus-workspace "browser"; }
           Mod+3 { focus-workspace "zen"; }
           Mod+4 { focus-workspace "chat"; }
           Mod+5 { focus-workspace "mail"; }
 
-          // Move to workspace
           Mod+Shift+1 { move-column-to-workspace "main"; }
           Mod+Shift+2 { move-column-to-workspace "browser"; }
           Mod+Shift+3 { move-column-to-workspace "zen"; }
           Mod+Shift+4 { move-column-to-workspace "chat"; }
           Mod+Shift+5 { move-column-to-workspace "mail"; }
 
-          // -- Audio & Media --
           XF86AudioRaiseVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5%+"; }
           XF86AudioLowerVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5%-"; }
           XF86AudioMute        allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
@@ -314,7 +287,6 @@ in
           XF86AudioNext allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "next"; }
           XF86AudioPrev allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "previous"; }
 
-          // -- Niri Specifics --
           Mod+WheelScrollDown      cooldown-ms=150 { focus-column-right; }
           Mod+WheelScrollUp        cooldown-ms=150 { focus-column-left; }
           Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
