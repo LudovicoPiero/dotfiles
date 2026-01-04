@@ -32,7 +32,7 @@ in
     terminal = {
       name = mkOption {
         type = types.str;
-        default = "Iosevka q";
+        default = "Iosevka Q";
       };
       package = mkOption {
         type = types.package;
