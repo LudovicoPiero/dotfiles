@@ -28,12 +28,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    services = {
-      # Secrets (TODO)
-      # sops.secrets = {
-      #   "scrobble/lastfm" = { };
-      # };
+    sops.secrets."scrobble_lastfm" = {
+      # Restart mpdscribble service if secret changes
+      restartUnits = [ "mpdscribble.service" ];
+    };
 
+    services = {
       # System Services
       playerctld.enable = true;
 
@@ -44,13 +44,12 @@ in
         enable = true;
         host = "localhost";
         port = 6600;
-        # endpoints = {
-        #   "last.fm" = {
-        #     username = "ludovicopiero";
-        #     # TODO: Re-enable secret when sops is configured
-        #     # passwordFile = config.sops.secrets."scrobble/lastfm".path;
-        #   };
-        # };
+        endpoints = {
+          "last.fm" = {
+            username = "ludovicopiero";
+            passwordFile = config.sops.secrets."scrobble_lastfm".path;
+          };
+        };
       };
     };
 
@@ -99,9 +98,9 @@ in
     };
 
     # User Services
-    systemd = {
+    systemd.user.services = {
       # MPD Daemon
-      user.services.mpd = {
+      mpd = {
         description = "Music Player Daemon (User Service)";
         after = [
           "pipewire.service"
@@ -116,7 +115,7 @@ in
       };
 
       # MPRIS Bridge (for media keys/widgets)
-      user.services.mpdris2 = {
+      mpdris2 = {
         description = "MPD D-Bus Interface (mpDris2)";
         after = [ "mpd.service" ];
         wants = [ "mpd.service" ];
@@ -128,7 +127,7 @@ in
       };
 
       # Discord RPC
-      user.services.mpd-discord-rpc = {
+      mpd-discord-rpc = {
         description = "MPD Discord RPC";
         after = [ "mpd.service" ];
         wants = [ "mpd.service" ];
