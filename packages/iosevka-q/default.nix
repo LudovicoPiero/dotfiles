@@ -12,7 +12,7 @@
     spacing = "normal"
     serifs = "sans"
     noCvSs = true
-    exportGlyphNames = false
+    exportGlyphNames = true
 
       [buildPlans.IosevkaQ.variants.design]
       capital-j = "serifless"
