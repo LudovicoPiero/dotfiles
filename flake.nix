@@ -66,6 +66,16 @@
       dir = "pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    suckless = {
+      url = "github:LudovicoPiero/suckless";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    xlibre-overlay = {
+      url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

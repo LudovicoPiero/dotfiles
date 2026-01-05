@@ -7,6 +7,7 @@
     # WM / Compositor
     niri.enable = false;
     hyprland.enable = true;
+    dwm.enable = true;
 
     # Apps
     alacritty.enable = true;
