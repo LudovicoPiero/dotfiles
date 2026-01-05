@@ -21,11 +21,11 @@ in
     main = {
       name = mkOption {
         type = types.str;
-        default = "SF Pro";
+        default = "Cantarell";
       };
       package = mkOption {
         type = types.package;
-        default = self'.packages.san-francisco-pro;
+        default = pkgs.cantarell-fonts;
       };
     };
 
