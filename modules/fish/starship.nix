@@ -14,330 +14,209 @@ mkIf cfg.enable {
     xdg.config.files."starship.toml".text = ''
       "$schema" = 'https://starship.rs/config-schema.json'
 
-      continuation_prompt = "[.](bright-black) "
-
-      [character]
-      success_symbol = "[❯](purple)"
-      error_symbol = "[❯](red)"
-      vimcmd_symbol = "[❮](green)"
-      vimcmd_visual_symbol = "[❮](bold yellow)"
-      vimcmd_replace_symbol = "[❮](bold purple)"
-      vimcmd_replace_one_symbol = "[❮](bold purple)"
-
-      [git_commit]
-      tag_symbol = " tag "
-
-      [git_status]
-      ahead = ">"
-      behind = "<"
-      diverged = "<>"
-      renamed = "r"
-      deleted = "x"
-
       [aws]
-      symbol = "aws "
-
-      [azure]
-      symbol = "az "
-
-      [battery]
-      full_symbol = "full "
-      charging_symbol = "charging "
-      discharging_symbol = "discharging "
-      unknown_symbol = "unknown "
-      empty_symbol = "empty "
+      symbol = " "
 
       [buf]
-      symbol = "buf "
+      symbol = " "
 
       [bun]
-      symbol = "bun "
+      symbol = " "
 
       [c]
-      symbol = "C "
+      symbol = " "
 
       [cpp]
-      symbol = "C++ "
-
-      [cobol]
-      symbol = "cobol "
-
-      [conda]
-      symbol = "conda "
-
-      [container]
-      symbol = "container "
-
-      [crystal]
-      symbol = "cr "
+      symbol = " "
 
       [cmake]
-      symbol = "cmake "
+      symbol = " "
 
-      [daml]
-      symbol = "daml "
+      [conda]
+      symbol = " "
+
+      [crystal]
+      symbol = " "
 
       [dart]
-      symbol = "dart "
+      symbol = " "
 
       [deno]
-      symbol = "deno "
-
-      [dotnet]
-      format = "via [$symbol($version )(target $tfm )]($style)"
-      symbol = ".NET "
+      symbol = " "
 
       [directory]
-      read_only = " ro"
+      read_only = " 󰌾"
 
       [docker_context]
-      symbol = "docker "
+      symbol = " "
 
       [elixir]
-      symbol = "exs "
+      symbol = " "
 
       [elm]
-      symbol = "elm "
-
-      [erlang]
-      symbol = "erl "
+      symbol = " "
 
       [fennel]
-      symbol = "fnl "
+      symbol = " "
 
       [fortran]
-      symbol = "fortran "
+      symbol = " "
 
       [fossil_branch]
-      symbol = "fossil "
-      truncation_symbol = "..."
+      symbol = " "
 
       [gcloud]
-      symbol = "gcp "
+      symbol = " "
 
       [git_branch]
-      symbol = "git "
-      truncation_symbol = "..."
+      symbol = " "
 
-      [gleam]
-      symbol = "gleam "
+      [git_commit]
+      tag_symbol = '  '
 
       [golang]
-      symbol = "go "
+      symbol = " "
 
       [gradle]
-      symbol = "gradle "
+      symbol = " "
 
       [guix_shell]
-      symbol = "guix "
+      symbol = " "
 
       [haskell]
-      symbol = "haskell "
+      symbol = " "
 
       [haxe]
-      symbol = "hx "
-
-      [helm]
-      symbol = "helm "
+      symbol = " "
 
       [hg_branch]
-      symbol = "hg "
-      truncation_symbol = "..."
+      symbol = " "
 
       [hostname]
-      ssh_symbol = "ssh "
+      ssh_symbol = " "
 
       [java]
-      symbol = "java "
-
-      [jobs]
-      symbol = "*"
+      symbol = " "
 
       [julia]
-      symbol = "jl "
+      symbol = " "
 
       [kotlin]
-      symbol = "kt "
-
-      [kubernetes]
-      symbol = "kubernetes "
+      symbol = " "
 
       [lua]
-      symbol = "lua "
-
-      [nodejs]
-      symbol = "nodejs "
+      symbol = " "
 
       [memory_usage]
-      symbol = "memory "
+      symbol = "󰍛 "
 
       [meson]
-      symbol = "meson "
-      truncation_symbol = "..."
-
-      [mojo]
-      symbol = "mojo "
-
-      [nats]
-      symbol = "nats "
-
-      [netns]
-      symbol = "netns "
+      symbol = "󰔷 "
 
       [nim]
-      symbol = "nim "
+      symbol = "󰆥 "
 
       [nix_shell]
-      symbol = "nix "
+      symbol = " "
+
+      [nodejs]
+      symbol = " "
 
       [ocaml]
-      symbol = "ml "
-
-      [odin]
-      symbol = "odin "
-
-      [opa]
-      symbol = "opa "
-
-      [openstack]
-      symbol = "openstack "
+      symbol = " "
 
       [os.symbols]
-      AIX = "aix "
-      Alpaquita = "alq "
-      AlmaLinux = "alma "
-      Alpine = "alp "
-      Amazon = "amz "
-      Android = "andr "
-      AOSC = "aosc "
-      Arch = "rch "
-      Artix = "atx "
-      Bluefin = "blfn "
-      CachyOS = "cach "
-      CentOS = "cent "
-      Debian = "deb "
-      DragonFly = "dfbsd "
-      Emscripten = "emsc "
-      EndeavourOS = "ndev "
-      Fedora = "fed "
-      FreeBSD = "fbsd "
-      Garuda = "garu "
-      Gentoo = "gent "
-      HardenedBSD = "hbsd "
-      Illumos = "lum "
-      Kali = "kali "
-      Linux = "lnx "
-      Mabox = "mbox "
-      Macos = "mac "
-      Manjaro = "mjo "
-      Mariner = "mrn "
-      MidnightBSD = "mid "
-      Mint = "mint "
-      NetBSD = "nbsd "
-      NixOS = "nix "
-      Nobara = "nbra "
-      OpenBSD = "obsd "
-      OpenCloudOS = "ocos "
-      openEuler = "oeul "
-      openSUSE = "osuse "
-      OracleLinux = "orac "
-      Pop = "pop "
-      Raspbian = "rasp "
-      Redhat = "rhl "
-      RedHatEnterprise = "rhel "
-      RockyLinux = "rky "
-      Redox = "redox "
-      Solus = "sol "
-      SUSE = "suse "
-      Ubuntu = "ubnt "
-      Ultramarine = "ultm "
-      Unknown = "unk "
-      Uos = "uos "
-      Void = "void "
-      Windows = "win "
+      Alpaquita = " "
+      Alpine = " "
+      AlmaLinux = " "
+      Amazon = " "
+      Android = " "
+      AOSC = " "
+      Arch = " "
+      Artix = " "
+      CachyOS = " "
+      CentOS = " "
+      Debian = " "
+      DragonFly = " "
+      Elementary = " "
+      Emscripten = " "
+      EndeavourOS = " "
+      Fedora = " "
+      FreeBSD = " "
+      Garuda = "󰛓 "
+      Gentoo = " "
+      HardenedBSD = "󰞌 "
+      Illumos = "󰈸 "
+      Ios = "󰀷 "
+      Kali = " "
+      Linux = " "
+      Mabox = " "
+      Macos = " "
+      Manjaro = " "
+      Mariner = " "
+      MidnightBSD = " "
+      Mint = " "
+      NetBSD = " "
+      NixOS = " "
+      Nobara = " "
+      OpenBSD = "󰈺 "
+      openSUSE = " "
+      OracleLinux = "󰌷 "
+      Pop = " "
+      Raspbian = " "
+      Redhat = " "
+      RedHatEnterprise = " "
+      RockyLinux = " "
+      Redox = "󰀘 "
+      Solus = "󰠳 "
+      SUSE = " "
+      Ubuntu = " "
+      Unknown = " "
+      Void = " "
+      Windows = "󰍲 "
+      Zorin = " "
 
       [package]
-      symbol = "pkg "
+      symbol = "󰏗 "
 
       [perl]
-      symbol = "pl "
+      symbol = " "
 
       [php]
-      symbol = "php "
+      symbol = " "
 
       [pijul_channel]
-      symbol = "pijul "
-      truncation_symbol = "..."
+      symbol = " "
 
       [pixi]
-      symbol = "pixi "
-
-      [pulumi]
-      symbol = "pulumi "
-
-      [purescript]
-      symbol = "purs "
+      symbol = "󰏗 "
 
       [python]
-      symbol = "py "
-
-      [quarto]
-      symbol = "quarto "
-
-      [raku]
-      symbol = "raku "
-
-      [red]
-      symbol = "red "
+      symbol = " "
 
       [rlang]
-      symbol = "r "
+      symbol = "󰟔 "
 
       [ruby]
-      symbol = "rb "
+      symbol = " "
 
       [rust]
-      symbol = "rs "
+      symbol = "󱘗 "
 
       [scala]
-      symbol = "scala "
-
-      [shlvl]
-      symbol = "shlvl "
-
-      [spack]
-      symbol = "spack "
-
-      [solidity]
-      symbol = "solidity "
+      symbol = " "
 
       [status]
-      symbol = "[x](bold red) "
-      not_executable_symbol = "noexec"
-      not_found_symbol = "notfound"
-      sigint_symbol = "sigint"
-      signal_symbol = "sig"
-
-      [sudo]
-      symbol = "sudo "
+      symbol = " "
 
       [swift]
-      symbol = "swift "
-
-      [typst]
-      symbol = "typst "
-
-      [vagrant]
-      symbol = "vagrant "
-
-      [terraform]
-      symbol = "terraform "
+      symbol = " "
 
       [xmake]
-      symbol = "xmake "
+      symbol = " "
 
       [zig]
-      symbol = "zig "
+      symbol = " "
     '';
   };
 }
