@@ -32,11 +32,11 @@ in
     terminal = {
       name = mkOption {
         type = types.str;
-        default = "Iosevka Q";
+        default = "Iosevka";
       };
       package = mkOption {
         type = types.package;
-        default = self'.packages.iosevka-q;
+        default = self'.packages.iosevka;
       };
     };
 
