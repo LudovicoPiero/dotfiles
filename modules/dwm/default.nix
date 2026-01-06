@@ -40,19 +40,37 @@ in
         };
 
         displayManager.sessionCommands = ''
-          # Hardware Setup
-          ${lib.getExe pkgs.xorg.xrandr} --output HDMI-A-1 --mode 1920x1080 --rate 180.00 --output eDP-1 --off
+          # Disable default X11 blanking so xautolock manages it exclusively
+          ${lib.getExe pkgs.xorg.xset} s off -dpms
 
-          # Backgrounds & Compositor
+          # Set monitor layout
+          ${lib.getExe pkgs.xorg.xrandr} --output HDMI-1 --mode 1920x1080 --rate 180.00 --primary --output eDP-1 --off
+
+          # Polkit Authentication Agent
+          ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+
+          # Restore wallpaper
           ${lib.getExe pkgs.feh} --bg-scale "$HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png" &
+
+          # Picom
+          ${lib.getExe pkgs.picom} -b &
 
           # Core Services
           ${lib.getExe suckless.dwmblocks-async} &
           ${lib.getExe pkgs.dunst} &
+
+          # Input Method
+          export QT_IM_MODULE=fcitx
+          export XMODIFIERS=@im=fcitx
           ${lib.getExe pkgs.fcitx5} -d --replace &
+
+          # Bluetooth Applet
+          ${lib.getExe' pkgs.blueman "blueman-applet"} &
+
+          # Clipboard
           ${lib.getExe' pkgs.clipmenu "clipmenud"} &
 
-          # Security
+          # Lock after 10 mins, sleep after 20 mins (optional systemctl command)
           ${lib.getExe pkgs.xautolock} -time 10 -locker slock &
         '';
       };
