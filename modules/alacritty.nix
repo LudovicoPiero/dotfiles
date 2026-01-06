@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) mkOption types mkIf;
+  inherit (lib)
+    getExe
+    mkOption
+    types
+    mkIf
+    ;
   cfg = config.mine.alacritty;
   c = config.mine.theme.colors;
 in
@@ -31,19 +36,27 @@ in
       [general]
       live_config_reload = true
 
+      [env]
+      TERM = "xterm-256color"
+
+      [terminal.shell]
+      program = "${getExe pkgs.tmux}"
+      args = ["new-session", "-A", "-s", "main"]
+
       [window]
       dimensions = { columns = 0, lines = 0 }
       padding = { x = 2, y = 2 }
       dynamic_padding = true
       decorations = "None"
       opacity = ${toString config.mine.vars.opacity}
-      blur = true
+      blur = ${if config.mine.vars.opacity < 1.0 then "true" else "false"}
       startup_mode = "Windowed"
       title = "Alacritty"
       dynamic_title = true
 
       [scrolling]
-      history = 10000
+      # Use tmux for scrollback
+      history = 0
       multiplier = 3
 
       [font]
@@ -95,15 +108,15 @@ in
       [mouse]
       hide_when_typing = false
 
-      [[keyboard.bindings]]
-      key = "Up"
-      mods = "Shift"
-      action = "ScrollLineUp"
+      # [[keyboard.bindings]]
+      # key = "Up"
+      # mods = "Shift"
+      # action = "ScrollLineUp"
 
-      [[keyboard.bindings]]
-      key = "Down"
-      mods = "Shift"
-      action = "ScrollLineDown"
+      # [[keyboard.bindings]]
+      # key = "Down"
+      # mods = "Shift"
+      # action = "ScrollLineDown"
 
       [[keyboard.bindings]]
       key = "["
