@@ -891,11 +891,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767694958,
-        "narHash": "sha256-j3GyQOTHhqDmj8hS3gguXi9HMvRAMp5G7cJIf1y49PM=",
+        "lastModified": 1767695462,
+        "narHash": "sha256-hNTFYXE5qmYw9rT+5sU57ZZsTHdLBD/ZdfCO7aNYmEY=",
         "owner": "LudovicoPiero",
         "repo": "suckless",
-        "rev": "147f2b240eeaf036727c6f8ab26a662d7f1abcf4",
+        "rev": "d28a80e47ac85b96004ece1df5e32cb8063ddde9",
         "type": "github"
       },
       "original": {
