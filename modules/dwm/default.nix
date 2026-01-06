@@ -47,7 +47,7 @@ in
           ${lib.getExe pkgs.feh} --bg-scale "$HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png" &
 
           # Core Services
-          ${lib.getExe pkgs.slstatus} &
+          ${lib.getExe suckless.dwmblocks-async} &
           ${lib.getExe pkgs.dunst} &
           ${lib.getExe pkgs.fcitx5} -d --replace &
           ${lib.getExe' pkgs.clipmenu "clipmenud"} &
@@ -61,7 +61,7 @@ in
     environment.systemPackages = [
       suckless.dmenu
       suckless.st
-      pkgs.slstatus
+      suckless.dwmblocks-async
       pkgs.tabbed
 
       # X11 Utils
