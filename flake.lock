@@ -36,16 +36,14 @@
     "fetchurl-sources": {
       "flake": false,
       "locked": {
-        "path": "./consumer-overridable/fetchurl-sources.nix",
-        "type": "path"
+        "narHash": "sha256-P4xjinccuHjtoQev6aeKSJDxQlwkwfOgqza2m6TYrrM=",
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/fetchurl-sources.nix"
       },
       "original": {
-        "path": "./consumer-overridable/fetchurl-sources.nix",
-        "type": "path"
-      },
-      "parent": [
-        "xlibre-overlay"
-      ]
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/fetchurl-sources.nix"
+      }
     },
     "firefox-addons": {
       "inputs": {
@@ -967,16 +965,14 @@
     "systems_5": {
       "flake": false,
       "locked": {
-        "path": "./systems.nix",
-        "type": "path"
+        "narHash": "sha256-/GCEK2Td0dtV8bcMJieyYP3s4dBPNyc/VHlfc/SFt5Y=",
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/systems.nix"
       },
       "original": {
-        "path": "./systems.nix",
-        "type": "path"
-      },
-      "parent": [
-        "xlibre-overlay"
-      ]
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/systems.nix"
+      }
     },
     "utils": {
       "inputs": {
@@ -1040,16 +1036,14 @@
     "xlibre-drivers-overlay-choice": {
       "flake": false,
       "locked": {
-        "path": "./consumer-overridable/drivers-overlay-choice.nix",
-        "type": "path"
+        "narHash": "sha256-tltpidnG1QWed1DtcZWMNIaAe6/6yb5bxv8ka6/AdM8=",
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/drivers-overlay-choice.nix"
       },
       "original": {
-        "path": "./consumer-overridable/drivers-overlay-choice.nix",
-        "type": "path"
-      },
-      "parent": [
-        "xlibre-overlay"
-      ]
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/drivers-overlay-choice.nix"
+      }
     },
     "xlibre-overlay": {
       "inputs": {
@@ -1079,16 +1073,14 @@
     "xserver-meson-flags": {
       "flake": false,
       "locked": {
-        "path": "./consumer-overridable/xserver-meson-flags.nix",
-        "type": "path"
+        "narHash": "sha256-RBOjS5tqSLTYz9iBvoas1WYHYti67qvYc2DVn04Wpbw=",
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/xserver-meson-flags.nix"
       },
       "original": {
-        "path": "./consumer-overridable/xserver-meson-flags.nix",
-        "type": "path"
-      },
-      "parent": [
-        "xlibre-overlay"
-      ]
+        "type": "file",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/xserver-meson-flags.nix"
+      }
     },
     "zen-browser": {
       "inputs": {
