@@ -158,31 +158,31 @@ in
       }
 
       workspace "main"
-      workspace "browser"
       workspace "zen"
+      workspace "browser"
       workspace "chat"
       workspace "mail"
 
       window-rule {
-          match app-id=r#"(?i)(firefox|firefox-esr|floorp)"#
+          match app-id=r#"(?i)(firefox|firefox-esr|floorp)" #
           open-on-workspace "browser"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(zen|zen-browser|zen-beta|chromium|brave)"#
+          match app-id=r#"(?i)(zen|zen-browser|zen-beta|chromium|brave)" #
           open-on-workspace "zen"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(discord|vesktop|webcord|slack|telegram|element)"#
+          match app-id=r#"(?i)(discord|vesktop|webcord|slack|telegram|element)" #
           open-on-workspace "chat"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(thunderbird|mailspring|geary|evolution|kmail)"#
+          match app-id=r#"(?i)(thunderbird|mailspring|geary|evolution|kmail)" #
           open-on-workspace "mail"
           default-column-width { proportion 1.0; }
       }
@@ -193,7 +193,7 @@ in
       }
 
       window-rule {
-          match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+          match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$" #
           default-floating-position x=10 y=10 relative-to="bottom-right"
       }
 
@@ -223,16 +223,14 @@ in
       }
 
       window-rule {
-          match app-id=r#"^org\.wezfurlong\.wezterm$"#
+          match app-id=r#"^org\.wezfurlong\.wezterm$" #
           default-column-width {}
       }
 
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
 
-          Mod+Return repeat=false { spawn "${
-            getExe pkgs.${config.mine.vars.terminal}
-          }"; }
+          Mod+Return repeat=false { spawn "${getExe pkgs.${config.mine.vars.terminal}}"; }
           Mod+E repeat=false { spawn "emacsclient" "-c"; }
           Mod+Shift+E repeat=false { spawn "${getExe pkgs.thunar}"; }
           Mod+M repeat=false { spawn "${getExe pkgs.thunderbird}"; }
@@ -263,24 +261,24 @@ in
           Mod+Shift+J { move-window-down; }
 
           Mod+1 { focus-workspace "main"; }
-          Mod+2 { focus-workspace "browser"; }
-          Mod+3 { focus-workspace "zen"; }
+          Mod+2 { focus-workspace "zen"; }
+          Mod+3 { focus-workspace "browser"; }
           Mod+4 { focus-workspace "chat"; }
           Mod+5 { focus-workspace "mail"; }
 
           Mod+Shift+1 { move-column-to-workspace "main"; }
-          Mod+Shift+2 { move-column-to-workspace "browser"; }
-          Mod+Shift+3 { move-column-to-workspace "zen"; }
+          Mod+Shift+2 { move-column-to-workspace "zen"; }
+          Mod+Shift+3 { move-column-to-workspace "browser"; }
           Mod+Shift+4 { move-column-to-workspace "chat"; }
           Mod+Shift+5 { move-column-to-workspace "mail"; }
 
-          XF86AudioRaiseVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5%+"; }
-          XF86AudioLowerVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+          XF86AudioRaiseVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5+%"; }
+          XF86AudioLowerVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5-%"; }
           XF86AudioMute        allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
           XF86AudioMicMute     allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-          XF86MonBrightnessUp   allow-when-locked=true { spawn "${getExe pkgs.brightnessctl}" "-e4" "-n2" "set" "5%+"; }
-          XF86MonBrightnessDown allow-when-locked=true { spawn "${getExe pkgs.brightnessctl}" "-e4" "-n2" "set" "5%-"; }
+          XF86MonBrightnessUp   allow-when-locked=true { spawn "${getExe pkgs.brightnessctl}" "-e4" "-n2" "set" "5+%"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn "${getExe pkgs.brightnessctl}" "-e4" "-n2" "set" "5-%"; }
 
           XF86AudioPlay allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "play-pause"; }
           XF86AudioPause allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "play-pause"; }

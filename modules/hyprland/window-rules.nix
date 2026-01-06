@@ -40,33 +40,12 @@ in
           workspace = 1
       }
 
-      # Workspace 2: Firefox (Main)
-      $firefox = ^(firefox|firefox-esr|floorp)$
-      windowrule {
-          name = firefox-main
-          match:class = $firefox
-          workspace = 2
-      }
-      windowrule {
-          name = firefox-perf
-          match:class = $firefox
-          no_blur = on
-          no_shadow = on
-          idle_inhibit = fullscreen
-      }
-      windowrule {
-          name = firefox-video
-          match:class = $firefox
-          match:title = ^(.*YouTube.*)$
-          idle_inhibit = focus
-      }
-
-      # Workspace 3: Zen & Chromium
+      # Workspace 2: Zen & Chromium
       $secondary = ^(zen|zen-beta|zen-browser|brave-browser|Chromium-browser|chromium-browser|google-chrome|chrome)$
       windowrule {
           name = secondary-main
           match:class = $secondary
-          workspace = 3
+          workspace = 2
       }
       windowrule {
           name = secondary-perf
@@ -78,6 +57,27 @@ in
       windowrule {
           name = secondary-video
           match:class = $secondary
+          match:title = ^(.*YouTube.*)$
+          idle_inhibit = focus
+      }
+
+      # Workspace 3: Firefox (Main)
+      $firefox = ^(firefox|firefox-esr|floorp)$
+      windowrule {
+          name = firefox-main
+          match:class = $firefox
+          workspace = 3
+      }
+      windowrule {
+          name = firefox-perf
+          match:class = $firefox
+          no_blur = on
+          no_shadow = on
+          idle_inhibit = fullscreen
+      }
+      windowrule {
+          name = firefox-video
+          match:class = $firefox
           match:title = ^(.*YouTube.*)$
           idle_inhibit = focus
       }
