@@ -164,25 +164,25 @@ in
       workspace "mail"
 
       window-rule {
-          match app-id=r#"(?i)(firefox|firefox-esr|floorp)" #
+          match app-id=r#"(?i)(firefox|firefox-esr|floorp)"#
           open-on-workspace "browser"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(zen|zen-browser|zen-beta|chromium|brave)" #
+          match app-id=r#"(?i)(zen|zen-browser|zen-beta|chromium|brave)"#
           open-on-workspace "zen"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(discord|vesktop|webcord|slack|telegram|element)" #
+          match app-id=r#"(?i)(discord|vesktop|webcord|slack|telegram|element)"#
           open-on-workspace "chat"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(thunderbird|mailspring|geary|evolution|kmail)" #
+          match app-id=r#"(?i)(thunderbird|mailspring|geary|evolution|kmail)"#
           open-on-workspace "mail"
           default-column-width { proportion 1.0; }
       }
@@ -193,7 +193,7 @@ in
       }
 
       window-rule {
-          match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$" #
+          match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
           default-floating-position x=10 y=10 relative-to="bottom-right"
       }
 
@@ -223,14 +223,16 @@ in
       }
 
       window-rule {
-          match app-id=r#"^org\.wezfurlong\.wezterm$" #
+          match app-id=r#"^org\.wezfurlong\.wezterm$"#
           default-column-width {}
       }
 
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
 
-          Mod+Return repeat=false { spawn "${getExe pkgs.${config.mine.vars.terminal}}"; }
+          Mod+Return repeat=false { spawn "${
+            getExe pkgs.${config.mine.vars.terminal}
+          }"; }
           Mod+E repeat=false { spawn "emacsclient" "-c"; }
           Mod+Shift+E repeat=false { spawn "${getExe pkgs.thunar}"; }
           Mod+M repeat=false { spawn "${getExe pkgs.thunderbird}"; }
