@@ -87,23 +87,23 @@
   };
   npins = {
     pname = "npins";
-    version = "0d6aaa4b3dcd1d8badbed2b66e0c50867330a86e";
+    version = "3329242072a414c5a25aa8d95a56d8afa013a3fa";
     src = fetchgit {
       url = "https://github.com/andir/npins";
-      rev = "0d6aaa4b3dcd1d8badbed2b66e0c50867330a86e";
+      rev = "3329242072a414c5a25aa8d95a56d8afa013a3fa";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-9N14/tliOiA49Us2uFUWHcrhYN8AmJjR+bnwzcxejgs=";
+      sha256 = "sha256-bnyv87sV5Fj6RTdg/3j24vea6ctSSjDrdshR90qt4O0=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./npins-0d6aaa4b3dcd1d8badbed2b66e0c50867330a86e/Cargo.lock;
+      lockFile = ./npins-3329242072a414c5a25aa8d95a56d8afa013a3fa/Cargo.lock;
       outputHashes = {
         "nix-compat-0.1.0" = "sha256-w8N09ZUm0V+6LdjGyL6g0mb3COoNWONfmr/M3S9C+do=";
       };
     };
-    date = "2025-12-27";
+    date = "2026-01-06";
   };
   runapp = {
     pname = "runapp";
@@ -149,37 +149,37 @@
   };
   wezterm = {
     pname = "wezterm";
-    version = "d3b0fdad453e8b5f12b583c5d6849b33d975c19c";
+    version = "4bcb2b32ce61f6935867a85700deac5f56caf583";
     src = fetchgit {
       url = "https://github.com/wez/wezterm";
-      rev = "d3b0fdad453e8b5f12b583c5d6849b33d975c19c";
+      rev = "4bcb2b32ce61f6935867a85700deac5f56caf583";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-UmhJ0Z9A9AnbHG8/fADbXIjNm+Mpt2+h6xznJs39M8E=";
+      sha256 = "sha256-yDxmO7VGQNsV6cX4dsj1vSxuHL6CU25zdy8T8E0/90I=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-d3b0fdad453e8b5f12b583c5d6849b33d975c19c/Cargo.lock;
+      lockFile = ./wezterm-4bcb2b32ce61f6935867a85700deac5f56caf583/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-rP4oKkZ0aC4/5Jm8t5Ru7n3qLHw74/58A0Gt+sygQgU=";
         "finl_unicode-1.3.0" = "sha256-38S6XH4hldbkb6NP+s7lXa/NR49PI0w3KYqd+jPHND0=";
       };
     };
-    date = "2025-12-01";
+    date = "2026-01-07";
   };
   whitesur-gtk-theme = {
     pname = "whitesur-gtk-theme";
-    version = "2d48e916b074ac548eaf32024af7d31c69a142ca";
+    version = "7ce45b4593cc5dc0073536e48761235c4acfe477";
     src = fetchgit {
       url = "https://github.com/vinceliuice/WhiteSur-gtk-theme";
-      rev = "2d48e916b074ac548eaf32024af7d31c69a142ca";
+      rev = "7ce45b4593cc5dc0073536e48761235c4acfe477";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-5jsHGplLAiA2K65qPuRSap6ThvBx/SKbohcAsaNeNEc=";
+      sha256 = "sha256-+P6spRS71hWWkQSG7SgYgZm9KQNH3vQbn27e8Hjim4Y=";
     };
-    date = "2025-12-27";
+    date = "2026-01-05";
   };
 }
