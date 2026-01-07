@@ -57,8 +57,10 @@ in
             "format": "{icon}",
             "format-icons": {
               "main": "1 main",
-              "chat": "2 chat",
-              "mail": "3 mail",
+              "zen": "2 zen",
+              "browser": "3 browser",
+              "chat": "4 chat",
+              "mail": "5 mail",
               "default": ""
             }
           },
