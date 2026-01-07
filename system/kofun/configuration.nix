@@ -5,9 +5,9 @@
 
   mine = {
     # WM / Compositor
-    niri.enable = false;
+    niri.enable = true;
     hyprland.enable = false;
-    dwm.enable = true;
+    dwm.enable = false;
 
     # Apps
     alacritty.enable = true;
