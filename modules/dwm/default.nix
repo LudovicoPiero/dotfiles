@@ -59,11 +59,6 @@ in
           ${lib.getExe suckless.dwmblocks-async} &
           ${lib.getExe pkgs.dunst} &
 
-          # Input Method
-          export QT_IM_MODULE=fcitx
-          export XMODIFIERS=@im=fcitx
-          ${lib.getExe pkgs.fcitx5} -d --replace &
-
           # Bluetooth Applet
           ${lib.getExe' pkgs.blueman "blueman-applet"} &
 
