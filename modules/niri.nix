@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs',
   ...
 }:
 let
@@ -29,9 +30,9 @@ in
     };
 
     package = mkOption {
-      type = types.package;
-      default = pkgs.niri;
-      description = "The Niri package to install.";
+      type = lib.types.package;
+      default = inputs'.niri.packages.niri-unstable;
+      description = "The niri package to install.";
     };
   };
 
