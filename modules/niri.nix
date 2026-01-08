@@ -58,10 +58,10 @@ in
 
       spawn-at-startup "${getExe pkgs.thunderbird}"
 
-      spawn-sh-at-startup "${getExe pkgs.swayidle} -w \
-           timeout 300 ${getExe pkgs.swaylock} -f -c 000000 \
-           timeout 600 niri msg action power-off-monitors \
-           before-sleep ${getExe pkgs.swaylock} -f -c 000000"
+      spawn-at-startup "${getExe pkgs.swayidle}" "-w" \
+          "timeout" "300" "${getExe pkgs.swaylock} -f -c 000000" \
+          "timeout" "600" "niri msg action power-off-monitors" \
+          "before-sleep" "${getExe pkgs.swaylock} -f -c 000000"
 
       spawn-sh-at-startup "niri msg action focus-workspace main"
 
