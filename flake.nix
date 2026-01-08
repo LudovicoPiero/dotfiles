@@ -46,6 +46,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri = {
+      type = "github";
+      owner = "sodiboo";
+      repo = "niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     programsdb = {
       type = "github";
       owner = "wamserma";
