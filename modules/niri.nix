@@ -36,36 +36,34 @@ in
   };
 
   config = mkIf cfg.enable {
-    hj.packages = [ cfg.package ];
-
-    security.pam.services.swaylock = {
-      text = ''
-        auth include login
-      '';
+    programs.niri = {
+      enable = true;
+      inherit (cfg) package;
     };
+    security.pam.services.swaylock.text = "auth include login";
 
     hj.xdg.config.files."niri/config.kdl".text = ''
       spawn-at-startup "${getExe' pkgs.dbus "dbus-update-activation-environment"}" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 
-      spawn-at-startup "${getExe pkgs.fcitx5}" "-d" "--replace"
+      spawn-sh-at-startup "${getExe pkgs.fcitx5} -d --replace"
       spawn-at-startup "${getExe pkgs.hypridle}"
 
-      spawn-at-startup "${getExe' pkgs.wl-clipboard "wl-paste"}" "--type" "text" "--watch" "${getExe pkgs.cliphist}" "store"
-      spawn-at-startup "${getExe' pkgs.wl-clipboard "wl-paste"}" "--type" "image" "--watch" "${getExe pkgs.cliphist}" "store"
+      spawn-sh-at-startup "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${getExe pkgs.cliphist} store"
+      spawn-sh-at-startup "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${getExe pkgs.cliphist} store"
 
       spawn-sh-at-startup "${getExe pkgs.swaybg} -i $HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png"
       spawn-at-startup "${getExe pkgs.waybar}"
       spawn-at-startup "${getExe pkgs.mako}"
-      spawn-at-startup "${getExe pkgs.brightnessctl}" "set" "10%"
+      spawn-sh-at-startup "${getExe pkgs.brightnessctl} set 10%"
 
       spawn-at-startup "${getExe pkgs.thunderbird}"
 
-      spawn-at-startup "${getExe pkgs.swayidle}" "-w" \
-          "timeout" "300" "${getExe pkgs.swaylock} -f -c 000000" \
-          "timeout" "600" "niri msg action power-off-monitors" \
-          "before-sleep" "${getExe pkgs.swaylock} -f -c 000000"
+      spawn-sh-at-startup "${getExe pkgs.swayidle} -w \
+           timeout 300 ${getExe pkgs.swaylock} -f -c 000000 \
+           timeout 600 niri msg action power-off-monitors \
+           before-sleep ${getExe pkgs.swaylock} -f -c 000000"
 
-      spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
+      spawn-sh-at-startup "niri msg action focus-workspace main"
 
       prefer-no-csd
       screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
