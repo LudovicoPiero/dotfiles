@@ -28,6 +28,7 @@
     tmux.enable = true;
     waybar.enable = true;
     portal.enable = true;
+    qemu.enable = true;
 
     music = {
       mpd.enable = true;
@@ -53,8 +54,6 @@
     # Use latest kernel for better hardware support
     kernelPackages = pkgs.linuxPackages_latest;
   };
-
-  environment.systemPackages = with pkgs; [ brave ];
 
   networking.hostName = "kofun";
   networking.networkmanager.enable = true;

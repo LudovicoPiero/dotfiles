@@ -62,7 +62,7 @@ in
       }
 
       # Workspace 3: Firefox (Main)
-      $firefox = ^(firefox|firefox-esr|floorp)$
+      $firefox = ^(Firefox|firefox|firefox-esr|floorp)$
       windowrule {
           name = firefox-main
           match:class = $firefox
