@@ -119,26 +119,6 @@
         },
         "version": "bce00ef8f9fc1078365120ab8916cfce3fd897fa"
     },
-    "npins": {
-        "cargoLock": null,
-        "date": "2026-05-21",
-        "extract": null,
-        "name": "npins",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "41a153cdc1aa446480b2b652a967652ad62609bf",
-            "sha256": "sha256-OkPEh0axWs3gUoUyplQexYpEXxyCDYWm5BQpwB2PIqA=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://github.com/andir/npins"
-        },
-        "version": "41a153cdc1aa446480b2b652a967652ad62609bf"
-    },
     "runapp": {
         "cargoLock": null,
         "date": "2026-05-10",

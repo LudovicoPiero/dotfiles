@@ -90,20 +90,6 @@
     };
     date = "2026-03-02";
   };
-  npins = {
-    pname = "npins";
-    version = "41a153cdc1aa446480b2b652a967652ad62609bf";
-    src = fetchgit {
-      url = "https://github.com/andir/npins";
-      rev = "41a153cdc1aa446480b2b652a967652ad62609bf";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-OkPEh0axWs3gUoUyplQexYpEXxyCDYWm5BQpwB2PIqA=";
-    };
-    date = "2026-05-21";
-  };
   runapp = {
     pname = "runapp";
     version = "1ba272ec2e7fbb7c7fd353283a2430dd5f704df2";

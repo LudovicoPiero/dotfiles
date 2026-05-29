@@ -38,8 +38,3 @@ fetch.git = "https://github.com/oyezcubed/Apple-Fonts-San-Francisco-New-York"
 [firefox-csshacks]
 src.git = "https://github.com/MrOtherGuy/firefox-csshacks"
 fetch.git = "https://github.com/MrOtherGuy/firefox-csshacks"
-
-[npins]
-src.git = "https://github.com/andir/npins"
-fetch.git = "https://github.com/andir/npins"
-cargo_locks = ["Cargo.lock"]
