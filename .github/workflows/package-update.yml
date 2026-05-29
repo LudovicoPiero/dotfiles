@@ -13,9 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-        with:
-          # Use your PAT so you have permission to push changes
-          token: "${{ secrets.PAT }}"
 
       - name: Install Lix
         uses: samueldr/lix-gha-installer-action@latest
@@ -42,8 +39,6 @@ jobs:
       - name: Create or update Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
-          # The Critical Part: Use your PAT
-          token: "${{ secrets.PAT }}"
           # Explicitly set the author/committer to match your Git Config
           committer: Ludovico Piero <lewdovico@gnuweeb.org>
           author: Ludovico Piero <lewdovico@gnuweeb.org>

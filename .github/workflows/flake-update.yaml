@@ -14,9 +14,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        with:
-          # Checkout with your token so future git ops are authenticated as you
-          token: ${{ secrets.PAT }}
 
       - name: Install Lix
         uses: samueldr/lix-gha-installer-action@latest
@@ -29,8 +26,6 @@ jobs:
           git-author-email: "lewdovico@gnuweeb.org"
           git-committer-name: "Ludovico Piero"
           git-committer-email: "lewdovico@gnuweeb.org"
-          # This determines who "Created" the PR on the GitHub UI
-          token: ${{ secrets.PAT }}
           commit-msg: "chore: Update flake.lock"
           pr-title: "Update flake.lock"
           pr-labels: |
