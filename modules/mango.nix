@@ -59,6 +59,11 @@ in
     };
     security.pam.services.swaylock.text = "auth include login";
 
+    mine.waybar = {
+      enable = true;
+      wm = "mangowm";
+    };
+
     environment.systemPackages = with pkgs; [
       swaybg
       mako

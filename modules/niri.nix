@@ -43,6 +43,11 @@ in
     };
     security.pam.services.swaylock.text = "auth include login";
 
+    mine.waybar = {
+      enable = true;
+      wm = "niri";
+    };
+
     hj.xdg.config.files."niri/config.kdl".text = ''
       spawn-at-startup "${getExe' pkgs.dbus "dbus-update-activation-environment"}" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 

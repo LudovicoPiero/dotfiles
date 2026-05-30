@@ -27,9 +27,14 @@
     mako.enable = true;
     rofi.enable = true;
     tmux.enable = true;
-    waybar.enable = true;
     portal.enable = true;
-    qemu.enable = true;
+    qemu.enable = false;
+
+    games = {
+      steam.enable = true;
+      lutris.enable = true;
+      gamemode.enable = true;
+    };
 
     music = {
       mpd.enable = true;

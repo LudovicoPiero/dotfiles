@@ -37,6 +37,11 @@ in
     };
     security.pam.services.hypridle.text = "auth include login";
 
+    mine.waybar = {
+      enable = true;
+      wm = "hyprland";
+    };
+
     environment.systemPackages = with pkgs; [
       swaybg
       mako

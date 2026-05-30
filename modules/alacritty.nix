@@ -39,9 +39,9 @@ in
       [env]
       TERM = "xterm-256color"
 
-      [terminal.shell]
-      program = "${getExe pkgs.tmux}"
-      args = ["new-session", "-A", "-s", "main"]
+      # [terminal.shell]
+      # program = "${getExe pkgs.tmux}"
+      # args = ["new-session", "-A", "-s", "main"]
 
       [window]
       dimensions = { columns = 0, lines = 0 }
