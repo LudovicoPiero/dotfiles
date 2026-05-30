@@ -69,7 +69,7 @@
   # Nix command-not-found handler using programs database
   programs.command-not-found = {
     enable = true;
-    dbPath = inputs'.programsdb.packages.programs-sqlite;
+    dbPath = lib.mkForce inputs'.programsdb.packages.programs-sqlite;
   };
   environment.etc."programs.sqlite".source =
     inputs'.programsdb.packages.programs-sqlite;

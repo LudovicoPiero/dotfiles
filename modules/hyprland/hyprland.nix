@@ -148,7 +148,6 @@ in
       dwindle {
           force_split = 2
           preserve_split = true
-          pseudotile = true
       }
 
       group {
