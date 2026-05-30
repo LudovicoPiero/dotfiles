@@ -14,8 +14,8 @@ let
   };
 
   iconTheme = {
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
+    name = "Nordzy-dark";
+    package = pkgs.nordzy-icon-theme;
   };
 
   cursorTheme = {
