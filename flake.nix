@@ -78,25 +78,6 @@
       url = "github:LudovicoPiero/suckless";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    xlibre-overlay = {
-      url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-
-        systems.url = "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/systems.nix";
-        systems.flake = false;
-
-        fetchurl-sources.url = "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/fetchurl-sources.nix";
-        fetchurl-sources.flake = false;
-
-        xlibre-drivers-overlay-choice.url = "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/drivers-overlay-choice.nix";
-        xlibre-drivers-overlay-choice.flake = false;
-
-        xserver-meson-flags.url = "https://codeberg.org/takagemacoed/xlibre-overlay/raw/branch/main/consumer-overridable/xserver-meson-flags.nix";
-        xserver-meson-flags.flake = false;
-      };
-    };
   };
 
   outputs =

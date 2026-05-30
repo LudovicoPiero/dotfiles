@@ -26,7 +26,7 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/a7a6f4c8-5269-472e-9cac-c98e56424953";
+      device = "/dev/disk/by-uuid/27cfca29-4aab-4ca3-8bf3-c9d0220194e3";
       fsType = "btrfs";
       options = [
         "noatime"
@@ -35,8 +35,8 @@
     };
 
     "/home" = {
-      device = "/dev/disk/by-uuid/b79be9c9-3757-4415-a38d-faf9fe71acef";
-      fsType = "xfs";
+      device = "/dev/disk/by-uuid/00c972bd-994c-4708-b5c3-9227a371998f";
+      fsType = "btrfs";
       neededForBoot = true;
     };
 
@@ -75,7 +75,7 @@
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/E044-3FDE";
+      device = "/dev/disk/by-uuid/2EA6-2D42";
       fsType = "vfat";
       options = [
         "fmask=0022"
@@ -84,7 +84,7 @@
     };
   };
 
-  swapDevices = [ ];
+  swapDevices = [    { device = "/dev/disk/by-uuid/2a214916-115a-4dd1-b93b-45da736cb32c"; } ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
