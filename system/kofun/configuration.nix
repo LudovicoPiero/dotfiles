@@ -6,7 +6,8 @@
   mine = {
     # WM / Compositor
     niri.enable = false;
-    hyprland.enable = true;
+    hyprland.enable = false;
+    mango.enable = true;
 
     # Apps
     alacritty.enable = true;

@@ -74,8 +74,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    suckless = {
-      url = "github:LudovicoPiero/suckless";
+    mangowm = {
+      type = "github";
+      owner = "mangowm";
+      repo = "mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
