@@ -39,6 +39,7 @@ jobs:
       - name: Create or update Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
           # Explicitly set the author/committer to match your Git Config
           committer: Ludovico Piero <lewdovico@gnuweeb.org>
           author: Ludovico Piero <lewdovico@gnuweeb.org>
