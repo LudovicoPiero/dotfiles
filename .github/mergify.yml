@@ -10,11 +10,11 @@ pull_request_rules:
 
   - name: Automatic merge when CI passes
     conditions:
-      - check-success=All Garnix checks
+      - check-success=Nix Flake Checker
       - -conflict
       - -draft
       - -title~= (?i)wip
-      - status-success=All Garnix checks
+      - status-success=Nix Flake Checker
     actions:
       queue:
 

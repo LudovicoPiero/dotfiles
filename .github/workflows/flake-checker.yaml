@@ -1,0 +1,21 @@
+name: Nix Flake Checker
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - kofun
+  pull_request:
+    branches:
+      - kofun
+
+jobs:
+  flake-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Install Lix
+        uses: samueldr/lix-gha-installer-action@latest
+      - name: Run `nix flake check`
+        run: nix flake check
