@@ -78,16 +78,16 @@
 let
   #NOTE: Moved here because newer version of nix-update require to do this
   pname = "Iosevka${toString set}";
-  version = "34.0.0";
+  version = "34.6.1";
 
   src = fetchFromGitHub {
     owner = "be5invis";
     repo = "iosevka";
     rev = "v${version}";
-    hash = "sha256-fASlzL/7pVDIs5wCkEUJaU0r0Gy5YGZ9kxiAskZHWcI=";
+    hash = "sha256-kTWeSNn/GaEM60KJI9v9TVaj6GlJH/NSLsYQHs3aFiQ=";
   };
 
-  npmDepsHash = "sha256-uujfgTv2QEhywQNmglZusgikGEZvVtWL/lYFq6Q1VFc=";
+  npmDepsHash = "sha256-9bcF/HbfN5rwUYNX76hSeXHTmHn0vDkdag8EUUTCeHE=";
 in
 
 assert (privateBuildPlan != null) -> set != null;
