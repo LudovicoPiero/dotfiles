@@ -21,6 +21,7 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
         with:
+          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
           # These determine what shows up in "git log"
           git-author-name: "Ludovico Piero"
           git-author-email: "lewdovico@gnuweeb.org"

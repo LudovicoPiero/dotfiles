@@ -35,7 +35,7 @@ in
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.iosevka;
+        default = pkgs.iosevka-q;
       };
     };
 
@@ -80,7 +80,7 @@ in
 
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
-      (final: _: { iosevka = final.callPackage ../../packages/iosevka { }; })
+      (final: _: { iosevka-q = final.callPackage ../../packages/iosevka-q { }; })
     ];
 
     environment.sessionVariables = {

@@ -22,17 +22,17 @@ jobs:
           git config --global user.email "lewdovico@gnuweeb.org"
           git config --global user.name "Ludovico Piero"
 
-      - name: Run nvfetcher updates
-        run: |
-          pushd packages
-          nix run github:ludovicopiero/nvfetcher -- --commit-changes
-          popd
+      # - name: Run nvfetcher updates
+      #   run: |
+      #     pushd packages
+      #     nix run github:ludovicopiero/nvfetcher -- --commit-changes
+      #     popd
 
-      - name: Run nix-update for all flakes
+      - name: Run nix-update for all flake packages
         run: |
           export LC_ALL=en_US.UTF-8
           export LANG=en_US.UTF-8
-          for pkg in gemini-cli iosevka-q sarasa-gothic; do
+          for pkg in iosevka-q; do
             nix run nixpkgs#nix-update -- --flake "$pkg" --commit
           done
 
@@ -43,11 +43,6 @@ jobs:
           committer: Ludovico Piero <lewdovico@gnuweeb.org>
           author: Ludovico Piero <lewdovico@gnuweeb.org>
           title: "Automated package updates"
-          body: |
-            This PR combines:
-            - nvfetcher source updates
-            - npins update ( for neovim plugins )
-            - nix-update for iosevka-q, sarasa-gothic
           labels: automated, uwu, keep-up-to-date
           branch: "package-update"
           delete-branch: true
