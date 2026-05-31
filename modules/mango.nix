@@ -13,10 +13,10 @@ let
     mkIf
     getExe
     getExe'
+    strip
     ;
   cfg = config.mine.mango;
   c = config.mine.theme.colors;
-  strip = color: lib.substring 1 6 color;
 
   screenshot = pkgs.writeShellScriptBin "screenshot" ''
     DIR="$HOME/Pictures/Screenshots"
@@ -95,11 +95,11 @@ in
       exec-once=${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${getExe pkgs.cliphist} store
       exec-once=${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${getExe pkgs.cliphist} store
       exec-once=fcitx5 -d --replace
-      exec-once=mmsg dispatch toggle_monitor,eDP-1
       exec-once=sleep 1; ${getExe pkgs.waybar}
 
-      # Monitor Settings
-      monitorrule=name:^HDMI-A-1$,width:1920,height:1080,refresh:180
+      # Monitor Settings - HDMI-A-1 (top) at 0,0; eDP-1 (bottom) at 0,1080
+      monitorrule=name:^HDMI-A-1$,x:0,y:0,width:1920,height:1080,refresh:180
+      monitorrule=name:^eDP-1$,x:0,y:1080,width:1366,height:768,refresh:60
 
       # Window effect
       blur=0
@@ -389,8 +389,8 @@ in
       bind=SUPER,8,view,8,0
       bind=SUPER,9,view,9,0
 
-      bind=CTRL,Left,viewtoleft_have_client,0
-      bind=CTRL,Right,viewtoright_have_client,0
+      # bind=CTRL,Left,viewtoleft_have_client,0
+      # bind=CTRL,Right,viewtoright_have_client,0
       bind=CTRL+SUPER,Left,tagtoleft,0
       bind=CTRL+SUPER,Right,tagtoright,0
 

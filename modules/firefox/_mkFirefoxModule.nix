@@ -292,7 +292,7 @@ in
         else
           null;
       example = if default != null then default else "com.developer.app";
-      description = ''The id for the darwin defaults in order to set policies'';
+      description = "The id for the darwin defaults in order to set policies";
     };
 
     darwinAppName = mkOption {
@@ -1065,9 +1065,11 @@ in
                         profile.extensions.settings;
                   };
 
-              "${cfg.profilesPath}/${profile.path}/containers.json" = mkIf (
-                profile.containers != { }
-              ) { text = mkContainersJson profile.containers; };
+              "${cfg.profilesPath}/${profile.path}/containers.json" =
+                mkIf (profile.containers != { })
+                  {
+                    text = mkContainersJson profile.containers;
+                  };
 
               "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" =
                 mkIf profile.search.enable

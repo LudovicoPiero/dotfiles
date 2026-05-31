@@ -3,16 +3,12 @@
   lib,
   inputs,
   config,
+  pkgs-stable,
+  pkgs-master,
   ...
 }:
 let
   cfg = config.mine.games;
-  pkgs-stable = import inputs.nixpkgs-stable {
-    system = pkgs.stdenv.hostPlatform.system;
-    inherit (pkgs) config;
-  };
-  pkgs-master =
-    inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options.mine.games = {

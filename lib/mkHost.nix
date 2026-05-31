@@ -28,15 +28,26 @@ in
 withSystem system (
   { inputs', self', ... }:
   let
+    pkgs-stable = import inputs.nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    pkgs-master = import inputs.nixpkgs-master {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
     sharedModules = import ../modules;
 
-    # Pass 'lib' (extendedLib) to the modules
     specialArgs = {
       inherit
         inputs
         inputs'
         self'
         lib
+        pkgs-stable
+        pkgs-master
         ;
     };
   in
@@ -48,7 +59,6 @@ withSystem system (
           sharedModules
           configPath
         ];
-
         networking.hostName = hostName;
       }
     ];

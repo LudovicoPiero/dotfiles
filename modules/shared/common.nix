@@ -48,6 +48,7 @@
       whois # Client for the WHOIS directory service
 
       # GUI Apps
+      emacs # Highly extensible and customizable text editor
       qbittorrent # Free and open-source BitTorrent client
       imv # Image viewer intended for use with tiling window managers
       viewnior # Simple, fast and elegant image viewer

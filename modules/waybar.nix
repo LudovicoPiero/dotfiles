@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) getExe' mkOption types mkIf;
+  inherit (lib)
+    getExe'
+    mkOption
+    types
+    mkIf
+    ;
 
   cfg = config.mine.waybar;
 in

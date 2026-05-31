@@ -6,7 +6,7 @@
   cctools,
   remarshal,
   ttfautohint-nox,
-  privateBuildPlan ? '''',
+  privateBuildPlan ? "",
   extraParameters ? null,
   set ? "",
 }:

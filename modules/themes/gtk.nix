@@ -9,13 +9,13 @@ let
   cfg = config.mine.gtk;
 
   theme = {
-    name = "Tokyonight-Dark";
-    package = pkgs.tokyonight-gtk-theme;
+    name = "WhiteSur-Dark";
+    package = pkgs.whitesur-gtk-theme;
   };
 
   iconTheme = {
-    name = "Nordzy-dark";
-    package = pkgs.nordzy-icon-theme;
+    name = "WhiteSur-dark";
+    package = pkgs.whitesur-icon-theme;
   };
 
   cursorTheme = {

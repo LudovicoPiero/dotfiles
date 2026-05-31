@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-self',
   ...
 }:
 let
@@ -36,7 +35,7 @@ in
       };
       package = mkOption {
         type = types.package;
-        default = self'.packages.iosevka;
+        default = pkgs.iosevka;
       };
     };
 
@@ -80,6 +79,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [
+      (final: _: { iosevka = final.callPackage ../../packages/iosevka { }; })
+    ];
+
     environment.sessionVariables = {
       # Improved font rendering settings
       FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 cff:hinting-engine=adobe";

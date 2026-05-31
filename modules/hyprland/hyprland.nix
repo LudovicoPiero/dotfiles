@@ -12,10 +12,10 @@ let
     mkIf
     getExe
     getExe'
+    strip
     ;
   cfg = config.mine.hyprland;
   c = config.mine.theme.colors;
-  strip = color: lib.substring 1 6 color;
 in
 {
   options.mine.hyprland = {
