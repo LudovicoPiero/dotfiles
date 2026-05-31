@@ -5,78 +5,9 @@
   ...
 }:
 let
-  inherit (lib)
-    getExe
-    mkOption
-    types
-    mkIf
-    ;
+  inherit (lib) getExe' mkOption types mkIf;
 
   cfg = config.mine.waybar;
-  c = config.mine.theme.colors;
-
-  modulesLeft =
-    {
-      hyprland = [ "hyprland/workspaces" ];
-      niri = [
-        "niri/workspaces"
-        "niri/window"
-      ];
-      mangowm = [ "ext/workspaces" ];
-    }
-    .${cfg.wm};
-
-  wmModuleSnippet =
-    {
-      hyprland = ''
-        "hyprland/workspaces": {
-          "format": "{icon}",
-          "format-icons": {
-            "main": "1 main",
-            "zen": "2 zen",
-            "browser": "3 browser",
-            "chat": "4 chat",
-            "mail": "5 mail",
-            "default": "{name}"
-          },
-          "persistent-workspaces": {
-            "*": 5
-          }
-        },
-      '';
-
-      niri = ''
-        "niri/workspaces": {
-          "format": "{icon}",
-          "format-icons": {
-            "main": "1 main",
-            "zen": "2 zen",
-            "browser": "3 browser",
-            "chat": "4 chat",
-            "mail": "5 mail",
-            "default": "{name}"
-          }
-        },
-        "niri/window": {
-          "format": " [{title}]",
-          "max-length": 40,
-          "rewrite": {
-            "(.*) - Mozilla Firefox": "Firefox",
-            "(.*) - Discord": "Discord"
-          }
-        },
-      '';
-
-      mangowm = ''
-        "ext/workspaces": {
-          "format": "{name}",
-          "on-click": "activate",
-          "on-click-right": "deactivate",
-          "ignore-hidden": true
-        },
-      '';
-    }
-    .${cfg.wm};
 in
 {
   options.mine.waybar = {
@@ -101,6 +32,15 @@ in
       default = "hyprland";
       description = "Window manager integration to use in Waybar.";
     };
+
+    position = mkOption {
+      type = types.enum [
+        "top"
+        "bottom"
+      ];
+      default = "bottom";
+      description = "Bar position.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -110,62 +50,83 @@ in
       xdg.config.files."waybar/config.jsonc".text = ''
         {
           "layer": "top",
-          "position": "top",
-          "height": 24,
+          "position": "${cfg.position}",
+          "height": 20,
           "spacing": 0,
-          "modules-left": ${builtins.toJSON modulesLeft},
+          "modules-left": [
+            ${
+              if cfg.wm == "hyprland" then
+                ''"hyprland/workspaces"''
+              else if cfg.wm == "niri" then
+                ''"niri/workspaces"''
+              else
+                ''"ext/workspaces"''
+            }
+          ],
           "modules-center": [],
           "modules-right": [
-            "idle_inhibitor",
+            "temperature",
             "network",
-            "pulseaudio",
+            "disk",
             "battery",
+            "load",
             "clock",
             "tray"
           ],
-          ${wmModuleSnippet}
-          "idle_inhibitor": {
-            "format": "{icon}",
-            "format-icons": {
-              "activated": "󰛐 ",
-              "deactivated": "󰛑 "
-            }
+          "hyprland/workspaces": {
+            "format": "{id}",
+            "format-window-separator": " "
+          },
+          "niri/workspaces": {
+            "format": "{name}",
+            "format-window-separator": " "
+          },
+          "ext/workspaces": {
+            "format": "{id}",
+            "format-window-separator": " ",
+            "on-click": "activate",
+            "on-click-right": "deactivate"
+          },
+          "temperature": {
+            "critical-threshold": 80,
+            "format": "Temp: {temperatureC}°C",
+            "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input"
           },
           "network": {
-            "interval": 1,
-            "format-wifi": "󰖩 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes} | {essid} ",
-            "format-ethernet": "󰈀 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes} | 󰈀 Eth ",
-            "format-disconnected": "󰅛 ⚠ No Net ",
-            "tooltip-format": "{ifname} via {gwaddr}",
-            "max-length": 50
+            "interval": 5,
+            "interface": "wlp4s0",
+            "format-wifi": "W: ({signalStrength}%) IP Leak: {ipaddr}",
+            "format-ethernet": "E: {ipaddr} ({bandwidthDownBytes})",
+            "format-disconnected": "W: down | E: down",
+            "tooltip-format": "{ifname}: {ipaddr}",
+            "on-click": "${getExe' pkgs.networkmanagerapplet "nm-connection-editor"}"
           },
-          "pulseaudio": {
-            "format": " {icon} {volume}% | {format_source} ",
-            "format-muted": " 󰝟 Muted | {format_source} ",
-            "format-source": "󰍬: {volume}%",
-            "format-source-muted": "󰍭: MUTE",
-            "format-icons": {
-              "default": ["󰕿", "󰖀", "󰕾"]
-            },
-            "on-click": "${getExe pkgs.ponymix} -N -t sink toggle",
-            "on-click-right": "${getExe pkgs.ponymix} -N -t source toggle"
+          "disk": {
+            "interval": 30,
+            "format": "Porn Folder: {free}",
+            "path": "/"
           },
           "battery": {
             "states": {
+              "good": 80,
               "warning": 30,
               "critical": 15
             },
-            "format": " {icon} {capacity}% ",
-            "format-charging": " 󱐋 {capacity}% ",
-            "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
+            "bat": "BAT1",
+            "format": "{capacity}% {time}",
+            "interval": 60
+          },
+          "load": {
+            "format": "Loads: {load1}",
+            "interval": 5
           },
           "clock": {
-            "format": " 󰃭 {:%Y年%m月%d日  󱎫 %H:%M} ",
-            "tooltip-format": "<tt><small>{calendar}</small></tt>"
+            "format": "{:%Y-%m-%d %H:%M:%S}",
+            "interval": 1
           },
           "tray": {
-            "icon-size": 20,
-            "spacing": 8
+            "icon-size": 16,
+            "spacing": 4
           }
         }
       '';
@@ -174,155 +135,134 @@ in
         * {
           border: none;
           border-radius: 0;
-          font-family: "${config.mine.fonts.terminal.name}", "${config.mine.fonts.icon.name}", "${config.mine.fonts.cjk.name}", sans-serif;
-          font-size: ${toString config.mine.fonts.size}px;
-          font-weight: 600;
+          font-family: "monospace";
+          font-size: 12px;
+          font-weight: normal;
           min-height: 0;
+          margin: 0;
+          padding: 0;
         }
 
         window#waybar {
-          background-color: ${c.base00};
-          color: ${c.base05};
-        }
-
-        #workspaces button,
-        #tags button,
-        #window,
-        #idle_inhibitor,
-        #network,
-        #pulseaudio,
-        #battery,
-        #clock,
-        #tray {
-          padding: 0 10px;
-          margin: 0;
-        }
-
-        #tags {
-          background-color: ${c.base00};
-          padding: 0;
-        }
-
-        #tags button {
-          color: ${c.base03};
-          padding: 0 12px;
-        }
-
-        #tags button:not(.occupied):not(.focused) {
-          font-size: 0;
-          min-width: 0;
-          min-height: 0;
-          margin: -17px;
-          padding: 0;
-          color: transparent;
-          background-color: transparent;
-        }
-
-        #tags button.occupied {
-          background-color: #fff;
-          color: #cdc885;
-        }
-
-        #tags button.focused {
-          background-color: rgb(186, 142, 213);
-          color: #fff;
-        }
-
-        #tags button.urgent {
-          background: rgb(171, 101, 101);
-          color: #fff;
+          background-color: #222222;
+          color: #ffffff;
+          font-size: 12px;
         }
 
         #workspaces {
-          background-color: ${c.base00};
+          background-color: #222222;
           padding: 0;
+          margin: 0;
+          border-right: 1px solid #333333;
         }
 
         #workspaces button {
-          color: ${c.base04};
-          padding: 0 12px;
-          background-color: transparent;
-        }
-
-        #workspaces button * {
-          color: inherit;
+          background-color: #222222;
+          color: #ffffff;
+          border: none;
+          border-bottom: 2px solid transparent;
+          padding: 4px 8px;
+          margin: 0;
+          min-width: 20px;
         }
 
         #workspaces button:hover {
-          background-color: ${c.base02};
-          color: ${c.base05};
-          box-shadow: none;
+          background-color: #333333;
         }
 
         #workspaces button.active {
-          background-color: ${c.base0D};
-          color: ${c.base00};
+          background-color: #285577;
+          border-bottom-color: #ffffff;
         }
 
         #workspaces button.urgent {
-          background-color: ${c.base08};
-          color: ${c.base00};
+          background-color: #900000;
         }
 
-        #window {
-          background-color: transparent;
-          color: ${c.base04};
+        #temperature {
+          padding: 4px 12px;
+          background-color: #222222;
+          color: #ffffff;
+          border-left: 1px solid #333333;
         }
 
-        #idle_inhibitor {
-          background-color: ${c.base08};
-          color: ${c.base00};
-          padding: 0 10px;
-          margin: 0;
-        }
-
-        #idle_inhibitor.activated {
-          background-color: ${c.base09};
-          color: ${c.base00};
+        #temperature.critical {
+          color: #ff0000;
         }
 
         #network {
-          background-color: ${c.base0C};
-          color: ${c.base00};
+          padding: 4px 12px;
+          background-color: #222222;
+          color: #ffffff;
+          border-left: 1px solid #333333;
         }
 
         #network.disconnected {
-          background-color: ${c.base08};
-          color: ${c.base00};
+          color: #ff0000;
         }
 
-        #pulseaudio {
-          background-color: ${c.base0A};
-          color: ${c.base00};
+        #disk {
+          padding: 4px 12px;
+          background-color: #222222;
+          color: #ffffff;
+          border-left: 1px solid #333333;
         }
 
-        #pulseaudio.muted {
-          background-color: ${c.base08};
-          color: ${c.base00};
+        #disk.warning {
+          color: #ffff00;
+        }
+
+        #disk.critical {
+          color: #ff0000;
         }
 
         #battery {
-          background-color: ${c.base0B};
-          color: ${c.base00};
+          padding: 4px 12px;
+          background-color: #222222;
+          color: #ffffff;
+          border-left: 1px solid #333333;
         }
 
         #battery.warning {
-          background-color: ${c.base0A};
+          color: #ffff00;
         }
 
         #battery.critical {
-          background-color: ${c.base08};
-          color: ${c.base00};
+          color: #ff0000;
+        }
+
+        #battery.charging {
+          color: #00ff00;
+        }
+
+        #load {
+          padding: 4px 12px;
+          background-color: #222222;
+          color: #ffffff;
+          border-left: 1px solid #333333;
         }
 
         #clock {
-          background-color: ${c.base0E};
-          color: ${c.base00};
-          margin-top: -3px;
+          padding: 4px 12px;
+          background-color: #222222;
+          color: #ffffff;
+          border-left: 1px solid #333333;
         }
 
         #tray {
-          background-color: ${c.base01};
+          padding: 4px 8px;
+          margin: 0;
+          background-color: #222222;
+          border-left: 1px solid #333333;
+        }
+
+        #tray > .passive {
+          -gtk-icon-effect: dim;
+        }
+
+        #tray > .needs-attention {
+          -gtk-icon-effect: highlight;
+          background-color: #285577;
         }
       '';
     };
