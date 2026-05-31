@@ -10,7 +10,7 @@ on:
       - kofun
 
 jobs:
-  update-flake-lock:
+  flake-checker:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

@@ -179,6 +179,7 @@
   };
 
   nix = {
+    package = pkgs.lixPackageSets.stable.lix;
     gc.automatic = true; # For angrr
     registry = {
       system.flake = inputs.nixpkgs;
@@ -232,14 +233,11 @@
         # Allows Nix to automatically pick UIDs for builds, rather than creating `nixbld*` user accounts.
         "auto-allocate-uids"
       ];
-      extra-substituters = [
-        "https://nix-community.cachix.org"
-        "https://cache.garnix.io"
-      ];
-      extra-trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      ];
+      #TODO:
+      # extra-substituters = [
+      # ];
+      # extra-trusted-public-keys = [
+      # ];
     };
   };
 }
