@@ -17,7 +17,6 @@ pull_request_rules:
       - status-success=All Garnix checks
     actions:
       queue:
-      delete_head_branch:
 
   - name: Toggle conflict label based on mergeability
     conditions:
@@ -28,3 +27,5 @@ pull_request_rules:
           - conflict
       comment:
         message: "@{{author}} this pull request is now in conflict 😩"
+merge_protections_settings:
+  reporting_method: check-runs
