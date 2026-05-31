@@ -1,3 +1,8 @@
+queue_rules:
+  - name: default
+    merge_conditions:
+      - check-success=flake-checker
+
 pull_request_rules:
   - name: Automatic rebase for PRs marked as "keep-up-to-date"
     conditions:
@@ -8,15 +13,15 @@ pull_request_rules:
     actions:
       update:
 
-  - name: Automatic merge when CI passes
+  - name: Send to merge queue when CI passes
     conditions:
-      - check-success=Nix Flake Checker
+      - check-success=flake-checker
       - -conflict
       - -draft
       - -title~= (?i)wip
-      - status-success=Nix Flake Checker
     actions:
       queue:
+        name: default
 
   - name: Toggle conflict label based on mergeability
     conditions:
@@ -27,5 +32,6 @@ pull_request_rules:
           - conflict
       comment:
         message: "@{{author}} this pull request is now in conflict 😩"
+
 merge_protections_settings:
   reporting_method: check-runs
