@@ -179,7 +179,6 @@
   };
 
   nix = {
-    package = pkgs.lixPackageSets.stable.lix;
     gc.automatic = true; # For angrr
     registry = {
       system.flake = inputs.nixpkgs;
