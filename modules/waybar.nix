@@ -75,6 +75,7 @@ in
             "disk",
             "battery",
             "load",
+            "wireplumber",
             "clock",
             "tray"
           ],
@@ -124,6 +125,13 @@ in
           "load": {
             "format": "Loads: {load1}",
             "interval": 5
+          },
+          "wireplumber": {
+            "format": "Vol: {volume}%",
+            "format-muted": "Vol: muted",
+            "on-click": "${getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle",
+            "on-scroll-up": "${getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 2%+",
+            "on-scroll-down": "${getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 2%-"
           },
           "clock": {
             "format": "{:%Y-%m-%d %H:%M:%S}",
@@ -245,6 +253,17 @@ in
           background-color: #222222;
           color: #ffffff;
           border-left: 1px solid #333333;
+        }
+
+        #wireplumber {
+          padding: 4px 12px;
+          background-color: #222222;
+          color: #ffffff;
+          border-left: 1px solid #333333;
+        }
+
+        #wireplumber.muted {
+          color: #ff0000;
         }
 
         #clock {
