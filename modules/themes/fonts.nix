@@ -31,7 +31,7 @@ in
     terminal = {
       name = mkOption {
         type = types.str;
-        default = "Iosevka";
+        default = "Iosevka q";
       };
       package = mkOption {
         type = types.package;
