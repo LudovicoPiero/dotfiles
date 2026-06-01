@@ -12,12 +12,27 @@ let
 in
 {
   options.mine.games = {
+    nix-ld.enable = lib.mkEnableOption "nix-ld, a dynamic linker for Nix";
     steam.enable = lib.mkEnableOption "Steam gaming platform";
     lutris.enable = lib.mkEnableOption "Lutris game manager";
     gamemode.enable = lib.mkEnableOption "Feral gamemode with Hyprland integration";
   };
 
   config = lib.mkMerge [
+    (lib.mkIf cfg.nix-ld.enable {
+      programs.nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+          # Albion Online
+          libxrandr
+          libx11
+          libGL
+          krb5
+          glib
+        ];
+      };
+    })
+
     (lib.mkIf cfg.steam.enable {
       programs.steam = {
         enable = true;

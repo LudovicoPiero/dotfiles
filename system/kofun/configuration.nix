@@ -31,6 +31,7 @@
     qemu.enable = false;
 
     games = {
+      nix-ld.enable = true;
       steam.enable = true;
       lutris.enable = true;
       gamemode.enable = true;
