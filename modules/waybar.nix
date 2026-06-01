@@ -119,7 +119,7 @@ in
               "critical": 15
             },
             "bat": "BAT1",
-            "format": "{capacity}% {time}",
+            "format": "BAT: {capacity}% {time}",
             "interval": 60
           },
           "load": {
