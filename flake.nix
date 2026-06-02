@@ -6,6 +6,8 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     flake-parts = {
       type = "github";
       owner = "hercules-ci";
