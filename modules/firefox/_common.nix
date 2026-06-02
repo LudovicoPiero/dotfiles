@@ -111,7 +111,7 @@
     ublock-origin
     search-by-image
     violentmonkey
-    vimium
+    vimium-c
   ];
 
   extensionSettings = {
