@@ -120,8 +120,8 @@ in
                     active_border = "rgb(${strip c.base0D})",
                     inactive_border = "rgb(${strip c.base02})",
                 },
-                gaps_in = 0,
-                gaps_out = 0,
+                gaps_in = 2,
+                gaps_out = 2,
                 layout = "dwindle",
             },
             decoration = {

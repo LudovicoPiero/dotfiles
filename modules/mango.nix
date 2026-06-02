@@ -221,10 +221,10 @@ in
       mouse_natural_scrolling=0
 
       # Appearance
-      gappih=0
-      gappiv=0
-      gappoh=0
-      gappov=0
+      gappih=2
+      gappiv=2
+      gappoh=2
+      gappov=2
       scratchpad_width_ratio=0.8
       scratchpad_height_ratio=0.9
       borderpx=2

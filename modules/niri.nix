@@ -104,7 +104,7 @@ in
       }
 
       layout {
-          gaps 0
+          gaps 2
           center-focused-column "never"
           always-center-single-column
 
