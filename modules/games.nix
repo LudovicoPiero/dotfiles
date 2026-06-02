@@ -57,6 +57,9 @@ in
             p.pixman
             p.libjpeg
             p.zenity
+            p.umu-launcher
+            p.mangohud
+            p.winetricks
           ];
         })
       ];
