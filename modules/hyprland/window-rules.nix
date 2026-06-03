@@ -17,7 +17,8 @@ in
       })
 
       hl.window_rule({ name = "jetbrains", match = { class = "^(jetbrains-.*)$" }, workspace = "1", no_blur = true, no_anim = true })
-      hl.window_rule({ name = "albion", match = { class = "^(Albion-Online)$" }, workspace = "1" })
+      hl.window_rule({ name = "Albion Online Launcher", match = { class = "^(Albion Online Launcher)$" }, workspace = "1" })
+      hl.window_rule({ name = "Albion Online Client", match = { class = "^(Albion-Online)$" }, workspace = "1" })
 
       local secondary = "^(zen|zen-beta|zen-browser|brave-browser|Chromium-browser|chromium-browser|google-chrome|chrome)$"
       hl.window_rule({ name = "secondary-main", match = { class = secondary }, workspace = "2" })
