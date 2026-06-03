@@ -232,11 +232,15 @@
         # Allows Nix to automatically pick UIDs for builds, rather than creating `nixbld*` user accounts.
         "auto-allocate-uids"
       ];
-      #TODO:
-      # extra-substituters = [
-      # ];
-      # extra-trusted-public-keys = [
-      # ];
+
+      extra-substituters = [
+        "https://hyprland.cachix.org"
+        "https://niri.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      ];
     };
   };
 }

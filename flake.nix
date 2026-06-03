@@ -46,14 +46,12 @@
       type = "github";
       owner = "hyprwm";
       repo = "hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     niri = {
       type = "github";
       owner = "sodiboo";
       repo = "niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     programsdb = {
