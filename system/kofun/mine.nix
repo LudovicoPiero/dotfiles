@@ -8,6 +8,7 @@
 
     # Apps
     alacritty.enable = true;
+    ghostty.enable = true;
     fish.enable = true;
     firefox.enable = true;
     zen-browser.enable = true;
