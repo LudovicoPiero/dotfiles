@@ -8,7 +8,7 @@ in
     services.picom = {
       enable = true;
       backend = "glx";
-      vSync = false;
+      vSync = true;
       settings = {
         corner-radius = 0;
         shadow = false;
