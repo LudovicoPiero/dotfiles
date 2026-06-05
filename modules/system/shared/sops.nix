@@ -3,7 +3,7 @@
   imports = [ inputs.sops-nix.nixosModules.sops ];
 
   sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFile = ../../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
 
     # This is using an age key that is expected to already be in the filesystem
