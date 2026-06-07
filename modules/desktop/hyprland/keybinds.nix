@@ -7,24 +7,6 @@
 let
   inherit (lib) getExe getExe' mkIf;
   cfg = config.mine.hyprland;
-
-  screenshot = pkgs.writeShellScriptBin "screenshot" ''
-    DIR="$HOME/Pictures/Screenshots"
-    FILE="$DIR/$(date +%Y-%m-%d_%H-%M-%S).png"
-    mkdir -p "$DIR"
-    ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" "$FILE"
-    ${getExe' pkgs.wl-clipboard "wl-copy"} < "$FILE"
-    ${getExe pkgs.libnotify} "Screenshot taken" "Saved to $FILE" -i "$FILE"
-  '';
-
-  wl-ocr = pkgs.writeShellScriptBin "wl-ocr" ''
-    ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.tesseract} - - | ${getExe' pkgs.wl-clipboard "wl-copy"}
-    ${getExe pkgs.libnotify} "OCR" "Text copied to clipboard"
-  '';
-
-  clipboard-picker = pkgs.writeShellScriptBin "clipboard-picker" ''
-    ${getExe pkgs.cliphist} list | ${getExe pkgs.rofi} -dmenu display-columns 2 | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}
-  '';
 in
 {
   config = mkIf cfg.enable {
@@ -40,10 +22,10 @@ in
       hl.bind(mod .. " + P", hl.dsp.exec_cmd("${getExe pkgs.rofi} -show drun"))
       hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("${getExe pkgs.rofi} -show window"))
 
-      hl.bind(mod .. " + O", hl.dsp.exec_cmd("${getExe clipboard-picker}"))
+      hl.bind(mod .. " + O", hl.dsp.exec_cmd("clipboard-picker"))
 
-      hl.bind("print", hl.dsp.exec_cmd("${getExe wl-ocr}"))
-      hl.bind("ALT + print", hl.dsp.exec_cmd("${getExe screenshot}"))
+      hl.bind("print", hl.dsp.exec_cmd("wl-ocr"))
+      hl.bind("ALT + print", hl.dsp.exec_cmd("screenshot"))
       hl.bind("CTRL + print", hl.dsp.exec_cmd("${getExe pkgs.grimblast} save area - | ${getExe pkgs.swappy} -f -"))
 
       hl.bind(mod .. " + X", hl.dsp.exec_cmd("${getExe pkgs.wleave}"))

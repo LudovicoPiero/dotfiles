@@ -42,23 +42,6 @@ in
       wm = "hyprland";
     };
 
-    environment.systemPackages = with pkgs; [
-      swaybg
-      mako
-      waybar
-      brightnessctl
-      wireplumber
-      libnotify
-      polkit_gnome
-      wleave
-      grim
-      slurp
-      swappy
-      wl-clipboard
-      cliphist
-      tesseract
-    ];
-
     hj.xdg.config.files = {
       "hypr/hyprland.lua".text = ''
         require("lua.monitors")

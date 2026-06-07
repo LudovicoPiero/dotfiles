@@ -18,7 +18,7 @@ in
       bindsym $mod+p exec ${getExe pkgs.rofi} -show drun
       bindsym $mod+Shift+p exec ${getExe pkgs.rofi} -show window
 
-      bindsym $mod+o exec clipboard-picker
+      bindsym $mod+o exec x11-clipboard-picker
 
       bindsym Print exec x11-ocr
       bindsym Mod1+Print exec x11-screenshot

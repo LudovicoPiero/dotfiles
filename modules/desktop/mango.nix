@@ -17,24 +17,6 @@ let
     ;
   cfg = config.mine.mango;
   c = config.mine.theme.colors;
-
-  screenshot = pkgs.writeShellScriptBin "screenshot" ''
-    DIR="$HOME/Pictures/Screenshots"
-    FILE="$DIR/$(date +%Y-%m-%d_%H-%M-%S).png"
-    mkdir -p "$DIR"
-    ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" "$FILE"
-    ${getExe' pkgs.wl-clipboard "wl-copy"} < "$FILE"
-    ${getExe pkgs.libnotify} "Screenshot taken" "Saved to $FILE" -i "$FILE"
-  '';
-
-  wl-ocr = pkgs.writeShellScriptBin "wl-ocr" ''
-    ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.tesseract} - - | ${getExe' pkgs.wl-clipboard "wl-copy"}
-    ${getExe pkgs.libnotify} "OCR" "Text copied to clipboard"
-  '';
-
-  clipboard-picker = pkgs.writeShellScriptBin "clipboard-picker" ''
-    ${getExe pkgs.cliphist} list | ${getExe pkgs.rofi} -dmenu -display-columns 2 | ${getExe pkgs.cliphist} decode | ${getExe' pkgs.wl-clipboard "wl-copy"}
-  '';
 in
 {
   imports = [ inputs.mangowm.nixosModules.mango ];
@@ -63,26 +45,6 @@ in
       enable = true;
       wm = "mangowm";
     };
-
-    environment.systemPackages = with pkgs; [
-      swaybg
-      mako
-      waybar
-      brightnessctl
-      wireplumber
-      libnotify
-      polkit_gnome
-      wleave
-      grim
-      slurp
-      swappy
-      wl-clipboard
-      cliphist
-      tesseract
-      playerctl
-      thunar
-      thunderbird
-    ];
 
     hj.xdg.config.files."mango/config.conf".text = ''
       # More option see https://github.com/DreamMaoMao/mango/wiki/
@@ -323,11 +285,11 @@ in
       bind=SUPER,X,spawn,${getExe pkgs.wleave}
 
       # clipboard
-      bind=SUPER,O,spawn,${getExe clipboard-picker}
+      bind=SUPER,O,spawn,clipboard-picker
 
       # screenshots & OCR
-      bind=NONE,print,spawn,${getExe wl-ocr}
-      bind=ALT,print,spawn,${getExe screenshot}
+      bind=NONE,print,spawn,wl-ocr
+      bind=ALT,print,spawn,screenshot
 
       # exit
       bind=SUPER+SHIFT,c,quit
