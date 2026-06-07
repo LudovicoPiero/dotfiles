@@ -198,7 +198,7 @@ in
       }
 
       cursor {
-          hide-when-typing
+          // hide-when-typing
           hide-after-inactive-ms 1000
       }
 
