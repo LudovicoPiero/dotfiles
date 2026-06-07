@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkOption types mkIf;
-  cfg = config.mine.git;
+  cfg = config.mine.qemu;
 in
 {
   options.mine.qemu = {
