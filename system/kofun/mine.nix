@@ -7,7 +7,7 @@
     mango.enable = false;
 
     # Apps
-    alacritty.enable = true;
+    alacritty.enable = false;
     ghostty.enable = true;
     fish.enable = true;
     firefox.enable = true;
