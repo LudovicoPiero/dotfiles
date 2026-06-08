@@ -249,27 +249,27 @@ in
       }
 
       // Named workspace assignments
-      workspace "main"
-      workspace "zen"
+      workspace "games"
       workspace "browser"
-      workspace "chat"
+      workspace "discord"
+      workspace "telegram"
       workspace "mail"
 
       window-rule {
-          match app-id=r#"(?i)(firefox|firefox-esr|floorp)"#
+          match app-id=r#"(?i)(firefox|firefox-esr|floorp|zen|zen-browser|zen-beta|chromium|brave)"#
           open-on-workspace "browser"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(zen|zen-browser|zen-beta|chromium|brave)"#
-          open-on-workspace "zen"
+          match app-id=r#"(?i)(discord|vesktop|webcord|slack|element)"#
+          open-on-workspace "discord"
           default-column-width { proportion 1.0; }
       }
 
       window-rule {
-          match app-id=r#"(?i)(discord|vesktop|webcord|slack|telegram|element)"#
-          open-on-workspace "chat"
+          match app-id=r#"(?i)(telegram)"#
+          open-on-workspace "telegram"
           default-column-width { proportion 1.0; }
       }
 
@@ -277,6 +277,11 @@ in
           match app-id=r#"(?i)(thunderbird|mailspring|geary|evolution|kmail)"#
           open-on-workspace "mail"
           default-column-width { proportion 1.0; }
+      }
+
+      window-rule {
+          match app-id=r#"(?i)(steam)"#
+          open-on-workspace "games"
       }
 
       // Floating overrides
@@ -367,6 +372,7 @@ in
           Mod+E repeat=false { spawn "emacsclient" "-c"; }
           Mod+M repeat=false { spawn "${getExe pkgs.thunderbird}"; }
           Mod+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "drun"; }
+          Mod+Shift+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "drun"; }
           Mod+o repeat=false { spawn-sh "clipboard-picker"; }
           Mod+X { spawn "${getExe pkgs.wleave}"; }
 
@@ -481,7 +487,7 @@ in
           // === SYSTEM & MISC ===
           Super+W { close-window; }
           Mod+Shift+E { quit; }
-          Mod+Shift+P { power-off-monitors; }
+          // Mod+Shift+P { power-off-monitors; }
           Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
 
           // === MEDIA ===
