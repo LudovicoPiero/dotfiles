@@ -5,34 +5,21 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
-
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    firefox-addons = {
+      type = "gitlab";
+      owner = "rycee";
+      repo = "nur-expressions";
+      dir = "pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts = {
       type = "github";
       owner = "hercules-ci";
       repo = "flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      type = "github";
-      owner = "Mic92";
-      repo = "sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvim-flake = {
-      type = "github";
-      owner = "LudovicoPiero";
-      repo = "nvim-flake";
-    };
-
-    rust-overlay = {
-      type = "github";
-      owner = "oxalica";
-      repo = "rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hjem = {
@@ -48,10 +35,24 @@
       repo = "hyprland";
     };
 
+    mangowm = {
+      type = "github";
+      owner = "mangowm";
+      repo = "mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri = {
       type = "github";
       owner = "sodiboo";
       repo = "niri-flake";
+    };
+
+    nvf = {
+      type = "github";
+      owner = "NotAShelf";
+      repo = "nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     programsdb = {
@@ -61,25 +62,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rust-overlay = {
+      type = "github";
+      owner = "oxalica";
+      repo = "rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      type = "github";
+      owner = "Mic92";
+      repo = "sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       type = "github";
       owner = "0xc000022070";
       repo = "zen-browser-flake";
-    };
-
-    firefox-addons = {
-      type = "gitlab";
-      owner = "rycee";
-      repo = "nur-expressions";
-      dir = "pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mangowm = {
-      type = "github";
-      owner = "mangowm";
-      repo = "mango";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

@@ -23,6 +23,7 @@
     gtk.enable = true;
     gpg.enable = true;
     mako.enable = true;
+    nvim.enable = true;
     rofi.enable = true;
     tmux.enable = true;
     portal.enable = true;

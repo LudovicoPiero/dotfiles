@@ -82,7 +82,6 @@ in
       cursor-opacity = 1.0
       shell-integration-features = no-cursor
 
-
       # Mouse
       mouse-hide-while-typing = false
 
