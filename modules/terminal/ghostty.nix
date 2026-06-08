@@ -5,11 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    mkOption
-    types
-    mkIf
-    ;
+  inherit (lib) mkOption types mkIf;
   cfg = config.mine.ghostty;
   c = config.mine.theme.colors;
 in
@@ -84,6 +80,7 @@ in
       cursor-style-blink = false
       cursor-invert-fg-bg = true
       cursor-opacity = 1.0
+      shell-integration-features = no-cursor
 
       # Mouse
       mouse-hide-while-typing = false

@@ -7,6 +7,9 @@
     ./hardware-configuration.nix
   ];
 
+  #TODO: remove later
+  documentation.man.enable = false;
+
   boot = {
     loader = {
       systemd-boot.enable = true;

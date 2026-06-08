@@ -57,14 +57,11 @@
       telegram-desktop # Official desktop client for Telegram
       mpv # General-purpose media player
       # tidal-hifi # Web wrapper for Tidal music streaming
+      vesktop # Desktop client with vencord
 
       # Terminal Apps
       yazi # Blazing fast terminal file manager written in Rust
       ;
-
-    # Flake Packages
-    inherit (inputs'.nixpkgs-master.legacyPackages) vesktop;
-    nvim = inputs'.nvim-flake.packages.default;
   };
 
   # Nix command-not-found handler using programs database

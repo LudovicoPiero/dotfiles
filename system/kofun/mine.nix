@@ -7,7 +7,7 @@
     mango.enable = false;
 
     # Apps
-    alacritty.enable = true;
+    alacritty.enable = false;
     ghostty.enable = true;
     fish.enable = true;
     firefox.enable = true;
@@ -23,6 +23,7 @@
     gtk.enable = true;
     gpg.enable = true;
     mako.enable = true;
+    nvim.enable = true;
     rofi.enable = true;
     tmux.enable = true;
     portal.enable = true;

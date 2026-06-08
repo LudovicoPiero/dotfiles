@@ -32,7 +32,7 @@ in
 
     terminal = mkOption {
       type = types.str;
-      default = "alacritty";
+      default = "ghostty";
     };
 
     stateVersion = mkOption {
