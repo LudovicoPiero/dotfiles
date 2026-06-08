@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   config = lib.mkIf config.mine.nvim.enable {
     programs.nvf.settings.vim = {

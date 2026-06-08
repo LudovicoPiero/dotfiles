@@ -276,7 +276,11 @@
       };
 
       "google" = {
-        urls = [ { template = "https://google.com/search?hl=en&pws=0&udm=14&safe=off&brd_browser=chrome&q={searchTerms}"; } ];
+        urls = [
+          {
+            template = "https://google.com/search?hl=en&pws=0&udm=14&safe=off&brd_browser=chrome&q={searchTerms}";
+          }
+        ];
         definedAliases = [ "g" ];
       };
 

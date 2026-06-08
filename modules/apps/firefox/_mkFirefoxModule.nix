@@ -1065,11 +1065,9 @@ in
                         profile.extensions.settings;
                   };
 
-              "${cfg.profilesPath}/${profile.path}/containers.json" =
-                mkIf (profile.containers != { })
-                  {
-                    text = mkContainersJson profile.containers;
-                  };
+              "${cfg.profilesPath}/${profile.path}/containers.json" = mkIf (
+                profile.containers != { }
+              ) { text = mkContainersJson profile.containers; };
 
               "${cfg.profilesPath}/${profile.path}/search.json.mozlz4" =
                 mkIf profile.search.enable
