@@ -2,6 +2,9 @@
 {
   config = lib.mkIf config.mine.nvim.enable {
     programs.nvf.settings.vim = {
+      # Auto-close brackets/quotes
+      autopairs.nvim-autopairs.enable = true;
+
       autocomplete.blink-cmp = {
         enable = true;
         setupOpts = {
@@ -91,6 +94,13 @@
           completion = {
             # Let autopairs handle brackets
             accept.auto_brackets.enabled = false;
+
+            list = {
+              selection = {
+                preselect = true;
+                auto_insert = false;
+              };
+            };
 
             documentation = {
               auto_show = true;

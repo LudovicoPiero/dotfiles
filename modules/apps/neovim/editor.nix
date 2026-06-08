@@ -2,9 +2,6 @@
 {
   config = lib.mkIf config.mine.nvim.enable {
     programs.nvf.settings.vim = {
-      # Auto-close brackets/quotes
-      autopairs.nvim-autopairs.enable = true;
-
       # Comment toggling (gcc / gc in visual)
       comments.comment-nvim.enable = true;
 
