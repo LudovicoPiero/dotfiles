@@ -5,9 +5,7 @@
   ...
 }:
 {
-  imports = [
-    inputs.nvf.nixosModules.default
-  ];
+  imports = [ inputs.nvf.nixosModules.default ];
 
   options.mine.neovim = {
     enable = lib.mkEnableOption "Neovim";

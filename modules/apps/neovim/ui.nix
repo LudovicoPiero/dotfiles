@@ -2,39 +2,105 @@
 {
   config = lib.mkIf config.mine.nvim.enable {
     programs.nvf.settings.vim = {
-      # Buffer tabs at top
-      tabline.nvimBufferline.enable = true;
+      tabline.nvimBufferline = {
+        enable = true;
 
-      # File icons
-      visuals.nvim-web-devicons.enable = true;
+        setupOpts = {
+          options = {
+            mode = "buffers";
+            themable = true;
+            numbers = "none";
 
-      # Indent guides
-      visuals.indent-blankline.enable = true;
+            indicator = {
+              style = "none";
+            };
 
-      # Nicer UI for inputs/selects
-      ui = {
-        borders.enable = true;
-        breadcrumbs.enable = true; # LSP breadcrumbs in winbar
-        fastaction.enable = true; # Code action picker
-        colorizer.enable = true; # Highlight hex color codes
-        illuminate.enable = true; # Highlight word under cursor
+            separator_style = "thin";
+
+            show_buffer_close_icons = false;
+            show_close_icon = false;
+            color_icons = true;
+
+            diagnostics = "nvim_lsp";
+            diagnostics_update_in_insert = false;
+
+            diagnostics_indicator = lib.generators.mkLuaInline ''
+              function(count, level)
+                local icon = level:match("error") and "󰅚 " or "󰀪 "
+                return " " .. icon .. count
+              end
+            '';
+
+            offsets = [
+              {
+                filetype = "NvimTree";
+                text = "Explorer";
+                text_align = "left";
+                separator = true;
+              }
+              {
+                filetype = "neo-tree";
+                text = "Explorer";
+                text_align = "left";
+                separator = true;
+              }
+            ];
+
+            enforce_regular_tabs = false;
+            always_show_bufferline = true;
+            sort_by = "insert_after_current";
+          };
+        };
       };
 
-      # Notifications
+      visuals = {
+        nvim-web-devicons.enable = true;
+        indent-blankline.enable = true;
+      };
+
+      ui = {
+        borders.enable = true;
+        colorizer.enable = true;
+        illuminate.enable = true;
+        noice.enable = true;
+      };
+
       notify.nvim-notify = {
         enable = true;
         setupOpts.render = "compact";
       };
 
-      # Nicer cmdline/messages/popupmenu (noice)
-      ui.noice.enable = true;
-
-      # Treesitter-based syntax highlighting globally
       treesitter = {
         enable = true;
         fold = false;
-        grammars = [ ]; # languages add their own grammars
       };
+
+      keymaps = [
+        {
+          key = "<Tab>";
+          mode = "n";
+          action = "<cmd>BufferLineCycleNext<CR>";
+          desc = "Next Buffer";
+        }
+        {
+          key = "<S-Tab>";
+          mode = "n";
+          action = "<cmd>BufferLineCyclePrev<CR>";
+          desc = "Prev Buffer";
+        }
+        {
+          key = "<leader>bp";
+          mode = "n";
+          action = "<cmd>BufferLinePick<CR>";
+          desc = "Pick Buffer";
+        }
+        {
+          key = "<leader>bo";
+          mode = "n";
+          action = "<cmd>BufferLineCloseOthers<CR>";
+          desc = "Close Other Buffers";
+        }
+      ];
     };
   };
 }

@@ -2,25 +2,26 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.mine.nvim.enable {
     programs.nvf.settings.vim = {
       augroups = [
-        {name = "lain_highlight_yank";}
-        {name = "lain_close_with_q";}
-        {name = "lain_auto_create_dir";}
-        {name = "lain_help_split";}
-        {name = "lain_filetype_settings";}
-        {name = "lain_clear_lsp_refs";}
-        {name = "lain_trim_whitespace";}
-        {name = "lain_resize_splits";}
-        {name = "AutoRefreshFile";}
+        { name = "lain_highlight_yank"; }
+        { name = "lain_close_with_q"; }
+        { name = "lain_auto_create_dir"; }
+        { name = "lain_help_split"; }
+        { name = "lain_filetype_settings"; }
+        { name = "lain_clear_lsp_refs"; }
+        { name = "lain_trim_whitespace"; }
+        { name = "lain_resize_splits"; }
+        { name = "AutoRefreshFile"; }
       ];
 
       autocmds = [
         # Highlight yanked text
         {
-          event = ["TextYankPost"];
+          event = [ "TextYankPost" ];
           group = "lain_highlight_yank";
           desc = "Highlight yanked text";
           callback = lib.generators.mkLuaInline ''
@@ -32,7 +33,7 @@
 
         # Close certain filetypes with 'q'
         {
-          event = ["FileType"];
+          event = [ "FileType" ];
           group = "lain_close_with_q";
           pattern = [
             "help"
@@ -56,7 +57,7 @@
 
         # Auto-create intermediate directories on save
         {
-          event = ["BufWritePre"];
+          event = [ "BufWritePre" ];
           group = "lain_auto_create_dir";
           callback = lib.generators.mkLuaInline ''
             function(event)
@@ -71,17 +72,23 @@
 
         # Open help in a vertical split
         {
-          event = ["FileType"];
+          event = [ "FileType" ];
           group = "lain_help_split";
-          pattern = ["help"];
+          pattern = [ "help" ];
           command = "wincmd L";
         }
 
         # Set .env files to sh filetype
         {
-          event = ["BufRead" "BufNewFile"];
+          event = [
+            "BufRead"
+            "BufNewFile"
+          ];
           group = "lain_filetype_settings";
-          pattern = [".env" ".env.*"];
+          pattern = [
+            ".env"
+            ".env.*"
+          ];
           callback = lib.generators.mkLuaInline ''
             function()
               vim.bo.filetype = "sh"
@@ -91,7 +98,7 @@
 
         # Clear LSP references on cursor move in insert mode
         {
-          event = ["CursorMovedI"];
+          event = [ "CursorMovedI" ];
           group = "lain_clear_lsp_refs";
           callback = lib.generators.mkLuaInline ''
             function()
@@ -102,9 +109,9 @@
 
         # Trim trailing whitespace on save (skip markdown and binary)
         {
-          event = ["BufWritePre"];
+          event = [ "BufWritePre" ];
           group = "lain_trim_whitespace";
-          pattern = ["*"];
+          pattern = [ "*" ];
           callback = lib.generators.mkLuaInline ''
             function()
               if vim.bo.filetype == "markdown" or vim.bo.binary then
@@ -119,7 +126,7 @@
 
         # Resize splits when the terminal window is resized
         {
-          event = ["VimResized"];
+          event = [ "VimResized" ];
           group = "lain_resize_splits";
           callback = lib.generators.mkLuaInline ''
             function()
@@ -132,7 +139,12 @@
 
         # Auto-refresh: check if file changed on disk when switching focus/buffers
         {
-          event = ["FocusGained" "BufEnter" "CursorHold" "CursorHoldI"];
+          event = [
+            "FocusGained"
+            "BufEnter"
+            "CursorHold"
+            "CursorHoldI"
+          ];
           group = "AutoRefreshFile";
           callback = lib.generators.mkLuaInline ''
             function()
@@ -145,7 +157,7 @@
 
         # Notify after buffer is reloaded from disk change
         {
-          event = ["FileChangedShellPost"];
+          event = [ "FileChangedShellPost" ];
           group = "AutoRefreshFile";
           callback = lib.generators.mkLuaInline ''
             function()

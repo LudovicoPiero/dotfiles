@@ -14,12 +14,12 @@
       lightbulb.enable = true;
 
       # Format on save
-      formatOnSave = true;
+      # formatOnSave = true;
 
       mappings = {
         codeAction = "<leader>ca";
         documentHighlight = "<leader>ch";
-        format = "<leader>cf";
+        format = "<leader>ff";
         goToDeclaration = "<leader>gD";
         goToDefinition = "gd";
         goToType = "<leader>gt";

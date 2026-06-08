@@ -34,7 +34,7 @@
       # Keymaps for editor plugins
       keymaps = [
         {
-          key = "<leader>tf";
+          key = "<leader>e";
           mode = "n";
           action = ":Oil<CR>";
           silent = true;

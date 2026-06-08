@@ -103,11 +103,8 @@
               draw.columns = [
                 [ "kind_icon" ]
                 [
-                  {
-                    __unkeyed-1 = "label";
-                    __unkeyed-2 = "label_description";
-                    gap = 1;
-                  }
+                  "label"
+                  "label_description"
                 ]
                 [ "source_name" ]
               ];
@@ -125,37 +122,36 @@
 
           sources = {
             default = [
-              "copilot"
+              # "copilot"
               "lsp"
               "path"
               "snippets"
               "buffer"
             ];
-            providers.copilot = {
-              name = "copilot";
-              module = "blink-cmp-copilot";
-              score_offset = 100;
-              async = true;
-              transform_items = lib.generators.mkLuaInline ''
-                function(_, items)
-                  local kinds = require("blink.cmp.types").CompletionItemKind
-                  local idx = #kinds + 1
-                  kinds[idx] = "Copilot"
-                  for _, item in ipairs(items) do
-                    item.kind = idx
-                  end
-                  return items
-                end
-              '';
-            };
+            # providers.copilot = {
+            #   name = "copilot";
+            #   module = "blink-cmp-copilot";
+            #   score_offset = 100;
+            #   async = true;
+            #   transform_items = lib.generators.mkLuaInline ''
+            #     function(_, items)
+            #       local kinds = require("blink.cmp.types").CompletionItemKind
+            #       local idx = #kinds + 1
+            #       kinds[idx] = "Copilot"
+            #       for _, item in ipairs(items) do
+            #         item.kind = idx
+            #       end
+            #       return items
+            #     end
+            #   '';
+            # };
           };
         };
       };
 
       snippets.luasnip = {
         enable = true;
-        #TODO:
-        # friendly-snippets = true;
+        providers = [ "friendly-snippets" ];
       };
     };
   };
