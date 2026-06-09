@@ -41,7 +41,7 @@ in
       window-decoration = false
       background-opacity = ${toString config.mine.vars.opacity}
       background-blur-radius = ${if config.mine.vars.opacity < 1.0 then "20" else "0"}
-      title = Ghostty
+      # title = Ghostty
 
       # Scrolling
       scrollback-limit = 10000
