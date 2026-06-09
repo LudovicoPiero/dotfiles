@@ -2,8 +2,8 @@
   mine = {
     # WM / Compositor
     i3.enable = false;
-    niri.enable = true;
-    hyprland.enable = false;
+    niri.enable = false;
+    hyprland.enable = true;
     mango.enable = false;
 
     # Apps

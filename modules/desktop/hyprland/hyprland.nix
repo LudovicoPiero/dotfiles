@@ -37,9 +37,11 @@ in
     };
     security.pam.services.hypridle.text = "auth include login";
 
-    mine.waybar = {
+    mine.noctalia = {
       enable = true;
-      wm = "hyprland";
+      systemd = {
+        enable = true;
+      };
     };
 
     hj.xdg.config.files = {
@@ -85,13 +87,13 @@ in
             hl.exec_cmd("hyprctl setcursor Future-Cyan-Hyprcursor_Theme 24")
             hl.exec_cmd("fcitx5 -d --replace")
             hl.exec_cmd("${getExe pkgs.swaybg} -i $HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png")
-            hl.exec_cmd("sleep 1; ${getExe pkgs.waybar}")
             hl.exec_cmd("${getExe pkgs.brightnessctl} set 10%")
             hl.exec_cmd("${getExe pkgs.mako}")
             hl.exec_cmd("${getExe pkgs.emacs} --daemon")
             hl.exec_cmd("${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${getExe pkgs.cliphist} store")
             hl.exec_cmd("${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${getExe pkgs.cliphist} store")
             hl.exec_cmd("[workspace 5 silent;noanim] ${getExe pkgs.thunderbird}")
+            hl.exec_cmd("noctalia")
         end)
       '';
 

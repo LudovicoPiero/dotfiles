@@ -11,7 +11,7 @@ A declarative, modular, and _performance-oriented_ NixOS configuration featuring
 - **Shell:** Fish (w/ Hydro prompt)
 - **Terminal:** Alacritty
 - **Launcher:** Rofi
-- **Bar:** Waybar
+- **Bar:** Noctalia Shell
 - **Notifications:** Mako
 - **Editor:** Neovim
 
@@ -22,7 +22,7 @@ A declarative, modular, and _performance-oriented_ NixOS configuration featuring
 - **Custom File Manager:** Uses `hj` (hjem) to manage dotfiles declaratively without relying on Home Manager.
 - **Workflow Enhancements:**
   - Custom Fish functions (`fe`, `fef`, `yt`, `watchLive`).
-  - Unified Tokyo Night theming across GTK, Rofi, and Waybar.
+  - Unified Tokyo Night theming across GTK, Rofi, and Noctalia Shell.
 
 ## 🎨 Credits
 

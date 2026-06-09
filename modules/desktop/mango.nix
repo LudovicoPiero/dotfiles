@@ -41,9 +41,11 @@ in
     };
     security.pam.services.swaylock.text = "auth include login";
 
-    mine.waybar = {
+    mine.noctalia = {
       enable = true;
-      wm = "mangowm";
+      systemd = {
+        enable = true;
+      };
     };
 
     hj.xdg.config.files."mango/config.conf".text = ''
@@ -57,7 +59,7 @@ in
       exec-once=${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${getExe pkgs.cliphist} store
       exec-once=${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${getExe pkgs.cliphist} store
       exec-once=fcitx5 -d --replace
-      exec-once=sleep 1; ${getExe pkgs.waybar}
+      exec-once=noctalia
 
       # Monitor Settings - HDMI-A-1 (top) at 0,0; eDP-1 (bottom) at 0,1080
       monitorrule=name:^HDMI-A-1$,x:0,y:0,width:1920,height:1080,refresh:180
@@ -279,20 +281,20 @@ in
       bind=SUPER,E,spawn,${getExe' pkgs.emacs "emacsclient"} -c
       bind=SUPER+SHIFT,E,spawn,${getExe pkgs.thunar}
       bind=SUPER,M,spawn,${getExe pkgs.thunderbird}
-      bind=SUPER,P,spawn,${getExe pkgs.rofi} -show drun
-      bind=SUPER+SHIFT,P,spawn,${getExe pkgs.rofi} -show window
+      bind=SUPER,P,spawn,noctalia msg panel-toggle launcher
+      bind=SUPER+SHIFT,P,spawn,noctalia msg window-switcher
       bind=SUPER,space,togglefloating,
-      bind=SUPER,X,spawn,${getExe pkgs.wleave}
+      bind=SUPER,X,spawn,noctalia msg panel-toggle control-center
 
       # clipboard
-      bind=SUPER,O,spawn,clipboard-picker
+      bind=SUPER,O,spawn,noctalia msg panel-toggle clipboard
 
       # screenshots & OCR
       bind=NONE,print,spawn,wl-ocr
-      bind=ALT,print,spawn,screenshot
+      bind=ALT,print,spawn,noctalia msg screenshot-region
 
       # exit
-      bind=SUPER+SHIFT,c,quit
+      bind=SUPER+SHIFT,c,spawn,noctalia msg session logout
       bind=SUPER,w,killclient,
 
       # switch window focus (vim + arrows)
@@ -391,14 +393,14 @@ in
       bind=CTRL+ALT,Right,resizewin,+50,+0
 
       # media keys
-      bind=NONE,XF86AudioRaiseVolume,spawn,${getExe' pkgs.wireplumber "wpctl"} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
-      bind=NONE,XF86AudioLowerVolume,spawn,${getExe' pkgs.wireplumber "wpctl"} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
-      bind=NONE,XF86AudioMute,spawn,${getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle
-      bind=NONE,XF86MonBrightnessUp,spawn,${getExe pkgs.brightnessctl} -e4 -n2 set 5%+
-      bind=NONE,XF86MonBrightnessDown,spawn,${getExe pkgs.brightnessctl} -e4 -n2 set 5%-
-      bind=NONE,XF86AudioPlay,spawn,${getExe pkgs.playerctl} play-pause
-      bind=NONE,XF86AudioNext,spawn,${getExe pkgs.playerctl} next
-      bind=NONE,XF86AudioPrev,spawn,${getExe pkgs.playerctl} previous
+      bind=NONE,XF86AudioRaiseVolume,spawn,noctalia msg volume-up
+      bind=NONE,XF86AudioLowerVolume,spawn,noctalia msg volume-down
+      bind=NONE,XF86AudioMute,spawn,noctalia msg volume-mute
+      bind=NONE,XF86MonBrightnessUp,spawn,noctalia msg brightness-up
+      bind=NONE,XF86MonBrightnessDown,spawn,noctalia msg brightness-down
+      bind=NONE,XF86AudioPlay,spawn,noctalia msg media toggle
+      bind=NONE,XF86AudioNext,spawn,noctalia msg media next
+      bind=NONE,XF86AudioPrev,spawn,noctalia msg media previous
 
       # Mouse Button Bindings
       mousebind=SUPER,btn_left,moveresize,curmove
