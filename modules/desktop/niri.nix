@@ -38,9 +38,11 @@ in
     };
     security.pam.services.swaylock.text = "auth include login";
 
-    mine.waybar = {
+    mine.noctalia = {
       enable = true;
-      wm = "niri";
+      systemd = {
+        enable = true;
+      };
     };
 
     hj.xdg.config.files."niri/config.kdl".text = ''
@@ -57,7 +59,6 @@ in
       spawn-sh-at-startup "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${getExe pkgs.cliphist} store"
 
       spawn-sh-at-startup "${getExe pkgs.swaybg} -i $HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png"
-      spawn-at-startup "${getExe pkgs.waybar}"
       spawn-at-startup "${getExe pkgs.mako}"
       spawn-sh-at-startup "${getExe pkgs.brightnessctl} set 10%"
 
@@ -69,6 +70,7 @@ in
           "before-sleep" "${getExe pkgs.swaylock} -f -c 000000"
 
       spawn-sh-at-startup "niri msg action focus-workspace main"
+      spawn-sh-at-startup "noctalia"
 
       prefer-no-csd
       screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -366,15 +368,13 @@ in
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
 
-          Mod+Return repeat=false { spawn "${
-            getExe pkgs.${config.mine.vars.terminal}
-          }"; }
+          Mod+Return repeat=false { spawn "${getExe pkgs.${config.mine.vars.terminal}}"; }
           Mod+E repeat=false { spawn "emacsclient" "-c"; }
           Mod+M repeat=false { spawn "${getExe pkgs.thunderbird}"; }
-          Mod+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "drun"; }
-          Mod+Shift+P repeat=false { spawn "${getExe pkgs.rofi}" "-show" "drun"; }
-          Mod+o repeat=false { spawn-sh "clipboard-picker"; }
-          Mod+X { spawn "${getExe pkgs.wleave}"; }
+          Mod+P repeat=false { spawn-sh "noctalia msg panel-toggle launcher"; }
+          Mod+Shift+P repeat=false { spawn-sh "noctalia msg window-switcher"; }
+          Mod+O repeat=false { spawn-sh "noctalia msg panel-toggle clipboard"; }
+          Mod+X { spawn-sh "noctalia msg panel-toggle control-center"; }
 
           // === WORKSPACE NAVIGATION ===
           Mod+1 { focus-workspace 1; }
@@ -471,36 +471,35 @@ in
           Mod+Shift+Minus { set-window-height "-10%"; }
 
           // === FLOATING & OVERVIEW ===
-          Mod+Shift+T { toggle-window-floating; }
-          Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+          Mod+Space { toggle-window-floating; }
+          Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
           Mod+D repeat=false { toggle-overview; }
           Mod+Tab repeat=false { toggle-overview; }
 
           // === SCREENSHOTS ===
-          Print { screenshot; }
-          XF86Launch1 { screenshot; }
-          Ctrl+Print { screenshot-screen; }
-          Ctrl+XF86Launch1 { screenshot-screen; }
-          Alt+Print { screenshot-window; }
-          Alt+XF86Launch1 { screenshot-window; }
+          Print { spawn-sh "noctalia msg screenshot-region"; }
+          XF86Launch1 { spawn-sh "noctalia msg screenshot-region"; }
+          Ctrl+Print { spawn-sh "noctalia msg screenshot-fullscreen all"; }
+          Ctrl+XF86Launch1 { spawn-sh "noctalia msg screenshot-fullscreen all"; }
+          Alt+Print { spawn-sh "noctalia msg screenshot-fullscreen"; }
+          Alt+XF86Launch1 { spawn-sh "noctalia msg screenshot-fullscreen"; }
 
           // === SYSTEM & MISC ===
           Super+W { close-window; }
-          Mod+Shift+E { quit; }
-          // Mod+Shift+P { power-off-monitors; }
+          Mod+Shift+E { spawn-sh "noctalia msg session logout"; }
           Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
 
           // === MEDIA ===
-          XF86AudioRaiseVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5+%"; }
-          XF86AudioLowerVolume allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5-%"; }
-          XF86AudioMute        allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-          XF86AudioMicMute     allow-when-locked=true { spawn "${getExe' pkgs.wireplumber "wpctl"}" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-          XF86AudioPlay  allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "play-pause"; }
-          XF86AudioPause allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "play-pause"; }
-          XF86AudioNext  allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "next"; }
-          XF86AudioPrev  allow-when-locked=true { spawn "${getExe pkgs.playerctl}" "previous"; }
-          XF86MonBrightnessUp   allow-when-locked=true { spawn "${getExe pkgs.brightnessctl}" "set" "5%+"; }
-          XF86MonBrightnessDown allow-when-locked=true { spawn "${getExe pkgs.brightnessctl}" "set" "5%-"; }
+          XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+          XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+          XF86AudioMute        allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+          XF86AudioMicMute     allow-when-locked=true { spawn-sh "noctalia msg mic-mute"; }
+          XF86AudioPlay  allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+          XF86AudioPause allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+          XF86AudioNext  allow-when-locked=true { spawn-sh "noctalia msg media next"; }
+          XF86AudioPrev  allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+          XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
       }
     '';
   };

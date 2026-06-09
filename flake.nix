@@ -48,6 +48,12 @@
       repo = "niri-flake";
     };
 
+    noctalia = {
+      type = "github";
+      owner = "noctalia-dev";
+      repo = "noctalia";
+    };
+
     nvf = {
       type = "github";
       owner = "NotAShelf";
@@ -93,9 +99,7 @@
           # "aarch64-linux"
         ];
 
-        _module.args.extendedLib = nixpkgs.lib.extend (
-          import ./lib { inherit inputs withSystem; }
-        );
+        _module.args.extendedLib = nixpkgs.lib.extend (import ./lib { inherit inputs withSystem; });
 
         imports = [
           ./system
