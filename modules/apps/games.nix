@@ -60,6 +60,28 @@ in
             p.umu-launcher
             p.mangohud
             p.winetricks
+            p.curl
+            p.wget
+            p.gnutar
+            p.gzip
+            p.zstd
+            p.xz
+            p.p7zip
+            p.libadwaita
+            p.zenity
+            p.gamescope
+            p.which
+            p.file
+            p.zenity
+            p.vulkan-loader
+            p.vulkan-tools
+            p.unzip
+            p.cabextract
+            p.pciutils
+            p.gamemode.lib
+            p.xdg-utils
+            p.umu-launcher
+            p.sdl3
           ];
         })
       ];
