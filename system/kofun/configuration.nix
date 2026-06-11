@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -33,6 +33,32 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    # ArchiSteamFarm
+    archisteamfarm = {
+      enable = true;
+
+      settings = {
+        Statistics = false;
+        PluginsUpdateMode = 1;
+        AutoClaimItemBotNames = "ASF";
+        AutoClaimItemPeriod = 23;
+      };
+
+      ipcPasswordFile = config.sops.secrets."asfIpcPassword".path;
+      ipcSettings = {
+        Kestrel = {
+          Endpoints = {
+            HTTP = {
+              Url = "http://*:1242";
+            };
+          };
+        };
+      };
+    };
+  };
+  sops.secrets."asfIpcPassword" = {
+    owner = config.systemd.services.archisteamfarm.serviceConfig.User;
   };
 
   hardware.bluetooth.enable = true;
