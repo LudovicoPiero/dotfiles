@@ -57,10 +57,11 @@ in
       "hypr/lua/monitors.lua".text = ''
         hl.monitor({
             output   = "HDMI-A-1",
-            mode     = "1920x1080@180",
+            mode     = "1920x1080@144",
             position = "auto",
             scale    = "1",
-            bitdepth = 10
+            bitdepth = 8,
+            cm       = "dcip3"
         })
         hl.monitor({
             output  = "eDP-1",
