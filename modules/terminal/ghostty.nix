@@ -30,6 +30,9 @@ in
     hj.xdg.config.files."ghostty/config".text = ''
       # General
       auto-update = off
+      gtk-single-instance = false
+      clipboard-read = allow
+      clipboard-write = allow
 
       # Environment
       term = xterm-256color
@@ -57,6 +60,8 @@ in
       # Colors
       background = ${c.base00}
       foreground = ${c.base05}
+      selection-background = ${c.base02}
+      selection-foreground = ${c.base05}
 
       palette = 0=${c.base01}
       palette = 1=${c.base08}

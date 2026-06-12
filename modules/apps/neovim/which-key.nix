@@ -23,11 +23,14 @@
       luaConfigRC.which-key-groups = inputs.nvf.lib.nvim.dag.entryAnywhere ''
         local wk = require("which-key")
         wk.add({
+          { "<leader>b", group = "Buffer" },
           { "<leader>c", group = "Code" },
-          { "<leader>f", group = "Find" },
+          { "<leader>d", group = "Debug" },
+          { "<leader>f", group = "Format" },
           { "<leader>g", group = "Git" },
           { "<leader>h", group = "Hunks" },
           { "<leader>r", group = "Rename/Refactor" },
+          { "<leader>s", group = "Search" },
           { "<leader>t", group = "Toggle" },
           { "<leader>x", group = "Diagnostics/Trouble" },
         })

@@ -2,87 +2,93 @@
 {
   config = lib.mkIf config.mine.nvim.enable {
     programs.nvf.settings.vim = {
-      telescope = {
+      fzf-lua = {
         enable = true;
-        setupOpts.defaults = {
-          layout_strategy = "horizontal";
-          path_display = [ "truncate" ];
+        setupOpts = {
+          winopts = {
+            height = 0.9;
+            width = 0.9;
+            preview = {
+              vertical = "down:50%";
+              horizontal = "right:50%";
+            };
+          };
         };
       };
 
       keymaps = [
-        # Files (was snacks.picker.files)
+        # Files
         {
           key = "<leader>sf";
           mode = "n";
-          action = ":Telescope find_files<CR>";
+          action = ":FzfLua files<CR>";
           silent = true;
           desc = "Search Files";
         }
-        # Recent files (was snacks.picker.recent)
+        # Recent files
         {
           key = "<leader>s.";
           mode = "n";
-          action = ":Telescope oldfiles<CR>";
+          action = ":FzfLua oldfiles<CR>";
           silent = true;
           desc = "Recent Files";
         }
-        # Buffers (was snacks.picker.buffers)
+        # Buffers
         {
           key = "<leader><leader>";
           mode = "n";
-          action = ":Telescope buffers<CR>";
+          action = ":FzfLua buffers<CR>";
           silent = true;
           desc = "Open Buffers";
         }
-        # Live grep (was snacks.picker.grep)
+        # Live grep
         {
           key = "<leader>sg";
           mode = "n";
-          action = ":Telescope live_grep<CR>";
+          action = ":FzfLua live_grep<CR>";
           silent = true;
           desc = "Live Grep";
         }
-        # Grep word (was snacks.picker.grep_word)
+        # Grep word
         {
           key = "<leader>sw";
           mode = [
             "n"
             "x"
           ];
-          action = ":Telescope grep_string<CR>";
+          action = ":FzfLua grep_string<CR>";
           silent = true;
           desc = "Grep Current Word";
         }
-        # Grep buffer lines (was snacks.picker.lines)
+        # Grep buffer lines
         {
           key = "<leader>/";
           mode = "n";
-          action = ":Telescope current_buffer_fuzzy_find<CR>";
+          action = ":FzfLua lgrep_curbuf<CR>";
           silent = true;
           desc = "Grep Buffer";
         }
-        # Quickfix (was snacks.picker.qflist)
+        # Quickfix
         {
           key = "<leader>sq";
           mode = "n";
-          action = ":Telescope quickfix<CR>";
+          action = ":FzfLua quickfix<CR>";
           silent = true;
           desc = "Quickfix List";
         }
-        # Help (was snacks.picker.help)
+        # Help
         {
           key = "<leader>sh";
           mode = "n";
-          action = ":Telescope help_tags<CR>";
+          action = ":FzfLua help_tags<CR>";
           silent = true;
           desc = "Search Help";
         }
-        # Keymaps (was snacks.picker.keymaps)
+        # Keymaps
         {
           key = "<leader>sk";
           mode = "n";
-          action = ":Telescope keymaps<CR>";
+          action = ":FzfLua keymaps<CR>";
           silent = true;
           desc = "Search Keymaps";
         }
@@ -90,14 +96,14 @@
         {
           key = "<leader>cs";
           mode = "n";
-          action = ":Telescope lsp_document_symbols<CR>";
+          action = ":FzfLua lsp_document_symbols<CR>";
           silent = true;
           desc = "LSP Symbols";
         }
         {
           key = "<leader>cl";
           mode = "n";
-          action = ":Telescope lsp_references<CR>";
+          action = ":FzfLua lsp_references<CR>";
           silent = true;
           desc = "LSP Definitions / References";
         }
@@ -105,7 +111,7 @@
         {
           key = "<leader>gc";
           mode = "n";
-          action = ":Telescope git_commits<CR>";
+          action = ":FzfLua git_commits<CR>";
           silent = true;
           desc = "Git Commits";
         }

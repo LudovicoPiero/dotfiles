@@ -30,6 +30,48 @@
         silent = true;
         desc = "Neogit (Git TUI)";
       }
+      {
+        key = "]h";
+        mode = "n";
+        lua = true;
+        action = ''function() require("gitsigns").nav_hunk("next") end'';
+        desc = "Next Hunk";
+      }
+      {
+        key = "[h";
+        mode = "n";
+        lua = true;
+        action = ''function() require("gitsigns").nav_hunk("prev") end'';
+        desc = "Prev Hunk";
+      }
+      {
+        key = "<leader>hs";
+        mode = "n";
+        lua = true;
+        action = ''function() require("gitsigns").stage_hunk() end'';
+        desc = "Stage Hunk";
+      }
+      {
+        key = "<leader>hr";
+        mode = "n";
+        lua = true;
+        action = ''function() require("gitsigns").reset_hunk() end'';
+        desc = "Reset Hunk";
+      }
+      {
+        key = "<leader>hp";
+        mode = "n";
+        lua = true;
+        action = ''function() require("gitsigns").preview_hunk() end'';
+        desc = "Preview Hunk";
+      }
+      {
+        key = "<leader>hb";
+        mode = "n";
+        lua = true;
+        action = ''function() require("gitsigns").blame_line({ full = true }) end'';
+        desc = "Blame Line";
+      }
     ];
   };
 }

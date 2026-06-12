@@ -31,21 +31,6 @@
               end
             '';
 
-            offsets = [
-              {
-                filetype = "NvimTree";
-                text = "Explorer";
-                text_align = "left";
-                separator = true;
-              }
-              {
-                filetype = "neo-tree";
-                text = "Explorer";
-                text_align = "left";
-                separator = true;
-              }
-            ];
-
             enforce_regular_tabs = false;
             always_show_bufferline = true;
             sort_by = "insert_after_current";
@@ -62,17 +47,24 @@
         borders.enable = true;
         colorizer.enable = true;
         illuminate.enable = true;
-        noice.enable = true;
+
+        noice = {
+          enable = true;
+          setupOpts = {
+            cmdline = {
+              view = "cmdline";
+              format = {
+                search_down.view = "cmdline";
+                search_up.view = "cmdline";
+              };
+            };
+          };
+        };
       };
 
       notify.nvim-notify = {
         enable = true;
         setupOpts.render = "compact";
-      };
-
-      treesitter = {
-        enable = true;
-        fold = false;
       };
 
       keymaps = [

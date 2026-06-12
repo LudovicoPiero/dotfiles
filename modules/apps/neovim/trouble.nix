@@ -51,37 +51,6 @@
           action = ''function() require("trouble").toggle("diagnostics") end'';
           desc = "Workspace Diagnostics";
         }
-        # LSP symbols
-        {
-          key = "<leader>cs";
-          mode = "n";
-          lua = true;
-          action = ''function() require("trouble").toggle({ mode = "symbols", focus = false }) end'';
-          desc = "LSP Symbols";
-        }
-        # LSP references/definitions
-        {
-          key = "<leader>cl";
-          mode = "n";
-          lua = true;
-          action = ''function() require("trouble").toggle({ mode = "lsp", focus = false, win = { position = "right" } }) end'';
-          desc = "LSP Definitions / References";
-        }
-        {
-          key = "<leader>xL";
-          mode = "n";
-          lua = true;
-          action = ''function() require("trouble").toggle("loclist") end'';
-          desc = "Location List";
-        }
-        # Quickfix list
-        {
-          key = "<leader>xQ";
-          mode = "n";
-          lua = true;
-          action = ''function() require("trouble").toggle("qflist") end'';
-          desc = "Quickfix List";
-        }
       ];
     };
   };
