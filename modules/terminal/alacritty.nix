@@ -64,7 +64,7 @@ in
 
       [font.normal]
       family = "${config.mine.fonts.terminal.name}"
-      style = "Semibold"
+      style = "SemiBold"
 
       [font.bold]
       family = "${config.mine.fonts.terminal.name}"
