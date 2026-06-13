@@ -34,6 +34,20 @@ in
       clipboard-read = allow
       clipboard-write = allow
 
+      # Window & Split Customizations
+      unfocused-split-opacity = 0.7
+      tab-inherit-working-directory = true
+      split-inherit-working-directory = true
+
+      # Selection Preferences
+      selection-clear-on-typing = true
+      selection-clear-on-copy = false
+
+      # Rendering & Shaping Fixes
+      font-shaping-break = cursor
+      grapheme-width-method = unicode
+      gtk-wide-tabs = true
+
       # Environment
       term = xterm-256color
 
@@ -49,13 +63,15 @@ in
       # Scrolling
       scrollback-limit = 10000
 
-      # Font
+      # Font & Ligatures
       font-size = ${toString config.mine.fonts.size}
       font-family = ${config.mine.fonts.terminal.name}
-      font-style = Semibold
+      font-style = SemiBold
       font-style-bold = Bold
       font-style-italic = Italic
       font-style-bold-italic = Bold Italic
+      font-feature = "calt"
+      font-feature = "liga"
 
       # Colors
       background = ${c.base00}
@@ -120,6 +136,10 @@ in
       keybind = ctrl+a>6=goto_tab:6
       keybind = ctrl+a>7=goto_tab:7
       keybind = ctrl+a>8=goto_tab:8
+
+      # Scrolling Keybinds
+      keybind = shift+up=scroll_page_up
+      keybind = shift+down=scroll_page_down
     '';
   };
 }
