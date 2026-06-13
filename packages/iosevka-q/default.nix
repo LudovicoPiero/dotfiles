@@ -14,56 +14,14 @@
     noCvSs = true
     exportGlyphNames = true
 
-      [buildPlans.IosevkaQ.variants.design]
-      capital-j = "serifless"
-      capital-l = "serifless"
-      capital-q = "straight"
-      capital-z = "straight-serifless"
-      g = "single-storey-serifless"
-      i = "serifed"
-      j = "flat-hook-serifed"
-      l = "serifed-flat-tailed"
-      q = "straight-serifless"
-      r = "serifless"
-      s = "serifless"
-      t = "flat-hook-short-neck"
-      w = "straight-flat-top-serifless"
-      x = "straight-serifless"
-      y = "straight-serifless"
-      z = "straight-serifless"
-      lower-alpha = "crossing"
-      cyrl-em = "hanging-serifless"
-      cyrl-capital-u = "straight-serifless"
-      cyrl-u = "straight-serifless"
-      tilde = "low"
-      asterisk = "penta-low"
-      underscore = "high"
-      caret = "medium"
-      ascii-grave = "straight"
-      ascii-single-quote = "straight"
-      guillemet = "straight"
-      number-sign = "slanted"
-      ampersand = "closed"
-      at = "fourfold"
-      dollar = "through"
-      cent = "through"
-      percent = "rings-segmented-slash"
-      bar = "natural-slope"
-      question = "smooth"
-      decorative-angle-brackets = "middle"
-      lig-ltgteq = "slanted"
-      lig-neq = "slightly-slanted"
-      lig-equal-chain = "without-notch"
-      lig-hyphen-chain = "without-notch"
-      lig-plus-chain = "without-notch"
-      lig-double-arrow-bar = "without-notch"
-      lig-single-arrow-bar = "without-notch"
+      [buildPlans.IosevkaQ.variants]
+      inherits = "ss14"
 
       [buildPlans.IosevkaQ.ligations]
-      inherits = "matlab"
+      inherits = "clike"
 
     [buildPlans.IosevkaQ.widths.Condensed]
-    shape = 500
+    shape = 456
     menu = 3
     css = "condensed"
 
@@ -71,6 +29,21 @@
     shape = 600
     menu = 5
     css = "normal"
+
+    [buildPlans.IosevkaQ.widths.SemiCondensed]
+    shape = 548
+    menu = 4
+    css = "semi-condensed"
+
+    [buildPlans.IosevkaQ.widths.SemiExtended]
+    shape = 658
+    menu = 6
+    css = "semi-expanded"
+
+    [buildPlans.IosevkaQ.widths.Extended]
+    shape = 720
+    menu = 7
+    css = "expanded"
   '',
   extraParameters ? null,
   set ? "Q",
@@ -120,10 +93,7 @@ buildNpmPackage rec {
     "extraParameters"
   ]
   ++ lib.optionals (
-    !(
-      builtins.isString privateBuildPlan
-      && lib.hasPrefix builtins.storeDir privateBuildPlan
-    )
+    !(builtins.isString privateBuildPlan && lib.hasPrefix builtins.storeDir privateBuildPlan)
   ) [ "buildPlan" ];
 
   configurePhase = ''
@@ -132,19 +102,13 @@ buildNpmPackage rec {
       remarshal -i "$buildPlanPath" -o private-build-plans.toml -if json -of toml
     ''}
     ${lib.optionalString
-      (
-        builtins.isString privateBuildPlan
-        && (!lib.hasPrefix builtins.storeDir privateBuildPlan)
-      )
+      (builtins.isString privateBuildPlan && (!lib.hasPrefix builtins.storeDir privateBuildPlan))
       ''
         cp "$buildPlanPath" private-build-plans.toml
       ''
     }
     ${lib.optionalString
-      (
-        builtins.isString privateBuildPlan
-        && (lib.hasPrefix builtins.storeDir privateBuildPlan)
-      )
+      (builtins.isString privateBuildPlan && (lib.hasPrefix builtins.storeDir privateBuildPlan))
       ''
         cp "$buildPlan" private-build-plans.toml
       ''
