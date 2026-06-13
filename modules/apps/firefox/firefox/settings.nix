@@ -1,4 +1,4 @@
-{
+_: {
   mine.programs.firefox.profiles.ludovico.settings = {
     # --- Custom CSS & UI ---
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -123,6 +123,7 @@
     "browser.ml.enable" = false;
     "browser.ml.chat.enabled" = false;
     "browser.ml.chat.menu" = false;
+    "browser.ml.chat.page" = false;
     "browser.tabs.groups.smart.enabled" = false;
     "browser.ml.linkPreview.enabled" = false;
     "full-screen-api.transition-duration.enter" = "0 0";
