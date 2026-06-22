@@ -3,6 +3,12 @@
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
 
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
+
+    # Use dbus-broker
+    dbus.implementation = "broker";
+
     pipewire = {
       enable = true;
       pulse.enable = true;
@@ -10,10 +16,15 @@
     gnome.gnome-keyring.enable = true;
   };
 
-  programs.firefox.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
+  programs = {
+    firefox.enable = true;
+    thunar = {
+      enable = true;
+      plugins = with pkgs; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
   };
 
   security.polkit.enable = true;
