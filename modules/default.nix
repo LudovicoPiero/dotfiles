@@ -5,11 +5,10 @@ _: {
     ./fish.nix
     ./users.nix
     ./lutris.nix
-    ./themes.nix
+    ./ghostty.nix
 
     ./dev
-
+    ./themes
     ./sway
-    ./ghostty.nix
   ];
 }
