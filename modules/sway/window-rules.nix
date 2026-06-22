@@ -243,70 +243,54 @@ in
         command = "move to workspace number 5";
       }
 
-      # Torrent Managers (Workspace 7)
       {
         criteria = {
           app_id = "(?i)^(qbittorrent|org.qbittorrent.qbittorrent)$";
         };
-        command = "move to workspace number 7";
+        command = "move to workspace number 4";
       }
       {
         criteria = {
           class = "(?i)^(qbittorrent|org.qbittorrent.qbittorrent)$";
         };
-        command = "move to workspace number 7";
+        command = "move to workspace number 4";
       }
 
-      # Instant Messaging (Workspace 8)
-      {
-        criteria = {
-          app_id = "^whatsapp-for-linux$";
-        };
-        command = "move to workspace number 8";
-      }
-      {
-        criteria = {
-          class = "^whatsapp-for-linux$";
-        };
-        command = "move to workspace number 8";
-      }
-
-      # Music / Audio Layer (Workspace 9)
       {
         criteria = {
           app_id = "^spotify$";
         };
-        command = "move to workspace number 9";
+        command = "move to workspace number 4";
       }
       {
         criteria = {
           class = "^spotify$";
         };
-        command = "move to workspace number 9";
+        command = "move to workspace number 4";
       }
       {
         criteria = {
           app_id = "^org.fooyin.fooyin$";
         };
-        command = "move to workspace number 9";
+        command = "move to workspace number 4";
       }
       {
         criteria = {
           class = "^org.fooyin.fooyin$";
         };
-        command = "move to workspace number 9";
+        command = "move to workspace number 4";
       }
       {
         criteria = {
           app_id = "^tidal-hifi$";
         };
-        command = "move to workspace number 9";
+        command = "move to workspace number 4";
       }
       {
         criteria = {
           class = "^tidal-hifi$";
         };
-        command = "move to workspace number 9";
+        command = "move to workspace number 4";
       }
 
       # Security & Utilities Overlay
