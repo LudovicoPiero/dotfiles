@@ -7,6 +7,7 @@ _: {
     ./lutris.nix
     ./ghostty.nix
 
+    ./neovim
     ./dev
     ./themes
     ./sway

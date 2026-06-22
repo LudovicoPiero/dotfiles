@@ -14,8 +14,14 @@
 
   time.timeZone = "Asia/Jakarta";
 
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 3d --keep  3";
+    flake = "/home/rei/Code/dotfiles";
+  };
+
   nix = {
-    gc.automatic = true;
     registry = {
       system.flake = inputs.nixpkgs;
       default.flake = inputs.nixpkgs;
