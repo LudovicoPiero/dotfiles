@@ -140,11 +140,6 @@ _: {
             "${cfg.config.modifier}+3" = "workspace number 3";
             "${cfg.config.modifier}+4" = "workspace number 4";
             "${cfg.config.modifier}+5" = "workspace number 5";
-            "${cfg.config.modifier}+6" = "workspace number 6";
-            "${cfg.config.modifier}+7" = "workspace number 7";
-            "${cfg.config.modifier}+8" = "workspace number 8";
-            "${cfg.config.modifier}+9" = "workspace number 9";
-            "${cfg.config.modifier}+0" = "workspace number 10";
 
             # Container Workspace Assignment
             "${cfg.config.modifier}+Shift+1" = "move container to workspace number 1";
@@ -152,11 +147,6 @@ _: {
             "${cfg.config.modifier}+Shift+3" = "move container to workspace number 3";
             "${cfg.config.modifier}+Shift+4" = "move container to workspace number 4";
             "${cfg.config.modifier}+Shift+5" = "move container to workspace number 5";
-            "${cfg.config.modifier}+Shift+6" = "move container to workspace number 6";
-            "${cfg.config.modifier}+Shift+7" = "move container to workspace number 7";
-            "${cfg.config.modifier}+Shift+8" = "move container to workspace number 8";
-            "${cfg.config.modifier}+Shift+9" = "move container to workspace number 9";
-            "${cfg.config.modifier}+Shift+0" = "move container to workspace number 10";
 
             # Layout Structuring Modifiers
             "${cfg.config.modifier}+b" = "splith";
