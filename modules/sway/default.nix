@@ -1,5 +1,9 @@
 _: {
   imports = [ ./window-rules.nix ];
+
+  # Add necessary stuff for sway
+  programs.sway.enable = true;
+
   hm =
     {
       config,
@@ -68,10 +72,10 @@ _: {
           startup = [
             { command = "${pkgs.mako}/bin/mako"; }
             {
-              command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store";
+              command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store";
             }
             {
-              command = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store";
+              command = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store";
             }
             {
               command = ''
@@ -117,8 +121,9 @@ _: {
             "${cfg.config.modifier}+w" = "kill";
             "${cfg.config.modifier}+p" = "exec ${cfg.config.menu}";
             "${cfg.config.modifier}+Shift+p" =
-              "exec cliphist list | ${pkgs.fuzzel}/bin/fuzzel --dmenu | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+              "exec ${pkgs.cliphist}/bin/cliphist list | ${pkgs.fuzzel}/bin/fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
             "${cfg.config.modifier}+Shift+c" = "reload";
+            "${cfg.config.modifier}+x" = "exec ${pkgs.wleave}/bin/wleave";
             "${cfg.config.modifier}+Shift+e" =
               "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
 
@@ -140,6 +145,11 @@ _: {
             "${cfg.config.modifier}+3" = "workspace number 3";
             "${cfg.config.modifier}+4" = "workspace number 4";
             "${cfg.config.modifier}+5" = "workspace number 5";
+            "${cfg.config.modifier}+6" = null;
+            "${cfg.config.modifier}+7" = null;
+            "${cfg.config.modifier}+8" = null;
+            "${cfg.config.modifier}+9" = null;
+            "${cfg.config.modifier}+0" = null;
 
             # Container Workspace Assignment
             "${cfg.config.modifier}+Shift+1" = "move container to workspace number 1";
@@ -147,6 +157,11 @@ _: {
             "${cfg.config.modifier}+Shift+3" = "move container to workspace number 3";
             "${cfg.config.modifier}+Shift+4" = "move container to workspace number 4";
             "${cfg.config.modifier}+Shift+5" = "move container to workspace number 5";
+            "${cfg.config.modifier}+Shift+6" = null;
+            "${cfg.config.modifier}+Shift+7" = null;
+            "${cfg.config.modifier}+Shift+8" = null;
+            "${cfg.config.modifier}+Shift+9" = null;
+            "${cfg.config.modifier}+Shift+0" = null;
 
             # Layout Structuring Modifiers
             "${cfg.config.modifier}+b" = "splith";
