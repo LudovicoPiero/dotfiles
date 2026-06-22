@@ -7,7 +7,18 @@ in
   users.users.rei.shell = pkgs.fish;
 
   hm = {
-    home.packages = [ pkgs.zoxide ];
+    home.packages = with pkgs; [
+      fzf
+      eza
+      bat
+      zoxide
+    ];
+
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     programs.fish = {
       enable = true;
 
@@ -20,6 +31,7 @@ in
 
         ${_ pkgs.starship} init fish | source
         ${_ pkgs.nix-your-shell} fish | source
+        ${_ pkgs.any-nix-shell} fish --info-right | source
         ${_ pkgs.zoxide} init fish | source
         ${_ pkgs.direnv} hook fish | source
 
