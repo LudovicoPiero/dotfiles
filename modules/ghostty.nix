@@ -11,6 +11,8 @@ _: {
         cursor-style = "block";
         cursor-style-blink = false;
         mouse-hide-while-typing = true;
+        shell-integration-features = "no-cursor";
+        gtk-single-instance = false;
 
         keybind = [
           "ctrl+a>v=new_split:down"
