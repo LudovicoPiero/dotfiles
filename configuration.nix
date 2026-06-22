@@ -5,15 +5,13 @@
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" "rei" ])
   ];
 
-  home-manager.users.rei = _: {
+  home-manager.users.rei = {
     home = {
       username = "rei";
       homeDirectory = "/home/rei";
-
+      preferXdgDirectories = true;
       stateVersion = "26.05";
     };
-
-    # Manage standard user folders automatically
     xdg.userDirs = {
       enable = true;
       createDirectories = true;

@@ -5,6 +5,7 @@ _: {
     ./fish.nix
     ./users.nix
     ./lutris.nix
+    ./themes.nix
 
     ./dev
 

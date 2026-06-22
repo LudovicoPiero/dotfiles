@@ -36,6 +36,7 @@
   fonts = {
     packages = with pkgs; [
       jetbrains-mono
+      inter
       noto-fonts-color-emoji
       nerd-fonts.symbols-only
     ];
@@ -49,12 +50,12 @@
           "Noto Color Emoji"
         ];
         sansSerif = [
-          "DejaVu Sans"
+          "Inter"
           "Symbols Nerd Font"
           "Noto Color Emoji"
         ];
         serif = [
-          "DejaVu Serif"
+          "Inter"
           "Symbols Nerd Font"
           "Noto Color Emoji"
         ];
