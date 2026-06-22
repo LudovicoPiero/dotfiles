@@ -4,6 +4,7 @@ _: {
     ./desktop.nix
     ./fish.nix
     ./users.nix
+    ./lutris.nix
 
     ./dev
 

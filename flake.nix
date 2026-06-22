@@ -7,15 +7,12 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
+    { nixpkgs, home-manager, ... }@inputs:
     {
       nixosConfigurations = {
         unit01 = nixpkgs.lib.nixosSystem {
