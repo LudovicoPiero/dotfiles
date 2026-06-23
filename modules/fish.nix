@@ -55,6 +55,9 @@ in
         v = "nvim";
         c = "cd $HOME/Code/dotfiles/";
 
+        bb = "${pkgs.nh}/bin/nh os boot $HOME/Code/dotfiles";
+        bs = "${pkgs.nh}/bin/nh os switch $HOME/Code/dotfiles";
+
         l = "${pkgs.eza}/bin/eza --icons=always --git -l";
         t = "${pkgs.eza}/bin/eza --icons=always --git --tree";
         ls = "${pkgs.eza}/bin/eza --icons=always --git";
