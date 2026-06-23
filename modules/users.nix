@@ -1,6 +1,9 @@
 { config, lib, ... }: {
+  users.mutableUsers = false;
+  users.users.root.hashedPasswordFile = "/persist/rootPassword";
   users.users.rei = {
     isNormalUser = true;
+    hashedPasswordFile = "/persist/userPassword";
     extraGroups = [
       "seat"
       "video"

@@ -2,7 +2,7 @@
   description = "NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -13,6 +13,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence.url = "github:nix-community/impermanence";
 
     nvf = {
       url = "github:notashelf/nvf";
@@ -27,11 +29,11 @@
     { nixpkgs, home-manager, ... }@inputs:
     {
       nixosConfigurations = {
-        unit01 = nixpkgs.lib.nixosSystem {
+        unit-01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./configuration.nix
+            ./hosts/unit-01
             home-manager.nixosModules.home-manager
             {
               home-manager = {

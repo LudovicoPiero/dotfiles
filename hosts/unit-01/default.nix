@@ -1,7 +1,9 @@
 { lib, ... }: {
   imports = [
     ./hardware-configuration.nix
-    ./modules
+    ./impermanence.nix
+
+    ../../modules
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" "rei" ])
   ];
 
