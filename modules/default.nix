@@ -7,6 +7,7 @@ _: {
     ./lutris.nix
     ./ghostty.nix
 
+    ./firefox
     ./neovim
     ./dev
     ./themes
