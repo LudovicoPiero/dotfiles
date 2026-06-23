@@ -4,86 +4,89 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
-
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "ahci"
-    "usb_storage"
-    "usbhid"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/c57b2e24-99c1-46fe-acc7-2624bf8c4216";
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "noatime"
-      "ssd"
-      "discard=async"
+  boot = {
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usb_storage"
+      "usbhid"
+      "sd_mod"
     ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+
+    kernel.sysctl = {
+      "vm.swappiness" = 10;
+    };
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/6e56b623-c4ec-4bd8-a471-a2ff0e4f6687";
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "noatime"
-      "ssd"
-      "discard=async"
-    ];
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/c57b2e24-99c1-46fe-acc7-2624bf8c4216";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "noatime"
+        "ssd"
+        "discard=async"
+      ];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-uuid/6e56b623-c4ec-4bd8-a471-a2ff0e4f6687";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "noatime"
+        "ssd"
+        "discard=async"
+      ];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/FB9B-4CE9";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+        "noatime"
+      ];
+    };
+
+    "/home/rei/Media" = {
+      device = "/dev/disk/by-uuid/42d72884-c5fb-43de-959b-3f475ec2cd1e";
+      fsType = "btrfs";
+      options = [
+        "defaults"
+        "compress=zstd"
+        "nofail"
+      ];
+    };
+
+    "/home/rei/WinE" = {
+      device = "/dev/disk/by-uuid/5566A6764BCB04FF";
+      fsType = "ntfs3";
+      options = [
+        "defaults"
+        "uid=1000"
+        "gid=100"
+        "fmask=0022"
+        "dmask=0022"
+        "nofail"
+      ];
+    };
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FB9B-4CE9";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-      "noatime"
-    ];
-  };
-
-  fileSystems."/home/rei/Media" = {
-    device = "/dev/disk/by-uuid/42d72884-c5fb-43de-959b-3f475ec2cd1e";
-    fsType = "btrfs";
-    options = [
-      "defaults"
-      "compress=zstd"
-      "nofail"
-    ];
-  };
-
-  fileSystems."/home/rei/WinE" = {
-    device = "/dev/disk/by-uuid/5566A6764BCB04FF";
-    fsType = "ntfs3";
-    options = [
-      "defaults"
-      "uid=1000"
-      "gid=100"
-      "fmask=0022"
-      "dmask=0022"
-      "nofail"
-    ];
-  };
-
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
-  };
   swapDevices = [
     { device = "/dev/disk/by-uuid/0e45afa3-b5d0-459f-b1f6-78820244056a"; }
   ];
