@@ -7,6 +7,8 @@
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" "rei" ])
   ];
 
+  networking.hostName = "unit-01";
+
   home-manager.users.rei = {
     home = {
       username = "rei";

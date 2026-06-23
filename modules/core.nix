@@ -9,7 +9,6 @@
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
 
-  networking.hostName = "unit-01";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Jakarta";
