@@ -36,18 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri = {
-      type = "github";
-      owner = "sodiboo";
-      repo = "niri-flake";
-    };
-
-    noctalia = {
-      type = "github";
-      owner = "noctalia-dev";
-      repo = "noctalia";
-    };
-
     nvf = {
       type = "github";
       owner = "NotAShelf";
@@ -59,13 +47,6 @@
       type = "github";
       owner = "wamserma";
       repo = "flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    rust-overlay = {
-      type = "github";
-      owner = "oxalica";
-      repo = "rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -97,7 +78,6 @@
 
         imports = [
           ./system
-          ./packages
         ];
       }
     );
