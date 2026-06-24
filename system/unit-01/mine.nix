@@ -1,13 +1,9 @@
 {
   mine = {
     # WM / Compositor
-    i3.enable = false;
-    niri.enable = false;
-    hyprland.enable = true;
-    mango.enable = false;
+    sway.enable = true;
 
     # Apps
-    alacritty.enable = false;
     ghostty.enable = true;
     fish.enable = true;
     firefox.enable = true;
@@ -24,7 +20,6 @@
     gpg.enable = true;
     mako.enable = true;
     nvim.enable = true;
-    rofi.enable = true;
     tmux.enable = true;
     portal.enable = true;
     qemu.enable = false;

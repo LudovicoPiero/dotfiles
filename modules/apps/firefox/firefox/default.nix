@@ -6,6 +6,7 @@
 }:
 let
   mkFirefoxModule = import ../_mkFirefoxModule.nix;
+  linuxConfigHome = lib.removePrefix "/home/${config.mine.vars.username}/" config.hj.xdg.config.directory;
 in
 (mkFirefoxModule {
   modulePath = [
@@ -19,7 +20,8 @@ in
   visible = true;
 
   platforms.linux = {
-    configPath = ".mozilla/firefox";
+    # Dynamically targets ~/.config/mozilla/firefox
+    configPath = "${linuxConfigHome}/mozilla/firefox";
   };
 })
   # HACKS:

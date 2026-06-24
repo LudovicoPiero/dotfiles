@@ -29,16 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
+    impermanence = {
       type = "github";
-      owner = "hyprwm";
-      repo = "hyprland";
-    };
-
-    mangowm = {
-      type = "github";
-      owner = "mangowm";
-      repo = "mango";
+      owner = "nix-community";
+      repo = "impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

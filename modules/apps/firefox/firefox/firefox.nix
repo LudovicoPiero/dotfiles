@@ -32,6 +32,10 @@ in
           id = 0;
           isDefault = true;
           name = "Ludovico";
+
+          settings = {
+            "extensions.autoDisableScopes" = 0; # Enable all Extensions by default
+          };
         };
       };
     };

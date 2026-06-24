@@ -1,4 +1,4 @@
-{ pkgs, inputs', ... }:
+{ inputs', ... }:
 {
   bookmarks = [
     {
@@ -9,48 +9,6 @@
           name = "JP Dictionary";
           keyword = "js";
           url = "https://jisho.org/";
-        }
-      ];
-    }
-    {
-      name = "ANIME"; # Bookmark Folder
-      toolbar = true;
-      bookmarks = [
-        {
-          name = "ANIMEPAHE";
-          keyword = "ah";
-          url = "https://animepahe.ru";
-        }
-        {
-          name = "KICKASSANIME";
-          keyword = "kaa";
-          url = "https://kaa.mx";
-        }
-      ];
-    }
-    {
-      name = "NixOS";
-      toolbar = true;
-      bookmarks = [
-        {
-          name = "Nix Package";
-          keyword = "np";
-          url = "https://search.nixos.org/packages?channel=unstable";
-        }
-        {
-          name = "Nix Options";
-          keyword = "no";
-          url = "https://search.nixos.org/options?channel=unstable";
-        }
-        {
-          name = "NixOS Wiki";
-          keyword = "nw";
-          url = "https://wiki.nixos.org/wiki/Linux_kernel";
-        }
-        {
-          name = "Home-Manager";
-          keyword = "hm";
-          url = "https://nix-community.github.io/home-manager/options.xhtml";
         }
       ];
     }
@@ -72,6 +30,11 @@
           name = "SourceHut";
           keyword = "sh";
           url = "https://git.sr.ht";
+        }
+        {
+          name = "Codeberg";
+          keyword = "cb";
+          url = "https://codeberg.org";
         }
       ];
     }
@@ -111,14 +74,14 @@
     ublock-origin
     search-by-image
     violentmonkey
-    vimium-c
+    vimium
   ];
 
   extensionSettings = {
     "uBlock0@raymondhill.net" = {
       settings = {
         # Get your settings here
-        # ~/.mozilla/firefox/YOUR_PROFILE_NAME/browser-extension-data/uBlock0@raymondhill.net/storage.js
+        # ~/.config/mozilla/firefox/YOUR_PROFILE_NAME/browser-extension-data/uBlock0@raymondhill.net/storage.js
         advancedUserEnabled = true;
         netWhitelist = # Trusted Sites
           ''
@@ -260,27 +223,22 @@
   };
 
   search = {
-    default = "ddg";
+    default = "Google (No AI)";
+    privateDefault = "Google (No AI)";
     order = [
       "ddg"
-      "kagi"
       "brave"
-      "searx"
-      "google"
+      "Google (No AI)"
     ];
 
     engines = {
-      "kagi" = {
-        urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
-        definedAliases = [ "k" ];
-      };
-
-      "google" = {
+      "Google (No AI)" = {
         urls = [
           {
-            template = "https://google.com/search?hl=en&pws=0&udm=14&safe=off&brd_browser=chrome&q={searchTerms}";
+            template = "https://www.google.com/search?hl=en&pws=0&udm=14&safe=off&brd_browser=chrome&q={searchTerms}";
           }
         ];
+        name = "Google (No AI)";
         definedAliases = [ "g" ];
       };
 
@@ -289,117 +247,53 @@
         definedAliases = [ "j" ];
       };
 
-      "searx" = {
-        urls = [
-          {
-            template = "https://opnxng.com/search";
-            params = [
-              {
-                name = "q";
-                value = "{searchTerms}";
-              }
-              {
-                name = "categories";
-                value = "general";
-              }
-              {
-                name = "language";
-                value = "all";
-              }
-              {
-                name = "safesearch";
-                value = "0";
-              }
-            ];
-          }
-        ];
-        definedAliases = [ "s" ];
-      };
-
       "brave" = {
-        urls = [ { template = "https://search.brave.com/search?q={searchTerms}"; } ];
+        urls = [
+          { template = "https://search.brave.com/search?q={searchTerms}&safesearch=off&country=ALL"; }
+        ];
         definedAliases = [ "b" ];
       };
 
       "ddg" = {
-        urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
-        definedAliases = [ "d" ];
+        urls = [ { template = "https://duckduckgo.com/?q={searchTerms}&kp=-2&kl=wt-wt"; } ];
+        name = "DuckDuckGo";
+        definedAliases = [ "ddg" ];
       };
 
-      "github (code)" = {
-        urls = [
-          { template = "https://github.com/search?q={searchTerms}&type=code"; }
-        ];
+      # Github
+      "Github Code" = {
+        urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
+        name = "Github Code";
         definedAliases = [ "ghc" ];
       };
-
-      "github (repository)" = {
-        urls = [
-          { template = "https://github.com/search?q={searchTerms}&type=repository"; }
-        ];
+      "Github Repos" = {
+        urls = [ { template = "https://Github.com/search?q={searchTerms}&type=repositories"; } ];
+        name = "Github Repos";
         definedAliases = [ "ghr" ];
       };
 
-      "nix-packages" = {
+      "Home Manager Options" = {
         urls = [
           {
-            template = "https://search.nixos.org/packages";
-            params = [
-              {
-                name = "channel";
-                value = "unstable";
-              }
-              {
-                name = "type";
-                value = "packages";
-              }
-              {
-                name = "query";
-                value = "{searchTerms}";
-              }
-            ];
+            template = "https://nix-community.github.io/home-manager/options/home-manager/index.html?search={searchTerms}";
           }
         ];
-
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-        definedAliases = [ "np" ];
-      };
-
-      "home-manager" = {
-        urls = [ { template = "https://rycee.gitlab.io/home-manager/options.html"; } ];
+        name = "Home Manager Options";
         definedAliases = [ "hm" ];
       };
-
-      "nixos-options" = {
-        urls = [
-          {
-            template = "https://search.nixos.org/options";
-            params = [
-              {
-                name = "channel";
-                value = "unstable";
-              }
-              {
-                name = "type";
-                value = "packages";
-              }
-              {
-                name = "query";
-                value = "{searchTerms}";
-              }
-            ];
-          }
-        ];
-
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      "Nix Packages" = {
+        urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
+        name = "Nix Packages";
+        definedAliases = [ "np" ];
+      };
+      "Nix Options" = {
+        urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
+        name = "Nix options";
         definedAliases = [ "no" ];
       };
-
-      "nixos-wiki" = {
-        urls = [
-          { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; }
-        ];
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      "NixOS Wiki" = {
+        urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
+        name = "NixOS Wiki";
         definedAliases = [ "nw" ];
       };
 

@@ -76,26 +76,6 @@ in
           bind ctrl-backspace backward-kill-token
           bind alt-delete kill-word
           bind ctrl-delete kill-token
-
-          # Aliases
-          alias cat="${getExe pkgs.bat}"
-
-          # Eza aliases
-          alias ls="${getExe pkgs.eza} --icons=always"
-          alias l="${getExe pkgs.eza} --icons=always -lF --git"
-          alias la="${getExe pkgs.eza} --icons=always -la --git"
-          alias ll="${getExe pkgs.eza} --icons=always --git"
-          alias llm="${getExe pkgs.eza} --icons=always -lGF --git --sort=time"
-          alias t="${getExe pkgs.eza} --icons=always --tree"
-          alias tree="${getExe pkgs.eza} --icons=always --tree"
-
-          alias nv="nvim"
-          alias v="nvim"
-          alias config="cd ~/Code/nixos"
-          alias mkdir="mkdir -p"
-          alias g="${getExe pkgs.git}"
-          alias ..="cd .."
-          alias ...="cd ../.."
         '';
       };
     };

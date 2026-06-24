@@ -1,24 +1,22 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
     ./chaotic.nix
     ./mine.nix
     ./hardware-configuration.nix
+    ./impermanence.nix
   ];
 
   boot = {
     loader = {
       systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 5;
+      systemd-boot.configurationLimit = 10;
       efi.canTouchEfiVariables = true;
     };
-
-    # Use latest kernel for better hardware support
-    kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  networking.hostName = "kofun";
+  networking.hostName = "unit-01";
   networking.networkmanager.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";

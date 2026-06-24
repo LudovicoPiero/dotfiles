@@ -16,7 +16,7 @@ in
 
     username = mkOption {
       type = types.str;
-      default = "airi";
+      default = "rei";
     };
 
     signingKey = mkOption {

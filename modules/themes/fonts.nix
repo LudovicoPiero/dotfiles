@@ -31,11 +31,11 @@ in
     terminal = {
       name = mkOption {
         type = types.str;
-        default = "Iosevka q";
+        default = "JetBrains Mono";
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.iosevka-q;
+        default = pkgs.jetbrains-mono;
       };
     };
 

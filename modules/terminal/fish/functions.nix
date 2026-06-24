@@ -53,7 +53,7 @@ let
 
     # Build System
     bs = ''
-      set -l FLAKE_DIR "${config.mine.vars.homeDirectory}/Code/nixos"
+      set -l FLAKE_DIR "${config.mine.vars.homeDirectory}/Code/dotfiles"
       set -l PROFILE "/nix/var/nix/profiles/system"
       set -l CURRENT_SYSTEM "/run/current-system"
       set -l HOST (hostname)
@@ -99,7 +99,7 @@ let
 
     # Build Boot
     bb = ''
-      set -l FLAKE_DIR "${config.mine.vars.homeDirectory}/Code/nixos"
+      set -l FLAKE_DIR "${config.mine.vars.homeDirectory}/Code/dotfiles"
       set -l PROFILE "/nix/var/nix/profiles/system"
       set -l CURRENT_SYSTEM "/run/current-system"
       set -l HOST (hostname)

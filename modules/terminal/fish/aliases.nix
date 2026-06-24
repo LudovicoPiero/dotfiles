@@ -6,15 +6,13 @@
 }:
 let
   _ = lib.getExe;
-
-  mkAlias = name: value: "alias ${name} \"${value}\"";
+mkAlias = name: value: "alias ${name} \"${value}\"";
 
   aliases = {
     # Utils
     cu = "${_ pkgs.curlie}";
-    cat = "${_ pkgs.bat}";
-    c = "cd ~/Code/nixos";
-    config = "cd ~/Code/nixos";
+    c = "cd ~/Code/dotfiles";
+    config = "cd ~/Code/dotfiles";
     v = "nvim";
     nv = "nvim";
     mkdir = "mkdir -p";

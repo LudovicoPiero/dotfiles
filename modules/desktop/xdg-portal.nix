@@ -20,8 +20,7 @@ in
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk # Fallback / File chooser
       ]
-      ++ (optional (config.programs.niri.enable or false
-      ) pkgs.xdg-desktop-portal-gnome);
+      ++ (optional (config.programs.niri.enable or false) pkgs.xdg-desktop-portal-gnome);
 
       # Portal Configuration
       config = {
@@ -38,9 +37,14 @@ in
           "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
         };
 
-        hyprland = {
-          "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
-          "org.freedesktop.impl.portal.ScreenShot" = "hyprland";
+        sway = {
+          default = [ "gtk" ];
+          "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+          "org.freedesktop.impl.portal.Screenshot" = "wlr";
+          # ignore inhibit bc gtk portal always returns as success,
+          # despite sway/the wlr portal not having an implementation,
+          # stopping firefox from using wayland idle-inhibit
+          "org.freedesktop.impl.portal.Inhibit" = "none";
         };
       };
     };

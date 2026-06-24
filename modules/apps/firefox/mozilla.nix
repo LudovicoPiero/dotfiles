@@ -9,6 +9,7 @@ let
   inherit (pkgs.stdenv) isDarwin;
 
   cfg = config.mine.mozilla;
+  linuxConfigHome = lib.removePrefix "/home/${config.mine.vars.username}/" config.hj.xdg.config.directory;
 
   defaultPaths = [
     # Link a .keep file to keep the directory around
@@ -19,19 +20,19 @@ let
     if isDarwin then
       "Library/Mozilla/NativeMessagingHosts"
     else
-      ".mozilla/native-messaging-hosts";
+      "${linuxConfigHome}/mozilla/native-messaging-hosts";
 
   firefoxNativeMessagingHostsPath =
     if isDarwin then
       "Library/Application Support/Mozilla/NativeMessagingHosts"
     else
-      ".mozilla/native-messaging-hosts";
+      "${linuxConfigHome}/mozilla/native-messaging-hosts";
 
   librewolfNativeMessagingHostsPath =
     if isDarwin then
       "Library/Application Support/LibreWolf/NativeMessagingHosts"
     else
-      ".librewolf/native-messaging-hosts";
+      "${linuxConfigHome}/librewolf/native-messaging-hosts";
 in
 {
   options.mine.mozilla = {
@@ -43,7 +44,6 @@ in
         List of Firefox native messaging hosts to configure.
       '';
     };
-
     thunderbirdNativeMessagingHosts = lib.mkOption {
       internal = true;
       type = with lib.types; listOf package;
@@ -111,7 +111,8 @@ in
             {
               "${firefoxNativeMessagingHostsPath}" = mkNmhLink {
                 name = "mozilla-native-messaging-hosts";
-                # on Linux, the directory is shared between Firefox and Thunderbird; merge both into one
+                # on Linux, the directory is shared between Firefox and Thunderbird;
+                # merge both into one
                 nativeMessagingHosts = [
                   cfg.firefoxNativeMessagingHosts
                   cfg.thunderbirdNativeMessagingHosts
