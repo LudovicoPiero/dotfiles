@@ -56,9 +56,19 @@
             "n"
             "x"
           ];
-          action = ":FzfLua grep_string<CR>";
+          action = ":FzfLua grep_cword<CR>";
           silent = true;
           desc = "Grep Current Word";
+        }
+        {
+          key = "<leader>sW";
+          mode = [
+            "n"
+            "x"
+          ];
+          action = ":FzfLua grep_cWORD<CR>";
+          silent = true;
+          desc = "Grep Current WORD";
         }
         # Grep buffer lines
         {

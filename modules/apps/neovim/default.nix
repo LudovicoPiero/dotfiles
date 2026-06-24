@@ -20,6 +20,11 @@
         viAlias = true;
         vimAlias = true;
 
+        spellcheck = {
+          enable = true;
+          programmingWordlist.enable = true;
+        };
+
         clipboard = {
           enable = true;
           registers = "unnamedplus";

@@ -40,31 +40,31 @@
 
       visuals = {
         nvim-web-devicons.enable = true;
-        indent-blankline.enable = true;
+        highlight-undo.enable = true;
+        blink-indent.enable = true;
+        nvim-cursorline.enable = true;
+        fidget-nvim.enable = true;
       };
 
       ui = {
         borders.enable = true;
+        noice.enable = true;
         colorizer.enable = true;
+        modes-nvim.enable = false; # The theme looks terrible with catppuccin
         illuminate.enable = true;
-
-        noice = {
+        smartcolumn = {
           enable = true;
-          setupOpts = {
-            cmdline = {
-              view = "cmdline";
-              format = {
-                search_down.view = "cmdline";
-                search_up.view = "cmdline";
-              };
-            };
+          setupOpts.custom_colorcolumn = {
+            # this is a freeform module, it's `buftype = int;` for configuring column position
+            nix = "110";
+            ruby = "120";
+            java = "130";
+            go = [
+              "90"
+              "130"
+            ];
           };
         };
-      };
-
-      notify.nvim-notify = {
-        enable = true;
-        setupOpts.render = "compact";
       };
 
       keymaps = [

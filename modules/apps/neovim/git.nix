@@ -2,8 +2,11 @@
 {
   config = lib.mkIf config.mine.nvim.enable {
     programs.nvf.settings.vim.git = {
+      enable = true;
+
       gitsigns = {
         enable = true;
+        codeActions.enable = false;
         setupOpts = {
           signs = {
             add.text = "▎";
