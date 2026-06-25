@@ -28,7 +28,7 @@ in
     hj = {
       packages = [ cfg.package ];
 
-      xdg.config.files."wezterm/config".text = ''
+      xdg.config.files."wezterm/wezterm.lua".text = ''
         local wezterm = require("wezterm")
 
         local config = {}
@@ -64,71 +64,71 @@ in
 
         -- Window Frame (title bar / borders)
         config.window_frame = {
-          active_titlebar_bg = ${c.base03},
-          active_titlebar_fg = ${c.base05},
-          active_titlebar_border_bottom = ${c.base03},
-          border_left_color = ${c.base01},
-          border_right_color = ${c.base01},
-          border_bottom_color = ${c.base01},
-          border_top_color = ${c.base01},
-          button_bg = ${c.base01},
-          button_fg = ${c.base05},
-          button_hover_bg = ${c.base05},
-          button_hover_fg = ${c.base03},
-          inactive_titlebar_bg = ${c.base01},
-          inactive_titlebar_fg = ${c.base05},
-          inactive_titlebar_border_bottom = ${c.base03},
+          active_titlebar_bg = "${c.base03}",
+          active_titlebar_fg = "${c.base05}",
+          active_titlebar_border_bottom = "${c.base03}",
+          border_left_color = "${c.base01}",
+          border_right_color = "${c.base01}",
+          border_bottom_color = "${c.base01}",
+          border_top_color = "${c.base01}",
+          button_bg = "${c.base01}",
+          button_fg = "${c.base05}",
+          button_hover_bg = "${c.base05}",
+          button_hover_fg = "${c.base03}",
+          inactive_titlebar_bg = "${c.base01}",
+          inactive_titlebar_fg = "${c.base05}",
+          inactive_titlebar_border_bottom = "${c.base03}",
         }
 
         -- Terminal Colors
         config.colors = {
           ansi = {
-            ${c.base00}, ${c.base08}, ${c.base0B}, ${c.base0A},
-            ${c.base0D}, ${c.base0E}, ${c.base0C}, ${c.base05},
+            "${c.base00}", "${c.base08}", "${c.base0B}", "${c.base0A}",
+            "${c.base0D}", "${c.base0E}", "${c.base0C}", "${c.base05}",
           },
           brights = {
-            ${c.base03}, ${c.base08}, ${c.base0B}, ${c.base0A},
-            ${c.base0D}, ${c.base0E}, ${c.base0C}, ${c.base07},
+            "${c.base03}", "${c.base08}", "${c.base0B}", "${c.base0A}",
+            "${c.base0D}", "${c.base0E}", "${c.base0C}", "${c.base07}",
           },
-          background = ${c.base00},
-          foreground = ${c.base05},
-          cursor_bg = ${c.base05},
-          cursor_fg = ${c.base00},
-          compose_cursor = ${c.base06},
-          scrollbar_thumb = ${c.base01},
-          selection_bg = ${c.base05},
-          selection_fg = ${c.base00},
-          split = ${c.base03},
-          visual_bell = ${c.base09},
+          background = "${c.base00}",
+          foreground = "${c.base05}",
+          cursor_bg = "${c.base05}",
+          cursor_fg = "${c.base00}",
+          compose_cursor = "${c.base06}",
+          scrollbar_thumb = "${c.base01}",
+          selection_bg = "${c.base05}",
+          selection_fg = "${c.base00}",
+          split = "${c.base03}",
+          visual_bell = "${c.base09}",
 
           tab_bar = {
-            background = ${c.base01},
-            inactive_tab_edge = ${c.base01},
+            background = "${c.base01}",
+            inactive_tab_edge = "${c.base01}",
             active_tab = {
-              bg_color = ${c.base00},
-              fg_color = ${c.base05},
+              bg_color = "${c.base00}",
+              fg_color = "${c.base05}",
             },
             inactive_tab = {
-              bg_color = ${c.base03},
-              fg_color = ${c.base05},
+              bg_color = "${c.base03}",
+              fg_color = "${c.base05}",
             },
             inactive_tab_hover = {
-              bg_color = ${c.base05},
-              fg_color = ${c.base00},
+              bg_color = "${c.base05}",
+              fg_color = "${c.base00}",
             },
             new_tab = {
-              bg_color = ${c.base03},
-              fg_color = ${c.base05},
+              bg_color = "${c.base03}",
+              fg_color = "${c.base05}",
             },
             new_tab_hover = {
-              bg_color = ${c.base05},
-              fg_color = ${c.base00},
+              bg_color = "${c.base05}",
+              fg_color = "${c.base00}",
             },
           },
         }
 
-        config.command_palette_bg_color = ${c.base01}
-        config.command_palette_fg_color = ${c.base05}
+        config.command_palette_bg_color = "${c.base01}"
+        config.command_palette_fg_color = "${c.base05}"
 
         config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
         config.keys = {
