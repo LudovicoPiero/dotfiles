@@ -4,7 +4,8 @@
     mango.enable = true;
 
     # Apps
-    ghostty.enable = true;
+    ghostty.enable = false;
+    wezterm.enable = true;
     fish.enable = true;
     firefox.enable = true;
     zen-browser.enable = true;

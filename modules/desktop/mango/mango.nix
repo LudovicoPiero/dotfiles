@@ -111,7 +111,7 @@ in
 
         # Key Bindings
         bind=SUPER,p,spawn,${getExe pkgs.fuzzel}
-        bind=SUPER,Return,spawn,${getExe pkgs.ghostty}
+        bind=SUPER,Return,spawn,${getExe pkgs.wezterm}
         bind=SUPER,x,spawn,${getExe pkgs.wleave}
         bind=SUPER,w,killclient
         bind=SUPER,f,togglefullscreen
