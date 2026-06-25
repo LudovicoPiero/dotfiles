@@ -29,7 +29,7 @@ in
           default = [ "gtk" ];
         };
 
-        mango = {
+        sway = {
           default = [ "gtk" ];
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
           "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];

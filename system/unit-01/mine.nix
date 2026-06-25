@@ -1,7 +1,7 @@
 {
   mine = {
     # WM / Compositor
-    mango.enable = true;
+    sway.enable = true;
 
     # Apps
     ghostty.enable = false;

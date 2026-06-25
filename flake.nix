@@ -34,13 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mangowm = {
-      type = "github";
-      owner = "mangowm";
-      repo = "mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nvf = {
       type = "github";
       owner = "NotAShelf";
