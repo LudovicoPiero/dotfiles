@@ -47,6 +47,7 @@ in
       xdg.config.files."sway/config".text = ''
         font pango:${config.mine.fonts.main.name} 10
         include ${config.mine.vars.homeDirectory}/.config/sway/window-rules
+        seat * xcursor_theme ${config.mine.gtk.cursorTheme.name} ${toString config.mine.gtk.cursorTheme.size}
 
         # Autostart
         exec ${getExe pkgs.mako}

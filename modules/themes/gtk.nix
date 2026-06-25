@@ -7,27 +7,6 @@
 let
   inherit (lib) mkOption types mkIf;
   cfg = config.mine.gtk;
-
-  theme = {
-    name = "WhiteSur-Dark";
-    package = pkgs.whitesur-gtk-theme;
-  };
-
-  iconTheme = {
-    name = "WhiteSur-dark";
-    package = pkgs.whitesur-icon-theme;
-  };
-
-  cursorTheme = {
-    name = "phinger-cursors-light";
-    package = pkgs.phinger-cursors;
-    size = 24;
-  };
-
-  font = {
-    inherit (config.mine.fonts.main) name;
-    inherit (config.mine.fonts) size;
-  };
 in
 {
   options.mine.gtk = {
@@ -36,24 +15,72 @@ in
       default = false;
       description = "Enable GTK Theme configuration.";
     };
+
+    theme = {
+      name = mkOption {
+        type = types.str;
+        default = "WhiteSur-Dark";
+      };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.whitesur-gtk-theme;
+      };
+    };
+
+    iconTheme = {
+      name = mkOption {
+        type = types.str;
+        default = "WhiteSur-dark";
+      };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.whitesur-icon-theme;
+      };
+    };
+
+    cursorTheme = {
+      name = mkOption {
+        type = types.str;
+        default = "phinger-cursors-light";
+      };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.phinger-cursors;
+      };
+      size = mkOption {
+        type = types.int;
+        default = 24;
+      };
+    };
+
+    font = {
+      name = mkOption {
+        type = types.str;
+        default = config.mine.fonts.main.name;
+      };
+      size = mkOption {
+        type = types.int;
+        default = config.mine.fonts.size;
+      };
+    };
   };
 
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        theme.package
-        iconTheme.package
-        cursorTheme.package
+        cfg.theme.package
+        cfg.iconTheme.package
+        cfg.cursorTheme.package
       ];
 
       xdg.config.files = {
         "gtk-3.0/settings.ini".text = ''
           [Settings]
-          gtk-theme-name=${theme.name}
-          gtk-icon-theme-name=${iconTheme.name}
-          gtk-font-name=${font.name} ${toString font.size}
-          gtk-cursor-theme-name=${cursorTheme.name}
-          gtk-cursor-theme-size=${toString cursorTheme.size}
+          gtk-theme-name=${cfg.theme.name}
+          gtk-icon-theme-name=${cfg.iconTheme.name}
+          gtk-font-name=${cfg.font.name} ${toString cfg.font.size}
+          gtk-cursor-theme-name=${cfg.cursorTheme.name}
+          gtk-cursor-theme-size=${toString cfg.cursorTheme.size}
           gtk-application-prefer-dark-theme=1
           gtk-xft-antialias=1
           gtk-xft-hinting=1
@@ -63,21 +90,21 @@ in
 
         "gtk-4.0/settings.ini".text = ''
           [Settings]
-          gtk-theme-name=${theme.name}
-          gtk-icon-theme-name=${iconTheme.name}
-          gtk-font-name=${font.name} ${toString font.size}
-          gtk-cursor-theme-name=${cursorTheme.name}
-          gtk-cursor-theme-size=${toString cursorTheme.size}
+          gtk-theme-name=${cfg.theme.name}
+          gtk-icon-theme-name=${cfg.iconTheme.name}
+          gtk-font-name=${cfg.font.name} ${toString cfg.font.size}
+          gtk-cursor-theme-name=${cfg.cursorTheme.name}
+          gtk-cursor-theme-size=${toString cfg.cursorTheme.size}
           gtk-application-prefer-dark-theme=1
         '';
       };
 
       files.".gtkrc-2.0".text = ''
-        gtk-theme-name="${theme.name}"
-        gtk-icon-theme-name="${iconTheme.name}"
-        gtk-font-name="${font.name} ${toString font.size}"
-        gtk-cursor-theme-name="${cursorTheme.name}"
-        gtk-cursor-theme-size=${toString cursorTheme.size}
+        gtk-theme-name="${cfg.theme.name}"
+        gtk-icon-theme-name="${cfg.iconTheme.name}"
+        gtk-font-name="${cfg.font.name} ${toString cfg.font.size}"
+        gtk-cursor-theme-name="${cfg.cursorTheme.name}"
+        gtk-cursor-theme-size=${toString cfg.cursorTheme.size}
         gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
         gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
         gtk-button-images=1
@@ -89,12 +116,17 @@ in
         gtk-xft-hintstyle=hintslight
         gtk-xft-rgba=rgb
       '';
+
+      files.".local/share/icons/default/index.theme".text = ''
+        [Icon Theme]
+        Inherits=${cfg.cursorTheme.name}
+      '';
     };
 
     environment.sessionVariables = {
-      GTK_THEME = theme.name;
-      XCURSOR_THEME = cursorTheme.name;
-      XCURSOR_SIZE = toString cursorTheme.size;
+      GTK_THEME = cfg.theme.name;
+      XCURSOR_THEME = cfg.cursorTheme.name;
+      XCURSOR_SIZE = toString cfg.cursorTheme.size;
     };
   };
 }
