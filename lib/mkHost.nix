@@ -9,10 +9,7 @@ let
   inherit (builtins) pathExists isAttrs isString;
 
   systemFile =
-    if pathExists (hostDir + "/system.nix") then
-      import (hostDir + "/system.nix")
-    else
-      null;
+    if pathExists (hostDir + "/system.nix") then import (hostDir + "/system.nix") else null;
 
   system =
     if isAttrs systemFile && systemFile ? system then
@@ -28,16 +25,6 @@ in
 withSystem system (
   { inputs', self', ... }:
   let
-    pkgs-stable = import inputs.nixpkgs-stable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
-    pkgs-master = import inputs.nixpkgs-master {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
     sharedModules = import ../modules;
 
     specialArgs = {
@@ -46,8 +33,6 @@ withSystem system (
         inputs'
         self'
         lib
-        pkgs-stable
-        pkgs-master
         ;
     };
   in

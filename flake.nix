@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     firefox-addons = {
@@ -33,6 +31,13 @@
       type = "github";
       owner = "nix-community";
       repo = "impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mangowm = {
+      type = "github";
+      owner = "mangowm";
+      repo = "mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

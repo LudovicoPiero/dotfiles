@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs',
   ...
 }:
 let
@@ -25,7 +26,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = pkgs.mangowc;
+      default = inputs'.mangowm.packages.mango;
       description = "The mango package to install.";
     };
   };

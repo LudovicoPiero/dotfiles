@@ -1,10 +1,7 @@
 {
   pkgs,
   lib,
-  inputs,
   config,
-  pkgs-stable,
-  pkgs-master,
   ...
 }:
 let
@@ -36,10 +33,10 @@ in
     (lib.mkIf cfg.steam.enable {
       programs.steam = {
         enable = true;
-        package = pkgs-stable.steam;
+        package = pkgs.steam;
       };
 
-      environment.systemPackages = with pkgs-master; [ samrewritten ];
+      environment.systemPackages = [ pkgs.samrewritten ];
       hardware.steam-hardware.enable = true;
 
       # Required for Steam's 32-bit OpenGL/Vulkan to work correctly
@@ -51,7 +48,7 @@ in
 
     (lib.mkIf cfg.lutris.enable {
       environment.systemPackages = [
-        (pkgs-stable.lutris.override {
+        (pkgs.lutris.override {
           extraPkgs = p: [
             p.wine
             p.pixman
