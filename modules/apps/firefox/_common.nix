@@ -223,12 +223,13 @@
   };
 
   search = {
-    default = "Google (No AI)";
+    default = "google";
     privateDefault = "Google (No AI)";
     order = [
       "ddg"
       "brave"
       "Google (No AI)"
+      "google"
     ];
 
     engines = {
@@ -240,6 +241,16 @@
         ];
         name = "Google (No AI)";
         definedAliases = [ "g" ];
+      };
+
+      "google" = {
+        urls = [
+          {
+            template = "https://www.google.com/search?hl=en&q={searchTerms}";
+          }
+        ];
+        name = "google";
+        definedAliases = [ "gg" ];
       };
 
       "jisho" = {
