@@ -55,6 +55,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wrapper-manager = {
+      type = "github";
+      owner = "viperML";
+      repo = "wrapper-manager";
+    };
+
     zen-browser = {
       type = "github";
       owner = "0xc000022070";

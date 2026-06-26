@@ -4,6 +4,16 @@
     sway.enable = true;
 
     # Apps
+    emacs = {
+      enable = true;
+      daemon.enable = false;
+      lsp= {
+        nix.enable = true;
+        python.enable = true;
+        go.enable = true;
+        rust.enable = true;
+      };
+    };
     ghostty.enable = false;
     wezterm.enable = true;
     fish.enable = true;
