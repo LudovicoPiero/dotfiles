@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   zramSwap = {
     enable = true;
     algorithm = "zstd";

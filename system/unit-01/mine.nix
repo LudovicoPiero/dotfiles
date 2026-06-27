@@ -7,7 +7,7 @@
     emacs = {
       enable = true;
       daemon.enable = false;
-      lsp= {
+      lsp = {
         nix.enable = true;
         python.enable = true;
         go.enable = true;

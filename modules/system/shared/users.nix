@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-{
+{ config, lib, ... }: {
   sops = {
     secrets."users/userPassword".neededForUsers = true;
     secrets."users/rootPassword".neededForUsers = true;

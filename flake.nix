@@ -71,18 +71,17 @@
   outputs =
     inputs@{ flake-parts, nixpkgs, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (
-      { withSystem, ... }:
-      {
+      { withSystem, ... }: {
         systems = [
           "x86_64-linux"
           # "aarch64-linux"
         ];
 
-        _module.args.extendedLib = nixpkgs.lib.extend (import ./lib { inherit inputs withSystem; });
+        _module.args.extendedLib = nixpkgs.lib.extend (
+          import ./lib { inherit inputs withSystem; }
+        );
 
-        imports = [
-          ./system
-        ];
+        imports = [ ./system ];
       }
     );
 }

@@ -16,8 +16,7 @@ rec {
 
   bookmarkSubmodule =
     types.submodule (
-      { name, ... }:
-      {
+      { name, ... }: {
         options = {
           name = mkOption {
             type = types.str;
@@ -54,8 +53,7 @@ rec {
 
   directoryType =
     types.submodule (
-      { name, ... }:
-      {
+      { name, ... }: {
         options = {
           name = mkOption {
             type = types.str;

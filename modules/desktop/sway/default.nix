@@ -32,7 +32,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.displayManager.sessionPackages = optional (cfg.package != null) cfg.package;
+    services.displayManager.sessionPackages = optional (
+      cfg.package != null
+    ) cfg.package;
     security.pam.services.swaylock.text = "auth include login";
     systemd.user.targets.sway-session = {
       description = "sway compositor session";
@@ -157,7 +159,7 @@ in
         }
 
         output "HDMI-A-1" {
-          mode 1920x1080@144Hz
+          mode 1920x1080@180Hz
           pos 0 0
         }
 

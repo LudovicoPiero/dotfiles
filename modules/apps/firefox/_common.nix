@@ -1,5 +1,4 @@
-{ inputs', ... }:
-{
+{ inputs', ... }: {
   bookmarks = [
     {
       name = "JP"; # Bookmark Folder
@@ -245,9 +244,7 @@
 
       "google" = {
         urls = [
-          {
-            template = "https://www.google.com/search?hl=en&q={searchTerms}";
-          }
+          { template = "https://www.google.com/search?hl=en&q={searchTerms}"; }
         ];
         name = "google";
         definedAliases = [ "gg" ];
@@ -260,25 +257,33 @@
 
       "brave" = {
         urls = [
-          { template = "https://search.brave.com/search?q={searchTerms}&safesearch=off&country=ALL"; }
+          {
+            template = "https://search.brave.com/search?q={searchTerms}&safesearch=off&country=ALL";
+          }
         ];
         definedAliases = [ "b" ];
       };
 
       "ddg" = {
-        urls = [ { template = "https://duckduckgo.com/?q={searchTerms}&kp=-2&kl=wt-wt"; } ];
+        urls = [
+          { template = "https://duckduckgo.com/?q={searchTerms}&kp=-2&kl=wt-wt"; }
+        ];
         name = "DuckDuckGo";
         definedAliases = [ "ddg" ];
       };
 
       # Github
       "Github Code" = {
-        urls = [ { template = "https://github.com/search?q={searchTerms}&type=code"; } ];
+        urls = [
+          { template = "https://github.com/search?q={searchTerms}&type=code"; }
+        ];
         name = "Github Code";
         definedAliases = [ "ghc" ];
       };
       "Github Repos" = {
-        urls = [ { template = "https://Github.com/search?q={searchTerms}&type=repositories"; } ];
+        urls = [
+          { template = "https://Github.com/search?q={searchTerms}&type=repositories"; }
+        ];
         name = "Github Repos";
         definedAliases = [ "ghr" ];
       };
@@ -293,12 +298,20 @@
         definedAliases = [ "hm" ];
       };
       "Nix Packages" = {
-        urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
+        urls = [
+          {
+            template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
+          }
+        ];
         name = "Nix Packages";
         definedAliases = [ "np" ];
       };
       "Nix Options" = {
-        urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
+        urls = [
+          {
+            template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
+          }
+        ];
         name = "Nix options";
         definedAliases = [ "no" ];
       };

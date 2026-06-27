@@ -12,7 +12,9 @@ let
     ;
 
   # Find all configuration.nix files
-  hostConfigs = filter (p: hasSuffix "/configuration.nix" (toString p)) (listFilesRecursive ./.);
+  hostConfigs = filter (p: hasSuffix "/configuration.nix" (toString p)) (
+    listFilesRecursive ./.
+  );
 
   mkHostEntry =
     path:

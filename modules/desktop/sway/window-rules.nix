@@ -1,12 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib)
-    mkIf
-    ;
+  inherit (lib) mkIf;
   cfg = config.mine.sway;
 in
 {
@@ -80,10 +74,7 @@ in
         for_window [class="(?i)google-chrome"] move to workspace number 2
         for_window [class="(?i)chrome"] move to workspace number 2
 
-        # Workspace 3: Chat (Discord/etc)
-        for_window [title="(?i).*discord.*"] move to workspace number 3
-        for_window [title="(?i).*armcord.*"] move to workspace number 3
-        for_window [title="(?i).*webcord.*"] move to workspace number 3
+        # Workspace 3: Chat (Vesktop / Discord)
         for_window [app_id="^vesktop$"] move to workspace number 3
         for_window [class="^vesktop$"] move to workspace number 3
 

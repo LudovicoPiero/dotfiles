@@ -9,7 +9,10 @@ let
   inherit (builtins) pathExists isAttrs isString;
 
   systemFile =
-    if pathExists (hostDir + "/system.nix") then import (hostDir + "/system.nix") else null;
+    if pathExists (hostDir + "/system.nix") then
+      import (hostDir + "/system.nix")
+    else
+      null;
 
   system =
     if isAttrs systemFile && systemFile ? system then

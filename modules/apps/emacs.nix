@@ -85,9 +85,7 @@ in
   };
 
   config = lib.mkMerge [
-    (lib.mkIf cfg.enable {
-      environment.systemPackages = [ emacs-package ];
-    })
+    (lib.mkIf cfg.enable { environment.systemPackages = [ emacs-package ]; })
 
     (lib.mkIf cfg.daemon.enable {
       services.emacs = {

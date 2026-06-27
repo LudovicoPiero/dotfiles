@@ -22,7 +22,7 @@
 
         spellcheck = {
           enable = true;
-          programmingWordlist.enable = false; #FIXME
+          programmingWordlist.enable = false; # FIXME
         };
 
         clipboard = {

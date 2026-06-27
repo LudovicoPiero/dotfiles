@@ -68,7 +68,8 @@
     enable = true;
     dbPath = lib.mkForce inputs'.programsdb.packages.programs-sqlite;
   };
-  environment.etc."programs.sqlite".source = inputs'.programsdb.packages.programs-sqlite;
+  environment.etc."programs.sqlite".source =
+    inputs'.programsdb.packages.programs-sqlite;
 
   security = {
     sudo = {
@@ -228,9 +229,7 @@
         "auto-allocate-uids"
       ];
 
-      extra-substituters = [
-        "https://nyx-cache.chaotic.cx/"
-      ];
+      extra-substituters = [ "https://nyx-cache.chaotic.cx/" ];
       extra-trusted-public-keys = [
         "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
       ];
