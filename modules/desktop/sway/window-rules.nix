@@ -78,29 +78,33 @@ in
         for_window [app_id="^vesktop$"] move to workspace number 3
         for_window [class="^vesktop$"] move to workspace number 3
 
-        # Workspace 4: Comms / Media
+        # Workspace 4: Telegram
         for_window [app_id="^org.telegram.desktop$"] move to workspace number 4
         for_window [class="^telegram-desktop$"] move to workspace number 4
         for_window [app_id="^org.telegram.desktop$" title="^Media viewer$"] floating enable
         for_window [class="^telegram-desktop$" title="^Media viewer$"] floating enable
-        for_window [app_id="^(qbittorrent)$"] move to workspace number 4
-        for_window [app_id="^org.qbittorrent.qbittorrent$"] move to workspace number 4
-        for_window [class="^qbittorrent$"] move to workspace number 4
-        for_window [class="^org.qbittorrent.qbittorrent$"] move to workspace number 4
-        for_window [app_id="^spotify$"] move to workspace number 4
-        for_window [class="^spotify$"] move to workspace number 4
-        for_window [app_id="^org.fooyin.fooyin$"] move to workspace number 4
-        for_window [class="^org.fooyin.fooyin$"] move to workspace number 4
-        for_window [app_id="^tidal-hifi$"] move to workspace number 4
-        for_window [class="^tidal-hifi$"] move to workspace number 4
 
-        # Workspace 5: Mail
-        for_window [app_id="^thunderbird$"] move to workspace number 5
-        for_window [app_id="^org.mozilla.thunderbird$"] move to workspace number 5
-        for_window [app_id="^net.thunderbird.Thunderbird$"] move to workspace number 5
-        for_window [class="^thunderbird$"] move to workspace number 5
-        for_window [class="^org.mozilla.thunderbird$"] move to workspace number 5
-        for_window [class="^net.thunderbird.Thunderbird$"] move to workspace number 5
+        # Workspace 7: xxx
+        for_window [app_id="^(qbittorrent)$"] move to workspace number 7
+        for_window [app_id="^org.qbittorrent.qbittorrent$"] move to workspace number 7
+        for_window [class="^qbittorrent$"] move to workspace number 7
+        for_window [class="^org.qbittorrent.qbittorrent$"] move to workspace number 7
+
+        # Workspace 9: Music
+        for_window [app_id="^spotify$"] move to workspace number 9
+        for_window [class="^spotify$"] move to workspace number 9
+        for_window [app_id="^org.fooyin.fooyin$"] move to workspace number 9
+        for_window [class="^org.fooyin.fooyin$"] move to workspace number 9
+        for_window [app_id="^tidal-hifi$"] move to workspace number 9
+        for_window [class="^tidal-hifi$"] move to workspace number 9
+
+        # Workspace 10: Mail
+        for_window [app_id="^thunderbird$"] move to workspace number 10
+        for_window [app_id="^org.mozilla.thunderbird$"] move to workspace number 10
+        for_window [app_id="^net.thunderbird.Thunderbird$"] move to workspace number 10
+        for_window [class="^thunderbird$"] move to workspace number 10
+        for_window [class="^org.mozilla.thunderbird$"] move to workspace number 10
+        for_window [class="^net.thunderbird.Thunderbird$"] move to workspace number 10
 
         # Floating / misc
         for_window [title="(?i).*bitwarden password manager.*"] floating enable, move position center, sticky enable

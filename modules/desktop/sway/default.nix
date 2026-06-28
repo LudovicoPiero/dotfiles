@@ -94,6 +94,11 @@ in
         bindsym Mod4+3 workspace number 3
         bindsym Mod4+4 workspace number 4
         bindsym Mod4+5 workspace number 5
+        bindsym Mod4+6 workspace number 6
+        bindsym Mod4+7 workspace number 7
+        bindsym Mod4+8 workspace number 8
+        bindsym Mod4+9 workspace number 9
+        bindsym Mod4+0 workspace number 10
 
         bindsym Mod4+Down focus down
         bindsym Mod4+Left focus left
@@ -105,6 +110,11 @@ in
         bindsym Mod4+Shift+3 move container to workspace number 3
         bindsym Mod4+Shift+4 move container to workspace number 4
         bindsym Mod4+Shift+5 move container to workspace number 5
+        bindsym Mod4+Shift+6 move container to workspace number 6
+        bindsym Mod4+Shift+7 move container to workspace number 7
+        bindsym Mod4+Shift+8 move container to workspace number 8
+        bindsym Mod4+Shift+9 move container to workspace number 9
+        bindsym Mod4+Shift+0 move container to workspace number 10
 
         bindsym Mod4+Shift+Down move down
         bindsym Mod4+Shift+Left move left
