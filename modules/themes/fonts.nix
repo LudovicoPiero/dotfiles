@@ -20,11 +20,11 @@ in
     main = {
       name = mkOption {
         type = types.str;
-        default = "Cantarell";
+        default = "Inter";
       };
       package = mkOption {
         type = types.package;
-        default = pkgs.cantarell-fonts;
+        default = pkgs.inter;
       };
     };
 
