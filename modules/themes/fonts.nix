@@ -84,13 +84,7 @@ in
         iosevka-q = final.callPackage ../../packages/iosevka-q { };
 
         #TODO: REMOVE LATER!!
-        openblas =
-          if prev.stdenv.hostPlatform.system == "i686-linux" then
-            prev.openblas.overrideAttrs (_: {
-              doCheck = false;
-            })
-          else
-            prev.openblas;
+        pnpm_10_29_2 = final.pnpm_10;
       })
     ];
 
