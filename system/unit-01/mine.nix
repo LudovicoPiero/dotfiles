@@ -18,7 +18,7 @@
     wezterm.enable = true;
     fish.enable = true;
     firefox.enable = true;
-    zen-browser.enable = true;
+    zen-browser.enable = false;
     keyring.enable = true;
     git.enable = true;
     inputMethod = {
