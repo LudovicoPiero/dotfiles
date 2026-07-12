@@ -36,6 +36,7 @@
         # Nix
         nix = {
           enable = true;
+          lsp.servers = [ "nixd" ];
           format = {
             enable = true;
             type = [ "nixfmt" ];
