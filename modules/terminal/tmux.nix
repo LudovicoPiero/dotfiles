@@ -32,7 +32,7 @@ in
       unbind C-b
       bind C-a send-prefix
 
-      set-option -g update-environment "DISPLAY WAYLAND_DISPLAY NIRI_SOCKET XDG_CURRENT_DESKTOP"
+     # set-option -g update-environment "DISPLAY WAYLAND_DISPLAY NIRI_SOCKET XDG_CURRENT_DESKTOP"
       set -s set-clipboard external
 
       # setw -g mode-keys vi
