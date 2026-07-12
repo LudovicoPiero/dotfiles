@@ -11,33 +11,77 @@ let
     mkOption
     types
     mkIf
-    optional
     ;
-  cfg = config.mine.sway;
+  cfg = config.mine.i3wm;
   c = config.mine.theme.colors;
 in
 {
-  options.mine.sway = {
+  options.mine.i3wm = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = "Enable sway configuration.";
+      description = "Enable i3wm configuration.";
     };
 
     package = mkOption {
       type = types.package;
-      default = pkgs.sway;
-      description = "The sway package to install.";
+      default = pkgs.i3;
+      description = "The i3wm package to install.";
     };
   };
 
   config = mkIf cfg.enable {
-    services.displayManager.sessionPackages = optional (
-      cfg.package != null
-    ) cfg.package;
-    security.pam.services.swaylock.text = "auth include login";
-    systemd.user.targets.sway-session = {
-      description = "sway compositor session";
+    services = {
+      xserver = {
+        enable = true;
+        windowManager.i3 = {
+          enable = true;
+          inherit (cfg) package;
+          extraSessionCommands = ''
+            export XDG_CURRENT_DESKTOP=i3
+            systemctl --user import-environment XDG_CURRENT_DESKTOP || true
+            dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP || true
+          '';
+        };
+        xkb.layout = "us";
+        autoRepeatDelay = 300;
+        autoRepeatInterval = 33;
+      };
+      libinput = {
+        enable = true;
+        touchpad = {
+          tapping = true;
+          naturalScrolling = true;
+          middleEmulation = true;
+          disableWhileTyping = false;
+        };
+      };
+
+      picom = {
+        enable = true;
+        backend = "glx";
+        vSync = true;
+        fade = false;
+        fadeDelta = 4;
+        shadow = false;
+        shadowOpacity = 0.6;
+        settings = {
+          shadow-color = c.base00;
+          corner-radius = 6;
+          blur-method = "none";
+          blur-strength = 5;
+          rounded-corners-exclude = [
+            "window_type = 'dock'"
+            "window_type = 'desktop'"
+          ];
+        };
+      };
+    };
+    security.pam.services.i3lock.text = "auth include login";
+    security.pam.services.i3lock-color.text = "auth include login";
+
+    systemd.user.targets.i3-session = {
+      description = "i3 window manager session";
       documentation = [ "man:systemd.special(7)" ];
       bindsTo = [ "graphical-session.target" ];
       wants = [ "graphical-session-pre.target" ];
@@ -46,24 +90,23 @@ in
 
     hj = {
       packages = [ cfg.package ];
-      xdg.config.files."sway/config".text = ''
+      xdg.config.files."i3/config".text = ''
         font pango:${config.mine.fonts.main.name} 10
-        include ${config.mine.vars.homeDirectory}/.config/sway/window-rules
-        seat * xcursor_theme ${config.mine.gtk.cursorTheme.name} ${toString config.mine.gtk.cursorTheme.size}
+        include ${config.mine.vars.homeDirectory}/.config/i3/window-rules
+        exec --no-startup-id ${getExe pkgs.xsetroot} -cursor_name ${config.mine.gtk.cursorTheme.name}
 
         # Autostart
-        exec ${getExe pkgs.mako}
-        exec ${getExe pkgs.thunderbird}
+        exec_always --no-startup-id ${getExe pkgs.xrandr} --output HDMI-A-1 --mode 1920x1080 --rate 180 --pos 0x0 --output eDP-1 --off
+        exec --no-startup-id ${getExe pkgs.dunst}
+        exec --no-startup-id ${getExe pkgs.thunderbird}
         exec --no-startup-id fcitx5 -d
-        exec ${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${getExe pkgs.cliphist} store
-        exec ${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${getExe pkgs.cliphist} store
-        exec ${getExe pkgs.swayidle} -w \
-          timeout 300 '${getExe pkgs.swaylock} -f -c 000000' \
-          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep '${getExe pkgs.swaylock} -f -c 000000'
-        exec ${getExe' pkgs.dbus "dbus-update-activation-environment"} --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-        exec "systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target"
-        exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target
+        exec --no-startup-id ${pkgs.clipmenu}/bin/clipmenud
+        exec --no-startup-id ${getExe pkgs.xautolock} -time 10 -locker "${getExe pkgs.betterlockscreen} -l dim" -detectsleep
+        exec --no-startup-id ${getExe pkgs.xss-lock} -- ${getExe pkgs.betterlockscreen} -l dim
+        exec --no-startup-id ${getExe pkgs.xset} s 1200 1200
+        exec --no-startup-id "${getExe' pkgs.i3 "i3-msg"} -t subscribe -m '[\"shutdown\"]' && systemctl --user stop i3-session.target"
+        exec --no-startup-id "systemctl --user start i3-session.target || true"
+        exec --no-startup-id ${getExe pkgs.feh} --bg-fill $HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png
 
         floating_modifier Mod4
         default_border normal 2
@@ -82,12 +125,12 @@ in
         client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
         client.background ${c.base00}
 
-        bindsym --locked XF86AudioLowerVolume exec ${getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ -5%
-        bindsym --locked XF86AudioMicMute exec ${getExe' pkgs.pulseaudio "pactl"} set-source-mute @DEFAULT_SOURCE@ toggle
-        bindsym --locked XF86AudioMute exec ${getExe' pkgs.pulseaudio "pactl"} set-sink-mute @DEFAULT_SINK@ toggle
-        bindsym --locked XF86AudioRaiseVolume exec ${getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ +5%
-        bindsym --locked XF86MonBrightnessDown exec ${getExe pkgs.brightnessctl} set 5%-
-        bindsym --locked XF86MonBrightnessUp exec ${getExe pkgs.brightnessctl} set 5%+
+        bindsym XF86AudioLowerVolume exec --no-startup-id ${getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ -5%
+        bindsym XF86AudioMicMute exec --no-startup-id ${getExe' pkgs.pulseaudio "pactl"} set-source-mute @DEFAULT_SOURCE@ toggle
+        bindsym XF86AudioMute exec --no-startup-id ${getExe' pkgs.pulseaudio "pactl"} set-sink-mute @DEFAULT_SINK@ toggle
+        bindsym XF86AudioRaiseVolume exec --no-startup-id ${getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ +5%
+        bindsym XF86MonBrightnessDown exec --no-startup-id ${getExe pkgs.brightnessctl} set 5%-
+        bindsym XF86MonBrightnessUp exec --no-startup-id ${getExe pkgs.brightnessctl} set 5%+
 
         bindsym Mod4+1 workspace number 1
         bindsym Mod4+2 workspace number 2
@@ -102,7 +145,7 @@ in
 
         bindsym Mod4+Down focus down
         bindsym Mod4+Left focus left
-        bindsym Mod4+Return exec ${getExe pkgs.wezterm}
+        bindsym Mod4+Return exec --no-startup-id ${getExe pkgs.wezterm}
         bindsym Mod4+Right focus right
 
         bindsym Mod4+Shift+1 move container to workspace number 1
@@ -121,13 +164,13 @@ in
         bindsym Mod4+Shift+Right move right
         bindsym Mod4+Shift+Up move up
         bindsym Mod4+Shift+c reload
-        bindsym Mod4+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+        bindsym Mod4+Shift+e exec --no-startup-id ${getExe' pkgs.i3 "i3-nagbar"} -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' '${getExe' pkgs.i3 "i3-msg"} exit'
         bindsym Mod4+Shift+h move left
         bindsym Mod4+Shift+j move down
         bindsym Mod4+Shift+k move up
         bindsym Mod4+Shift+l move right
         bindsym Mod4+Shift+minus move scratchpad
-        bindsym Mod4+Shift+p exec ${getExe pkgs.cliphist} list | ${getExe pkgs.fuzzel} --dmenu | ${getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy
+        bindsym Mod4+Shift+p exec --no-startup-id ${pkgs.clipmenu}/bin/clipmenu
         bindsym Mod4+Shift+q move scratchpad
         bindsym Mod4+Shift+space focus mode_toggle
         bindsym Mod4+Up focus up
@@ -140,7 +183,7 @@ in
         bindsym Mod4+k focus up
         bindsym Mod4+l focus right
         bindsym Mod4+minus scratchpad show
-        bindsym Mod4+p exec ${getExe pkgs.fuzzel}
+        bindsym Mod4+p exec --no-startup-id ${getExe pkgs.rofi} -show drun
         bindsym Mod4+q scratchpad show
         bindsym Mod4+r mode resize
         bindsym Mod4+s layout stacking
@@ -148,34 +191,8 @@ in
         bindsym Mod4+t layout tabbed
         bindsym Mod4+v splitv
         bindsym Mod4+w kill
-        bindsym Mod4+x exec ${getExe pkgs.wleave}
-        bindsym Print exec ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe' pkgs.wl-clipboard "wl-copy"}
-
-        input "type:keyboard" {
-          xkb_layout us
-          repeat_delay 300
-          repeat_rate 30
-        }
-
-        input "2:14:SynPS/2_Synaptics_TouchPad" {
-          dwt enabled
-          middle_emulation enabled
-          natural_scroll enabled
-          tap enabled
-        }
-
-        output "*" {
-          bg $HOME/Pictures/Wallpaper/Minato-Aqua-Dark.png fill
-        }
-
-        output "HDMI-A-1" {
-          mode 1920x1080@180Hz
-          pos 0 0
-        }
-
-        output "eDP-1" {
-          disable
-        }
+        bindsym Mod4+x exec --no-startup-id ${getExe' pkgs.i3 "i3-nagbar"} -t warning -m 'Power menu' -B 'Lock' '${getExe pkgs.betterlockscreen} -l dim' -B 'Logout' '${getExe' pkgs.i3 "i3-msg"} exit' -B 'Reboot' 'systemctl reboot' -B 'Shutdown' 'systemctl poweroff'
+        bindsym Print exec --no-startup-id ${getExe pkgs.maim} -s | ${getExe' pkgs.xclip "xclip"} -selection clipboard -t image/png
 
         mode "resize" {
           bindsym Down resize grow height 10px
@@ -194,7 +211,6 @@ in
           font pango:JetBrains Mono 10.000000
           position bottom
           status_command ${getExe pkgs.i3status} -c ~/.config/i3status/i3status.conf
-          swaybar_command ${pkgs.sway}/bin/swaybar
           colors {
             background ${c.base00}
             statusline ${c.base05}

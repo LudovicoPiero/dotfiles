@@ -44,7 +44,7 @@ in
         config.font_size = 15.0
 
         -- Wayland & UI Settings
-        config.enable_wayland = true
+        -- config.enable_wayland = true
         config.enable_scroll_bar = false
         config.check_for_updates = false
         config.default_cursor_style = "SteadyBlock"

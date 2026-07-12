@@ -1,7 +1,7 @@
 {
   mine = {
     # WM / Compositor
-    sway.enable = true;
+    i3wm.enable = true;
 
     # Apps
     emacs = {
@@ -29,7 +29,7 @@
     fonts.enable = true;
     gtk.enable = true;
     gpg.enable = true;
-    mako.enable = true;
+    dunst.enable = true;
     nvim.enable = true;
     tmux.enable = true;
     portal.enable = true;

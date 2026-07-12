@@ -68,7 +68,6 @@
   extensions = with inputs'.firefox-addons.packages; [
     bitwarden
     refined-github
-    sponsorblock
     to-deepl
     ublock-origin
     search-by-image

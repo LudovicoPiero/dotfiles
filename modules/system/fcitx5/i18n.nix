@@ -49,7 +49,7 @@ in
         type = selectedInputMethod;
 
         fcitx5 = mkIf (selectedInputMethod == "fcitx5") {
-          waylandFrontend = true;
+          waylandFrontend = false;
           addons = with pkgs; [
             fcitx5-mozc
             fcitx5-hangul
