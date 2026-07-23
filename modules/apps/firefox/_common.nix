@@ -67,6 +67,7 @@
 
   extensions = with inputs'.firefox-addons.packages; [
     bitwarden
+    hyperchat
     refined-github
     to-deepl
     ublock-origin
