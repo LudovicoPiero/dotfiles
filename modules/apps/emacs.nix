@@ -21,7 +21,7 @@ let
       tree-sitter-toml
       tree-sitter-yaml
       tree-sitter-markdown
-      tree-sitter-markdown-inline
+      tree-sitter-markdown_inline
     ]
   );
 
@@ -55,7 +55,7 @@ let
             pkgs.rust-analyzer
             pkgs.rustfmt
           ];
-          env.TREE_SITTER_GRAMMAR_PATH.value = "${treesit-grammars}/parser";
+          # env.TREE_SITTER_GRAMMAR_PATH.value = "${treesit-grammars}/parser";
         };
       }
     ];
