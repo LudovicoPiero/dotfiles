@@ -338,15 +338,13 @@
       "locked": {
         "lastModified": 1788338967,
         "narHash": "sha256-ERCTzitF650HHNvTOPMAB3rTi6ptcwatmrx9QFkreKs=",
-        "owner": "viperML",
-        "repo": "wrapper-manager",
         "rev": "05d5c2a8f0a6091cc17573d9a0c0de59269b8534",
-        "type": "github"
+        "type": "git",
+        "url": "https://codeberg.org/viperML/wrapper-manager"
       },
       "original": {
-        "owner": "viperML",
-        "repo": "wrapper-manager",
-        "type": "github"
+        "type": "git",
+        "url": "https://codeberg.org/viperML/wrapper-manager"
       }
     },
     "zen-browser": {
