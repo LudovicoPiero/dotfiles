@@ -56,9 +56,8 @@
     };
 
     wrapper-manager = {
-      type = "github";
-      owner = "viperML";
-      repo = "wrapper-manager";
+      type = "git";
+      url = "https://codeberg.org/viperML/wrapper-manager";
     };
 
     zen-browser = {
